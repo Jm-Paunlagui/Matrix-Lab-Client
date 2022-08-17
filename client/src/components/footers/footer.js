@@ -4,7 +4,7 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <footer className="pt-8 pb-6 text-gray-500 bg-gray-200 font-Montserrat">
+        <footer className="pt-8 pb-6 mt-auto text-gray-500 bg-gray-200 font-Montserrat">
             <div
             className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
             style={{ transform: "translateZ(0)" }}
@@ -49,7 +49,7 @@ const Footer = () => {
                         <li>
                         <a
                             className="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
-                            href="/about"
+                            href="/aboutus"
                         >
                             About Us
                         </a>
@@ -75,7 +75,7 @@ const Footer = () => {
                         <li>
                         <a
                             className="block pb-2 text-sm font-semibold text-blueGray-600 hover:text-blueGray-800"
-                            href="/terms-and-conditions"
+                            href="terms-and-conditions"
                         >
                             Terms & Conditions
                         </a>
