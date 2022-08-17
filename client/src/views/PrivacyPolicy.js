@@ -5,17 +5,17 @@ import Privacy from '../assets/img/privacy.svg'
 const PrivacyPolicy = () => {
     return (
         <>
-            <div class="items-center lg:grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28 flex flex-col min-h-screen">
-                <div class=" place-self-center lg:col-span-7 ">
-                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold text-gray-700 tracking-tight leading-none md:text-5xl xl:text-6xl">Privacy Policy</h1>
-                    <p class="max-w-2xl mb-6  text-gray-500 lg:mb-8 md:text-lg lg:text-xl">This is the privacy policy of the Sentiment Analysis Evaluation Result project. This policy explains how we use your personal data and how we protect it. We will only use your personal data for the purpose of providing you the best experience on our website. We will not sell or rent your personal data to third parties. We will not use your personal data for any other purpose. We will not use your personal data to run a spam campaign. We will not use your personal data to send you unsolicited emails.</p>
+            <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
+                <div className=" place-self-center lg:col-span-7">
+                    <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">Privacy Policy</h1>
+                    <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">This is the privacy policy of the Sentiment Analysis Evaluation Result project. This policy explains how we use your personal data and how we protect it. We will only use your personal data for the purpose of providing you the best experience on our website. We will not sell or rent your personal data to third parties. We will not use your personal data for any other purpose. We will not use your personal data to run a spam campaign. We will not use your personal data to send you unsolicited emails.</p>
                     <p
                         className="flex items-center justify-center w-3/4 px-5 py-3 font-medium tracking-wider text-white bg-teal-900 border border-transparent rounded-md hover:bg-cyan-800 md:py-4 md:text-lg md:px-10"
                     >
                         Effective date: 2022-07-08
                     </p>
                 </div>
-                <div class="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
+                <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
                     <img src={Privacy} alt="mockup"/>
                 </div>                
             </div>

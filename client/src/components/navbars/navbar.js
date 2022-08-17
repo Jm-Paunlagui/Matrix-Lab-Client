@@ -24,14 +24,11 @@ const Navbar = () => {
             <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 bg-blue-900 shadow navbar-expand-lg font-Montserrat">
                 <div className="container flex flex-wrap items-center justify-between mx-auto ">
                     <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
-                        <NavLink exact to="/" 
-                            activeStyle={{
-                                color:'black'
-                            }}
+                        <NavLink to="/" 
                             className="flex items-center px-3 py-2 text-gray-100 rounded-md hover:text-gray-300 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                             <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-                            <a href="/" className="hidden ml-3 font-bold tracking-widest text-md md:flex">MATRIX LAB</a>
-                            <a href="/" className="ml-3 font-bold tracking-widest text-md md:hidden">MATRIX LAB</a>
+                            <h1 className="hidden ml-3 font-bold tracking-widest text-md md:flex">MATRIX LAB</h1>
+                            <h1 className="ml-3 font-bold tracking-widest text-md md:hidden">MATRIX LAB</h1>
                         </NavLink>
                         <button
                             className="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
@@ -50,34 +47,22 @@ const Navbar = () => {
                             id="example-navbar-warning"
                         >
                         <ul className="flex flex-col justify-start list-none lg:flex-row lg:ml-auto">
-                            <NavLink exact to ="/"
-                                    className="text-white"
-                                    activestyle = {{
-                                    color:'black'
-                                    }
-                                }>
+                            <NavLink to ="/"
+                                    className="text-white">
                                 <li className="flex items-center p-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     <AiFillHome size={24} title="Home"/>
                                     <h1 className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">Home</h1>
                                 </li>
                             </NavLink>
-                            <NavLink exact to ="leaderboard"
-                                    className="text-white"
-                                    activestyle = {{
-                                    color:'black'
-                                    }
-                                }>
+                            <NavLink to ="leaderboard"
+                                    className="text-white">
                                 <li className="flex items-center p-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     <MdLeaderboard size={24} title="Leaderboard"/>
                                     <div className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">Leaderboard</div>
                                 </li>
                             </NavLink>
-                            <NavLink exact to ={link}
-                                    className="text-white"
-                                    activestyle = {{
-                                    color:'black'
-                                    }
-                                }>
+                            <NavLink to ={link}
+                                    className="text-white">
                                 <li className="flex items-center p-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     {navIcon}
                                     
