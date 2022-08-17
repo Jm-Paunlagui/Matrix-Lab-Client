@@ -49,21 +49,21 @@ const Navbar = () => {
                         <ul className="flex flex-col justify-start list-none lg:flex-row lg:ml-auto">
                             <NavLink to ="/"
                                     className="text-white">
-                                <li className="flex items-center p-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     <AiFillHome size={24} title="Home"/>
                                     <h1 className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">Home</h1>
                                 </li>
                             </NavLink>
                             <NavLink to ="leaderboard"
                                     className="text-white">
-                                <li className="flex items-center p-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     <MdLeaderboard size={24} title="Leaderboard"/>
                                     <div className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">Leaderboard</div>
                                 </li>
                             </NavLink>
                             <NavLink to ={link}
                                     className="text-white">
-                                <li className="flex items-center p-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     {navIcon}
                                     
                                     <div className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">{tokenAuth ? "Dashboard" : "Sign-in"}</div>
