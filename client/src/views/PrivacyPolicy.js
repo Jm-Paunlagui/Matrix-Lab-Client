@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
                     <img src={Privacy} alt="mockup"/>
                 </div>                
             </div>
-            <div className="max-w-5xl px-4 mx-auto mb-20 sm:px-6 lg:px-8">
+            <div className="max-w-5xl px-4 mx-auto mb-20 sm:px-6 lg:px-8 font-Montserrat">
                 <div>
                     <span className="inline">1.</span>{' '}
                     <span className="inline font-medium text-blue-900">Introduction</span>
