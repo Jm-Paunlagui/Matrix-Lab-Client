@@ -7,6 +7,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import Landing from './views/Landing.js'
 import Home from './views/Home.js'
 import Leaderboard from './views/Leaderboard.js'
+import AboutUS from './views/AboutUS.js'
+import PrivacyPolicy from './views/PrivacyPolicy.js'
+import TermsAndConditions from './views/TermsAndConditions.js'
 import PageNotFound from './views/PageNotFound.js'
 
 const App = () => {
@@ -17,6 +20,9 @@ const App = () => {
         <Route exact="true" path='/' element={<Landing />}>
           <Route exact="true" path='/' element={<Home />} />
           <Route exact="true" path='leaderboard' element={<Leaderboard />} />
+          <Route exact="true" path='aboutus' element={<AboutUS />} />
+          <Route exact="true" path='privacy-policy' element={<PrivacyPolicy />} />
+          <Route exact="true" path='terms-and-conditions' element={<TermsAndConditions />} />
         </Route>
         
         <Route path='*' element={<PageNotFound />} />
