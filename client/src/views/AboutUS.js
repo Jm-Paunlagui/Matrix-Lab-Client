@@ -18,17 +18,15 @@ const AboutUS = () => {
                                 </ul>
                             </p>
                             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:max-w-xl sm:mx-auto md:mt-5 md:text-md lg:mx-0">
-                            The project is made with the following technologies:
-                                <ul className="pl-5 list-disc">
+                            The project is made with the following major technologies:
+                                <ol className="pl-5 list-disc">
                                     <li className="mt-2">React</li>
-                                    <li className="mt-2">React-Router-Dom</li>
-                                    <li className="mt-2">Axios</li>
+                                    <li className="mt-2">Tensorflow</li>
+                                    <li className="mt-2">Keras</li>
                                     <li className="mt-2">Tailwind CSS</li>
-                                    <li className="mt-2">React icons</li>
-                                    <li className="mt-2">Fontawesome</li>
                                     <li className="mt-2">Flask</li>
                                     <li className="mt-2">MySQL</li>
-                                </ul>
+                                </ol>
                             </p>
             </div>
             <div class="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">

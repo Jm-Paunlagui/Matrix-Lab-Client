@@ -55,6 +55,7 @@ const Navbar = () => {
                                 </li>
                             </NavLink>
                             <NavLink to ="leaderboard"
+                                    
                                     className="text-white">
                                 <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
                                     <MdLeaderboard size={24} title="Leaderboard"/>
