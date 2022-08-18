@@ -24,7 +24,7 @@ const Footer = () => {
                         </div>
                         <div className="w-full px-4 lg:w-6/12">
                             <div className="flex flex-wrap mb-6 items-top">
-                                <div className="w-full px-4 ml-auto lg:w-4/12">
+                                <div className="w-full px-4 mb-6 ml-auto lg:w-4/12">
                                     <span className="block mb-2 text-sm font-semibold uppercase text-blueGray-500">
                                         Useful Links
                                     </span>
