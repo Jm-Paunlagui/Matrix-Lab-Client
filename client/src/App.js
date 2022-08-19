@@ -37,6 +37,7 @@ const App = () => {
               <Route exact="true" path='terms-and-conditions' element={<TermsAndConditions />} />
             </Route>
           <Route exact="true" path='auth' element={<Login />} />
+          <Route exact="true" path="admin" element={<div>Admin</div>} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
       </Wrapper>
