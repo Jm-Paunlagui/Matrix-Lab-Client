@@ -5,7 +5,7 @@ import { GoThreeBars } from "react-icons/go"
 import { AiFillHome } from "react-icons/ai";
 import { MdLeaderboard } from "react-icons/md";
 import { TbDeviceAnalytics } from "react-icons/tb";
-import { RiLoginCircleFill } from "react-icons/ri";
+import { FaSignInAlt } from "react-icons/fa";
 import logo from '../../assets/img/android-chrome-192x192.png';
 
 const Navbar = () => {
@@ -16,7 +16,7 @@ const Navbar = () => {
     const tokenAuth = localStorage.getItem("access_token");
     // check the length of the token
     
-    const navIcon = tokenAuth ? <TbDeviceAnalytics size={24} title="Dashboard"/> : <RiLoginCircleFill size={24} title="Sign-in"/>;
+    const navIcon = tokenAuth ? <TbDeviceAnalytics size={24} title="Dashboard"/> : <FaSignInAlt size={24} title="Sign-in"/>;
     const link = tokenAuth ? "/admin" : "/auth";
 
     return (
