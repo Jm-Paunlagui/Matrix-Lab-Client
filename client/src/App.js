@@ -5,12 +5,17 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import Landing from './views/Landing.js'
+import Auth from './views/auth/Auth.js'
+
 import Home from './views/Home.js'
-import Login from './views/auth/Login.js'
 import Leaderboard from './views/Leaderboard.js'
 import AboutUS from './views/AboutUS.js'
 import PrivacyPolicy from './views/PrivacyPolicy.js'
 import TermsAndConditions from './views/TermsAndConditions.js'
+
+import Login from './views/auth/Login.js'
+import ForgotPasswordReq from './views/auth/ForgotPasswordReq.js'
+
 import PageNotFound from './views/PageNotFound.js'
 
 const App = () => {
@@ -29,14 +34,19 @@ const App = () => {
       <ToastContainer autoClose={3000} position='bottom-right'/>
       <Wrapper>
         <Routes>
-            <Route element={<Landing />}>
-              <Route exact="true" path='/' element={<Home />} />
-              <Route exact="true" path='leaderboard' element={<Leaderboard />} />
-              <Route exact="true" path='aboutus' element={<AboutUS />} />
-              <Route exact="true" path='privacy-policy' element={<PrivacyPolicy />} />
-              <Route exact="true" path='terms-and-conditions' element={<TermsAndConditions />} />
-            </Route>
-          <Route exact="true" path='auth' element={<Login />} />
+          <Route element={<Landing />}>
+            <Route exact="true" path='/' element={<Home />} />
+            <Route exact="true" path='leaderboard' element={<Leaderboard />} />
+            <Route exact="true" path='aboutus' element={<AboutUS />} />
+            <Route exact="true" path='privacy-policy' element={<PrivacyPolicy />} />
+            <Route exact="true" path='terms-and-conditions' element={<TermsAndConditions />} />
+          </Route>
+
+          <Route element={<Auth />}>  
+            <Route exact="true" path='auth' element={<Login />}/>
+            <Route exact="true" path='forgot-password' element={<ForgotPasswordReq />} />
+          </Route>
+          
           <Route exact="true" path="admin" element={<div>Admin</div>} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
