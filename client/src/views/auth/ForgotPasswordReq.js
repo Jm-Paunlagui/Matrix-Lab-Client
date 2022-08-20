@@ -4,11 +4,6 @@ import { AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
 const ForgotPasswordReq = () => {
-
-    // I have 2 forms for this page, one for requesting a password reset and one for resetting the password.
-    // The form for requesting a password reset is shown by default and the form for resetting the password is hidden.
-    const [form, setForm] = useState(true);
-
     return (
         <>
             <div className="container h-full px-4 mx-auto font-Montserrat">
