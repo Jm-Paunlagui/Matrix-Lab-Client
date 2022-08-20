@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../../assets/img/android-chrome-192x192.png';
+import { AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 const ForgotPasswordReq = () => {
+
+    // I have 2 forms for this page, one for requesting a password reset and one for resetting the password.
+    // The form for requesting a password reset is shown by default and the form for resetting the password is hidden.
+    const [form, setForm] = useState(true);
+
     return (
         <>
             <div className="container h-full px-4 mx-auto font-Montserrat">
@@ -22,7 +29,7 @@ const ForgotPasswordReq = () => {
                                 </div>
                                 <div className="mb-3 text-start">
                                     <p className="text-gray-700">
-                                        Enter your email address below and we'll send you a code to reset your password.
+                                        Enter your email address below and we'll send you a new password.
                                     </p>
                                 </div>
                                 <form className="relative mx-auto mt-6 mb-6 max-w-screen">
@@ -33,9 +40,25 @@ const ForgotPasswordReq = () => {
                                     <button type="submit"
                                         className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-teal-700 rounded-lg hover:bg-blue-900 focus:shadow-outline focus:outline-none">
                                         <i className="fas fa-rotate-right w-6-ml-2" />
-                                        <span className="ml-3">Reset password</span>
+                                        <span className="ml-3">Reset Password</span>
                                     </button>
-                                </form>
+                                </form>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="container h-full px-4 mx-auto">
+                <div className="flex items-center content-center justify-center h-full">
+                    <div className="w-full px-4 lg:w-4/12">
+                        <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
+                            <div className="px-6 py-6 mb-0 rounded-t">
+                                <div className="flex items-center px-3 py-2 text-gray-800 ">                                          
+                                    <Link to="/auth" className="ml-3 font-medium tracking-widest text-md">
+                                        <i className="fas fa-arrow-left w-6-ml-2" />
+                                        <span className="ml-3">Back</span>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
