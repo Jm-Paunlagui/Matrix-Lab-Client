@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import logo from '../../assets/img/android-chrome-192x192.png';
-import { AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
 const ForgotPasswordReq = () => {
