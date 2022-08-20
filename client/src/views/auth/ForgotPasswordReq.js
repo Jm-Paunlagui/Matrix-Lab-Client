@@ -22,7 +22,7 @@ const ForgotPasswordReq = () => {
                                 </div>
                                 <div className="mb-3 text-start">
                                     <p className="text-gray-700">
-                                        Enter your email address below and we'll send you a link to reset your password.
+                                        Enter your email address below and we'll send you a code to reset your password.
                                     </p>
                                 </div>
                                 <form className="relative mx-auto mt-6 mb-6 max-w-screen">
