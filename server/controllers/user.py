@@ -2,8 +2,9 @@ import re
 import hashlib
 import mysql.connector
 
+from flask_gravatar import Gravatar
 from flask_cors import CORS
-from datetime import timedelta
+from datetime import timedelta, datetime
 from flask import Flask, jsonify, request
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 
@@ -16,6 +17,15 @@ jwt = JWTManager(user)
 
 conn = mysql.connector.connect(host='localhost', user='root', password='', database='project_saer_1')
 cursor = conn.cursor()
+
+
+# Gravatar initialization
+def gravatar(email):
+    gravatar_ = Gravatar(user, size=200, rating='g', default='retro', force_default=False, force_lower=False)
+    # Hash the email address
+    hash_ = hashlib.md5(email.encode('utf-8')).hexdigest()
+    # Return the gravatar url
+    return gravatar_.url('https://www.gravatar.com/avatar/' + hash_ + '?s=200&d=retro')
 
 
 def test():
@@ -85,6 +95,36 @@ def auth():
         return jsonify({'status': 'something went wrong'})
 
 
+# Validation of create and update user
+def validate_user(email, name, username, password, role):
+    # if email, name, username, password, role is empty, return error message
+    if email == '' or name == '' or username == '' or password == '':
+        return jsonify({'status': 'error', 'message': 'Please fill in all the fields'})
+    # validate the email using the regex
+    if not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+        return jsonify({'status': 'error', 'message': 'Invalid email'})
+
+    # Check if the name is invalid using the regex
+    if not re.match(r"[a-zA-Z]+", name):
+        return jsonify({'status': 'error', 'message': 'Invalid name'})
+
+    # Check the length of the username if it is less than 5 characters or more than 20 characters
+    if len(username) < 5 or len(username) > 20:
+        return jsonify({'status': 'error', 'message': 'Username must be between 5 and 20 characters'})
+
+    # Check the length of the password if it is less than 5 characters or more than 20 characters
+    if len(password) < 8 or len(password) > 20:
+        return jsonify({'status': 'error', 'message': 'Password must be between 8 and 20 characters'})
+    # Check if the password is weak using the regex
+    if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,20}$", password):
+        return jsonify({'status': 'error', 'message': 'Password must be alphanumeric'})
+    # Check if the role is valid
+    if role != 3 and role != 4 and role != 5:
+        return jsonify({'status': 'error', 'message': 'Invalid role'})
+    else:
+        return True
+
+
 # Register a new user (professor, moderator)
 @jwt_required()
 def register():
@@ -94,6 +134,8 @@ def register():
         username = request.json['username']
         password = request.json['password']
         role = request.json['role']
+        # Gravatar image url of the user
+        image = gravatar(email)
 
         # check if one of them exists
         cursor.execute("SELECT * FROM user WHERE username = %s OR email = %s", (username, email))
@@ -101,35 +143,16 @@ def register():
         if is_exist:
             return jsonify({'status': 'error', 'message': 'Username or email already exists'})
         else:
-            # if email, name, username, password, role is empty, return error message
-            if email == '' or name == '' or username == '' or password == '' or role == '':
-                return jsonify({'status': 'error', 'message': 'Please fill in all the fields'})
-            # validate the email using the regex
-            if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-                return jsonify({"error": "Invalid email"}), 400
-
-            # Check if the name is invalid using the regex
-            if not re.match(r"[a-zA-Z]+", name):
-                return jsonify({"error": "Invalid name"}), 400
-
-            # Check the length of the username if it is less than 5 characters or more than 20 characters
-            if len(username) < 5 or len(username) > 20:
-                return jsonify({"error": "Username must be between 5 and 20 characters"}), 400
-
-            # Check the length of the password if it is less than 5 characters or more than 20 characters
-            if len(password) < 8 or len(password) > 20:
-                return jsonify({"error": "Password must be between 8 and 20 characters"}), 400
-            # Check if the password is weak using the regex
-            if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,20}$", password):
-                return jsonify({"error": "Password must be alphanumeric"}), 400
-            # register the user
-            else:
-                cursor.execute("INSERT INTO user (email, name, username, password, role) VALUES (%s, %s, %s, %s, %s)",
-                               (email, name, username, password, role))
+            # validate the user
+            validation = validate_user(email, name, username, password, role)
+            # if validation is true, insert the user to the database
+            if validation is True:
+                cursor.execute("INSERT INTO user (email, gravatar, name, username, password, role) VALUES "
+                               "(%s, %s, %s, %s, %s, %s)", (email, image, name, username, password, role))
                 conn.commit()
-                return jsonify({'status': 'success', 'message': 'User registered successfully', 'user': {
-                    'email': email, 'name': name, 'username': username, 'role': role
-                }})
+                return jsonify({'status': 'success', 'message': 'User registered successfully'})
+            else:
+                return validation
     else:
         return jsonify({'status': 'something went wrong'})
 
@@ -155,6 +178,18 @@ def user_profile(id_number):
         return jsonify({'status': 'error', 'message': 'User profile not found'})
 
 
+# Checks if user id now exists on professor table
+def exists_on_professor_status(id_number):
+    cursor.execute("SELECT * FROM professor_status WHERE id_professor = %s", (id_number,))
+    is_professor = cursor.fetchall()
+    if not is_professor:
+        print(is_professor, "0")
+        return False
+    else:
+        print(is_professor, "1")
+        return True
+
+
 # Update User Profile
 @jwt_required()
 def update_user_profile(id_number):
@@ -163,6 +198,9 @@ def update_user_profile(id_number):
         email = request.json['email']
         username = request.json['username']
         password = request.json['password']
+        role = request.json['role']
+        now = datetime.now()
+        date_modified = now.strftime("%A %d %B, %Y at %I:%M:%S %p")
         cursor.execute("SELECT * FROM user WHERE id_number = %s", (id_number,))
         data = cursor.fetchall()
         if data:
@@ -175,38 +213,16 @@ def update_user_profile(id_number):
             if data:
                 return jsonify({"error": "No changes were made!"}), 400
             else:
-                # if email, name, username, password, role is empty, return error message
-                if email == '' or name == '' or username == '' or password == '':
-                    return jsonify({'status': 'error', 'message': 'Please fill in all the fields'})
-                # validate the email using the regex
-                if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-                    return jsonify({"error": "Invalid email"}), 400
-
-                # Check if the name is invalid using the regex
-                if not re.match(r"[a-zA-Z]+", name):
-                    return jsonify({"error": "Invalid name"}), 400
-
-                # Check the length of the username if it is less than 5 characters or more than 20 characters
-                if len(username) < 5 or len(username) > 20:
-                    return jsonify({"error": "Username must be between 5 and 20 characters"}), 400
-
-                # Check the length of the password if it is less than 5 characters or more than 20 characters
-                if len(password) < 8 or len(password) > 20:
-                    return jsonify({"error": "Password must be between 8 and 20 characters"}), 400
-                # Check if the password is weak using the regex
-                if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,20}$", password):
-                    return jsonify({"error": "Password must be alphanumeric"}), 400
-                # Update the profile of the admin
-                else:
+                validation = validate_user(email, name, username,password, role)
+                if validation is True:
                     cursor.execute(
                         "UPDATE user SET name = %s, email = %s, username = %s, password = %s "
                         "WHERE id_number = %s", (name, email, username, password, id_number))
                     conn.commit()
 
                     # check if the user exists in the professor table
-                    cursor.execute("SELECT * FROM professor_status WHERE id_professor = %s", (id_number,))
-                    professor = cursor.fetchall()
-                    if professor:
+                    professor_exists = exists_on_professor_status(id_number)
+                    if professor_exists is True:
                         hidden_name = hashlib.sha1(name.encode('utf-8')).hexdigest()
                         cursor.execute("UPDATE professor_status SET hidden_name = %s WHERE id_professor = %s",
                                        (hidden_name, id_number))
@@ -214,8 +230,12 @@ def update_user_profile(id_number):
                         return jsonify({'status': 'success',
                                         'message': 'User profile and Hidden name updated successfully'})
                     else:
-                        return jsonify({'status': 'success',
-                                        'message': 'User profile and Hidden name updated successfully'})
+                        return jsonify({'status': 'warning',
+                                        'message':
+                                            'No record found in Professor but User profile updated successfully'})
+                else:
+                    return validation
+
     else:
         return jsonify({"error": "Bad request"}), 400
 
