@@ -1,31 +1,17 @@
+import base64
 import re
 import hashlib
+from io import BytesIO
+from PIL import Image
+
 import mysql.connector
 
-from flask_gravatar import Gravatar
-from flask_cors import CORS
 from datetime import timedelta, datetime
-from flask import Flask, jsonify, request
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token
-
-user = Flask(__name__)
-CORS(user)  # allow cross-origin resource sharing
-
-# You must initialize a JWTManager with this flask application before using this method
-user.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
-jwt = JWTManager(user)
+from flask import jsonify, request
+from flask_jwt_extended import jwt_required, create_access_token
 
 conn = mysql.connector.connect(host='localhost', user='root', password='', database='project_saer_1')
 cursor = conn.cursor()
-
-
-# Gravatar initialization
-def gravatar(email):
-    gravatar_ = Gravatar(user, size=200, rating='g', default='retro', force_default=False, force_lower=False)
-    # Hash the email address
-    hash_ = hashlib.md5(email.encode('utf-8')).hexdigest()
-    # Return the gravatar url
-    return gravatar_.url('https://www.gravatar.com/avatar/' + hash_ + '?s=200&d=retro')
 
 
 def test():
@@ -90,24 +76,38 @@ def validate_user(email, name, username, password, role):
     if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,20}$", password):
         return jsonify({'status': 'error', 'message': 'Password must be alphanumeric'})
     # Check if the role is valid
-    if role != 3 and role != 4 and role != 5:
+    if role != '3' and role != '4' and role != '5':
         return jsonify({'status': 'error', 'message': 'Invalid role'})
     else:
         return True
 
 
 # Register a new user (professor, moderator)
+def save_image(image):
+    image_data = image.read()
+    image_data = BytesIO(image_data)
+    image_data = base64.b64encode(image_data.getvalue())
+    return image_data
+    pass
+
+
 @jwt_required()
 def register():
-    if request.is_json:
-        email = request.json['email']
-        name = request.json['name']
-        username = request.json['username']
-        password = request.json['password']
-        role = request.json['role']
+    if request.form:
+        email = request.form['email']
+        name = request.form['name']
+        username = request.form['username']
+        password = request.form['password']
+        role = request.form['role']
         # Gravatar image url of the user
-        image = gravatar(email)
+        # image = gravatar(email)
+        # image = 'https://www.gravatar.com/avatar/' + hashlib.md5(email.encode('utf-8')).hexdigest() + \
+        #         '?s=200&d=retro'
+        image = request.files['image']
+        # save the image to the server and get the path of the image to be saved in the database later
+        image_path = save_image(image)
 
+        print(image_path)
         # check if one of them exists
         cursor.execute("SELECT * FROM user WHERE username = %s OR email = %s", (username, email))
         is_exist = cursor.fetchall()
@@ -119,7 +119,7 @@ def register():
             # if validation is true, insert the user to the database
             if validation is True:
                 cursor.execute("INSERT INTO user (email, gravatar, name, username, password, role) VALUES "
-                               "(%s, %s, %s, %s, %s, %s)", (email, image, name, username, password, role))
+                               "(%s, %s, %s, %s, %s, %s)", (email, image_path, name, username, password, role))
                 conn.commit()
                 return jsonify({'status': 'success', 'message': 'User registered successfully'})
             else:
@@ -133,16 +133,24 @@ def register():
 def user_profile(id_number):
     cursor.execute("SELECT * FROM user WHERE id_number = %s", (id_number,))
     user_ = cursor.fetchall()
+
     user_info = []
     if user_:
+        # DO NOT TOUCH THIS CODE !!!! IT IS FOR THE GRAVATAR IMAGE !!!! DO NOT TOUCH THIS CODE !!!!
+        image = user_[0][2]
+        image = base64.b64decode(image)
+        image = BytesIO(image)
+        image = 'data:image/png;base64,' + base64.b64encode(image.getvalue()).decode('utf-8')
+        # DO NOT TOUCH THIS CODE !!!! IT IS FOR THE GRAVATAR IMAGE !!!! DO NOT TOUCH THIS CODE !!!!
         for _user in user_:
             user_info.append({
                 'id_number': _user[0],
                 'email': _user[1],
-                'name': _user[2],
-                'username': _user[3],
-                'password': _user[4],
-                'role': _user[5]
+                'gravatar': image,
+                'name': _user[3],
+                'username': _user[4],
+                'password': _user[5],
+                'role': _user[6]
             })
         return jsonify({'status': 'success', 'message': 'User profile retrieved successfully', 'user': user_info})
     else:
@@ -184,7 +192,7 @@ def update_user_profile(id_number):
             if data:
                 return jsonify({"error": "No changes were made!"}), 400
             else:
-                validation = validate_user(email, name, username,password, role)
+                validation = validate_user(email, name, username, password, role)
                 if validation is True:
                     cursor.execute(
                         "UPDATE user SET name = %s, email = %s, username = %s, password = %s "
@@ -236,12 +244,25 @@ def delete_user_profile(id_number):
 def get_all_prof_users():
     cursor.execute("SELECT * FROM user WHERE role = %s", (3,))
     data = cursor.fetchall()
+
     _users = []
     if data:
+        # DO NOT TOUCH THIS CODE !!!! IT IS FOR THE GRAVATAR IMAGE !!!! DO NOT TOUCH THIS CODE !!!!
+        image = data[0][2]
+        image = base64.b64decode(image)
+        image = BytesIO(image)
+        image = 'data:image/png;base64,' + base64.b64encode(image.getvalue()).decode('utf-8')
+        # DO NOT TOUCH THIS CODE !!!! IT IS FOR THE GRAVATAR IMAGE !!!! DO NOT TOUCH THIS CODE !!!!
         for user_ in data:
-            _user = {'id_number': user_[0], 'email': user_[1], 'name': user_[2], 'username': user_[3],
-                     'password': user_[4], 'role': user_[5]}
-            _users.append(_user)
+            _users.append({
+                'id_number': user_[0],
+                'email': user_[1],
+                'gravatar': image,
+                'name': user_[3],
+                'username': user_[4],
+                'password': user_[5],
+                'role': user_[6]
+            })
         return jsonify({'status': 'success', 'message': 'All Users found', 'users': _users})
     else:
         return jsonify({'status': 'error', 'message': 'No Professors found'})
@@ -251,13 +272,20 @@ def get_all_prof_users():
 @jwt_required()
 def get_all_mod_users():
     cursor.execute("SELECT * FROM user WHERE role = %s", (4,))
-    data = cursor.fetchall()
+    data_ = cursor.fetchall()
+
     _users = []
-    if data:
-        for user_ in data:
-            _user = {'id_number': user_[0], 'email': user_[1], 'name': user_[2], 'username': user_[3],
-                     'password': user_[4], 'role': user_[5]}
+    if data_:
+        # DO NOT TOUCH THIS CODE !!!! IT IS FOR THE GRAVATAR IMAGE !!!! DO NOT TOUCH THIS CODE !!!!
+        image = data_[0][2]
+        image = base64.b64decode(image)
+        image = BytesIO(image)
+        image = 'data:image/png;base64,' + base64.b64encode(image.getvalue()).decode('utf-8')
+        # DO NOT TOUCH THIS CODE !!!! IT IS FOR THE GRAVATAR IMAGE !!!! DO NOT TOUCH THIS CODE !!!!
+        for user_ in data_:
+            _user = {'id_number': user_[0], 'email': user_[1], 'gravatar': image, 'name': user_[3],
+                     'username': user_[4], 'password': user_[5], 'role': user_[6]}
             _users.append(_user)
-        return jsonify({'status': 'success', 'message': 'All Users found', 'users': _users})
+        return jsonify({'status': 'success', 'message': 'All Moderators found', 'users': _users})
     else:
         return jsonify({'status': 'error', 'message': 'No Moderators found'})
