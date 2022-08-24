@@ -38,61 +38,32 @@ def auth():
         username = request.json['username']
         password = request.json['password']
 
-        # check if the role is 5 (user) or 4 (professor)
-        cursor.execute("SELECT role FROM user WHERE username = %s", (username,))
-        role = cursor.fetchone()
-        if role is None:
-            return jsonify({'status': 'error', 'message': 'Invalid username or password'})
-        else:
-            if role[0] == 5:
-                # check if the username and password is correct and return the token if the login is successful or
-                # return error message if the login is unsuccessful using JWT and save to the browser as a cookie
-                cursor.execute("SELECT id_number, password FROM user WHERE username = %s", (username,))
-                admin = cursor.fetchone()
-                if admin is None:
-                    return jsonify({'status': 'error', 'message': 'Invalid username or password'})
-                else:
-                    if admin[1] == password:
-                        return jsonify({'status': 'success', 'message': 'Login successful',
-                                        'token': create_access_token(identity={
-                                            'username': username, 'role': role[0], 'id_number': admin[0]
-                                        }, expires_delta=timedelta(days=14))})
-                    else:
-                        return jsonify({'status': 'error', 'message': 'Invalid username or password'})
-            elif role[0] == 4:
-                # check if the username and password is correct and return the token if the login is successful or
-                # return error message if the login is unsuccessful using JWT and save to the browser as a cookie
-                cursor.execute("SELECT id_number, password FROM user WHERE username = %s", (username,))
-                moderator = cursor.fetchone()
-                if moderator is None:
-                    return jsonify({'status': 'error', 'message': 'Invalid username or password'})
-                else:
-                    if moderator[1] == password:
-                        return jsonify({'status': 'success', 'message': 'Login successful',
-                                        'token': create_access_token(identity={
-                                            'username': username, 'role': role[0], 'id_number': moderator[0]
-                                        }, expires_delta=timedelta(days=14))})
-                    else:
-                        return jsonify({'status': 'error', 'message': 'Invalid username or password'})
-            elif role[0] == 3:
-                # check if the username and password is correct and return the token if the login is successful or
-                # return error message if the login is unsuccessful using JWT and save to the browser as a cookie
-                cursor.execute("SELECT id_number, password FROM user WHERE username = %s", (username,))
-                professor = cursor.fetchone()
-                if professor is None:
-                    return jsonify({'status': 'error', 'message': 'Invalid username or password'})
-                else:
-                    if professor[1] == password:
-                        return jsonify({'status': 'success', 'message': 'Login successful',
-                                        'token': create_access_token(identity={
-                                            'username': username, 'role': role[0], 'id_number': professor[0]
-                                        }, expires_delta=timedelta(days=14))})
-                    else:
-                        return jsonify({'status': 'error', 'message': 'Invalid username or password'})
+        cursor.execute("SELECT id_number, password, role FROM user WHERE username = %s", (username,))
+        is_user = cursor.fetchone()
+        if not is_user:
+            return jsonify({'status': 'error', 'message': 'User not found :<'})
+        if is_user[1] == password:
+            if is_user[2] == 5:
+                return jsonify({'status': 'success', 'message': 'Login successful',
+                                'token': create_access_token(identity={
+                                    'username': username, 'role': is_user[2], 'id_number': is_user[0], 'path': 'admin'
+                                }, expires_delta=timedelta(days=14))})
+            elif is_user[2] == 4:
+                return jsonify({'status': 'success', 'message': 'Login successful',
+                                'token': create_access_token(identity={
+                                    'username': username, 'role': is_user[2], 'id_number': is_user[0], 'path': 'admin'
+                                }, expires_delta=timedelta(days=14))})
+            elif is_user[2] == 3:
+                return jsonify({'status': 'success', 'message': 'Login successful',
+                                'token': create_access_token(identity={
+                                    'username': username, 'role': is_user[2], 'id_number': is_user[0],
+                                    'path': 'professor'}, expires_delta=timedelta(days=14))})
             else:
-                return jsonify({'status': 'error', 'message': 'Unauthorized access'})
+                return jsonify({'status': 'error', 'message': 'Access denied, Unauthorized user'})
+        else:
+            return jsonify({'status': 'error', 'message': 'Invalid username or password'})
     else:
-        return jsonify({'status': 'something went wrong'})
+        return jsonify({'status': 'error', 'message': 'Invalid request'})
 
 
 # Validation of create and update user
