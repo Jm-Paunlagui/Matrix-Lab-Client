@@ -66,9 +66,9 @@ const Login = () => {
     }
     return (
         <>
-            <div className="container h-full px-4 mx-auto font-Montserrat">
+            <div className="container h-full mx-auto font-Montserrat">
                 <div className="flex items-center content-center justify-center h-full">
-                    <div className="w-full px-4 lg:w-4/12">
+                    <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
                         <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
                             <div className="px-6 py-6 mb-0 rounded-t">
                                 <div className="flex items-center px-3 py-2 text-gray-800 ">
@@ -113,9 +113,9 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div className="container h-full px-4 mx-auto">
+            <div className="container h-full mx-auto">
                 <div className="flex items-center content-center justify-center h-full">
-                    <div className="w-full px-4 lg:w-4/12">
+                    <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
                         <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
                             <div className="px-6 py-6 mb-0 rounded-t">
                                 <div className="flex items-center px-3 py-2 text-gray-800 ">                                          
