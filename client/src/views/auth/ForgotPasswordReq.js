@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ForgotPasswordReq = () => {
     return (
         <>
-            <div className="container h-full px-4 mx-auto font-Montserrat">
+            <div className="container h-full mx-auto font-Montserrat">
                 <div className="flex items-center content-center justify-center h-full">
                     <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
                         <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
@@ -42,7 +42,7 @@ const ForgotPasswordReq = () => {
                     </div>
                 </div>
             </div>
-            <div className="container h-full px-4 mx-auto">
+            <div className="container h-full mx-auto">
                 <div className="flex items-center content-center justify-center h-full">
                     <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
                         <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
