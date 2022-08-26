@@ -71,10 +71,12 @@ const Login = () => {
                     <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
                         <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
                             <div className="px-6 py-6 mb-0 rounded-t">
-                                <div className="flex items-center px-3 py-2 text-gray-800 ">
-                                    <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-                                    <h1 className="ml-3 font-bold tracking-widest text-md">MATRIX LAB</h1>
-                                </div>
+                                <Link to="/">
+                                    <div className="flex items-center px-3 py-2 text-gray-800 hover:backdrop-blur-md hover:bg-blue-50 hover:rounded-md">
+                                        <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
+                                        <h1 className="ml-3 font-extrabold tracking-widest text-md">MATRIX LAB</h1>
+                                    </div>
+                                </Link>
                             </div>
                             <div className="flex-auto px-4 py-10 pt-0 lg:px-10">
                                 <div className="mb-3 text-start">
