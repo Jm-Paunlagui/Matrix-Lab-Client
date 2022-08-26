@@ -29,7 +29,7 @@ const AboutUS = () => {
                                 </ol>
                             </p>
             </div>
-            <div class="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
+            <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
                 <img src={AboutUs} alt="mockup"/>
             </div>                
         </div>
