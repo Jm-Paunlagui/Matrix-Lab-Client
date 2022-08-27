@@ -21,11 +21,11 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 bg-blue-900 shadow navbar-expand-lg font-Montserrat">
-                <div className="container flex flex-wrap items-center justify-between mx-auto ">
+            <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 shadow-lg bg-slate-100 bg-opacity-20 backdrop-blur-3xl font-Montserrat">
+                <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">
                     <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
                         <NavLink to="/" 
-                            className="flex items-center px-3 py-2 text-gray-100 rounded-md hover:text-gray-300 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                            className="flex items-center px-3 py-2 text-blue-900 rounded-md hover:backdrop-blur-md hover:bg-gray-200 hover:rounded-md">
                             <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
                             <h1 className="hidden ml-3 font-bold tracking-widest text-md md:flex">MATRIX LAB</h1>
                             <h1 className="ml-3 font-bold tracking-widest text-md md:hidden">MATRIX LAB</h1>
@@ -35,39 +35,39 @@ const Navbar = () => {
                             type="button"
                             onClick={() => setNavbarOpen(!navbarOpen)}
                         >
-                            <GoThreeBars color="white"/>
+                            <GoThreeBars color="darkblue"/>
                             
                         </button>
                     </div>
                         <div
                             className={
-                                "lg:flex flex-grow items-center bg-blue-900 lg:bg-opacity-0 lg:shadow-none" +
+                                "lg:flex flex-grow items-center  lg:bg-opacity-0 lg:shadow-none" +
                                 (navbarOpen ? " block" : " hidden")
                             }
                             id="example-navbar-warning"
                         >
                         <ul className="flex flex-col justify-start list-none lg:flex-row lg:ml-auto">
                             <NavLink to ="/"
-                                    className="text-white">
-                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                                    className="text-blue-900">
+                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-gray-200 hover:rounded-md">
                                     <AiFillHome size={24} title="Home"/>
-                                    <h1 className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">Home</h1>
+                                    <h1 className="block px-8 text-sm font-medium tracking-wider text-blue-900 blockml-3 lg:hidden">Home</h1>
                                 </li>
                             </NavLink>
                             <NavLink to ="leaderboard"
                                     
-                                    className="text-white">
-                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                                    className="text-blue-900">
+                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-gray-200 hover:rounded-md">
                                     <MdLeaderboard size={24} title="Leaderboard"/>
-                                    <div className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">Leaderboard</div>
+                                    <div className="block px-8 text-sm font-medium tracking-wider text-blue-900 blockml-3 lg:hidden">Leaderboard</div>
                                 </li>
                             </NavLink>
                             <NavLink to ={link}
-                                    className="text-white">
-                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-white/10 hover:rounded-md">
+                                    className="text-blue-900">
+                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-gray-200 hover:rounded-md">
                                     {navIcon}
                                     
-                                    <div className="block px-8 text-sm font-medium tracking-wider text-gray-100 blockml-3 lg:hidden">{tokenAuth ? "Dashboard" : "Sign-in"}</div>
+                                    <div className="block px-8 text-sm font-medium tracking-wider text-blue-900 blockml-3 lg:hidden">{tokenAuth ? "Dashboard" : "Sign-in"}</div>
                                 </li>
                             </NavLink>
                         </ul>
