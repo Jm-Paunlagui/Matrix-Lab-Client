@@ -13,12 +13,11 @@ const Footer = () => {
                                 Find us on any of these platforms, we respond 1-2 business days.
                             </h5>
                             <div className="mt-6 mb-6 lg:mb-0">
-                                <button className="items-center justify-center w-10 h-10 mr-2 font-normal bg-white rounded-full shadow-lg outline-none text-lightBlue-400 align-center focus:outline-none" type="button">
-                                    <a className="fab fa-twitter" href="https://twitter.com/messages/719487995892539393-719487995892539393?text=" target={"_blank"} rel="noreferrer noopener"> </a>
-                                    
+                                <button className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-500 transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110" type="button">
+                                    <a className="fab fa-twitter " href="https://twitter.com/messages/719487995892539393-719487995892539393?text=" target={"_blank"} rel="noreferrer noopener"> </a>
                                 </button>
-                                <button className="items-center justify-center w-10 h-10 mr-2 font-normal bg-white rounded-full shadow-lg outline-none text-lightBlue-600 align-center focus:outline-none" type="button">
-                                    <a className="fab fa-facebook-messenger" href="https://www.messenger.com/t/100001178366981" target={"_blank"} rel="noreferrer noopener"> </a>
+                                <button className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-500 transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110" type="button">
+                                    <a className="fab fa-facebook-messenger hover:text-blue-700" href="https://www.messenger.com/t/100001178366981" target={"_blank"} rel="noreferrer noopener"> </a>
                                 </button>
                                 
                             </div>
