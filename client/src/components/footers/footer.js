@@ -1,6 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const UsefulLinks = [
+    {
+        name: "About Us",
+        link: "aboutus"
+    },
+    {
+        name: "Terms & Conditions",
+        link: "terms-and-conditions"
+    },
+    {
+        name: "Privacy Policy",
+        link: "privacy-policy"
+    }
+]
+
+const DeveloperLinks = [
+    {
+        name: "Github",
+        link: "https://www.github.com/Projects-REPO"
+    },
+    {
+        name: "Tensorflow",
+        link: "https://www.tensorflow.org/"
+    },
+    {
+        name: "Keras",
+        link: "https://keras.io/"
+    },
+    {
+        name: "React",
+        link: "https://reactjs.org/"
+    },
+    {
+        name: "React-Router",
+        link: "https://reactrouter.com/en/main/getting-started/overview"
+    },
+    {
+        name: "TailwindCSS",
+        link: "https://tailwindcss.com/"
+    }
+]
+
+
 const Footer = () => {
     return (
             <footer className="pt-8 pb-6 mt-auto text-gray-500 font-Montserrat ">
@@ -12,11 +55,11 @@ const Footer = () => {
                             <h5 className="mt-0 mb-2 text-lg text-gray-600">
                                 Find us on any of these platforms, we respond 1-2 business days.
                             </h5>
-                            <div className="mt-6 mb-6 lg:mb-0">
-                                <button className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-500 transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110" type="button">
+                            <div className="mt-6 mb-6 space-x-4 text-blue-500 lg:mb-0">
+                                <button className="w-10 h-10 font-normal hover:transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110" type="button">
                                     <a className="fab fa-twitter " href="https://twitter.com/messages/719487995892539393-719487995892539393?text=" target={"_blank"} rel="noreferrer noopener"> </a>
                                 </button>
-                                <button className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-500 transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110" type="button">
+                                <button className="w-10 h-10 font-normal hover:transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110" type="button">
                                     <a className="fab fa-facebook-messenger hover:text-blue-700" href="https://www.messenger.com/t/100001178366981" target={"_blank"} rel="noreferrer noopener"> </a>
                                 </button>
                                 
@@ -29,22 +72,11 @@ const Footer = () => {
                                         Useful Links
                                     </span>
                                     <ol className="list-unstyled">
-                                        <li>
-                                            <Link to="/aboutus" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800">
-                                                About Us
-                                            </Link>
-                                        </li>
-                                        
-                                        <li>
-                                            <Link to="terms-and-conditions" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800">
-                                                Terms & Conditions
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/privacy-policy" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800">
-                                                Privacy Policy
-                                            </Link>
-                                        </li>
+                                        {UsefulLinks.map((link, index) => (
+                                            <li key={index}>
+                                                <Link to={`/${link.link}`} className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">{link.name}</Link>
+                                            </li>
+                                        ))}
                                     </ol>
                                 </div>
                                 <div className="w-full px-4 md:w-1/2 lg:w-4/12">
@@ -52,43 +84,18 @@ const Footer = () => {
                                         Developer Resources
                                     </span>
                                     <ol className="list-unstyled">
-                                        <li>
-                                            <a href="https://www.github.com/Projects-REPO" target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800" >
-                                                Github
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.tensorflow.org/" target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800" >
-                                                Tensorflow
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://keras.io/" target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800" >
-                                                Keras
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://reactjs.org/" target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800" >
-                                                React
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://reactrouter.com/" target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800" >
-                                                React Router
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://tailwindcss.com/" target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800" >
-                                                Tailwind CSS
-                                            </a>
-                                        </li>
+                                        {DeveloperLinks.map((link, index) => (
+                                            <li key={index}>
+                                                <a href={link.link} target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">{link.name}</a> 
+                                            </li>
+                                        ))}
                                     </ol>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr className="my-6 border-gray-300" />
-                    <div className="flex flex-wrap items-center justify-center md:justify-between">
+                    <div className="flex flex-wrap md:justify-between">
                         <div className="w-full px-4 mx-auto text-center md:w-4/12">
                             <div className="py-1 text-sm font-semibold text-gray-500">
                                 Copyright © {new Date().getFullYear()} Sentry AI by{" "}
