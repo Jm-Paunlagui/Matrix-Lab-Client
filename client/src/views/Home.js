@@ -10,7 +10,7 @@ const Home = () => {
                 <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">The result can be analyzed by the number of positive, negative, and neutral comments and the overall sentiment of the evaluation result can be determined by the percentage of positive, negative, and neutral comments in the evaluation result.</p>
                 <Link
                     to="/leaderboard"
-                    className="flex items-center justify-center w-3/4 px-5 py-3 font-medium tracking-wider text-white bg-teal-900 border border-transparent rounded-md hover:bg-cyan-800 md:py-4 md:text-lg md:px-10"
+                    className="flex justify-center w-3/4 px-5 py-3 font-medium tracking-wider text-white transition-colors duration-700 ease-in-out delay-150 bg-teal-900 border border-transparent rounded-md hover:bg-cyan-800 md:py-4 md:text-lg md:px-10"
                 >
                     Leaderboard
                 </Link>
