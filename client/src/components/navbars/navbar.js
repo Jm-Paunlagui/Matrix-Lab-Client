@@ -21,11 +21,11 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 shadow-lg bg-slate-100 bg-opacity-20 backdrop-blur-3xl font-Montserrat">
+            <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
                 <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">
                     <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
                         <NavLink to="/" 
-                            className="flex items-center px-3 py-2 text-blue-900 rounded-md hover:backdrop-blur-md hover:bg-gray-100 hover:rounded-md">
+                            className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900">
                             <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
                             <h1 className="hidden ml-3 font-bold tracking-widest text-md md:flex">MATRIX LAB</h1>
                             <h1 className="ml-3 font-bold tracking-widest text-md md:hidden">MATRIX LAB</h1>
@@ -35,7 +35,7 @@ const Navbar = () => {
                             type="button"
                             onClick={() => setNavbarOpen(!navbarOpen)}
                         >
-                            <GoThreeBars color="darkblue"/>
+                            <GoThreeBars color="#374151" />
                             
                         </button>
                     </div>
@@ -48,26 +48,26 @@ const Navbar = () => {
                         >
                         <ul className="flex flex-col justify-start list-none lg:flex-row lg:ml-auto">
                             <NavLink to ="/"
-                                    className="text-blue-900">
-                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-gray-100 hover:rounded-md">
+                                    className="text-gray-700">
+                                <li className="flex items-center px-8 py-4 hover:text-blue-900">
                                     <AiFillHome size={24} title="Home"/>
-                                    <h1 className="block px-8 text-sm font-medium tracking-wider text-blue-900 blockml-3 lg:hidden">Home</h1>
+                                    <h1 className="block px-8 text-sm font-medium tracking-wider  blockml-3 lg:hidden">Home</h1>
                                 </li>
                             </NavLink>
                             <NavLink to ="leaderboard"
                                     
-                                    className="text-blue-900">
-                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-gray-100 hover:rounded-md">
+                                    className="text-gray-700">
+                                <li className="flex items-center px-8 py-4 hover:text-blue-900">
                                     <MdLeaderboard size={24} title="Leaderboard"/>
-                                    <div className="block px-8 text-sm font-medium tracking-wider text-blue-900 blockml-3 lg:hidden">Leaderboard</div>
+                                    <div className="block px-8 text-sm font-medium tracking-wider blockml-3 lg:hidden">Leaderboard</div>
                                 </li>
                             </NavLink>
                             <NavLink to ={link}
-                                    className="text-blue-900">
-                                <li className="flex items-center px-8 py-4 hover:backdrop-blur-md hover:bg-gray-100 hover:rounded-md">
+                                    className="text-gray-700">
+                                <li className="flex items-center px-8 py-4 hover:text-blue-900">
                                     {navIcon}
                                     
-                                    <div className="block px-8 text-sm font-medium tracking-wider text-blue-900 blockml-3 lg:hidden">{tokenAuth ? "Dashboard" : "Sign-in"}</div>
+                                    <div className="block px-8 text-sm font-medium tracking-wider blockml-3 lg:hidden">{tokenAuth ? "Dashboard" : "Sign-in"}</div>
                                 </li>
                             </NavLink>
                         </ul>
