@@ -8,7 +8,9 @@ const Landing = () => {
     return (
         <>
             <Navbar />
-                <Outlet />
+                <div className='bg-gray-100'>
+                    <Outlet />
+                </div>
             <Footer />
         </>
     )
