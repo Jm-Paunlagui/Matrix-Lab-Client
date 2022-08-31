@@ -73,7 +73,7 @@ const AboutUS = () => {
             <hr/>
             <div className="items-center w-full h-full min-h-screen font-Montserrat">
                 <div className="py-20 mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat text-gray-200 justify-items-center">
-                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl text-center pb-16">Creators of Matrix Lab</h1>
+                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl text-center pb-16">Creators of Matrix Lab</h1>
                     <div className="flex flex-wrap mb-6 items-top">
                         {AboutUsDetails.map((aboutUs, index) => (
                             <div key={index} className='w-full px-2 md:px-20 md:w-1/2 place-content-center mt-24'>
@@ -89,12 +89,20 @@ const AboutUS = () => {
                                         <h2 className="font-medium text-md md:text-base">{aboutUs.title ? aboutUs.title : '--'}</h2>
                                         
                                         <div className="mt-4 flex justify-center space-x-4">
-                                            {Object.keys(aboutUs.social).map((social, sIndex) => (
-                                                aboutUs.social[social] !== '' ? 
-                                                <a key={sIndex} href={aboutUs.social[social]} target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-700">
-                                                    <i className={`fab fa-${social??''} text-2xl`}></i>
-                                                </a>
-                                                : <div>--</div>
+                                            {Object.keys(aboutUs.social).map((social, index) => (
+                                                <div key={index} className="flex items-center">
+                                                    {aboutUs.social[social] !== '' ?
+                                                        <div className="flex items-center justify-center h-12 w-12">
+                                                            <a href={aboutUs.social[social]} target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-700">
+                                                                <i className={`fab fa-${social??''} text-2xl`}> </i>
+                                                            </a>
+                                                        </div>
+                                                        :
+                                                        <div className="flex items-center justify-center h-12 w-12">
+                                                            --
+                                                        </div>
+                                                    }
+                                                </div>
                                             ))}
                                         </div>    
                                     </div> 
