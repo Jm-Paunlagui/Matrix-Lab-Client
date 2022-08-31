@@ -71,8 +71,8 @@ const AboutUS = () => {
             </div>
             <hr/>
             <div className="items-center w-full h-full min-h-screen font-Montserrat">
-                <div className="py-20 mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat text-gray-200 justify-items-center">
-                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl text-center pb-16">Creators of Matrix Lab</h1>
+                <div className="mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat text-gray-200 justify-items-center">
+                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl text-center py-16">Creators of Matrix Lab</h1>
                     <div className="flex flex-wrap mb-6 items-top justify-center">
                         {AboutUsDetails.map((aboutUs, index) => (
                             <div key={index} className='w-full p-2 md:w-1/2 lg:w-6/12 place-content-center'>
