@@ -93,7 +93,7 @@ const AboutUS = () => {
                                                     {aboutUs.social[social] !== '' ?
                                                         <div className="flex items-center justify-center h-12 w-12">
                                                             <a href={aboutUs.social[social]} target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-700">
-                                                                <i className={`fab fa-${social??''} text-3xl`}> </i>
+                                                                <i className={`fab fa-${social??''} text-3xl transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110`}> </i>
                                                             </a>
                                                         </div>
                                                         :
