@@ -63,7 +63,7 @@ const AboutUS = () => {
             <div className="flex-col grid items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat pt-28">
                 <div className="place-self-center lg:col-span-7">
                     <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">About Us</h1>
-                    <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">This project is a web application that can be used to analyze the sentiment of the evaluation result of the School</p>
+                    <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">A group of Computer Science students who are passionate about documenting, building and deploying deep learning systems. The Creators are currently studying at the City College of Calamba and looking forward to finish their studies and work in the field of deep learning and data science.</p>
                 </div>
                 <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
                     <img src={AboutUs} alt="mockup"/>
@@ -76,7 +76,7 @@ const AboutUS = () => {
                     <div className="flex flex-wrap mb-6 items-top justify-center">
                         {AboutUsDetails.map((aboutUs, index) => (
                             <div key={index} className='w-full p-2 md:w-1/2 lg:w-6/12 place-content-center'>
-                                <div className="w-full h-32 p-1 mb-0 justify-center bg-gradient-to-r from-blue-500 to-purple-500 rounded-t-xl"/>
+                                <div className="w-full h-32 p-1 mb-0 justify-center bg-gradient-to-b from-blue-500 to-purple-500 rounded-t-xl"/>
                                 <div className="bg-white flex flex-col w-full min-w-0 break-words  border-0 rounded-b-xl shadow-lg place-items-center">
                                     {aboutUs.image ? 
                                         <img src={aboutUs.image} alt={aboutUs.name} className="rounded-xl -mt-20 shadow-xl w-48 h-48" /> 
@@ -112,8 +112,6 @@ const AboutUS = () => {
                 </div>
             </div>
         </>
-
-        
     )
 }
 
