@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Icon } from '@iconify/react';
 import AboutUs from '../assets/img/aboutus.svg'
 
 const AboutUsDetails = [
@@ -62,170 +62,230 @@ const AboutUsDetails = [
 // Visual Studio Code, PyCharm Professional Edition, XAMPP, Git, GitHub, Visual Studio 2022 Desktop Development with C++, Github Copilot, Postman,
 const Technologies = [
     {
-        name: 'Frontend',
-        details: [
-            {
-                name: 'React',
-                logo: 'https://cdn.worldvectorlogo.com/logos/react.svg',
-                link: 'https://reactjs.org/',
-                decription: 'React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.'
-            },
-            {
-                name: 'TailwindCSS',
-                logo: 'https://tailwindcss.com/img/logo.svg',
-                link: 'https://tailwindcss.com/',
-                decription: 'TailwindCSS is a utility-first CSS framework for quickly building custom, high-fidelity, fully responsive designs with minimal effort.'
-            },
-            {
-                name: 'React-Router-Dom',
-                logo: 'https://cdn.worldvectorlogo.com/logos/react-router-dom.svg',
-                link: 'https://reacttraining.com/react-router/web/guides/quick-start',
-                decription: 'React Router is a routing library for React. It is used to make single-page applications with the minimal effort required.'
-            },
-            {
-                name: 'React-Icons',
-                logo: 'https://cdn.worldvectorlogo.com/logos/react-icons.svg',
-                link: 'https://react-icons.netlify.com/',
-                decription: 'React Icons is a collection of icons for React. It is used to make single-page applications with the minimal effort required.'
-            },
-            {
-                name: 'Font Awesome',
-                logo: 'https://cdn.worldvectorlogo.com/logos/fontawesome.svg',
-                link: 'https://fontawesome.com/',
-                decription: 'Font Awesome is a community of developers and designers who create and maintain free and open source icons.'
-            },
-            {
-                name: 'React Toastify',
-                logo: 'https://cdn.worldvectorlogo.com/logos/react-toastify.svg',
-                link: 'https://react-toastify.js.org/',
-                decription: 'React Toastify is a library for React that makes it easy to display toast messages.'
-            },
-            {
-                name: 'Google Fonts',
-                logo: 'https://cdn.worldvectorlogo.com/logos/google-fonts.svg',
-                link: 'https://fonts.google.com/',
-                decription: 'Google Fonts is a webfont service that allows you to select from over 1,000 web fonts.'
-            }
-        ]
+        name: 'React',
+        version: '^18.2.0',
+        color: '#61dafb',
+        logo: 'logos:react',
+        link: 'https://reactjs.org/',
+        description: 'React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.'
     },
     {
-        name: 'Backend',
-        details: [
-            {
-                name: 'TensorFlow',
-                logo: 'https://cdn.worldvectorlogo.com/logos/tensorflow.svg',
-                link: 'https://www.tensorflow.org/',
-                decription: 'TensorFlow is an open source machine learning platform for everyone. It is used to build and train neural networks.'
-            },
-            {
-                name: 'Keras',
-                logo: 'https://cdn.worldvectorlogo.com/logos/keras.svg',
-                link: 'https://keras.io/',
-                decription: 'Keras is a high-level neural network library for the Python programming language. '
-            },
-            {
-                name: 'Numpy',
-                logo: 'https://cdn.worldvectorlogo.com/logos/numpy.svg',
-                link: 'https://www.numpy.org/',
-                decription: 'Numpy is a Python package for general-purpose array-processing. '
-            },
-            {
-                name: 'Pandas',
-                logo: 'https://cdn.worldvectorlogo.com/logos/pandas.svg',   
-                link: 'https://pandas.pydata.org/',
-                decription: 'Pandas is a Python library providing fast, flexible, and easy-to-use data structures designed to make working with data easy.'
-            },
-            {
-                name: 'Matplotlib',
-                logo: 'https://cdn.worldvectorlogo.com/logos/matplotlib.svg',
-                link: 'https://matplotlib.org/',
-                decription: 'Matplotlib is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.'
-            },
-            {
-                name: 'Seaborn',
-                logo: 'https://cdn.worldvectorlogo.com/logos/seaborn.svg',
-                link: 'https://seaborn.pydata.org/',
-                decription: 'Seaborn is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive statistical graphics.'
-            },
-            {
-                name: 'Scikit-Learn',
-                logo: 'https://cdn.worldvectorlogo.com/logos/scikit-learn.svg',
-                link: 'https://scikit-learn.org/stable/',
-                decription: 'Scikit-learn is an open-source machine learning library for Python. It provides a unified interface for machine learning algorithms.'
-            },
-            {
-                name: 'Flask',
-                logo: 'https://cdn.worldvectorlogo.com/logos/flask.svg',
-                link: 'https://flask.palletsprojects.com/en/1.1.x/',
-                decription: 'Flask is a microframework for Python based on Werkzeug and Jinja2. It is designed to be as simple as possible while still being powerful enough to be useful.'
-            },
-            {
-                name: 'MySQL',
-                logo: 'https://cdn.worldvectorlogo.com/logos/mysql.svg',
-                link: 'https://www.mysql.com/',
-                decription: 'MySQL is a relational database management system (RDBMS) based on the SQL language. '
-            }
-        ]
+        name: 'Axios',
+        version: '^0.27.2',
+        color: '#61dafb',
+        logo: 'logos:axios',
+        link: 'https://www.axios.com/',
+        description: 'Axios is a Promise based HTTP client for the browser and node.js. Axios is a Promise based HTTP client for the browser and node.js. Axios is a Promise based HTTP client for the browser and node.js.'
     },
     {
-        name: 'IDE and Tools',
-        details: [
-            {
-                name: 'Visual Studio Code',
-                logo: 'https://cdn.worldvectorlogo.com/logos/visual-studio-code.svg',
-                link: 'https://code.visualstudio.com/',
-                decription: 'Visual Studio Code is a free and open-source code editor for the Microsoft Windows platform. '
-            },
-            {
-                name: 'PyCharm Professional Edition',
-                logo: 'https://cdn.worldvectorlogo.com/logos/pycharm.svg',
-                link: 'https://www.jetbrains.com/pycharm/',
-                decription: 'PyCharm is a free and open-source IDE for the Python programming language. '
-            },
-            {
-                name: 'XAMPP',
-                logo: 'https://cdn.worldvectorlogo.com/logos/xampp.svg',
-                link: 'https://www.apachefriends.org/en/xampp.html',
-                decription: 'XAMPP is a free web server software package that allows you to develop and test your web applications without installing any software on your computer.'
-            },
-            {
-                name: 'Git',
-                logo: 'https://cdn.worldvectorlogo.com/logos/git.svg',
-                link: 'https://git-scm.com/',
-                decription: 'Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. '
-            },
-            {
-                name: 'GitHub',
-                logo: 'https://cdn.worldvectorlogo.com/logos/github.svg',
-                link: 'https://github.com/',
-                decription: 'GitHub is a web-based hosting service for version control using Git.'
-            },
-            {
-                name: 'Visual Studio 2022 Desktop Development with C++',
-                logo: 'https://cdn.worldvectorlogo.com/logos/visual-studio-code.svg',
-                link: 'https://www.microsoft.com/en-us/download/details.aspx?id=50000',
-                decription: 'Visual Studio is a free and open-source software development platform designed to make it easier to create, manage, and share software projects. '
-            },
-            {
-                name: 'Github Copilot',
-                logo: 'https://cdn.worldvectorlogo.com/logos/github.svg',
-                link: 'https://github.com/features/copilot',
-                decription: 'GitHub Copilot is a AI-powered software development platform that helps developers build software faster and with less effort. '
-            },
-            {
-                name: 'Postman',
-                logo: 'https://cdn.worldvectorlogo.com/logos/postman.svg',
-                link: 'https://www.getpostman.com/',
-                decription: 'Postman is a web application that allows you to create and manage RESTful APIs in a single place and share them with anyone.'
-            },
-            {
-                name: 'CUDA and cuDNN',
-                logo: 'https://cdn.worldvectorlogo.com/logos/cuda.svg',
-                link: 'https://developer.nvidia.com/cuda-toolkit',
-                decription: 'CUDA is a parallel computing platform and runtime library developed by NVIDIA to accelerate computing in general and deep learning in particular.'
-            }
-        ]
+        name: 'React-Router-Dom',
+        version: '^6.3.0',
+        color: '#61dafb',
+        logo: 'logos:react-router',
+        link: 'https://reacttraining.com/react-router/web/guides/quick-start',
+        description: 'React Router is a routing library for React. It is used to make single-page applications with the minimal effort required.'
+    },
+    {
+        name: 'React-Icons',
+        version: '^4.4.0',
+        color: '#61dafb',
+        logo: 'logos:react',
+        link: 'https://react-icons.netlify.com/',
+        description: 'React Icons is a collection of icons for React. It is used to make single-page applications with the minimal effort required.'
+    },
+    {
+        name: 'TailwindCSS',
+        version: '^3.1.8',
+        color: '#61dafb',
+        logo: 'logos:tailwindcss-icon',
+        link: 'https://tailwindcss.com/',
+        description: 'TailwindCSS is a utility-first CSS framework for quickly building custom, high-fidelity, fully responsive designs with minimal effort.'
+    },
+    {
+        name: 'Postcss',
+        version: '^8.4.16',
+        color: '#61dafb',
+        logo: 'logos:postcss',
+        link: 'https://postcss.org/',
+        description: 'PostCSS is a tool for transforming CSS with JavaScript plugins and extending CSS syntax.'
+    },
+    {
+        name: 'Headlessui',
+        version: '^1.6.6',
+        color: '#61dafb',
+        logo: 'logos:headlessui',
+        link: 'https://headlessui.com/',
+        description: 'Headlessui is a collection of components and utilities for React that help you build beautiful, performant, and accessible user interfaces.'
+    },
+    {
+        name: 'Font Awesome',
+        version: '6.2.0',
+        color: '#61dafb',
+        logo: 'logos:font-awesome',
+        link: 'https://fontawesome.com/',
+        description: 'Font Awesome is a community of developers and designers who create and maintain free and open source icons.'
+    },
+    {
+        name: 'React Toastify',
+        version: '^9.0.8',
+        color: '#61dafb',
+        logo: 'logos:react',
+        link: 'https://react-toastify.js.org/',
+        description: 'React Toastify is a library for React that makes it easy to display toast messages.'
+    },
+    {
+        name: 'Google Fonts',
+        version: '^2.0.0',
+        color: '#61dafb',
+        logo: 'simple-icons:googlefonts',
+        link: 'https://fonts.google.com/',
+        description: 'Google Fonts is a webfont service that allows you to select from over 1,000 web fonts.'
+    },
+    {
+        name: 'Iconify',
+        version: '^3.2.2',
+        color: '#000000',
+        logo: 'simple-icons:iconify',
+        link: 'https://iconify.design/',
+        description: 'Iconify is a free, open-source icon library that lets you easily create beautiful icons and vector graphics.'
+    },
+    {
+        name: 'Jwt-decode',
+        version: '^3.1.2',
+        color: '#000000',
+        logo: 'logos:jwt-icon',
+        link: 'https://www.npmjs.com/package/jwt-decode',
+        description: 'JWT Decode is a JavaScript library that decodes JWT tokens into an object.'
+    },
+    {
+        name: 'TensorFlow',
+        version: '2.9.1',
+        color: '#61dafb',
+        logo: 'logos:tensorflow',
+        link: 'https://www.tensorflow.org/',
+        description: 'TensorFlow is an open source machine learning platform for everyone. It is used to build and train neural networks.'
+    },
+    {
+        name: 'Keras',
+        version: '2.9.0',
+        color: '#d00000',
+        logo: 'simple-icons:keras',
+        link: 'https://keras.io/',
+        description: 'Keras is a high-level neural network library for the Python programming language. '
+    },
+    {
+        name: 'Flask',
+        version: '2.1.2',
+        color: '#61dafb',
+        logo: 'logos:flask',
+        link: 'https://flask.palletsprojects.com/en/1.1.x/',
+        description: 'Flask is a microframework for Python based on Werkzeug and Jinja2. It is designed to be as simple as possible while still being powerful enough to be useful.'
+    },
+    {
+        name: 'MariaDB',
+        version: '10.4.24',
+        color: '#61dafb',
+        logo: 'logos:mariadb-icon',
+        link: 'https://mariadb.org/',
+        description: 'MariaDB is a free and open-source relational database management system (RDBMS) based on the MySQL server. '
+    },
+    {
+        name: 'MySQL',
+        version: '5.0.37',
+        color: '#61dafb',
+        logo: 'logos:mysql-icon',
+        link: 'https://www.mysql.com/',
+        description: 'MySQL is a relational database management system (RDBMS) that is used to create, manage, and administer databases.' 
+    },
+    {
+        name: 'phpMyAdmin',
+        version: '5.2.0',
+        color: '#F89C0E',
+        logo: 'simple-icons:phpmyadmin',
+        link: 'https://www.phpmyadmin.net/',
+        description: 'phpMyAdmin is a free software web application for MySQL and MariaDB. It is a fully featured, easy to use, and fully standards-compliant web based MySQL database management system (DBMS) with a focus on ease of use and user friendlyness.'
+    },
+    {
+        name: 'Visual Studio Code',
+        version: '1.70.2',
+        color: '#61dafb',
+        logo: 'logos:visual-studio-code',
+        link: 'https://code.visualstudio.com/',
+        description: 'Visual Studio Code is a free and open-source code editor for the Microsoft Windows platform. '
+    },
+    {
+        name: 'PyCharm Professional Edition',
+        version: '2022.2.1',
+        color: '#61dafb',
+        logo: 'logos:pycharm',
+        link: 'https://www.jetbrains.com/pycharm/',
+        description: 'PyCharm is a free and open-source IDE for the Python programming language. '
+    },
+    {
+        name: 'XAMPP',
+        version: '8.1.6',
+        color: '#61dafb',
+        logo: 'logos:xampp',
+        link: 'https://www.apachefriends.org/en/xampp.html',
+        description: 'XAMPP is a free web server software package that allows you to develop and test your web applications without installing any software on your computer.'
+    },
+    {
+        name: 'Git',
+        version: '2.37.3',
+        color: '#61dafb',
+        logo: 'logos:git',
+        link: 'https://git-scm.com/',
+        description: 'Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. '
+    },
+    {
+        name: 'GitHub',
+        version: 'latest',
+        color: '#61dafb',
+        logo: 'logos:github-icon',
+        link: 'https://github.com/',
+        description: 'GitHub is a web-based hosting service for version control using Git.'
+    },
+    {
+        name: 'Visual Studio 2022 Desktop Development with C++',
+        version: '17.3.3',
+        color: '#AA7CDF',
+        logo: 'simple-icons:visualstudio',
+        link: 'https://www.microsoft.com/en-us/download/details.aspx?id=50000',
+        description: 'Visual Studio is a free and open-source software development platform designed to make it easier to create, manage, and share software projects. '
+    },
+    {
+        name: 'Github Copilot',
+        version: '1.43.6621',
+        color: '#61dafb',
+        logo: 'logos:github-copilot',
+        link: 'https://github.com/features/copilot',
+        description: 'GitHub Copilot is a AI-powered software development platform that helps developers build software faster and with less effort. '
+    },
+    {
+        name: 'Postman',
+        version: '9.30.1',
+        color: '#61dafb',
+        logo: 'logos:postman-icon',
+        link: 'https://www.getpostman.com/',
+        description: 'Postman is a web application that allows you to create and manage RESTful APIs in a single place and share them with anyone.'
+    },
+    {
+        name: 'CUDA',
+        version: '11.7.1',
+        color: '#61dafb',
+        logo: 'logos:nvidia',
+        link: 'https://developer.nvidia.com/cuda-toolkit',
+        description: 'CUDA is a parallel computing platform and runtime library developed by NVIDIA to accelerate computing in general and deep learning in particular.'
+    },
+    {
+        name: 'cuDNN',
+        version: '8.4.1',
+        color: '#61dafb',
+        logo: 'logos:nvidia',
+        link: 'https://developer.nvidia.com/cudnn',
+        description: 'cuDNN is a library that provides high-performance, memory-efficient convolutional neural network libraries, accelerates the performance of deep neural networks.'
     }
+
 ]
 
 
@@ -281,9 +341,24 @@ const AboutUS = () => {
                     </div>
                     <hr/>
                     <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies Used in Matrix Lab</h1>
+                    {/* Grid layout */}
                     <div className="flex flex-wrap mb-44 items-top justify-center">
-                        
-                    </div>    
+                        <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-32'>
+                            {Technologies.map((technology, index) => (
+                                <div  key={index} className="p-6 auto-cols-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center">
+                                    {technology.logo ? 
+                                        <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
+                                        : 
+                                        <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
+                                    }
+                                    <h1 className="text-xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name}</h1>
+                                    <blockquote className="text-left text-gray-500 text-sm md:text-base mb-8">
+                                        <p>{technology.description}</p>
+                                    </blockquote>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
