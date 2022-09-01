@@ -85,7 +85,7 @@ const AboutUS = () => {
                                     }
                                     <div className='p-4 text-center container text-stone-700'>
                                         <h1 className="font-bold tracking-widest text-xl md:text-lg lg:text-2xl mt-2 lg:mt-4">{aboutUs.name}</h1>
-                                        <h2 className="font-medium text-md md:text-base">{aboutUs.title ? aboutUs.title : '--'}</h2>
+                                        <h2 className="font-medium text-md md:text-base">{aboutUs.title ? aboutUs.title : <div className='h-6'/>}</h2>
                                         
                                         <div className="mt-4 flex justify-center">
                                             {Object.keys(aboutUs.social).map((social, index) => (
@@ -97,9 +97,7 @@ const AboutUS = () => {
                                                             </a>
                                                         </div>
                                                         :
-                                                        <div className="flex items-center justify-center h-12 w-12 lg:text-2xl">
-                                                            --
-                                                        </div>
+                                                        <div className="h-12 w-12"/>
                                                     }
                                                 </div>
                                             ))}
