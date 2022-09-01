@@ -136,7 +136,7 @@ const Technologies = [
     {
         name: 'Google Fonts',
         version: '^2.0.0',
-        color: '#61dafb',
+        color: '#1A73E8',
         logo: 'simple-icons:googlefonts',
         link: 'https://fonts.google.com/',
         description: 'Google Fonts is a webfont service that allows you to select from over 1,000 web fonts.'
@@ -239,7 +239,7 @@ const Technologies = [
     },
     {
         name: 'GitHub',
-        version: 'latest',
+        version: '',
         color: '#61dafb',
         logo: 'logos:github-icon',
         link: 'https://github.com/',
@@ -303,7 +303,7 @@ const AboutUS = () => {
             </div>
             <hr/>
             <div className="items-center w-full h-full min-h-screen font-Montserrat">
-                <div className="mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat text-gray-200 justify-items-center">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 font-Montserrat text-gray-200 justify-items-center">
                     <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl text-center py-16">Creators of Matrix Lab</h1>
                     <div className="flex flex-wrap mb-44 items-top justify-center">
                         {AboutUsDetails.map((aboutUs, index) => (
@@ -342,16 +342,16 @@ const AboutUS = () => {
                     <hr/>
                     <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies Used in Matrix Lab</h1>
                     {/* Grid layout */}
-                    <div className="flex flex-wrap mb-44 items-top justify-center">
-                        <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-32'>
+                    <div className="flex flex-wrap items-top justify-center">
+                        <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-24'>
                             {Technologies.map((technology, index) => (
-                                <div  key={index} className="p-6 auto-cols-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center">
+                                <div  key={index} className="p-6 auto-cols-max h-full auto-rows-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center">
                                     {technology.logo ? 
                                         <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
                                         : 
                                         <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
                                     }
-                                    <h1 className="text-xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name}</h1>
+                                    <h1 className="text-xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
                                     <blockquote className="text-left text-gray-500 text-sm md:text-base mb-8">
                                         <p>{technology.description}</p>
                                     </blockquote>
