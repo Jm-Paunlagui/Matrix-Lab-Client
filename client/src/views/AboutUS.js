@@ -255,11 +255,11 @@ const Technologies = [
     },
     {
         name: 'Github Copilot',
-        version: '1.43.6621',
+        version: '',
         color: '#61dafb',
         logo: 'logos:github-copilot',
         link: 'https://github.com/features/copilot',
-        description: 'GitHub Copilot is a AI-powered software development platform that helps developers build software faster and with less effort. '
+        description: 'GitHub Copilot is a AI-powered software development platform that helps developers build software faster and with less effort, supported on many Text Editors and IDEs.'
     },
     {
         name: 'Postman',
