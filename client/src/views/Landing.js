@@ -8,7 +8,7 @@ const Landing = () => {
     return (
         <>
             <Navbar />
-                <div className='bg-gray-100'>
+                <div className='bg-white'>
                     <Outlet />
                 </div>
             <Footer />
