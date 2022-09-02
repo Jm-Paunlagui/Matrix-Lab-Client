@@ -369,8 +369,8 @@ const AboutUS = () => {
                     {/* Grid layout */}
                     <div className="flex flex-wrap justify-center items-top">
                         <div className='grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
-                            {Technologies.map((technology, index) => (
-                                <div  key={index} className='hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out'>
+                            {Technologies.map((technology, index1) => (
+                                <div  key={index1} className='hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out'>
                                     <div className='flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow auto-cols-max auto-rows-max place-items-center'>
                                         {technology.logo ? 
                                             <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
