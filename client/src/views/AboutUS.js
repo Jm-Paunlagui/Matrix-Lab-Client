@@ -365,7 +365,7 @@ const AboutUS = () => {
                     </div>
                     <hr/>
                     <h1 className="text-4xl font-extrabold leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies used in Matrix Lab</h1>
-                    <p className="text-justify mb-8 text-sm px-8 max-w-7xl mx-auto place-self-center text-gray-500 lg:mb-16 md:text-base">The following technologies and tools are used in the development of the Matrix Lab website, starting from the frontend to the backend as well as its deep learning model. We are using the latest technologies to ensure that the website is fast, secure and reliable. We are also using the latest deep learning technologies to ensure that the deep learning model is fast, accurate and reliable.</p>
+                    <p className="text-justify mb-8 text-sm px-8 max-w-7xl mx-auto place-self-center text-gray-500 lg:mb-16 md:text-base font-medium">The following technologies and tools are used in the development of the Matrix Lab website, starting from the frontend to the backend as well as its deep learning model. We are using the latest technologies to ensure that the website is fast, secure and reliable. We are also using the latest deep learning technologies to ensure that the deep learning model is fast, accurate and reliable.</p>
                     {/* Grid layout */}
                     <div className="flex flex-wrap items-top justify-center">
                         <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-24'>
