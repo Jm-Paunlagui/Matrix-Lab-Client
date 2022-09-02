@@ -351,10 +351,12 @@ const AboutUS = () => {
                                         : 
                                         <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
                                     }
-                                    <h1 className="text-xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
-                                    <blockquote className="text-left text-gray-500 text-sm md:text-base mb-8">
+                                    <h1 className="text-xl font-bold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
+                                    <h2 className='text-left text-gray-800 font-medium w-full text-md mb-4'>About</h2>
+                                    <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
                                         <p>{technology.description}</p>
                                     </blockquote>
+                                    <a href={technology.link} target="_blank" rel="noopener noreferrer" className="text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-left w-full font-medium hover:text-indigo-700 mb-4">Learn more <i className="fa-solid fa-caret-right"></i></a>
                                 </div>
                             ))}
                         </div>
