@@ -41,7 +41,7 @@ const Navbar = () => {
             </NavLink>
             <button
               type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
+              onClick={setNavbarOpen(!navbarOpen)}
               className="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
             >
               <GoThreeBars color="#374151" />
