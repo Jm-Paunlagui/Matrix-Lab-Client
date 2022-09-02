@@ -352,8 +352,7 @@ const AboutUS = () => {
                                         <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
                                     }
                                     <h1 className="text-xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
-                                    <h2 className='text-left text-gray-800 font-bold w-full text-md mb-4'>About</h2> 
-                                    <blockquote className="text-left text-gray-700 text-sm md:text-base mb-8">
+                                    <blockquote className="text-left text-gray-500 text-sm md:text-base mb-8">
                                         <p>{technology.description}</p>
                                     </blockquote>
                                 </div>
