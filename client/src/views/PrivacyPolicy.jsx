@@ -1,4 +1,3 @@
-
 import Privacy from "../assets/img/privacy.svg";
 
 const PrivacyPolicy = () => {

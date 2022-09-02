@@ -1,4 +1,3 @@
-
 import Terms from "../assets/img/terms.svg";
 
 const TermsAndConditions = () => {
