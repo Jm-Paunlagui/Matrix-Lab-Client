@@ -37,7 +37,7 @@ const Footer = () => {
                 <a
                   className="fab fa-twitter "
                   href="https://twitter.com/messages/719487995892539393-719487995892539393?text="
-                  target={"_blank"}
+                  target="_blank"
                   rel="noreferrer noopener"
                 >
                   {" "}
@@ -50,7 +50,7 @@ const Footer = () => {
                 <a
                   className="fab fa-facebook-messenger hover:text-blue-700"
                   href="https://www.messenger.com/t/100001178366981"
-                  target={"_blank"}
+                  target="_blank"
                   rel="noreferrer noopener"
                 >
                   {" "}
