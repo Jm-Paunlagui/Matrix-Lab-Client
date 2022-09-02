@@ -6,7 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { MdLeaderboard } from "react-icons/md";
 import { TbDeviceAnalytics } from "react-icons/tb";
 import { FaSignInAlt } from "react-icons/fa";
-import logo from '../../assets/img/android-chrome-192x192.png';
+import logo from "../../assets/img/android-chrome-192x192.png";
 
 const Navbar = () => {
 
@@ -51,7 +51,7 @@ const Navbar = () => {
                                     className="text-gray-700">
                                 <li className="flex items-center px-8 py-4 hover:text-blue-900">
                                     <AiFillHome size={24} title="Home"/>
-                                    <h1 className="block px-8 text-sm font-medium tracking-wider  blockml-3 lg:hidden">Home</h1>
+                                    <h1 className="block px-8 text-sm font-medium tracking-wider blockml-3 lg:hidden">Home</h1>
                                 </li>
                             </NavLink>
                             <NavLink to ="leaderboard"
