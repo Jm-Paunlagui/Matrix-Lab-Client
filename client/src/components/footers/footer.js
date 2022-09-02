@@ -16,34 +16,6 @@ const UsefulLinks = [
     }
 ]
 
-const DeveloperLinks = [
-    {
-        name: "Github",
-        link: "https://www.github.com/Projects-REPO"
-    },
-    {
-        name: "Tensorflow",
-        link: "https://www.tensorflow.org/"
-    },
-    {
-        name: "Keras",
-        link: "https://keras.io/"
-    },
-    {
-        name: "React",
-        link: "https://reactjs.org/"
-    },
-    {
-        name: "React-Router",
-        link: "https://reactrouter.com/en/main/getting-started/overview"
-    },
-    {
-        name: "TailwindCSS",
-        link: "https://tailwindcss.com/"
-    }
-]
-
-
 const Footer = () => {
     return (
             <footer className="pt-8 pb-6 mt-auto text-gray-500 font-Montserrat ">
@@ -75,18 +47,6 @@ const Footer = () => {
                                         {UsefulLinks.map((link, index) => (
                                             <li key={index}>
                                                 <Link to={`/${link.link}`} className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">{link.name}</Link>
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </div>
-                                <div className="w-full px-4 md:w-1/2 lg:w-4/12">
-                                    <span className="block mb-2 text-sm font-semibold text-gray-500 uppercase">
-                                        Developer Resources
-                                    </span>
-                                    <ol className="list-unstyled">
-                                        {DeveloperLinks.map((link, index) => (
-                                            <li key={index}>
-                                                <a href={link.link} target={"_blank"} rel="noreferrer noopener" className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">{link.name}</a> 
                                             </li>
                                         ))}
                                     </ol>

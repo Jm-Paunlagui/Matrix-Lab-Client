@@ -62,6 +62,14 @@ const AboutUsDetails = [
 // Visual Studio Code, PyCharm Professional Edition, XAMPP, Git, GitHub, Visual Studio 2022 Desktop Development with C++, Github Copilot, Postman,
 const Technologies = [
     {
+        name: 'Node.js',
+        version: '16.17.0',
+        color: '#24292e',
+        logo: 'logos:nodejs',
+        link: 'https://nodejs.org/en/',
+        description: 'Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js\' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.'
+    },
+    {
         name: 'React',
         version: '^18.2.0',
         color: '#61dafb',
@@ -156,6 +164,22 @@ const Technologies = [
         logo: 'logos:jwt-icon',
         link: 'https://www.npmjs.com/package/jwt-decode',
         description: 'JWT Decode is a JavaScript library that decodes JWT tokens into an object.'
+    },
+    {
+        name: 'JavaScript',
+        version: 'ES6',
+        color: '#000000',
+        logo: 'logos:javascript',
+        link: 'https://www.javascript.com/',
+        description: 'JavaScript is a high-level, dynamic, untyped, and interpreted programming language. It is often characterized by first-class functions, dynamic typing, and automatic garbage collection.'
+    },
+    {
+        name: 'Python',
+        version: '3.10.5',
+        color: '#000000',
+        logo: 'logos:python',
+        link: 'https://www.python.org/',
+        description: 'Python is a programming language that lets you work quickly and integrate systems more effectively. Python is easy to learn and has a large body of libraries and tools that let you create your own applications.'
     },
     {
         name: 'TensorFlow',
@@ -340,21 +364,28 @@ const AboutUS = () => {
                         ))}
                     </div>
                     <hr/>
-                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies Used in Matrix Lab</h1>
+                    <h1 className="text-4xl font-extrabold leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies used in Matrix Lab</h1>
+                    <p className="text-justify mb-8 text-sm px-8 max-w-7xl mx-auto place-self-center text-gray-500 lg:mb-16 md:text-base font-medium">The following technologies and tools are used in the development of the Matrix Lab website, starting from the frontend to the backend as well as its deep learning model. We are using the latest technologies to ensure that the website is fast, secure and reliable. We are also using the latest deep learning technologies to ensure that the deep learning model is fast, accurate and reliable.</p>
                     {/* Grid layout */}
                     <div className="flex flex-wrap items-top justify-center">
                         <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-24'>
                             {Technologies.map((technology, index) => (
-                                <div  key={index} className="p-6 auto-cols-max h-full auto-rows-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center">
-                                    {technology.logo ? 
-                                        <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
-                                        : 
-                                        <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
-                                    }
-                                    <h1 className="text-xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
-                                    <blockquote className="text-left text-gray-500 text-sm md:text-base mb-8">
-                                        <p>{technology.description}</p>
-                                    </blockquote>
+                                <div  key={index} className='hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out'>
+                                    <div className='p-6 auto-cols-max h-full auto-rows-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center'>
+                                        {technology.logo ? 
+                                            <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
+                                            : 
+                                            <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
+                                        }
+                                        <h1 className="text-xl font-bold leading-none text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
+                                        <h2 className='text-left text-gray-800 font-medium w-full text-md mb-4'>About</h2>
+                                        <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
+                                            <p>{technology.description}</p>
+                                        </blockquote>
+                                        <h1 className="place-self-start text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text font-medium hover:text-indigo-700 mb-4 transition-colors delay-150 duration-300 ease-in-out">
+                                            <a href={technology.link} target="_blank" rel="noopener noreferrer">Learn more <i className="fa-solid fa-caret-right"/></a>
+                                        </h1>
+                                    </div>
                                 </div>
                             ))}
                         </div>
