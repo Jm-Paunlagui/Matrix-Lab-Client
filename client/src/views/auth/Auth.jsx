@@ -1,3 +1,4 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import bg from "../../assets/img/register_bg_2.png";
 const Auth = () => {
