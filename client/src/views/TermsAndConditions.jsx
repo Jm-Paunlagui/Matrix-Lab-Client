@@ -1,4 +1,3 @@
-import React from "react";
 
 import Terms from "../assets/img/terms.svg";
 

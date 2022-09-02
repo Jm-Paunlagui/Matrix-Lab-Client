@@ -1,9 +1,8 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const PageNotFound = () => {
   return (
-    <div className="flex justify-center min-h-screen overflow-hidden text-gray-900  font-Montserrat">
+    <div className="flex justify-center min-h-screen overflow-hidden text-gray-900 font-Montserrat">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-6xl font-extrabold xl:text-9xl">404</h1>
         <p className="text-3xl font-extrabold xl:text-6xl">

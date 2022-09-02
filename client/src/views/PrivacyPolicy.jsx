@@ -1,4 +1,3 @@
-import React from "react";
 
 import Privacy from "../assets/img/privacy.svg";
 
