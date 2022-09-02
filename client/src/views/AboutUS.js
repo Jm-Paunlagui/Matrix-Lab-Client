@@ -372,10 +372,9 @@ const AboutUS = () => {
                                     <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
                                         <p>{technology.description}</p>
                                     </blockquote>
-                                    <a href={technology.link} target="_blank" rel="noopener noreferrer" 
-                                    className="text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-left w-full font-medium hover:text-indigo-700 mb-4 transition-colors delay-150 duration-300 ease-in-out">
-                                        Learn more <i className="fa-solid fa-caret-right"></i>
-                                    </a>
+                                    <h1 className="place-self-start text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text font-medium hover:text-indigo-700 mb-4 transition-colors delay-150 duration-300 ease-in-out">
+                                        <a href={technology.link} target="_blank" rel="noopener noreferrer">Learn more <i className="fa-solid fa-caret-right"/></a>
+                                    </h1>
                                 </div>
                             ))}
                         </div>
