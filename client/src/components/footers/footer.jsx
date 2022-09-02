@@ -23,7 +23,7 @@ const Footer = () => {
                 <hr className="my-6 border-gray-300" />
                     <div className="flex flex-wrap text-center lg:text-left">
                         <div className="w-full px-4 lg:w-6/12">
-                            <h4 className="text-2xl font-semibold">Let's keep in touch!</h4>
+                            <h4 className="text-2xl font-semibold">Let&apos;s keep in touch!</h4>
                             <h5 className="mt-0 mb-2 text-lg text-gray-600">
                                 Find us on any of these platforms, we respond 1-2 business days.
                             </h5>
