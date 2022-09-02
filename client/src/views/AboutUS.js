@@ -356,7 +356,8 @@ const AboutUS = () => {
                         ))}
                     </div>
                     <hr/>
-                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies Used in Matrix Lab</h1>
+                    <h1 className="text-4xl font-extrabold leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies used in Matrix Lab</h1>
+                    <p className="text-justify mb-8 text-sm px-8 max-w-7xl mx-auto place-self-center text-gray-500 lg:mb-16 md:text-base">The following technologies and tools are used in the development of the Matrix Lab website, starting from the frontend to the backend as well as its deep learning model. We are using the latest technologies to ensure that the website is fast, secure and reliable. We are also using the latest deep learning technologies to ensure that the deep learning model is fast, accurate and reliable.</p>
                     {/* Grid layout */}
                     <div className="flex flex-wrap items-top justify-center">
                         <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-24'>
@@ -367,7 +368,7 @@ const AboutUS = () => {
                                         : 
                                         <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
                                     }
-                                    <h1 className="text-xl font-bold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
+                                    <h1 className="text-xl font-bold leading-none text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
                                     <h2 className='text-left text-gray-800 font-medium w-full text-md mb-4'>About</h2>
                                     <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
                                         <p>{technology.description}</p>
