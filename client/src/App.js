@@ -21,7 +21,7 @@ import TermsAndConditions from "./views/TermsAndConditions.js";
 import Login from "./views/auth/Login.js";
 import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
 
-import PageNotFound from "./views/PageNotFound.jsx";
+import PageNotFound from "./views/PageNotFound.js";
 
 const App = () => {
   // To automatically scroll to the top of the page when the user navigates to a new page
