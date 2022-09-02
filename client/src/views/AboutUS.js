@@ -158,6 +158,22 @@ const Technologies = [
         description: 'JWT Decode is a JavaScript library that decodes JWT tokens into an object.'
     },
     {
+        name: 'JavaScript',
+        version: 'ES6',
+        color: '#000000',
+        logo: 'logos:javascript',
+        link: 'https://www.javascript.com/',
+        description: 'JavaScript is a high-level, dynamic, untyped, and interpreted programming language. It is often characterized by first-class functions, dynamic typing, and automatic garbage collection.'
+    },
+    {
+        name: 'Python',
+        version: '3.10.5',
+        color: '#000000',
+        logo: 'logos:python',
+        link: 'https://www.python.org/',
+        description: 'Python is a programming language that lets you work quickly and integrate systems more effectively. Python is easy to learn and has a large body of libraries and tools that let you create your own applications.'
+    },
+    {
         name: 'TensorFlow',
         version: '2.9.1',
         color: '#61dafb',
