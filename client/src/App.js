@@ -9,17 +9,17 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Landing from "./views/Landing.jsx";
-import Auth from "./views/auth/Auth.jsx";
+import Landing from "./views/Landing.js";
+import Auth from "./views/auth/Auth.js";
 
-import Home from "./views/Home.jsx";
-import Leaderboard from "./views/Leaderboard.jsx";
-import AboutUS from "./views/AboutUS.jsx";
-import PrivacyPolicy from "./views/PrivacyPolicy.jsx";
-import TermsAndConditions from "./views/TermsAndConditions.jsx";
+import Home from "./views/Home.js";
+import Leaderboard from "./views/Leaderboard.js";
+import AboutUS from "./views/AboutUS.js";
+import PrivacyPolicy from "./views/PrivacyPolicy.js";
+import TermsAndConditions from "./views/TermsAndConditions.js";
 
-import Login from "./views/auth/Login.jsx";
-import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.jsx";
+import Login from "./views/auth/Login.js";
+import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
 
 import PageNotFound from "./views/PageNotFound.jsx";
 
