@@ -370,20 +370,22 @@ const AboutUS = () => {
                     <div className="flex flex-wrap items-top justify-center">
                         <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-24'>
                             {Technologies.map((technology, index) => (
-                                <div  key={index} className="p-6 auto-cols-max h-full auto-rows-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center">
-                                    {technology.logo ? 
-                                        <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
-                                        : 
-                                        <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
-                                    }
-                                    <h1 className="text-xl font-bold leading-none text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
-                                    <h2 className='text-left text-gray-800 font-medium w-full text-md mb-4'>About</h2>
-                                    <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
-                                        <p>{technology.description}</p>
-                                    </blockquote>
-                                    <h1 className="place-self-start text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text font-medium hover:text-indigo-700 mb-4 transition-colors delay-150 duration-300 ease-in-out">
-                                        <a href={technology.link} target="_blank" rel="noopener noreferrer">Learn more <i className="fa-solid fa-caret-right"/></a>
-                                    </h1>
+                                <div  key={index} className='hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out'>
+                                    <div className='p-6 auto-cols-max h-full auto-rows-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center'>
+                                        {technology.logo ? 
+                                            <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
+                                            : 
+                                            <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
+                                        }
+                                        <h1 className="text-xl font-bold leading-none text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
+                                        <h2 className='text-left text-gray-800 font-medium w-full text-md mb-4'>About</h2>
+                                        <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
+                                            <p>{technology.description}</p>
+                                        </blockquote>
+                                        <h1 className="place-self-start text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text font-medium hover:text-indigo-700 mb-4 transition-colors delay-150 duration-300 ease-in-out">
+                                            <a href={technology.link} target="_blank" rel="noopener noreferrer">Learn more <i className="fa-solid fa-caret-right"/></a>
+                                        </h1>
+                                    </div>
                                 </div>
                             ))}
                         </div>
