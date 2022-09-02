@@ -316,7 +316,7 @@ const Technologies = [
 const AboutUS = () => {
     return (
         <>
-            <div className="flex-col grid items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat pt-28">
+            <div className="grid flex-col items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat pt-28">
                 <div className="place-self-center lg:col-span-7">
                     <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">About Us</h1>
                     <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">A group of Computer Science students who are passionate about documenting, building and deploying deep learning systems. The Creators are currently studying at the City College of Calamba and looking forward to finish their studies and work in the field of deep learning and data science.</p>
@@ -327,33 +327,33 @@ const AboutUS = () => {
             </div>
             <hr/>
             <div className="items-center w-full h-full min-h-screen font-Montserrat">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 font-Montserrat text-gray-200 justify-items-center">
-                    <h1 className="text-4xl font-extrabold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl text-center py-16">Creators of Matrix Lab</h1>
-                    <div className="flex flex-wrap mb-44 items-top justify-center">
+                <div className="mx-auto text-gray-200 max-w-7xl sm:px-6 lg:px-8 font-Montserrat justify-items-center">
+                    <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl">Creators of Matrix Lab</h1>
+                    <div className="flex flex-wrap justify-center mb-44 items-top">
                         {AboutUsDetails.map((aboutUs, index) => (
                             <div key={index} className='w-full p-2 md:w-1/2 lg:w-6/12 place-content-center'>
-                                <div className="w-full h-32 p-1 mb-0 justify-center bg-gradient-to-b from-blue-500 to-purple-500 rounded-t-xl"/>
-                                <div className="bg-white flex flex-col w-full min-w-0 break-words  border-0 rounded-b-xl shadow-lg place-items-center">
+                                <div className="justify-center w-full h-32 p-1 mb-0 bg-gradient-to-b from-blue-500 to-purple-500 rounded-t-xl"/>
+                                <div className="flex flex-col w-full min-w-0 break-words bg-white border-0 shadow-lg rounded-b-xl place-items-center">
                                     {aboutUs.image ? 
-                                        <img src={aboutUs.image} alt={aboutUs.name} className="rounded-xl -mt-20 shadow-xl w-48 h-48" /> 
+                                        <img src={aboutUs.image} alt={aboutUs.name} className="w-48 h-48 -mt-20 shadow-xl rounded-xl" /> 
                                         : 
-                                        <div className="w-48 h-48 p-1 mb-0 justify-center bg-gradient-to-br from-white to-sky-500 rounded-xl -mt-20"/>
+                                        <div className="justify-center w-48 h-48 p-1 mb-0 -mt-20 bg-gradient-to-br from-white to-sky-500 rounded-xl"/>
                                     }
-                                    <div className='p-4 text-center container text-stone-700'>
-                                        <h1 className="font-bold tracking-widest text-xl md:text-lg lg:text-2xl mt-2 lg:mt-4">{aboutUs.name}</h1>
+                                    <div className='container p-4 text-center text-stone-700'>
+                                        <h1 className="mt-2 text-xl font-bold tracking-widest md:text-lg lg:text-2xl lg:mt-4">{aboutUs.name}</h1>
                                         <h2 className="font-medium text-md md:text-base">{aboutUs.title ? aboutUs.title : <div className='h-6'/>}</h2>
                                         
-                                        <div className="mt-4 flex justify-center">
+                                        <div className="flex justify-center mt-4">
                                             {Object.keys(aboutUs.social).map((social, index) => (
                                                 <div key={index} className="flex items-center">
                                                     {aboutUs.social[social] !== '' ?
-                                                        <div className="flex items-center justify-center h-12 w-12">
+                                                        <div className="flex items-center justify-center w-12 h-12">
                                                             <a href={aboutUs.social[social]} target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-700">
                                                                 <i className={`fab fa-${social??''} text-3xl transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110`}> </i>
                                                             </a>
                                                         </div>
                                                         :
-                                                        <div className="h-12 w-12"/>
+                                                        <div className="w-12 h-12"/>
                                                     }
                                                 </div>
                                             ))}
@@ -364,25 +364,25 @@ const AboutUS = () => {
                         ))}
                     </div>
                     <hr/>
-                    <h1 className="text-4xl font-extrabold leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500  md:text-5xl xl:text-6xl text-center py-16">Technologies used in Matrix Lab</h1>
-                    <p className="text-justify mb-8 text-sm px-8 max-w-7xl mx-auto place-self-center text-gray-500 lg:mb-16 md:text-base font-medium">The following technologies and tools are used in the development of the Matrix Lab website, starting from the frontend to the backend as well as its deep learning model. We are using the latest technologies to ensure that the website is fast, secure and reliable. We are also using the latest deep learning technologies to ensure that the deep learning model is fast, accurate and reliable.</p>
+                    <h1 className="py-16 text-4xl font-extrabold leading-none tracking-wide text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 md:text-5xl xl:text-6xl">Technologies used in Matrix Lab</h1>
+                    <p className="px-8 mx-auto mb-8 text-sm font-medium text-justify text-gray-500 max-w-7xl place-self-center lg:mb-16 md:text-base">The following technologies and tools are used in the development of the Matrix Lab website, starting from the frontend to the backend as well as its deep learning model. We are using the latest technologies to ensure that the website is fast, secure and reliable. We are also using the latest deep learning technologies to ensure that the deep learning model is fast, accurate and reliable.</p>
                     {/* Grid layout */}
-                    <div className="flex flex-wrap items-top justify-center">
-                        <div className='grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 mb-24'>
+                    <div className="flex flex-wrap justify-center items-top">
+                        <div className='grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
                             {Technologies.map((technology, index) => (
                                 <div  key={index} className='hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out'>
-                                    <div className='p-6 auto-cols-max h-full auto-rows-max bg-white flex flex-col w-full min-w-0 break-words border-0 rounded shadow place-items-center'>
+                                    <div className='flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow auto-cols-max auto-rows-max place-items-center'>
                                         {technology.logo ? 
                                             <Icon icon={technology.logo} className="w-24 h-24" color={technology.color} />
                                             : 
-                                            <div className="w-48 h-48 p-1 mb-0 justify-center rounded-xl "/>
+                                            <div className="justify-center w-48 h-48 p-1 mb-0 rounded-xl "/>
                                         }
-                                        <h1 className="text-xl font-bold leading-none text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 text-center py-8">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
-                                        <h2 className='text-left text-gray-800 font-medium w-full text-md mb-4'>About</h2>
-                                        <blockquote className="text-left text-gray-500 text-sm md:text-base mb-6">
+                                        <h1 className="py-8 text-xl font-bold leading-none text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500">{technology.name} {technology.version ? 'v' + technology.version : null}</h1>
+                                        <h2 className='w-full mb-4 font-medium text-left text-gray-800 text-md'>About</h2>
+                                        <blockquote className="mb-6 text-sm text-left text-gray-500 md:text-base">
                                             <p>{technology.description}</p>
                                         </blockquote>
-                                        <h1 className="place-self-start text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text font-medium hover:text-indigo-700 mb-4 transition-colors delay-150 duration-300 ease-in-out">
+                                        <h1 className="mb-4 font-medium text-transparent transition-colors duration-300 ease-in-out delay-150 place-self-start bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text hover:text-indigo-700">
                                             <a href={technology.link} target="_blank" rel="noopener noreferrer">Learn more <i className="fa-solid fa-caret-right"/></a>
                                         </h1>
                                     </div>
