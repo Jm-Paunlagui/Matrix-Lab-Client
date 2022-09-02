@@ -62,6 +62,14 @@ const AboutUsDetails = [
 // Visual Studio Code, PyCharm Professional Edition, XAMPP, Git, GitHub, Visual Studio 2022 Desktop Development with C++, Github Copilot, Postman,
 const Technologies = [
     {
+        name: 'Node.js',
+        version: '16.17.0',
+        color: '#24292e',
+        logo: 'logos:nodejs',
+        link: 'https://nodejs.org/en/',
+        description: 'Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js\' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.'
+    },
+    {
         name: 'React',
         version: '^18.2.0',
         color: '#61dafb',
