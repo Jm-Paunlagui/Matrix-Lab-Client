@@ -428,7 +428,7 @@ const AboutUS = () => {
             ))}
           </div>
           <hr />
-          <h1 className="py-16 text-4xl font-extrabold leading-none tracking-wide text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 md:text-5xl xl:text-6xl">
+          <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl">
             Technologies used in Matrix Lab
           </h1>
           <p className="px-8 mx-auto mb-8 text-sm font-medium text-justify text-gray-500 max-w-7xl place-self-center lg:mb-16 md:text-base">
