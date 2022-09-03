@@ -34,9 +34,7 @@ const Login = () => {
                   </h6>
                 </div>
 
-                <form
-                  className="relative mx-auto mt-6 mb-6 max-w-screen"
-                >
+                <form className="relative mx-auto mt-6 mb-6 max-w-screen">
                   <input
                     className="w-full p-4 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="username"
