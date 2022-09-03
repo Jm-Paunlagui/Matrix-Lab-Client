@@ -48,8 +48,7 @@ const Navbar = () => {
         </div>
         <div
           className={
-            "lg:flex flex-grow items-center  lg:bg-opacity-0 lg:shadow-none" +
-            (navbarOpen ? " block" : " hidden")
+            `lg:flex flex-grow items-center  lg:bg-opacity-0 lg:shadow-none ${navbarOpen ? " block" : " hidden"}`
           }
         >
           <ul className="flex flex-col justify-start list-none lg:flex-row lg:ml-auto">
