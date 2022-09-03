@@ -459,7 +459,7 @@ const AboutUS = () => {
                     )}
                     <h1 className="py-8 text-xl font-bold leading-none text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500">
                       {technology.name}{" "}
-                      {technology.version ? "v" + technology.version : null}
+                      {technology.version ? `v${technology.version}` : null}
                     </h1>
                     <h2 className="w-full mb-4 font-medium text-left text-gray-800 text-md">
                       About
