@@ -449,11 +449,14 @@ const AboutUS = () => {
                 >
                   <div className="flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow auto-cols-max auto-rows-max place-items-center">
                     {technology.logo ? (
-                      <Icon
-                        icon={technology.logo}
-                        className="w-24 h-24"
-                        color={technology.color}
-                      />
+                      <div className="mt-4">
+                        <Icon
+                          icon={technology.logo}
+                          color={technology.color}
+                          height="96"
+                          width="96"
+                        />
+                      </div>
                     ) : (
                       <div className="justify-center w-48 h-48 p-1 mb-0 rounded-xl " />
                     )}

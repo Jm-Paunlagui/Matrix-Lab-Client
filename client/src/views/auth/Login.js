@@ -43,21 +43,23 @@ const Login = () => {
                   />
                   <div className="relative">
                     <input
-                      className="w-full px-4 py-4 mt-5 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
+                      className="w-full px-4 py-4 pr-12 mt-5 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                     />
                     <label className="absolute px-2 text-2xl rounded py-9 right-2">
                       {showPassword === false ? (
-                        <AiFillEyeInvisible
-                          onClick={toggleShowPassword}
-                          className="text-gray-400"
-                        />
+                        <div className="text-gray-400">
+                          <AiFillEyeInvisible
+                            onClick={toggleShowPassword}
+                          />
+                        </div>
                       ) : (
-                        <AiFillEye
-                          onClick={toggleShowPassword}
-                          className="text-gray-400"
-                        />
+                        <div className="text-gray-400">
+                          <AiFillEye
+                            onClick={toggleShowPassword}
+                          />
+                        </div>
                       )}
                     </label>
                   </div>
@@ -80,12 +82,13 @@ const Login = () => {
             <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
               <div className="px-6 py-6 mb-0 rounded-t">
                 <div className="flex items-center px-3 py-2 text-gray-800 ">
-                  <Link
-                    to="/forgot-password"
-                    className="ml-3 font-medium tracking-widest text-md"
-                  >
-                    Forgot Password?
-                  </Link>
+                  
+                    <Link to="/forgot-password">
+                    <div className="ml-3 font-medium tracking-widest text-md">
+                      Forgot Password?
+                      </div>
+                    </Link>
+                  
                 </div>
               </div>
             </div>

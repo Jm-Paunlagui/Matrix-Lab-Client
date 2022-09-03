@@ -69,9 +69,10 @@ const Footer = () => {
                     <li key={link.name}>
                       <Link
                         to={`/${link.link}`}
-                        className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800"
                       >
-                        {link.name}
+                        <div className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">
+                          {link.name}
+                        </div>
                       </Link>
                     </li>
                   ))}
@@ -84,14 +85,14 @@ const Footer = () => {
         <div className="flex flex-wrap md:justify-between">
           <div className="w-full px-4 mx-auto text-center md:w-4/12">
             <div className="py-1 text-sm font-semibold text-gray-500">
-              Copyright © {new Date().getFullYear()} Sentry AI by{" "}
+              Copyright © {new Date().getFullYear()} Matrix Lab by{" "}
               <Link
                 to="https://www.creative-tim.com?ref=nr-footer"
-                className="text-gray-500 hover:text-gray-800"
               >
-                Morning Group
+                <div className="text-gray-500 hover:text-gray-800">
+                  Morning Group.
+                </div>
               </Link>
-              .
             </div>
           </div>
         </div>
