@@ -10,6 +10,6 @@ function Leaderboard() {
       <h1 className="text-6xl font-bold text-center">Leaderboard</h1>
     </div>
   );
-};
+}
 
 export default Leaderboard;

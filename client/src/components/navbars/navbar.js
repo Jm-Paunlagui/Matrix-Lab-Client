@@ -13,7 +13,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @type {React.FC<{}>}
  * @description Navbar component with useful links
  */
-function Navbar () {
+function Navbar() {
   /**
    * @type {boolean}
    * @description Hook to handle the state of the show and hide password
@@ -136,6 +136,6 @@ function Navbar () {
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
