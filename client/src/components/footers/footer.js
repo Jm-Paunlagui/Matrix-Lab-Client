@@ -65,8 +65,8 @@ const Footer = () => {
                   Useful Links
                 </span>
                 <ol className="list-unstyled">
-                  {UsefulLinks.map((link, index) => (
-                    <li key={index}>
+                  {UsefulLinks.map((link) => (
+                    <li key={link.name}>
                       <Link
                         to={`/${link.link}`}
                         className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800"
