@@ -1,68 +1,14 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    textChange: "Sign In",
-  });
-
-  // Get token from local storage
-  const tokenAuth = localStorage.getItem("access_token");
-
-  useEffect(() => {
-    if (tokenAuth) {
-      navigate("/admin");
-    } else {
-      navigate("/auth");
-    }
-  }, [tokenAuth, navigate]);
-
-  const { username, password, textChange } = formData;
-
-  const handleChange = (text) => (e) => {
-    e.preventDefault();
-    setFormData({ ...formData, [text]: e.target.value });
-  };
-
-  // Sign in user with form validation
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username === "" || password === "") {
-      toast.error("Please fill in all fields");
-    } else {
-      setFormData({ ...formData, textChange: "Loading..." });
-      axios
-        .post("http://127.0.0.1:8080/auth", { username, password, textChange })
-        .then((res) => {
-          // Save token to local storage
-          localStorage.setItem("access_token", res.data.access_token);
-          // welcome the user with its name
-          toast.success(`${res.data.name}, Welcome back!`);
-          // Set token to Auth header
-          setFormData({ ...formData, textChange: "Signed In" });
-          navigate("/admin");
-        })
-        .catch((err) => {
-          setFormData({ ...formData, textChange: "Sign In" });
-          toast.error(err.response.data.error);
-        });
-    }
-  };
-
-  // show and hide password
   const [showPassword, setShowPassword] = useState(false);
 
-  const toggleShowPassword = () => {
+  const toggleShowPassword = function () {
     setShowPassword(!showPassword);
   };
   return (
@@ -90,22 +36,17 @@ const Login = () => {
 
                 <form
                   className="relative mx-auto mt-6 mb-6 max-w-screen"
-                  onSubmit={handleSubmit}
                 >
                   <input
                     className="w-full p-4 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="username"
                     placeholder="ID"
-                    onChange={handleChange("username")}
-                    value={username}
                   />
                   <div className="relative">
                     <input
                       className="w-full px-4 py-4 mt-5 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
-                      onChange={handleChange("password")}
-                      value={password}
                     />
                     <label className="absolute px-2 text-2xl rounded py-9 right-2">
                       {showPassword === false ? (
