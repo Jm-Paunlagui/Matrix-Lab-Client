@@ -5,12 +5,11 @@ import React from "react";
 import logo from "../assets/img/android-chrome-192x192.png";
 
 const Landing = () => {
-  
   const items = [
     {
       id: 1,
       titlel: "Home",
-      link: "/",     
+      link: "/",
     },
     {
       id: 2,
@@ -23,16 +22,15 @@ const Landing = () => {
       link: "auth",
     },
     {
-      id: 4,  
+      id: 4,
       titlel: "Leaderboard",
       link: "leaderboard",
     },
-  ]
+  ];
 
   return (
     <>
-      <Navbar main={"/"} logo={logo} 
-      title={"MATRIX LAB"} navitems={items} />
+      <Navbar main={"/"} logo={logo} title={"MATRIX LAB"} navitems={items} />
       <div className="bg-white">
         <Outlet />
       </div>
