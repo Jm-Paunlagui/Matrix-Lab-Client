@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-
 import "react-toastify/dist/ReactToastify.css";
+
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import React, { useState } from "react";
+
+import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 const Login = () => {

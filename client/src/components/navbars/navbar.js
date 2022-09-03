@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 
-import { GoThreeBars } from "react-icons/go";
 import { AiFillHome } from "react-icons/ai";
-import { MdLeaderboard } from "react-icons/md";
-import { TbDeviceAnalytics } from "react-icons/tb";
 import { FaSignInAlt } from "react-icons/fa";
+import { GoThreeBars } from "react-icons/go";
+import { MdLeaderboard } from "react-icons/md";
+import { NavLink } from "react-router-dom";
+import { TbDeviceAnalytics } from "react-icons/tb";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 const Navbar = () => {

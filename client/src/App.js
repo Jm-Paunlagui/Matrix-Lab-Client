@@ -1,27 +1,24 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import React, { useLayoutEffect } from "react";
 import {
-  BrowserRouter as Router,
   Route,
+  BrowserRouter as Router,
   Routes,
   useLocation,
 } from "react-router-dom";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import Landing from "./views/Landing.js";
-import Auth from "./views/auth/Auth.js";
-
-import Home from "./views/Home.js";
-import Leaderboard from "./views/Leaderboard.js";
 import AboutUS from "./views/AboutUS.js";
+import Auth from "./views/auth/Auth.js";
+import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
+import Home from "./views/Home.js";
+import Landing from "./views/Landing.js";
+import Leaderboard from "./views/Leaderboard.js";
+import Login from "./views/auth/Login.js";
+import PageNotFound from "./views/PageNotFound.js";
 import PrivacyPolicy from "./views/PrivacyPolicy.js";
 import TermsAndConditions from "./views/TermsAndConditions.js";
-
-import Login from "./views/auth/Login.js";
-import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
-
-import PageNotFound from "./views/PageNotFound.js";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   // To automatically scroll to the top of the page when the user navigates to a new page

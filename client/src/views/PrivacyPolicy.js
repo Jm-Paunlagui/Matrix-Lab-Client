@@ -1,5 +1,5 @@
-import React from "react";
 import Privacy from "../assets/img/privacy.svg";
+import React from "react";
 
 const PrivacyPolicy = () => {
   return (
