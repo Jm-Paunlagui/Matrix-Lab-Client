@@ -15,6 +15,6 @@ function Auth() {
       <Outlet />
     </div>
   );
-};
+}
 
 export default Auth;

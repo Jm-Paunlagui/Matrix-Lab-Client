@@ -17,6 +17,6 @@ function Landing() {
       <Footer />
     </>
   );
-};
+}
 
 export default Landing;
