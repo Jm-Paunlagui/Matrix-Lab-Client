@@ -23,7 +23,6 @@ const Navbar = () => {
   const link = tokenAuth ? "/admin" : "/auth";
 
   return (
-    <>
       <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
         <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">
           <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
@@ -82,7 +81,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </>
+
   );
 };
 
