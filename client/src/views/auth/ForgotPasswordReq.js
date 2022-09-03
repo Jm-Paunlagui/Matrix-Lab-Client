@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
+/**
+ * @type {React.FC<{}>}
+ * @description Handles the forgot password request page
+ */
 const ForgotPasswordReq = () => {
   return (
     <>

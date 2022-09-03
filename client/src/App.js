@@ -20,8 +20,16 @@ import PrivacyPolicy from "./views/PrivacyPolicy.js";
 import TermsAndConditions from "./views/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
+/**
+ * @type {React.FC<{}>}
+ * @description Main component for the application
+ */
 const App = () => {
-  // To automatically scroll to the top of the page when the user navigates to a new page
+
+  /**
+   * @type {Function}
+   * @description Function to scroll to top of the page when route changes in the application
+   */
   const Wrapper = ({ children }) => {
     const location = useLocation();
     useLayoutEffect(() => {

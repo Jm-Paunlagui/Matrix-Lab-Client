@@ -9,20 +9,42 @@ import { TbDeviceAnalytics } from "react-icons/tb";
 import { Transition } from "@headlessui/react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
+/**
+ * @type {React.FC<{}>}
+ * @description Navbar component with useful links
+ */
 const Navbar = () => {
+  /**
+   * @type {boolean}
+   * @description Hook to handle the state of the show and hide password
+   * @param navbarOpen - initial state of the navbar
+   * @param setNavbarOpen - setter of the state of the navbar
+   */
   const [navbarOpen, setNavbarOpen] = useState(false);
 
-  // If has access_token, then show the Dashboard link
+  /**
+   * @type {string}
+   * @description Gets the access token from local storage
+   */
   const tokenAuth = localStorage.getItem("access_token");
   // check the length of the token
 
+  /**
+   * @description Navbar icon toggle function if the user is logged in or not
+   * @default {FaSignInAlt}
+   */
   const navIcon = tokenAuth ? (
     <TbDeviceAnalytics size={24} title="Dashboard" />
   ) : (
     <FaSignInAlt size={24} title="Sign-in" />
   );
-  const link = tokenAuth ? "/admin" : "/auth";
 
+  /**
+   * @description designated link for the user to go to the dashboard
+   * @default {/auth}
+   */
+  const link = tokenAuth ? "/admin" : "/auth";
+  
   return (
     <nav className="fixed top-0 flex flex-wrap items-center justify-between w-full p-1 shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
       <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">

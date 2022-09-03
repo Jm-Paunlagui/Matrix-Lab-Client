@@ -6,9 +6,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
+/**
+ * @type {React.FC<{}>}
+ * @description User login form for the application
+ */
 const Login = () => {
+
+  /**
+   * @type {boolean}
+   * @description Hook to handle the state of the show and hide password
+   * @param showPassword - initial state of the navbar
+   * @param setShowPassword - setter of the state of the navbar
+   */
   const [showPassword, setShowPassword] = useState(false);
 
+  /**
+   * @type {function}
+   * @description Function to toggle the show and hide password
+   */
   const toggleShowPassword = function () {
     setShowPassword(!showPassword);
   };

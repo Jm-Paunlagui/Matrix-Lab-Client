@@ -1,6 +1,10 @@
 import React from "react";
 import Terms from "../assets/img/terms.svg";
 
+/**
+ * @type {React.FC<{}>}
+ * @description Terms and conditions page for the application
+ */
 const TermsAndConditions = () => {
   return (
     <>

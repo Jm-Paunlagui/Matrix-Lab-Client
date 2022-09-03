@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-const UsefulLinks = [
+/**
+ * @type {Array}
+ * @description Links to be displayed in the footer
+ */
+ const UsefulLinks = [
   {
     name: "About Us",
     link: "aboutus",
@@ -16,6 +20,10 @@ const UsefulLinks = [
   },
 ];
 
+/**
+ * @type {React.FC<{}>}
+ * @description Footer component for the application that displays useful links
+ */
 const Footer = () => {
   return (
     <footer className="pt-8 pb-6 mt-auto text-gray-500 font-Montserrat ">

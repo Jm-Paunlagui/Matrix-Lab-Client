@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * @type {React.FC<{}>}
+ * @description Leaderboard component for the application
+ */
 const Leaderboard = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen pt-14 font-Montserrat">

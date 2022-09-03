@@ -2,6 +2,10 @@ import AboutUs from "../assets/img/aboutus.svg";
 import { Icon } from "@iconify/react";
 import React from "react";
 
+/**
+ * @type {Array}
+ * @description Json array of the about us page
+ */
 const AboutUsDetails = [
   {
     name: "John Moises Paunlagui",
@@ -60,9 +64,10 @@ const AboutUsDetails = [
   },
 ];
 
-// React, TailwindCSS, React-Router-Dom, React-Icons, Font Awesome, React Toastify, Google Fonts,
-// TensorFlow, Keras, Numpy, Pandas, Matplotlib, Seaborn, Scikit-Learn, Flask, MySQL,
-// Visual Studio Code, PyCharm Professional Edition, XAMPP, Git, GitHub, Visual Studio 2022 Desktop Development with C++, Github Copilot, Postman,
+/**
+ * @type {Array}
+ * @description Json array of the technologies used in the application
+ */
 const Technologies = [
   {
     name: "Node.js",
@@ -345,6 +350,10 @@ const Technologies = [
   },
 ];
 
+/**
+ * @type {React.FC<{}>}
+ * @description The about page component
+ */
 const AboutUS = () => {
   return (
     <>
