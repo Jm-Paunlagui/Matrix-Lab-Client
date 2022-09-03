@@ -59,7 +59,9 @@ const Navbar = () => {
           </NavLink>
           <button
             type="button"
-            onClick={function() {setNavbarOpen(!navbarOpen)}}
+            onClick={function () {
+              setNavbarOpen(!navbarOpen);
+            }}
             className="block px-3 py-1 text-xl leading-none transition-colors duration-300 ease-in-out delay-150 bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer md:hidden focus:outline-none"
           >
             <GoThreeBars color="#374151" />
