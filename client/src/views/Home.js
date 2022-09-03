@@ -15,15 +15,12 @@ const Home = () => {
           can be determined by the percentage of positive, negative, and neutral
           comments in the evaluation result.
         </p>
-        
-          <Link
-            to="/leaderboard">
-              <div className="flex justify-center w-3/4 px-5 py-3 font-medium tracking-wider text-white transition-colors duration-700 ease-in-out delay-150 bg-teal-900 border border-transparent rounded-md hover:bg-cyan-800 md:py-4 md:text-lg md:px-10">
-                Leaderboard
-              </div>
-            
-          </Link>
-      
+
+        <Link to="/leaderboard">
+          <div className="flex justify-center w-3/4 px-5 py-3 font-medium tracking-wider text-white transition-colors duration-700 ease-in-out delay-150 bg-teal-900 border border-transparent rounded-md hover:bg-cyan-800 md:py-4 md:text-lg md:px-10">
+            Leaderboard
+          </div>
+        </Link>
       </div>
       <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
         <img src={Eval} alt="mockup" />

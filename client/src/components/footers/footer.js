@@ -67,9 +67,7 @@ const Footer = () => {
                 <ol className="list-unstyled">
                   {UsefulLinks.map((link) => (
                     <li key={link.name}>
-                      <Link
-                        to={`/${link.link}`}
-                      >
+                      <Link to={`/${link.link}`}>
                         <div className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">
                           {link.name}
                         </div>
@@ -86,9 +84,7 @@ const Footer = () => {
           <div className="w-full px-4 mx-auto text-center md:w-4/12">
             <div className="py-1 text-sm font-semibold text-gray-500">
               Copyright © {new Date().getFullYear()} Matrix Lab by{" "}
-              <Link
-                to="https://www.creative-tim.com?ref=nr-footer"
-              >
+              <Link to="https://www.creative-tim.com?ref=nr-footer">
                 <div className="text-gray-500 hover:text-gray-800">
                   Morning Group.
                 </div>

@@ -50,15 +50,11 @@ const Login = () => {
                     <label className="absolute px-2 text-2xl rounded py-9 right-2">
                       {showPassword === false ? (
                         <div className="text-gray-400">
-                          <AiFillEyeInvisible
-                            onClick={toggleShowPassword}
-                          />
+                          <AiFillEyeInvisible onClick={toggleShowPassword} />
                         </div>
                       ) : (
                         <div className="text-gray-400">
-                          <AiFillEye
-                            onClick={toggleShowPassword}
-                          />
+                          <AiFillEye onClick={toggleShowPassword} />
                         </div>
                       )}
                     </label>
@@ -82,13 +78,11 @@ const Login = () => {
             <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
               <div className="px-6 py-6 mb-0 rounded-t">
                 <div className="flex items-center px-3 py-2 text-gray-800 ">
-                  
-                    <Link to="/forgot-password">
+                  <Link to="/forgot-password">
                     <div className="ml-3 font-medium tracking-widest text-md">
                       Forgot Password?
-                      </div>
-                    </Link>
-                  
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
