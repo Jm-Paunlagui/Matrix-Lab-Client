@@ -5,7 +5,7 @@ import React from "react";
  * @type {Array}
  * @description Links to be displayed in the footer
  */
- const UsefulLinks = [
+const UsefulLinks = [
   {
     name: "About Us",
     link: "aboutus",
