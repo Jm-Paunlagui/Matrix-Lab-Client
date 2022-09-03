@@ -24,7 +24,7 @@ import { ToastContainer } from "react-toastify";
  * @type {React.FC<{}>}
  * @description Main component for the application
  */
-const App = () => {
+function App() {
   /**
    * @type {Function}
    * @description Function to scroll to top of the page when route changes in the application

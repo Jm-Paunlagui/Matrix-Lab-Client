@@ -7,7 +7,7 @@ import React from "react";
  * @type {React.FC<{}>}
  * @description Handles about, home, leaderboard, privacy, and terms page for the application
  */
-const Landing = () => {
+function Landing() {
   return (
     <>
       <Navbar />

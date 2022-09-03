@@ -24,7 +24,7 @@ const UsefulLinks = [
  * @type {React.FC<{}>}
  * @description Footer component for the application that displays useful links
  */
-const Footer = () => {
+function Footer() {
   return (
     <footer className="pt-8 pb-6 mt-auto text-gray-500 font-Montserrat ">
       <div className="container px-4 mx-auto max-w-7xl">

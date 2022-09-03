@@ -5,7 +5,7 @@ import React from "react";
  * @type {React.FC<{}>}
  * @description PageNotFound component for the application
  */
-const PageNotFound = () => {
+function PageNotFound() {
   return (
     <div className="flex justify-center min-h-screen overflow-hidden text-gray-900 font-Montserrat">
       <div className="flex flex-col items-center justify-center">

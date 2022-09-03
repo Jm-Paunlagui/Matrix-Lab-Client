@@ -6,7 +6,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @type {React.FC<{}>}
  * @description Handles the forgot password request page
  */
-const ForgotPasswordReq = () => {
+function ForgotPasswordReq() {
   return (
     <>
       <div className="container h-full mx-auto font-Montserrat">

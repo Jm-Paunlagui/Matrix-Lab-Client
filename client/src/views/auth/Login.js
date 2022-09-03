@@ -10,7 +10,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @type {React.FC<{}>}
  * @description User login form for the application
  */
-const Login = () => {
+function Login() {
   /**
    * @type {boolean}
    * @description Hook to handle the state of the show and hide password
