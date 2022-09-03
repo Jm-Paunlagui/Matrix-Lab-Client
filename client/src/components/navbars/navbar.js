@@ -29,12 +29,13 @@ const Navbar = () => {
         <div className="flex justify-between w-full md:w-auto lg:static md:block md:justify-start">
           <NavLink
             to="/"
-            className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900"
           >
-            <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-            <h1 className="ml-3 font-bold tracking-widest transition-colors duration-300 ease-in-out delay-150 text-md md:flex">
-              MATRIX LAB
-            </h1>
+            <div className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900">
+              <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
+              <h1 className="ml-3 font-bold tracking-widest transition-colors duration-300 ease-in-out delay-150 text-md md:flex">
+                MATRIX LAB
+              </h1>
+            </div>
           </NavLink>
           <button
             type="button"
