@@ -32,17 +32,14 @@ const Navbar = () => {
             className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900"
           >
             <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-            <h1 className="hidden ml-3 font-bold tracking-widest text-md md:flex">
-              MATRIX LAB
-            </h1>
-            <h1 className="ml-3 font-bold tracking-widest text-md md:hidden">
+            <h1 className="ml-3 font-bold tracking-widest transition-colors duration-300 ease-in-out delay-150 text-md md:flex">
               MATRIX LAB
             </h1>
           </NavLink>
           <button
             type="button"
             onClick={() => setNavbarOpen(!navbarOpen)}
-            className="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer md:hidden focus:outline-none"
+            className="block px-3 py-1 text-xl leading-none transition-colors duration-300 ease-in-out delay-150 bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer md:hidden focus:outline-none"
           >
             <GoThreeBars color="#374151" />
           </button>
@@ -62,24 +59,24 @@ const Navbar = () => {
             leaveTo="transform opacity-0 scale-95"
           >
             <ul className="flex flex-col justify-start list-none md:flex-row md:ml-auto">
-              <NavLink to="/" className="text-gray-700">
-                <li className="flex items-center px-8 py-4 hover:text-blue-900">
+              <NavLink to="/">
+                <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   <AiFillHome size={24} title="Home" />
                   <h1 className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
                     Home
                   </h1>
                 </li>
               </NavLink>
-              <NavLink to="leaderboard" className="text-gray-700">
-                <li className="flex items-center px-8 py-4 hover:text-blue-900">
+              <NavLink to="leaderboard">
+                <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   <MdLeaderboard size={24} title="Leaderboard" />
                   <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
                     Leaderboard
                   </div>
                 </li>
               </NavLink>
-              <NavLink to={link} className="text-gray-700">
-                <li className="flex items-center px-8 py-4 hover:text-blue-900">
+              <NavLink to={link}>
+                <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   {navIcon}
                   <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
                     {tokenAuth ? "Dashboard" : "Sign-in"}
@@ -89,24 +86,24 @@ const Navbar = () => {
             </ul>
           </Transition>
           <ul className="flex-col justify-start hidden list-none md:flex md:flex-row md:ml-auto">
-              <NavLink to="/" className="text-gray-700">
-                <li className="flex items-center px-8 py-4 hover:text-blue-900">
+              <NavLink to="/">
+                <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   <AiFillHome size={24} title="Home" />
                   <h1 className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
                     Home
                   </h1>
                 </li>
               </NavLink>
-              <NavLink to="leaderboard" className="text-gray-700">
-                <li className="flex items-center px-8 py-4 hover:text-blue-900">
+              <NavLink to="leaderboard">
+                <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   <MdLeaderboard size={24} title="Leaderboard" />
                   <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
                     Leaderboard
                   </div>
                 </li>
               </NavLink>
-              <NavLink to={link} className="text-gray-700">
-                <li className="flex items-center px-8 py-4 hover:text-blue-900">
+              <NavLink to={link}>
+                <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   {navIcon}
                   <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
                     {tokenAuth ? "Dashboard" : "Sign-in"}
