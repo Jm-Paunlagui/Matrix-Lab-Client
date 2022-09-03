@@ -74,6 +74,6 @@ function ForgotPasswordReq() {
       </div>
     </>
   );
-};
+}
 
 export default ForgotPasswordReq;

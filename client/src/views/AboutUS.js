@@ -497,6 +497,6 @@ function AboutUS() {
       </div>
     </>
   );
-};
+}
 
 export default AboutUS;

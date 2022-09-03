@@ -463,6 +463,6 @@ function TermsAndConditions() {
       </div>
     </>
   );
-};
+}
 
 export default TermsAndConditions;

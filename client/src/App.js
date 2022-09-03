@@ -73,6 +73,6 @@ function App() {
       </Wrapper>
     </Router>
   );
-};
+}
 
 export default App;
