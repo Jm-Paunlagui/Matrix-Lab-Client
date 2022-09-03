@@ -14,18 +14,18 @@ const Landing = () => {
     },
     {
       id: 2,
+      titlel: "Leaderboard",
+      link: "leaderboard",
+    },
+    {
+      id: 3,
       titlel: "Dashboard",
       link: "admin",
     },
     {
-      id: 3,
+      id: 4,  
       titlel: "Sign-in",
       link: "auth",
-    },
-    {
-      id: 4,  
-      titlel: "Leaderboard",
-      link: "leaderboard",
     },
   ]
 
