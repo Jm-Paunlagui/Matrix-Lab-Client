@@ -372,9 +372,9 @@ const AboutUS = () => {
             Creators of Matrix Lab
           </h1>
           <div className="flex flex-wrap justify-center mb-44 items-top">
-            {AboutUsDetails.map((aboutUs, index) => (
+            {AboutUsDetails.map((aboutUs) => (
               <div
-                key={index}
+                key={aboutUs.name}
                 className="w-full p-2 md:w-1/2 lg:w-6/12 place-content-center"
               >
                 <div className="justify-center w-full h-32 p-1 mb-0 bg-gradient-to-b from-blue-500 to-purple-500 rounded-t-xl" />
@@ -397,8 +397,8 @@ const AboutUS = () => {
                     </h2>
 
                     <div className="flex justify-center mt-4">
-                      {Object.keys(aboutUs.social).map((social, index) => (
-                        <div key={index} className="flex items-center">
+                      {Object.keys(aboutUs.social).map((social) => (
+                        <div key={social} className="flex items-center">
                           {aboutUs.social[social] !== "" ? (
                             <div className="flex items-center justify-center w-12 h-12">
                               <a
@@ -442,9 +442,9 @@ const AboutUS = () => {
           {/* Grid layout */}
           <div className="flex flex-wrap justify-center items-top">
             <div className="grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
-              {Technologies.map((technology, index1) => (
+              {Technologies.map((technology) => (
                 <div
-                  key={index1}
+                  key={technology.name}
                   className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out"
                 >
                   <div className="flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow auto-cols-max auto-rows-max place-items-center">
