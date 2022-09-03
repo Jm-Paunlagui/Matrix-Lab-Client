@@ -21,7 +21,7 @@ function Navbar({main, logo, title, navitems}) {
                     <button
                         className="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
                         type="button"
-                        onClick={() => setNavbarOpen(!navbarOpen)}
+                        onClick={function() { setNavbarOpen(!navbarOpen)}}
                     >
                         <GoThreeBars color="#374151" />
                     </button>
