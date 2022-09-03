@@ -56,14 +56,12 @@ const ForgotPasswordReq = () => {
             <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
               <div className="px-6 py-6 mb-0 rounded-t">
                 <div className="flex items-center px-3 py-2 text-gray-800 ">
-                  
-                    <Link to="/auth">
+                  <Link to="/auth">
                     <div className="ml-3 font-medium tracking-widest text-md">
                       <i className="fas fa-arrow-left w-6-ml-2" />
                       <span className="ml-3">Back</span>
-                      </div>
-                    </Link>
-                  
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
