@@ -39,7 +39,7 @@ function Navbar({main, logo, title, navitems}) {
                             {/* Props */}
                             {navitems.map((item) => (
                                 <li key={item.id} className="flex items-center px-8 py-4 hover:text-blue-900">
-                                    <NavLink to={item.link} className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900">
+                                    <NavLink to={item.link} className={"flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900"}>
                                     <div className="block px-8 ml-3 text-sm font-medium tracking-wider">
                                         {item.titlel}
                                     </div>
@@ -54,7 +54,7 @@ function Navbar({main, logo, title, navitems}) {
                             {/* Props */}
                             {navitems.map((item) => (
                                 <li key={item.id} className="flex items-center px-4 py-4 hover:text-blue-900">
-                                    <NavLink to={item.link} className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900">
+                                    <NavLink to={item.link} className={"flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900"}>
                                     <div className="block text-sm font-medium tracking-wider">
                                         {item.titlel}
                                     </div>
