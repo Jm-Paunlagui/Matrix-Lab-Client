@@ -282,7 +282,7 @@ const Technologies = [
     logo: "logos:webstorm",
     link: "https://www.jetbrains.com/webstorm/",
     description:
-        "WebStorm is the smartest JavaScript IDE by JetBrains. It provides code completion, on-the-fly error detection, and refactoring for JavaScript, TypeScript, and JSX.",
+      "WebStorm is the smartest JavaScript IDE by JetBrains. It provides code completion, on-the-fly error detection, and refactoring for JavaScript, TypeScript, and JSX.",
   },
   {
     name: "XAMPP",
