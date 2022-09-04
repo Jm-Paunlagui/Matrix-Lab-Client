@@ -3,7 +3,6 @@ import { Icon } from "@iconify/react";
 import React from "react";
 
 /**
- * @type {Array}
  * @description Json array of the about us page
  */
 const AboutUsDetails = [
@@ -26,7 +25,7 @@ const AboutUsDetails = [
     name: "Rysel Pelipada",
     title: "Chef, Financial Expert",
     description:
-      "Rysel is the chief money laundere of the group and also controbutes as a chef that cooks bespoke instant noodle recipes for the group. He is also a finance expert and a financial advisor to the group.",
+      "Rysel is the chief money laundere of the group and also contributes as a chef that cooks bespoke instant noodle recipes for the group. He is also a finance expert and a financial advisor to the group.",
     image: "",
     social: {
       github: "",
@@ -351,7 +350,6 @@ const Technologies = [
 ];
 
 /**
- * @type {React.FC<{}>}
  * @description The about page component
  */
 function AboutUS() {
@@ -497,6 +495,6 @@ function AboutUS() {
       </div>
     </>
   );
-};
+}
 
 export default AboutUS;

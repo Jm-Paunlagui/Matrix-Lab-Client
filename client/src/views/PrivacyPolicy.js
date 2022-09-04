@@ -2,7 +2,6 @@ import Privacy from "../assets/img/privacy.svg";
 import React from "react";
 
 /**
- * @type {React.FC<{}>}
  * @description Privacy policy component for the application
  */
 function PrivacyPolicy() {
@@ -593,6 +592,6 @@ function PrivacyPolicy() {
       </div>
     </>
   );
-};
+}
 
 export default PrivacyPolicy;

@@ -10,7 +10,6 @@ import { Transition } from "@headlessui/react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
- * @type {React.FC<{}>}
  * @description Navbar component with useful links
  */
 function Navbar () {
@@ -83,7 +82,7 @@ function Navbar () {
               <NavLink to="/">
                 <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   <AiFillHome size={24} title="Home" />
-                  <h1 className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
+                  <h1 className="block px-8 text-sm font-medium tracking-wider block ml-3 md:hidden">
                     Home
                   </h1>
                 </li>
@@ -91,7 +90,7 @@ function Navbar () {
               <NavLink to="leaderboard">
                 <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   <MdLeaderboard size={24} title="Leaderboard" />
-                  <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
+                  <div className="block px-8 text-sm font-medium tracking-wider block ml-3 md:hidden">
                     Leaderboard
                   </div>
                 </li>
@@ -99,7 +98,7 @@ function Navbar () {
               <NavLink to={link}>
                 <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                   {navIcon}
-                  <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
+                  <div className="block px-8 text-sm font-medium tracking-wider block ml-3 md:hidden">
                     {tokenAuth ? "Dashboard" : "Sign-in"}
                   </div>
                 </li>
@@ -110,7 +109,7 @@ function Navbar () {
             <NavLink to="/">
               <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                 <AiFillHome size={24} title="Home" />
-                <h1 className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
+                <h1 className="block px-8 text-sm font-medium tracking-wider block ml-3 md:hidden">
                   Home
                 </h1>
               </li>
@@ -118,7 +117,7 @@ function Navbar () {
             <NavLink to="leaderboard">
               <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                 <MdLeaderboard size={24} title="Leaderboard" />
-                <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
+                <div className="block px-8 text-sm font-medium tracking-wider block ml-3 md:hidden">
                   Leaderboard
                 </div>
               </li>
@@ -126,7 +125,7 @@ function Navbar () {
             <NavLink to={link}>
               <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
                 {navIcon}
-                <div className="block px-8 text-sm font-medium tracking-wider blockml-3 md:hidden">
+                <div className="block px-8 text-sm font-medium tracking-wider block ml-3 md:hidden">
                   {tokenAuth ? "Dashboard" : "Sign-in"}
                 </div>
               </li>
@@ -136,6 +135,6 @@ function Navbar () {
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;

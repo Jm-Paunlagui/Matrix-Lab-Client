@@ -21,7 +21,6 @@ const UsefulLinks = [
 ];
 
 /**
- * @type {React.FC<{}>}
  * @description Footer component for the application that displays useful links
  */
 function Footer() {
@@ -72,7 +71,7 @@ function Footer() {
                 <span className="block mb-2 text-sm font-semibold text-gray-500 uppercase">
                   Useful Links
                 </span>
-                <ol className="list-unstyled">
+                <ol className="list-styled">
                   {UsefulLinks.map((link) => (
                     <li key={link.name}>
                       <Link to={`/${link.link}`}>
@@ -103,6 +102,6 @@ function Footer() {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -21,7 +21,6 @@ import TermsAndConditions from "./views/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
 /**
- * @type {React.FC<{}>}
  * @description Main component for the application
  */
 function App() {
@@ -73,6 +72,6 @@ function App() {
       </Wrapper>
     </Router>
   );
-};
+}
 
 export default App;

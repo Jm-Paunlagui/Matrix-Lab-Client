@@ -1,7 +1,6 @@
 import React from "react";
 
 /**
- * @type {React.FC<{}>}
  * @description Leaderboard component for the application
  */
 function Leaderboard() {
@@ -10,6 +9,6 @@ function Leaderboard() {
       <h1 className="text-6xl font-bold text-center">Leaderboard</h1>
     </div>
   );
-};
+}
 
 export default Leaderboard;

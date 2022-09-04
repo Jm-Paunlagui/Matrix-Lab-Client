@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import React from "react";
 
 /**
- * @type {React.FC<{}>}
  * @description PageNotFound component for the application
  */
 function PageNotFound() {
@@ -23,6 +22,6 @@ function PageNotFound() {
       </div>
     </div>
   );
-};
+}
 
 export default PageNotFound;

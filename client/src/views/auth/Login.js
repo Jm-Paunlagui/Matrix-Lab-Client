@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
- * @type {React.FC<{}>}
  * @description User login form for the application
  */
 function Login() {
@@ -20,7 +19,6 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   /**
-   * @type {function}
    * @description Function to toggle the show and hide password
    */
   const toggleShowPassword = function () {
@@ -105,6 +103,6 @@ function Login() {
       </div>
     </>
   );
-};
+}
 
 export default Login;

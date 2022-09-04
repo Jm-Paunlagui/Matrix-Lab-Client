@@ -3,7 +3,6 @@ import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
- * @type {React.FC<{}>}
  * @description Handles the forgot password request page
  */
 function ForgotPasswordReq() {
@@ -74,6 +73,6 @@ function ForgotPasswordReq() {
       </div>
     </>
   );
-};
+}
 
 export default ForgotPasswordReq;

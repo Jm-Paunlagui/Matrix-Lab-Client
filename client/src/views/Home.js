@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 /**
- * @type {React.FC<{}>}
  * @description Home page component for the application
  */
 function Home() {
@@ -31,6 +30,6 @@ function Home() {
       </div>
     </div>
   );
-};
+}
 
 export default Home;

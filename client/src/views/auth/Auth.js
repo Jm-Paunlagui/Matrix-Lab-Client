@@ -3,7 +3,6 @@ import React from "react";
 import bg from "../../assets/img/register_bg_2.png";
 
 /**
- * @type {React.FC<{}>}
  * @description Handles auth page and reset password page for the application
  */
 function Auth() {
@@ -15,6 +14,6 @@ function Auth() {
       <Outlet />
     </div>
   );
-};
+}
 
 export default Auth;
