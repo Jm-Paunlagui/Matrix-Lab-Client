@@ -31,7 +31,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "max-depth": "off"
+    }
   },
   "browserslist": {
     "production": [
