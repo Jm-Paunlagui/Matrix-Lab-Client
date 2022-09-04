@@ -49,7 +49,7 @@ function Navbar() {
       <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">
         <div className="flex justify-between w-full md:w-auto lg:static md:block md:justify-start">
           <NavLink to="/">
-            <div className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900">
+            <div className="flex items-center px-3 py-2 text-gray-900 rounded-md hover:text-blue-900 transition delay-150 duration-300 ease-in-out">
               <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
               <h1 className="ml-3 font-bold tracking-widest transition-colors duration-300 ease-in-out delay-150 text-md md:flex">
                 MATRIX LAB

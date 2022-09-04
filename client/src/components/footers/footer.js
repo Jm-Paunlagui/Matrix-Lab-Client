@@ -75,7 +75,7 @@ function Footer() {
                   {UsefulLinks.map((link) => (
                     <li key={link.name}>
                       <Link to={`/${link.link}`}>
-                        <div className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800">
+                        <div className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800 transition delay-150 duration-300 ease-linear">
                           {link.name}
                         </div>
                       </Link>

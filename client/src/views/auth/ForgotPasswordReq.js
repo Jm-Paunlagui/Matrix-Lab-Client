@@ -14,7 +14,7 @@ function ForgotPasswordReq() {
             <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white border-0 rounded-lg shadow-lg">
               <div className="px-6 py-6 mb-0 rounded-t">
                 <Link to="/">
-                  <div className="flex items-center px-3 py-2 text-gray-800 hover:backdrop-blur-md hover:bg-blue-50 hover:rounded-md">
+                  <div className="flex items-center px-3 py-2 text-gray-800 hover:backdrop-blur-md hover:bg-blue-50 hover:rounded-md transition delay-150 duration-300 ease-linear">
                     <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
                     <h1 className="ml-3 font-extrabold tracking-widest text-md">
                       MATRIX LAB
