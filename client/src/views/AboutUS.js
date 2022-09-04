@@ -273,7 +273,16 @@ const Technologies = [
     logo: "logos:pycharm",
     link: "https://www.jetbrains.com/pycharm/",
     description:
-      "PyCharm is a free and open-source IDE for the Python programming language. ",
+      "PyCharm is the best IDE for Python. It is a cross-platform IDE that supports Python development on Windows, macOS, and Linux.",
+  },
+  {
+    name: "WebStorm Professional Edition",
+    version: "2022.2.1",
+    color: "#61dafb",
+    logo: "logos:webstorm",
+    link: "https://www.jetbrains.com/webstorm/",
+    description:
+        "WebStorm is the smartest JavaScript IDE by JetBrains. It provides code completion, on-the-fly error detection, and refactoring for JavaScript, TypeScript, and JSX.",
   },
   {
     name: "XAMPP",
