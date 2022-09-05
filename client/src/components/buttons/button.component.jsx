@@ -6,15 +6,17 @@ import PropTypes from "prop-types";
  * @description Button component for the application if isButton is true else it will return a link
  * */
 
-function Button({isButton = true, title = '', action, href, moreStyle, type='button', disabled=false}) {
+function Button({isButton = true, title = '', action, href, moreStyle, disabled=false}) {
 	const style = `flex justify-center transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-md md:py-4 md:text-lg md:px-10  ${moreStyle}`;
 	return(
 		<Fragment>
 			{isButton ? (
-				<button className={style} type={type} onClick={action} disabled={disabled}>{title}</button>
+				<button className={style} type="button" onClick={action} disabled={disabled}>{title}</button>
 			) : (
-				<Link to={href} className={style}>
-					{title}
+				<Link to={href}>
+					<div className={style}>
+						{title}
+					</div>
 				</Link>
 			)}
 		</Fragment>
