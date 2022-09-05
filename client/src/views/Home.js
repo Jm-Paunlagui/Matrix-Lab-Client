@@ -1,5 +1,5 @@
-import Eval from "../assets/img/eval.svg";
 import Button from "../components/buttons/button.component";
+import Eval from "../assets/img/eval.svg";
 import React from "react";
 
 /**
