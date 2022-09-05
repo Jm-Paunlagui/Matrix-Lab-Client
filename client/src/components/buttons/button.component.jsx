@@ -10,7 +10,7 @@ function Button({
   isButton = true,
   title = "",
   action,
-    icon,
+  icon,
   href,
   moreStyle,
   disabled = false,
@@ -25,7 +25,7 @@ function Button({
       disabled={disabled}
     >
       <i className={icon_style} />
-        {title}
+      {title}
     </button>
   ) : (
     <Link to={href}>
