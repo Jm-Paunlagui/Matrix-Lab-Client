@@ -28,8 +28,10 @@ function Button({
           {title}
         </button>
       ) : (
-        <Link to={href} className={style}>
-          {title}
+        <Link to={href}>
+			<div className={style}>
+				{title}
+			</div>
         </Link>
       )}
     </Fragment>
