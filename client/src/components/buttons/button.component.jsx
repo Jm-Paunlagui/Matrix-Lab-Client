@@ -28,9 +28,9 @@ function Button({
       {title}
     </button>
   ) : (
-      <div className={style}>
-        <Link to={href}>{title}</Link>
-      </div>
+    <div className={style}>
+      <Link to={href}>{title}</Link>
+    </div>
   );
 }
 
