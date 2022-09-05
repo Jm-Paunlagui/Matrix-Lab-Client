@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import React from "react";
 
 /**
  * @description Button component for the application if isButton is true else it will return a link
@@ -12,16 +12,15 @@ function Button({
   action,
   href,
   moreStyle,
-  type = "button",
   disabled = false,
 }) {
   const style = `flex justify-center transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-md md:py-4 md:text-lg md:px-10  ${moreStyle}`;
   return (
-    <Fragment>
+    <>
       {isButton ? (
         <button
           className={style}
-          type={type}
+          type="button"
           onClick={action}
           disabled={disabled}
         >
@@ -32,7 +31,7 @@ function Button({
           <div className={style}>{title}</div>
         </Link>
       )}
-    </Fragment>
+    </>
   );
 }
 

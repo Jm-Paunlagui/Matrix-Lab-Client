@@ -1,6 +1,6 @@
 import Eval from "../assets/img/eval.svg";
-import React from "react";
 import Button from "../components/buttons/button.component";
+import React from "react";
 
 /**
  * @description Home page component for the application
