@@ -1,6 +1,6 @@
 import Eval from "../assets/img/eval.svg";
-import React from "react";
 import Button from "../components/buttons/button.component";
+import React from "react";
 
 /**
  * @description Home page component for the application
@@ -18,8 +18,7 @@ function Home() {
           can be determined by the percentage of positive, negative, and neutral
           comments in the evaluation result.
         </p>
-        <Button title="Leaderboard" href="/leaderboard" moreStyle="w-3/4 px-5 py-3 font-medium tracking-wider text-white bg-teal-900 hover:bg-cyan-800" />
-        <Button isButton={false} title="Link" href="/login" moreStyle="w-3/4 px-5 py-3 tracking-wider hover:bg-gray-100" />
+        <Button isButton={false} title="Leaderboard" href="/leaderboard" moreStyle="w-3/4 px-5 py-3 font-medium tracking-wider text-white bg-teal-900 hover:bg-cyan-800"/>
       </div>
       <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
         <img src={Eval} alt="mockup" />
