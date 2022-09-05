@@ -20,14 +20,9 @@ function Home() {
         </p>
         <Button
           title="Leaderboard"
+          isButton={false}
           href="/leaderboard"
           moreStyle="w-3/4 px-5 py-3 font-medium tracking-wider text-white bg-teal-900 hover:bg-cyan-800"
-        />
-        <Button
-          isButton={false}
-          title="Link"
-          href="/login"
-          moreStyle="w-3/4 px-5 py-3 tracking-wider hover:bg-gray-100"
         />
       </div>
       <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">

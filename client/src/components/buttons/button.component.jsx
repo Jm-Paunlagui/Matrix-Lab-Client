@@ -10,11 +10,13 @@ function Button({
   isButton = true,
   title = "",
   action,
+    icon,
   href,
   moreStyle,
   disabled = false,
 }) {
   const style = `flex justify-center transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-md md:py-4 md:text-lg md:px-10  ${moreStyle}`;
+  const icon_style = `w-6 -ml-2 place-self-center ${icon}`;
   return isButton ? (
     <button
       className={style}
@@ -22,7 +24,8 @@ function Button({
       onClick={action}
       disabled={disabled}
     >
-      {title}
+      <i className={icon_style} />
+        {title}
     </button>
   ) : (
     <Link to={href}>
@@ -35,6 +38,7 @@ Button.propTypes = {
   isButton: PropTypes.bool,
   title: PropTypes.string,
   action: PropTypes.func,
+  icon: PropTypes.string,
   href: PropTypes.string,
   moreStyle: PropTypes.string,
   disabled: PropTypes.bool,
