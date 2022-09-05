@@ -15,8 +15,8 @@ function Button({
   moreStyle,
   disabled = false,
 }) {
-  const style = `flex justify-center transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-lg  ${moreStyle}`;
-  const icon_style = `w-6 place-self-center ${icon}`;
+  const style = `flex transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-lg  ${moreStyle}`;
+  const icon_style = `place-self-center ${icon}`;
   return isButton ? (
     <button
       className={style}
@@ -24,11 +24,10 @@ function Button({
       onClick={action}
       disabled={disabled}
     >
-      <i className={icon_style} />
-      {title}
+      <i className={icon_style} /> {title}
     </button>
   ) : (
-      <Link to={href} className={style}>{title}</Link>
+      <Link to={href} className={style}><i className={icon_style} />{title}</Link>
   );
 }
 

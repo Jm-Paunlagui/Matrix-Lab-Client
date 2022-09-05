@@ -8,11 +8,11 @@ import React from "react";
 function Home() {
   return (
     <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
-      <div className=" place-self-center lg:col-span-7">
+      <div className=" place-self-center lg:col-span-6">
         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
           Evaluation Result Sentiment Analysis
         </h1>
-        <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
+        <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl text-justify">
           The result can be analyzed by the number of positive, negative, and
           neutral comments and the overall sentiment of the evaluation result
           can be determined by the percentage of positive, negative, and neutral
@@ -22,10 +22,10 @@ function Home() {
           title="Leaderboard"
           isButton={false}
           href="/leaderboard"
-          moreStyle="w-3/4 px-5 py-3 font-medium tracking-wider text-white bg-teal-900 hover:bg-cyan-800"
+          moreStyle="w-6/12 px-5 py-3 justify-center font-medium tracking-wider text-white bg-teal-900 hover:bg-white md:py-4 md:text-xl md:px-10 border-2 hover:border-teal-900 hover:text-teal-900"
         />
       </div>
-      <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
+      <div className="mt-4 md:flex md:mt-4 lg:col-span-6 lg:flex">
         <img src={Eval} alt="mockup" />
       </div>
     </div>
