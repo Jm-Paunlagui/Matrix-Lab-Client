@@ -27,7 +27,8 @@ function Button({
       <i className={icon_style} /> {title}
     </button>
   ) : (
-      <Link className={style}
+      <Link
+          className={style}
         to={href}
       >
         <i className={icon_style} />
