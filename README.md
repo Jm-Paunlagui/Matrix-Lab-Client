@@ -1,41 +1,23 @@
-# Project-1-SAER
+# Project-1-SAER (Sentiment-Analysis)
 
-# Sentiment-Analysis
+### Prerequisite
 
-Sentiment-Analysis Web App
-
-## Dashboard
-
-![image](https://user-images.githubusercontent.com/95494414/179036607-4ddde3fe-456c-46f9-8378-12088f266f50.png)
-
-## Leaderboard
-
-![image](https://user-images.githubusercontent.com/95494414/179036726-6ed12197-2ae7-4536-bf37-a4c9d01d97d2.png)
-
-## Auth
-
-![image](https://user-images.githubusercontent.com/95494414/179036809-87868d74-ed7d-4579-9e31-0a9184941c60.png)
-
-## About Us
-
-![image](https://user-images.githubusercontent.com/95494414/179036951-6eac1e3e-1422-4eef-8bc0-2a752a68954e.png)
-
-## Temrs and Conditions
-
-![image](https://user-images.githubusercontent.com/95494414/179037082-efb3ed06-8a9b-425c-8cc6-053a36e0c268.png)
-
-## Privacy and Policy
-
-![image](https://user-images.githubusercontent.com/95494414/179037169-b3a57bfe-b93f-47a9-aa98-ad694b9d6d2a.png)
-
-## Admin Dashboard
-
-![image](https://user-images.githubusercontent.com/95494414/179037681-7c9ce576-5f93-4e7e-b3cd-7e777d41e99a.png)
-
-## Account Settings
-
-![image](https://user-images.githubusercontent.com/95494414/179037931-e8211835-5741-4911-bead-dc9a9b99e722.png)
-
-## Prof CRUD
-
-![image](https://user-images.githubusercontent.com/95494414/179038321-02179221-07a8-43b4-a92e-cc9833d04144.png)
+1. **FOR CONTRIBUTORS ONLY** [Git](https://git-scm.com/downloads) with [GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key) Signing Key (highly encouraged for you to have this) 
+    1. These links will help you setup your gpg incase you don't have one setup
+        1. Generating a [new GPG key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
+        2. [Telling Git about your signing key](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key).
+        3. [Gpg4win](https://gpg4win.org/download.html) ***Remember your Passphrase***
+        4. Source Control Tip 19: [Signing a commit via GPG](https://www.youtube.com/watch?v=2ISu2KTPzuQ)
+    2. Creating a [branch](https://www.atlassian.com/git/tutorials/using-branches/git-checkout#:~:text=New%20Branches&text=The%20git%20branch%20command%20can,to%20switch%20to%20that%20branch.)
+    3. Managing [branches](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/managing-branches)
+    4. About [Pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+2. [Node.js](https://nodejs.org/en/) installed.
+3. Your IDE/Text editor of your choice. Mine is [WebStorm](https://www.jetbrains.com/webstorm/promo/?source=google&medium=cpc&campaign=9641686236&term=webstorm&gclid=Cj0KCQjw39uYBhCLARIsAD_SzMRjkWgL8KSWIkbC7ub_CTzDX6l1SoHQboQd4I4lvQ4pumpIBmGHgcYaAgKXEALw_wcB) and [VS Code](https://code.visualstudio.com/download)
+    1. Optional, my ext in vs code/webstorm
+        1. [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+        2. [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind)
+        3. [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+        4. [sort-imports](https://marketplace.visualstudio.com/items?itemName=amatiasq.sort-imports)
+        5. Github Copilot (Free for [students](https://education.github.com/benefits?type=student))
+            1. [In VS Code](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+            2. [In WebStorm](https://plugins.jetbrains.com/plugin/17718-github-copilot)
