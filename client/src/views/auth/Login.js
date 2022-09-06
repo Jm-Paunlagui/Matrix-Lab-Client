@@ -30,19 +30,19 @@ function Login() {
           <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12 ">
             <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg p-6">
               <Button
-                  isButton={false}
-                  title="Back"
-                  icon="fas fa-arrow-left pr-2"
-                  moreStyle="w-1/2 font-semibold tracking-wide text-teal-500 hover:text-indigo-500 border-2 text-left"
-                  href="/"
+                isButton={false}
+                title="Back"
+                icon="fas fa-arrow-left pr-2"
+                moreStyle="w-1/2 font-semibold tracking-wide text-teal-500 hover:text-indigo-500 border-2 text-left"
+                href="/"
               />
 
-                <div className="flex items-center py-2 text-gray-800">
-                  <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-                  <h1 className="ml-3 font-extrabold tracking-widest text-md">
-                    MATRIX LAB
-                  </h1>
-                </div>
+              <div className="flex items-center py-2 text-gray-800">
+                <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
+                <h1 className="ml-3 font-extrabold tracking-widest text-md">
+                  MATRIX LAB
+                </h1>
+              </div>
               <div className="flex-auto pt-0">
                 <h6 className="text-lg font-bold text-gray-500">
                   Sign in to your account
@@ -72,10 +72,10 @@ function Login() {
                     </label>
                   </div>
                   <Button
-                      isButton={false}
-                      title="Forgot password ?"
-                      moreStyle="w-full text-left mt-6 font-semibold tracking-wide text-white bg-red-500 hover:bg-white hover:text-red-500 border-2 hover:border-red-500"
-                      href="/forgot-password"
+                    isButton={false}
+                    title="Forgot password ?"
+                    moreStyle="w-full text-left mt-6 font-semibold tracking-wide text-white bg-red-500 hover:bg-white hover:text-red-500 border-2 hover:border-red-500"
+                    href="/forgot-password"
                   />
                   <Button
                     title="Sign in"
