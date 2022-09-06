@@ -2,7 +2,7 @@
 
 ### Prerequisite
 
-1. **IF YOU WANT TO CONTRIBUTOR** [Git](https://git-scm.com/downloads) must be installed and [GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key) Signing Key is configured (highly encouraged)
+1. **IF YOU WANT TO CONTRIBUTE** [Git](https://git-scm.com/downloads) must be installed and [GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key) Signing Key is configured (highly encouraged)
    1. These links will help you setup your gpg incase you don't have one setup
       1. Generating a [new GPG key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
       2. [Telling Git about your signing key](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key).
