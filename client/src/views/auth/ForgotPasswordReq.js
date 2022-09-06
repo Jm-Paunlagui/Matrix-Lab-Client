@@ -5,7 +5,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 /**
  * @description Handles the forgot password request page
  */
-function ForgotPasswordReq() {
+export default function ForgotPasswordReq() {
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
@@ -57,5 +57,3 @@ function ForgotPasswordReq() {
     </div>
   );
 }
-
-export default ForgotPasswordReq;

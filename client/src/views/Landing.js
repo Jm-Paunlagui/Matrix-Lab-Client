@@ -6,7 +6,7 @@ import React from "react";
 /**
  * @description Handles about, home, leaderboard, privacy, and terms page for the application
  */
-function Landing() {
+export default function Landing() {
   return (
     <>
       <Navbar />
@@ -17,5 +17,3 @@ function Landing() {
     </>
   );
 }
-
-export default Landing;

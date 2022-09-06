@@ -8,7 +8,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 /**
  * @description User login form for the application
  */
-function Login() {
+export default function Login() {
   /**
    * @type {boolean}
    * @description Hook to handle the state of the show and hide password
@@ -89,5 +89,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

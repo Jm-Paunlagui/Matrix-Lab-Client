@@ -23,7 +23,7 @@ const UsefulLinks = [
 /**
  * @description Footer component for the application that displays useful links
  */
-function Footer() {
+export default function Footer() {
   return (
     <footer className="pt-8 pb-6 mt-auto text-gray-500 font-Montserrat ">
       <div className="container px-4 mx-auto max-w-7xl">
@@ -103,5 +103,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;
