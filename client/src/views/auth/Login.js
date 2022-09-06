@@ -24,7 +24,7 @@ function Login() {
     setShowPassword(!showPassword);
   };
   return (
-    <>
+
       <div className="container h-full mx-auto font-Montserrat">
         <div className="flex items-center content-center justify-center h-full">
           <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12 ">
@@ -88,7 +88,6 @@ function Login() {
           </div>
         </div>
       </div>
-    </>
   );
 }
 
