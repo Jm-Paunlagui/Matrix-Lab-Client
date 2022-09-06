@@ -1,6 +1,7 @@
-import Button from "../../components/buttons/button.component";
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
+import {Link} from "react-router-dom";
+import { PRIMARY_BUTTON, BACK_BUTTON, ICON_PLACE_SELF_CENTER, TEXT_FIELD }  from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the forgot password request page
@@ -11,13 +12,11 @@ export default function ForgotPasswordReq() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
           <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg shadow-lg p-6">
-            <Button
-              isButton={false}
-              title="Back"
-              icon="fas fa-arrow-left pr-2"
-              moreStyle="w-1/2 font-semibold tracking-wide text-teal-500 hover:text-indigo-500 border-2 text-left"
-              href="/auth"
-            />
+            <Link to={"/auth"}
+                  className={`${BACK_BUTTON}`}
+            >
+              <i className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`}/>Back
+            </Link>
 
             <div className="flex items-center py-2 text-gray-800">
               <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
@@ -40,15 +39,16 @@ export default function ForgotPasswordReq() {
               </div>
               <form className="relative mx-auto mt-6 max-w-screen">
                 <input
-                  className="w-full p-4 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
+                  className={`${TEXT_FIELD}`}
                   type="email"
                   placeholder="Email"
                 />
-                <Button
-                  title="Reset Password"
-                  icon="fas fa-rotate-right pr-2"
-                  moreStyle="w-full py-4 pl-4 mt-6 font-semibold tracking-wide text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 border-2 hover:border-indigo-500 "
-                />
+                <button
+                    className={`${PRIMARY_BUTTON}`}
+                    type={"button"}
+                >
+                  <i className={`fas fa-rotate-right ${ICON_PLACE_SELF_CENTER}`} />Reset Password
+                </button>
               </form>
             </div>
           </div>
