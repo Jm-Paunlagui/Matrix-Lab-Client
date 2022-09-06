@@ -74,13 +74,13 @@ function Login() {
                   <Button
                     isButton={false}
                     title="Forgot password ?"
-                    moreStyle="w-full text-left mt-6 font-semibold tracking-wide text-white bg-red-500 hover:bg-white hover:text-red-500 border-2 hover:border-red-500"
+                    moreStyle="w-full text-left pl-4 mt-6 font-semibold tracking-wide text-white bg-red-500 hover:bg-white hover:text-red-500 border-2 hover:border-red-500"
                     href="/forgot-password"
                   />
                   <Button
                     title="Sign in"
                     icon="fas fa-sign-in-alt pr-2"
-                    moreStyle="w-full py-4 pl-4 mt-6 font-semibold tracking-wide text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 border-2 hover:border-indigo-500 "
+                    moreStyle="w-full py-4 mt-6 pl-4  font-semibold tracking-wide text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 border-2 hover:border-indigo-500 "
                   />
                 </form>
               </div>

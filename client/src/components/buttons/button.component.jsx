@@ -15,7 +15,7 @@ function Button({
   moreStyle,
   disabled = false,
 }) {
-  const style = `flex transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-lg  ${moreStyle}`;
+  const style = `flex transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-lg py-4 ${moreStyle}`;
   const icon_style = `place-self-center ${icon}`;
   return isButton ? (
     <button
@@ -27,15 +27,12 @@ function Button({
       <i className={icon_style} /> {title}
     </button>
   ) : (
-    <button className={style} type="button">
-      <Link
-        style={{ width: "100%", height: "100%", padding: "16px" }}
+      <Link className={style}
         to={href}
       >
         <i className={icon_style} />
         {title}
       </Link>
-    </button>
   );
 }
 
