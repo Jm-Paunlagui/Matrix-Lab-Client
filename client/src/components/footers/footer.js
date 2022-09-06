@@ -75,7 +75,7 @@ export default function Footer() {
                   {UsefulLinks.map((link) => (
                     <li key={link.name}>
                       <Link to={`/${link.link}`}>
-                        <div className="block pb-2 text-sm font-semibold text-gray-500 hover:text-gray-800 transition delay-150 duration-300 ease-linear">
+                        <div className="block pb-2 text-sm font-semibold text-gray-500 transition duration-300 ease-linear delay-150 hover:text-gray-800">
                           {link.name}
                         </div>
                       </Link>

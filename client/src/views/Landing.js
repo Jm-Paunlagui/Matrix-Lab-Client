@@ -10,7 +10,7 @@ export default function Landing() {
   return (
     <>
       <Navbar />
-      <div className="bg-white px-6">
+      <div className="px-6 bg-white">
         <Outlet />
       </div>
       <Footer />

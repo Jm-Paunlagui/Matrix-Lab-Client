@@ -1,10 +1,11 @@
 import "react-toastify/dist/ReactToastify.css";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { BACK_BUTTON, FORGOT, ICON_PLACE_SELF_CENTER, ICON_PLACE_SELF_CENTER_2, PRIMARY_BUTTON, TEXT_FIELD }  from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
-import logo from "../../assets/img/android-chrome-192x192.png";
+
 import {Link} from "react-router-dom";
-import { PRIMARY_BUTTON, BACK_BUTTON, ICON_PLACE_SELF_CENTER, ICON_PLACE_SELF_CENTER_2, TEXT_FIELD, FORGOT }  from "../../assets/styles/input-types-styles";
+import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
  * @description User login form for the application
@@ -29,7 +30,7 @@ export default function Login() {
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12 ">
-          <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg p-6">
+          <div className="relative flex flex-col w-full min-w-0 p-6 break-words bg-white border-0 rounded-lg">
             <Link to={"/"}
               className={`${BACK_BUTTON}`}
             >
