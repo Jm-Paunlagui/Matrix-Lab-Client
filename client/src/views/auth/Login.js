@@ -50,7 +50,7 @@ export default function Login() {
                 <input
                   className="w-full p-4 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="username"
-                  placeholder="ID"
+                  placeholder="Username"
                 />
                 <div className="relative">
                   <input
