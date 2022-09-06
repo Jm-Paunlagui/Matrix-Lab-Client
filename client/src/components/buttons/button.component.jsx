@@ -27,7 +27,9 @@ function Button({
       <i className={icon_style} /> {title}
     </button>
   ) : (
-      <Link to={href} className={style}><i className={icon_style} />{title}</Link>
+      <button className={style}>
+        <Link style={{ width: "100%", height: "100%", padding: "16px" }} to={href}><i className={icon_style} />{title}</Link>
+      </button>
   );
 }
 

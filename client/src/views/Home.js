@@ -7,7 +7,7 @@ import React from "react";
  */
 function Home() {
   return (
-    <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
+    <div className="flex flex-col items-center max-w-screen-xl min-h-screen  py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
       <div className=" place-self-center lg:col-span-6">
         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
           Evaluation Result Sentiment Analysis
@@ -22,7 +22,7 @@ function Home() {
           title="Leaderboard"
           isButton={false}
           href="/leaderboard"
-          moreStyle="w-6/12 px-5 py-3 justify-center font-medium tracking-wider text-white bg-teal-900 hover:bg-white md:py-4 md:text-xl md:px-10 border-2 hover:border-teal-900 hover:text-teal-900"
+          moreStyle="w-6/12 justify-center font-medium tracking-wider text-white bg-teal-900 hover:bg-white md:text-xl border-2 hover:border-teal-900 hover:text-teal-900"
         />
       </div>
       <div className="mt-4 md:flex md:mt-4 lg:col-span-6 lg:flex">

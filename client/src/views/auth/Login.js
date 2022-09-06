@@ -27,31 +27,27 @@ function Login() {
     <>
       <div className="container h-full mx-auto font-Montserrat">
         <div className="flex items-center content-center justify-center h-full">
-          <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12">
-            <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg">
+          <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12 ">
+            <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg p-6">
               <Button
                   isButton={false}
                   title="Back"
                   icon="fas fa-arrow-left pr-2"
-                  moreStyle="w-1/6 px-6 mt-6 lg:px-10 font-semibold tracking-wide text-teal-500 hover:text-indigo-500 border-2 "
+                  moreStyle="w-1/2 font-semibold tracking-wide text-teal-500 hover:text-indigo-500 border-2 text-left"
                   href="/"
               />
-              <div className="py-6 px-6">
-                <div className="flex items-center px-3 py-2 text-gray-800">
+
+                <div className="flex items-center py-2 text-gray-800">
                   <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
                   <h1 className="ml-3 font-extrabold tracking-widest text-md">
                     MATRIX LAB
                   </h1>
                 </div>
-              </div>
-              <div className="flex-auto px-6 py-10 pt-0 lg:px-10">
-                <div className="mb-3 text-start">
-                  <h6 className="text-lg font-bold text-gray-500">
-                    Sign in to your account
-                  </h6>
-                </div>
-
-                <form className="relative mx-auto mt-6 max-w-screen">
+              <div className="flex-auto pt-0">
+                <h6 className="text-lg font-bold text-gray-500">
+                  Sign in to your account
+                </h6>
+                <form className="relative mx-auto mt-4 max-w-screen">
                   <input
                     className="w-full p-4 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
                     type="username"
@@ -78,13 +74,13 @@ function Login() {
                   <Button
                       isButton={false}
                       title="Forgot password ?"
-                      moreStyle="w-full py-4 pl-4 mt-5 font-semibold tracking-wide text-white bg-red-500 hover:bg-white hover:text-red-500 border-2 hover:border-red-500"
+                      moreStyle="w-full text-left mt-6 font-semibold tracking-wide text-white bg-red-500 hover:bg-white hover:text-red-500 border-2 hover:border-red-500"
                       href="/forgot-password"
                   />
                   <Button
                     title="Sign in"
                     icon="fas fa-sign-in-alt pr-2"
-                    moreStyle="w-full py-4 pl-4 mt-5 font-semibold tracking-wide text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 border-2 hover:border-indigo-500 "
+                    moreStyle="w-full py-4 pl-4 mt-6 font-semibold tracking-wide text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 border-2 hover:border-indigo-500 "
                   />
                 </form>
               </div>
