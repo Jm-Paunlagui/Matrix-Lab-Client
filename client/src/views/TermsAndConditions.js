@@ -4,7 +4,7 @@ import Terms from "../assets/img/terms.svg";
 /**
  * @description Terms and conditions page for the application
  */
-function TermsAndConditions() {
+export default function TermsAndConditions() {
   return (
     <>
       <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
@@ -463,5 +463,3 @@ function TermsAndConditions() {
     </>
   );
 }
-
-export default TermsAndConditions;

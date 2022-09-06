@@ -6,16 +6,14 @@ import React from "react";
 /**
  * @description Handles about, home, leaderboard, privacy, and terms page for the application
  */
-function Landing() {
+export default function Landing() {
   return (
     <>
       <Navbar />
-      <div className="bg-white">
+      <div className="px-6 bg-white">
         <Outlet />
       </div>
       <Footer />
     </>
   );
 }
-
-export default Landing;
