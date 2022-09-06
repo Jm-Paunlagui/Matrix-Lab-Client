@@ -23,7 +23,7 @@ import { ToastContainer } from "react-toastify";
 /**
  * @description Main component for the application
  */
-function App() {
+export default function App() {
   /**
    * @type {Function}
    * @description Function to scroll to top of the page when route changes in the application
@@ -73,5 +73,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
