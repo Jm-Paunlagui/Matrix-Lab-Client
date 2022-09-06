@@ -1,10 +1,17 @@
 import "react-toastify/dist/ReactToastify.css";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { BACK_BUTTON, FORGOT, ICON_PLACE_SELF_CENTER, ICON_PLACE_SELF_CENTER_2, PRIMARY_BUTTON, TEXT_FIELD }  from "../../assets/styles/input-types-styles";
+import {
+  BACK_BUTTON,
+  FORGOT,
+  ICON_PLACE_SELF_CENTER,
+  ICON_PLACE_SELF_CENTER_2,
+  PRIMARY_BUTTON,
+  TEXT_FIELD,
+} from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
@@ -31,10 +38,11 @@ export default function Login() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-5/6 md:w-6/12 lg:w-4/12 xl:w-3/12 ">
           <div className="relative flex flex-col w-full min-w-0 p-6 break-words bg-white border-0 rounded-lg">
-            <Link to={"/"}
-              className={`${BACK_BUTTON}`}
-            >
-                <i className={`fas fa-arrow-left pr-2 ${ICON_PLACE_SELF_CENTER}`}/>Back
+            <Link to={"/"} className={`${BACK_BUTTON}`}>
+              <i
+                className={`fas fa-arrow-left pr-2 ${ICON_PLACE_SELF_CENTER}`}
+              />
+              Back
             </Link>
 
             <div className="flex items-center py-2 text-gray-800">
@@ -61,20 +69,20 @@ export default function Login() {
                   />
                   <label className={`${ICON_PLACE_SELF_CENTER_2}`}>
                     {showPassword === false ? (
-                        <AiFillEyeInvisible onClick={toggleShowPassword} />
+                      <AiFillEyeInvisible onClick={toggleShowPassword} />
                     ) : (
-                        <AiFillEye onClick={toggleShowPassword} />
+                      <AiFillEye onClick={toggleShowPassword} />
                     )}
                   </label>
                 </div>
                 <Link to={"/forgot-password"} className={`${FORGOT}`}>
                   <h1>Forgot password ?</h1>
                 </Link>
-                <button
-                  className={`${PRIMARY_BUTTON}`}
-                  type={"button"}
-                >
-                  <i className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`} />Sign in
+                <button className={`${PRIMARY_BUTTON}`} type={"button"}>
+                  <i
+                    className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`}
+                  />
+                  Sign in
                 </button>
               </form>
             </div>
