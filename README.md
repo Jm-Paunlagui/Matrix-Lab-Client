@@ -24,7 +24,7 @@
          2. [In WebStorm](https://plugins.jetbrains.com/plugin/17718-github-copilot)
 5. To run the project
 
-   - Open your terminal and paste this `git clone https://github.com/Jm-Paunlagui/Project-1-SAER-Client.git`
+   - Open your terminal to the directory you want to place the project (in my case it's in the desktop, so feel free to choose the directory of this project on your own.) and paste this `git clone https://github.com/Jm-Paunlagui/Project-1-SAER-Client.git`
      ![image](https://user-images.githubusercontent.com/95494414/188801653-9faee0e2-ee1a-47db-b7ea-ad2f1947a66a.png)
 
    - Go to the directory of project by typing `cd Project-1-SAER-Client/client`
