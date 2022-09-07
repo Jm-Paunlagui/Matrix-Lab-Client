@@ -15,7 +15,7 @@ const AboutUsDetails = [
       "https://s.gravatar.com/avatar/24dd27ffab5c8b19a4414f8ab6217fae?s=600",
     social: {
       github: "https://github.com/Jm-Paunlagui",
-      linkedin: "https://www.linkedin.com/in/john-moises-paunlagui-2b6b31186",
+      linkedin: "https://www.linkedin.com/in/jm-paunlagui-cs",
       twitter: "https://twitter.com/itsJm51",
       facebook: "https://www.facebook.com/JmPaunlagui",
       instagram: "https://www.instagram.com/jmpaunlagui/",
