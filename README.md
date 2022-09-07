@@ -23,6 +23,11 @@
          1. [In VS Code](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
          2. [In WebStorm](https://plugins.jetbrains.com/plugin/17718-github-copilot)
 5. To run the project
+   - For yarn package manager (Skip this if you use npm)
+      - run your terminal as administrator and run ```corepack enable``` to enable yarn package manager. see the [documentation](https://yarnpkg.com/getting-started/install) in yarn. 
+   ![image](https://user-images.githubusercontent.com/95494414/188814334-e1b5ba87-57aa-4c08-9e75-c42aa5d661de.png)
+   
+      Now that we enabled the corepack we can now use the yarn package manager, proceed to next step
 
    - Open your terminal to the directory you want to place the project (in my case it's in the desktop, so feel free to choose the directory of this project on your own.) and paste this `git clone https://github.com/Jm-Paunlagui/Project-1-SAER-Client.git`
      ![image](https://user-images.githubusercontent.com/95494414/188801653-9faee0e2-ee1a-47db-b7ea-ad2f1947a66a.png)
@@ -30,8 +35,15 @@
    - Go to the directory of project by typing `cd Project-1-SAER-Client/client`
      ![image](https://user-images.githubusercontent.com/95494414/188801831-73dd6559-aaed-4124-8f79-2744fbfcf50b.png)
 
-   - Install the node_modules by typing `npm install` or `npm i`
-     ![image](https://user-images.githubusercontent.com/95494414/188802013-d859c176-1cd4-4420-97b8-3fb82d781434.png)
+   - Install the node_modules (choose one)
+      - For npm `npm install` or `npm i`
+        ![image](https://user-images.githubusercontent.com/95494414/188802013-d859c176-1cd4-4420-97b8-3fb82d781434.png)
+      - For yarn `yarn`
+        ![image](https://user-images.githubusercontent.com/95494414/188818515-7dae9f73-d69d-4013-a7c4-fe28eed55add.png)
 
-   - After installing the modules you can now run the project by typing `npm run start` and this will start a development server
-     ![image](https://user-images.githubusercontent.com/95494414/188803032-5ad87cb7-160c-4664-8232-1f92a7ad94c0.png)
+   - After installing the modules you can now run the project 
+      - For npm `npm run start` 
+        ![image](https://user-images.githubusercontent.com/95494414/188803032-5ad87cb7-160c-4664-8232-1f92a7ad94c0.png)
+      - For yarm `yarn start`
+        ![image](https://user-images.githubusercontent.com/95494414/188820689-d269f659-00d6-459e-ba9f-76e217093e01.png)
+
