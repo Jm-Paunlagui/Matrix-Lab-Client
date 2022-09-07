@@ -23,21 +23,15 @@
          1. [In VS Code](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
          2. [In WebStorm](https://plugins.jetbrains.com/plugin/17718-github-copilot)
 5. To run the project
-   * Open your terminal and paste this ```git clone https://github.com/Jm-Paunlagui/Project-1-SAER-Client.git```
-   ![image](https://user-images.githubusercontent.com/95494414/188801653-9faee0e2-ee1a-47db-b7ea-ad2f1947a66a.png)
 
-   * Go to the directory of project by typing ```cd Project-1-SAER-Client/client```
-   ![image](https://user-images.githubusercontent.com/95494414/188801831-73dd6559-aaed-4124-8f79-2744fbfcf50b.png)
+   - Open your terminal and paste this `git clone https://github.com/Jm-Paunlagui/Project-1-SAER-Client.git`
+     ![image](https://user-images.githubusercontent.com/95494414/188801653-9faee0e2-ee1a-47db-b7ea-ad2f1947a66a.png)
 
-   * Install the node_modules by typing ```npm install``` or ```npm i```
-   ![image](https://user-images.githubusercontent.com/95494414/188802013-d859c176-1cd4-4420-97b8-3fb82d781434.png)
+   - Go to the directory of project by typing `cd Project-1-SAER-Client/client`
+     ![image](https://user-images.githubusercontent.com/95494414/188801831-73dd6559-aaed-4124-8f79-2744fbfcf50b.png)
 
-   * After installing the modules you can now run the project by typing ```npm run start``` and this will start a development server
-   ![image](https://user-images.githubusercontent.com/95494414/188803032-5ad87cb7-160c-4664-8232-1f92a7ad94c0.png)
+   - Install the node_modules by typing `npm install` or `npm i`
+     ![image](https://user-images.githubusercontent.com/95494414/188802013-d859c176-1cd4-4420-97b8-3fb82d781434.png)
 
-
-
-
-
-
-
+   - After installing the modules you can now run the project by typing `npm run start` and this will start a development server
+     ![image](https://user-images.githubusercontent.com/95494414/188803032-5ad87cb7-160c-4664-8232-1f92a7ad94c0.png)
