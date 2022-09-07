@@ -40,7 +40,7 @@
      ![image](https://user-images.githubusercontent.com/95494414/188801831-73dd6559-aaed-4124-8f79-2744fbfcf50b.png)
 
    - Install the node_modules run `yarn`
-       ![image](https://user-images.githubusercontent.com/95494414/188818515-7dae9f73-d69d-4013-a7c4-fe28eed55add.png)
+     ![image](https://user-images.githubusercontent.com/95494414/188818515-7dae9f73-d69d-4013-a7c4-fe28eed55add.png)
 
    - After installing the modules you can now run the project by `yarn start`
-       ![image](https://user-images.githubusercontent.com/95494414/188820689-d269f659-00d6-459e-ba9f-76e217093e01.png)
+     ![image](https://user-images.githubusercontent.com/95494414/188820689-d269f659-00d6-459e-ba9f-76e217093e01.png)
