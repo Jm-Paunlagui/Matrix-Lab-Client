@@ -24,7 +24,7 @@
          2. [In WebStorm](https://plugins.jetbrains.com/plugin/17718-github-copilot)
 5. To run the project
 
-   1. Yarn will be the new package manager for the project but you can still use npm, node_modules is ignored by default. When you're installing a new package to the project it will just save to the package.json file.
+   1. Yarn will be the new package manager for the project but you can still use npm, node_modules is ignored by default. When you're installing a new package to the project it will just save to the package.json file, therefore i can install it too.
 
    - For yarn package manager (Skip this if you use npm)
 
