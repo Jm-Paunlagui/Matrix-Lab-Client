@@ -1,8 +1,10 @@
 export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white`;
 
-export const DEFAULT_TRANSITION_ANIMATION = "transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-lg";
+export const DEFAULT_TRANSITION_ANIMATION =
+  "transition-colors duration-700 ease-in-out delay-150 border border-transparent rounded-lg";
 export const ICON_PLACE_SELF_CENTER = "pr-2 place-self-center";
-export const ICON_PLACE_SELF_CENTER_2 = "absolute px-2 text-2xl text-gray-400 rounded py-9 right-2 hover:text-gray-500";
+export const ICON_PLACE_SELF_CENTER_2 =
+  "absolute px-2 text-2xl text-gray-400 rounded py-9 right-2 hover:text-gray-500";
 
 // px-5 py-3 pl-4 for button
 // px-5 py-3 for link

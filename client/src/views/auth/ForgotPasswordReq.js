@@ -22,7 +22,10 @@ export default function ForgotPasswordReq() {
               <button className={`${DEFAULT_BUTTON}`}>
                 <Link to={"/auth"}>
                   <h1 className="px-5 py-3">
-                    <i className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`} />Back
+                    <i
+                      className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`}
+                    />
+                    Back
                   </h1>
                 </Link>
               </button>
@@ -48,13 +51,16 @@ export default function ForgotPasswordReq() {
                 </div>
                 <form className="relative mx-auto mt-6 max-w-screen">
                   <input
-                      className={`${TEXT_FIELD}`}
-                      type="email"
-                      placeholder="Email"
+                    className={`${TEXT_FIELD}`}
+                    type="email"
+                    placeholder="Email"
                   />
-                  <button className={`mt-8 px-5 py-3 pl-4  ${PRIMARY_BUTTON}`} type={"button"}>
+                  <button
+                    className={`mt-8 px-5 py-3 pl-4  ${PRIMARY_BUTTON}`}
+                    type={"button"}
+                  >
                     <i
-                        className={`fas fa-rotate-right ${ICON_PLACE_SELF_CENTER}`}
+                      className={`fas fa-rotate-right ${ICON_PLACE_SELF_CENTER}`}
                     />
                     Reset Password
                   </button>

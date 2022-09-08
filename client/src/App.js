@@ -50,9 +50,17 @@ export default function App() {
             <Route exact="true" path="aboutus" element={<AboutUS />} />
             <Route exact="true" path="/" element={<Home />} />
             <Route exact="true" path="leaderboard" element={<Leaderboard />} />
-            <Route exact="true" path="privacy-policy"  element={<PrivacyPolicy />} />
+            <Route
+              exact="true"
+              path="privacy-policy"
+              element={<PrivacyPolicy />}
+            />
             <Route exact="true" path="ranking" element={<Ranking />} />
-            <Route exact="true" path="terms-and-conditions" element={<TermsAndConditions />} />
+            <Route
+              exact="true"
+              path="terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
           </Route>
           {/**
            * End of public routes
@@ -63,8 +71,12 @@ export default function App() {
            * auth routes
            */}
           <Route element={<IndexAuth />}>
-            <Route exact="true" path="forgot-password" element={<ForgotPasswordReq />} />
-            <Route exact="true" path="auth" element={<Login />}  />
+            <Route
+              exact="true"
+              path="forgot-password"
+              element={<ForgotPasswordReq />}
+            />
+            <Route exact="true" path="auth" element={<Login />} />
           </Route>
           {/**
            * End of auth routes
