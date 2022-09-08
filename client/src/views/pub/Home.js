@@ -1,6 +1,7 @@
+import { PRIMARY_BUTTON, SECONDARY_BUTTON } from "../../assets/styles/input-types-styles";
+
 import Eval from "../../assets/img/eval.svg";
 import { Link } from "react-router-dom";
-import { PRIMARY_LINK, SECONDARY_LINK } from "../../assets/styles/input-types-styles";
 import React from "react";
 
 /**
@@ -20,13 +21,13 @@ export default function Home() {
           can be determined by the percentage of positive, negative, and neutral
           comments in the evaluation result.
         </p>
-          <div className="inline-flex mb-8 sm:flex-row sm:justify-center space-x-4">
-          <button className={`${PRIMARY_LINK}`}>
+          <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
+          <button className={` ${PRIMARY_BUTTON}`}>
             <Link to={"/leaderboard"}>
               <h1 className="px-5 py-3">Leaderboard</h1>
             </Link>
           </button>
-          <button className={` ${SECONDARY_LINK}`}>
+          <button className={` ${SECONDARY_BUTTON}`}>
             <Link to={"/ranking"}>
               <h1 className="px-5 py-3">Ranking</h1>
             </Link>
