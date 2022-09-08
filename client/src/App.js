@@ -49,8 +49,16 @@ export default function App() {
             <Route exact="true" path="/" element={<Home />} />
             <Route exact="true" path="leaderboard" element={<Leaderboard />} />
             <Route exact="true" path="aboutus" element={<AboutUS />} />
-            <Route exact="true" path="privacy-policy" element={<PrivacyPolicy />} />
-            <Route exact="true" path="terms-and-conditions" element={<TermsAndConditions />} />
+            <Route
+              exact="true"
+              path="privacy-policy"
+              element={<PrivacyPolicy />}
+            />
+            <Route
+              exact="true"
+              path="terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
           </Route>
           {/**
            * End of public routes
@@ -62,11 +70,15 @@ export default function App() {
            */}
           <Route element={<IndexAuth />}>
             <Route exact="true" path="auth" element={<Login />} />
-            <Route exact="true" path="forgot-password" element={<ForgotPasswordReq />} />
+            <Route
+              exact="true"
+              path="forgot-password"
+              element={<ForgotPasswordReq />}
+            />
           </Route>
-            {/**
-             * End of auth routes
-             */}
+          {/**
+           * End of auth routes
+           */}
           {/**
            * @description Handles admin routes for the application and the IndexAdmin component has the outlet for the
            * admin routes
