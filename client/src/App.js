@@ -17,6 +17,7 @@ import Leaderboard from "./views/pub/Leaderboard.js";
 import Login from "./views/auth/Login.js";
 import PageNotFound from "./views/pub/PageNotFound.js";
 import PrivacyPolicy from "./views/pub/PrivacyPolicy.js";
+import Ranking from "./views/pub/Ranking.js";
 import TermsAndConditions from "./views/pub/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
@@ -46,19 +47,12 @@ export default function App() {
            * public routes
            */}
           <Route element={<IndexPub />}>
+            <Route exact="true" path="aboutus" element={<AboutUS />} />
             <Route exact="true" path="/" element={<Home />} />
             <Route exact="true" path="leaderboard" element={<Leaderboard />} />
-            <Route exact="true" path="aboutus" element={<AboutUS />} />
-            <Route
-              exact="true"
-              path="privacy-policy"
-              element={<PrivacyPolicy />}
-            />
-            <Route
-              exact="true"
-              path="terms-and-conditions"
-              element={<TermsAndConditions />}
-            />
+            <Route exact="true" path="privacy-policy"  element={<PrivacyPolicy />} />
+            <Route exact="true" path="ranking" element={<Ranking />} />
+            <Route exact="true" path="terms-and-conditions" element={<TermsAndConditions />} />
           </Route>
           {/**
            * End of public routes
@@ -69,12 +63,8 @@ export default function App() {
            * auth routes
            */}
           <Route element={<IndexAuth />}>
-            <Route exact="true" path="auth" element={<Login />} />
-            <Route
-              exact="true"
-              path="forgot-password"
-              element={<ForgotPasswordReq />}
-            />
+            <Route exact="true" path="forgot-password" element={<ForgotPasswordReq />} />
+            <Route exact="true" path="auth" element={<Login />}  />
           </Route>
           {/**
            * End of auth routes
