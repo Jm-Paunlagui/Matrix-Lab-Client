@@ -87,7 +87,10 @@ export default function Login() {
                         <h1 className="px-5 py-3">Forgot Password?</h1>
                       </Link>
                     </button>
-                    <button type={"button"} className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}>
+                    <button
+                      type={"button"}
+                      className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}
+                    >
                       <i
                         className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`}
                       />
