@@ -1,5 +1,5 @@
 import React from "react";
-import Terms from "../assets/img/terms.svg";
+import Terms from "../../assets/img/terms.svg";
 
 /**
  * @description Terms and conditions page for the application
@@ -452,7 +452,7 @@ export default function TermsAndConditions() {
           </p>
           <p className="mt-4">
             These{" "}
-            <a href="https://policymaker.io/terms-and-conditions/">
+            <a href="client/src/views/pub/TermsAndConditions">
               Terms of Service
             </a>{" "}
             were created for <b>Sentry.ai</b> by{" "}

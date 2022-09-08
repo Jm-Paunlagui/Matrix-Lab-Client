@@ -1,4 +1,4 @@
-import Eval from "../assets/img/eval.svg";
+import Eval from "../../assets/img/eval.svg";
 import { Link } from "react-router-dom";
 import React from "react";
 

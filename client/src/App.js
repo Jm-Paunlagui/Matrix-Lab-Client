@@ -8,16 +8,16 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import AboutUS from "./views/AboutUS.js";
+import AboutUS from "./views/pub/AboutUS.js";
 import Auth from "./views/auth/Auth.js";
 import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
-import Home from "./views/Home.js";
-import Landing from "./views/Landing.js";
-import Leaderboard from "./views/Leaderboard.js";
+import Home from "./views/pub/Home.js";
+import Landing from "./views/pub/Landing.js";
+import Leaderboard from "./views/pub/Leaderboard.js";
 import Login from "./views/auth/Login.js";
-import PageNotFound from "./views/PageNotFound.js";
-import PrivacyPolicy from "./views/PrivacyPolicy.js";
-import TermsAndConditions from "./views/TermsAndConditions.js";
+import PageNotFound from "./views/pub/PageNotFound.js";
+import PrivacyPolicy from "./views/pub/PrivacyPolicy.js";
+import TermsAndConditions from "./views/pub/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
 /**
