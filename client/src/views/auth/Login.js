@@ -39,7 +39,7 @@ export default function Login() {
         <div className="w-max">
           <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg">
             <div className="inline-flex">
-              <button className={`text-left ${DEFAULT_BUTTON}`}>
+              <button type={"button"} className={`text-left ${DEFAULT_BUTTON}`}>
                 <Link to={"/"}>
                   <h1 className="px-5 py-3">
                     <i
@@ -82,15 +82,12 @@ export default function Login() {
                     </label>
                   </div>
                   <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                    <button className={`${SECONDARY_BUTTON}`}>
+                    <button type={"button"} className={`${SECONDARY_BUTTON}`}>
                       <Link to={"/forgot-password"}>
                         <h1 className="px-5 py-3">Forgot Password?</h1>
                       </Link>
                     </button>
-                    <button
-                      className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}
-                      type={"button"}
-                    >
+                    <button type={"button"} className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}>
                       <i
                         className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`}
                       />

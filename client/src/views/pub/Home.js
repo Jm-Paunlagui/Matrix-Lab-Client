@@ -24,12 +24,12 @@ export default function Home() {
           comments in the evaluation result.
         </p>
         <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
-          <button className={` ${PRIMARY_BUTTON}`}>
+          <button type={"button"} className={` ${PRIMARY_BUTTON}`}>
             <Link to={"/leaderboard"}>
               <h1 className="px-5 py-3">Leaderboard</h1>
             </Link>
           </button>
-          <button className={` ${SECONDARY_BUTTON}`}>
+          <button type={"button"} className={` ${SECONDARY_BUTTON}`}>
             <Link to={"/ranking"}>
               <h1 className="px-5 py-3">Ranking</h1>
             </Link>

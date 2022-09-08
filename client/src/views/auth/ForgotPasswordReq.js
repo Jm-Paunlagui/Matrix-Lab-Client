@@ -19,7 +19,7 @@ export default function ForgotPasswordReq() {
         <div className="w-max">
           <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg shadow-lg">
             <div className="inline-flex">
-              <button className={`${DEFAULT_BUTTON}`}>
+              <button type={"button"} className={`${DEFAULT_BUTTON}`}>
                 <Link to={"/auth"}>
                   <h1 className="px-5 py-3">
                     <i
