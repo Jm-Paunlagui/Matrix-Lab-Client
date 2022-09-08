@@ -9,9 +9,9 @@ import {
 } from "react-router-dom";
 
 import AboutUS from "./views/pub/AboutUS.js";
-import IndexAuth from "./views/auth/IndexAuth.js";
 import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
 import Home from "./views/pub/Home.js";
+import IndexAuth from "./views/auth/IndexAuth.js";
 import IndexPub from "./views/pub/IndexPub.js";
 import Leaderboard from "./views/pub/Leaderboard.js";
 import Login from "./views/auth/Login.js";
