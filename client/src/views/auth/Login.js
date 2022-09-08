@@ -5,7 +5,8 @@ import {
   DEFAULT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   ICON_PLACE_SELF_CENTER_2,
-  PRIMARY_BUTTON, SECONDARY_BUTTON,
+  PRIMARY_BUTTON,
+  SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
@@ -41,7 +42,10 @@ export default function Login() {
               <button className={`text-left ${DEFAULT_BUTTON}`}>
                 <Link to={"/"}>
                   <h1 className="px-5 py-3">
-                    <i className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`} />Back
+                    <i
+                      className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`}
+                    />
+                    Back
                   </h1>
                 </Link>
               </button>
@@ -59,35 +63,36 @@ export default function Login() {
                 </h6>
                 <form className="relative mx-auto mt-4 max-w-screen">
                   <input
-                      className={`${TEXT_FIELD}`}
-                      type="username"
-                      placeholder="Username"
+                    className={`${TEXT_FIELD}`}
+                    type="username"
+                    placeholder="Username"
                   />
                   <div className="relative mb-8">
                     <input
-                        className={`pr-12 mt-5 ${TEXT_FIELD}`}
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
+                      className={`pr-12 mt-5 ${TEXT_FIELD}`}
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
                     />
                     <label className={`${ICON_PLACE_SELF_CENTER_2}`}>
                       {showPassword === false ? (
-                          <AiFillEyeInvisible onClick={toggleShowPassword} />
+                        <AiFillEyeInvisible onClick={toggleShowPassword} />
                       ) : (
-                          <AiFillEye onClick={toggleShowPassword} />
+                        <AiFillEye onClick={toggleShowPassword} />
                       )}
                     </label>
                   </div>
                   <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                     <button className={`${SECONDARY_BUTTON}`}>
                       <Link to={"/forgot-password"}>
-                        <h1 className="px-5 py-3">
-                          Forgot Password?
-                        </h1>
+                        <h1 className="px-5 py-3">Forgot Password?</h1>
                       </Link>
                     </button>
-                    <button className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`} type={"button"}>
+                    <button
+                      className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}
+                      type={"button"}
+                    >
                       <i
-                          className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`}
+                        className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`}
                       />
                       Sign in
                     </button>
