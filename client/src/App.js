@@ -9,10 +9,10 @@ import {
 } from "react-router-dom";
 
 import AboutUS from "./views/pub/AboutUS.js";
-import Auth from "./views/auth/Auth.js";
+import IndexAuth from "./views/auth/IndexAuth.js";
 import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
 import Home from "./views/pub/Home.js";
-import Landing from "./views/pub/Landing.js";
+import IndexPub from "./views/pub/IndexPub.js";
 import Leaderboard from "./views/pub/Leaderboard.js";
 import Login from "./views/auth/Login.js";
 import PageNotFound from "./views/pub/PageNotFound.js";
@@ -41,33 +41,45 @@ export default function App() {
       <ToastContainer autoClose={3000} position="bottom-right" />
       <Wrapper>
         <Routes>
-          <Route element={<Landing />}>
+          {/**
+           * @description Handles public routes for the application and the IndexPub component has the outlet for the
+           * public routes
+           */}
+          <Route element={<IndexPub />}>
             <Route exact="true" path="/" element={<Home />} />
             <Route exact="true" path="leaderboard" element={<Leaderboard />} />
             <Route exact="true" path="aboutus" element={<AboutUS />} />
-            <Route
-              exact="true"
-              path="privacy-policy"
-              element={<PrivacyPolicy />}
-            />
-            <Route
-              exact="true"
-              path="terms-and-conditions"
-              element={<TermsAndConditions />}
-            />
+            <Route exact="true" path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route exact="true" path="terms-and-conditions" element={<TermsAndConditions />} />
           </Route>
+          {/**
+           * End of public routes
+           */}
 
-          <Route element={<Auth />}>
+          {/**
+           * @description Handles auth routes for the application and the IndexAuth component has the outlet for the
+           * auth routes
+           */}
+          <Route element={<IndexAuth />}>
             <Route exact="true" path="auth" element={<Login />} />
-            <Route
-              exact="true"
-              path="forgot-password"
-              element={<ForgotPasswordReq />}
-            />
+            <Route exact="true" path="forgot-password" element={<ForgotPasswordReq />} />
           </Route>
-
+            {/**
+             * End of auth routes
+             */}
+          {/**
+           * @description Handles admin routes for the application and the IndexAdmin component has the outlet for the
+           * admin routes
+           */}
           <Route exact="true" path="admin" element={<div>Admin</div>} />
+
+          {/**
+           * @description Handles page not found route for the application
+           */}
           <Route path="*" element={<PageNotFound />} />
+          {/**
+           * End of page not found route
+           */}
         </Routes>
       </Wrapper>
     </Router>
