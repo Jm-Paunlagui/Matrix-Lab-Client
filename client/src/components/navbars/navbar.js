@@ -1,11 +1,5 @@
-import {
-   Bars3Icon,
-   XMarkIcon
-} from "@heroicons/react/24/outline";
-import {
-  Menu,
-  Transition
-} from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Menu, Transition } from "@headlessui/react";
 
 import { AiFillHome } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
