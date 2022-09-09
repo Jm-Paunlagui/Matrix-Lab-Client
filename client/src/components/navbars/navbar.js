@@ -1,4 +1,11 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+   Bars3Icon,
+   XMarkIcon
+} from "@heroicons/react/24/outline";
+import {
+  Menu,
+  Transition
+} from "@headlessui/react";
 
 import { AiFillHome } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
@@ -6,7 +13,6 @@ import { MdLeaderboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import React from "react";
 import { TbDeviceAnalytics } from "react-icons/tb";
-import { Transition, Menu } from "@headlessui/react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
