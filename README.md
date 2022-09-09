@@ -1,4 +1,4 @@
-# Project-1-SAER (Sentiment-Analysis)
+# Matrix (Sentiment-Analysis)
 
 ### Requirements
 
