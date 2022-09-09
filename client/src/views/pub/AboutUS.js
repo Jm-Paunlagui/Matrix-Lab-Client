@@ -39,7 +39,8 @@ const AboutUsDetails = [
     name: "Dwight Torres",
     title: "Graphic Designer",
     description: "",
-    image: "https://s.gravatar.com/avatar/053efa0537974c8f9572913e8f3e1c7c?s=600",
+    image:
+      "https://s.gravatar.com/avatar/053efa0537974c8f9572913e8f3e1c7c?s=600",
     social: {
       github: "https://github.com/KhelDwight",
       linkedin: "",
