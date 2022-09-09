@@ -23,7 +23,7 @@ const AboutUsDetails = [
   },
   {
     name: "Rysel Pelipada",
-    title: "Chef, Financial Expert",
+    title: "Chief Financial Expert",
     description:
       "Rysel is the chief money laundere of the group and also contributes as a chef that cooks bespoke instant noodle recipes for the group. He is also a finance expert and a financial advisor to the group.",
     image: "",
@@ -444,8 +444,8 @@ export default function AboutUS() {
             ))}
           </div>
           <hr />
-          <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl xl:text-6xl">
-            Technologies used in Matrix Lab
+          <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl">
+            Technologies and Tools used in Matrix Lab
           </h1>
           <p className="px-8 mx-auto mb-8 text-sm font-medium text-justify text-gray-500 max-w-7xl place-self-center lg:mb-16 md:text-base">
             The following technologies and tools are used in the development of
@@ -461,7 +461,7 @@ export default function AboutUS() {
               {Technologies.map((technology) => (
                 <div
                   key={technology.name}
-                  className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-1000 ease-in-out"
+                  className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-500 ease-in-out"
                 >
                   <div className="flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow auto-cols-max auto-rows-max place-items-center">
                     {technology.logo ? (
