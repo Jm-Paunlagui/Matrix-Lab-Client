@@ -1,4 +1,4 @@
-import Privacy from "../assets/img/privacy.svg";
+import Privacy from "../../assets/img/privacy.svg";
 import React from "react";
 
 /**
@@ -583,8 +583,7 @@ export default function PrivacyPolicy() {
             us by email: <b>paunlagui.jm.cs@gmail.com</b>.
           </p>
           <p className="mt-4">
-            This{" "}
-            <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a>{" "}
+            This <a href="client/src/views/pub/PrivacyPolicy">Privacy Policy</a>{" "}
             was created for <b>Sentry.ai</b> by{" "}
             <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-07-08.
           </p>

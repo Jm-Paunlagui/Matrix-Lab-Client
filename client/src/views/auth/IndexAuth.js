@@ -5,7 +5,7 @@ import bg from "../../assets/img/register_bg_2.png";
 /**
  * @description Handles auth page and reset password page for the application
  */
-export default function Auth() {
+export default function IndexAuth() {
   return (
     <div className="fixed flex items-center w-full h-full min-h-screen bg-blue-100 font-Montserrat">
       <div className="absolute top-0 w-full h-full bg-no-repeat bg-full blur-lg">
