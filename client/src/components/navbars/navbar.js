@@ -1,15 +1,14 @@
-import React from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { AiFillHome } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
+import  { Menu } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
+import React from "react";
 import { TbDeviceAnalytics } from "react-icons/tb";
 import { Transition } from "@headlessui/react";
 import logo from "../../assets/img/android-chrome-192x192.png";
-
-import  { Menu } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 /**
  * @description Navbar component with useful links
@@ -56,9 +55,9 @@ export default function Navbar() {
                 <Menu.Button className="block px-3 py-1 text-xl leading-none transition-colors duration-300 ease-in-out delay-150 bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer md:hidden focus:outline-none">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                      <XMarkIcon className="block h-6 w-6 " aria-hidden="true" />
+                      <XMarkIcon className="block w-6 h-6 " aria-hidden="true" />
                   ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
                   )}
                 </Menu.Button>
               </div>
