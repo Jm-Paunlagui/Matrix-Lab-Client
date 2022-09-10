@@ -391,61 +391,64 @@ export default function PublicAbout() {
           <div className="flex flex-wrap justify-center items-top">
             <div className="grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 lg:grid-cols-3 md:gap-4 w-full">
               {AboutUsDetails.map((aboutUs) => (
+                <div key={aboutUs.name} className="place-content-center ">
                   <div
-                      key={aboutUs.name}
-                      className="place-content-center "
+                    className={
+                      "flex flex-col w-full h-full min-w-0  break-words bg-white border-0 rounded-md shadow auto-cols-max auto-rows-max place-items-center"
+                    }
                   >
-                    <div className={"flex flex-col w-full h-full min-w-0  break-words bg-white border-0 rounded-md shadow auto-cols-max auto-rows-max place-items-center"}>
-                      <div className="justify-center w-full h-32 p-1 mb-0 bg-gradient-to-b from-blue-500 to-purple-500 rounded-t" />
+                    <div className="justify-center w-full h-32 p-1 mb-0 bg-gradient-to-b from-blue-500 to-purple-500 rounded-t" />
 
-                      {aboutUs.image ? (
-                          <img
-                              src={aboutUs.image}
-                              alt={aboutUs.name}
-                              className="w-36 h-36 -mt-12 rounded"
-                          />
-                      ) : (
-                          <div className="justify-center w-36 h-36 p-1 mb-0 -mt-12 bg-gradient-to-br from-white to-sky-500 rounded-xl" />
-                      )}
-                      <div className="container p-4 text-center text-stone-700">
-                        <h1 className="mt-8 text-lg font-bold tracking-widest ">
-                          {aboutUs.name}
-                        </h1>
-                        <h2 className="font-medium text-base">
-                          {aboutUs.title ? aboutUs.title : <div className="h-6" />}
-                        </h2>
+                    {aboutUs.image ? (
+                      <img
+                        src={aboutUs.image}
+                        alt={aboutUs.name}
+                        className="w-36 h-36 -mt-12 rounded"
+                      />
+                    ) : (
+                      <div className="justify-center w-36 h-36 p-1 mb-0 -mt-12 bg-gradient-to-br from-white to-sky-500 rounded-xl" />
+                    )}
+                    <div className="container p-4 text-center text-stone-700">
+                      <h1 className="mt-8 text-lg font-bold tracking-widest ">
+                        {aboutUs.name}
+                      </h1>
+                      <h2 className="font-medium text-base">
+                        {aboutUs.title ? (
+                          aboutUs.title
+                        ) : (
+                          <div className="h-6" />
+                        )}
+                      </h2>
 
-                        <div className="flex justify-center mt-4">
-                          {Object.keys(aboutUs.social).map((social) => (
-                              <div key={social} className="flex items-center">
-                                {aboutUs.social[social] !== "" ? (
-                                    <div className="flex items-center justify-center w-12 h-12">
-                                      <a
-                                          href={aboutUs.social[social]}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="text-indigo-500 hover:text-indigo-700"
-                                      >
-                                        <i
-                                            className={`fab fa-${
-                                                social ?? ""
-                                            } text-3xl transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110`}
-                                        >
-                                          {" "}
-                                        </i>
-                                      </a>
-                                    </div>
-                                ) : (
-                                    <div />
-                                )}
+                      <div className="flex justify-center mt-4">
+                        {Object.keys(aboutUs.social).map((social) => (
+                          <div key={social} className="flex items-center">
+                            {aboutUs.social[social] !== "" ? (
+                              <div className="flex items-center justify-center w-12 h-12">
+                                <a
+                                  href={aboutUs.social[social]}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-indigo-500 hover:text-indigo-700"
+                                >
+                                  <i
+                                    className={`fab fa-${
+                                      social ?? ""
+                                    } text-3xl transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-110`}
+                                  >
+                                    {" "}
+                                  </i>
+                                </a>
                               </div>
-                          ))}
-                        </div>
+                            ) : (
+                              <div />
+                            )}
+                          </div>
+                        ))}
                       </div>
-
+                    </div>
                   </div>
-
-                  </div>
+                </div>
               ))}
             </div>
           </div>

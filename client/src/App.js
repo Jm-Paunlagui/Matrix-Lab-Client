@@ -49,7 +49,11 @@ export default function App() {
           <Route element={<IndexPublic />}>
             <Route exact="true" path="aboutus" element={<PublicAbout />} />
             <Route exact="true" path="/" element={<PublicHome />} />
-            <Route exact="true" path="leaderboard" element={<PublicLeaderboard />} />
+            <Route
+              exact="true"
+              path="leaderboard"
+              element={<PublicLeaderboard />}
+            />
           </Route>
           {/**
            * End of public routes

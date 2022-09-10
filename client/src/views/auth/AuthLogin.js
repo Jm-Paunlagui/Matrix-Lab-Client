@@ -10,7 +10,7 @@ import {
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
 
-import BackNavigation from '../../components/navbars/BackNavigation';
+import BackNavigation from "../../components/navbars/BackNavigation";
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -38,7 +38,7 @@ export default function AuthLogin() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-max">
           <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg">
-            <BackNavigation backTo={"/"} hasText={false} isSmall/>
+            <BackNavigation backTo={"/"} hasText={false} isSmall />
             <div className={"pr-6 pl-6 pb-6"}>
               <div className="flex items-center py-2 text-gray-800">
                 <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
