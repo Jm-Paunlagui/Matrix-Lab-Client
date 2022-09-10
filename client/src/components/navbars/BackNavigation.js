@@ -7,6 +7,13 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
+/**
+ * @description Back Navigation for the application
+ * @param isSmall - boolean to determine if the back navigation is small
+ * @param hasText - boolean to determine if the back navigation has text
+ * @param backTo - string to determine where the back navigation should go
+ * @param pageTitle - string to determine the page title of the back navigation
+ */
 export default function BackNavigation({
   isSmall = true,
   hasText = true,
