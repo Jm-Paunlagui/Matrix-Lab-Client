@@ -1,6 +1,4 @@
-import { DEFAULT_BUTTON, ICON_PLACE_SELF_CENTER_1 } from '../../assets/styles/input-types-styles'
-
-import { Link } from 'react-router-dom'
+import BackNavigation from '../../components/navbars/BackNavigation';
 import React from "react";
 import Terms from "../../assets/img/terms.svg";
 
@@ -9,25 +7,14 @@ import Terms from "../../assets/img/terms.svg";
  */
 export default function TermsAndConditions() {
   return (
-    <>    
-    <div className="fixed top-0 inline-flex flex-wrap items-center w-full p-1 shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
-      <button type={"button"} className={`text-left ${DEFAULT_BUTTON}`}>
-        <Link to={"/"}>
-          <h1 className="px-3 py-3">
-            <i
-              className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER_1}`}
-            />
-          </h1>
-        </Link>
-      </button>
-      <h1 className="px-3 py-3 text-2xl text-gray-700">Terms and Conditions</h1>
-    </div>
-      <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
+    <>
+      <BackNavigation isSmall={false} hasText backTo={"/"} pageTitle={"Terms and Conditions"} />
+      <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-6 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
         <div className=" place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
             Terms and Conditions
           </h1>
-          <p className="max-w-2xl mb-6 text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
+          <p className="max-w-2xl mb-4 text-justify text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
             This is the terms and conditions of the Sentiment Analysis
             Evaluation Result project. By using this website, you agree to the
             terms and conditions. If you do not agree to the terms and

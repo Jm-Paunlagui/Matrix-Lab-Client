@@ -2,7 +2,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import {
-  DEFAULT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   ICON_PLACE_SELF_CENTER_2,
   PRIMARY_BUTTON,
@@ -11,6 +10,7 @@ import {
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
 
+import BackNavigation from '../../components/navbars/BackNavigation';
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -38,19 +38,8 @@ export default function AuthLogin() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-max">
           <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg">
-            <div className="inline-flex">
-              <button type={"button"} className={`text-left ${DEFAULT_BUTTON}`}>
-                <Link to={"/"}>
-                  <h1 className="px-5 py-3">
-                    <i
-                      className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`}
-                    />
-                    Back
-                  </h1>
-                </Link>
-              </button>
-            </div>
-            <div className={"p-6"}>
+            <BackNavigation backTo={"/"} hasText={false} isSmall/>
+            <div className={"pr-6 pl-6 pb-6"}>
               <div className="flex items-center py-2 text-gray-800">
                 <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
                 <h1 className="ml-3 font-extrabold tracking-widest text-md">

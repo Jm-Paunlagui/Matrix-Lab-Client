@@ -1,11 +1,10 @@
 import {
-  DEFAULT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 
-import { Link } from "react-router-dom";
+import BackNavigation from '../../components/navbars/BackNavigation'
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -18,19 +17,8 @@ export default function AuthForgotPasswordRequest() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-max">
           <div className="relative flex flex-col w-full min-w-0 break-words bg-white border-0 rounded-lg shadow-lg">
-            <div className="inline-flex">
-              <button type={"button"} className={`${DEFAULT_BUTTON}`}>
-                <Link to={"/auth"}>
-                  <h1 className="px-5 py-3">
-                    <i
-                      className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER}`}
-                    />
-                    Back
-                  </h1>
-                </Link>
-              </button>
-            </div>
-            <div className={"p-6"}>
+            <BackNavigation backTo={"/auth"} hasText={false} isSmall/>
+            <div className={"pr-6 pl-6 pb-6"}>
               <div className="flex items-center py-2 text-gray-800">
                 <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
                 <h1 className="ml-3 font-extrabold tracking-widest text-md">
