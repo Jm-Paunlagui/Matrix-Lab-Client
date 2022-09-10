@@ -8,15 +8,15 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import PublicAbout from "./views/public/PublicAbout.js";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
-import PublicHome from "./views/public/PublicHome.js";
+import AuthLogin from "./views/auth/AuthLogin.js";
 import IndexAuth from "./views/auth/IndexAuth.js";
 import IndexPublic from "./views/public/IndexPublic.js";
-import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
-import AuthLogin from "./views/auth/AuthLogin.js";
 import PageNotFound from "./views/response/PageNotFound.js";
 import PrivacyPolicy from "./views/legal/PrivacyPolicy.js";
+import PublicAbout from "./views/public/PublicAbout.js";
+import PublicHome from "./views/public/PublicHome.js";
+import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
 import PublicRanking from "./views/public/PublicRanking.js";
 import TermsAndConditions from "./views/legal/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
