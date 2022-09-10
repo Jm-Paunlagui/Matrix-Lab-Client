@@ -362,7 +362,7 @@ const Technologies = [
 /**
  * @description The about page component
  */
-export default function AboutUS() {
+export default function PublicAbout() {
   return (
     <>
       <div className="grid flex-col items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat ">

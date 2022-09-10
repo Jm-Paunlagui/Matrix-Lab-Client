@@ -8,17 +8,17 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import AboutUS from "./views/pub/AboutUS.js";
-import ForgotPasswordReq from "./views/auth/ForgotPasswordReq.js";
-import Home from "./views/pub/Home.js";
+import PublicAbout from "./views/public/PublicAbout.js";
+import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
+import PublicHome from "./views/public/PublicHome.js";
 import IndexAuth from "./views/auth/IndexAuth.js";
-import IndexPub from "./views/pub/IndexPub.js";
-import Leaderboard from "./views/pub/Leaderboard.js";
-import Login from "./views/auth/Login.js";
-import PageNotFound from "./views/pub/PageNotFound.js";
-import PrivacyPolicy from "./views/pub/PrivacyPolicy.js";
-import Ranking from "./views/pub/Ranking.js";
-import TermsAndConditions from "./views/pub/TermsAndConditions.js";
+import IndexPublic from "./views/public/IndexPublic.js";
+import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
+import AuthLogin from "./views/auth/AuthLogin.js";
+import PageNotFound from "./views/response/PageNotFound.js";
+import PrivacyPolicy from "./views/legal/PrivacyPolicy.js";
+import PublicRanking from "./views/public/PublicRanking.js";
+import TermsAndConditions from "./views/legal/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
 /**
@@ -43,19 +43,19 @@ export default function App() {
       <Wrapper>
         <Routes>
           {/**
-           * @description Handles public routes for the application and the IndexPub component has the outlet for the
+           * @description Handles public routes for the application and the IndexPublic component has the outlet for the
            * public routes
            */}
-          <Route element={<IndexPub />}>
-            <Route exact="true" path="aboutus" element={<AboutUS />} />
-            <Route exact="true" path="/" element={<Home />} />
-            <Route exact="true" path="leaderboard" element={<Leaderboard />} />
+          <Route element={<IndexPublic />}>
+            <Route exact="true" path="aboutus" element={<PublicAbout />} />
+            <Route exact="true" path="/" element={<PublicHome />} />
+            <Route exact="true" path="leaderboard" element={<PublicLeaderboard />} />
             <Route
               exact="true"
               path="privacy-policy"
               element={<PrivacyPolicy />}
             />
-            <Route exact="true" path="ranking" element={<Ranking />} />
+            <Route exact="true" path="ranking" element={<PublicRanking />} />
             <Route
               exact="true"
               path="terms-and-conditions"
@@ -74,9 +74,9 @@ export default function App() {
             <Route
               exact="true"
               path="forgot-password"
-              element={<ForgotPasswordReq />}
+              element={<AuthForgotPasswordRequest />}
             />
-            <Route exact="true" path="auth" element={<Login />} />
+            <Route exact="true" path="auth" element={<AuthLogin />} />
           </Route>
           {/**
            * End of auth routes

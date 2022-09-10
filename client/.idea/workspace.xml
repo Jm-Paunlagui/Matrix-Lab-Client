@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="update to workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/components/navbars/AdminNavbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/admin/AdminDashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/admin/AdminSettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/admin/AdminTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navbars/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbars/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/admin/IndexAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/IndexAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/ForgotPasswordReq.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/AuthForgotPasswordRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/AuthLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/AboutUS.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicAbout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/IndexPub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/IndexPublic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/Leaderboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicLeaderboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/PageNotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/response/PageNotFound.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/PrivacyPolicy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/PrivacyPolicy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/Ranking.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicRanking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pub/TermsAndConditions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/TermsAndConditions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +65,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\JmPaunlagui-CS\Matrix-Client\client\src\views\legal" />
+      <recent name="D:\Users\JmPaunlagui-CS\Matrix-Client\client\src\views\response" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -130,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662818902233</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update to workspace.xml">
+      <created>1662819069092</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1662819069092</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

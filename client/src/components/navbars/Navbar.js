@@ -79,7 +79,7 @@ export default function Navbar() {
               <ul className="flex flex-col justify-start list-none md:flex-row md:ml-auto">
                 <NavLink to="/">
                   <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                    <AiFillHome size={24} title="Home" />
+                    <AiFillHome size={24} title="PublicHome" />
                     <h1 className="block px-8 ml-3 text-sm font-medium tracking-wider md:hidden">
                       Home
                     </h1>
@@ -87,7 +87,7 @@ export default function Navbar() {
                 </NavLink>
                 <NavLink to="leaderboard">
                   <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                    <MdLeaderboard size={24} title="Leaderboard" />
+                    <MdLeaderboard size={24} title="PublicLeaderboard" />
                     <div className="block px-8 ml-3 text-sm font-medium tracking-wider md:hidden">
                       Leaderboard
                     </div>
@@ -106,17 +106,17 @@ export default function Navbar() {
             <ul className="flex-col justify-start hidden list-none md:flex md:flex-row md:ml-auto">
               <NavLink to="/">
                 <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                  <AiFillHome size={24} title="Home" />
+                  <AiFillHome size={24} title="PublicHome" />
                   <h1 className="block px-8 ml-3 text-sm font-medium tracking-wider md:hidden">
-                    Home
+                    PublicHome
                   </h1>
                 </li>
               </NavLink>
               <NavLink to="leaderboard">
                 <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                  <MdLeaderboard size={24} title="Leaderboard" />
+                  <MdLeaderboard size={24} title="PublicLeaderboard" />
                   <div className="block px-8 ml-3 text-sm font-medium tracking-wider md:hidden">
-                    Leaderboard
+                    PublicLeaderboard
                   </div>
                 </li>
               </NavLink>

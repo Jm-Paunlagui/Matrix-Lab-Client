@@ -6,7 +6,7 @@ import React from "react";
 /**
  * @description Handles about, home, leaderboard, privacy, and terms page for the application
  */
-export default function IndexPub() {
+export default function IndexPublic() {
   return (
     <>
       <Navbar />

@@ -17,7 +17,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 /**
  * @description User login form for the application
  */
-export default function Login() {
+export default function AuthLogin() {
   /**
    * @type {boolean}
    * @description Hook to handle the state of the show and hide password
