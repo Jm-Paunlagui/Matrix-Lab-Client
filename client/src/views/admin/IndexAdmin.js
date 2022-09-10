@@ -1,10 +1,10 @@
-import AdminNavbar from '../../components/sidebar/AdminNavbar'
+import AdminNavigationBar from '../../components/sidebar/AdminNavigationBar'
 import React from 'react'
 
 export default function IndexAdmin() {
   return (
     <>
-        <AdminNavbar />
+        <AdminNavigationBar />
     </>
   )
 }
