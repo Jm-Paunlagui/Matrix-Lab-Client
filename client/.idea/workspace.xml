@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="update to workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/views/admin/AdminDashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/admin/AdminSettings.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/admin/AdminTables.js" afterDir="false" />
+    <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="Just for the icon">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navbars/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navbars/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/IndexAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/IndexAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/ForgotPasswordReq.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/AuthForgotPasswordRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/AuthLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/AboutUS.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicAbout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/IndexPub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/IndexPublic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/Leaderboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicLeaderboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/PageNotFound.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/response/PageNotFound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/PrivacyPolicy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/PrivacyPolicy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/Ranking.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/PublicRanking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pub/TermsAndConditions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/TermsAndConditions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/legal/PrivacyPolicy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/PrivacyPolicy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/legal/TermsAndConditions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/TermsAndConditions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +146,35 @@
       <option name="project" value="LOCAL" />
       <updated>1662819069092</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="File update">
+      <created>1662821087997</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1662821087997</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Admin init">
+      <created>1662821189759</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662821189759</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Footer update">
+      <created>1662826210913</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1662826210913</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Just for the icon">
+      <created>1662826250436</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662826250436</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +199,10 @@
     <MESSAGE value="update" />
     <MESSAGE value="File name update" />
     <MESSAGE value="update to workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="update to workspace.xml" />
+    <MESSAGE value="File update" />
+    <MESSAGE value="Admin init" />
+    <MESSAGE value="Footer update" />
+    <MESSAGE value="Just for the icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Just for the icon" />
   </component>
 </project>
