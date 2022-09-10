@@ -8,6 +8,9 @@ export default function IndexAdmin() {
   return (
     <>
       <AdminNavigationBar />
+      <div>
+        <h1>Admin</h1>
+      </div>
     </>
   );
 }
