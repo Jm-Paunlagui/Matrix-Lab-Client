@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="update" />
+    <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="update to workspace.xml">
+      <change afterPath="$PROJECT_DIR$/src/components/navbars/AdminNavbar.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" show_ignored="true" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -107,7 +116,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662780087635</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="File name update">
+      <created>1662818875358</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662818875358</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update to workspace.xml">
+      <created>1662818902233</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1662818902233</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +153,8 @@
     <MESSAGE value="deleted" />
     <MESSAGE value=".gitignore update" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="File name update" />
+    <MESSAGE value="update to workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="update to workspace.xml" />
   </component>
 </project>
