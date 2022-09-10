@@ -10,9 +10,9 @@ import { TbDeviceAnalytics } from "react-icons/tb";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
- * @description Navbar component with useful links
+ * @description NavigationBar component with useful links
  */
-export default function Navbar() {
+export default function NavigationBar() {
   /**
    * @type {string}
    * @description Gets the access token from local storage
@@ -21,7 +21,7 @@ export default function Navbar() {
   // check the length of the token
 
   /**
-   * @description Navbar icon toggle function if the user is logged in or not
+   * @description NavigationBar icon toggle function if the user is logged in or not
    * @default {FaSignInAlt}
    */
   const navIcon = tokenAuth ? (
