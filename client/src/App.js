@@ -50,21 +50,22 @@ export default function App() {
             <Route exact="true" path="aboutus" element={<PublicAbout />} />
             <Route exact="true" path="/" element={<PublicHome />} />
             <Route exact="true" path="leaderboard" element={<PublicLeaderboard />} />
-            <Route
-              exact="true"
-              path="privacy-policy"
-              element={<PrivacyPolicy />}
-            />
-            <Route exact="true" path="ranking" element={<PublicRanking />} />
-            <Route
-              exact="true"
-              path="terms-and-conditions"
-              element={<TermsAndConditions />}
-            />
           </Route>
           {/**
            * End of public routes
            */}
+
+          <Route
+            exact="true"
+            path="privacy-policy"
+            element={<PrivacyPolicy />}
+          />
+          <Route exact="true" path="ranking" element={<PublicRanking />} />
+          <Route
+            exact="true"
+            path="terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
 
           {/**
            * @description Handles auth routes for the application and the IndexAuth component has the outlet for the
