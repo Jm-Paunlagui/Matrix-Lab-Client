@@ -1,3 +1,6 @@
+import { DEFAULT_BUTTON, ICON_PLACE_SELF_CENTER_1 } from '../../assets/styles/input-types-styles'
+
+import { Link } from 'react-router-dom'
 import Privacy from "../../assets/img/privacy.svg";
 import React from "react";
 
@@ -7,6 +10,18 @@ import React from "react";
 export default function PrivacyPolicy() {
   return (
     <>
+    <div className="fixed top-0 inline-flex flex-wrap items-center w-full p-1 shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
+      <button type={"button"} className={`text-left ${DEFAULT_BUTTON}`}>
+        <Link to={"/"}>
+          <h1 className="px-3 py-3">
+            <i
+              className={`fas fa-arrow-left ${ICON_PLACE_SELF_CENTER_1}`}
+            />
+          </h1>
+        </Link>
+      </button>
+      <h1 className="px-3 py-3 text-2xl text-gray-700">Privacy Policy</h1>
+    </div>
       <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
         <div className=" place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
