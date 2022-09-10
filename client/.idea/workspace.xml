@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="Just for the icon">
+    <list default="true" id="659cedde-2f9f-4c43-9e80-359817f0476d" name="Changes" comment="Rename...">
+      <change afterPath="$PROJECT_DIR$/src/components/navbars/BackNavigation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/admin/IndexAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/IndexAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/AuthForgotPasswordRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/AuthForgotPasswordRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/AuthLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/AuthLogin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/legal/PrivacyPolicy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/PrivacyPolicy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/legal/TermsAndConditions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/legal/TermsAndConditions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/public/IndexPublic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/public/IndexPublic.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +178,35 @@
       <option name="project" value="LOCAL" />
       <updated>1662826250436</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Update for legal">
+      <created>1662826350845</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1662826350845</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update for legal">
+      <created>1662826366253</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1662826366253</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update to workspace.xml">
+      <created>1662826424179</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1662826424179</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Rename...">
+      <created>1662828603213</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1662828603213</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,11 +230,13 @@
     <MESSAGE value=".gitignore update" />
     <MESSAGE value="update" />
     <MESSAGE value="File name update" />
-    <MESSAGE value="update to workspace.xml" />
     <MESSAGE value="File update" />
     <MESSAGE value="Admin init" />
     <MESSAGE value="Footer update" />
     <MESSAGE value="Just for the icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Just for the icon" />
+    <MESSAGE value="Update for legal" />
+    <MESSAGE value="update to workspace.xml" />
+    <MESSAGE value="Rename..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename..." />
   </component>
 </project>
