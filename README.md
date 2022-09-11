@@ -29,18 +29,10 @@
    - To enable yarn package manager to nodejs
 
      - run your terminal as administrator and run `corepack enable` to enable yarn package manager. see the [documentation](https://yarnpkg.com/getting-started/install) in yarn.
-       ![image](https://user-images.githubusercontent.com/95494414/188814334-e1b5ba87-57aa-4c08-9e75-c42aa5d661de.png)
 
      Now that we enabled the corepack we can now use the yarn package manager, proceed to next step
 
-   - Open your terminal to the directory you want to place the project (in my case it's in the desktop, so feel free to choose the directory of this project on your own.) and paste this `git clone https://github.com/Jm-Paunlagui/Project-1-SAER-Client.git`
-     ![image](https://user-images.githubusercontent.com/95494414/188801653-9faee0e2-ee1a-47db-b7ea-ad2f1947a66a.png)
-
-   - Go to the directory of project by typing `cd Project-1-SAER-Client/client`
-     ![image](https://user-images.githubusercontent.com/95494414/188801831-73dd6559-aaed-4124-8f79-2744fbfcf50b.png)
-
+   - Open your terminal to the directory you want to place the project (in my case it's in the desktop, so feel free to choose the directory of this project on your own.) and paste this `git clone https://github.com/Jm-Paunlagui/Matrix-Client.git`
+   - Go to the directory of project by typing `cd Matrix-Client/client`
    - Install the node_modules run `yarn`
-     ![image](https://user-images.githubusercontent.com/95494414/188818515-7dae9f73-d69d-4013-a7c4-fe28eed55add.png)
-
    - After installing the modules you can now run the project by `yarn start`
-     ![image](https://user-images.githubusercontent.com/95494414/188820689-d269f659-00d6-459e-ba9f-76e217093e01.png)
