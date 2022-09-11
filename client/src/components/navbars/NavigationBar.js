@@ -12,22 +12,22 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description Navigation bar array of objects for the navigation bar links
  */
 const NavigationBarlinks = [
-    {
-        name: "Home",
-        icon: <AiFillHome />,
-        link: "/",
-    },
-    {
-        name: "Leaderboard",
-        icon: <MdLeaderboard />,
-        link: "/leaderboard",
-    },
-    {
-        name: "Sign In",
-        icon: <FaSignInAlt />,
-        link: "/auth",
-    }
-]
+  {
+    name: "Home",
+    icon: <AiFillHome />,
+    link: "/",
+  },
+  {
+    name: "Leaderboard",
+    icon: <MdLeaderboard />,
+    link: "/leaderboard",
+  },
+  {
+    name: "Sign In",
+    icon: <FaSignInAlt />,
+    link: "/auth",
+  },
+];
 
 /**
  * @description NavigationBar component with useful links
@@ -88,14 +88,14 @@ export default function NavigationBar() {
             </Transition>
             <ul className="flex-col justify-start hidden list-none md:flex md:flex-row md:ml-auto">
               {NavigationBarlinks.map((link) => (
-                  <NavLink to={link.link} key={link.name}>
-                    <li className="flex items-center px-4 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                      {/*<AiFillHome size={24} title="PublicHome" />*/}
-                      <h1 className="block ml-3 text-sm font-medium tracking-wider">
-                        {link.name}
-                      </h1>
-                    </li>
-                  </NavLink>
+                <NavLink to={link.link} key={link.name}>
+                  <li className="flex items-center px-4 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
+                    {/*<AiFillHome size={24} title="PublicHome" />*/}
+                    <h1 className="block ml-3 text-sm font-medium tracking-wider">
+                      {link.name}
+                    </h1>
+                  </li>
+                </NavLink>
               ))}
             </ul>
           </Menu>
