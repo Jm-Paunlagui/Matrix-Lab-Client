@@ -1,6 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
 
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import {
   ICON_PLACE_SELF_CENTER,
   ICON_PLACE_SELF_CENTER_2,
@@ -9,8 +8,10 @@ import {
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import BackNavigation from "../../components/navbars/BackNavigation";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -62,13 +63,7 @@ export default function AuthLogin() {
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                     />
-                    <label className={`${ICON_PLACE_SELF_CENTER_2}`}>
-                      {showPassword === false ? (
-                        <AiFillEyeInvisible onClick={toggleShowPassword} />
-                      ) : (
-                        <AiFillEye onClick={toggleShowPassword} />
-                      )}
-                    </label>
+                      <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className={`${ICON_PLACE_SELF_CENTER_2}`} onClick={toggleShowPassword} />
                   </div>
                   <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                     <button type={"button"} className={`${SECONDARY_BUTTON}`}>

@@ -1,3 +1,6 @@
+import { faFacebookMessenger, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -46,12 +49,11 @@ export default function Footer() {
                 type="button"
               >
                 <a
-                  className="fab fa-twitter "
                   href="https://twitter.com/messages/719487995892539393-719487995892539393?text="
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  {" "}
+                    <FontAwesomeIcon icon={faTwitter} />
                 </a>
               </button>
               <button
@@ -59,18 +61,17 @@ export default function Footer() {
                 type="button"
               >
                 <a
-                  className="fab fa-facebook-messenger hover:text-blue-700"
                   href="https://www.messenger.com/t/100001178366981"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  {" "}
+                    <FontAwesomeIcon icon={faFacebookMessenger} />
                 </a>
               </button>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap text-center py-4">
+        <div className="flex flex-wrap py-4 text-center">
           <div className="items-center w-full md:flex md:space-x-20 lg:place-content-end lg:px-4 xl:px-44 place-content-center">
             {UsefulLinks.map((link) => (
               <Link to={`/${link.link}`} key={link.name}>

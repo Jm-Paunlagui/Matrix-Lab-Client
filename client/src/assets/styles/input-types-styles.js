@@ -5,7 +5,7 @@ export const DEFAULT_TRANSITION_ANIMATION =
 export const ICON_PLACE_SELF_CENTER = "pr-2 place-self-center";
 export const ICON_PLACE_SELF_CENTER_1 = "place-self-center";
 export const ICON_PLACE_SELF_CENTER_2 =
-  "absolute px-2 text-2xl text-gray-400 rounded py-9 right-2 hover:text-gray-500";
+  "absolute w-8 text-2xl text-gray-400 rounded py-9 right-2 hover:text-gray-500";
 
 // px-5 py-3 pl-4 for button
 // px-5 py-3 for link
