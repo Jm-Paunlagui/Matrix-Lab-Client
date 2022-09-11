@@ -8,8 +8,12 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import AdminDashboard from "./views/admin/AdminDashboard.js";
+import AdminSettings from "./views/admin/AdminSettings.js";
+import AdminTables from "./views/admin/AdminTables.js";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
+import IndexAdmin from "./views/admin/IndexAdmin";
 import IndexAuth from "./views/auth/IndexAuth.js";
 import IndexPublic from "./views/public/IndexPublic.js";
 import PageNotFound from "./views/response/PageNotFound.js";
@@ -90,7 +94,11 @@ export default function App() {
            * @description Handles admin routes for the application and the IndexAdmin component has the outlet for the
            * admin routes
            */}
-          <Route exact="true" path="admin" element={<div>Admin</div>} />
+          <Route element={<IndexAdmin />}>
+            <Route exact="true" path="admin" element={<AdminDashboard />} />
+            <Route exact="true" path="admin/tables" element={<AdminTables />} />
+            <Route exact="true" path="admin/settings" element={<AdminSettings />} />
+          </Route>
 
           {/**
            * @description Handles page not found route for the application
