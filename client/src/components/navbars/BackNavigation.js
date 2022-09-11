@@ -40,7 +40,7 @@ export default function BackNavigation({
             </Link>
           </button>
           {hasText ? (
-            <h1 className="px-3 py-3 text-gray-700 truncate cursor-default text-md">
+            <h1 className="py-3 overflow-hidden text-lg font-medium text-gray-700 cursor-default text-ellipsis md:text-3xl">
               {pageTitle}
             </h1>
           ) : null}

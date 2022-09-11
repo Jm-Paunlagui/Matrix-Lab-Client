@@ -15,13 +15,10 @@ export default function PublicHome() {
     <div className="flex flex-col items-center max-w-screen-xl min-h-screen py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
       <div className=" place-self-center lg:col-span-6">
         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
-          Evaluation Result Sentiment Analysis
+          Sentiment Analysis
         </h1>
         <p className="max-w-2xl mb-4 text-justify text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-          The result can be analyzed by the number of positive, negative, and
-          neutral comments and the overall sentiment of the evaluation result
-          can be determined by the percentage of positive, negative, and neutral
-          comments in the evaluation result.
+            Sentiment analysis is the process of determining whether a piece of writing is positive, negative or neutral. It’s also known as opinion mining, deriving the opinion or attitude of a speaker. A common use case for sentiment analysis is to discover how people feel about a particular topic. In this case, we are using sentiment analysis to determine the sentiment of a evaluation.
         </p>
         <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
           <button type={"button"} className={` ${PRIMARY_BUTTON}`}>
