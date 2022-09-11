@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function AdminSettings() {
-  return (
-    <div>AdminSettings</div>
-  )
+  return <div>AdminSettings</div>;
 }

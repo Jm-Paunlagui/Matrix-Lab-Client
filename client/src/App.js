@@ -97,7 +97,11 @@ export default function App() {
           <Route element={<IndexAdmin />}>
             <Route exact="true" path="admin" element={<AdminDashboard />} />
             <Route exact="true" path="admin/tables" element={<AdminTables />} />
-            <Route exact="true" path="admin/settings" element={<AdminSettings />} />
+            <Route
+              exact="true"
+              path="admin/settings"
+              element={<AdminSettings />}
+            />
           </Route>
 
           {/**

@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function AdminTables() {
-  return (
-    <div>AdminTables</div>
-  )
+  return <div>AdminTables</div>;
 }
