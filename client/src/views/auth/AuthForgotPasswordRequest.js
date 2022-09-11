@@ -5,9 +5,9 @@ import {
 } from "../../assets/styles/input-types-styles";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
@@ -49,7 +49,10 @@ export default function AuthForgotPasswordRequest() {
                     className={`mt-8 px-5 py-3 pl-4  ${PRIMARY_BUTTON}`}
                     type={"button"}
                   >
-                    <FontAwesomeIcon icon={faRotateRight} className={`${ICON_PLACE_SELF_CENTER}`} />
+                    <FontAwesomeIcon
+                      icon={faRotateRight}
+                      className={`${ICON_PLACE_SELF_CENTER}`}
+                    />
                     Reset Password
                   </button>
                 </form>
