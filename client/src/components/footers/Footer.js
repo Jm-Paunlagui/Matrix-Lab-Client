@@ -1,6 +1,9 @@
-import { faFacebookMessenger, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import {
+  faFacebookMessenger,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -53,7 +56,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                    <FontAwesomeIcon icon={faTwitter} />
+                  <FontAwesomeIcon icon={faTwitter} />
                 </a>
               </button>
               <button
@@ -65,7 +68,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                    <FontAwesomeIcon icon={faFacebookMessenger} />
+                  <FontAwesomeIcon icon={faFacebookMessenger} />
                 </a>
               </button>
             </div>
