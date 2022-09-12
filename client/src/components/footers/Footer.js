@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import React from "react";
 
+import { DELAY_1 } from "../../assets/styles/input-types-styles";
+
 /**
  * @type {Array}
  * @description Links to be displayed in the footer
@@ -78,7 +80,7 @@ export default function Footer() {
           <div className="items-center w-full md:flex md:space-x-20 lg:place-content-end lg:px-4 xl:px-44 place-content-center">
             {UsefulLinks.map((link) => (
               <Link to={`/${link.link}`} key={link.name}>
-                <div className="block pb-2 text-sm font-semibold transition duration-300 ease-linear delay-150 hover:text-gray-800">
+                <div className={`block pb-2 text-sm font-semibold hover:text-gray-800 ${DELAY_1}`}>
                   {link.name}
                 </div>
               </Link>
