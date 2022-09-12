@@ -57,7 +57,7 @@ export default function AuthLogin() {
                   MATRIX LAB
                 </h1>
               </div>
-              <div className="flex-auto pt-0">
+              <div className="flex-auto space-y-6">
                 <h6 className="text-lg font-bold text-gray-500">
                   Sign in to your account
                 </h6>
