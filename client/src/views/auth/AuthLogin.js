@@ -8,21 +8,20 @@ import {
 import React, { useState } from "react";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
-import FormControl from '@mui/material/FormControl';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
 import { Link } from "react-router-dom";
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
  * @description User login form for the application
  */
 export default function AuthLogin() {
-
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -63,36 +62,44 @@ export default function AuthLogin() {
                 </h6>
                 <form className="relative mx-auto mt-4 space-y-6 max-w-screen">
                   <FormControl fullWidth variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
+                    <InputLabel htmlFor="outlined-adornment-username">
+                      Username
+                    </InputLabel>
                     <OutlinedInput
-                        id="outlined-adornment-username"
-                        type={'text'}
-                        value={values.username}
-                        onChange={handleChange('username')}
-                        label="Username"
+                      id="outlined-adornment-username"
+                      type={"text"}
+                      value={values.username}
+                      onChange={handleChange("username")}
+                      label="Username"
                     />
                   </FormControl>
 
                   <FormControl fullWidth variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <InputLabel htmlFor="outlined-adornment-password">
+                      Password
+                    </InputLabel>
                     <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        onChange={handleChange('password')}
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                              {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                          </InputAdornment>
-                        }
-                        label="Password"
+                      id="outlined-adornment-password"
+                      type={values.showPassword ? "text" : "password"}
+                      value={values.password}
+                      onChange={handleChange("password")}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {values.showPassword ? (
+                              <VisibilityOff />
+                            ) : (
+                              <Visibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Password"
                     />
                   </FormControl>
 

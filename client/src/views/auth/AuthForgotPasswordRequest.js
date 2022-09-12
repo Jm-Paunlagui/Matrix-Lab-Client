@@ -16,7 +16,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description Handles the forgot password request page
  */
 export default function AuthForgotPasswordRequest() {
-
   const [values, setValues] = React.useState({
     email: "",
   });
@@ -52,13 +51,15 @@ export default function AuthForgotPasswordRequest() {
                 </div>
                 <form className="relative mx-auto space-y-6 max-w-screen">
                   <FormControl fullWidth variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-username">Email</InputLabel>
+                    <InputLabel htmlFor="outlined-adornment-username">
+                      Email
+                    </InputLabel>
                     <OutlinedInput
-                        id="outlined-adornment-username"
-                        type={'text'}
-                        value={values.email}
-                        onChange={handleChange('email')}
-                        label="Email"
+                      id="outlined-adornment-username"
+                      type={"text"}
+                      value={values.email}
+                      onChange={handleChange("email")}
+                      label="Email"
                     />
                   </FormControl>
                   <button
