@@ -1,10 +1,8 @@
-import React from 'react'
+import React from "react";
 
 /**
  * @description Handles the admin ranking
  */
 export default function AdminRanking() {
-  return (
-    <div>AdminRanking</div>
-  )
+  return <div>AdminRanking</div>;
 }

@@ -1,10 +1,8 @@
-import React from 'react'
+import React from "react";
 
 /**
  * @description Handles the admin leaderboard
  */
 export default function AdminLearderboard() {
-  return (
-    <div>AdminLearderboard</div>
-  )
+  return <div>AdminLearderboard</div>;
 }
