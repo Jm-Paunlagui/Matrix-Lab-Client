@@ -79,7 +79,9 @@ export default function Footer() {
           <div className="items-center w-full md:flex md:space-x-20 lg:place-content-end lg:px-4 xl:px-44 place-content-center">
             {UsefulLinks.map((link) => (
               <Link to={`/${link.link}`} key={link.name}>
-                <div className={`block pb-2 text-sm font-semibold hover:text-gray-800 ${DELAY_1}`}>
+                <div
+                  className={`block pb-2 text-sm font-semibold hover:text-gray-800 ${DELAY_1}`}
+                >
                   {link.name}
                 </div>
               </Link>
