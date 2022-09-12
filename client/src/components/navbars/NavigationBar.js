@@ -27,25 +27,29 @@ export default function NavigationBar(to) {
   const NavigationBarlinks = [
     {
       name: "Home",
-      icon: <AiFillHome size={16}/>,
+      icon: <AiFillHome size={16} />,
+      icon_: <AiFillHome size={24}/>,
       link: "/",
         current: isActive("/"),
     },
     {
       name: "Leaderboard",
       icon: <MdLeaderboard size={16}/>,
+      icon_: <MdLeaderboard size={24}/>,
       link: "/leaderboard",
         current: isActive("/leaderboard"),
     },
     {
       name: "Ranking",
       icon: <GiRank3 size={16}/>,
+      icon_: <GiRank3 size={24}/>,
       link: "/ranking",
       current: isActive("/ranking"),
     },
     {
       name: "Sign In",
       icon: <FaSignInAlt size={16}/>,
+      icon_: <FaSignInAlt size={24}/>,
       link: "/auth",
         current: isActive("/auth"),
     },
@@ -67,12 +71,12 @@ export default function NavigationBar(to) {
                 </h1>
               </div>
             </NavLink>
-            <Menu.Button className={`block px-3 py-1 text-base leading-none ${DELAY_1} bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none`}>
+            <Menu.Button className={`block px-3 py-1  lg:hidden`}>
               <span className="sr-only">Open main menu</span>
               {open ? (
-                <XMarkIcon className="block w-6 h-6 " aria-hidden="true" />
+                <XMarkIcon className="block w-6 h-6" />
               ) : (
-                <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
+                <Bars3Icon className="block w-6 h-6"  />
               )}
             </Menu.Button>
           </div>
@@ -95,8 +99,8 @@ export default function NavigationBar(to) {
                 {NavigationBarlinks.map((link) => (
                   <NavLink to={link.link} key={link.name}>
                     <li className={`${link.current ? "text-blue-900 border-y-2 border-blue-900" : ""} ${DELAY_3} flex items-center justify-center px-4 py-4 text-gray-700 hover:text-blue-900`}>
-                      <span>{link.icon}</span>
-                      <h1 className="block ml-1 text-lg font-medium tracking-tight">
+                      {link.icon}
+                      <h1 className="block ml-1 text-lg font-medium">
                         {link.name}
                       </h1>
                     </li>
@@ -107,11 +111,8 @@ export default function NavigationBar(to) {
             <ul className="flex-col justify-start hidden list-none lg:flex lg:flex-row lg:ml-auto">
               {NavigationBarlinks.map((link) => (
                 <NavLink to={link.link} key={link.name}>
-                  <li className={`${link.current ? "text-blue-900 border-b-2 border-blue-900" : ""} ${DELAY_3} flex items-center px-4 py-4 text-gray-700 hover:text-blue-900`}>
-                    <span>{link.icon}</span>
-                    <h1 className="block ml-1 text-lg font-medium tracking-tight">
-                      {link.name}
-                    </h1>
+                  <li className={`${link.current ? "text-blue-900 border-b-2 border-blue-900" : ""} ${DELAY_3} flex items-center px-8 py-4 text-gray-700 hover:text-blue-900`}>
+                    {link.icon_}
                   </li>
                 </NavLink>
               ))}
