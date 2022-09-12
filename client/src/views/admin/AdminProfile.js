@@ -1,10 +1,8 @@
-import React from 'react'
+import React from "react";
 
 /**
  * @description Handles the admin profile
  */
 export default function AdminProfile() {
-  return (
-    <div>AdminProfile</div>
-  )
+  return <div>AdminProfile</div>;
 }
