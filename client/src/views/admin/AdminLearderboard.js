@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function AdminLearderboard() {
-  return (
-    <div>AdminLearderboard</div>
-  )
+  return <div>AdminLearderboard</div>;
 }

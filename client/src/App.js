@@ -56,7 +56,7 @@ export default function App() {
            */}
           <Route element={<IndexPublic />}>
             <Route exact="true" path="aboutus" element={<PublicAbout />} />
-            <Route exact="true"  path="/" element={<PublicHome />} />
+            <Route exact="true" path="/" element={<PublicHome />} />
             <Route
               exact="true"
               path="leaderboard"
@@ -100,7 +100,11 @@ export default function App() {
            */}
           <Route exact="true" path="admin" element={<IndexAdmin />}>
             <Route exact="true" path="dashboard" element={<AdminDashboard />} />
-            <Route exact="true" path="leaderboard" element={<AdminLearderboard />} />
+            <Route
+              exact="true"
+              path="leaderboard"
+              element={<AdminLearderboard />}
+            />
             <Route exact="true" path="predict" element={<AdminPrediction />} />
             <Route exact="true" path="profile" element={<AdminProfile />} />
             <Route exact="true" path="ranking" element={<AdminRanking />} />
