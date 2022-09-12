@@ -6,13 +6,11 @@ import React, { Fragment } from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 export default function AdminNavigationBar(to) {
-
   const router = useResolvedPath(to);
 
   function isActive(link) {
     return router.pathname === link;
   }
-
 
   const navigation = [
     {
