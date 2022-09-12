@@ -14,12 +14,11 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description NavigationBar component with useful links
  */
 export default function NavigationBar(to) {
+  const router = useResolvedPath(to);
 
-    const router = useResolvedPath(to);
-
-    function isActive (link) {
-        return router.pathname === link;
-    }
+  function isActive(link) {
+    return router.pathname === link;
+  }
 
   /**
    * @description Navigation bar array of objects for the navigation bar links
@@ -28,30 +27,30 @@ export default function NavigationBar(to) {
     {
       name: "Home",
       icon: <AiFillHome size={16} />,
-      icon_: <AiFillHome size={24}/>,
+      icon_: <AiFillHome size={24} />,
       link: "/",
-        current: isActive("/"),
+      current: isActive("/"),
     },
     {
       name: "Leaderboard",
-      icon: <MdLeaderboard size={16}/>,
-      icon_: <MdLeaderboard size={24}/>,
+      icon: <MdLeaderboard size={16} />,
+      icon_: <MdLeaderboard size={24} />,
       link: "/leaderboard",
-        current: isActive("/leaderboard"),
+      current: isActive("/leaderboard"),
     },
     {
       name: "Ranking",
-      icon: <GiRank3 size={16}/>,
-      icon_: <GiRank3 size={24}/>,
+      icon: <GiRank3 size={16} />,
+      icon_: <GiRank3 size={24} />,
       link: "/ranking",
       current: isActive("/ranking"),
     },
     {
       name: "Sign In",
-      icon: <FaSignInAlt size={16}/>,
-      icon_: <FaSignInAlt size={24}/>,
+      icon: <FaSignInAlt size={16} />,
+      icon_: <FaSignInAlt size={24} />,
       link: "/auth",
-        current: isActive("/auth"),
+      current: isActive("/auth"),
     },
   ];
 
@@ -66,7 +65,9 @@ export default function NavigationBar(to) {
             <NavLink to="/">
               <div className="flex items-center px-3 py-2 text-gray-900 transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
                 <img src={logo} alt="logo" className="w-10 h-10" />
-                <h1 className={`ml-2 text-xl font-bold tracking-widest ${DELAY_1} md:text-3xl lg:flex`}>
+                <h1
+                  className={`ml-2 text-xl font-bold tracking-widest ${DELAY_1} md:text-3xl lg:flex`}
+                >
                   MATRIX LAB
                 </h1>
               </div>
@@ -76,7 +77,7 @@ export default function NavigationBar(to) {
               {open ? (
                 <XMarkIcon className="block w-6 h-6" />
               ) : (
-                <Bars3Icon className="block w-6 h-6"  />
+                <Bars3Icon className="block w-6 h-6" />
               )}
             </Menu.Button>
           </div>
@@ -98,7 +99,13 @@ export default function NavigationBar(to) {
               <ul className="flex flex-col ml-auto space-y-1">
                 {NavigationBarlinks.map((link) => (
                   <NavLink to={link.link} key={link.name}>
-                    <li className={`${link.current ? "text-blue-900 border-y-2 border-blue-900" : ""} ${DELAY_3} flex items-center justify-center px-4 py-4 text-gray-700 hover:text-blue-900`}>
+                    <li
+                      className={`${
+                        link.current
+                          ? "text-blue-900 border-y-2 border-blue-900"
+                          : ""
+                      } ${DELAY_3} flex items-center justify-center px-4 py-4 text-gray-700 hover:text-blue-900`}
+                    >
                       {link.icon}
                       <h1 className="block ml-1 text-lg font-medium">
                         {link.name}
@@ -111,7 +118,13 @@ export default function NavigationBar(to) {
             <ul className="flex-col justify-start hidden list-none lg:flex lg:flex-row lg:ml-auto">
               {NavigationBarlinks.map((link) => (
                 <NavLink to={link.link} key={link.name}>
-                  <li className={`${link.current ? "text-blue-900 border-b-2 border-blue-900" : ""} ${DELAY_3} flex items-center px-8 py-4 text-gray-700 hover:text-blue-900`}>
+                  <li
+                    className={`${
+                      link.current
+                        ? "text-blue-900 border-b-2 border-blue-900"
+                        : ""
+                    } ${DELAY_3} flex items-center px-8 py-4 text-gray-700 hover:text-blue-900`}
+                  >
                     {link.icon_}
                   </li>
                 </NavLink>
