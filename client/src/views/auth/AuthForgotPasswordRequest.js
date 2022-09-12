@@ -20,6 +20,11 @@ export default function AuthForgotPasswordRequest() {
     email: "",
   });
 
+  /**
+   * @description Handles the change of the input fields
+   * @param prop
+   * @returns {(function(*): void)|*}
+   */
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
