@@ -9,6 +9,10 @@ import {
 } from "react-router-dom";
 
 import AdminDashboard from "./views/admin/AdminDashboard.js";
+import AdminLearderboard from "./views/admin/AdminLearderboard.js";
+import AdminPrediction from "./views/admin/AdminPrediction.js";
+import AdminProfile from "./views/admin/AdminProfile.js";
+import AdminRanking from "./views/admin/AdminRanking.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
 import AdminTables from "./views/admin/AdminTables.js";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
@@ -52,7 +56,7 @@ export default function App() {
            */}
           <Route element={<IndexPublic />}>
             <Route exact="true" path="aboutus" element={<PublicAbout />} />
-            <Route exact="true" path="/" element={<PublicHome />} />
+            <Route exact="true"  path="/" element={<PublicHome />} />
             <Route
               exact="true"
               path="leaderboard"
@@ -94,14 +98,14 @@ export default function App() {
            * @description Handles admin routes for the application and the IndexAdmin component has the outlet for the
            * admin routes
            */}
-          <Route element={<IndexAdmin />}>
-            <Route exact="true" path="admin" element={<AdminDashboard />} />
-            <Route exact="true" path="admin/tables" element={<AdminTables />} />
-            <Route
-              exact="true"
-              path="admin/settings"
-              element={<AdminSettings />}
-            />
+          <Route exact="true" path="admin" element={<IndexAdmin />}>
+            <Route exact="true" path="dashboard" element={<AdminDashboard />} />
+            <Route exact="true" path="leaderboard" element={<AdminLearderboard />} />
+            <Route exact="true" path="predict" element={<AdminPrediction />} />
+            <Route exact="true" path="profile" element={<AdminProfile />} />
+            <Route exact="true" path="ranking" element={<AdminRanking />} />
+            <Route exact="true" path="settings" element={<AdminSettings />} />
+            <Route exact="true" path="tables" element={<AdminTables />} />
           </Route>
 
           {/**
