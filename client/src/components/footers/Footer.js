@@ -1,3 +1,4 @@
+import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
 import {
   faFacebookMessenger,
   faTwitter,
@@ -6,8 +7,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import React from "react";
-
-import { DELAY_1 } from "../../assets/styles/input-types-styles";
 
 /**
  * @type {Array}
@@ -50,7 +49,7 @@ export default function Footer() {
             </h5>
             <div className="mt-4 mb-6 space-x-4 text-blue-500 lg:mb-0 lg:mt-0 place-self-center">
               <button
-                className="w-10 h-10 font-normal transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110"
+                className={`${DELAY_3} w-10 h-10 font-normal bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110`}
                 type="button"
               >
                 <a
@@ -62,7 +61,7 @@ export default function Footer() {
                 </a>
               </button>
               <button
-                className="w-10 h-10 font-normal transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110"
+                className={`${DELAY_3} w-10 h-10 font-normal bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110`}
                 type="button"
               >
                 <a
