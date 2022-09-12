@@ -1,38 +1,59 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
 import { Menu, Transition } from "@headlessui/react";
+import { NavLink, useResolvedPath } from "react-router-dom";
 
 import { AiFillHome } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
+import { GiRank3 } from "react-icons/gi";
 import { MdLeaderboard } from "react-icons/md";
-import { NavLink } from "react-router-dom";
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
- * @description Navigation bar array of objects for the navigation bar links
- */
-const NavigationBarlinks = [
-  {
-    name: "Home",
-    icon: <AiFillHome />,
-    link: "/",
-  },
-  {
-    name: "Leaderboard",
-    icon: <MdLeaderboard />,
-    link: "/leaderboard",
-  },
-  {
-    name: "Sign In",
-    icon: <FaSignInAlt />,
-    link: "/auth",
-  },
-];
-
-/**
  * @description NavigationBar component with useful links
  */
-export default function NavigationBar() {
+export default function NavigationBar(to) {
+  const router = useResolvedPath(to);
+
+  function isActive(link) {
+    return router.pathname === link;
+  }
+
+  /**
+   * @description Navigation bar array of objects for the navigation bar links
+   */
+  const NavigationBarlinks = [
+    {
+      name: "Home",
+      icon: <AiFillHome size={16} />,
+      icon_: <AiFillHome size={24} />,
+      link: "/",
+      current: isActive("/"),
+    },
+    {
+      name: "Leaderboard",
+      icon: <MdLeaderboard size={16} />,
+      icon_: <MdLeaderboard size={24} />,
+      link: "/leaderboard",
+      current: isActive("/leaderboard"),
+    },
+    {
+      name: "Ranking",
+      icon: <GiRank3 size={16} />,
+      icon_: <GiRank3 size={24} />,
+      link: "/ranking",
+      current: isActive("/ranking"),
+    },
+    {
+      name: "Sign In",
+      icon: <FaSignInAlt size={16} />,
+      icon_: <FaSignInAlt size={24} />,
+      link: "/auth",
+      current: isActive("/auth"),
+    },
+  ];
+
   return (
     <Menu
       as={"nav"}
@@ -40,27 +61,29 @@ export default function NavigationBar() {
     >
       {({ open }) => (
         <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">
-          <div className="flex justify-between w-full md:w-auto lg:static md:block md:justify-start">
+          <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
             <NavLink to="/">
               <div className="flex items-center px-3 py-2 text-gray-900 transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
                 <img src={logo} alt="logo" className="w-10 h-10" />
-                <h1 className="ml-2 text-xl font-bold tracking-widest transition-colors duration-300 ease-in-out delay-150 md:text-3xl md:flex">
+                <h1
+                  className={`ml-2 text-xl font-bold tracking-widest ${DELAY_1} md:text-3xl lg:flex`}
+                >
                   MATRIX LAB
                 </h1>
               </div>
             </NavLink>
-            <Menu.Button className="block px-3 py-1 text-base leading-none transition-colors duration-300 ease-in-out delay-150 bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer md:hidden focus:outline-none">
+            <Menu.Button className={`block px-3 py-1  lg:hidden`}>
               <span className="sr-only">Open main menu</span>
               {open ? (
-                <XMarkIcon className="block w-6 h-6 " aria-hidden="true" />
+                <XMarkIcon className="block w-6 h-6" />
               ) : (
-                <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
+                <Bars3Icon className="block w-6 h-6" />
               )}
             </Menu.Button>
           </div>
           <Menu
             as={"div"}
-            className={`md:flex flex-grow items-center  lg:bg-opacity-0 lg:shadow-none ${
+            className={`lg:flex flex-grow items-center lg:bg-opacity-0 lg:shadow-none ${
               open ? " block" : " hidden"
             }`}
           >
@@ -73,12 +96,18 @@ export default function NavigationBar() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <ul className="flex flex-col justify-start list-none md:flex-row md:ml-auto">
+              <ul className="flex flex-col ml-auto space-y-1">
                 {NavigationBarlinks.map((link) => (
                   <NavLink to={link.link} key={link.name}>
-                    <li className="flex items-center px-8 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                      {/*<AiFillHome size={24} title="PublicHome" />*/}
-                      <h1 className="block px-8 ml-3 text-sm font-medium tracking-wider md:hidden">
+                    <li
+                      className={`${
+                        link.current
+                          ? "text-blue-900 border-y-2 border-blue-900"
+                          : ""
+                      } ${DELAY_3} flex items-center justify-center px-4 py-4 text-gray-700 hover:text-blue-900`}
+                    >
+                      {link.icon}
+                      <h1 className="block ml-1 text-lg font-medium">
                         {link.name}
                       </h1>
                     </li>
@@ -86,14 +115,17 @@ export default function NavigationBar() {
                 ))}
               </ul>
             </Transition>
-            <ul className="flex-col justify-start hidden list-none md:flex md:flex-row md:ml-auto">
+            <ul className="flex-col justify-start hidden list-none lg:flex lg:flex-row lg:ml-auto">
               {NavigationBarlinks.map((link) => (
                 <NavLink to={link.link} key={link.name}>
-                  <li className="flex items-center px-4 py-4 text-gray-700 transition-colors duration-300 ease-in-out delay-150 hover:text-blue-900">
-                    {/*<AiFillHome size={24} title="PublicHome" />*/}
-                    <h1 className="block ml-3 text-sm font-medium tracking-wider">
-                      {link.name}
-                    </h1>
+                  <li
+                    className={`${
+                      link.current
+                        ? "text-blue-900 border-b-2 border-blue-900"
+                        : ""
+                    } ${DELAY_3} flex items-center px-8 py-4 text-gray-700 hover:text-blue-900`}
+                  >
+                    {link.icon_}
                   </li>
                 </NavLink>
               ))}

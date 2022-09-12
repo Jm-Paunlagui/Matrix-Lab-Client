@@ -1,5 +1,5 @@
+import AdminNavigationBar from "../../components/navbars/AdminNavigationBar";
 import { Outlet } from "react-router-dom";
-import AdminSideNavigationBar from "../../components/navbars/AdminNavigationBar";
 import React from "react";
 
 /**
@@ -8,7 +8,7 @@ import React from "react";
 export default function IndexAdmin() {
   return (
     <>
-      <AdminSideNavigationBar />
+      <AdminNavigationBar />
       <div>
         <Outlet />
       </div>

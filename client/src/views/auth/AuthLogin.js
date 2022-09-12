@@ -22,16 +22,27 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description User login form for the application
  */
 export default function AuthLogin() {
+  /**
+   * @description State variables for the login form
+   */
   const [values, setValues] = useState({
     username: "",
     password: "",
     showPassword: false,
   });
 
+  /**
+   * @description Handles the change of the input fields
+   * @param prop
+   * @returns {(function(*): void)|*}
+   */
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  /**
+   * @description Handles the visibility of the password
+   */
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -39,6 +50,10 @@ export default function AuthLogin() {
     });
   };
 
+  /**
+   * @description Handles the visibility of the password
+   * @param event
+   */
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };

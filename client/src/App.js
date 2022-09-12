@@ -62,6 +62,7 @@ export default function App() {
               path="leaderboard"
               element={<PublicLeaderboard />}
             />
+            <Route exact="true" path="ranking" element={<PublicRanking />} />
           </Route>
           {/**
            * End of public routes
@@ -72,7 +73,6 @@ export default function App() {
             path="privacy-policy"
             element={<PrivacyPolicy />}
           />
-          <Route exact="true" path="ranking" element={<PublicRanking />} />
           <Route
             exact="true"
             path="terms-and-conditions"

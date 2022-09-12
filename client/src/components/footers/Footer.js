@@ -1,3 +1,4 @@
+import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
 import {
   faFacebookMessenger,
   faTwitter,
@@ -48,7 +49,7 @@ export default function Footer() {
             </h5>
             <div className="mt-4 mb-6 space-x-4 text-blue-500 lg:mb-0 lg:mt-0 place-self-center">
               <button
-                className="w-10 h-10 font-normal transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110"
+                className={`${DELAY_3} w-10 h-10 font-normal bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110`}
                 type="button"
               >
                 <a
@@ -60,7 +61,7 @@ export default function Footer() {
                 </a>
               </button>
               <button
-                className="w-10 h-10 font-normal transition duration-700 ease-in-out delay-150 bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110"
+                className={`${DELAY_3} w-10 h-10 font-normal bg-white rounded-full shadow outline-none hover:shadow-lg align-center focus:outline-none hover:text-blue-700 hover:bg-gray-200 hover:-translate-y-1 hover:scale-110`}
                 type="button"
               >
                 <a
@@ -78,7 +79,9 @@ export default function Footer() {
           <div className="items-center w-full md:flex md:space-x-20 lg:place-content-end lg:px-4 xl:px-44 place-content-center">
             {UsefulLinks.map((link) => (
               <Link to={`/${link.link}`} key={link.name}>
-                <div className="block pb-2 text-sm font-semibold transition duration-300 ease-linear delay-150 hover:text-gray-800">
+                <div
+                  className={`block pb-2 text-sm font-semibold hover:text-gray-800 ${DELAY_1}`}
+                >
                   {link.name}
                 </div>
               </Link>
