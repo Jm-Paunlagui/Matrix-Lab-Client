@@ -14,8 +14,16 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description NavigationBar component with useful links
  */
 export default function NavigationBar(to) {
+  /**
+   * @description Get the current path of the application and return the active class
+   */
   const router = useResolvedPath(to);
 
+  /**
+   * @description Handles the link if it is active or not
+   * @param link
+   * @returns {boolean}
+   */
   function isActive(link) {
     return router.pathname === link;
   }
