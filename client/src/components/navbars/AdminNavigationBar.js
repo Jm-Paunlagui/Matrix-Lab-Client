@@ -6,40 +6,60 @@ import React, { Fragment } from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 export default function AdminNavigationBar(to) {
-    /**
-     * @description Get the current path of the application and return the active class
-     */
-    const router = useResolvedPath(to);
+  /**
+   * @description Get the current path of the application and return the active class
+   */
+  const router = useResolvedPath(to);
 
-    /**
-     * @description Handles the link if it is active or not
-     * @param link
-     * @returns {boolean}
-     */
-    function isActive (link) {
-        return router.pathname === link;
-    }
+  /**
+   * @description Handles the link if it is active or not
+   * @param link
+   * @returns {boolean}
+   */
+  function isActive(link) {
+    return router.pathname === link;
+  }
 
-    /**
-     * @description Handles the navigation bar for the admin pages
-     * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
-     */
-    const navigation = [
-        { name: "Dashboard", href: "/admin/dashboard", current: isActive("/admin/dashboard") },
-        { name: "Tables", href: "/admin/tables" , current: isActive("/admin/tables")},
-        { name: "Predict", href: "/admin/predict" , current: isActive("/admin/predict")},
-        { name: "Leaderboard", href: "/admin/leaderboard" , current: isActive("/admin/leaderboard")},
-        { name: "Ranking", href: "/admin/ranking" , current: isActive("/admin/ranking")},
-    ]
+  /**
+   * @description Handles the navigation bar for the admin pages
+   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
+   */
+  const navigation = [
+    {
+      name: "Dashboard",
+      href: "/admin/dashboard",
+      current: isActive("/admin/dashboard"),
+    },
+    {
+      name: "Tables",
+      href: "/admin/tables",
+      current: isActive("/admin/tables"),
+    },
+    {
+      name: "Predict",
+      href: "/admin/predict",
+      current: isActive("/admin/predict"),
+    },
+    {
+      name: "Leaderboard",
+      href: "/admin/leaderboard",
+      current: isActive("/admin/leaderboard"),
+    },
+    {
+      name: "Ranking",
+      href: "/admin/ranking",
+      current: isActive("/admin/ranking"),
+    },
+  ];
 
-    /**
-     * @description Handles the profile menu for the admin pages
-     * @type {[{name: string, href: string},{name: string, href: string}]}
-     */
-    const user_controllers = [
-        { name: "Your Profile", href: "/admin/profile" },
-        { name: "Sign out", href: "admin/logout" },
-    ]
+  /**
+   * @description Handles the profile menu for the admin pages
+   * @type {[{name: string, href: string},{name: string, href: string}]}
+   */
+  const user_controllers = [
+    { name: "Your Profile", href: "/admin/profile" },
+    { name: "Sign out", href: "admin/logout" },
+  ];
   return (
     <Disclosure as="nav" className="bg-gray-800 shadow-md font-Montserrat">
       {({ open }) => (
