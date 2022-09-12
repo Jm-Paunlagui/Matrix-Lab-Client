@@ -57,11 +57,8 @@ export default function App() {
           <Route element={<IndexPublic />}>
             <Route exact="true" path="aboutus" element={<PublicAbout />} />
             <Route exact="true"  path="/" element={<PublicHome />} />
-            <Route
-              exact="true"
-              path="leaderboard"
-              element={<PublicLeaderboard />}
-            />
+            <Route exact="true" path="leaderboard" element={<PublicLeaderboard />} />
+            <Route exact="true" path="ranking" element={<PublicRanking />} />
           </Route>
           {/**
            * End of public routes
@@ -72,7 +69,6 @@ export default function App() {
             path="privacy-policy"
             element={<PrivacyPolicy />}
           />
-          <Route exact="true" path="ranking" element={<PublicRanking />} />
           <Route
             exact="true"
             path="terms-and-conditions"
