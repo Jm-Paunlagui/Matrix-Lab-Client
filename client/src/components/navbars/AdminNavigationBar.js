@@ -114,7 +114,7 @@ export default function AdminNavigationBar(to) {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className={`flex text-sm rounded-full  ${isActive("/admin/profile") ? "ring-2 ring-gray-900 ring-offset-4 ring-offset-blue-100" : ""}`}>
+                    <Menu.Button className={`flex text-sm rounded-full ring-2 hover:ring-indigo-900 ring-offset-4 ${isActive("/admin/profile") ? "ring-gray-900 ring-offset-white" : ""}`}>
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="w-8 h-8 rounded-full"
