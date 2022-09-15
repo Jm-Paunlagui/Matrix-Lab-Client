@@ -57,11 +57,22 @@ export default function AdminNavigationBar(to) {
    * @type {[{name: string, href: string},{name: string, href: string}, {name: string, href: string}]}
    */
   const user_controllers = [
-    { name: "Your Profile", href: "/admin/profile", current: isActive("/admin/profile") },
-    { name: "Sign out", href: "admin/logout", current: isActive("/admin/logout") },
+    {
+      name: "Your Profile",
+      href: "/admin/profile",
+      current: isActive("/admin/profile"),
+    },
+    {
+      name: "Sign out",
+      href: "admin/logout",
+      current: isActive("/admin/logout"),
+    },
   ];
   return (
-    <Disclosure as="nav" className="shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
+    <Disclosure
+      as="nav"
+      className="shadow-md backdrop-blur-xl bg-white/50 font-Montserrat"
+    >
       {({ open }) => (
         <>
           <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -114,7 +125,13 @@ export default function AdminNavigationBar(to) {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className={`flex text-sm rounded-full ring-2 hover:ring-indigo-900 ring-offset-4 ${isActive("/admin/profile") ? "ring-gray-900 ring-offset-white" : ""}`}>
+                    <Menu.Button
+                      className={`flex text-sm rounded-full ring-2 hover:ring-indigo-900 ring-offset-4 ${
+                        isActive("/admin/profile")
+                          ? "ring-gray-900 ring-offset-white"
+                          : ""
+                      }`}
+                    >
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="w-8 h-8 rounded-full"
