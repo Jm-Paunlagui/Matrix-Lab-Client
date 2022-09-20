@@ -58,11 +58,22 @@ export default function AdminNavigationBar(to) {
    * @type {[{name: string, href: string},{name: string, href: string}, {name: string, href: string}]}
    */
   const user_controllers = [
-    { name: "Your Profile", href: "/admin/profile", current: isActive("/admin/profile") },
-    { name: "Sign out", href: "admin/logout", current: isActive("/admin/logout") },
+    {
+      name: "Your Profile",
+      href: "/admin/profile",
+      current: isActive("/admin/profile"),
+    },
+    {
+      name: "Sign out",
+      href: "admin/logout",
+      current: isActive("/admin/logout"),
+    },
   ];
   return (
-    <Menu as="nav" className="fixed top-0 w-full shadow-md backdrop-blur-xl bg-white/50 font-Montserrat">
+    <Menu
+      as="nav"
+      className="fixed top-0 w-full shadow-md backdrop-blur-xl bg-white/50 font-Montserrat"
+    >
       {({ open }) => (
         <>
           <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -115,7 +126,13 @@ export default function AdminNavigationBar(to) {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className={`flex text-sm rounded-full ring-2 hover:ring-indigo-900 ring-offset-4 ${isActive("/admin/profile") ? "ring-gray-900 ring-offset-white" : ""}`}>
+                    <Menu.Button
+                      className={`flex text-sm rounded-full ring-2 hover:ring-indigo-900 ring-offset-4 ${
+                        isActive("/admin/profile")
+                          ? "ring-gray-900 ring-offset-white"
+                          : ""
+                      }`}
+                    >
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="w-8 h-8 rounded-full"
@@ -175,21 +192,21 @@ export default function AdminNavigationBar(to) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navigation.map((item) => (
-                  <NavLink key={item.name} to={item.href}>
-                    <h5
-                      className={`${
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-900 hover:bg-gray-700 hover:text-white"
-                      } block px-3 py-2 rounded-md text-base font-medium ${DELAY_1}`}
-                    >
-                      {item.name}
-                    </h5>
-                  </NavLink>
-                ))}
-              </div>
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navigation.map((item) => (
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-900 hover:bg-gray-700 hover:text-white"
+                    } block px-3 py-2 rounded-md text-base font-medium ${DELAY_1}`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
+              ))}
+            </div>
           </Transition>
         </>
       )}
