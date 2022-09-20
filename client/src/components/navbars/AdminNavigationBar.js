@@ -4,7 +4,6 @@ import { NavLink, useResolvedPath } from "react-router-dom";
 import React, { Fragment } from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { DELAY_1 } from "../../assets/styles/input-types-styles";
 
 export default function AdminNavigationBar(to) {
   /**
@@ -110,9 +109,9 @@ export default function AdminNavigationBar(to) {
                         <h5
                           className={`${
                             item.current
-                              ? "bg-gray-900 text-white"
-                              : "text-gray-900 hover:bg-gray-700 hover:text-white"
-                          } block px-3 py-2 rounded-md text-base font-medium ${DELAY_1}`}
+                              ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                              : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                          } block px-3 py-2 text-base font-medium`}
                         >
                           {item.name}
                         </h5>
@@ -127,18 +126,14 @@ export default function AdminNavigationBar(to) {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button
-                      className={`flex text-sm rounded-full ring-2 hover:ring-indigo-900 ring-offset-4 ${
+                      className={`flex text-sm rounded ${
                         isActive("/admin/profile")
-                          ? "ring-gray-900 ring-offset-white"
-                          : ""
+                          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
+                          : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
                       }`}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="w-8 h-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                      <h1 className="text-base font-medium">johnpaunlagui</h1>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -198,9 +193,9 @@ export default function AdminNavigationBar(to) {
                   <h5
                     className={`${
                       item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-900 hover:bg-gray-700 hover:text-white"
-                    } block px-3 py-2 rounded-md text-base font-medium ${DELAY_1}`}
+                          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                          : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                    } block px-3 py-2 text-base font-medium`}
                   >
                     {item.name}
                   </h5>
