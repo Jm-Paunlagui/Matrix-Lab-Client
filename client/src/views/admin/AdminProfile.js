@@ -127,7 +127,10 @@ export default function AdminProfile() {
           {/* Save Changes */}
           <div className="flex flex-col w-full p-4 rounded">
             <div className="flex flex-col w-full h-full p-4 bg-white rounded-b-lg">
-              <button className="mb-4 text-xl font-bold text-gray-700" type="button">
+              <button
+                className="mb-4 text-xl font-bold text-gray-700"
+                type="button"
+              >
                 Save Changes
               </button>
             </div>
