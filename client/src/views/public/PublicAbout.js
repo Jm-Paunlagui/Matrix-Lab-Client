@@ -365,7 +365,7 @@ const Technologies = [
 export default function PublicAbout() {
   return (
     <>
-      <div className="grid flex-col items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 ">
+      <div className="sticky top-0 grid flex-col items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12 ">
         <div className="place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
             About Us
@@ -376,7 +376,7 @@ export default function PublicAbout() {
         </div>
       </div>
       <hr />
-      <div className="items-center w-full h-full min-h-screen font-Montserrat">
+      <div className="relative items-center w-full h-full min-h-screen font-Montserrat bg-white">
         <div className="mx-auto text-gray-200 max-w-7xl justify-items-center">
           <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
             Creators of Matrix Lab
