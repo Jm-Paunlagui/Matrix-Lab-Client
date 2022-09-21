@@ -376,7 +376,7 @@ export default function PublicAbout() {
         </div>
       </div>
       <hr />
-      <div className="relative items-center w-full h-full min-h-screen font-Montserrat bg-white">
+      <div className="relative items-center w-full h-full min-h-screen bg-white font-Montserrat">
         <div className="mx-auto text-gray-200 max-w-7xl justify-items-center">
           <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
             Creators of Matrix Lab
