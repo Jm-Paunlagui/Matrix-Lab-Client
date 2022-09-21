@@ -1,9 +1,7 @@
-import React from "react";
 import FormControl from "@mui/material/FormControl";
-
 import InputLabel from "@mui/material/InputLabel";
-
 import OutlinedInput from "@mui/material/OutlinedInput";
+import React from "react";
 
 /**
  * @description Handles the admin profile
@@ -29,10 +27,10 @@ export default function AdminProfile() {
         <div className="col-span-2">
           <div className="flex flex-col w-full bg-white rounded outline outline-2 outline-gray-200">
             <div className="flex flex-col w-full h-full rounded">
-              <h1 className="mb-4 text-xl font-bold text-gray-700 bg-indigo-50 p-4">
+              <h1 className="p-4 mb-4 text-xl font-bold text-gray-700 bg-indigo-50">
                 User Credentials
               </h1>
-              <div className="flex flex-col w-full h-full space-y-4 px-4 pb-8">
+              <div className="flex flex-col w-full h-full px-4 pb-8 space-y-4">
                 <form>
                   <FormControl fullWidth variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-username">
@@ -129,7 +127,7 @@ export default function AdminProfile() {
           {/* Save Changes */}
           <div className="flex flex-col w-full p-4 rounded">
             <div className="flex flex-col w-full h-full p-4 bg-white rounded-b-lg">
-              <button className="mb-4 text-xl font-bold text-gray-700">
+              <button className="mb-4 text-xl font-bold text-gray-700" type="button">
                 Save Changes
               </button>
             </div>
