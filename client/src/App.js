@@ -105,7 +105,7 @@ export default function App() {
               path="leaderboard"
               element={<AdminLearderboard />}
             />
-            <Route exact="true" path="predict" element={<AdminPrediction />} />
+            <Route exact="true" path="analyze" element={<AdminPrediction />} />
             <Route exact="true" path="profile" element={<AdminProfile />} />
             <Route exact="true" path="ranking" element={<AdminRanking />} />
             <Route exact="true" path="settings" element={<AdminSettings />} />
