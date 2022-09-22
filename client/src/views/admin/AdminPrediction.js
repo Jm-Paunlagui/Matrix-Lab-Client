@@ -28,10 +28,10 @@ export default function AdminPrediction() {
                 <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
                   <form>
                     <div className="flex flex-col space-y-4">
+                      <h1 className="text-xl font-bold text-gray-700">
+                        DB Credentials
+                      </h1>
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="text-xl font-bold text-gray-700 mb-4">
-                          DB Credentials
-                        </h1>
                         <h1 className="text-base font-medium text-gray-500">
                           Host
                         </h1>
@@ -71,7 +71,7 @@ export default function AdminPrediction() {
                             placeholder="Database"
                         />
                       </div>
-                      <h1 className="text-xl font-bold text-gray-700 mb-4">
+                      <h1 className="text-xl font-bold text-gray-700">
                         Column Selection
                       </h1>
                       <div className="flex flex-col w-full space-y-2">
