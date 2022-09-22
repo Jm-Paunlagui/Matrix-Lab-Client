@@ -1,5 +1,8 @@
 import React from "react";
-import { DANGER_BUTTON, PRIMARY_BUTTON } from "../../assets/styles/input-types-styles";
+import {
+  DANGER_BUTTON,
+  PRIMARY_BUTTON,
+} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the admin profile
@@ -22,39 +25,41 @@ export default function AdminProfile() {
                   Matrix ID
                 </h1>
                 <p className="mb-4 text-sm">
-                    This is your unique identifier for your account. It is used to identify you on the platform.
+                  This is your unique identifier for your account. It is used to
+                  identify you on the platform.
                 </p>
               </div>
               <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">Matrix ID</h1>
+                      <h1 className="text-base font-medium text-gray-500">
+                        Matrix ID
+                      </h1>
                       <input
-                          type="text"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="MATRIX ID"
+                        type="text"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="MATRIX ID"
                       />
                     </div>
                   </div>
 
-                {/* Save changes or Cancel */}
+                  {/* Save changes or Cancel */}
                   <div className="flex flex-col lg:flex-row w-full justify-end lg:space-x-2 mt-8">
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${DANGER_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${DANGER_BUTTON}`}
                     >
-                        Cancel
+                      Cancel
                     </button>
-                    <div className="p-1"/>
+                    <div className="p-1" />
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                     >
-                        Save Changes
+                      Save Changes
                     </button>
                   </div>
-
                 </form>
               </div>
             </div>
@@ -66,18 +71,21 @@ export default function AdminProfile() {
                   Personal Information
                 </h1>
                 <p className="mb-4 text-sm">
-                  This information is private and only visible to you and your organization. It will not be shared with anyone else.
+                  This information is private and only visible to you and your
+                  organization. It will not be shared with anyone else.
                 </p>
               </div>
               <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">Email</h1>
+                      <h1 className="text-base font-medium text-gray-500">
+                        Email
+                      </h1>
                       <input
-                          type="text"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="Email"
+                        type="text"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="Email"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -85,9 +93,9 @@ export default function AdminProfile() {
                         First Name
                       </h1>
                       <input
-                          type="text"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="First Name"
+                        type="text"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="First Name"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -95,28 +103,27 @@ export default function AdminProfile() {
                         Last Name
                       </h1>
                       <input
-                          type="text"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="Last Name"
+                        type="text"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="Last Name"
                       />
                     </div>
                   </div>
                   <div className="flex flex-col lg:flex-row w-full justify-end lg:space-x-2 mt-8">
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${DANGER_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${DANGER_BUTTON}`}
                     >
                       Cancel
                     </button>
-                    <div className="p-1"/>
+                    <div className="p-1" />
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                     >
                       Save Changes
                     </button>
                   </div>
-
                 </form>
               </div>
             </div>
@@ -128,7 +135,9 @@ export default function AdminProfile() {
                   Matrix Account Sign-In
                 </h1>
                 <p className="mb-4 text-sm">
-                  We recommend that you periodically update your password to keep your account secure and prevent unauthorized access to your account.
+                  We recommend that you periodically update your password to
+                  keep your account secure and prevent unauthorized access to
+                  your account.
                 </p>
               </div>
               <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
@@ -139,9 +148,9 @@ export default function AdminProfile() {
                         Username
                       </h1>
                       <input
-                          type="text"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="Username"
+                        type="text"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="Username"
                       />
                     </div>
                     <h1 className="text-xl font-bold text-gray-700 mb-4">
@@ -152,9 +161,9 @@ export default function AdminProfile() {
                         Current Password
                       </h1>
                       <input
-                          type="password"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="Current Password"
+                        type="password"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="Current Password"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -162,9 +171,9 @@ export default function AdminProfile() {
                         New Password
                       </h1>
                       <input
-                          type="password"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="New Password"
+                        type="password"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="New Password"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -172,23 +181,23 @@ export default function AdminProfile() {
                         Confirm New Password
                       </h1>
                       <input
-                          type="password"
-                          className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                          placeholder="Confirm New Password"
+                        type="password"
+                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        placeholder="Confirm New Password"
                       />
                     </div>
                   </div>
                   <div className="flex flex-col lg:flex-row w-full justify-end lg:space-x-2 mt-8">
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${DANGER_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${DANGER_BUTTON}`}
                     >
                       Cancel
                     </button>
-                    <div className="p-1"/>
+                    <div className="p-1" />
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                     >
                       Save Changes
                     </button>
@@ -197,7 +206,7 @@ export default function AdminProfile() {
               </div>
             </div>
           </div>
-          <div className="mb-16"/>
+          <div className="mb-16" />
         </div>
       </div>
     </div>
