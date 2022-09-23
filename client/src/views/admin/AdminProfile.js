@@ -19,8 +19,8 @@ export default function AdminProfile() {
         </div>
         <div className="col-span-2">
           <div className="flex flex-col mb-8 w-full bg-white rounded outline outline-2 outline-gray-200">
-            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-3">
-              <div className="col-span-1 p-8 bg-gray-50">
+            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-5">
+              <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="text-xl font-bold text-gray-700 mb-4">
                   Matrix ID
                 </h1>
@@ -29,7 +29,7 @@ export default function AdminProfile() {
                   identify you on the platform.
                 </p>
               </div>
-              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
+              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-3">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
@@ -65,8 +65,8 @@ export default function AdminProfile() {
             </div>
           </div>
           <div className="flex flex-col mb-8 w-full bg-white rounded outline outline-2 outline-gray-200">
-            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-3">
-              <div className="col-span-1 p-8 bg-gray-50">
+            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-5">
+              <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="text-xl font-bold text-gray-700 mb-4">
                   Personal Information
                 </h1>
@@ -75,7 +75,7 @@ export default function AdminProfile() {
                   organization. It will not be shared with anyone else.
                 </p>
               </div>
-              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
+              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-3">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
@@ -129,8 +129,8 @@ export default function AdminProfile() {
             </div>
           </div>
           <div className="flex flex-col mb-8 w-full bg-white rounded outline outline-2 outline-gray-200">
-            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-3">
-              <div className="col-span-1 p-8 bg-gray-50">
+            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-5">
+              <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="text-xl font-bold text-gray-700 mb-4">
                   Matrix Account Sign-In
                 </h1>
@@ -140,7 +140,7 @@ export default function AdminProfile() {
                   your account.
                 </p>
               </div>
-              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
+              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-3">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
