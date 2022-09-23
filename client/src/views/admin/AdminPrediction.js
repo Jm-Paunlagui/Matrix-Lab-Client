@@ -19,8 +19,8 @@ export default function AdminPrediction() {
         </div>
         <div className="col-span-2">
           <div className="flex flex-col mb-8 w-full bg-white rounded outline outline-2 outline-gray-200">
-            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-3">
-              <div className="col-span-1 p-8 bg-gray-50">
+            <div className="flex flex-col w-full h-full rounded grid grid-cols-1 md:grid-cols-5">
+              <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="text-xl font-bold text-gray-700 mb-4">
                   from Database
                 </h1>
@@ -29,7 +29,7 @@ export default function AdminPrediction() {
                   results will be displayed here. This will take a while.
                 </p>
               </div>
-              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-2">
+              <div className="flex flex-col w-full h-full p-8 pb-8 space-y-4 col-span-3">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
@@ -139,7 +139,7 @@ export default function AdminPrediction() {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col md:flex-row w-full justify-end md:space-x-2 mt-8">
+                  <div className="flex flex-col lg:flex-row w-full justify-end lg:space-x-2 mt-8">
                     <button
                       type="button"
                       className={`px-8 py-1 ${DANGER_BUTTON}`}
