@@ -1,7 +1,10 @@
-import {PRIMARY_BUTTON, SECONDARY_BUTTON,} from "../../assets/styles/input-types-styles";
+import {
+  PRIMARY_BUTTON,
+  SECONDARY_BUTTON,
+} from "../../assets/styles/input-types-styles";
 
 import Eval from "../../assets/img/eval.svg";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 
 /**

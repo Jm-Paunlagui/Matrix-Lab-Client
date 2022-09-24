@@ -1,12 +1,15 @@
-import {ICON_PLACE_SELF_CENTER, PRIMARY_BUTTON,} from "../../assets/styles/input-types-styles";
+import {
+  ICON_PLACE_SELF_CENTER,
+  PRIMARY_BUTTON,
+} from "../../assets/styles/input-types-styles";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import React from "react";
-import {faRotateRight} from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**

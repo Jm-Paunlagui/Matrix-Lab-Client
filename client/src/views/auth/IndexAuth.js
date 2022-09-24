@@ -1,4 +1,4 @@
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import React from "react";
 import bg from "../../assets/img/register_bg_2.png";
 
