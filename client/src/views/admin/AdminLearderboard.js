@@ -46,7 +46,7 @@ export default function AdminLearderboard() {
 
       <div className=" place-content-center">
         {leaderboard
-          .sort((a, b) => (a.positivity_rate > b.positivity_rate ? -1 : 1))
+          .sort(function (a, b) { (a.positivity_rate > b.positivity_rate ? -1 : 1)})
           .map((item) => (
             <div
               key={item.id}
@@ -57,21 +57,21 @@ export default function AdminLearderboard() {
                     // loop through the sorted array and check if the index of the item is equal to 0, 1, or 2
                     // if it is, then add the corresponding class to the item to highlight it as a top 3 item in the leaderboard
                     leaderboard
-                      .sort((a, b) =>
+                      .sort(function (a, b) {
                         a.positivity_rate > b.positivity_rate ? -1 : 1
-                      )
+                      })
                       .indexOf(item) === 0
                       ? "border-l-4 border-blue-500"
                       : leaderboard
-                          .sort((a, b) =>
+                          .sort(function (a, b) {
                             a.positivity_rate > b.positivity_rate ? -1 : 1
-                          )
+                          })
                           .indexOf(item) === 1
                       ? "border-l-4 border-purple-500"
                       : leaderboard
-                          .sort((a, b) =>
+                          .sort(function (a, b) {
                             a.positivity_rate > b.positivity_rate ? -1 : 1
-                          )
+                          })
                           .indexOf(item) === 2
                       ? "border-l-4 border-pink-500"
                       : ""
@@ -82,21 +82,21 @@ export default function AdminLearderboard() {
                   className={`col-span-2 ${
                     // TEMPORARY CODE
                     leaderboard
-                      .sort((a, b) =>
+                      .sort(function (a, b) {
                         a.positivity_rate > b.positivity_rate ? -1 : 1
-                      )
+                      })
                       .indexOf(item) === 0
                       ? "py-8"
                       : leaderboard
-                          .sort((a, b) =>
+                          .sort(function (a, b) {
                             a.positivity_rate > b.positivity_rate ? -1 : 1
-                          )
+                          })
                           .indexOf(item) === 1
                       ? "py-6"
                       : leaderboard
-                          .sort((a, b) =>
+                          .sort(function (a, b) {
                             a.positivity_rate > b.positivity_rate ? -1 : 1
-                          )
+                          })
                           .indexOf(item) === 2
                       ? "py-4"
                       : "py-3"
