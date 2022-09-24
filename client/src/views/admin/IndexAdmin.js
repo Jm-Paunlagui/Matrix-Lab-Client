@@ -9,7 +9,7 @@ export default function IndexAdmin() {
   return (
     <>
       <AdminNavigationBar />
-      <div className="mt-16 bg-gray-100 font-Montserrat">
+      <div className="mt-16 font-Montserrat">
         <Outlet />
       </div>
     </>
