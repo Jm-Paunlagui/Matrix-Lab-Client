@@ -112,7 +112,7 @@ export default function NavigationBar(to) {
                         link.current
                           ? "text-blue-900 border-y-2 border-blue-900"
                           : ""
-                      } ${DELAY_3} flex items-center justify-center px-4 py-4 text-gray-700 hover:text-blue-900`}
+                      } ${DELAY_3} flex items-center justify-start px-4 py-4 text-gray-700 hover:text-blue-900`}
                     >
                       {link.icon}
                       <h1 className="block ml-1 text-lg font-medium">
