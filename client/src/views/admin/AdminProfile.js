@@ -1,8 +1,9 @@
-import React from "react";
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
 } from "../../assets/styles/input-types-styles";
+
+import React from "react";
 
 /**
  * @description Handles the admin profile
