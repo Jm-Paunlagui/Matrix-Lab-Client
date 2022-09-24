@@ -66,7 +66,7 @@ export default function AdminProfile() {
             </div>
           </div>
           <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
-            <div className="flex grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+            <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
                   Personal Information
@@ -130,7 +130,7 @@ export default function AdminProfile() {
             </div>
           </div>
           <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
-            <div className="flex grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+            <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
                   Matrix Account Sign-In
