@@ -1,11 +1,8 @@
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
-import {
-  faFacebookMessenger,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import {DELAY_1, DELAY_3} from "../../assets/styles/input-types-styles";
+import {faFacebookMessenger, faTwitter,} from "@fortawesome/free-brands-svg-icons";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
 import React from "react";
 
 /**

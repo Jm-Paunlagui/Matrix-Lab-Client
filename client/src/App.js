@@ -1,12 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
 
-import React, { useLayoutEffect } from "react";
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import React, {useLayoutEffect} from "react";
+import {BrowserRouter as Router, Route, Routes, useLocation,} from "react-router-dom";
 
 import AdminDashboard from "./views/admin/AdminDashboard.js";
 import AdminLearderboard from "./views/admin/AdminLearderboard.js";
@@ -27,7 +22,7 @@ import PublicHome from "./views/public/PublicHome.js";
 import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
 import PublicRanking from "./views/public/PublicRanking.js";
 import TermsAndConditions from "./views/legal/TermsAndConditions.js";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 
 /**
  * @description Main component for the application

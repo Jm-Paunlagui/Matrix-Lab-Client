@@ -1,18 +1,14 @@
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
-  SECONDARY_BUTTON,
-} from "../../assets/styles/input-types-styles";
-import React, { useState } from "react";
+import {ICON_PLACE_SELF_CENTER, PRIMARY_BUTTON, SECONDARY_BUTTON,} from "../../assets/styles/input-types-styles";
+import React, {useState} from "react";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";

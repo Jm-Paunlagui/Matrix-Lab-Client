@@ -1,7 +1,7 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Menu, Transition } from "@headlessui/react";
-import { NavLink, useResolvedPath } from "react-router-dom";
-import React, { Fragment } from "react";
+import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
+import {Menu, Transition} from "@headlessui/react";
+import {NavLink, useResolvedPath} from "react-router-dom";
+import React, {Fragment} from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 

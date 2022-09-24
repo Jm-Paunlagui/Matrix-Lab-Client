@@ -1,12 +1,12 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
-import { Menu, Transition } from "@headlessui/react";
-import { NavLink, useResolvedPath } from "react-router-dom";
+import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
+import {DELAY_1, DELAY_3} from "../../assets/styles/input-types-styles";
+import {Menu, Transition} from "@headlessui/react";
+import {NavLink, useResolvedPath} from "react-router-dom";
 
-import { AiFillHome } from "react-icons/ai";
-import { FaSignInAlt } from "react-icons/fa";
-import { GiRank3 } from "react-icons/gi";
-import { MdLeaderboard } from "react-icons/md";
+import {AiFillHome} from "react-icons/ai";
+import {FaSignInAlt} from "react-icons/fa";
+import {GiRank3} from "react-icons/gi";
+import {MdLeaderboard} from "react-icons/md";
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
