@@ -1,12 +1,11 @@
-import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
-import {Menu, Transition} from "@headlessui/react";
-import {NavLink, useLocation} from "react-router-dom";
-import React, {Fragment} from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Menu, Transition } from "@headlessui/react";
+import { NavLink, useLocation } from "react-router-dom";
+import React, { Fragment } from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 
 export default function AdminNavigationBar() {
-
   /**
    * @description Navigation bar array of objects for the navigation bar links
    * @type {Location}
@@ -16,7 +15,7 @@ export default function AdminNavigationBar() {
   /**
    * @description Destructure the location object to get the pathname
    */
-  const {pathname} = location;
+  const { pathname } = location;
 
   /**
    * @description Javascript split method to get the first part of the pathname.

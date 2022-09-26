@@ -1,11 +1,11 @@
-import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
-import {DELAY_1, DELAY_3} from "../../assets/styles/input-types-styles";
-import {Menu, Transition} from "@headlessui/react";
-import {NavLink, useLocation} from "react-router-dom";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
+import { Menu, Transition } from "@headlessui/react";
+import { NavLink, useLocation } from "react-router-dom";
 
-import {AiFillHome} from "react-icons/ai";
-import {FaSignInAlt} from "react-icons/fa";
-import {MdLeaderboard} from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
+import { FaSignInAlt } from "react-icons/fa";
+import { MdLeaderboard } from "react-icons/md";
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -22,7 +22,7 @@ export default function NavigationBar() {
   /**
    * @description Destructure the location object to get the pathname
    */
-  const {pathname} = location;
+  const { pathname } = location;
 
   /**
    * @description Javascript split method to get the first part of the pathname.

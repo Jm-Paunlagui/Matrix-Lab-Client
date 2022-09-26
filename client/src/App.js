@@ -1,7 +1,12 @@
 import "react-toastify/dist/ReactToastify.css";
 
-import React, {useLayoutEffect} from "react";
-import {Route, BrowserRouter as Router, Routes, useLocation,} from "react-router-dom";
+import React, { useLayoutEffect } from "react";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
 import AdminDashboard from "./views/admin/AdminDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
@@ -23,7 +28,7 @@ import PublicHome from "./views/public/PublicHome.js";
 import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
 import PublicRanking from "./views/public/PublicRanking.js";
 import TermsAndConditions from "./views/legal/TermsAndConditions.js";
-import {ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 /**
  * @description Main component for the application
@@ -96,9 +101,21 @@ export default function App() {
            */}
           <Route exact="true" path="admin" element={<IndexAdmin />}>
             <Route exact="true" path="dashboard" element={<AdminDashboard />} />
-            <Route exact="true" path="leaderboard" element={<IndexLeaderboard />}>
-              <Route exact="true" path="departments" element={<LeaderboardDepartment />} />
-              <Route exact="true" path="employees" element={<LeaderboardEmployees />} />
+            <Route
+              exact="true"
+              path="leaderboard"
+              element={<IndexLeaderboard />}
+            >
+              <Route
+                exact="true"
+                path="departments"
+                element={<LeaderboardDepartment />}
+              />
+              <Route
+                exact="true"
+                path="employees"
+                element={<LeaderboardEmployees />}
+              />
             </Route>
             <Route exact="true" path="analyze" element={<AdminPrediction />} />
             <Route exact="true" path="profile" element={<AdminProfile />} />
