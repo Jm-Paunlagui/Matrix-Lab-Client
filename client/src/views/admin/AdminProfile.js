@@ -207,7 +207,6 @@ export default function AdminProfile() {
               </div>
             </div>
           </div>
-          <div className="mb-16" />
         </div>
       </div>
     </div>
