@@ -10,7 +10,7 @@ export default function IndexPublic() {
   return (
     <>
       <NavigationBar />
-      <div className="px-6 bg-white">
+      <div className="px-6 bg-white font-Montserrat">
         <Outlet />
       </div>
       <Footer />

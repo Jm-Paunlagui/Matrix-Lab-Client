@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
         backTo={"/"}
         pageTitle={"Privacy Policy"}
       />
-      <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-6 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat md:pt-28 pt-28">
+      <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-6 py-8 mx-auto mt-16 lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12 font-Montserrat">
         <div className=" place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
             Privacy Policy

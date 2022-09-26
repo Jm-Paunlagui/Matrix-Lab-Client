@@ -9,17 +9,18 @@ import {
 } from "react-router-dom";
 
 import AdminDashboard from "./views/admin/AdminDashboard.js";
-import AdminLearderboard from "./views/admin/AdminLearderboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
-import AdminRanking from "./views/admin/AdminRanking.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
 import AdminTables from "./views/admin/AdminTables.js";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
 import IndexAdmin from "./views/admin/IndexAdmin";
 import IndexAuth from "./views/auth/IndexAuth.js";
+import IndexLeaderboard from "./views/admin/leaderboard/IndexLeaderboard";
 import IndexPublic from "./views/public/IndexPublic.js";
+import LeaderboardDepartment from "./views/admin/leaderboard/LeaderboardDepartment";
+import LeaderboardEmployees from "./views/admin/leaderboard/LeaderboardEmployees";
 import PageNotFound from "./views/response/PageNotFound.js";
 import PrivacyPolicy from "./views/legal/PrivacyPolicy.js";
 import PublicAbout from "./views/public/PublicAbout.js";
@@ -103,13 +104,23 @@ export default function App() {
             <Route
               exact="true"
               path="leaderboard"
-              element={<AdminLearderboard />}
-            />
-            <Route exact="true" path="predict" element={<AdminPrediction />} />
+              element={<IndexLeaderboard />}
+            >
+              <Route
+                exact="true"
+                path="departments"
+                element={<LeaderboardDepartment />}
+              />
+              <Route
+                exact="true"
+                path="employees"
+                element={<LeaderboardEmployees />}
+              />
+            </Route>
+            <Route exact="true" path="analyze" element={<AdminPrediction />} />
             <Route exact="true" path="profile" element={<AdminProfile />} />
-            <Route exact="true" path="ranking" element={<AdminRanking />} />
             <Route exact="true" path="settings" element={<AdminSettings />} />
-            <Route exact="true" path="tables" element={<AdminTables />} />
+            <Route exact="true" path="management" element={<AdminTables />} />
           </Route>
 
           {/**

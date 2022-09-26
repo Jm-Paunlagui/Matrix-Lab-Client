@@ -365,19 +365,19 @@ const Technologies = [
 export default function PublicAbout() {
   return (
     <>
-      <div className="grid flex-col items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 font-Montserrat ">
+      <div className="sticky top-0 grid flex-col items-center max-w-screen-xl min-h-screen px-4 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12 ">
         <div className="place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
             About Us
           </h1>
         </div>
-        <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
+        <div className="md:flex lg:col-span-5 lg:flex">
           <img src={AboutUs} alt="mockup" />
         </div>
       </div>
       <hr />
-      <div className="items-center w-full h-full min-h-screen font-Montserrat">
-        <div className="mx-auto text-gray-200 max-w-7xl font-Montserrat justify-items-center">
+      <div className="relative items-center w-full h-full min-h-screen bg-white font-Montserrat">
+        <div className="mx-auto text-gray-200 max-w-7xl justify-items-center">
           <h1 className="py-16 text-4xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
             Creators of Matrix Lab
           </h1>
@@ -389,7 +389,7 @@ export default function PublicAbout() {
             deep learning and data science.
           </p>
           <div className="flex flex-wrap justify-center items-top">
-            <div className="grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 lg:grid-cols-3 md:gap-4 w-full">
+            <div className="grid w-full grid-cols-1 gap-1 mb-24 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
               {AboutUsDetails.map((aboutUs) => (
                 <div key={aboutUs.name} className="place-content-center ">
                   <div
@@ -397,22 +397,22 @@ export default function PublicAbout() {
                       "flex flex-col w-full h-full min-w-0  break-words bg-white border-0 rounded-md shadow auto-cols-max auto-rows-max place-items-center"
                     }
                   >
-                    <div className="justify-center w-full h-32 p-1 mb-0 bg-gradient-to-b from-blue-500 to-purple-500 rounded-t" />
+                    <div className="justify-center w-full h-32 p-1 mb-0 rounded-t bg-gradient-to-b from-blue-500 to-purple-500" />
 
                     {aboutUs.image ? (
                       <img
                         src={aboutUs.image}
                         alt={aboutUs.name}
-                        className="w-36 h-36 -mt-12 rounded"
+                        className="-mt-12 rounded w-36 h-36"
                       />
                     ) : (
-                      <div className="justify-center w-36 h-36 p-1 mb-0 -mt-12 bg-gradient-to-br from-white to-sky-500 rounded-xl" />
+                      <div className="justify-center p-1 mb-0 -mt-12 w-36 h-36 bg-gradient-to-br from-white to-sky-500 rounded-xl" />
                     )}
                     <div className="container p-4 text-center text-stone-700">
                       <h1 className="mt-8 text-lg font-bold tracking-widest ">
                         {aboutUs.name}
                       </h1>
-                      <h2 className="font-medium text-base">
+                      <h2 className="text-base font-medium">
                         {aboutUs.title ? (
                           aboutUs.title
                         ) : (
@@ -489,13 +489,13 @@ export default function PublicAbout() {
                       {technology.name}{" "}
                       {technology.version ? `v${technology.version}` : null}
                     </h1>
-                    <h2 className="w-full mb-4 font-medium text-left text-gray-800 text-base">
+                    <h2 className="w-full mb-4 text-base font-medium text-left text-gray-800">
                       About
                     </h2>
                     <blockquote className="mb-6 text-base text-justify text-gray-500 md:text-base">
                       <p>{technology.description}</p>
                     </blockquote>
-                    <h1 className="mb-4 font-medium text-base text-transparent transition-colors duration-300 ease-in-out delay-150 place-self-start bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text hover:text-indigo-700">
+                    <h1 className="mb-4 text-base font-medium text-transparent transition-colors duration-300 ease-in-out delay-150 place-self-start bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text hover:text-indigo-700">
                       <a
                         href={technology.link}
                         target="_blank"
