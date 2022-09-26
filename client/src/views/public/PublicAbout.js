@@ -1,5 +1,5 @@
 import AboutUs from "../../assets/img/aboutus.svg";
-import {Icon} from "@iconify/react";
+import { Icon } from "@iconify/react";
 import React from "react";
 
 /**
