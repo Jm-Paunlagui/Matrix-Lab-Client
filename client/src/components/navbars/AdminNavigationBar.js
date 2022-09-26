@@ -1,23 +1,35 @@
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import {Menu, Transition} from "@headlessui/react";
-import {NavLink, useResolvedPath} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import React, {Fragment} from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 
-export default function AdminNavigationBar(to) {
-  /**
-   * @description Get the current path of the application and return the active class
-   */
-  const router = useResolvedPath(to);
+export default function AdminNavigationBar() {
 
   /**
-   * @description Handles the link if it is active or not
+   * @description Navigation bar array of objects for the navigation bar links
+   * @type {Location}
+   */
+  const location = useLocation();
+
+  /**
+   * @description Destructure the location object to get the pathname
+   */
+  const {pathname} = location;
+
+  /**
+   * @description Javascript split method to get the first part of the pathname.
+   */
+  const splitLocation = pathname.split("/");
+
+  /**
+   * @description Handles the link if it is active or not.
    * @param link
    * @returns {boolean}
    */
   function isActive(link) {
-    return router.pathname === link;
+    return splitLocation[2] === link;
   }
 
   /**
@@ -28,27 +40,22 @@ export default function AdminNavigationBar(to) {
     {
       name: "Dashboard",
       href: "/admin/dashboard",
-      current: isActive("/admin/dashboard"),
+      current: isActive("dashboard"),
     },
     {
-      name: "Tables",
-      href: "/admin/tables",
-      current: isActive("/admin/tables"),
+      name: "Management",
+      href: "/admin/management",
+      current: isActive("management"),
     },
     {
       name: "Analyze",
       href: "/admin/analyze",
-      current: isActive("/admin/analyze"),
+      current: isActive("analyze"),
     },
     {
       name: "Leaderboard",
-      href: "/admin/leaderboard",
-      current: isActive("/admin/leaderboard"),
-    },
-    {
-      name: "Ranking",
-      href: "/admin/ranking",
-      current: isActive("/admin/ranking"),
+      href: "/admin/leaderboard/departments",
+      current: isActive("leaderboard"),
     },
   ];
 
@@ -60,18 +67,18 @@ export default function AdminNavigationBar(to) {
     {
       name: "Your Profile",
       href: "/admin/profile",
-      current: isActive("/admin/profile"),
+      current: isActive("profile"),
     },
     {
       name: "Sign out",
       href: "admin/logout",
-      current: isActive("/admin/logout"),
+      current: isActive("logout"),
     },
   ];
   return (
     <Menu
       as="nav"
-      className="fixed top-0 w-full shadow-md backdrop-blur-xl bg-white/50 font-Montserrat"
+      className="fixed top-0 z-50 w-full shadow-md backdrop-blur-xl bg-white/50 font-Montserrat"
     >
       {({ open }) => (
         <>
@@ -121,13 +128,13 @@ export default function AdminNavigationBar(to) {
                 </div>
               </div>
 
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 static inset-auto ml-6 pr-0">
+              <div className="static absolute inset-y-0 inset-auto right-0 flex items-center pr-0 pr-2 ml-6">
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button
                       className={`flex text-sm rounded ${
-                        isActive("/admin/profile")
+                        isActive("profile")
                           ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
                           : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
                       }`}

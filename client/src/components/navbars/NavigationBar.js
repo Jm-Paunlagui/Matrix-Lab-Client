@@ -1,11 +1,10 @@
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import {DELAY_1, DELAY_3} from "../../assets/styles/input-types-styles";
 import {Menu, Transition} from "@headlessui/react";
-import {NavLink, useResolvedPath} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 import {AiFillHome} from "react-icons/ai";
 import {FaSignInAlt} from "react-icons/fa";
-import {GiRank3} from "react-icons/gi";
 import {MdLeaderboard} from "react-icons/md";
 import React from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
@@ -13,19 +12,30 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 /**
  * @description NavigationBar component with useful links
  */
-export default function NavigationBar(to) {
+export default function NavigationBar() {
   /**
-   * @description Get the current path of the application and return the active class
+   * @description Navigation bar array of objects for the navigation bar links
+   * @type {Location}
    */
-  const router = useResolvedPath(to);
+  const location = useLocation();
 
   /**
-   * @description Handles the link if it is active or not
+   * @description Destructure the location object to get the pathname
+   */
+  const {pathname} = location;
+
+  /**
+   * @description Javascript split method to get the first part of the pathname.
+   */
+  const splitLocation = pathname.split("/");
+
+  /**
+   * @description Handles the link if it is active or not.
    * @param link
    * @returns {boolean}
    */
   function isActive(link) {
-    return router.pathname === link;
+    return splitLocation[1] === link;
   }
 
   /**
@@ -37,28 +47,21 @@ export default function NavigationBar(to) {
       icon: <AiFillHome size={16} />,
       icon_: <AiFillHome size={24} />,
       link: "/",
-      current: isActive("/"),
+      current: isActive(""),
     },
     {
       name: "Leaderboard",
       icon: <MdLeaderboard size={16} />,
       icon_: <MdLeaderboard size={24} />,
       link: "/leaderboard",
-      current: isActive("/leaderboard"),
-    },
-    {
-      name: "Ranking",
-      icon: <GiRank3 size={16} />,
-      icon_: <GiRank3 size={24} />,
-      link: "/ranking",
-      current: isActive("/ranking"),
+      current: isActive("leaderboard"),
     },
     {
       name: "Sign In",
       icon: <FaSignInAlt size={16} />,
       icon_: <FaSignInAlt size={24} />,
       link: "/auth",
-      current: isActive("/auth"),
+      current: isActive("auth"),
     },
   ];
 
