@@ -45,9 +45,7 @@ export default function LeaderboardDepartment() {
 
       <div className=" place-content-center">
         {leaderboard
-          .sort(function (a, b) {
-            
-          })
+          .sort(function (a, b) {})
           .map((item) => (
             <div
               key={item.id}
@@ -57,23 +55,11 @@ export default function LeaderboardDepartment() {
                     // get the sorted index of the item
                     // loop through the sorted array and check if the index of the item is equal to 0, 1, or 2
                     // if it is, then add the corresponding class to the item to highlight it as a top 3 item in the leaderboard
-                    leaderboard
-                      .sort(function (a, b) {
-                        
-                      })
-                      .indexOf(item) === 0
+                    leaderboard.sort(function (a, b) {}).indexOf(item) === 0
                       ? "border-l-4 border-blue-500"
-                      : leaderboard
-                          .sort(function (a, b) {
-                            
-                          })
-                          .indexOf(item) === 1
+                      : leaderboard.sort(function (a, b) {}).indexOf(item) === 1
                       ? "border-l-4 border-purple-500"
-                      : leaderboard
-                          .sort(function (a, b) {
-                            
-                          })
-                          .indexOf(item) === 2
+                      : leaderboard.sort(function (a, b) {}).indexOf(item) === 2
                       ? "border-l-4 border-pink-500"
                       : ""
                   }`}
@@ -82,23 +68,11 @@ export default function LeaderboardDepartment() {
                 <div
                   className={`col-span-2 ${
                     // TEMPORARY CODE
-                    leaderboard
-                      .sort(function (a, b) {
-                        
-                      })
-                      .indexOf(item) === 0
+                    leaderboard.sort(function (a, b) {}).indexOf(item) === 0
                       ? "py-8"
-                      : leaderboard
-                          .sort(function (a, b) {
-                            
-                          })
-                          .indexOf(item) === 1
+                      : leaderboard.sort(function (a, b) {}).indexOf(item) === 1
                       ? "py-6"
-                      : leaderboard
-                          .sort(function (a, b) {
-                            
-                          })
-                          .indexOf(item) === 2
+                      : leaderboard.sort(function (a, b) {}).indexOf(item) === 2
                       ? "py-4"
                       : "py-3"
                   } bg-gray-50 items-center justify-center w-full`}
