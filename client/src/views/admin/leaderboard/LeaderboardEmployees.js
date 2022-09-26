@@ -55,19 +55,19 @@ export default function LeaderboardRanking() {
                     // if it is, then add the corresponding class to the item to highlight it as a top 3 item in the leaderboard
                     leaderboard
                       .sort(function (a, b) {
-                        a.positivity_rate > b.positivity_rate ? -1 : 1;
+                        
                       })
                       .indexOf(item) === 0
                       ? "border-l-4 border-blue-500"
                       : leaderboard
                           .sort(function (a, b) {
-                            a.positivity_rate > b.positivity_rate ? -1 : 1;
+                            
                           })
                           .indexOf(item) === 1
                       ? "border-l-4 border-purple-500"
                       : leaderboard
                           .sort(function (a, b) {
-                            a.positivity_rate > b.positivity_rate ? -1 : 1;
+                            
                           })
                           .indexOf(item) === 2
                       ? "border-l-4 border-pink-500"
@@ -80,19 +80,19 @@ export default function LeaderboardRanking() {
                   // TEMPORARY CODE
                   leaderboard
                     .sort(function (a, b) {
-                      a.positivity_rate > b.positivity_rate ? -1 : 1;
+                      
                     })
                     .indexOf(item) === 0
                     ? "py-8"
                     : leaderboard
                         .sort(function (a, b) {
-                          a.positivity_rate > b.positivity_rate ? -1 : 1;
+                          
                         })
                         .indexOf(item) === 1
                     ? "py-6"
                     : leaderboard
                         .sort(function (a, b) {
-                          a.positivity_rate > b.positivity_rate ? -1 : 1;
+                          
                         })
                         .indexOf(item) === 2
                     ? "py-4"
