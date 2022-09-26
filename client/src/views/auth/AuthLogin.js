@@ -131,7 +131,9 @@ export default function AuthLogin() {
                       <i
                         className={`fas fa-sign-in-alt ${ICON_PLACE_SELF_CENTER}`}
                       />
+                      <Link to={"/admin/dashboard"}>
                       Sign in
+                        </Link>
                     </button>
                   </div>
                 </form>
