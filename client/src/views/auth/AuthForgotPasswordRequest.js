@@ -1,7 +1,7 @@
 import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
-  TEXT_FIELD
+  TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
@@ -14,7 +14,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description Handles the forgot password request page
  */
 export default function AuthForgotPasswordRequest() {
-
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
