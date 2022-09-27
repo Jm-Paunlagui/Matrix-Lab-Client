@@ -1,6 +1,7 @@
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
+  TEXT_FIELD
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
@@ -19,6 +20,54 @@ export default function AdminPrediction() {
           <h1 className="text-sm font-medium text-gray-500">@johnpaunlagui</h1>
         </div>
         <div className="col-span-2">
+          <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
+            <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
+              <div className="col-span-2 p-8 bg-gray-50">
+                <h1 className="mb-4 text-xl font-bold text-gray-700">
+                  from CSV file
+                </h1>
+                <p className="mb-4 text-sm">
+                  Your CSV file should contain the following columns: <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">sentence, evaluatee, department and course code.</b>
+                </p>
+              </div>
+              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+                <form>
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex flex-col w-full space-y-2">
+                      <h1 className="mb-4 text-xl font-bold text-gray-700">
+                        Some text
+                      </h1>
+                      <h1 className="text-base font-medium text-gray-500">
+                        CSV file
+                      </h1>
+                      <input
+                          type="file"
+                          className={TEXT_FIELD}
+                      />
+                        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                          The file must be a .csv file.
+                        </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
+                    <button
+                        type="button"
+                        className={`px-8 py-1 ${DANGER_BUTTON}`}
+                    >
+                      Cancel
+                    </button>
+                    <div className="p-1" />
+                    <button
+                        type="button"
+                        className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                    >
+                      Analyze and Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
           <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
@@ -42,7 +91,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Host"
                       />
                     </div>
@@ -52,7 +101,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="User"
                       />
                     </div>
@@ -62,7 +111,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Password"
                       />
                     </div>
@@ -72,7 +121,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Database"
                       />
                     </div>
@@ -90,7 +139,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Table"
                       />
                     </div>
@@ -100,7 +149,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Data Source"
                       />
                     </div>
@@ -110,7 +159,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Evaluatee"
                       />
                     </div>
@@ -120,7 +169,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Department"
                       />
                     </div>
@@ -130,7 +179,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Course Code"
                       />
                     </div>
@@ -140,7 +189,7 @@ export default function AdminPrediction() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="School Year and Semester"
                       />
                     </div>
