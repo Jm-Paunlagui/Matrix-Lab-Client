@@ -1,7 +1,7 @@
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
-  TEXT_FIELD
+  TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
@@ -27,7 +27,10 @@ export default function AdminPrediction() {
                   from CSV file
                 </h1>
                 <p className="mb-4 text-sm">
-                  Your CSV file should contain the following columns: <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">sentence, evaluatee, department and course code.</b>
+                  Your CSV file should contain the following columns:{" "}
+                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+                    sentence, evaluatee, department and course code.
+                  </b>
                 </p>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
@@ -40,26 +43,26 @@ export default function AdminPrediction() {
                       <h1 className="text-base font-medium text-gray-500">
                         CSV file
                       </h1>
-                      <input
-                          type="file"
-                          className={TEXT_FIELD}
-                      />
-                        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
-                          The file must be a .csv file.
-                        </p>
+                      <input type="file" className={TEXT_FIELD} />
+                      <p
+                        className="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                        id="file_input_help"
+                      >
+                        The file must be a .csv file.
+                      </p>
                     </div>
                   </div>
                   <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${DANGER_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${DANGER_BUTTON}`}
                     >
                       Cancel
                     </button>
                     <div className="p-1" />
                     <button
-                        type="button"
-                        className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                      type="button"
+                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                     >
                       Analyze and Save
                     </button>
