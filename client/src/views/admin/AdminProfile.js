@@ -1,6 +1,7 @@
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
+  TEXT_FIELD
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
@@ -39,7 +40,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="MATRIX ID"
                       />
                     </div>
@@ -85,7 +86,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Email"
                       />
                     </div>
@@ -95,7 +96,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="First Name"
                       />
                     </div>
@@ -105,7 +106,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Last Name"
                       />
                     </div>
@@ -150,7 +151,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Username"
                       />
                     </div>
@@ -163,7 +164,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Current Password"
                       />
                     </div>
@@ -173,7 +174,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="New Password"
                       />
                     </div>
@@ -183,7 +184,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Confirm New Password"
                       />
                     </div>
