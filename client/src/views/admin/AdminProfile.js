@@ -1,7 +1,7 @@
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
-  TEXT_FIELD
+  TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
