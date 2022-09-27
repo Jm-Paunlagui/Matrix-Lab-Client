@@ -41,17 +41,17 @@ export default function AuthForgotPasswordRequest() {
                 </div>
                 <form className="relative mx-auto space-y-6 max-w-screen">
                   <input
-                    className={`${TEXT_FIELD}`}
+                    className={TEXT_FIELD}
                     type="email"
                     placeholder="Email"
                   />
                   <button
-                    className={`px-5 py-3 pl-4  ${PRIMARY_BUTTON}`}
+                    className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}
                     type={"button"}
                   >
                     <FontAwesomeIcon
                       icon={faRotateRight}
-                      className={`${ICON_PLACE_SELF_CENTER}`}
+                      className={ICON_PLACE_SELF_CENTER}
                     />
                     Reset Password
                   </button>
