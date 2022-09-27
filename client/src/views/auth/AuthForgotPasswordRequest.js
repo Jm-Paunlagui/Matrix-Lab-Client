@@ -1,13 +1,11 @@
 import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
+  TEXT_FIELD
 } from "../../assets/styles/input-types-styles";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import React from "react";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/img/android-chrome-192x192.png";
@@ -16,18 +14,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description Handles the forgot password request page
  */
 export default function AuthForgotPasswordRequest() {
-  const [values, setValues] = React.useState({
-    email: "",
-  });
-
-  /**
-   * @description Handles the change of the input fields
-   * @param prop
-   * @returns {(function(*): void)|*}
-   */
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
@@ -55,18 +41,11 @@ export default function AuthForgotPasswordRequest() {
                   </p>
                 </div>
                 <form className="relative mx-auto space-y-6 max-w-screen">
-                  <FormControl fullWidth variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-username">
-                      Email
-                    </InputLabel>
-                    <OutlinedInput
-                      id="outlined-adornment-username"
-                      type={"text"}
-                      value={values.email}
-                      onChange={handleChange("email")}
-                      label="Email"
-                    />
-                  </FormControl>
+                  <input
+                    className={`${TEXT_FIELD}`}
+                    type="email"
+                    placeholder="Email"
+                  />
                   <button
                     className={`px-5 py-3 pl-4  ${PRIMARY_BUTTON}`}
                     type={"button"}
