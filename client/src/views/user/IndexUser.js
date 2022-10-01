@@ -6,12 +6,12 @@ import React from "react";
  * @description Handles admin pages for the application
  */
 export default function IndexUser() {
-    return (
-        <>
-            <UserNavigationBar />
-            <div className="mt-16 font-Montserrat">
-                <Outlet />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <UserNavigationBar />
+      <div className="mt-16 font-Montserrat">
+        <Outlet />
+      </div>
+    </>
+  );
 }

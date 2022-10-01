@@ -35,7 +35,6 @@ import UserCourses from "./views/user/UserCourses";
 import UserDashboard from "./views/user/UserDashboard";
 import UserProfile from "./views/user/UserProfile";
 
-
 /**
  * @description Main component for the application
  */
@@ -136,11 +135,11 @@ export default function App() {
            * @description Handles user routes for the application, and the IndexUser component has the outlet for the
            * user routes.
            */}
-            <Route exact="true" path="user" element={<IndexUser />}>
-                <Route exact="true" path="courses" element={<UserCourses />} />
-                <Route exact="true" path="dashboard" element={<UserDashboard />} />
-                <Route exact="true" path="profile" element={<UserProfile/>} />
-            </Route>
+          <Route exact="true" path="user" element={<IndexUser />}>
+            <Route exact="true" path="courses" element={<UserCourses />} />
+            <Route exact="true" path="dashboard" element={<UserDashboard />} />
+            <Route exact="true" path="profile" element={<UserProfile />} />
+          </Route>
 
           {/**
            * @description Handles page not found route for the application
