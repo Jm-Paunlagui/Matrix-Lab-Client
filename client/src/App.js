@@ -138,9 +138,12 @@ export default function App() {
            * user routes.
            */}
           <Route exact="true" path="user" element={<IndexUser />}>
-            <Route exact="true" path="programs" element={<IndexEval />} >
+            <Route exact="true" path="programs" element={<IndexEval />}>
               <Route exact="true" path="courses" element={<EvalCourses />}>
-                <Route path=":courseId" element={<EvalCourseSentimentTable />} />
+                <Route
+                  path=":courseId"
+                  element={<EvalCourseSentimentTable />}
+                />
               </Route>
             </Route>
             <Route exact="true" path="dashboard" element={<UserDashboard />} />
