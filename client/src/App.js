@@ -31,9 +31,11 @@ import TermsAndConditions from "./views/legal/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
 import IndexUser from "./views/user/IndexUser";
-import UserCourses from "./views/user/UserCourses";
 import UserDashboard from "./views/user/UserDashboard";
 import UserProfile from "./views/user/UserProfile";
+import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
+import IndexEval from "./views/user/eval/IndexEval";
+import EvalCourses from "./views/user/eval/EvalCourses";
 
 /**
  * @description Main component for the application
@@ -136,7 +138,11 @@ export default function App() {
            * user routes.
            */}
           <Route exact="true" path="user" element={<IndexUser />}>
-            <Route exact="true" path="courses" element={<UserCourses />} />
+            <Route exact="true" path="programs" element={<IndexEval />} >
+              <Route exact="true" path="courses" element={<EvalCourses />}>
+                <Route path=":courseId" element={<EvalCourseSentimentTable />} />
+              </Route>
+            </Route>
             <Route exact="true" path="dashboard" element={<UserDashboard />} />
             <Route exact="true" path="profile" element={<UserProfile />} />
           </Route>

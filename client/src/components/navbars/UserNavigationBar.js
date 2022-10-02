@@ -42,9 +42,9 @@ export default function UserNavigationBar() {
       current: isActive("dashboard"),
     },
     {
-      name: "Courses",
-      href: "/user/courses",
-      current: isActive("courses"),
+      name: "Programs",
+      href: "/user/programs/courses",
+      current: isActive("programs"),
     },
   ];
 
