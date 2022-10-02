@@ -28,9 +28,10 @@ export default function AdminProfile() {
                 </h1>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                  <div className="flex flex-col w-full space-y-2">
-                    This account is an administrator account. This account has the highest privileges in the system.
-                  </div>
+                <div className="flex flex-col w-full space-y-2">
+                  This account is an administrator account. This account has the
+                  highest privileges in the system.
+                </div>
               </div>
             </div>
           </div>
