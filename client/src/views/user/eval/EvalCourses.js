@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * @description Handles evaluation pages for the application
+ */
 export default function EvalCourses() {
   return (
     <div className="px-6 mx-auto max-w-7xl">

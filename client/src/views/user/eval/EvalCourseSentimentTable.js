@@ -1,5 +1,9 @@
 import React from "react";
 
+
+/**
+ * @description Handles sentiment by course pages for the application
+ */
 export default function EvalCourseSentimentTable() {
   return (
     <div className="px-6 mx-auto max-w-7xl">
