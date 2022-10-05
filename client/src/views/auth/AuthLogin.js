@@ -8,11 +8,11 @@ import {
 } from "../../assets/styles/input-types-styles";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import React from "react";
 import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
  * @description User login form for the application

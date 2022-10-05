@@ -117,7 +117,7 @@ export default function UserNavigationBar() {
                 </div>
               </div>
 
-              <div className="static absolute inset-y-0 inset-auto right-0 flex items-center pr-0 pr-2 ml-6">
+              <div className="absolute inset-y-0 inset-auto right-0 flex items-center ml-6">
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
