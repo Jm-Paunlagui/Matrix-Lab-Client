@@ -1,6 +1,5 @@
 import React from "react";
 
-
 /**
  * @description Handles sentiment by course pages for the application
  */
