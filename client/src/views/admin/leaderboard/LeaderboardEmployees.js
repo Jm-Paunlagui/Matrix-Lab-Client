@@ -47,33 +47,11 @@ export default function LeaderboardRanking() {
         {leaderboard.map((item) => (
           <div
             key={item.id}
-            className={`flex flex-col mb-8 w-full bg-white rounded shadow
-                  ${
-                    // TEMPORARY CODE
-                    // get the sorted index of the item
-                    // loop through the sorted array and check if the index of the item is equal to 0, 1, or 2
-                    // if it is, then add the corresponding class to the item to highlight it as a top 3 item in the leaderboard
-                    leaderboard.sort(function (a, b) {}).indexOf(item) === 0
-                      ? "border-l-4 border-blue-500"
-                      : leaderboard.sort(function (a, b) {}).indexOf(item) === 1
-                      ? "border-l-4 border-purple-500"
-                      : leaderboard.sort(function (a, b) {}).indexOf(item) === 2
-                      ? "border-l-4 border-pink-500"
-                      : ""
-                  }`}
+            className={`flex flex-col mb-8 w-full bg-white rounded shadow`}
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div
-                className={`col-span-2 ${
-                  // TEMPORARY CODE
-                  leaderboard.sort(function (a, b) {}).indexOf(item) === 0
-                    ? "py-8"
-                    : leaderboard.sort(function (a, b) {}).indexOf(item) === 1
-                    ? "py-6"
-                    : leaderboard.sort(function (a, b) {}).indexOf(item) === 2
-                    ? "py-4"
-                    : "py-3"
-                } bg-gray-50 items-center justify-center w-full`}
+                className={`col-span-2 py-5 bg-gray-50 items-center justify-center w-full`}
               >
                 <div className="flex flex-col items-center justify-center w-full p-4">
                   <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
