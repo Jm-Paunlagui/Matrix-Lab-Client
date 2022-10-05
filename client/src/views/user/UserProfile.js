@@ -7,15 +7,15 @@ import {
 import React from "react";
 
 /**
- * @description Handles the admin prediction
+ * @description Handles the admin profile
  */
-export default function AdminPrediction() {
+export default function UserProfile() {
   return (
     <div className="px-6 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="flex flex-col items-center justify-center w-full h-32 p-4 bg-white rounded md:h-48 outline outline-2 outline-gray-200">
           <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            Sentiment Analysis
+            Account Management
           </h1>
           <h1 className="text-sm font-medium text-gray-500">@johnpaunlagui</h1>
         </div>
@@ -24,32 +24,91 @@ export default function AdminPrediction() {
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  from CSV file
+                  Matrix ID
                 </h1>
                 <p className="mb-4 text-sm">
-                  Your CSV file should contain the following columns:{" "}
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    sentence, evaluatee, department and course code.
-                  </b>
+                  This is your unique identifier for your account. It is used to
+                  identify you on the platform.
                 </p>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
-                      <h1 className="mb-4 text-xl font-bold text-gray-700">
-                        Some text
-                      </h1>
                       <h1 className="text-base font-medium text-gray-500">
-                        CSV file
+                        Matrix ID
                       </h1>
-                      <input type="file" className={TEXT_FIELD} />
-                      <p
-                        className="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                        id="file_input_help"
-                      >
-                        The file must be a .csv file.
-                      </p>
+                      <input
+                        type="text"
+                        className={TEXT_FIELD}
+                        placeholder="MATRIX ID"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Save changes or Cancel */}
+                  <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
+                    <button
+                      type="button"
+                      className={`px-8 py-1 ${DANGER_BUTTON}`}
+                    >
+                      Cancel
+                    </button>
+                    <div className="p-1" />
+                    <button
+                      type="button"
+                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
+            <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+              <div className="col-span-2 p-8 bg-gray-50">
+                <h1 className="mb-4 text-xl font-bold text-gray-700">
+                  Personal Information
+                </h1>
+                <p className="mb-4 text-sm">
+                  This information is private and only visible to you and your
+                  organization. It will not be shared with anyone else.
+                </p>
+              </div>
+              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+                <form>
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex flex-col w-full space-y-2">
+                      <h1 className="text-base font-medium text-gray-500">
+                        Email
+                      </h1>
+                      <input
+                        type="text"
+                        className={TEXT_FIELD}
+                        placeholder="Email"
+                      />
+                    </div>
+                    <div className="flex flex-col w-full space-y-2">
+                      <h1 className="text-base font-medium text-gray-500">
+                        First Name
+                      </h1>
+                      <input
+                        type="text"
+                        className={TEXT_FIELD}
+                        placeholder="First Name"
+                      />
+                    </div>
+                    <div className="flex flex-col w-full space-y-2">
+                      <h1 className="text-base font-medium text-gray-500">
+                        Last Name
+                      </h1>
+                      <input
+                        type="text"
+                        className={TEXT_FIELD}
+                        placeholder="Last Name"
+                      />
                     </div>
                   </div>
                   <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
@@ -64,7 +123,7 @@ export default function AdminPrediction() {
                       type="button"
                       className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                     >
-                      Analyze and Save
+                      Save Changes
                     </button>
                   </div>
                 </form>
@@ -75,125 +134,58 @@ export default function AdminPrediction() {
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  from Database
+                  Matrix Account Sign-In
                 </h1>
                 <p className="mb-4 text-sm">
-                  All of the entries in your database will be analyzed and the
-                  results will be displayed here. This will take a while.
+                  We recommend that you periodically update your password to
+                  keep your account secure and prevent unauthorized access to
+                  your account.
                 </p>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <form>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
-                      <h1 className="mb-4 text-xl font-bold text-gray-700">
-                        DB Credentials
-                      </h1>
                       <h1 className="text-base font-medium text-gray-500">
-                        Host
+                        Username
                       </h1>
                       <input
                         type="text"
                         className={TEXT_FIELD}
-                        placeholder="Host"
+                        placeholder="Username"
                       />
                     </div>
+                    <h1 className="mb-4 text-xl font-bold text-gray-700">
+                      Change Password
+                    </h1>
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="text-base font-medium text-gray-500">
-                        User
-                      </h1>
-                      <input
-                        type="text"
-                        className={TEXT_FIELD}
-                        placeholder="User"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Password
+                        Current Password
                       </h1>
                       <input
                         type="password"
                         className={TEXT_FIELD}
-                        placeholder="Password"
+                        placeholder="Current Password"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="text-base font-medium text-gray-500">
-                        Database
+                        New Password
                       </h1>
                       <input
-                        type="text"
+                        type="password"
                         className={TEXT_FIELD}
-                        placeholder="Database"
-                      />
-                    </div>
-                    <h1 className="text-xl font-bold text-gray-700">
-                      Column Selection
-                    </h1>
-                    <p className="">
-                      Theses are the columns that will be used for the analysis.
-                    </p>
-                    {/* Note to self: Make this dynamic */}
-
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Table Name
-                      </h1>
-                      <input
-                        type="text"
-                        className={TEXT_FIELD}
-                        placeholder="Table"
+                        placeholder="New Password"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="text-base font-medium text-gray-500">
-                        Data Source
+                        Confirm New Password
                       </h1>
                       <input
-                        type="text"
+                        type="password"
                         className={TEXT_FIELD}
-                        placeholder="Data Source"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Evaluatee
-                      </h1>
-                      <input
-                        type="text"
-                        className={TEXT_FIELD}
-                        placeholder="Evaluatee"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Department
-                      </h1>
-                      <input
-                        type="text"
-                        className={TEXT_FIELD}
-                        placeholder="Department"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Course Code
-                      </h1>
-                      <input
-                        type="text"
-                        className={TEXT_FIELD}
-                        placeholder="Course Code"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        School Year and Semester
-                      </h1>
-                      <input
-                        type="text"
-                        className={TEXT_FIELD}
-                        placeholder="School Year and Semester"
+                        placeholder="Confirm New Password"
                       />
                     </div>
                   </div>
@@ -209,7 +201,7 @@ export default function AdminPrediction() {
                       type="button"
                       className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                     >
-                      Analyze and Save
+                      Save Changes
                     </button>
                   </div>
                 </form>

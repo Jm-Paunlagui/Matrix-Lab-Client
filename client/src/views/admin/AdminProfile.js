@@ -1,6 +1,7 @@
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
+  TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
@@ -23,45 +24,14 @@ export default function AdminProfile() {
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Matrix ID
+                  Account Type
                 </h1>
-                <p className="mb-4 text-sm">
-                  This is your unique identifier for your account. It is used to
-                  identify you on the platform.
-                </p>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                <form>
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Matrix ID
-                      </h1>
-                      <input
-                        type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
-                        placeholder="MATRIX ID"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Save changes or Cancel */}
-                  <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                    <button
-                      type="button"
-                      className={`px-8 py-1 ${DANGER_BUTTON}`}
-                    >
-                      Cancel
-                    </button>
-                    <div className="p-1" />
-                    <button
-                      type="button"
-                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
-                    >
-                      Save Changes
-                    </button>
-                  </div>
-                </form>
+                <div className="flex flex-col w-full space-y-2">
+                  This account is an administrator account. This account has the
+                  highest privileges in the system.
+                </div>
               </div>
             </div>
           </div>
@@ -85,7 +55,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Email"
                       />
                     </div>
@@ -95,7 +65,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="First Name"
                       />
                     </div>
@@ -105,7 +75,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Last Name"
                       />
                     </div>
@@ -150,7 +120,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="text"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Username"
                       />
                     </div>
@@ -163,7 +133,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Current Password"
                       />
                     </div>
@@ -173,7 +143,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="New Password"
                       />
                     </div>
@@ -183,7 +153,7 @@ export default function AdminProfile() {
                       </h1>
                       <input
                         type="password"
-                        className="px-4 py-2 text-gray-700 rounded-lg outline outline-1 outline-gray-200"
+                        className={TEXT_FIELD}
                         placeholder="Confirm New Password"
                       />
                     </div>
@@ -207,7 +177,6 @@ export default function AdminProfile() {
               </div>
             </div>
           </div>
-          <div className="mb-16" />
         </div>
       </div>
     </div>

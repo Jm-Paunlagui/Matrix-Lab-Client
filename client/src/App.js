@@ -30,13 +30,20 @@ import PublicRanking from "./views/public/PublicRanking.js";
 import TermsAndConditions from "./views/legal/TermsAndConditions.js";
 import { ToastContainer } from "react-toastify";
 
+import IndexUser from "./views/user/IndexUser";
+import UserDashboard from "./views/user/UserDashboard";
+import UserProfile from "./views/user/UserProfile";
+import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
+import IndexEval from "./views/user/eval/IndexEval";
+import EvalCourses from "./views/user/eval/EvalCourses";
+
 /**
  * @description Main component for the application
  */
 export default function App() {
   /**
    * @type {Function}
-   * @description Function to scroll to top of the page when route changes in the application
+   * @description Function to scroll to top of the page when route changes in the application.
    */
   const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -52,7 +59,7 @@ export default function App() {
       <Wrapper>
         <Routes>
           {/**
-           * @description Handles public routes for the application and the IndexPublic component has the outlet for the
+           * @description Handles public routes for the application, and the IndexPublic component has the outlet for the
            * public routes
            */}
           <Route element={<IndexPublic />}>
@@ -81,7 +88,7 @@ export default function App() {
           />
 
           {/**
-           * @description Handles auth routes for the application and the IndexAuth component has the outlet for the
+           * @description Handles auth routes for the application, and the IndexAuth component has the outlet for the
            * auth routes
            */}
           <Route element={<IndexAuth />}>
@@ -121,6 +128,26 @@ export default function App() {
             <Route exact="true" path="profile" element={<AdminProfile />} />
             <Route exact="true" path="settings" element={<AdminSettings />} />
             <Route exact="true" path="management" element={<AdminTables />} />
+          </Route>
+          {/**
+           * End of admin routes
+           * */}
+
+          {/**
+           * @description Handles user routes for the application, and the IndexUser component has the outlet for the
+           * user routes.
+           */}
+          <Route exact="true" path="user" element={<IndexUser />}>
+            <Route exact="true" path="programs" element={<IndexEval />}>
+              <Route exact="true" path="courses" element={<EvalCourses />}>
+                <Route
+                  path=":courseId"
+                  element={<EvalCourseSentimentTable />}
+                />
+              </Route>
+            </Route>
+            <Route exact="true" path="dashboard" element={<UserDashboard />} />
+            <Route exact="true" path="profile" element={<UserProfile />} />
           </Route>
 
           {/**
