@@ -6,10 +6,8 @@ import React from "react";
  */
 export default function IndexEval() {
   return (
-    <>
       <div className="mt-16 font-Montserrat">
         <Outlet />
       </div>
-    </>
   );
 }
