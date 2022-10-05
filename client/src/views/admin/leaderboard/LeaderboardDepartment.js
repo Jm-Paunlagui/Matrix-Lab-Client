@@ -45,7 +45,6 @@ export default function LeaderboardDepartment() {
 
       <div className=" place-content-center">
         {leaderboard
-          .sort(function (a, b) {})
           .map((item) => (
             <div
               key={item.id}
