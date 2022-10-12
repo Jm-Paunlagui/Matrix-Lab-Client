@@ -36,6 +36,7 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import IndexEval from "./views/user/eval/IndexEval";
 import EvalCourses from "./views/user/eval/EvalCourses";
+import AuthResetPassword from "./views/auth/AuthResetPassword";
 
 /**
  * @description Main component for the application
@@ -92,12 +93,9 @@ export default function App() {
            * auth routes
            */}
           <Route element={<IndexAuth />}>
-            <Route
-              exact="true"
-              path="forgot-password"
-              element={<AuthForgotPasswordRequest />}
-            />
+            <Route exact="true" path="forgot-password" element={<AuthForgotPasswordRequest />} />
             <Route exact="true" path="auth" element={<AuthLogin />} />
+            <Route exact="true" path="reset-password/:token" element={<AuthResetPassword />} />
           </Route>
           {/**
            * End of auth routes
