@@ -15,35 +15,35 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description Handles the forgot password request page
  */
 export default function AuthForgotPasswordRequest() {
-
   const [email, setEmail] = React.useState("");
 
   const [errorEffect, setErrorEffect] = React.useState(false);
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    }
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
-    const handleEmailSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const resp = await httpClient.post("/forgot-password", { email });
-            if (resp.statusText === "OK") {
-                console.log(resp);
-            }
-        } catch (error) {
-            setErrorEffect(true);
-            console.log(error);
-        }
+  const handleEmailSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const resp = await httpClient.post("/forgot-password", { email });
+      if (resp.statusText === "OK") {
+        console.log(resp);
+      }
+    } catch (error) {
+      setErrorEffect(true);
+      console.log(error);
     }
+  };
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
-          <div className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
+          <div
+            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
                           ${errorEffect && `animate-wiggle`}`}
-              onAnimationEnd={() => setErrorEffect(false)}
+            onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             <div className={"px-6 lg:px-28"}>
@@ -62,11 +62,15 @@ export default function AuthForgotPasswordRequest() {
                     password.
                   </p>
                 </div>
-                <form className="relative mx-auto space-y-6 max-w-screen"
-                        onSubmit={handleEmailSubmit}
+                <form
+                  className="relative mx-auto space-y-6 max-w-screen"
+                  onSubmit={handleEmailSubmit}
                 >
                   <input
-                    className={`${TEXT_FIELD} ${errorEffect && `border-red-500 placeholder-red-500 text-red-500`}`}
+                    className={`${TEXT_FIELD} ${
+                      errorEffect &&
+                      `border-red-500 placeholder-red-500 text-red-500`
+                    }`}
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -74,18 +78,18 @@ export default function AuthForgotPasswordRequest() {
                     onChange={handleEmailChange}
                     onAnimationEnd={() => setErrorEffect(false)}
                   />
-                    <div className="flex flex-col justify-center">
-                  <button
-                    className={`px-5 py-1 pl-4 ${PRIMARY_BUTTON}`}
-                    type="submit"
-                  >
-                    <FontAwesomeIcon
-                      icon={faRotateRight}
-                      className={ICON_PLACE_SELF_CENTER}
-                    />
+                  <div className="flex flex-col justify-center">
+                    <button
+                      className={`px-5 py-1 pl-4 ${PRIMARY_BUTTON}`}
+                      type="submit"
+                    >
+                      <FontAwesomeIcon
+                        icon={faRotateRight}
+                        className={ICON_PLACE_SELF_CENTER}
+                      />
                       Reset Password
-                  </button>
-                    </div>
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
