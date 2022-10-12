@@ -40,22 +40,19 @@ export default function AuthForgotPasswordRequest() {
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
-        <div className="w-11/12 md:w-5/12 lg:w-4/12 xl:w-3/12">
+        <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
                           ${errorEffect && `animate-wiggle`}`}
               onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
-            <div className={"pr-6 pl-6 pb-6"}>
-              <div className="flex items-center py-2 text-gray-800">
-                <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-                <h1 className="ml-3 font-extrabold tracking-widest text-md">
-                  MATRIX LAB
-                </h1>
+            <div className={"px-6 lg:px-28"}>
+              <div className="flex items-center py-2 text-gray-800 justify-center">
+                <img src={logo} alt="logo" className="w-16 h-16 -mt-12" />
               </div>
-              <div className="flex-auto space-y-6">
+              <div className="flex-auto space-y-6 mb-24">
                 <div className="mb-3 text-start">
-                  <h6 className="text-lg font-bold text-gray-500">
+                  <h6 className="text-lg xl:text-2xl font-bold text-gray-500 mt-16">
                     Forgot Password?
                   </h6>
                 </div>
@@ -73,19 +70,22 @@ export default function AuthForgotPasswordRequest() {
                     type="email"
                     placeholder="Email"
                     value={email}
+                    name="email"
                     onChange={handleEmailChange}
                     onAnimationEnd={() => setErrorEffect(false)}
                   />
+                    <div className="flex flex-col justify-center">
                   <button
-                    className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}
+                    className={`px-5 py-1 pl-4 ${PRIMARY_BUTTON}`}
                     type="submit"
                   >
                     <FontAwesomeIcon
                       icon={faRotateRight}
                       className={ICON_PLACE_SELF_CENTER}
                     />
-                    Reset Password
+                      Reset Password
                   </button>
+                    </div>
                 </form>
               </div>
             </div>

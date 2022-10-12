@@ -68,22 +68,19 @@ export default function AuthLogin() {
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
-        <div className="w-11/12 md:w-5/12 lg:w-4/12 xl:w-3/12">
+        <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
                 ${errorEffect && `animate-wiggle`}`}
                onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/"} hasText={false} isSmall />
-            <div className={"pr-6 pl-6"}>
-              <div className="flex items-center py-2 text-gray-800">
-                <img src={logo} alt="logo" className="w-10 h-10 mr-2" />
-                <h1 className="ml-3 font-extrabold tracking-widest text-md">
-                  MATRIX LAB
-                </h1>
+            <div className={"px-6 lg:px-28"}>
+              <div className="flex items-center py-2 text-gray-800 justify-center">
+                <img src={logo} alt="logo" className="w-16 h-16 -mt-12" />
               </div>
-              <div className="flex-auto pt-0">
-                <h6 className="text-lg font-bold text-gray-500">
-                  Sign in to your account
+              <div className="flex-auto pt-0 mb-24">
+                <h6 className="text-lg xl:text-2xl font-bold text-gray-500 mt-16">
+                  Sign in to MATRIX LAB
                 </h6>
                 <form
                     className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -94,6 +91,7 @@ export default function AuthLogin() {
                     type="username"
                     placeholder="Username"
                     value={authForm.username}
+                    name="username"
                     onChange={handleAuthFormChange}
                     onAnimationEnd={() => setErrorEffect(false)}
                   />
@@ -102,6 +100,7 @@ export default function AuthLogin() {
                     type="password"
                     placeholder="Password"
                     value={authForm.password}
+                    name="password"
                     onChange={handleAuthFormChange}
                     onAnimationEnd={() => setErrorEffect(false)}
                   />
@@ -109,7 +108,7 @@ export default function AuthLogin() {
                   <div className="flex flex-col justify-center space-y-6">
                     <button
                       type="submit"
-                      className={`px-5 py-3 pl-4 ${PRIMARY_BUTTON}`}
+                      className={`px-5 py-1 pl-4 ${PRIMARY_BUTTON}`}
 
                     >
                       <FontAwesomeIcon
@@ -118,10 +117,10 @@ export default function AuthLogin() {
                       />
                       Sign in
                     </button>
-                    <hr />
+
                     <button type={"button"} className={`${SECONDARY_BUTTON}`}>
                       <Link to={"/forgot-password"}>
-                        <h1 className="px-5 py-3">Forgot Password?</h1>
+                        <h1 className="px-5 py-1">Forgot Password?</h1>
                       </Link>
                     </button>
                   </div>
