@@ -93,9 +93,17 @@ export default function App() {
            * auth routes
            */}
           <Route element={<IndexAuth />}>
-            <Route exact="true" path="forgot-password" element={<AuthForgotPasswordRequest />} />
+            <Route
+              exact="true"
+              path="forgot-password"
+              element={<AuthForgotPasswordRequest />}
+            />
             <Route exact="true" path="auth" element={<AuthLogin />} />
-            <Route exact="true" path="reset-password/:token" element={<AuthResetPassword />} />
+            <Route
+              exact="true"
+              path="reset-password/:token"
+              element={<AuthResetPassword />}
+            />
           </Route>
           {/**
            * End of auth routes
