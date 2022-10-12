@@ -76,9 +76,9 @@ export default function AuthLogin() {
             <BackNavigation backTo={"/"} hasText={false} isSmall />
             <div className={"px-6 lg:px-28"}>
               <div className="flex items-center py-2 text-gray-800 justify-center">
-                <img src={logo} alt="logo" className="w-16 h-16 -mt-12" />
+                <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
               </div>
-              <div className="flex-auto pt-0 mb-24">
+              <div className="flex-auto pt-0 mb-24 -mt-14">
                 <h6 className="text-lg xl:text-2xl font-bold text-gray-500 mt-16">
                   Sign in to MATRIX LAB
                 </h6>
