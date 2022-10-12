@@ -6,7 +6,7 @@ import {
   SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,7 +19,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description User login form for the application
  */
 export default function AuthLogin() {
-
   /**
    * @description State variables for the login form.
    * @param {string} email - Email of the user.
@@ -40,12 +39,12 @@ export default function AuthLogin() {
    * @param event
    */
   const handleAuthFormChange = (event) => {
-        const { name, value } = event.target;
-        setAuthForm({
-            ...authForm,
-            [name]: value
-        });
-    }
+    const { name, value } = event.target;
+    setAuthForm({
+      ...authForm,
+      [name]: value,
+    });
+  };
 
   /**
    * @description Handles the form submission and makes a POST request to the backend.
@@ -55,7 +54,10 @@ export default function AuthLogin() {
     event.preventDefault();
     const { username, password } = authForm;
     try {
-      const resp = await httpClient.post("/authenticate", { username, password});
+      const resp = await httpClient.post("/authenticate", {
+        username,
+        password,
+      });
       if (resp.statusText === "OK") {
         console.log(resp.data);
       }
@@ -63,15 +65,16 @@ export default function AuthLogin() {
       console.log(error);
       setErrorEffect(true);
     }
-  }
+  };
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
-          <div className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
+          <div
+            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
                 ${errorEffect && `animate-wiggle`}`}
-               onAnimationEnd={() => setErrorEffect(false)}
+            onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/"} hasText={false} isSmall />
             <div className={"px-6 lg:px-28"}>
@@ -83,11 +86,14 @@ export default function AuthLogin() {
                   Sign in to MATRIX LAB
                 </h6>
                 <form
-                    className="relative mx-auto mt-6 mb-6 max-w-screen"
-                    onSubmit={handleAuthFormSubmit}
+                  className="relative mx-auto mt-6 mb-6 max-w-screen"
+                  onSubmit={handleAuthFormSubmit}
                 >
                   <input
-                    className={`${TEXT_FIELD} ${errorEffect && `border-red-500 placeholder-red-500 text-red-500`}`}
+                    className={`${TEXT_FIELD} ${
+                      errorEffect &&
+                      `border-red-500 placeholder-red-500 text-red-500`
+                    }`}
                     type="username"
                     placeholder="Username"
                     value={authForm.username}
@@ -96,7 +102,10 @@ export default function AuthLogin() {
                     onAnimationEnd={() => setErrorEffect(false)}
                   />
                   <input
-                    className={`pr-12 mt-5 mb-5 ${TEXT_FIELD} ${errorEffect && `border-red-500 placeholder-red-500 text-red-500`}`}
+                    className={`pr-12 mt-5 mb-5 ${TEXT_FIELD} ${
+                      errorEffect &&
+                      `border-red-500 placeholder-red-500 text-red-500`
+                    }`}
                     type="password"
                     placeholder="Password"
                     value={authForm.password}
@@ -109,7 +118,6 @@ export default function AuthLogin() {
                     <button
                       type="submit"
                       className={`px-5 py-1 pl-4 ${PRIMARY_BUTTON}`}
-
                     >
                       <FontAwesomeIcon
                         icon={faSignIn}
