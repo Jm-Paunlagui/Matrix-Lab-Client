@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import {faSignIn, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import { faSignIn, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -60,9 +60,9 @@ export default function AuthLogin() {
     event.preventDefault();
     setOki(true);
     setAuthForm({
-        ...authForm,
-        textChange: "Signing In",
-    })
+      ...authForm,
+      textChange: "Signing In",
+    });
     try {
       const resp = await httpClient.post("/authenticate", {
         username,
@@ -77,10 +77,10 @@ export default function AuthLogin() {
       setErrorEffect(true);
       setError(error.response.data.message);
       setOki(false);
-        setAuthForm({
-          ...authForm,
-          textChange: "Sign In",
-        });
+      setAuthForm({
+        ...authForm,
+        textChange: "Sign In",
+      });
     }
   };
 
@@ -135,9 +135,9 @@ export default function AuthLogin() {
 
                   {/* Error message */}
                   {error ? (
-                      <div className="text-red-500 text-sm font-semibold mt-2">
-                        {error}
-                      </div>
+                    <div className="text-red-500 text-sm font-semibold mt-2">
+                      {error}
+                    </div>
                   ) : null}
 
                   <div className="flex flex-col justify-center space-y-6 mt-6">
@@ -146,18 +146,18 @@ export default function AuthLogin() {
                       className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                     >
                       {oki ? (
-                          <svg className="w-5 h-5 mr-2 animate-spin ease-in-out">
-                            <FontAwesomeIcon
-                                icon={faSpinner}
-                                className={ICON_PLACE_SELF_CENTER}
-                            />
-                          </svg>
-                      ) :
+                        <svg className="w-5 h-5 mr-2 animate-spin ease-in-out">
                           <FontAwesomeIcon
-                            icon={faSignIn}
-                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faSpinner}
+                            className={ICON_PLACE_SELF_CENTER}
                           />
-                      }
+                        </svg>
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faSignIn}
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                        />
+                      )}
 
                       {textChange}
                     </button>
