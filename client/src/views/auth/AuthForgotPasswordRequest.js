@@ -48,7 +48,7 @@ export default function AuthForgotPasswordRequest() {
     try {
       const resp = await httpClient.post("/check-email", { username });
       if (resp.statusText === "OK") {
-        console.log(resp.data);
+        
         setResetForm({
           username,
           email: "",
