@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faSignIn } from "@fortawesome/free-solid-svg-icons";
+import {faSignIn, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -27,12 +27,18 @@ export default function AuthLogin() {
   const [authForm, setAuthForm] = useState({
     username: "",
     password: "",
+    textChange: "Sign In",
   });
+
+  const { username, password, textChange } = authForm;
+
+  const [oki, setOki] = useState(false);
 
   /**
    * @description Handles the Error animation for the login form.
    */
   const [errorEffect, setErrorEffect] = useState(false);
+  const [error, setError] = React.useState("");
 
   /**
    * @description Handles the change of the input fields in the login form.
@@ -52,18 +58,29 @@ export default function AuthLogin() {
    */
   const handleAuthFormSubmit = async (event) => {
     event.preventDefault();
-    const { username, password } = authForm;
+    setOki(true);
+    setAuthForm({
+        ...authForm,
+        textChange: "Signing In",
+    })
     try {
       const resp = await httpClient.post("/authenticate", {
         username,
         password,
       });
       if (resp.statusText === "OK") {
-        console.log(resp.data);
+        setOki(true);
+        // Redirect to the dashboard
+        window.location.href = resp.data.path;
       }
     } catch (error) {
-      console.log(error);
       setErrorEffect(true);
+      setError(error.response.data.message);
+      setOki(false);
+        setAuthForm({
+          ...authForm,
+          textChange: "Sign In",
+        });
     }
   };
 
@@ -100,9 +117,10 @@ export default function AuthLogin() {
                     name="username"
                     onChange={handleAuthFormChange}
                     onAnimationEnd={() => setErrorEffect(false)}
+                    onFocus={() => setError("")}
                   />
                   <input
-                    className={`pr-12 mt-5 mb-5 ${TEXT_FIELD} ${
+                    className={`pr-12 mt-5 ${TEXT_FIELD} ${
                       errorEffect &&
                       `border-red-500 placeholder-red-500 text-red-500`
                     }`}
@@ -112,18 +130,36 @@ export default function AuthLogin() {
                     name="password"
                     onChange={handleAuthFormChange}
                     onAnimationEnd={() => setErrorEffect(false)}
+                    onFocus={() => setError("")}
                   />
 
-                  <div className="flex flex-col justify-center space-y-6">
+                  {/* Error message */}
+                  {error ? (
+                      <div className="text-red-500 text-sm font-semibold mt-2">
+                        {error}
+                      </div>
+                  ) : null}
+
+                  <div className="flex flex-col justify-center space-y-6 mt-6">
                     <button
                       type="submit"
-                      className={`px-5 py-1 pl-4 ${PRIMARY_BUTTON}`}
+                      className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                     >
-                      <FontAwesomeIcon
-                        icon={faSignIn}
-                        className={`${ICON_PLACE_SELF_CENTER}`}
-                      />
-                      Sign in
+                      {oki ? (
+                          <svg className="w-5 h-5 mr-2 animate-spin ease-in-out">
+                            <FontAwesomeIcon
+                                icon={faSpinner}
+                                className={ICON_PLACE_SELF_CENTER}
+                            />
+                          </svg>
+                      ) :
+                          <FontAwesomeIcon
+                            icon={faSignIn}
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                          />
+                      }
+
+                      {textChange}
                     </button>
 
                     <button type={"button"} className={`${SECONDARY_BUTTON}`}>
