@@ -30,6 +30,7 @@ export default function AuthResetPassword() {
     password: "",
     confirmPassword: "",
     textChange: "Reset Password",
+    buttonDisabled: true,
   });
 
   /**
@@ -55,7 +56,7 @@ export default function AuthResetPassword() {
   /**
    * @description Destructs the state variables
    */
-  const { password, confirmPassword, textChange } = newPassword;
+  const { password, confirmPassword, textChange, buttonDisabled } = newPassword;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to reset the password.
@@ -68,6 +69,7 @@ export default function AuthResetPassword() {
     setNewPassword({
       ...newPassword,
       textChange: "Resetting your Password",
+      buttonDisabled: true,
     });
     try {
       const resp = await httpClient.post(`/reset-password/${token}`, {
@@ -82,6 +84,7 @@ export default function AuthResetPassword() {
       setNewPassword({
         ...newPassword,
         textChange: "Reset Password",
+        buttonDisabled: true,
       });
       setOki(false);
     }
@@ -185,11 +188,19 @@ export default function AuthResetPassword() {
                         minLength={8}
                         value={password}
                         valueAgain={confirmPassword}
+                        onChange={(isValid) => {
+                          setNewPassword({
+                            ...newPassword,
+                            buttonDisabled: !isValid,
+                          });
+                        }}
                       />
                       <div className="flex flex-col justify-center">
                         <button
                           type="submit"
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${buttonDisabled &&
+                            `opacity-50 cursor-not-allowed`}`}
+                            disabled={buttonDisabled}
                         >
                           {oki ? (
                             <svg className="spinner mr-1" viewBox="0 0 50 50">
