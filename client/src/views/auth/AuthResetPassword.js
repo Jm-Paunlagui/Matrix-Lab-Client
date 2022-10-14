@@ -198,9 +198,10 @@ export default function AuthResetPassword() {
                       <div className="flex flex-col justify-center">
                         <button
                           type="submit"
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${buttonDisabled &&
-                            `opacity-50 cursor-not-allowed`}`}
-                            disabled={buttonDisabled}
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                            buttonDisabled && `opacity-50 cursor-not-allowed`
+                          }`}
+                          disabled={buttonDisabled}
                         >
                           {oki ? (
                             <svg className="spinner mr-1" viewBox="0 0 50 50">
