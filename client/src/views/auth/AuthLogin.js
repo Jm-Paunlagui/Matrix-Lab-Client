@@ -7,11 +7,11 @@ import {
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faSignIn, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
 
@@ -30,15 +30,17 @@ export default function AuthLogin() {
     textChange: "Sign In",
   });
 
+  /**
+   * @description Destructs the state variables
+   */
   const { username, password, textChange } = authForm;
 
-  const [oki, setOki] = useState(false);
-
   /**
-   * @description Handles the Error animation for the login form.
+   * @description Handles the Error/Success animation and messages for the login form.
    */
+  const [oki, setOki] = useState(false);
   const [errorEffect, setErrorEffect] = useState(false);
-  const [error, setError] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   /**
    * @description Handles the change of the input fields in the login form.
@@ -75,7 +77,7 @@ export default function AuthLogin() {
       }
     } catch (error) {
       setErrorEffect(true);
-      setError(error.response.data.message);
+      setErrorMessage(error.response.data.message);
       setOki(false);
       setAuthForm({
         ...authForm,
@@ -95,11 +97,11 @@ export default function AuthLogin() {
           >
             <BackNavigation backTo={"/"} hasText={false} isSmall />
             <div className={"px-6 lg:px-28"}>
-              <div className="flex items-center py-2 text-gray-800 justify-center">
+              <div className="flex items-center justify-center py-2 text-gray-800">
                 <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
               </div>
               <div className="flex-auto pt-0 mb-24 -mt-14">
-                <h6 className="text-lg xl:text-2xl font-bold text-gray-500 mt-16">
+                <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
                   Sign in to MATRIX LAB
                 </h6>
                 <form
@@ -117,7 +119,7 @@ export default function AuthLogin() {
                     name="username"
                     onChange={handleAuthFormChange}
                     onAnimationEnd={() => setErrorEffect(false)}
-                    onFocus={() => setError("")}
+                    onFocus={() => setErrorMessage("")}
                   />
                   <input
                     className={`pr-12 mt-5 ${TEXT_FIELD} ${
@@ -130,28 +132,25 @@ export default function AuthLogin() {
                     name="password"
                     onChange={handleAuthFormChange}
                     onAnimationEnd={() => setErrorEffect(false)}
-                    onFocus={() => setError("")}
+                    onFocus={() => setErrorMessage("")}
                   />
 
                   {/* Error message */}
-                  {error ? (
-                    <div className="text-red-500 text-sm font-semibold mt-2">
-                      {error}
+                  {errorMessage ? (
+                    <div className="mt-2 text-sm font-semibold text-red-500">
+                      {errorMessage}
                     </div>
                   ) : null}
 
-                  <div className="flex flex-col justify-center space-y-6 mt-6">
+                  <div className="flex flex-col justify-center mt-6 space-y-6">
                     <button
                       type="submit"
                       className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                     >
                       {oki ? (
-                        <svg className="w-5 h-5 mr-2 animate-spin ease-in-out">
-                          <FontAwesomeIcon
-                            icon={faSpinner}
-                            className={ICON_PLACE_SELF_CENTER}
-                          />
-                        </svg>
+                          <svg className="spinner mr-1" viewBox="0 0 50 50">
+                            <circle className="path" cx="25" cy="25" r="20" fill="transparent" strokeWidth="5" />
+                          </svg>
                       ) : (
                         <FontAwesomeIcon
                           icon={faSignIn}

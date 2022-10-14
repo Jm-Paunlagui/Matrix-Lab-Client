@@ -3,34 +3,48 @@ import {
   PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
+import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { faSignIn, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import PasswordChecklist from "react-password-checklist";
+import SuccessAnimation from "actually-accessible-react-success-animation";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
-import PasswordChecklist from "react-password-checklist";
-import { Link, useParams } from "react-router-dom";
-import SuccessAnimation from "actually-accessible-react-success-animation";
 
 /**
  * @description Handles the forgot password request page
  */
 export default function AuthResetPassword() {
+
+  /**
+   * @description Gets the token from the url
+   */
   const { token } = useParams();
 
+  /**
+   * @description State variables for the reset password form.
+   */
   const [newPassword, setNewPassword] = React.useState({
     password: "",
     confirmPassword: "",
     textChange: "Reset Password",
   });
 
+  /**
+   * @description Handles the Error/Success animation and messages for the reset password form.
+   */
   const [oki, setOki] = useState(false);
   const [ok, setOk] = useState(false);
   const [errorEffect, setErrorEffect] = React.useState(false);
-  const [error, setError] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
 
+  /**
+   * @description Handles the change of the input fields
+   * @param event
+   */
   const handlePasswordChange = (event) => {
     const { name, value } = event.target;
     setNewPassword({
@@ -39,8 +53,16 @@ export default function AuthResetPassword() {
     });
   };
 
+  /**
+   * @description Destructs the state variables
+   */
   const { password, confirmPassword, textChange } = newPassword;
 
+  /**
+   * @description Handles the form submission and makes a POST request to the backend to reset the password.
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handlePasswordSubmit = async (event) => {
     event.preventDefault();
     setOki(true);
@@ -57,7 +79,7 @@ export default function AuthResetPassword() {
       }
     } catch (error) {
       setErrorEffect(true);
-      setError(error.response.data.message);
+      setErrorMessage(error.response.data.message);
       setNewPassword({
         ...newPassword,
         textChange: "Reset Password",
@@ -77,9 +99,9 @@ export default function AuthResetPassword() {
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
-              <div className="bg-white py-12 rounded-lg shadow-lg">
+              <div className="py-12 bg-white rounded-lg shadow-lg">
                 <SuccessAnimation text="Success!" color="#5cb85c" />
-                <div className="text-center text-gray-500 px-6 space-y-6">
+                <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
                     Your password has been reset successfully. You can now login
                     with your new password.
@@ -101,14 +123,14 @@ export default function AuthResetPassword() {
                 </div>
               </div>
             ) : (
-              <>
+
                 <div className={"px-6 lg:px-28"}>
-                  <div className="flex items-center py-2 text-gray-800 justify-center">
+                  <div className="flex items-center justify-center py-2 text-gray-800">
                     <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
                   </div>
-                  <div className="flex-auto space-y-6 mb-24 -mt-14">
+                  <div className="flex-auto mb-24 space-y-6 -mt-14">
                     <div className="mb-3 text-start">
-                      <h6 className="text-lg xl:text-2xl font-bold text-gray-500 mt-16">
+                      <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
                         Reset your password
                       </h6>
                     </div>
@@ -129,7 +151,7 @@ export default function AuthResetPassword() {
                           name="password"
                           onChange={handlePasswordChange}
                           onAnimationEnd={() => setErrorEffect(false)}
-                          onFocus={() => setError("")}
+                          onFocus={() => setErrorMessage("")}
                         />
                         <input
                           className={`${TEXT_FIELD} ${
@@ -142,16 +164,16 @@ export default function AuthResetPassword() {
                           name="confirmPassword"
                           onChange={handlePasswordChange}
                           onAnimationEnd={() => setErrorEffect(false)}
-                          onFocus={() => setError("")}
+                          onFocus={() => setErrorMessage("")}
                         />
                       </div>
                       {/* Error message */}
-                      {error ? (
-                        <div className="text-red-500 text-sm font-semibold mt-2">
-                          {error}
+                      {errorMessage ? (
+                        <div className="mt-2 text-sm font-semibold text-red-500">
+                          {errorMessage}
                         </div>
                       ) : null}
-                      <div className="space-y-6 mt-6">
+                      <div className="mt-6 space-y-6">
                         <PasswordChecklist
                           className="text-sm text-gray-500"
                           iconSize={8}
@@ -165,20 +187,15 @@ export default function AuthResetPassword() {
                           minLength={8}
                           value={password}
                           valueAgain={confirmPassword}
-                          onChange={(isValid) => {}}
                         />
                         <div className="flex flex-col justify-center">
-                          <button
-                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                            type="submit"
+                          <button type="submit"
+                                  className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                           >
                             {oki ? (
-                              <svg className="w-5 h-5 mr-2 animate-spin ease-in-out">
-                                <FontAwesomeIcon
-                                  icon={faSpinner}
-                                  className={ICON_PLACE_SELF_CENTER}
-                                />
-                              </svg>
+                                <svg className="spinner mr-1" viewBox="0 0 50 50">
+                                  <circle className="path" cx="25" cy="25" r="20" fill="transparent" strokeWidth="5" />
+                                </svg>
                             ) : null}
                             {textChange}
                           </button>
@@ -187,7 +204,7 @@ export default function AuthResetPassword() {
                     </form>
                   </div>
                 </div>
-              </>
+
             )}
           </div>
         </div>

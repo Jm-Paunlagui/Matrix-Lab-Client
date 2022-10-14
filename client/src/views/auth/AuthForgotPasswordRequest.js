@@ -4,20 +4,24 @@ import {
   SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
+import React, { useState } from "react";
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { faSignIn, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import SuccessAnimation from "actually-accessible-react-success-animation";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
-import SuccessAnimation from "actually-accessible-react-success-animation";
-import { Link } from "react-router-dom";
 
 /**
  * @description Handles the forgot password request page
  */
 export default function AuthForgotPasswordRequest() {
+
+  /**
+   * @description State variables for the forgot password form.
+   */
   const [resetForm, setResetForm] = useState({
     username: "",
     email: "",
@@ -25,12 +29,18 @@ export default function AuthForgotPasswordRequest() {
     textChange: "Confirm Email",
   });
 
+  /**
+   * @description Handles the Error/Success animation and messages for the forgot password form.
+   */
   const [oki, setOki] = useState(false);
   const [ok, setOk] = useState(false);
-
   const [errorEffect, setErrorEffect] = useState(false);
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
+  /**
+   * @description Handles the change of the input fields
+   * @param event
+   */
   const handleFormChange = (event) => {
     const { name, value } = event.target;
     setResetForm((prevState) => ({
@@ -39,10 +49,21 @@ export default function AuthForgotPasswordRequest() {
     }));
   };
 
+  /**
+   * @description For step counter in the forgot password form.
+   */
   const [count, setCount] = React.useState(1);
 
+  /**
+   * @description Destructs the state variables
+   */
   const { username, email, emailConfirmation, textChange } = resetForm;
 
+  /**
+   * @description Handles the form submission and makes a POST request to the backend to check user email.
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleUsernameSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -58,10 +79,15 @@ export default function AuthForgotPasswordRequest() {
       }
     } catch (error) {
       setErrorEffect(true);
-      setError(error.response.data.message);
+      setErrorMessage(error.response.data.message);
     }
   };
 
+  /**
+   * @description Handles the form submission and makes a POST request to the backend to send the email.
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleEmailSubmit = async (event) => {
     event.preventDefault();
     setOki(true);
@@ -71,14 +97,14 @@ export default function AuthForgotPasswordRequest() {
     });
     try {
       const resp = await httpClient.post("/forgot-password", {
-        email: email,
+        email,
       });
       if (resp.statusText === "OK") {
         setOk(true);
       }
     } catch (error) {
       setErrorEffect(true);
-      setError(error.response.data.message);
+      setErrorMessage(error.response.data.message);
       setOki(false);
       setResetForm({
         ...resetForm,
@@ -98,9 +124,9 @@ export default function AuthForgotPasswordRequest() {
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
-              <div className="bg-white py-12 rounded-lg shadow-lg">
+              <div className="py-12 bg-white rounded-lg shadow-lg">
                 <SuccessAnimation text="Success!" color="#5cb85c" />
-                <div className="text-center text-gray-500 px-6 space-y-6">
+                <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
                     We&#39;ve sent you an email with a link to reset your
                     password. Please check your inbox.
@@ -125,15 +151,14 @@ export default function AuthForgotPasswordRequest() {
                 </div>
               </div>
             ) : (
-              <>
                 <div className={"px-6 lg:px-28"}>
-                  <div className="flex items-center py-2 text-gray-800 justify-center">
+                  <div className="flex items-center justify-center py-2 text-gray-800">
                     <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
                   </div>
                   <h1> Step {count} of 2</h1>
-                  <div className="flex-auto space-y-6 mb-24 -mt-14">
+                  <div className="flex-auto mb-24 space-y-6 -mt-14">
                     <div className="mb-3 text-start">
-                      <h6 className="text-lg xl:text-2xl font-bold text-gray-500 mt-16">
+                      <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
                         Forgot Password?
                       </h6>
                     </div>
@@ -166,12 +191,12 @@ export default function AuthForgotPasswordRequest() {
                           name="username"
                           onChange={handleFormChange}
                           onAnimationEnd={() => setErrorEffect(false)}
-                          onFocus={() => setError("")}
+                          onFocus={() => setErrorMessage("")}
                         />
                         {/* Error message */}
-                        {error ? (
-                          <div className="text-red-500 text-sm font-semibold mt-2">
-                            {error}
+                        {errorMessage ? (
+                          <div className="mt-2 text-sm font-semibold text-red-500">
+                            {errorMessage}
                           </div>
                         ) : null}
                         <button
@@ -199,15 +224,15 @@ export default function AuthForgotPasswordRequest() {
                           name="email"
                           onChange={handleFormChange}
                           onAnimationEnd={() => setErrorEffect(false)}
-                          onFocus={() => setError("") && setOki(false)}
+                          onFocus={() => setErrorMessage("") && setOki(false)}
                         />
                         {/* Error message */}
-                        {error ? (
-                          <div className="text-red-500 text-sm font-semibold mt-2">
-                            {error}
+                        {errorMessage ? (
+                          <div className="mt-2 text-sm font-semibold text-red-500">
+                            {errorMessage}
                           </div>
                         ) : null}
-                        <div className="flex flex-col justify-between space-y-6 mt-6">
+                        <div className="flex flex-col justify-between mt-6 space-y-6">
                           <button
                             className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
                               count === 1 ? "hidden" : ""
@@ -223,12 +248,9 @@ export default function AuthForgotPasswordRequest() {
                             type="submit"
                           >
                             {oki ? (
-                              <svg className="w-5 h-5 mr-2 animate-spin ease-in-out">
-                                <FontAwesomeIcon
-                                  icon={faSpinner}
-                                  className={ICON_PLACE_SELF_CENTER}
-                                />
-                              </svg>
+                                <svg className="spinner mr-1" viewBox="0 0 50 50">
+                                  <circle className="path" cx="25" cy="25" r="20" fill="transparent" strokeWidth="5" />
+                                </svg>
                             ) : null}
                             {textChange}
                           </button>
@@ -237,7 +259,6 @@ export default function AuthForgotPasswordRequest() {
                     )}
                   </div>
                 </div>
-              </>
             )}
           </div>
         </div>
