@@ -148,9 +148,16 @@ export default function AuthLogin() {
                       className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                     >
                       {oki ? (
-                          <svg className="spinner mr-1" viewBox="0 0 50 50">
-                            <circle className="path" cx="25" cy="25" r="20" fill="transparent" strokeWidth="5" />
-                          </svg>
+                        <svg className="spinner mr-1" viewBox="0 0 50 50">
+                          <circle
+                            className="path"
+                            cx="25"
+                            cy="25"
+                            r="20"
+                            fill="transparent"
+                            strokeWidth="5"
+                          />
+                        </svg>
                       ) : (
                         <FontAwesomeIcon
                           icon={faSignIn}
