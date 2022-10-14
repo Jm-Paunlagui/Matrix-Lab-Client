@@ -18,7 +18,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
  * @description Handles the forgot password request page
  */
 export default function AuthResetPassword() {
-
   /**
    * @description Gets the token from the url
    */
@@ -123,88 +122,94 @@ export default function AuthResetPassword() {
                 </div>
               </div>
             ) : (
-
-                <div className={"px-6 lg:px-28"}>
-                  <div className="flex items-center justify-center py-2 text-gray-800">
-                    <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
-                  </div>
-                  <div className="flex-auto mb-24 space-y-6 -mt-14">
-                    <div className="mb-3 text-start">
-                      <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
-                        Reset your password
-                      </h6>
-                    </div>
-
-                    <form
-                      className="relative mx-auto max-w-screen"
-                      onSubmit={handlePasswordSubmit}
-                    >
-                      <div className="space-y-6">
-                        <input
-                          className={`${TEXT_FIELD} ${
-                            errorEffect &&
-                            `border-red-500 placeholder-red-500 text-red-500`
-                          }`}
-                          type="password"
-                          placeholder="New password"
-                          value={password}
-                          name="password"
-                          onChange={handlePasswordChange}
-                          onAnimationEnd={() => setErrorEffect(false)}
-                          onFocus={() => setErrorMessage("")}
-                        />
-                        <input
-                          className={`${TEXT_FIELD} ${
-                            errorEffect &&
-                            `border-red-500 placeholder-red-500 text-red-500`
-                          }`}
-                          type="password"
-                          placeholder="Confirm new password"
-                          value={confirmPassword}
-                          name="confirmPassword"
-                          onChange={handlePasswordChange}
-                          onAnimationEnd={() => setErrorEffect(false)}
-                          onFocus={() => setErrorMessage("")}
-                        />
-                      </div>
-                      {/* Error message */}
-                      {errorMessage ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                          {errorMessage}
-                        </div>
-                      ) : null}
-                      <div className="mt-6 space-y-6">
-                        <PasswordChecklist
-                          className="text-sm text-gray-500"
-                          iconSize={8}
-                          rules={[
-                            "minLength",
-                            "specialChar",
-                            "number",
-                            "capital",
-                            "match",
-                          ]}
-                          minLength={8}
-                          value={password}
-                          valueAgain={confirmPassword}
-                        />
-                        <div className="flex flex-col justify-center">
-                          <button type="submit"
-                                  className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                          >
-                            {oki ? (
-                                <svg className="spinner mr-1" viewBox="0 0 50 50">
-                                  <circle className="path" cx="25" cy="25" r="20" fill="transparent" strokeWidth="5" />
-                                </svg>
-                            ) : null}
-                            {textChange}
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+              <div className={"px-6 lg:px-28"}>
+                <div className="flex items-center justify-center py-2 text-gray-800">
+                  <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
                 </div>
+                <div className="flex-auto mb-24 space-y-6 -mt-14">
+                  <div className="mb-3 text-start">
+                    <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
+                      Reset your password
+                    </h6>
+                  </div>
 
+                  <form
+                    className="relative mx-auto max-w-screen"
+                    onSubmit={handlePasswordSubmit}
+                  >
+                    <div className="space-y-6">
+                      <input
+                        className={`${TEXT_FIELD} ${
+                          errorEffect &&
+                          `border-red-500 placeholder-red-500 text-red-500`
+                        }`}
+                        type="password"
+                        placeholder="New password"
+                        value={password}
+                        name="password"
+                        onChange={handlePasswordChange}
+                        onAnimationEnd={() => setErrorEffect(false)}
+                        onFocus={() => setErrorMessage("")}
+                      />
+                      <input
+                        className={`${TEXT_FIELD} ${
+                          errorEffect &&
+                          `border-red-500 placeholder-red-500 text-red-500`
+                        }`}
+                        type="password"
+                        placeholder="Confirm new password"
+                        value={confirmPassword}
+                        name="confirmPassword"
+                        onChange={handlePasswordChange}
+                        onAnimationEnd={() => setErrorEffect(false)}
+                        onFocus={() => setErrorMessage("")}
+                      />
+                    </div>
+                    {/* Error message */}
+                    {errorMessage ? (
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
+                    ) : null}
+                    <div className="mt-6 space-y-6">
+                      <PasswordChecklist
+                        className="text-sm text-gray-500"
+                        iconSize={8}
+                        rules={[
+                          "minLength",
+                          "specialChar",
+                          "number",
+                          "capital",
+                          "match",
+                        ]}
+                        minLength={8}
+                        value={password}
+                        valueAgain={confirmPassword}
+                      />
+                      <div className="flex flex-col justify-center">
+                        <button
+                          type="submit"
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                        >
+                          {oki ? (
+                            <svg className="spinner mr-1" viewBox="0 0 50 50">
+                              <circle
+                                className="path"
+                                cx="25"
+                                cy="25"
+                                r="20"
+                                fill="transparent"
+                                strokeWidth="5"
+                              />
+                            </svg>
+                          ) : null}
+                          {textChange}
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             )}
           </div>
         </div>
