@@ -18,7 +18,7 @@ export default function EvalCourseSentimentTable() {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center w-full bg-white rounded outline outline-2 outline-gray-200">
-          <div className="justify-start w-full bg-gradient-to-r from-teal-500 to-sky-500 p-4">
+          <div className="justify-start w-full p-4 bg-gradient-to-r from-teal-500 to-sky-500">
             {/*  Course code*/}
             <h1 className="text-xl font-extrabold leading-none tracking-tight text-left text-white ">
               Course Code
