@@ -5,17 +5,16 @@ import {
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 /**
  * @description Handles the admin profile
  */
 export default function AdminProfile() {
-
   /**
    * @description Gets username from the url
    */
-  const { username } = useParams()
+  const { username } = useParams();
 
   /**
    * @description Parses the user data from session storage
@@ -29,7 +28,9 @@ export default function AdminProfile() {
           <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
             Account Management
           </h1>
-          <h1 className="text-sm font-medium text-gray-500">@{user.username}</h1>
+          <h1 className="text-sm font-medium text-gray-500">
+            @{user.username}
+          </h1>
         </div>
         <div className="col-span-2">
           <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">

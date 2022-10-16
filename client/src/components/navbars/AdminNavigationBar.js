@@ -1,14 +1,13 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Menu, Transition } from "@headlessui/react";
 import { NavLink, useLocation } from "react-router-dom";
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import httpClient from "../../http/httpClient";
 import Auth from "../../helpers/Auth";
 
 export default function AdminNavigationBar() {
-
   /**
    * @description Gets the user data from the Auth helper
    */
@@ -45,7 +44,6 @@ export default function AdminNavigationBar() {
     // Destroy the user session storage item
     sessionStorage.removeItem("user");
   };
-
 
   /**
    * @description Handles the navigation bar for the admin pages
@@ -156,7 +154,9 @@ export default function AdminNavigationBar() {
                       }`}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <h1 className="text-base font-medium">{user.first_name}</h1>
+                      <h1 className="text-base font-medium">
+                        {user.first_name}
+                      </h1>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -184,7 +184,10 @@ export default function AdminNavigationBar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <NavLink onClick={logoutUser} to={admin_controllers[1].href}>
+                          <NavLink
+                            onClick={logoutUser}
+                            to={admin_controllers[1].href}
+                          >
                             <h5
                               className={`${
                                 active ? "bg-gray-100" : ""
