@@ -5,11 +5,23 @@ import {
 } from "../../assets/styles/input-types-styles";
 
 import React from "react";
+import {useParams} from "react-router-dom";
 
 /**
  * @description Handles the admin profile
  */
 export default function AdminProfile() {
+
+  /**
+   * @description Gets username from the url
+   */
+  const { username } = useParams()
+
+  /**
+   * @description Parses the user data from session storage
+   */
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
   return (
     <div className="px-6 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
@@ -17,7 +29,7 @@ export default function AdminProfile() {
           <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
             Account Management
           </h1>
-          <h1 className="text-sm font-medium text-gray-500">@johnpaunlagui</h1>
+          <h1 className="text-sm font-medium text-gray-500">@{user.username}</h1>
         </div>
         <div className="col-span-2">
           <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
@@ -29,7 +41,7 @@ export default function AdminProfile() {
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <div className="flex flex-col w-full space-y-2">
-                  This account is an administrator account. This account has the
+                  This account is an {user.role} account. This account has the
                   highest privileges in the system.
                 </div>
               </div>
@@ -56,7 +68,7 @@ export default function AdminProfile() {
                       <input
                         type="text"
                         className={TEXT_FIELD}
-                        placeholder="Email"
+                        placeholder={user.email}
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -66,7 +78,7 @@ export default function AdminProfile() {
                       <input
                         type="text"
                         className={TEXT_FIELD}
-                        placeholder="First Name"
+                        placeholder={user.first_name}
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -76,7 +88,7 @@ export default function AdminProfile() {
                       <input
                         type="text"
                         className={TEXT_FIELD}
-                        placeholder="Last Name"
+                        placeholder={user.last_name}
                       />
                     </div>
                   </div>
@@ -121,7 +133,7 @@ export default function AdminProfile() {
                       <input
                         type="text"
                         className={TEXT_FIELD}
-                        placeholder="Username"
+                        placeholder={user.username}
                       />
                     </div>
                     <h1 className="mb-4 text-xl font-bold text-gray-700">
