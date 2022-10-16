@@ -7,7 +7,7 @@ import {
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
-import { faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { faSignIn, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,12 +28,14 @@ export default function AuthLogin() {
     username: "",
     password: "",
     textChange: "Sign In",
+    id1: "",
+    id2: "",
   });
 
   /**
    * @description Destructs the state variables
    */
-  const { username, password, textChange } = authForm;
+  const { username, password, textChange, id1, id2 } = authForm;
 
   /**
    * @description Handles the Error/Success animation and messages for the login form.
@@ -55,6 +57,11 @@ export default function AuthLogin() {
   };
 
   /**
+   * @description For step counter in the forgot password form.
+   */
+  const [count, setCount] = React.useState(1);
+
+  /**
    * @description Handles the form submission and makes a POST request to the backend.
    * @param event
    */
@@ -73,7 +80,14 @@ export default function AuthLogin() {
       if (resp.statusText === "OK") {
         setOki(true);
         // Redirect to the dashboard
-        window.location.href = resp.data.path;
+        // window.location.href = resp.data.path;
+        console.log(resp.data.identity_one);
+        setAuthForm({
+            ...authForm,
+          id1: resp.data.identity_one,
+          id2: resp.data.identity_two,
+        })
+        setCount(count + 1);
       }
     } catch (error) {
       setErrorEffect(true);
@@ -102,8 +116,16 @@ export default function AuthLogin() {
               </div>
               <div className="flex-auto pt-0 mb-24 -mt-14">
                 <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
-                  Sign in to MATRIX LAB
+                  {count === 1 ? "Sign in to MATRIX LAB" : count === 2 ? "Verify your identity" : "Enter code"}
                 </h6>
+                <div className="mt-4 text-start">
+                  {count === 1 ? null : (
+                      <p className="text-gray-500">
+                        {authForm.username}
+                      </p>
+                  )}
+                </div>
+                {count === 1 ? (
                 <form
                   className="relative mx-auto mt-6 mb-6 max-w-screen"
                   onSubmit={handleAuthFormSubmit}
@@ -175,6 +197,48 @@ export default function AuthLogin() {
                     </button>
                   </div>
                 </form>
+                ) : count === 2 ? (
+                    <form
+                        className="relative mx-auto mt-6 mb-6 max-w-screen"
+                    >
+                    {/*  Choice of identity */}
+                    <div className="flex flex-col justify-center mt-6 space-y-6">
+                    {/*    if identity is null, dont show the option else show both*/}
+                    {id1 ? (
+                        <button
+                            type="submit"
+                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                            value={id1}
+                        >
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                size={"lg"}
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                            />
+                          Email {id1}
+                        </button>
+                    ) : null}
+                    {id2 ? (
+                        <button
+                            type="submit"
+                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                            value={id2}
+                        >
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                size={"lg"}
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                            />
+                          Email {id2}
+                        </button>
+                    ) : null}
+
+                    </div>
+                    </form>
+                ) : (
+                    <div> codul tau este: </div>
+                ) }
+
               </div>
             </div>
           </div>
