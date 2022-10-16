@@ -131,7 +131,7 @@ export default function App() {
               />
             </Route>
             <Route exact="true" path="analyze" element={<AdminPrediction />} />
-            <Route exact="true" path="profile" element={<AdminProfile />} />
+            <Route exact="true" path="profile/:username" element={<AdminProfile />} />
             <Route exact="true" path="settings" element={<AdminSettings />} />
             <Route exact="true" path="management" element={<AdminTables />} />
           </Route>
