@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
+import ReactInputVerificationCode from "react-input-verification-code";
 
 /**
  * @description User login form for the application
@@ -28,6 +29,7 @@ export default function AuthLogin() {
     username: "",
     password: "",
     textChange: "Sign In",
+    email: "",
     id1: "",
     id2: "",
   });
@@ -35,7 +37,7 @@ export default function AuthLogin() {
   /**
    * @description Destructs the state variables
    */
-  const { username, password, textChange, id1, id2 } = authForm;
+  const { username, password, textChange, email, id1, id2 } = authForm;
 
   /**
    * @description Handles the Error/Success animation and messages for the login form.
@@ -100,6 +102,32 @@ export default function AuthLogin() {
     }
   };
 
+  const handle2FAFormChange = (event) => {
+    const { name, value } = event.target;
+    setAuthForm({
+      ...authForm,
+      [name]: value,
+    });
+  }
+
+  async function handle2FASubmit(email) {
+    try {
+      const resp = await httpClient.post("/checkpoint-2fa", {
+        email,
+      });
+      if (resp.statusText === "OK") {
+        setOki(true);
+        // Redirect to the dashboard
+        // window.location.href = resp.data.path;
+        setCount(count + 1);
+      }
+    } catch (error) {
+      setErrorEffect(true);
+      setErrorMessage(error.response.data.message);
+      setOki(false);
+    }
+  }
+
   return (
     <div className="container h-full mx-auto font-Montserrat">
       <div className="flex items-center content-center justify-center h-full">
@@ -116,7 +144,7 @@ export default function AuthLogin() {
               </div>
               <div className="flex-auto pt-0 mb-24 -mt-14">
                 <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
-                  {count === 1 ? "Sign in to MATRIX LAB" : count === 2 ? "Verify your identity" : "Enter code"}
+                  {count === 1 ? "Sign in to MATRIX LAB" : count === 2 ? "Verify your identity" : "Two-factor authentication"}
                 </h6>
                 <div className="mt-4 text-start">
                   {count === 1 ? null : (
@@ -205,38 +233,55 @@ export default function AuthLogin() {
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                     {/*    if identity is null, dont show the option else show both*/}
                     {id1 ? (
-                        <button
-                            type="submit"
+                        <>
+                        <input className="sr-only peer" type="radio" value={id1} name="email" id="id1"
+                               checked={email === id1}
+                               onChange={handle2FAFormChange}
+                               onClick={() => handle2FASubmit(id1)}
+                        />
+                        <label
                             className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                            value={id1}
+                            htmlFor="id1"
                         >
-                            <FontAwesomeIcon
-                                icon={faEnvelope}
-                                size={"lg"}
-                                className={`${ICON_PLACE_SELF_CENTER}`}
-                            />
-                          Email {id1}
-                        </button>
+                          <FontAwesomeIcon
+                                  icon={faEnvelope}
+                                  size={"lg"}
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                          />
+                            Email {id1}
+                        </label>
+                        </>
                     ) : null}
                     {id2 ? (
-                        <button
-                            type="submit"
-                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                            value={id2}
-                        >
+                        <>
+                          <input className="sr-only peer" type="radio" value={id2} name="email" id="id2"
+                                    checked={email === id2}
+                                 onChange={handle2FAFormChange}
+                                    onClick={() => handle2FASubmit(id2)}
+                          />
+                          <label
+                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${SECONDARY_BUTTON}`}
+                              htmlFor="id2"
+                          >
                             <FontAwesomeIcon
                                 icon={faEnvelope}
                                 size={"lg"}
                                 className={`${ICON_PLACE_SELF_CENTER}`}
                             />
-                          Email {id2}
-                        </button>
+                            Email {id2}
+                          </label>
+                        </>
                     ) : null}
 
                     </div>
                     </form>
                 ) : (
-                    <div> codul tau este: </div>
+                    <form className="relative mx-auto mt-6 mb-6 max-w-screen">
+                      <div className="custom-styles">
+                        <ReactInputVerificationCode length={6} type="alphanumeric" />
+                      </div>
+                    </form>
+
                 ) }
 
               </div>
