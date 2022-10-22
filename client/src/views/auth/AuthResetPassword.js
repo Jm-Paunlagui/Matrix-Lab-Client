@@ -199,7 +199,8 @@ export default function AuthResetPassword() {
                         <button
                           type="submit"
                           className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
-                            buttonDisabled && `opacity-50 cursor-not-allowed pointer-events-none`
+                            buttonDisabled &&
+                            `opacity-50 cursor-not-allowed pointer-events-none`
                           }`}
                           disabled={buttonDisabled}
                         >
