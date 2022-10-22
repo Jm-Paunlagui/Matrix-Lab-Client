@@ -67,7 +67,7 @@ export default function AuthLogin() {
   const [count, setCount] = React.useState(1);
 
   /**
-   * @description Handles the form submission and makes a POST request to the backend.
+   * @description Handles the auth form submission and makes a POST request to the backend.
    * @param event
    */
   const handleAuthFormSubmit = async (event) => {
@@ -105,6 +105,10 @@ export default function AuthLogin() {
     }
   };
 
+  /**
+   * @description Handles the email to form submission and makes a POST request to the backend.
+   * @param event
+   */
   const handle2FAFormChange = (event) => {
     const { name, value } = event.target;
     setAuthForm({
@@ -113,6 +117,11 @@ export default function AuthLogin() {
     });
   };
 
+  /**
+   * @description Handles the 2FA form submission and makes a POST request to the backend.
+   * @param email
+   * @returns {Promise<void>}
+   */
   async function handle2FASubmit(email) {
     try {
       const resp = await httpClient.post("/checkpoint-2fa", {
