@@ -66,7 +66,7 @@ export default function AuthForgotPasswordRequest() {
   const handleUsernameSubmit = async (event) => {
     event.preventDefault();
     try {
-      const resp = await httpClient.post("/check-email", { username });
+      const resp = await httpClient.post("/user/check-email", { username });
       if (resp.statusText === "OK") {
         setResetForm({
           username,
@@ -95,7 +95,7 @@ export default function AuthForgotPasswordRequest() {
       textChange: "Sending",
     });
     try {
-      const resp = await httpClient.post("/forgot-password", {
+      const resp = await httpClient.post("/user/forgot-password", {
         email,
       });
       if (resp.statusText === "OK") {

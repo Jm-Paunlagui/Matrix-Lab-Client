@@ -72,7 +72,7 @@ export default function AuthResetPassword() {
       buttonDisabled: true,
     });
     try {
-      const resp = await httpClient.post(`/reset-password/${token}`, {
+      const resp = await httpClient.post(`/user/reset-password/${token}`, {
         password,
       });
       if (resp.statusText === "OK") {

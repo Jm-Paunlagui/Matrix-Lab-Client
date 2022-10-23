@@ -16,7 +16,7 @@ export default function Auth() {
   useEffect(() => {
     (async () => {
       // Make a single request to the API to get the user data and store it in the session storage
-      const response = await httpClient.get("/get_user");
+      const response = await httpClient.get("/user/get_user");
       if (response.status === 200) {
         sessionStorage.setItem("user", JSON.stringify(response.data.user));
         setUser(response.data.user);

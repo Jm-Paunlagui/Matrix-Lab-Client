@@ -4,9 +4,10 @@ import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
   SECONDARY_BUTTON,
+    PRIMARY_RADIO,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   faSignIn,
   faEnvelope,
@@ -35,12 +36,14 @@ export default function AuthLogin() {
     email: "",
     id1: "",
     id2: "",
+    buttonDisabled: true,
+    tfa: ""
   });
 
   /**
    * @description Destructs the state variables
    */
-  const { username, password, textChange, email, id1, id2 } = authForm;
+  const { username, password, textChange, email, id1, id2, buttonDisabled, tfa } = authForm;
 
   /**
    * @description Handles the Error/Success animation and messages for the login form.
@@ -48,6 +51,7 @@ export default function AuthLogin() {
   const [oki, setOki] = useState(false);
   const [errorEffect, setErrorEffect] = useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [countDown, setCountDown] = React.useState(30);
 
   /**
    * @description Handles the change of the input fields in the login form.
@@ -78,18 +82,18 @@ export default function AuthLogin() {
       textChange: "Signing In",
     });
     try {
-      const resp = await httpClient.post("/authenticate", {
+      const resp = await httpClient.post("/user/authenticate", {
         username,
         password,
       });
       if (resp.statusText === "OK") {
         setOki(true);
-        console.log(resp.data.identity_one);
         setAuthForm({
           ...authForm,
           id1: resp.data.identity_one,
           id2: resp.data.identity_two,
-          textChange: "Verify",
+          textChange: "Verify email",
+          buttonDisabled: false,
         });
         setCount(count + 1);
         setOki(false);
@@ -117,27 +121,42 @@ export default function AuthLogin() {
     });
   };
 
-  /**
-   * @description Handles the 2FA form submission and makes a POST request to the backend.
-   * @param email
-   * @returns {Promise<void>}
-   */
-  async function handle2FASubmit(email) {
+
+  const handle2FAFormSubmit = async (event) => {
+    event.preventDefault();
+    setOki(true);
+    setAuthForm({
+      ...authForm,
+      textChange: "Verifying",
+    });
     try {
-      const resp = await httpClient.post("/checkpoint-2fa", {
+      const resp = await httpClient.post("/user/checkpoint-2fa", {
         email,
       });
       if (resp.statusText === "OK") {
         setOki(true);
         setCount(count + 1);
+        setAuthForm({
+            ...authForm,
+            textChange: "Verify code",
+        })
         setOki(false);
       }
     } catch (error) {
       setErrorEffect(true);
       setErrorMessage(error.response.data.message);
       setOki(false);
+      setAuthForm({
+        ...authForm,
+        textChange: "Verify",
+      });
     }
   }
+
+  // 2 buttons for 2fa verification, submit and resend code
+    const handle2FAFormSubmit2 = async (event) => {
+
+    }
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
@@ -239,12 +258,12 @@ export default function AuthLogin() {
                     </div>
                   </form>
                 ) : count === 2 ? (
-                  <form className="relative mx-auto mt-6 mb-6 max-w-screen">
+                  <form className="relative mx-auto mt-6 mb-6 max-w-screen" onSubmit={handle2FAFormSubmit}>
                     {/*  Choice of identity */}
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                       {/*    if identity is null, dont show the option else show both*/}
                       {id1 ? (
-                        <>
+                        <li className="list-none">
                           <input
                             className="sr-only peer"
                             type="radio"
@@ -253,10 +272,10 @@ export default function AuthLogin() {
                             id="id1"
                             checked={email === id1}
                             onChange={handle2FAFormChange}
-                            onClick={() => handle2FASubmit(id1)}
+                            disabled={buttonDisabled}
                           />
                           <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                            className={`px-5 py-1 pl-4 flex flex-row justify-start ${PRIMARY_RADIO}`}
                             htmlFor="id1"
                           >
                             <FontAwesomeIcon
@@ -264,24 +283,24 @@ export default function AuthLogin() {
                               size={"lg"}
                               className={`${ICON_PLACE_SELF_CENTER}`}
                             />
-                            Email {id1}
+                            <p className="truncate">Email {id1}</p>
                           </label>
-                        </>
+                        </li>
                       ) : null}
                       {id2 ? (
-                        <>
+                        <li className="list-none">
                           <input
-                            className="sr-only peer"
+                            className="sr-only peer "
                             type="radio"
                             value={id2}
                             name="email"
                             id="id2"
                             checked={email === id2}
                             onChange={handle2FAFormChange}
-                            onClick={() => handle2FASubmit(id2)}
+                            disabled={buttonDisabled}
                           />
                           <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${SECONDARY_BUTTON}`}
+                            className={`px-5 py-1 pl-4 flex flex-row justify-start ${PRIMARY_RADIO}`}
                             htmlFor="id2"
                           >
                             <FontAwesomeIcon
@@ -289,10 +308,30 @@ export default function AuthLogin() {
                               size={"lg"}
                               className={`${ICON_PLACE_SELF_CENTER}`}
                             />
-                            Email {id2}
+                            <p className="truncate">Email {id2}</p>
                           </label>
-                        </>
+                        </li>
                       ) : null}
+                    </div>
+                    <div className="flex flex-col justify-between mt-6 space-y-6">
+                      <button
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                          type="submit"
+                      >
+                        {oki ? (
+                            <svg className="spinner mr-1" viewBox="0 0 50 50">
+                              <circle
+                                  className="path"
+                                  cx="25"
+                                  cy="25"
+                                  r="20"
+                                  fill="transparent"
+                                  strokeWidth="5"
+                              />
+                            </svg>
+                        ) : null}
+                        {textChange}
+                      </button>
                     </div>
                   </form>
                 ) : (
@@ -304,22 +343,25 @@ export default function AuthLogin() {
                       }`}
                       type="text"
                       placeholder="2FA Code"
-                      value={authForm.tfa}
-                      name="username"
+                      value={tfa}
+                      name="tfa"
                       onChange={handleAuthFormChange}
                       onAnimationEnd={() => setErrorEffect(false)}
                       onFocus={() => setErrorMessage("")}
                     />
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                       <button
-                        type="submit"
-                        className={`px-5 py-1 pl-4 flex flex-row justify-center ${SECONDARY_BUTTON}`}
+                        type="button"
+                        disabled={buttonDisabled}
+                        className={`px-5 py-1 pl-4 flex flex-row justify-center ${SECONDARY_BUTTON} ${
+                            buttonDisabled && `opacity-50 cursor-not-allowed pointer-events-none`
+                        }`}
                       >
                         <FontAwesomeIcon
                           icon={faRepeat}
                           className={`${ICON_PLACE_SELF_CENTER}`}
                         />
-                        Resend Code
+                        Resend Code {countDown !== 0 ? `(${countDown})` : null}
                       </button>
 
                       <button
