@@ -39,8 +39,11 @@ export default function AdminNavigationBar() {
   }
 
   const logoutUser = async () => {
-    await httpClient.post("/sign-out");
-    window.location.href = "/";
+    await httpClient.post("/user/sign-out");
+    setTimeout(() => {
+      window.location.href = "/";
+      }, 2100);
+
     // Destroy the user session storage item
     sessionStorage.removeItem("user");
   };

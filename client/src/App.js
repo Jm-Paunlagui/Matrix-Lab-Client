@@ -37,6 +37,7 @@ import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable
 import IndexEval from "./views/user/eval/IndexEval";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import AuthResetPassword from "./views/auth/AuthResetPassword";
+import AuthLogout from "./views/auth/AuthLogout";
 
 /**
  * @description Main component for the application
@@ -138,6 +139,7 @@ export default function App() {
             />
             <Route exact="true" path="settings" element={<AdminSettings />} />
             <Route exact="true" path="management" element={<AdminTables />} />
+            <Route exact="true" path="logout" element={<AuthLogout />} />
           </Route>
           {/**
            * End of admin routes

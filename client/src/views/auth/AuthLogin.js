@@ -7,7 +7,7 @@ import {
   PRIMARY_RADIO,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   faSignIn,
   faEnvelope,
@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
+import {loading_animation} from "../../assets/styles/loading_animation";
 
 /**
  * @description User login form for the application
@@ -33,11 +34,12 @@ export default function AuthLogin() {
     username: "",
     password: "",
     textChange: "Sign In",
+    textChange2: "",
     email: "",
     id1: "",
     id2: "",
+    code: "",
     buttonDisabled: true,
-    tfa: "",
   });
 
   /**
@@ -47,11 +49,12 @@ export default function AuthLogin() {
     username,
     password,
     textChange,
+    textChange2,
     email,
     id1,
     id2,
-    buttonDisabled,
-    tfa,
+    code,
+    buttonDisabled
   } = authForm;
 
   /**
@@ -60,7 +63,7 @@ export default function AuthLogin() {
   const [oki, setOki] = useState(false);
   const [errorEffect, setErrorEffect] = useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
-  const [countDown, setCountDown] = React.useState(30);
+  const [countDown, setCountDown] = React.useState(0);
 
   /**
    * @description Handles the change of the input fields in the login form.
@@ -73,6 +76,30 @@ export default function AuthLogin() {
       [name]: value,
     });
   };
+
+  // Count down function to reset the 2FA code after 30 seconds
+  function countDownFunction() {
+    setCountDown(countDown - 1);
+  }
+
+    // useEffect to reset the 2FA code after 30 seconds
+    useEffect(() => {
+        if (count >= 3){
+          if (countDown > 0) {
+            setTimeout(countDownFunction, 1000);
+            setAuthForm({
+                ...authForm,
+                buttonDisabled: true,
+            })
+          } else {
+            setAuthForm({
+              ...authForm,
+              code: "",
+              buttonDisabled: false,
+            });
+          }
+        }
+    }, [countDown]);
 
   /**
    * @description For step counter in the forgot password form.
@@ -102,7 +129,6 @@ export default function AuthLogin() {
           id1: resp.data.identity_one,
           id2: resp.data.identity_two,
           textChange: "Verify email",
-          buttonDisabled: false,
         });
         setCount(count + 1);
         setOki(false);
@@ -118,24 +144,12 @@ export default function AuthLogin() {
     }
   };
 
-  /**
-   * @description Handles the email to form submission and makes a POST request to the backend.
-   * @param event
-   */
-  const handle2FAFormChange = (event) => {
-    const { name, value } = event.target;
-    setAuthForm({
-      ...authForm,
-      [name]: value,
-    });
-  };
-
   const handle2FAFormSubmit = async (event) => {
     event.preventDefault();
     setOki(true);
     setAuthForm({
       ...authForm,
-      textChange: "Verifying",
+      textChange: "Sending Code",
     });
     try {
       const resp = await httpClient.post("/user/checkpoint-2fa", {
@@ -143,10 +157,12 @@ export default function AuthLogin() {
       });
       if (resp.statusText === "OK") {
         setOki(true);
+        setCountDown(30);
         setCount(count + 1);
         setAuthForm({
           ...authForm,
           textChange: "Verify code",
+          textChange2: "Resend code",
         });
         setOki(false);
       }
@@ -161,8 +177,42 @@ export default function AuthLogin() {
     }
   };
 
-  // 2 buttons for 2fa verification, submit and resend code
-  const handle2FAFormSubmit2 = async (event) => {};
+  const handleResend2FAFormSubmit = async (event) => {
+    event.preventDefault();
+    await handle2FAFormSubmit(event);
+  }
+
+  const handle2FAVerifyFormSubmit = async (event) => {
+        event.preventDefault();
+        setOki(true);
+        setAuthForm({
+            ...authForm,
+            textChange: "Verifying",
+        });
+        try {
+            const resp = await httpClient.post("/user/verify-2fa", {
+            code,
+            });
+            if (resp.statusText === "OK") {
+            setOki(true);
+            setAuthForm({
+                ...authForm,
+                textChange: "Success",
+            });
+            console.log(resp.data);
+            window.location.href = resp.data.path;
+            }
+        } catch (error) {
+            setErrorEffect(true);
+            setErrorMessage(error.response.data.message);
+            setOki(false);
+            setAuthForm({
+            ...authForm,
+            textChange: "Verify",
+            });
+        }
+    }
+
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
@@ -203,7 +253,7 @@ export default function AuthLogin() {
                       }`}
                       type="username"
                       placeholder="Username"
-                      value={authForm.username}
+                      value={username}
                       name="username"
                       onChange={handleAuthFormChange}
                       onAnimationEnd={() => setErrorEffect(false)}
@@ -216,7 +266,7 @@ export default function AuthLogin() {
                       }`}
                       type="password"
                       placeholder="Password"
-                      value={authForm.password}
+                      value={password}
                       name="password"
                       onChange={handleAuthFormChange}
                       onAnimationEnd={() => setErrorEffect(false)}
@@ -236,23 +286,13 @@ export default function AuthLogin() {
                         className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                       >
                         {oki ? (
-                          <svg className="spinner mr-1" viewBox="0 0 50 50">
-                            <circle
-                              className="path"
-                              cx="25"
-                              cy="25"
-                              r="20"
-                              fill="transparent"
-                              strokeWidth="5"
-                            />
-                          </svg>
+                            loading_animation()
                         ) : (
                           <FontAwesomeIcon
                             icon={faSignIn}
                             className={`${ICON_PLACE_SELF_CENTER}`}
                           />
                         )}
-
                         {textChange}
                       </button>
 
@@ -272,19 +312,25 @@ export default function AuthLogin() {
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                       {/*    if identity is null, dont show the option else show both*/}
                       {id1 ? (
-                        <li className="list-none">
+                        <li className={`list-none`}>
                           <input
-                            className="sr-only peer"
+                            className={`sr-only peer`}
                             type="radio"
                             value={id1}
                             name="email"
                             id="id1"
                             checked={email === id1}
-                            onChange={handle2FAFormChange}
-                            disabled={buttonDisabled}
+                            onChange={handleAuthFormChange}
+
+                            onAnimationEnd={() => setErrorEffect(false)}
+                            onFocus={() => setErrorMessage("")}
                           />
                           <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-start ${PRIMARY_RADIO}`}
+                            className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                                errorEffect ?
+                                `border-red-500 placeholder-red-500 text-red-500`
+                                    : PRIMARY_RADIO
+                            }`}
                             htmlFor="id1"
                           >
                             <FontAwesomeIcon
@@ -305,11 +351,17 @@ export default function AuthLogin() {
                             name="email"
                             id="id2"
                             checked={email === id2}
-                            onChange={handle2FAFormChange}
-                            disabled={buttonDisabled}
+                            onChange={handleAuthFormChange}
+
+                            onAnimationEnd={() => setErrorEffect(false)}
+                            onFocus={() => setErrorMessage("")}
                           />
                           <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-start ${PRIMARY_RADIO}`}
+                            className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                                errorEffect ?
+                                    `border-red-500 placeholder-red-500 text-red-500`
+                                    : PRIMARY_RADIO
+                            } `}
                             htmlFor="id2"
                           >
                             <FontAwesomeIcon
@@ -322,22 +374,19 @@ export default function AuthLogin() {
                         </li>
                       ) : null}
                     </div>
+                    {/* Error message */}
+                    {errorMessage ? (
+                        <div className="mt-2 text-sm font-semibold text-red-500">
+                          {errorMessage}
+                        </div>
+                    ) : null}
                     <div className="flex flex-col justify-between mt-6 space-y-6">
                       <button
                         className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                         type="submit"
                       >
                         {oki ? (
-                          <svg className="spinner mr-1" viewBox="0 0 50 50">
-                            <circle
-                              className="path"
-                              cx="25"
-                              cy="25"
-                              r="20"
-                              fill="transparent"
-                              strokeWidth="5"
-                            />
-                          </svg>
+                            loading_animation()
                         ) : null}
                         {textChange}
                       </button>
@@ -352,39 +401,58 @@ export default function AuthLogin() {
                       }`}
                       type="text"
                       placeholder="2FA Code"
-                      value={tfa}
-                      name="tfa"
+                      value={code}
+                      name="code"
                       onChange={handleAuthFormChange}
                       onAnimationEnd={() => setErrorEffect(false)}
                       onFocus={() => setErrorMessage("")}
                     />
+                    {/* Error message */}
+                    {errorMessage ? (
+                        <div className="mt-2 text-sm font-semibold text-red-500">
+                          {errorMessage}
+                        </div>
+                    ) : null}
                     <div className="flex flex-col justify-center mt-6 space-y-6">
-                      <button
-                        type="button"
-                        disabled={buttonDisabled}
-                        className={`px-5 py-1 pl-4 flex flex-row justify-center ${SECONDARY_BUTTON} ${
-                          buttonDisabled &&
-                          `opacity-50 cursor-not-allowed pointer-events-none`
-                        }`}
-                      >
-                        <FontAwesomeIcon
-                          icon={faRepeat}
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                        />
-                        Resend Code {countDown !== 0 ? `(${countDown})` : null}
-                      </button>
+                      {code.length < 7 || code.length > 7 ? (
+                          <button
+                              type="reset"
+                              name="resend"
+                              onClick={handleResend2FAFormSubmit}
+                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                                  buttonDisabled &&
+                                  `opacity-50 cursor-not-allowed pointer-events-none`
+                              }`}
+                          >
+                            {oki ? (
+                                loading_animation()
+                            ) : (
+                                <FontAwesomeIcon
+                                    icon={faRepeat}
+                                    className={`${ICON_PLACE_SELF_CENTER}`}
+                                />
+                            )}
+                            {textChange2} {countDown !== 0 ? "("+countDown+")" : null}
+                          </button>
+                      ) : (
+                          <button
+                              type="submit"
+                              name="submit"
+                              onClick={handle2FAVerifyFormSubmit}
+                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                          >
+                            {oki ? (
+                                loading_animation()
+                            ) : (
+                                <FontAwesomeIcon
+                                    icon={faSignIn}
+                                    className={`${ICON_PLACE_SELF_CENTER}`}
+                                />
+                            )}
+                            {textChange}
+                          </button>
+                      )}
 
-                      <button
-                        type="submit"
-                        className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      >
-                        <FontAwesomeIcon
-                          icon={faSignIn}
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                        />
-
-                        {textChange}
-                      </button>
                     </div>
                   </form>
                 )}
