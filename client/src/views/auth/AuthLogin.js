@@ -4,10 +4,10 @@ import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
   SECONDARY_BUTTON,
-    PRIMARY_RADIO,
+  PRIMARY_RADIO,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   faSignIn,
   faEnvelope,
@@ -37,13 +37,22 @@ export default function AuthLogin() {
     id1: "",
     id2: "",
     buttonDisabled: true,
-    tfa: ""
+    tfa: "",
   });
 
   /**
    * @description Destructs the state variables
    */
-  const { username, password, textChange, email, id1, id2, buttonDisabled, tfa } = authForm;
+  const {
+    username,
+    password,
+    textChange,
+    email,
+    id1,
+    id2,
+    buttonDisabled,
+    tfa,
+  } = authForm;
 
   /**
    * @description Handles the Error/Success animation and messages for the login form.
@@ -121,7 +130,6 @@ export default function AuthLogin() {
     });
   };
 
-
   const handle2FAFormSubmit = async (event) => {
     event.preventDefault();
     setOki(true);
@@ -137,9 +145,9 @@ export default function AuthLogin() {
         setOki(true);
         setCount(count + 1);
         setAuthForm({
-            ...authForm,
-            textChange: "Verify code",
-        })
+          ...authForm,
+          textChange: "Verify code",
+        });
         setOki(false);
       }
     } catch (error) {
@@ -151,12 +159,10 @@ export default function AuthLogin() {
         textChange: "Verify",
       });
     }
-  }
+  };
 
   // 2 buttons for 2fa verification, submit and resend code
-    const handle2FAFormSubmit2 = async (event) => {
-
-    }
+  const handle2FAFormSubmit2 = async (event) => {};
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
@@ -258,7 +264,10 @@ export default function AuthLogin() {
                     </div>
                   </form>
                 ) : count === 2 ? (
-                  <form className="relative mx-auto mt-6 mb-6 max-w-screen" onSubmit={handle2FAFormSubmit}>
+                  <form
+                    className="relative mx-auto mt-6 mb-6 max-w-screen"
+                    onSubmit={handle2FAFormSubmit}
+                  >
                     {/*  Choice of identity */}
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                       {/*    if identity is null, dont show the option else show both*/}
@@ -315,20 +324,20 @@ export default function AuthLogin() {
                     </div>
                     <div className="flex flex-col justify-between mt-6 space-y-6">
                       <button
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                          type="submit"
+                        className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                        type="submit"
                       >
                         {oki ? (
-                            <svg className="spinner mr-1" viewBox="0 0 50 50">
-                              <circle
-                                  className="path"
-                                  cx="25"
-                                  cy="25"
-                                  r="20"
-                                  fill="transparent"
-                                  strokeWidth="5"
-                              />
-                            </svg>
+                          <svg className="spinner mr-1" viewBox="0 0 50 50">
+                            <circle
+                              className="path"
+                              cx="25"
+                              cy="25"
+                              r="20"
+                              fill="transparent"
+                              strokeWidth="5"
+                            />
+                          </svg>
                         ) : null}
                         {textChange}
                       </button>
@@ -354,7 +363,8 @@ export default function AuthLogin() {
                         type="button"
                         disabled={buttonDisabled}
                         className={`px-5 py-1 pl-4 flex flex-row justify-center ${SECONDARY_BUTTON} ${
-                            buttonDisabled && `opacity-50 cursor-not-allowed pointer-events-none`
+                          buttonDisabled &&
+                          `opacity-50 cursor-not-allowed pointer-events-none`
                         }`}
                       >
                         <FontAwesomeIcon
