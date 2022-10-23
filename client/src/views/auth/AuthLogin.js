@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
-import {loading_animation} from "../../assets/styles/loading_animation";
+import { loading_animation } from "../../assets/styles/loading_animation";
 
 /**
  * @description User login form for the application
@@ -54,7 +54,7 @@ export default function AuthLogin() {
     id1,
     id2,
     code,
-    buttonDisabled
+    buttonDisabled,
   } = authForm;
 
   /**
@@ -82,24 +82,24 @@ export default function AuthLogin() {
     setCountDown(countDown - 1);
   }
 
-    // useEffect to reset the 2FA code after 30 seconds
-    useEffect(() => {
-        if (count >= 3){
-          if (countDown > 0) {
-            setTimeout(countDownFunction, 1000);
-            setAuthForm({
-                ...authForm,
-                buttonDisabled: true,
-            })
-          } else {
-            setAuthForm({
-              ...authForm,
-              code: "",
-              buttonDisabled: false,
-            });
-          }
-        }
-    }, [countDown]);
+  // useEffect to reset the 2FA code after 30 seconds
+  useEffect(() => {
+    if (count >= 3) {
+      if (countDown > 0) {
+        setTimeout(countDownFunction, 1000);
+        setAuthForm({
+          ...authForm,
+          buttonDisabled: true,
+        });
+      } else {
+        setAuthForm({
+          ...authForm,
+          code: "",
+          buttonDisabled: false,
+        });
+      }
+    }
+  }, [countDown]);
 
   /**
    * @description For step counter in the forgot password form.
@@ -180,39 +180,38 @@ export default function AuthLogin() {
   const handleResend2FAFormSubmit = async (event) => {
     event.preventDefault();
     await handle2FAFormSubmit(event);
-  }
+  };
 
   const handle2FAVerifyFormSubmit = async (event) => {
-        event.preventDefault();
+    event.preventDefault();
+    setOki(true);
+    setAuthForm({
+      ...authForm,
+      textChange: "Verifying",
+    });
+    try {
+      const resp = await httpClient.post("/user/verify-2fa", {
+        code,
+      });
+      if (resp.statusText === "OK") {
         setOki(true);
         setAuthForm({
-            ...authForm,
-            textChange: "Verifying",
+          ...authForm,
+          textChange: "Success",
         });
-        try {
-            const resp = await httpClient.post("/user/verify-2fa", {
-            code,
-            });
-            if (resp.statusText === "OK") {
-            setOki(true);
-            setAuthForm({
-                ...authForm,
-                textChange: "Success",
-            });
-            console.log(resp.data);
-            window.location.href = resp.data.path;
-            }
-        } catch (error) {
-            setErrorEffect(true);
-            setErrorMessage(error.response.data.message);
-            setOki(false);
-            setAuthForm({
-            ...authForm,
-            textChange: "Verify",
-            });
-        }
+        console.log(resp.data);
+        window.location.href = resp.data.path;
+      }
+    } catch (error) {
+      setErrorEffect(true);
+      setErrorMessage(error.response.data.message);
+      setOki(false);
+      setAuthForm({
+        ...authForm,
+        textChange: "Verify",
+      });
     }
-
+  };
 
   return (
     <div className="container h-full mx-auto font-Montserrat">
@@ -286,7 +285,7 @@ export default function AuthLogin() {
                         className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                       >
                         {oki ? (
-                            loading_animation()
+                          loading_animation()
                         ) : (
                           <FontAwesomeIcon
                             icon={faSignIn}
@@ -321,15 +320,14 @@ export default function AuthLogin() {
                             id="id1"
                             checked={email === id1}
                             onChange={handleAuthFormChange}
-
                             onAnimationEnd={() => setErrorEffect(false)}
                             onFocus={() => setErrorMessage("")}
                           />
                           <label
                             className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
-                                errorEffect ?
-                                `border-red-500 placeholder-red-500 text-red-500`
-                                    : PRIMARY_RADIO
+                              errorEffect
+                                ? `border-red-500 placeholder-red-500 text-red-500`
+                                : PRIMARY_RADIO
                             }`}
                             htmlFor="id1"
                           >
@@ -352,15 +350,14 @@ export default function AuthLogin() {
                             id="id2"
                             checked={email === id2}
                             onChange={handleAuthFormChange}
-
                             onAnimationEnd={() => setErrorEffect(false)}
                             onFocus={() => setErrorMessage("")}
                           />
                           <label
                             className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
-                                errorEffect ?
-                                    `border-red-500 placeholder-red-500 text-red-500`
-                                    : PRIMARY_RADIO
+                              errorEffect
+                                ? `border-red-500 placeholder-red-500 text-red-500`
+                                : PRIMARY_RADIO
                             } `}
                             htmlFor="id2"
                           >
@@ -376,18 +373,16 @@ export default function AuthLogin() {
                     </div>
                     {/* Error message */}
                     {errorMessage ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                          {errorMessage}
-                        </div>
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
                     ) : null}
                     <div className="flex flex-col justify-between mt-6 space-y-6">
                       <button
                         className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                         type="submit"
                       >
-                        {oki ? (
-                            loading_animation()
-                        ) : null}
+                        {oki ? loading_animation() : null}
                         {textChange}
                       </button>
                     </div>
@@ -409,50 +404,50 @@ export default function AuthLogin() {
                     />
                     {/* Error message */}
                     {errorMessage ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                          {errorMessage}
-                        </div>
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
                     ) : null}
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                       {code.length < 7 || code.length > 7 ? (
-                          <button
-                              type="reset"
-                              name="resend"
-                              onClick={handleResend2FAFormSubmit}
-                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
-                                  buttonDisabled &&
-                                  `opacity-50 cursor-not-allowed pointer-events-none`
-                              }`}
-                          >
-                            {oki ? (
-                                loading_animation()
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faRepeat}
-                                    className={`${ICON_PLACE_SELF_CENTER}`}
-                                />
-                            )}
-                            {textChange2} {countDown !== 0 ? "("+countDown+")" : null}
-                          </button>
+                        <button
+                          type="reset"
+                          name="resend"
+                          onClick={handleResend2FAFormSubmit}
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                            buttonDisabled &&
+                            `opacity-50 cursor-not-allowed pointer-events-none`
+                          }`}
+                        >
+                          {oki ? (
+                            loading_animation()
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faRepeat}
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                            />
+                          )}
+                          {textChange2}{" "}
+                          {countDown !== 0 ? "(" + countDown + ")" : null}
+                        </button>
                       ) : (
-                          <button
-                              type="submit"
-                              name="submit"
-                              onClick={handle2FAVerifyFormSubmit}
-                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                          >
-                            {oki ? (
-                                loading_animation()
-                            ) : (
-                                <FontAwesomeIcon
-                                    icon={faSignIn}
-                                    className={`${ICON_PLACE_SELF_CENTER}`}
-                                />
-                            )}
-                            {textChange}
-                          </button>
+                        <button
+                          type="submit"
+                          name="submit"
+                          onClick={handle2FAVerifyFormSubmit}
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                        >
+                          {oki ? (
+                            loading_animation()
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faSignIn}
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                            />
+                          )}
+                          {textChange}
+                        </button>
                       )}
-
                     </div>
                   </form>
                 )}

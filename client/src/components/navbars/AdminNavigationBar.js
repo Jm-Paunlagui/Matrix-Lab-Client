@@ -42,7 +42,7 @@ export default function AdminNavigationBar() {
     await httpClient.post("/user/sign-out");
     setTimeout(() => {
       window.location.href = "/";
-      }, 2100);
+    }, 2100);
 
     // Destroy the user session storage item
     sessionStorage.removeItem("user");
