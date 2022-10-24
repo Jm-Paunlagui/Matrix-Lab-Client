@@ -1,11 +1,12 @@
 import {
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON, PRIMARY_RADIO,
+  PRIMARY_BUTTON,
+  PRIMARY_RADIO,
   SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
 import React, { useState } from "react";
-import {faEnvelope, faSignIn} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faSignIn } from "@fortawesome/free-solid-svg-icons";
 
 import BackNavigation from "../../components/navbars/BackNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +14,7 @@ import { Link } from "react-router-dom";
 import SuccessAnimation from "actually-accessible-react-success-animation";
 import httpClient from "../../http/httpClient";
 import logo from "../../assets/img/android-chrome-192x192.png";
-import {loading_animation} from "../../assets/styles/loading_animation";
+import { loading_animation } from "../../assets/styles/loading_animation";
 
 /**
  * @description Handles the forgot password request page
@@ -59,7 +60,8 @@ export default function AuthForgotPasswordRequest() {
   /**
    * @description Destructs the state variables
    */
-  const { username, email, emailConfirmation, id1, id2, textChange } = resetForm;
+  const { username, email, emailConfirmation, id1, id2, textChange } =
+    resetForm;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
@@ -91,9 +93,9 @@ export default function AuthForgotPasswordRequest() {
       if (emailConfirmation !== "") {
         setOki(true);
         setResetForm({
-            ...resetForm,
-            textChange: "Verify Email",
-        })
+          ...resetForm,
+          textChange: "Verify Email",
+        });
         setCount(count + 1);
         setOki(false);
       } else {
@@ -101,10 +103,10 @@ export default function AuthForgotPasswordRequest() {
         setErrorMessage("Choose an email");
       }
     } catch (error) {
-        setErrorEffect(true);
-        setErrorMessage(error.response.data.message);
+      setErrorEffect(true);
+      setErrorMessage(error.response.data.message);
     }
-  }
+  };
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to send the email.
@@ -191,15 +193,16 @@ export default function AuthForgotPasswordRequest() {
                         Enter your username below and proceed to the next step.
                       </p>
                     ) : count === 2 ? (
-                        <p className="text-gray-500">
-                          Choose an email address to receive the password reset link.
-                        </p>
+                      <p className="text-gray-500">
+                        Choose an email address to receive the password reset
+                        link.
+                      </p>
                     ) : (
-                        <p className="text-gray-500">
-                          Please confirm your email address below. with the email
-                          address of <b>{emailConfirmation}</b>
-                        </p>
-                        )}
+                      <p className="text-gray-500">
+                        Please confirm your email address below. with the email
+                        address of <b>{emailConfirmation}</b>
+                      </p>
+                    )}
                   </div>
                   {count === 1 ? (
                     <form
@@ -235,139 +238,139 @@ export default function AuthForgotPasswordRequest() {
                       </button>
                     </form>
                   ) : count === 2 ? (
-                      <form
-                          className="relative mx-auto mt-6 mb-6 max-w-screen"
-                            onSubmit={handleVerifyEmailSubmit}
-                      >
-                        {/*  Choice of identity */}
-                        <div className="flex flex-col justify-center mt-6 space-y-6">
-                          {/*    if identity is null, dont show the option else show both*/}
-                          {id1 ? (
-                              <li className={`list-none`}>
-                                <input
-                                    className={`sr-only peer`}
-                                    type="radio"
-                                    value={id1}
-                                    name="emailConfirmation"
-                                    id="id1"
-                                    checked={emailConfirmation === id1}
-                                    onChange={handleFormChange}
-                                    onAnimationEnd={() => setErrorEffect(false)}
-                                    onFocus={() => setErrorMessage("")}
-                                />
-                                <label
-                                    className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
-                                        errorEffect
-                                            ? `border-red-500 placeholder-red-500 text-red-500`
-                                            : PRIMARY_RADIO
-                                    }`}
-                                    htmlFor="id1"
-                                >
-                                  <FontAwesomeIcon
-                                      icon={faEnvelope}
-                                      size={"lg"}
-                                      className={`${ICON_PLACE_SELF_CENTER}`}
-                                  />
-                                  <p className="truncate">Email {id1}</p>
-                                </label>
-                              </li>
-                          ) : null}
-                          {id2 ? (
-                              <li className="list-none">
-                                <input
-                                    className="sr-only peer "
-                                    type="radio"
-                                    value={id2}
-                                    name="emailConfirmation"
-                                    id="id2"
-                                    checked={emailConfirmation === id2}
-                                    onChange={handleFormChange}
-                                    onAnimationEnd={() => setErrorEffect(false)}
-                                    onFocus={() => setErrorMessage("")}
-                                />
-                                <label
-                                    className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
-                                        errorEffect
-                                            ? `border-red-500 placeholder-red-500 text-red-500`
-                                            : PRIMARY_RADIO
-                                    } `}
-                                    htmlFor="id2"
-                                >
-                                  <FontAwesomeIcon
-                                      icon={faEnvelope}
-                                      size={"lg"}
-                                      className={`${ICON_PLACE_SELF_CENTER}`}
-                                  />
-                                  <p className="truncate">Email {id2}</p>
-                                </label>
-                              </li>
-                          ) : null}
+                    <form
+                      className="relative mx-auto mt-6 mb-6 max-w-screen"
+                      onSubmit={handleVerifyEmailSubmit}
+                    >
+                      {/*  Choice of identity */}
+                      <div className="flex flex-col justify-center mt-6 space-y-6">
+                        {/*    if identity is null, dont show the option else show both*/}
+                        {id1 ? (
+                          <li className={`list-none`}>
+                            <input
+                              className={`sr-only peer`}
+                              type="radio"
+                              value={id1}
+                              name="emailConfirmation"
+                              id="id1"
+                              checked={emailConfirmation === id1}
+                              onChange={handleFormChange}
+                              onAnimationEnd={() => setErrorEffect(false)}
+                              onFocus={() => setErrorMessage("")}
+                            />
+                            <label
+                              className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                                errorEffect
+                                  ? `border-red-500 placeholder-red-500 text-red-500`
+                                  : PRIMARY_RADIO
+                              }`}
+                              htmlFor="id1"
+                            >
+                              <FontAwesomeIcon
+                                icon={faEnvelope}
+                                size={"lg"}
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                              />
+                              <p className="truncate">Email {id1}</p>
+                            </label>
+                          </li>
+                        ) : null}
+                        {id2 ? (
+                          <li className="list-none">
+                            <input
+                              className="sr-only peer "
+                              type="radio"
+                              value={id2}
+                              name="emailConfirmation"
+                              id="id2"
+                              checked={emailConfirmation === id2}
+                              onChange={handleFormChange}
+                              onAnimationEnd={() => setErrorEffect(false)}
+                              onFocus={() => setErrorMessage("")}
+                            />
+                            <label
+                              className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                                errorEffect
+                                  ? `border-red-500 placeholder-red-500 text-red-500`
+                                  : PRIMARY_RADIO
+                              } `}
+                              htmlFor="id2"
+                            >
+                              <FontAwesomeIcon
+                                icon={faEnvelope}
+                                size={"lg"}
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                              />
+                              <p className="truncate">Email {id2}</p>
+                            </label>
+                          </li>
+                        ) : null}
+                      </div>
+                      {/* Error message */}
+                      {errorMessage ? (
+                        <div className="mt-2 text-sm font-semibold text-red-500">
+                          {errorMessage}
                         </div>
+                      ) : null}
+                      <div className="flex flex-col justify-between mt-6 space-y-6">
+                        <button
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                          type="submit"
+                        >
+                          {oki ? loading_animation() : null}
+                          {textChange}
+                        </button>
+                      </div>
+                    </form>
+                  ) : (
+                    <>
+                      <form
+                        className="relative mx-auto max-w-screen"
+                        onSubmit={handleEmailSubmit}
+                      >
+                        <input
+                          className={`${TEXT_FIELD} ${
+                            errorEffect &&
+                            `border-red-500 placeholder-red-500 text-red-500`
+                          }`}
+                          type="email"
+                          placeholder="Email"
+                          value={email}
+                          name="email"
+                          onChange={handleFormChange}
+                          onAnimationEnd={() => setErrorEffect(false)}
+                          onFocus={() => setErrorMessage("") && setOki(false)}
+                        />
                         {/* Error message */}
                         {errorMessage ? (
-                            <div className="mt-2 text-sm font-semibold text-red-500">
-                              {errorMessage}
-                            </div>
+                          <div className="mt-2 text-sm font-semibold text-red-500">
+                            {errorMessage}
+                          </div>
                         ) : null}
                         <div className="flex flex-col justify-between mt-6 space-y-6">
                           <button
-                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                              type="submit"
+                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                            type="submit"
                           >
                             {oki ? loading_animation() : null}
                             {textChange}
                           </button>
                         </div>
                       </form>
-                  ) : (
-                      <>
-
-                      <form
-                          className="relative mx-auto max-w-screen"
-                          onSubmit={handleEmailSubmit}
+                      <button
+                        className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
+                          count === 1 ? "hidden" : ""
+                        }`}
+                        type="button"
+                        onClick={() => {
+                          setCount(count - 1);
+                          setResetForm({ ...resetForm, textChange: "Next" });
+                        }}
+                        disabled={count > 3}
                       >
-                        <input
-                            className={`${TEXT_FIELD} ${
-                                errorEffect &&
-                                `border-red-500 placeholder-red-500 text-red-500`
-                            }`}
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            name="email"
-                            onChange={handleFormChange}
-                            onAnimationEnd={() => setErrorEffect(false)}
-                            onFocus={() => setErrorMessage("") && setOki(false)}
-                        />
-                        {/* Error message */}
-                        {errorMessage ? (
-                            <div className="mt-2 text-sm font-semibold text-red-500">
-                              {errorMessage}
-                            </div>
-                        ) : null}
-                        <div className="flex flex-col justify-between mt-6 space-y-6">
-                          <button
-                              className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                              type="submit"
-                          >
-                            {oki ? (
-                                loading_animation()
-                            ) : null}
-                            {textChange}
-                          </button>
-                        </div>
-                      </form>
-                        <button
-                            className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
-                                count === 1 ? "hidden" : ""
-                            }`}
-                            type="button"
-                            onClick={() => {setCount(count - 1);setResetForm({...resetForm, textChange: "Next"})}}
-                            disabled={count > 3}
-                        >
-                          Previous
-                        </button>
-                      </>
+                        Previous
+                      </button>
+                    </>
                   )}
                 </div>
               </div>
