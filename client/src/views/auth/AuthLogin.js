@@ -65,6 +65,7 @@ export default function AuthLogin() {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [countDown, setCountDown] = React.useState(0);
 
+
   /**
    * @description Handles the change of the input fields in the login form.
    * @param event
@@ -104,7 +105,7 @@ export default function AuthLogin() {
   /**
    * @description For step counter in the forgot password form.
    */
-  const [count, setCount] = React.useState(1);
+  const [count, setCount] = useState(1);
 
   /**
    * @description Handles the auth form submission and makes a POST request to the backend.
@@ -236,8 +237,16 @@ export default function AuthLogin() {
                     : "Two-factor authentication"}
                 </h6>
                 <div className="mt-4 text-start">
-                  {count === 1 ? null : (
+                  {count === 1 ? null : count === 2 ? (
                     <p className="text-gray-500">{authForm.username}</p>
+                  ) : (
+                      <p className="text-gray-500">
+                        <FontAwesomeIcon
+                          icon={faEnvelope}
+                          size={"lg"}
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                        />
+                        We emailed a code to {email}. Please enter the code to sign in.</p>
                   )}
                 </div>
                 {count === 1 ? (
@@ -388,6 +397,7 @@ export default function AuthLogin() {
                     </div>
                   </form>
                 ) : (
+                    <>
                   <form className="relative mx-auto mt-6 mb-6 max-w-screen">
                     <input
                       className={`${TEXT_FIELD} ${
@@ -450,6 +460,16 @@ export default function AuthLogin() {
                       )}
                     </div>
                   </form>
+                      <button
+                          className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
+                              count === 1 ? "hidden" : ""
+                          }`}
+                          type="button"
+                          onClick={() => {setCount(count - 1);setAuthForm({...authForm, textChange: "Verify email"})}}
+                      >
+                        Previous
+                      </button>
+                    </>
                 )}
               </div>
             </div>
