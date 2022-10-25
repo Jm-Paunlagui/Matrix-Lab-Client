@@ -1,24 +1,33 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
+  faCircleCheck,
+  faCircleRight,
+  faEnvelope,
+  faForward,
+  faSignIn,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SuccessAnimation from "actually-accessible-react-success-animation";
+
+import logo from "../../assets/img/android-chrome-192x192.png";
+import {
+  EMAIL_NOT_SET,
   ICON_PLACE_SELF_CENTER,
+  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   PRIMARY_RADIO,
   SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import React, { useState } from "react";
-import { faEnvelope, faSignIn } from "@fortawesome/free-solid-svg-icons";
-
 import BackNavigation from "../../components/navbars/BackNavigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import SuccessAnimation from "actually-accessible-react-success-animation";
 import httpClient from "../../http/httpClient";
-import logo from "../../assets/img/android-chrome-192x192.png";
-import { loading_animation } from "../../assets/styles/loading_animation";
 
 /**
  * @description Handles the forgot password request page
  */
+
 export default function AuthForgotPasswordRequest() {
   /**
    * @description State variables for the forgot password form.
@@ -26,84 +35,114 @@ export default function AuthForgotPasswordRequest() {
   const [resetForm, setResetForm] = useState({
     username: "",
     email: "",
-    emailConfirmation: "",
+    confirm_email: "",
+    mask: "",
     id1: "",
     id2: "",
-    textChange: "Confirm Email",
+    textChange: "Next",
   });
-
   /**
    * @description Handles the Error/Success animation and messages for the forgot password form.
    */
+
   const [oki, setOki] = useState(false);
   const [ok, setOk] = useState(false);
   const [errorEffect, setErrorEffect] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   /**
    * @description Handles the change of the input fields
    * @param event
    */
+
   const handleFormChange = (event) => {
     const { name, value } = event.target;
-    setResetForm({
-      ...resetForm,
-      [name]: value,
-    });
+    setResetForm({ ...resetForm, [name]: value });
   };
-
   /**
    * @description For step counter in the forgot password form.
    */
-  const [count, setCount] = useState(1);
 
+  const [count, setCount] = useState(1);
   /**
    * @description Destructs the state variables
    */
-  const { username, email, emailConfirmation, id1, id2, textChange } =
-    resetForm;
 
+  const { username, email, confirm_email, id1, id2, textChange } = resetForm; // Hide email address with mask
+
+  const maskEmail = (email) => {
+    if (email.includes("*") || email === "") {
+      return email;
+    } // Splits the email into two parts
+
+    let maskedEmail = email.split("@");
+    return (
+      maskedEmail[0].slice(0, 2) +
+      "****" +
+      maskedEmail[0].slice(-1) +
+      "@" +
+      maskedEmail[1]
+    );
+  };
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
    * @param event
    * @returns {Promise<void>}
    */
+
   const handleUsernameSubmit = async (event) => {
     event.preventDefault();
+    setOki(true);
+    setResetForm({ ...resetForm, textChange: "Verifying" });
+
     try {
-      const resp = await httpClient.post("/user/check-email", { username });
-      if (resp.statusText === "OK") {
-        setResetForm({
-          ...resetForm,
-          id1: resp.data.email[0],
-          id2: resp.data.email[1],
-          textChange: "Next",
+      await httpClient
+        .post("/user/check-email", {
+          username,
+        })
+        .then((response) => {
+          if (response.statusText === "OK") {
+            setResetForm({
+              ...resetForm,
+              id1: response.data.email[0],
+              id2: response.data.email[1],
+              textChange: "Continue",
+            });
+            setCount(count + 1);
+          }
+        })
+        .finally(() => {
+          setOki(false);
         });
-        setCount(count + 1);
-      }
     } catch (error) {
       setErrorEffect(true);
+      setOki(false);
       setErrorMessage(error.response.data.message);
+      setResetForm({ ...resetForm, textChange: "Next" });
     }
   };
+  /**
+   * @description To make a user choose, which email address to use. If the user has multiple email addresses.
+   * @param event
+   * @returns {Promise<void>}
+   */
 
   const handleVerifyEmailSubmit = async (event) => {
+    setOki(true);
     event.preventDefault();
+
     try {
-      if (emailConfirmation !== "") {
-        setOki(true);
-        setResetForm({
-          ...resetForm,
-          textChange: "Verify Email",
-        });
+      if (confirm_email !== "") {
+        setResetForm({ ...resetForm, textChange: "Verify Email" });
         setCount(count + 1);
         setOki(false);
       } else {
         setErrorEffect(true);
+        setOki(false);
         setErrorMessage("Choose an email");
       }
     } catch (error) {
       setErrorEffect(true);
+      setOki(false);
       setErrorMessage(error.response.data.message);
     }
   };
@@ -116,25 +155,24 @@ export default function AuthForgotPasswordRequest() {
   const handleEmailSubmit = async (event) => {
     event.preventDefault();
     setOki(true);
-    setResetForm({
-      ...resetForm,
-      textChange: "Sending",
-    });
+    setResetForm({ ...resetForm, textChange: "Sending" });
     try {
-      const resp = await httpClient.post("/user/forgot-password", {
-        email,
-      });
-      if (resp.statusText === "OK") {
-        setOk(true);
-      }
+      await httpClient
+        .post("/user/forgot-password", {
+          email,
+          confirm_email,
+        })
+        .then((response) => {
+          if (response.statusText === "OK") {
+            setOk(true);
+            setResetForm({ ...resetForm, textChange: "Success" });
+          }
+        });
     } catch (error) {
       setErrorEffect(true);
       setErrorMessage(error.response.data.message);
       setOki(false);
-      setResetForm({
-        ...resetForm,
-        textChange: "Confirm Email",
-      });
+      setResetForm({ ...resetForm, textChange: "Verify Email" });
     }
   };
 
@@ -150,7 +188,7 @@ export default function AuthForgotPasswordRequest() {
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
               <div className="py-12 bg-white rounded-lg shadow-lg">
-                <SuccessAnimation text="Success!" color="#5cb85c" />
+                <SuccessAnimation color="#5cb85c" text="Success!" />
                 <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
                     We&#39;ve sent you an email with a link to reset your
@@ -160,13 +198,13 @@ export default function AuthForgotPasswordRequest() {
                     If you don&#39;t see it, check your spam folder.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button type={"button"} className={`${PRIMARY_BUTTON}`}>
+                    <button className={`${PRIMARY_BUTTON}`} type={"button"} >
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Done?
-                          <FontAwesomeIcon
+                          <FontAwesomeIcon className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
                             icon={faSignIn}
-                            className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
+                            size={"lg"}
                           />{" "}
                           Sign in
                         </h1>
@@ -178,7 +216,7 @@ export default function AuthForgotPasswordRequest() {
             ) : (
               <div className={"px-6 lg:px-28"}>
                 <div className="flex items-center justify-center py-2 text-gray-800">
-                  <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
+                  <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
                 </div>
                 <h1> Step {count} of 3</h1>
                 <div className="flex-auto mb-24 space-y-6 -mt-14">
@@ -200,7 +238,7 @@ export default function AuthForgotPasswordRequest() {
                     ) : (
                       <p className="text-gray-500">
                         Please confirm your email address below. with the email
-                        address of <b>{emailConfirmation}</b>
+                        address of <b>{maskEmail(confirm_email)}</b>
                       </p>
                     )}
                   </div>
@@ -214,13 +252,13 @@ export default function AuthForgotPasswordRequest() {
                           errorEffect &&
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
-                        type="username"
-                        placeholder="username"
-                        value={username}
                         name="username"
-                        onChange={handleFormChange}
                         onAnimationEnd={() => setErrorEffect(false)}
+                        onChange={handleFormChange}
                         onFocus={() => setErrorMessage("")}
+                        placeholder="username"
+                        type="username"
+                        value={username}
                       />
                       {/* Error message */}
                       {errorMessage ? (
@@ -228,14 +266,26 @@ export default function AuthForgotPasswordRequest() {
                           {errorMessage}
                         </div>
                       ) : null}
-                      <button
-                        className={`px-5 py-1 pl-4 w-full mt-6 ${PRIMARY_BUTTON} ${
-                          count === 2 ? "hidden" : ""
-                        }`}
-                        type="submit"
-                      >
-                        Next
-                      </button>
+                      <div className="flex flex-col justify-center mt-6 space-y-6">
+                        <button
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                            count === 2 ? "hidden" : ""
+                          }`}
+                          type="submit"
+                        >
+                          {oki ? (
+                            LOADING_ANIMATION()
+                          ) : (
+                            <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faCircleRight}
+                              size={"lg"}
+
+                            />
+                          )}
+                          {textChange}
+                        </button>
+                      </div>
                     </form>
                   ) : count === 2 ? (
                     <form
@@ -244,19 +294,18 @@ export default function AuthForgotPasswordRequest() {
                     >
                       {/*  Choice of identity */}
                       <div className="flex flex-col justify-center mt-6 space-y-6">
-                        {/*    if identity is null, dont show the option else show both*/}
                         {id1 ? (
                           <li className={`list-none`}>
                             <input
+                                checked={confirm_email === id1}
                               className={`sr-only peer`}
+                                id="id1"
+                                name="confirm_email"
+                                onAnimationEnd={() => setErrorEffect(false)}
+                                onChange={handleFormChange}
+                                onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id1}
-                              name="emailConfirmation"
-                              id="id1"
-                              checked={emailConfirmation === id1}
-                              onChange={handleFormChange}
-                              onAnimationEnd={() => setErrorEffect(false)}
-                              onFocus={() => setErrorMessage("")}
                             />
                             <label
                               className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
@@ -266,27 +315,27 @@ export default function AuthForgotPasswordRequest() {
                               }`}
                               htmlFor="id1"
                             >
-                              <FontAwesomeIcon
+                              <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faEnvelope}
                                 size={"lg"}
-                                className={`${ICON_PLACE_SELF_CENTER}`}
                               />
-                              <p className="truncate">Email {id1}</p>
+                              <p className="truncate">Email {maskEmail(id1)}</p>
                             </label>
                           </li>
-                        ) : null}
+                        ) : (
+                          EMAIL_NOT_SET("Primary")
+                        )}
                         {id2 ? (
                           <li className="list-none">
-                            <input
+                            <input checked={confirm_email === id2}
                               className="sr-only peer "
+                                   id="id2"
+                                   name="confirm_email"
+                                   onAnimationEnd={() => setErrorEffect(false)}
+                                   onChange={handleFormChange}
+                                   onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id2}
-                              name="emailConfirmation"
-                              id="id2"
-                              checked={emailConfirmation === id2}
-                              onChange={handleFormChange}
-                              onAnimationEnd={() => setErrorEffect(false)}
-                              onFocus={() => setErrorMessage("")}
                             />
                             <label
                               className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
@@ -296,15 +345,16 @@ export default function AuthForgotPasswordRequest() {
                               } `}
                               htmlFor="id2"
                             >
-                              <FontAwesomeIcon
+                              <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faEnvelope}
                                 size={"lg"}
-                                className={`${ICON_PLACE_SELF_CENTER}`}
                               />
-                              <p className="truncate">Email {id2}</p>
+                              <p className="truncate">Email {maskEmail(id2)}</p>
                             </label>
                           </li>
-                        ) : null}
+                        ) : (
+                          EMAIL_NOT_SET("Recovery")
+                        )}
                       </div>
                       {/* Error message */}
                       {errorMessage ? (
@@ -317,7 +367,14 @@ export default function AuthForgotPasswordRequest() {
                           className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                           type="submit"
                         >
-                          {oki ? loading_animation() : null}
+                          {oki ? (
+                            LOADING_ANIMATION()
+                          ) : (
+                            <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faForward}
+                              size={"lg"}
+                            />
+                          )}
                           {textChange}
                         </button>
                       </div>
@@ -333,13 +390,13 @@ export default function AuthForgotPasswordRequest() {
                             errorEffect &&
                             `border-red-500 placeholder-red-500 text-red-500`
                           }`}
-                          type="email"
-                          placeholder="Email"
-                          value={email}
                           name="email"
-                          onChange={handleFormChange}
                           onAnimationEnd={() => setErrorEffect(false)}
+                          onChange={handleFormChange}
                           onFocus={() => setErrorMessage("") && setOki(false)}
+                          placeholder="Email"
+                          type="email"
+                          value={email}
                         />
                         {/* Error message */}
                         {errorMessage ? (
@@ -352,7 +409,14 @@ export default function AuthForgotPasswordRequest() {
                             className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                             type="submit"
                           >
-                            {oki ? loading_animation() : null}
+                            {oki ? (
+                              LOADING_ANIMATION()
+                            ) : (
+                              <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                                icon={faCircleCheck}
+                                size={"lg"}
+                              />
+                            )}
                             {textChange}
                           </button>
                         </div>
@@ -361,12 +425,13 @@ export default function AuthForgotPasswordRequest() {
                         className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
                           count === 1 ? "hidden" : ""
                         }`}
-                        type="button"
+                        disabled={count > 3}
                         onClick={() => {
                           setCount(count - 1);
                           setResetForm({ ...resetForm, textChange: "Next" });
+                          setErrorMessage("");
                         }}
-                        disabled={count > 3}
+                        type="button"
                       >
                         Previous
                       </button>
