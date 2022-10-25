@@ -232,6 +232,7 @@ export default function AuthLogin() {
       setOki(false);
       setAuthForm({
         ...authForm,
+        code: "",
         textChange: "Verify",
       });
     }
