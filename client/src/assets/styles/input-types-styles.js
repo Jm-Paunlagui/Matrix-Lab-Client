@@ -1,6 +1,6 @@
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faWarning} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWarning } from "@fortawesome/free-solid-svg-icons";
 
 export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider placeholder-gray-500 border border-gray-200 rounded-lg`;
 
@@ -31,31 +31,34 @@ export const SECONDARY_RADIO = `bg-white text-gray-500 border border-gray-300 ro
  * @description Circular loading animation
  */
 export const LOADING_ANIMATION = () => {
-    return (
-        <svg className="mr-1 spinner" viewBox="0 0 50 50">
-            <circle
-                className="path"
-                cx="25"
-                cy="25"
-                fill="transparent"
-                r="20"
-                strokeWidth="5"
-            />
-        </svg>
-    );
+  return (
+    <svg className="mr-1 spinner" viewBox="0 0 50 50">
+      <circle
+        className="path"
+        cx="25"
+        cy="25"
+        fill="transparent"
+        r="20"
+        strokeWidth="5"
+      />
+    </svg>
+  );
 };
 
 /**
  * @description Recovery email not set
  */
-export const EMAIL_NOT_SET = (email_type= "") => {
-    return (
-        <div className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 border-yellow-600 rounded-lg cursor-default text-white bg-yellow-400`}>
-            <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
-                icon={faWarning}
-                size={"lg"}
-            />
-            {email_type} email not set up yet for this account.
-        </div>
-    );
-}
+export const EMAIL_NOT_SET = (email_type = "") => {
+  return (
+    <div
+      className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 border-yellow-600 rounded-lg cursor-default text-white bg-yellow-400`}
+    >
+      <FontAwesomeIcon
+        className={`${ICON_PLACE_SELF_CENTER}`}
+        icon={faWarning}
+        size={"lg"}
+      />
+      {email_type} email not set up yet for this account.
+    </div>
+  );
+};

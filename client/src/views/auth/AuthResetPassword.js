@@ -8,10 +8,11 @@ import SuccessAnimation from "actually-accessible-react-success-animation";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
-  ICON_PLACE_SELF_CENTER, LOADING_ANIMATION,
+  ICON_PLACE_SELF_CENTER,
+  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
-} from '../../assets/styles/input-types-styles';
+} from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 
@@ -114,9 +115,9 @@ export default function AuthResetPassword() {
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Proceed to
-                          <FontAwesomeIcon className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
+                          <FontAwesomeIcon
+                            className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
                             icon={faSignIn}
-
                           />{" "}
                           Sign in
                         </h1>
@@ -195,18 +196,17 @@ export default function AuthResetPassword() {
                         ]}
                         value={password}
                         valueAgain={confirmPassword}
-
                       />
                       <div className="flex flex-col justify-center">
-                        <button className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                        <button
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
                             buttonDisabled &&
                             `opacity-50 cursor-not-allowed pointer-events-none`
-                        }`} disabled={buttonDisabled}
+                          }`}
+                          disabled={buttonDisabled}
                           type="submit"
                         >
-                          {oki ? (
-                            LOADING_ANIMATION()
-                          ) : null}
+                          {oki ? LOADING_ANIMATION() : null}
                           {textChange}
                         </button>
                       </div>

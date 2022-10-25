@@ -198,11 +198,12 @@ export default function AuthForgotPasswordRequest() {
                     If you don&#39;t see it, check your spam folder.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button className={`${PRIMARY_BUTTON}`} type={"button"} >
+                    <button className={`${PRIMARY_BUTTON}`} type={"button"}>
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Done?
-                          <FontAwesomeIcon className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
+                          <FontAwesomeIcon
+                            className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
                             icon={faSignIn}
                             size={"lg"}
                           />{" "}
@@ -277,10 +278,9 @@ export default function AuthForgotPasswordRequest() {
                             LOADING_ANIMATION()
                           ) : (
                             <FontAwesomeIcon
-                                className={`${ICON_PLACE_SELF_CENTER}`}
+                              className={`${ICON_PLACE_SELF_CENTER}`}
                               icon={faCircleRight}
                               size={"lg"}
-
                             />
                           )}
                           {textChange}
@@ -297,13 +297,13 @@ export default function AuthForgotPasswordRequest() {
                         {id1 ? (
                           <li className={`list-none`}>
                             <input
-                                checked={confirm_email === id1}
+                              checked={confirm_email === id1}
                               className={`sr-only peer`}
-                                id="id1"
-                                name="confirm_email"
-                                onAnimationEnd={() => setErrorEffect(false)}
-                                onChange={handleFormChange}
-                                onFocus={() => setErrorMessage("")}
+                              id="id1"
+                              name="confirm_email"
+                              onAnimationEnd={() => setErrorEffect(false)}
+                              onChange={handleFormChange}
+                              onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id1}
                             />
@@ -315,7 +315,8 @@ export default function AuthForgotPasswordRequest() {
                               }`}
                               htmlFor="id1"
                             >
-                              <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                              <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faEnvelope}
                                 size={"lg"}
                               />
@@ -327,13 +328,14 @@ export default function AuthForgotPasswordRequest() {
                         )}
                         {id2 ? (
                           <li className="list-none">
-                            <input checked={confirm_email === id2}
+                            <input
+                              checked={confirm_email === id2}
                               className="sr-only peer "
-                                   id="id2"
-                                   name="confirm_email"
-                                   onAnimationEnd={() => setErrorEffect(false)}
-                                   onChange={handleFormChange}
-                                   onFocus={() => setErrorMessage("")}
+                              id="id2"
+                              name="confirm_email"
+                              onAnimationEnd={() => setErrorEffect(false)}
+                              onChange={handleFormChange}
+                              onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id2}
                             />
@@ -345,7 +347,8 @@ export default function AuthForgotPasswordRequest() {
                               } `}
                               htmlFor="id2"
                             >
-                              <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                              <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faEnvelope}
                                 size={"lg"}
                               />
@@ -370,7 +373,8 @@ export default function AuthForgotPasswordRequest() {
                           {oki ? (
                             LOADING_ANIMATION()
                           ) : (
-                            <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
                               icon={faForward}
                               size={"lg"}
                             />
@@ -412,7 +416,8 @@ export default function AuthForgotPasswordRequest() {
                             {oki ? (
                               LOADING_ANIMATION()
                             ) : (
-                              <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                              <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faCircleCheck}
                                 size={"lg"}
                               />

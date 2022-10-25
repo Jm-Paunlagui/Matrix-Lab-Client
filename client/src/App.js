@@ -66,26 +66,26 @@ export default function App() {
           <Route element={<IndexPublic />}>
             <Route element={<PublicAbout />} exact="true" path="aboutus" />
             <Route element={<PublicHome />} exact="true" path="/" />
-            <Route element={<PublicLeaderboard />}
+            <Route
+              element={<PublicLeaderboard />}
               exact="true"
               path="leaderboard"
-
             />
-            <Route element={<PublicRanking />} exact="true" path="ranking"  />
+            <Route element={<PublicRanking />} exact="true" path="ranking" />
           </Route>
           {/**
            * End of public routes
            */}
 
-          <Route  element={<PrivacyPolicy />}
+          <Route
+            element={<PrivacyPolicy />}
             exact="true"
             path="privacy-policy"
-
           />
-          <Route  element={<TermsAndConditions />}
+          <Route
+            element={<TermsAndConditions />}
             exact="true"
             path="terms-and-conditions"
-
           />
 
           {/**
@@ -93,16 +93,16 @@ export default function App() {
            * auth routes.
            */}
           <Route element={<IndexAuth />}>
-            <Route  element={<AuthForgotPasswordRequest />}
+            <Route
+              element={<AuthForgotPasswordRequest />}
               exact="true"
               path="forgot-password"
-
             />
             <Route element={<AuthLogin />} exact="true" path="auth" />
-            <Route  element={<AuthResetPassword />}
+            <Route
+              element={<AuthResetPassword />}
               exact="true"
               path="reset-password/:token"
-
             />
           </Route>
           {/**
@@ -112,28 +112,29 @@ export default function App() {
            * @description Handles admin routes for the application, and the IndexAdmin component has the outlet for the
            * admin routes.
            */}
-          <Route  element={<IndexAdmin />} exact="true" path="admin">
+          <Route element={<IndexAdmin />} exact="true" path="admin">
             <Route element={<AdminDashboard />} exact="true" path="dashboard" />
-            <Route  element={<IndexLeaderboard />}
+            <Route
+              element={<IndexLeaderboard />}
               exact="true"
               path="leaderboard"
             >
-              <Route  element={<LeaderboardDepartment />}
+              <Route
+                element={<LeaderboardDepartment />}
                 exact="true"
                 path="departments"
-
               />
-              <Route  element={<LeaderboardEmployees />}
+              <Route
+                element={<LeaderboardEmployees />}
                 exact="true"
                 path="employees"
-
               />
             </Route>
             <Route element={<AdminPrediction />} exact="true" path="analyze" />
-            <Route  element={<AdminProfile />}
+            <Route
+              element={<AdminProfile />}
               exact="true"
               path="profile/:username"
-
             />
             <Route element={<AdminSettings />} exact="true" path="settings" />
             <Route element={<AdminTables />} exact="true" path="management" />
@@ -147,10 +148,11 @@ export default function App() {
            * @description Handles user routes for the application, and the IndexUser component has the outlet for the
            * user routes.
            */}
-          <Route element={<IndexUser />} exact="true" path="user" >
-            <Route element={<IndexEval />} exact="true" path="programs" >
-              <Route element={<EvalCourses />} exact="true" path="courses" >
-                <Route element={<EvalCourseSentimentTable />}
+          <Route element={<IndexUser />} exact="true" path="user">
+            <Route element={<IndexEval />} exact="true" path="programs">
+              <Route element={<EvalCourses />} exact="true" path="courses">
+                <Route
+                  element={<EvalCourseSentimentTable />}
                   path=":courseId"
                 />
               </Route>

@@ -249,7 +249,7 @@ export default function AuthLogin() {
             <BackNavigation backTo={"/"} hasText={false} isSmall />
             <div className={"px-6 lg:px-28"}>
               <div className="flex items-center justify-center py-2 text-gray-800">
-                <img  alt="logo" className="w-12 h-12 -mt-12" src={logo} />
+                <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
               </div>
               <div className="flex-auto pt-0 mb-24 -mt-14">
                 <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
@@ -264,10 +264,10 @@ export default function AuthLogin() {
                     <p className="text-gray-500">{authForm.username}</p>
                   ) : (
                     <p className="text-gray-500">
-                      <FontAwesomeIcon  className={`${ICON_PLACE_SELF_CENTER}`}
+                      <FontAwesomeIcon
+                        className={`${ICON_PLACE_SELF_CENTER}`}
                         icon={faEnvelope}
                         size={"lg"}
-
                       />
                       We emailed a code to {email}. Please enter the code to
                       sign in.
@@ -314,22 +314,23 @@ export default function AuthLogin() {
                     ) : null}
 
                     <div className="flex flex-col justify-center mt-6 space-y-6">
-                      <button  className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                      <button
+                        className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                         type="submit"
                       >
                         {oki ? (
                           LOADING_ANIMATION()
                         ) : (
-                          <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`}
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
                             icon={faSignIn}
                             size={"lg"}
-
                           />
                         )}
                         {textChange}
                       </button>
 
-                      <button className={`${SECONDARY_BUTTON}`} type={"button"} >
+                      <button className={`${SECONDARY_BUTTON}`} type={"button"}>
                         <Link to={"/forgot-password"}>
                           <h1 className="px-5 py-1">Forgot Password?</h1>
                         </Link>
@@ -345,13 +346,14 @@ export default function AuthLogin() {
                     <div className="flex flex-col justify-center mt-6 space-y-6">
                       {id1 ? (
                         <li className={`list-none`}>
-                          <input checked={email === id1}
+                          <input
+                            checked={email === id1}
                             className={`sr-only peer`}
-                                 id="id1"
-                                 name="email"
-                                 onAnimationEnd={() => setErrorEffect(false)}
-                                 onChange={handleAuthFormChange}
-                                 onFocus={() => setErrorMessage("")}
+                            id="id1"
+                            name="email"
+                            onAnimationEnd={() => setErrorEffect(false)}
+                            onChange={handleAuthFormChange}
+                            onFocus={() => setErrorMessage("")}
                             type="radio"
                             value={id1}
                           />
@@ -363,10 +365,10 @@ export default function AuthLogin() {
                             }`}
                             htmlFor="id1"
                           >
-                            <FontAwesomeIcon  className={`${ICON_PLACE_SELF_CENTER}`}
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
                               icon={faEnvelope}
                               size={"lg"}
-
                             />
                             <p className="truncate">Email {id1}</p>
                           </label>
@@ -376,12 +378,14 @@ export default function AuthLogin() {
                       )}
                       {id2 ? (
                         <li className="list-none">
-                          <input checked={email === id2}
+                          <input
+                            checked={email === id2}
                             className="sr-only peer "
                             id="id2"
-                            name="email"  onAnimationEnd={() => setErrorEffect(false)}
-                                 onChange={handleAuthFormChange}
-                                 onFocus={() => setErrorMessage("")}
+                            name="email"
+                            onAnimationEnd={() => setErrorEffect(false)}
+                            onChange={handleAuthFormChange}
+                            onFocus={() => setErrorMessage("")}
                             type="radio"
                             value={id2}
                           />
@@ -393,10 +397,10 @@ export default function AuthLogin() {
                             } `}
                             htmlFor="id2"
                           >
-                            <FontAwesomeIcon  className={`${ICON_PLACE_SELF_CENTER}`}
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
                               icon={faEnvelope}
                               size={"lg"}
-
                             />
                             <p className="truncate">Email {id2}</p>
                           </label>
@@ -445,35 +449,39 @@ export default function AuthLogin() {
                       ) : null}
                       <div className="flex flex-col justify-center mt-6 space-y-6">
                         {code.length < 7 || code.length > 7 ? (
-                          <button   className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                          <button
+                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
                               buttonDisabled &&
                               `opacity-50 cursor-not-allowed pointer-events-none`
-                          }`}
-                                    name="resend"
-                                    onClick={handle2FAFormSubmit}
+                            }`}
+                            name="resend"
+                            onClick={handle2FAFormSubmit}
                             type="reset"
                           >
                             {oki ? (
                               LOADING_ANIMATION()
                             ) : (
-                              <FontAwesomeIcon  className={`${ICON_PLACE_SELF_CENTER}`}
+                              <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faRepeat}
                                 size={"lg"}
-
                               />
                             )}
                             {textChange2}{" "}
                             {countDown !== 0 ? "(" + countDown + ")" : null}
                           </button>
                         ) : (
-                          <button  className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                                   name="submit"  onClick={handle2FAVerifyFormSubmit}
+                          <button
+                            className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                            name="submit"
+                            onClick={handle2FAVerifyFormSubmit}
                             type="submit"
                           >
                             {oki ? (
                               LOADING_ANIMATION()
                             ) : (
-                              <FontAwesomeIcon  className={`${ICON_PLACE_SELF_CENTER}`}
+                              <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faSignIn}
                                 size={"lg"}
                               />
