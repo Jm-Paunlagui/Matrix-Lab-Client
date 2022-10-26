@@ -4,16 +4,16 @@
  * @returns {string|*}
  */
 export const maskEmail = (email) => {
-    if (email.includes("*") || email === "") {
-        return email;
-    } // Splits the email into two parts
+  if (email.includes("*") || email === "") {
+    return email;
+  } // Splits the email into two parts
 
-    let maskedEmail = email.split("@");
-    return (
-        maskedEmail[0].slice(0, 2) +
-        "****" +
-        maskedEmail[0].slice(-1) +
-        "@" +
-        maskedEmail[1]
-    );
+  let maskedEmail = email.split("@");
+  return (
+    maskedEmail[0].slice(0, 2) +
+    "****" +
+    maskedEmail[0].slice(-1) +
+    "@" +
+    maskedEmail[1]
+  );
 };
