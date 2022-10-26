@@ -23,7 +23,7 @@ import {
 } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
-import { maskEmail } from '../../helpers/masker';
+import { maskEmail } from "../../helpers/masker";
 
 /**
  * @description Handles the forgot password request page
