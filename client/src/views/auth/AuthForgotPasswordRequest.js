@@ -23,6 +23,7 @@ import {
 } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
+import { maskEmail } from '../../helpers/masker';
 
 /**
  * @description Handles the forgot password request page
@@ -69,20 +70,6 @@ export default function AuthForgotPasswordRequest() {
 
   const { username, email, confirm_email, id1, id2, textChange } = resetForm; // Hide email address with mask
 
-  const maskEmail = (email) => {
-    if (email.includes("*") || email === "") {
-      return email;
-    } // Splits the email into two parts
-
-    let maskedEmail = email.split("@");
-    return (
-      maskedEmail[0].slice(0, 2) +
-      "****" +
-      maskedEmail[0].slice(-1) +
-      "@" +
-      maskedEmail[1]
-    );
-  };
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
    * @param event
