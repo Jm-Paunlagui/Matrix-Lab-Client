@@ -18,6 +18,7 @@
   "rules": {
     "no-unused-vars": "off",
     "jsx-quotes": 1,
+    "complexity": "off",
     "react/display-name": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-boolean-value": 1,
