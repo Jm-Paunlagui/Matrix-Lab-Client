@@ -21,7 +21,7 @@ import {
 } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 /**
  * @description User login form for the application
@@ -232,7 +232,7 @@ export default function AuthLogin() {
             });
             navigate(response.data.path);
           }
-        })
+        });
     } catch (error) {
       setErrorEffect(true);
       setErrorMessage(error.response.data.message);
@@ -417,38 +417,37 @@ export default function AuthLogin() {
                         EMAIL_NOT_SET("Secondary")
                       )}
                       {id3 ? (
-                          <li className="list-none">
-                            <input
-                                checked={email === id3}
-                                className="sr-only peer "
-                                id="id3"
-                                name="email"
-                                onAnimationEnd={() => setErrorEffect(false)}
-                                onChange={handleAuthFormChange}
-                                onFocus={() => setErrorMessage("")}
-                                type="radio"
-                                value={id3}
+                        <li className="list-none">
+                          <input
+                            checked={email === id3}
+                            className="sr-only peer "
+                            id="id3"
+                            name="email"
+                            onAnimationEnd={() => setErrorEffect(false)}
+                            onChange={handleAuthFormChange}
+                            onFocus={() => setErrorMessage("")}
+                            type="radio"
+                            value={id3}
+                          />
+                          <label
+                            className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                              errorEffect
+                                ? `border-red-500 placeholder-red-500 text-red-500`
+                                : PRIMARY_RADIO
+                            } `}
+                            htmlFor="id3"
+                          >
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faEnvelope}
+                              size={"lg"}
                             />
-                            <label
-                                className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
-                                    errorEffect
-                                        ? `border-red-500 placeholder-red-500 text-red-500`
-                                        : PRIMARY_RADIO
-                                } `}
-                                htmlFor="id3"
-                            >
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faEnvelope}
-                                  size={"lg"}
-                              />
-                              <p className="truncate">Email {id3}</p>
-                            </label>
-                          </li>
+                            <p className="truncate">Email {id3}</p>
+                          </label>
+                        </li>
                       ) : (
-                          EMAIL_NOT_SET("Recovery")
+                        EMAIL_NOT_SET("Recovery")
                       )}
-
                     </div>
                     {/* Error message */}
                     {errorMessage ? (

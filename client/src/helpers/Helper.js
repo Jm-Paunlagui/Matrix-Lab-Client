@@ -24,9 +24,9 @@ export const maskEmail = (email) => {
  * @returns {string|*}
  */
 export const maskUsername = (username) => {
-    if (username.includes("*") || username === "") {
-        return username;
-    } // Splits the email into two parts
+  if (username.includes("*") || username === "") {
+    return username;
+  } // Splits the email into two parts
 
-    return username.slice(0, 2) + "****" + username.slice(-1);
-}
+  return username.slice(0, 2) + "****" + username.slice(-1);
+};
