@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  faSignIn,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SuccessAnimation from "actually-accessible-react-success-animation";
 
@@ -16,7 +14,7 @@ import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { maskEmail } from "../../helpers/Helper";
 import { toast } from "react-toastify";
-import { AssociatedEmails, SendToEmail, Username } from '../../forms/AuthForm';
+import { AssociatedEmails, SendToEmail, Username } from "../../forms/AuthForm";
 
 /**
  * @description Handles the forgot password request page
@@ -222,13 +220,45 @@ export default function AuthForgotPasswordRequest() {
                       </p>
                     )}
                   </div>
-                  {count === 1 ? (
-                      Username(handleUsernameSubmit, handleFormChange, username, oki, errorEffect, errorMessage, count, textChange)
-                  ) : count === 2 ? (
-                      AssociatedEmails(handleVerifyEmailSubmit, id1, id2, id3, confirm_email, handleFormChange, oki, errorEffect, errorMessage, count, textChange)
-                  ) : (
-                      SendToEmail(handleEmailSubmit, email, handleFormChange, oki, errorEffect, errorMessage, count, textChange, setCount, setResetForm, resetForm, setErrorMessage)
-                  )}
+                  {count === 1
+                    ? Username(
+                        handleUsernameSubmit,
+                        handleFormChange,
+                        username,
+                        oki,
+                        errorEffect,
+                        errorMessage,
+                        count,
+                        textChange,
+                      )
+                    : count === 2
+                    ? AssociatedEmails(
+                        handleVerifyEmailSubmit,
+                        id1,
+                        id2,
+                        id3,
+                        confirm_email,
+                        handleFormChange,
+                        oki,
+                        errorEffect,
+                        errorMessage,
+                        count,
+                        textChange,
+                      )
+                    : SendToEmail(
+                        handleEmailSubmit,
+                        email,
+                        handleFormChange,
+                        oki,
+                        errorEffect,
+                        errorMessage,
+                        count,
+                        textChange,
+                        setCount,
+                        setResetForm,
+                        resetForm,
+                        setErrorMessage,
+                      )}
                 </div>
               </div>
             )}
