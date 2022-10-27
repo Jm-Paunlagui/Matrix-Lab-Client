@@ -6,7 +6,7 @@ import {
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the admin profile
@@ -18,7 +18,7 @@ export default function AdminProfile() {
   const { username } = useParams();
 
   toast(`Welcome ${username}!`, {
-    type: "default"
+    type: "default",
   });
 
   /**
