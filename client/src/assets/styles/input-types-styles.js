@@ -31,7 +31,7 @@ export const DANGER_RADIO = `bg-white text-gray-500 border border-gray-300 round
 /**
  * @description Circular loading animation
  */
-export function LOADING_ANIMATION  () {
+export function LOADING_ANIMATION() {
   return (
     <svg className="mr-1 spinner" viewBox="0 0 50 50">
       <circle
@@ -49,7 +49,7 @@ export function LOADING_ANIMATION  () {
 /**
  * @description Recovery email not set
  */
-export function EMAIL_NOT_SET (email_type = "") {
+export function EMAIL_NOT_SET(email_type = "") {
   return (
     <div
       className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 border-yellow-600 rounded-lg cursor-default text-white bg-yellow-400`}

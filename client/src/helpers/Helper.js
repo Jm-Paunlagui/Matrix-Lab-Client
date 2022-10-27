@@ -9,7 +9,9 @@ export const maskEmail = (email) => {
   } // Splits the email into two parts
 
   const maskedEmail = email.split("@");
-  return (`${maskedEmail[0].slice(0, 2)}**${maskedEmail[0].slice(-1)}@${maskedEmail[1]}`);
+  return `${maskedEmail[0].slice(0, 2)}**${maskedEmail[0].slice(-1)}@${
+    maskedEmail[1]
+  }`;
 };
 
 /**
@@ -22,5 +24,5 @@ export const maskUsername = (username) => {
     return username;
   } // Splits the email into two parts
 
-  return (`${username.slice(0, 2)}**${username.slice(-1)}`);
+  return `${username.slice(0, 2)}**${username.slice(-1)}`;
 };
