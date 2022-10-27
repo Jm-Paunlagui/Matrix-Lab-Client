@@ -10,7 +10,7 @@ import { ICON_PLACE_SELF_CENTER } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
-import { TFAbyEmail, UsernamePassword, VerifyTFA } from "../../forms/AuthForm";
+import { TFAbyEmail, UsernamePassword, VerifyTFA } from "../../forms/CredentialForms";
 
 /**
  * @description User login form for the application

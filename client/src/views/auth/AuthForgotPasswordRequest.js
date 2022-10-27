@@ -16,7 +16,7 @@ import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { maskEmail } from "../../helpers/Helper";
 import { toast } from "react-toastify";
-import { AssociatedEmails, SendToEmail, Username } from '../../forms/AuthForm';
+import { AssociatedEmails, SendToEmail, Username } from '../../forms/CredentialForms';
 
 /**
  * @description Handles the forgot password request page
