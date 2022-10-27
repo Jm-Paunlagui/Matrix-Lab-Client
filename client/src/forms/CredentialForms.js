@@ -25,26 +25,26 @@ import { maskEmail } from "../helpers/Helper";
 
 /**
  * @description User login form for the application
- * @param username
- * @param password
- * @param oki
- * @param textChange
- * @param handleAuthFormSubmit
  * @param errorEffect
- * @param handleAuthFormChange
  * @param errorMessage
+ * @param handleAuthFormChange
+ * @param handleAuthFormSubmit
+ * @param oki
+ * @param password
+ * @param textChange
+ * @param username
  * @returns {JSX.Element}
  * @constructor
  */
 export function UsernamePassword(
-  username,
-  password,
-  oki,
-  textChange,
-  handleAuthFormSubmit,
   errorEffect,
-  handleAuthFormChange,
   errorMessage,
+  handleAuthFormChange,
+  handleAuthFormSubmit,
+  oki,
+  password,
+  textChange,
+  username,
 ) {
   return (
     <form
@@ -109,29 +109,29 @@ export function UsernamePassword(
 /**
  * @description User login form for the application
  * @param email
+ * @param errorEffect
+ * @param errorMessage
+ * @param handle2FAFormSubmit
+ * @param handleAuthFormChange
  * @param id1
  * @param id2
  * @param id3
  * @param oki
  * @param textChange
- * @param handle2FAFormSubmit
- * @param errorEffect
- * @param handleAuthFormChange
- * @param errorMessage
  * @returns {JSX.Element}
  * @constructor
  */
 export function TFAbyEmail(
   email,
+  errorEffect,
+  errorMessage,
+  handle2FAFormSubmit,
+  handleAuthFormChange,
   id1,
   id2,
   id3,
   oki,
   textChange,
-  handle2FAFormSubmit,
-  errorEffect,
-  handleAuthFormChange,
-  errorMessage,
 ) {
   return (
     <form
@@ -252,42 +252,42 @@ export function TFAbyEmail(
 
 /**
  * @description User login form for the application
+ * @param authForm
+ * @param buttonDisabled
  * @param code
- * @param oki
- * @param textChange
+ * @param count
+ * @param countDown
+ * @param errorEffect
+ * @param errorMessage
  * @param handle2FAFormSubmit
  * @param handle2FAVerifyFormSubmit
- * @param errorEffect
  * @param handleAuthFormChange
- * @param errorMessage
- * @param buttonDisabled
- * @param textChange2
- * @param count
- * @param setCount
- * @param countDown
+ * @param oki
  * @param setAuthForm
- * @param authForm
+ * @param setCount
  * @param setErrorMessage
+ * @param textChange
+ * @param textChange2
  * @returns {JSX.Element}
  * @constructor
  */
 export function VerifyTFA(
+  authForm,
+  buttonDisabled,
   code,
-  oki,
-  textChange,
+  count,
+  countDown,
+  errorEffect,
+  errorMessage,
   handle2FAFormSubmit,
   handle2FAVerifyFormSubmit,
-  errorEffect,
   handleAuthFormChange,
-  errorMessage,
-  buttonDisabled,
-  textChange2,
-  count,
-  setCount,
-  countDown,
+  oki,
   setAuthForm,
-  authForm,
+  setCount,
   setErrorMessage,
+  textChange,
+  textChange2,
 ) {
   return (
     <>
@@ -373,26 +373,26 @@ export function VerifyTFA(
 
 /**
  * @description Checking username associated with the email.
- * @param handleUsernameSubmit
- * @param handleFormChange
- * @param username
- * @param oki
+ * @param count
  * @param errorEffect
  * @param errorMessage
- * @param count
+ * @param handleFormChange
+ * @param handleUsernameSubmit
+ * @param oki
  * @param textChange
+ * @param username
  * @returns {JSX.Element}
  * @constructor
  */
 export function Username(
-  handleUsernameSubmit,
-  handleFormChange,
-  username,
-  oki,
+  count,
   errorEffect,
   errorMessage,
-  count,
+  handleFormChange,
+  handleUsernameSubmit,
+  oki,
   textChange,
+  username,
 ) {
   return (
     <form
@@ -440,31 +440,29 @@ export function Username(
 
 /**
  * @description Users associated with the email address will be displayed, and the user will select an email address.
+ * @param confirm_email
+ * @param errorEffect
+ * @param errorMessage
+ * @param handleFormChange
  * @param handleVerifyEmailSubmit
  * @param id1
  * @param id2
  * @param id3
- * @param confirm_email
- * @param handleFormChange
  * @param oki
- * @param errorEffect
- * @param errorMessage
- * @param count
  * @param textChange
  * @returns {JSX.Element}
  * @constructor
  */
 export function AssociatedEmails(
+  confirm_email,
+  errorEffect,
+  errorMessage,
+  handleFormChange,
   handleVerifyEmailSubmit,
   id1,
   id2,
   id3,
-  confirm_email,
-  handleFormChange,
   oki,
-  errorEffect,
-  errorMessage,
-  count,
   textChange,
 ) {
   return (
@@ -594,34 +592,34 @@ export function AssociatedEmails(
 
 /**
  * @description Confirmation of the email address selected by the user.
- * @param handleEmailSubmit
+ * @param count
  * @param email
- * @param handleFormChange
- * @param oki
  * @param errorEffect
  * @param errorMessage
- * @param count
- * @param textChange
- * @param setCount
- * @param setResetForm
+ * @param handleEmailSubmit
+ * @param handleFormChange
+ * @param oki
  * @param resetForm
+ * @param setCount
  * @param setErrorMessage
+ * @param setResetForm
+ * @param textChange
  * @returns {JSX.Element}
  * @constructor
  */
 export function SendToEmail(
-  handleEmailSubmit,
+  count,
   email,
-  handleFormChange,
-  oki,
   errorEffect,
   errorMessage,
-  count,
-  textChange,
-  setCount,
-  setResetForm,
+  handleEmailSubmit,
+  handleFormChange,
+  oki,
   resetForm,
+  setCount,
   setErrorMessage,
+  setResetForm,
+  textChange,
 ) {
   return (
     <>

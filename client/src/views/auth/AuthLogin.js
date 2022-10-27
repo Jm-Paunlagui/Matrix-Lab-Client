@@ -26,16 +26,16 @@ export default function AuthLogin() {
    * @param {string} password - Password of the user.
    */
   const [authForm, setAuthForm] = useState({
-    username: "",
-    password: "",
-    textChange: "Sign In",
-    textChange2: "",
+    buttonDisabled: true,
+    code: "",
     email: "",
     id1: "",
     id2: "",
     id3: "",
-    code: "",
-    buttonDisabled: true,
+    password: "",
+    textChange: "Sign In",
+    textChange2: "",
+    username: "",
   });
 
   const navigate = useNavigate();
@@ -44,16 +44,16 @@ export default function AuthLogin() {
    * @description Destructs the state variables
    */
   const {
-    username,
-    password,
-    textChange,
-    textChange2,
+    buttonDisabled,
+    code,
     email,
     id1,
     id2,
     id3,
-    code,
-    buttonDisabled,
+    password,
+    textChange,
+    textChange2,
+    username,
   } = authForm;
 
   /**
@@ -266,45 +266,45 @@ export default function AuthLogin() {
                 </div>
                 {count === 1
                   ? UsernamePassword(
-                      username,
-                      password,
-                      oki,
-                      textChange,
-                      handleAuthFormSubmit,
                       errorEffect,
-                      handleAuthFormChange,
                       errorMessage,
+                      handleAuthFormChange,
+                      handleAuthFormSubmit,
+                      oki,
+                      password,
+                      textChange,
+                      username,
                     )
                   : count === 2
                   ? TFAbyEmail(
                       email,
+                      errorEffect,
+                      errorMessage,
+                      handle2FAFormSubmit,
+                      handleAuthFormChange,
                       id1,
                       id2,
                       id3,
                       oki,
                       textChange,
-                      handle2FAFormSubmit,
-                      errorEffect,
-                      handleAuthFormChange,
-                      errorMessage,
                     )
                   : VerifyTFA(
+                      authForm,
+                      buttonDisabled,
                       code,
-                      oki,
-                      textChange,
+                      count,
+                      countDown,
+                      errorEffect,
+                      errorMessage,
                       handle2FAFormSubmit,
                       handle2FAVerifyFormSubmit,
-                      errorEffect,
                       handleAuthFormChange,
-                      errorMessage,
-                      buttonDisabled,
-                      textChange2,
-                      count,
-                      setCount,
-                      countDown,
+                      oki,
                       setAuthForm,
-                      authForm,
+                      setCount,
                       setErrorMessage,
+                      textChange,
+                      textChange2,
                     )}
               </div>
             </div>

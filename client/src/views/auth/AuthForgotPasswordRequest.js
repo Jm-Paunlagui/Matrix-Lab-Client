@@ -5,20 +5,20 @@ import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SuccessAnimation from "actually-accessible-react-success-animation";
 
+import { toast } from "react-toastify";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
+  PRIMARY_BUTTON
 } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
-import httpClient from "../../http/httpClient";
-import { maskEmail } from "../../helpers/Helper";
-import { toast } from "react-toastify";
 import {
   AssociatedEmails,
   SendToEmail,
-  Username,
+  Username
 } from "../../forms/CredentialForms";
+import { maskEmail } from "../../helpers/Helper";
+import httpClient from "../../http/httpClient";
 
 /**
  * @description Handles the forgot password request page
@@ -29,14 +29,14 @@ export default function AuthForgotPasswordRequest() {
    * @description State variables for the forgot password form.
    */
   const [resetForm, setResetForm] = useState({
-    username: "",
-    email: "",
     confirm_email: "",
-    mask: "",
+    email: "",
     id1: "",
     id2: "",
     id3: "",
+    mask: "",
     textChange: "Next",
+    username: "",
   });
   /**
    * @description Handles the Error/Success animation and messages for the forgot password form.
@@ -67,8 +67,15 @@ export default function AuthForgotPasswordRequest() {
    * @description Destructs the state variables
    */
 
-  const { username, email, confirm_email, id1, id2, id3, textChange } =
-    resetForm; // Hide email address with mask
+  const { 
+    confirm_email, 
+    email, 
+    id1, 
+    id2, 
+    id3, 
+    textChange,
+    username, 
+   } = resetForm; // Hide email address with mask
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
@@ -226,42 +233,41 @@ export default function AuthForgotPasswordRequest() {
                   </div>
                   {count === 1
                     ? Username(
-                        handleUsernameSubmit,
-                        handleFormChange,
-                        username,
-                        oki,
+                        count,
                         errorEffect,
                         errorMessage,
-                        count,
+                        handleFormChange,
+                        handleUsernameSubmit,
+                        oki,
                         textChange,
+                        username,
                       )
                     : count === 2
                     ? AssociatedEmails(
+                        confirm_email,
+                        errorEffect,
+                        errorMessage,
+                        handleFormChange,
                         handleVerifyEmailSubmit,
                         id1,
                         id2,
                         id3,
-                        confirm_email,
-                        handleFormChange,
                         oki,
-                        errorEffect,
-                        errorMessage,
-                        count,
                         textChange,
                       )
                     : SendToEmail(
-                        handleEmailSubmit,
+                        count,
                         email,
-                        handleFormChange,
-                        oki,
                         errorEffect,
                         errorMessage,
-                        count,
-                        textChange,
-                        setCount,
-                        setResetForm,
+                        handleEmailSubmit,
+                        handleFormChange,
+                        oki,
                         resetForm,
+                        setCount,
                         setErrorMessage,
+                        setResetForm,
+                        textChange,
                       )}
                 </div>
               </div>

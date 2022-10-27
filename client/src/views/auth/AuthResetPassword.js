@@ -29,10 +29,10 @@ export default function AuthResetPassword() {
    * @description State variables for the reset password form.
    */
   const [newPassword, setNewPassword] = React.useState({
-    password: "",
-    confirmPassword: "",
-    textChange: "Reset Password",
     buttonDisabled: true,
+    confirmPassword: "",
+    password: "",
+    textChange: "Reset Password",
   });
 
   /**
@@ -61,7 +61,12 @@ export default function AuthResetPassword() {
   /**
    * @description Destructs the state variables
    */
-  const { password, confirmPassword, textChange, buttonDisabled } = newPassword;
+  const { 
+    buttonDisabled,
+    confirmPassword, 
+    password, 
+    textChange, 
+   } = newPassword;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to reset the password.

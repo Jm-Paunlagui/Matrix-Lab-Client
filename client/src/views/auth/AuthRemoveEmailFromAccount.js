@@ -33,12 +33,12 @@ export default function AuthRemoveEmailFromAccount() {
    * @description State variables for the reset password form.
    */
   const [removeEmailFromAccount, setRemoveEmailFromAccount] = useState({
-    email: "",
-    username: "",
-    option: "",
-    trigger: "",
-    textChange: "Next",
     buttonDisabled: true,
+    email: "",
+    option: "",
+    textChange: "Next",
+    trigger: "",
+    username: "",
   });
 
   /**
@@ -90,8 +90,14 @@ export default function AuthRemoveEmailFromAccount() {
   /**
    * @description Destructs the state variables
    */
-  const { email, username, option, trigger, textChange, buttonDisabled } =
-    removeEmailFromAccount;
+  const { 
+    buttonDisabled, 
+    email, 
+    option, 
+    textChange, 
+    trigger, 
+    username, 
+  } = removeEmailFromAccount;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to reset the password.
@@ -154,11 +160,11 @@ export default function AuthRemoveEmailFromAccount() {
             onAnimationEnd={() => setErrorEffect(false)}
           >
             <div className={"px-6 lg:px-28"}>
-              <div className="flex  items-center justify-between py-4 text-gray-800">
+              <div className="flex items-center justify-between py-4 text-gray-800">
                 <div className="flex items-center">
                   <img alt="logo" className="w-12 h-12" src={logo} />
                   <h1 className="ml-2 text-2xl font-bold">Matrix</h1>
-                  <h1 className="ml-2 text-2xl font-light hidden md:block">
+                  <h1 className="hidden ml-2 text-2xl font-light md:block">
                     | Account
                   </h1>
                 </div>
@@ -172,7 +178,7 @@ export default function AuthRemoveEmailFromAccount() {
               </div>
               {trigger === "yes" ? (
                 <div className="relative mx-auto max-w-screen">
-                  <div className="py-1 flex flex-col justify-left">
+                  <div className="flex flex-col py-1 justify-left">
                     <h6 className="text-xl font-medium text-gray-500">
                       No changes were made
                     </h6>
@@ -184,7 +190,7 @@ export default function AuthRemoveEmailFromAccount() {
                 </div>
               ) : trigger === "no" ? (
                 <div className="relative mx-auto max-w-screen">
-                  <div className="py-1 flex flex-col justify-left">
+                  <div className="flex flex-col py-1 justify-left">
                     <h6 className="text-xl font-medium text-gray-500">
                       {email} was removed from {maskUsername(username)}&#39;s
                       account
@@ -241,7 +247,7 @@ export default function AuthRemoveEmailFromAccount() {
                           </p>
                         </label>
                       </li>
-                      <li className="list-none w-full md:w-1/2">
+                      <li className="w-full list-none md:w-1/2">
                         <input
                           checked={option === "yes"}
                           className="sr-only peer "
