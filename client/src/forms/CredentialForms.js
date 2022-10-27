@@ -592,6 +592,23 @@ export function AssociatedEmails(
   );
 }
 
+/**
+ * @description Confirmation of the email address selected by the user.
+ * @param handleEmailSubmit
+ * @param email
+ * @param handleFormChange
+ * @param oki
+ * @param errorEffect
+ * @param errorMessage
+ * @param count
+ * @param textChange
+ * @param setCount
+ * @param setResetForm
+ * @param resetForm
+ * @param setErrorMessage
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function SendToEmail(
   handleEmailSubmit,
   email,
