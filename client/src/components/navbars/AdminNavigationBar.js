@@ -38,6 +38,10 @@ export default function AdminNavigationBar() {
     return splitLocation[2] === link;
   }
 
+  /**
+   * @description Handles the logout of the user
+   * @returns {Promise<void>}
+   */
   const logoutUser = async () => {
     await httpClient.post("/user/sign-out");
     setTimeout(() => {
@@ -82,7 +86,7 @@ export default function AdminNavigationBar() {
   const admin_controllers = [
     {
       name: "Your Profile",
-      href: "/admin/profile/" + user.username,
+      href: `/admin/profile/${user.username}`,
       current: isActive("profile"),
     },
     {

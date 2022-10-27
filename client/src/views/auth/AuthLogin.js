@@ -72,6 +72,11 @@ export default function AuthLogin() {
   const [countDown, setCountDown] = useState(0);
 
   /**
+   * @description For step counter in the forgot password form.
+   */
+  const [count, setCount] = useState(1);
+
+  /**
    * @description Handles the change of the input fields in the login form.
    * @param event
    */
@@ -110,11 +115,6 @@ export default function AuthLogin() {
       }
     }
   }, [countDown]);
-
-  /**
-   * @description For step counter in the forgot password form.
-   */
-  const [count, setCount] = useState(1);
 
   /**
    * @description Handles the auth form submission and makes a POST request to the backend.
@@ -508,7 +508,7 @@ export default function AuthLogin() {
                               />
                             )}
                             {textChange2}{" "}
-                            {countDown !== 0 ? "(" + countDown + ")" : null}
+                            {countDown !== 0 ? `(${countDown})` : null}
                           </button>
                         ) : (
                           <button

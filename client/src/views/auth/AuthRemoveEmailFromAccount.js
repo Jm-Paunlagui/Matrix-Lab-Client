@@ -43,13 +43,11 @@ export default function AuthRemoveEmailFromAccount() {
 
   /**
    * @description Decoding the token from the server to get the email and username of the user
-   * @param {string} token
    */
-  function decodeToken(token) {
+  function decodeToken() {
     httpClient
-      .get("/user/verify-remove-account-token/" + token)
+      .get(`/user/verify-remove-account-token/${token}`)
       .then((res) => {
-        console.log(res.data);
         setRemoveEmailFromAccount({
           ...removeEmailFromAccount,
           email: res.data.user_data.email,
@@ -63,7 +61,7 @@ export default function AuthRemoveEmailFromAccount() {
   }
 
   useEffect(() => {
-    decodeToken(token);
+    decodeToken();
   }, [token]);
 
   /**
