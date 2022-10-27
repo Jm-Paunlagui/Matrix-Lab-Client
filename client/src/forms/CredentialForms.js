@@ -359,6 +359,7 @@ export function VerifyTFA(
           setCount(count - 1);
           setAuthForm({
             ...authForm,
+            code: "",
             textChange: "Verify email",
           });
           setErrorMessage("");
