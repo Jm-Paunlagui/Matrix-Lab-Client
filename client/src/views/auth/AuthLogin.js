@@ -2,19 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import {
-  ICON_PLACE_SELF_CENTER,
-} from "../../assets/styles/input-types-styles";
+import { ICON_PLACE_SELF_CENTER } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
-import { TFAbyEmail, UsernamePassword, VerifyTFA } from "../../forms/AuthForm"
+import { TFAbyEmail, UsernamePassword, VerifyTFA } from "../../forms/AuthForm";
 
 /**
  * @description User login form for the application
@@ -124,30 +120,30 @@ export default function AuthLogin() {
       textChange: "Signing In",
     });
     await httpClient
-        .post("/user/authenticate", {
-          username,
-          password,
-        })
-        .then((response) => {
-          setAuthForm({
-            ...authForm,
-            id1: response.data.emails[0],
-            id2: response.data.emails[1],
-            id3: response.data.emails[2],
-            textChange: "Verify email",
-          });
-          setCount(count + 1);
-          setOki(false);
-        })
-        .catch((error) => {
-          setErrorEffect(true);
-          setErrorMessage(error.response.data.message);
-          setOki(false);
-          setAuthForm({
-            ...authForm,
-            textChange: "Sign In",
-          });
+      .post("/user/authenticate", {
+        username,
+        password,
+      })
+      .then((response) => {
+        setAuthForm({
+          ...authForm,
+          id1: response.data.emails[0],
+          id2: response.data.emails[1],
+          id3: response.data.emails[2],
+          textChange: "Verify email",
         });
+        setCount(count + 1);
+        setOki(false);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setAuthForm({
+          ...authForm,
+          textChange: "Sign In",
+        });
+      });
   };
 
   /**
@@ -163,29 +159,29 @@ export default function AuthLogin() {
       textChange: "Sending Code",
     });
     await httpClient
-        .post("/user/checkpoint-2fa", {
-          email,
-        })
-        .then((response) => {
-          toast(`${response.data.message}`, { type: "info" });
-          setCountDown(30);
-          setCount(count + 1);
-          setAuthForm({
-            ...authForm,
-            textChange: "Verify code",
-            textChange2: "Resend code",
-          });
-          setOki(false);
-        })
-        .catch((error) => {
-          setErrorEffect(true);
-          setErrorMessage(error.response.data.message);
-          setOki(false);
-          setAuthForm({
-            ...authForm,
-            textChange: "Verify",
-          });
+      .post("/user/checkpoint-2fa", {
+        email,
+      })
+      .then((response) => {
+        toast(`${response.data.message}`, { type: "info" });
+        setCountDown(30);
+        setCount(count + 1);
+        setAuthForm({
+          ...authForm,
+          textChange: "Verify code",
+          textChange2: "Resend code",
         });
+        setOki(false);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setAuthForm({
+          ...authForm,
+          textChange: "Verify",
+        });
+      });
   };
 
   /**
@@ -201,82 +197,116 @@ export default function AuthLogin() {
       textChange: "Verifying",
     });
     await httpClient
-        .post("/user/verify-2fa", {
-          code,
-        })
-        .then((response) => {
-          toast(`Welcome back ${username}!`, {
-            type: "success",
-            bodyClassName: "toastify-body",
-          });
-          setAuthForm({
-            ...authForm,
-            textChange: "Success",
-          });
-          navigate(response.data.path);
-        })
-        .catch((error) => {
-          setErrorEffect(true);
-          setErrorMessage(error.response.data.message);
-          setOki(false);
-          setAuthForm({
-            ...authForm,
-            code: "",
-            textChange: "Verify",
-          });
+      .post("/user/verify-2fa", {
+        code,
+      })
+      .then((response) => {
+        toast(`Welcome back ${username}!`, {
+          type: "success",
+          bodyClassName: "toastify-body",
         });
+        setAuthForm({
+          ...authForm,
+          textChange: "Success",
+        });
+        navigate(response.data.path);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setAuthForm({
+          ...authForm,
+          code: "",
+          textChange: "Verify",
+        });
+      });
   };
 
   return (
-      <div className="container h-full mx-auto font-Montserrat">
-        <div className="flex items-center content-center justify-center h-full">
-          <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
-            <div
-                className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
+    <div className="container h-full mx-auto font-Montserrat">
+      <div className="flex items-center content-center justify-center h-full">
+        <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
+          <div
+            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
                 ${errorEffect && `animate-wiggle`}`}
-                onAnimationEnd={() => setErrorEffect(false)}
-            >
-              <BackNavigation backTo={"/"} hasText={false} isSmall />
-              <div className={"px-6 lg:px-28"}>
-                <div className="flex items-center justify-center py-2 text-gray-800">
-                  <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
-                </div>
-                <div className="flex-auto pt-0 mb-24 -mt-14">
-                  <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
-                    {count === 1
-                        ? "Sign in to MATRIX LAB"
-                        : count === 2
-                            ? "Verify your identity"
-                            : "Two-factor authentication"}
-                  </h6>
-                  <div className="mt-4 text-start">
-                    {count === 1 ? null : count === 2 ? (
-                        <p className="text-gray-500">{authForm.username}</p>
-                    ) : (
-                        <p className="text-gray-500">
-                          <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faEnvelope}
-                              size={"lg"}
-                          />
-                          We emailed a code to {email}. Please enter the code to
-                          sign in.
-                        </p>
-                    )}
-                  </div>
-                  {count === 1 ? (
-                      UsernamePassword(username, password, oki, textChange, handleAuthFormSubmit, errorEffect, handleAuthFormChange, errorMessage)
-                  ) : count === 2 ? (
-                      TFAbyEmail(email, id1, id2, id3, oki, textChange, handle2FAFormSubmit, errorEffect, handleAuthFormChange, errorMessage)
+            onAnimationEnd={() => setErrorEffect(false)}
+          >
+            <BackNavigation backTo={"/"} hasText={false} isSmall />
+            <div className={"px-6 lg:px-28"}>
+              <div className="flex items-center justify-center py-2 text-gray-800">
+                <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
+              </div>
+              <div className="flex-auto pt-0 mb-24 -mt-14">
+                <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
+                  {count === 1
+                    ? "Sign in to MATRIX LAB"
+                    : count === 2
+                    ? "Verify your identity"
+                    : "Two-factor authentication"}
+                </h6>
+                <div className="mt-4 text-start">
+                  {count === 1 ? null : count === 2 ? (
+                    <p className="text-gray-500">{authForm.username}</p>
                   ) : (
-                      VerifyTFA(code, oki, textChange, handle2FAFormSubmit, handle2FAVerifyFormSubmit, errorEffect, handleAuthFormChange, errorMessage
-                          , buttonDisabled, textChange2, count, setCount, countDown, setAuthForm, authForm, setErrorMessage)
+                    <p className="text-gray-500">
+                      <FontAwesomeIcon
+                        className={`${ICON_PLACE_SELF_CENTER}`}
+                        icon={faEnvelope}
+                        size={"lg"}
+                      />
+                      We emailed a code to {email}. Please enter the code to
+                      sign in.
+                    </p>
                   )}
                 </div>
+                {count === 1
+                  ? UsernamePassword(
+                      username,
+                      password,
+                      oki,
+                      textChange,
+                      handleAuthFormSubmit,
+                      errorEffect,
+                      handleAuthFormChange,
+                      errorMessage,
+                    )
+                  : count === 2
+                  ? TFAbyEmail(
+                      email,
+                      id1,
+                      id2,
+                      id3,
+                      oki,
+                      textChange,
+                      handle2FAFormSubmit,
+                      errorEffect,
+                      handleAuthFormChange,
+                      errorMessage,
+                    )
+                  : VerifyTFA(
+                      code,
+                      oki,
+                      textChange,
+                      handle2FAFormSubmit,
+                      handle2FAVerifyFormSubmit,
+                      errorEffect,
+                      handleAuthFormChange,
+                      errorMessage,
+                      buttonDisabled,
+                      textChange2,
+                      count,
+                      setCount,
+                      countDown,
+                      setAuthForm,
+                      authForm,
+                      setErrorMessage,
+                    )}
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
