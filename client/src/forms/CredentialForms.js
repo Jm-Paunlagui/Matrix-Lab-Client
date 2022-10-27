@@ -668,7 +668,7 @@ export function SendToEmail(
         disabled={count > 3}
         onClick={() => {
           setCount(count - 1);
-          setResetForm({ ...resetForm, textChange: "Next" });
+          setResetForm({ ...resetForm, email: "", textChange: "Next" });
           setErrorMessage("");
         }}
         type="button"
