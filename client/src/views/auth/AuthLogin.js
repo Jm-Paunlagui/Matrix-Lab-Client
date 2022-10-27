@@ -127,30 +127,31 @@ export default function AuthLogin() {
       ...authForm,
       textChange: "Signing In",
     });
-      await httpClient
-        .post("/user/authenticate", {
-          username,
-          password,
-        })
-        .then((response) => {
-            setAuthForm({
-              ...authForm,
-              id1: response.data.emails[0],
-              id2: response.data.emails[1],
-              id3: response.data.emails[2],
-              textChange: "Verify email",
-            });
-            setCount(count + 1);
-            setOki(false);
-        }).catch((error) => {
-            setErrorEffect(true);
-            setErrorMessage(error.response.data.message);
-            setOki(false);
-            setAuthForm({
-              ...authForm,
-              textChange: "Sign In",
-            });
-          });
+    await httpClient
+      .post("/user/authenticate", {
+        username,
+        password,
+      })
+      .then((response) => {
+        setAuthForm({
+          ...authForm,
+          id1: response.data.emails[0],
+          id2: response.data.emails[1],
+          id3: response.data.emails[2],
+          textChange: "Verify email",
+        });
+        setCount(count + 1);
+        setOki(false);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setAuthForm({
+          ...authForm,
+          textChange: "Sign In",
+        });
+      });
   };
 
   /**
@@ -165,29 +166,30 @@ export default function AuthLogin() {
       ...authForm,
       textChange: "Sending Code",
     });
-      await httpClient
-        .post("/user/checkpoint-2fa", {
-          email,
-        })
-        .then((response) => {
-            toast(`${response.data.message}`, { type: "info" });
-            setCountDown(30);
-            setCount(count + 1);
-            setAuthForm({
-              ...authForm,
-              textChange: "Verify code",
-              textChange2: "Resend code",
-            });
-            setOki(false);
-        }).catch((error) => {
-            setErrorEffect(true);
-            setErrorMessage(error.response.data.message);
-            setOki(false);
-            setAuthForm({
-              ...authForm,
-              textChange: "Verify",
-            });
-          })
+    await httpClient
+      .post("/user/checkpoint-2fa", {
+        email,
+      })
+      .then((response) => {
+        toast(`${response.data.message}`, { type: "info" });
+        setCountDown(30);
+        setCount(count + 1);
+        setAuthForm({
+          ...authForm,
+          textChange: "Verify code",
+          textChange2: "Resend code",
+        });
+        setOki(false);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setAuthForm({
+          ...authForm,
+          textChange: "Verify",
+        });
+      });
   };
 
   /**
@@ -202,30 +204,31 @@ export default function AuthLogin() {
       ...authForm,
       textChange: "Verifying",
     });
-      await httpClient
-        .post("/user/verify-2fa", {
-          code,
-        })
-        .then((response) => {
-            toast(`Welcome back ${username}!`, {
-              type: "success",
-              bodyClassName: "toastify-body",
-            });
-            setAuthForm({
-              ...authForm,
-              textChange: "Success",
-            });
-            navigate(response.data.path);
-        }).catch((error) => {
-            setErrorEffect(true);
-            setErrorMessage(error.response.data.message);
-            setOki(false);
-            setAuthForm({
-              ...authForm,
-              code: "",
-              textChange: "Verify",
-            });
-          });
+    await httpClient
+      .post("/user/verify-2fa", {
+        code,
+      })
+      .then((response) => {
+        toast(`Welcome back ${username}!`, {
+          type: "success",
+          bodyClassName: "toastify-body",
+        });
+        setAuthForm({
+          ...authForm,
+          textChange: "Success",
+        });
+        navigate(response.data.path);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setAuthForm({
+          ...authForm,
+          code: "",
+          textChange: "Verify",
+        });
+      });
   };
 
   return (
