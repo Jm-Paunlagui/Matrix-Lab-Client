@@ -116,7 +116,7 @@ export default function AuthForgotPasswordRequest() {
    * @returns {Promise<void>}
    */
 
-  const handleVerifyEmailSubmit = async (event) => {
+  const handleVerifyEmailSubmit = (event) => {
     setOki(true);
     event.preventDefault();
 
