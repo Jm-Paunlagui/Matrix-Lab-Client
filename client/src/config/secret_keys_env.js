@@ -1,2 +1,0 @@
-export const MATRIX_RSA_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----\n${process.env.REACT_APP_MATRIX_RSA_PUBLIC_KEY}\n-----END PUBLIC KEY-----`;
-export const MATRIX_ALGORITHM = process.env.REACT_APP_MATRIX_ALGORITHM;
