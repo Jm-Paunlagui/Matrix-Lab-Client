@@ -24,7 +24,7 @@ import {
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { maskEmail } from "../../helpers/Helper";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the forgot password request page
@@ -87,26 +87,27 @@ export default function AuthForgotPasswordRequest() {
     setOki(true);
     setResetForm({ ...resetForm, textChange: "Verifying" });
 
-      await httpClient
-        .post("/user/check-email", {
-          username,
-        })
-        .then((response) => {
-            setResetForm({
-              ...resetForm,
-              id1: response.data.email[0],
-              id2: response.data.email[1],
-              id3: response.data.email[2],
-              textChange: "Continue",
-            });
-            setCount(count + 1);
-            setOki(false);
-        }).catch((error) => {
-            setErrorEffect(true);
-            setOki(false);
-            setErrorMessage(error.response.data.message);
-            setResetForm({ ...resetForm, textChange: "Next" });
+    await httpClient
+      .post("/user/check-email", {
+        username,
+      })
+      .then((response) => {
+        setResetForm({
+          ...resetForm,
+          id1: response.data.email[0],
+          id2: response.data.email[1],
+          id3: response.data.email[2],
+          textChange: "Continue",
         });
+        setCount(count + 1);
+        setOki(false);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setOki(false);
+        setErrorMessage(error.response.data.message);
+        setResetForm({ ...resetForm, textChange: "Next" });
+      });
   };
   /**
    * @description To make a user choose, which email address to use. If the user has multiple email addresses.
@@ -144,21 +145,22 @@ export default function AuthForgotPasswordRequest() {
     event.preventDefault();
     setOki(true);
     setResetForm({ ...resetForm, textChange: "Sending" });
-      await httpClient
-        .post("/user/forgot-password", {
-          email,
-          confirm_email,
-        })
-        .then((response) => {
-            toast(`${response.data.message}`, { type: "info" });
-            setOk(true);
-            setResetForm({ ...resetForm, textChange: "Success" });
-        }).catch((error) => {
-            setErrorEffect(true);
-            setErrorMessage(error.response.data.message);
-            setOki(false);
-            setResetForm({ ...resetForm, textChange: "Verify Email" });
-        });
+    await httpClient
+      .post("/user/forgot-password", {
+        email,
+        confirm_email,
+      })
+      .then((response) => {
+        toast(`${response.data.message}`, { type: "info" });
+        setOk(true);
+        setResetForm({ ...resetForm, textChange: "Success" });
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setResetForm({ ...resetForm, textChange: "Verify Email" });
+      });
   };
 
   return (
