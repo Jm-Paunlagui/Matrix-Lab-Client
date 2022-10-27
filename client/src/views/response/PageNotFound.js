@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
+import { ICON_PLACE_SELF_CENTER, PRIMARY_BUTTON } from '../../assets/styles/input-types-styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @description PageNotFound component for the application
@@ -14,9 +17,12 @@ export default function PageNotFound() {
         </p>
 
         <NavLink to="/">
-          <div className="flex items-center justify-center px-8 py-4 mt-16 font-semibold tracking-wide text-white transition-all duration-300 ease-in-out bg-blue-900 rounded-lg hover:bg-teal-600 focus:shadow-outline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <i className="fas fa-home w-6-ml-2" />
-            <h1 className="ml-3 text-center">Go to Home Page</h1>
+          <div className={`px-5 py-1 flex flex-row justify-center mt-16 ${PRIMARY_BUTTON}`}>
+            <FontAwesomeIcon
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faHome}
+            />
+            <h1 className="text-center">Go to Home Page</h1>
           </div>
         </NavLink>
       </div>
