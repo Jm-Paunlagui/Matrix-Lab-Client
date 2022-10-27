@@ -69,7 +69,8 @@ export default function AuthForgotPasswordRequest() {
    * @description Destructs the state variables
    */
 
-  const { username, email, confirm_email, id1, id2, id3, textChange } = resetForm; // Hide email address with mask
+  const { username, email, confirm_email, id1, id2, id3, textChange } =
+    resetForm; // Hide email address with mask
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
@@ -348,36 +349,36 @@ export default function AuthForgotPasswordRequest() {
                           EMAIL_NOT_SET("Secondary")
                         )}
                         {id3 ? (
-                            <li className="list-none">
-                              <input
-                                  checked={confirm_email === id3}
-                                  className="sr-only peer "
-                                  id="id3"
-                                  name="confirm_email"
-                                  onAnimationEnd={() => setErrorEffect(false)}
-                                  onChange={handleFormChange}
-                                  onFocus={() => setErrorMessage("")}
-                                  type="radio"
-                                  value={id3}
+                          <li className="list-none">
+                            <input
+                              checked={confirm_email === id3}
+                              className="sr-only peer "
+                              id="id3"
+                              name="confirm_email"
+                              onAnimationEnd={() => setErrorEffect(false)}
+                              onChange={handleFormChange}
+                              onFocus={() => setErrorMessage("")}
+                              type="radio"
+                              value={id3}
+                            />
+                            <label
+                              className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                                errorEffect
+                                  ? `border-red-500 placeholder-red-500 text-red-500`
+                                  : PRIMARY_RADIO
+                              } `}
+                              htmlFor="id3"
+                            >
+                              <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                                icon={faEnvelope}
+                                size={"lg"}
                               />
-                              <label
-                                  className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
-                                      errorEffect
-                                          ? `border-red-500 placeholder-red-500 text-red-500`
-                                          : PRIMARY_RADIO
-                                  } `}
-                                  htmlFor="id3"
-                              >
-                                <FontAwesomeIcon
-                                    className={`${ICON_PLACE_SELF_CENTER}`}
-                                    icon={faEnvelope}
-                                    size={"lg"}
-                                />
-                                <p className="truncate">Email {maskEmail(id3)}</p>
-                              </label>
-                            </li>
+                              <p className="truncate">Email {maskEmail(id3)}</p>
+                            </label>
+                          </li>
                         ) : (
-                            EMAIL_NOT_SET("Recovery")
+                          EMAIL_NOT_SET("Recovery")
                         )}
                       </div>
                       {/* Error message */}

@@ -37,7 +37,7 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
-import { InvalidToken } from './views/response/InvalidToken';
+import { InvalidToken } from "./views/response/InvalidToken";
 
 /**
  * @description Main component for the application
@@ -57,21 +57,21 @@ export default function App() {
   };
 
   return (
-      <>
-        <ToastContainer
-            className="z-50"
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-        />
-        <Router>
+    <>
+      <ToastContainer
+        className="z-50"
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <Router>
         <Wrapper>
           <Routes>
             {/**
@@ -82,9 +82,9 @@ export default function App() {
               <Route element={<PublicAbout />} exact="true" path="aboutus" />
               <Route element={<PublicHome />} exact="true" path="/" />
               <Route
-                  element={<PublicLeaderboard />}
-                  exact="true"
-                  path="leaderboard"
+                element={<PublicLeaderboard />}
+                exact="true"
+                path="leaderboard"
               />
               <Route element={<PublicRanking />} exact="true" path="ranking" />
             </Route>
@@ -93,14 +93,14 @@ export default function App() {
              */}
 
             <Route
-                element={<PrivacyPolicy />}
-                exact="true"
-                path="privacy-policy"
+              element={<PrivacyPolicy />}
+              exact="true"
+              path="privacy-policy"
             />
             <Route
-                element={<TermsAndConditions />}
-                exact="true"
-                path="terms-and-conditions"
+              element={<TermsAndConditions />}
+              exact="true"
+              path="terms-and-conditions"
             />
 
             {/**
@@ -109,19 +109,23 @@ export default function App() {
              */}
             <Route element={<IndexAuth />}>
               <Route
-                  element={<AuthForgotPasswordRequest />}
-                  exact="true"
-                  path="forgot-password"
+                element={<AuthForgotPasswordRequest />}
+                exact="true"
+                path="forgot-password"
               />
               <Route element={<AuthLogin />} exact="true" path="auth" />
 
               <Route
-                  element={<AuthResetPassword />}
-                  exact="true"
-                  path="reset-password/:token"
+                element={<AuthResetPassword />}
+                exact="true"
+                path="reset-password/:token"
               />
             </Route>
-            <Route element={<AuthRemoveEmailFromAccount />} exact="true" path="remove-email-from-account/:token" />
+            <Route
+              element={<AuthRemoveEmailFromAccount />}
+              exact="true"
+              path="remove-email-from-account/:token"
+            />
             {/**
              * End of auth routes
              */}
@@ -130,28 +134,36 @@ export default function App() {
              * admin routes.
              */}
             <Route element={<IndexAdmin />} exact="true" path="admin">
-              <Route element={<AdminDashboard />} exact="true" path="dashboard" />
               <Route
-                  element={<IndexLeaderboard />}
-                  exact="true"
-                  path="leaderboard"
+                element={<AdminDashboard />}
+                exact="true"
+                path="dashboard"
+              />
+              <Route
+                element={<IndexLeaderboard />}
+                exact="true"
+                path="leaderboard"
               >
                 <Route
-                    element={<LeaderboardDepartment />}
-                    exact="true"
-                    path="departments"
+                  element={<LeaderboardDepartment />}
+                  exact="true"
+                  path="departments"
                 />
                 <Route
-                    element={<LeaderboardEmployees />}
-                    exact="true"
-                    path="employees"
+                  element={<LeaderboardEmployees />}
+                  exact="true"
+                  path="employees"
                 />
               </Route>
-              <Route element={<AdminPrediction />} exact="true" path="analyze" />
               <Route
-                  element={<AdminProfile />}
-                  exact="true"
-                  path="profile/:username"
+                element={<AdminPrediction />}
+                exact="true"
+                path="analyze"
+              />
+              <Route
+                element={<AdminProfile />}
+                exact="true"
+                path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route element={<AdminTables />} exact="true" path="management" />
@@ -169,12 +181,16 @@ export default function App() {
               <Route element={<IndexEval />} exact="true" path="programs">
                 <Route element={<EvalCourses />} exact="true" path="courses">
                   <Route
-                      element={<EvalCourseSentimentTable />}
-                      path=":courseId"
+                    element={<EvalCourseSentimentTable />}
+                    path=":courseId"
                   />
                 </Route>
               </Route>
-              <Route element={<UserDashboard />} exact="true" path="dashboard" />
+              <Route
+                element={<UserDashboard />}
+                exact="true"
+                path="dashboard"
+              />
               <Route element={<UserProfile />} exact="true" path="profile" />
             </Route>
 
@@ -189,7 +205,6 @@ export default function App() {
           </Routes>
         </Wrapper>
       </Router>
-      </>
-
+    </>
   );
 }
