@@ -90,14 +90,8 @@ export default function AuthRemoveEmailFromAccount() {
   /**
    * @description Destructs the state variables
    */
-  const { 
-    buttonDisabled, 
-    email, 
-    option, 
-    textChange, 
-    trigger, 
-    username, 
-  } = removeEmailFromAccount;
+  const { buttonDisabled, email, option, textChange, trigger, username } =
+    removeEmailFromAccount;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to reset the password.
