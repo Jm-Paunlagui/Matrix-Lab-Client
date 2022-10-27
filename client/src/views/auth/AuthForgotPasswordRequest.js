@@ -24,6 +24,7 @@ import {
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { maskEmail } from "../../helpers/Helper";
+import { toast } from 'react-toastify';
 
 /**
  * @description Handles the forgot password request page
@@ -59,6 +60,9 @@ export default function AuthForgotPasswordRequest() {
   const handleFormChange = (event) => {
     const { name, value } = event.target;
     setResetForm({ ...resetForm, [name]: value });
+    // reset the error message when the user starts typing and error effect set to false.
+    setErrorEffect(false);
+    setErrorMessage("");
   };
   /**
    * @description For step counter in the forgot password form.
@@ -83,13 +87,11 @@ export default function AuthForgotPasswordRequest() {
     setOki(true);
     setResetForm({ ...resetForm, textChange: "Verifying" });
 
-    try {
       await httpClient
         .post("/user/check-email", {
           username,
         })
         .then((response) => {
-          if (response.statusText === "OK") {
             setResetForm({
               ...resetForm,
               id1: response.data.email[0],
@@ -98,17 +100,13 @@ export default function AuthForgotPasswordRequest() {
               textChange: "Continue",
             });
             setCount(count + 1);
-          }
-        })
-        .finally(() => {
-          setOki(false);
+            setOki(false);
+        }).catch((error) => {
+            setErrorEffect(true);
+            setOki(false);
+            setErrorMessage(error.response.data.message);
+            setResetForm({ ...resetForm, textChange: "Next" });
         });
-    } catch (error) {
-      setErrorEffect(true);
-      setOki(false);
-      setErrorMessage(error.response.data.message);
-      setResetForm({ ...resetForm, textChange: "Next" });
-    }
   };
   /**
    * @description To make a user choose, which email address to use. If the user has multiple email addresses.
@@ -146,24 +144,21 @@ export default function AuthForgotPasswordRequest() {
     event.preventDefault();
     setOki(true);
     setResetForm({ ...resetForm, textChange: "Sending" });
-    try {
       await httpClient
         .post("/user/forgot-password", {
           email,
           confirm_email,
         })
         .then((response) => {
-          if (response.statusText === "OK") {
+            toast(`${response.data.message}`, { type: "info" });
             setOk(true);
             setResetForm({ ...resetForm, textChange: "Success" });
-          }
+        }).catch((error) => {
+            setErrorEffect(true);
+            setErrorMessage(error.response.data.message);
+            setOki(false);
+            setResetForm({ ...resetForm, textChange: "Verify Email" });
         });
-    } catch (error) {
-      setErrorEffect(true);
-      setErrorMessage(error.response.data.message);
-      setOki(false);
-      setResetForm({ ...resetForm, textChange: "Verify Email" });
-    }
   };
 
   return (
@@ -244,9 +239,7 @@ export default function AuthForgotPasswordRequest() {
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
                         name="username"
-                        onAnimationEnd={() => setErrorEffect(false)}
                         onChange={handleFormChange}
-                        onFocus={() => setErrorMessage("")}
                         placeholder="username"
                         type="username"
                         value={username}
@@ -291,9 +284,7 @@ export default function AuthForgotPasswordRequest() {
                               className={`sr-only peer`}
                               id="id1"
                               name="confirm_email"
-                              onAnimationEnd={() => setErrorEffect(false)}
                               onChange={handleFormChange}
-                              onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id1}
                             />
@@ -323,9 +314,7 @@ export default function AuthForgotPasswordRequest() {
                               className="sr-only peer "
                               id="id2"
                               name="confirm_email"
-                              onAnimationEnd={() => setErrorEffect(false)}
                               onChange={handleFormChange}
-                              onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id2}
                             />
@@ -355,9 +344,7 @@ export default function AuthForgotPasswordRequest() {
                               className="sr-only peer "
                               id="id3"
                               name="confirm_email"
-                              onAnimationEnd={() => setErrorEffect(false)}
                               onChange={handleFormChange}
-                              onFocus={() => setErrorMessage("")}
                               type="radio"
                               value={id3}
                             />
@@ -417,9 +404,7 @@ export default function AuthForgotPasswordRequest() {
                             `border-red-500 placeholder-red-500 text-red-500`
                           }`}
                           name="email"
-                          onAnimationEnd={() => setErrorEffect(false)}
                           onChange={handleFormChange}
-                          onFocus={() => setErrorMessage("") && setOki(false)}
                           placeholder="Email"
                           type="email"
                           value={email}
