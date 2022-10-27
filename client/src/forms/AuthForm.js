@@ -19,6 +19,19 @@ import {
   TEXT_FIELD,
 } from "../assets/styles/input-types-styles";
 
+/**
+ * @description User login form for the application
+ * @param username
+ * @param password
+ * @param oki
+ * @param textChange
+ * @param handleAuthFormSubmit
+ * @param errorEffect
+ * @param handleAuthFormChange
+ * @param errorMessage
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function UsernamePassword(
   username,
   password,
@@ -89,6 +102,21 @@ export function UsernamePassword(
   );
 }
 
+/**
+ * @description User login form for the application
+ * @param email
+ * @param id1
+ * @param id2
+ * @param id3
+ * @param oki
+ * @param textChange
+ * @param handle2FAFormSubmit
+ * @param errorEffect
+ * @param handleAuthFormChange
+ * @param errorMessage
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function TFAbyEmail(
   email,
   id1,
@@ -218,6 +246,27 @@ export function TFAbyEmail(
   );
 }
 
+/**
+ * @description User login form for the application
+ * @param code
+ * @param oki
+ * @param textChange
+ * @param handle2FAFormSubmit
+ * @param handle2FAVerifyFormSubmit
+ * @param errorEffect
+ * @param handleAuthFormChange
+ * @param errorMessage
+ * @param buttonDisabled
+ * @param textChange2
+ * @param count
+ * @param setCount
+ * @param countDown
+ * @param setAuthForm
+ * @param authForm
+ * @param setErrorMessage
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function VerifyTFA(
   code,
   oki,
