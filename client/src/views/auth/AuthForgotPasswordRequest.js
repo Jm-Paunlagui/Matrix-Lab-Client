@@ -9,13 +9,13 @@ import { toast } from "react-toastify";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON
+  PRIMARY_BUTTON,
 } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import {
   AssociatedEmails,
   SendToEmail,
-  Username
+  Username,
 } from "../../forms/CredentialForms";
 import { maskEmail } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
@@ -67,15 +67,8 @@ export default function AuthForgotPasswordRequest() {
    * @description Destructs the state variables
    */
 
-  const { 
-    confirm_email, 
-    email, 
-    id1, 
-    id2, 
-    id3, 
-    textChange,
-    username, 
-   } = resetForm; // Hide email address with mask
+  const { confirm_email, email, id1, id2, id3, textChange, username } =
+    resetForm; // Hide email address with mask
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.

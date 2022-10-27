@@ -61,12 +61,7 @@ export default function AuthResetPassword() {
   /**
    * @description Destructs the state variables
    */
-  const { 
-    buttonDisabled,
-    confirmPassword, 
-    password, 
-    textChange, 
-   } = newPassword;
+  const { buttonDisabled, confirmPassword, password, textChange } = newPassword;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to reset the password.
