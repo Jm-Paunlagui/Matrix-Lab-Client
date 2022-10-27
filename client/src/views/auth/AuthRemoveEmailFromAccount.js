@@ -79,8 +79,12 @@ export default function AuthRemoveEmailFromAccount() {
     const { name, value } = event.target;
     setRemoveEmailFromAccount({
       ...removeEmailFromAccount,
+      buttonDisabled: false,
       [name]: value,
     });
+    // reset the error message when the user starts typing and error effect set to false.
+    setErrorEffect(false);
+    setErrorMessage("");
   };
 
   /**
@@ -214,15 +218,7 @@ export default function AuthRemoveEmailFromAccount() {
                           className={`sr-only peer`}
                           id="id1"
                           name="option"
-                          onAnimationEnd={() => setErrorEffect(false)}
                           onChange={handleOptionsChange}
-                          onFocus={() => {
-                            setErrorMessage("");
-                            setRemoveEmailFromAccount({
-                              ...removeEmailFromAccount,
-                              buttonDisabled: false,
-                            });
-                          }}
                           type="radio"
                           value="no"
                         />
@@ -251,15 +247,7 @@ export default function AuthRemoveEmailFromAccount() {
                           className="sr-only peer "
                           id="id2"
                           name="option"
-                          onAnimationEnd={() => setErrorEffect(false)}
                           onChange={handleOptionsChange}
-                          onFocus={() => {
-                            setErrorMessage("");
-                            setRemoveEmailFromAccount({
-                              ...removeEmailFromAccount,
-                              buttonDisabled: false,
-                            });
-                          }}
                           type="radio"
                           value="yes"
                         />

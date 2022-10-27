@@ -86,6 +86,9 @@ export default function AuthLogin() {
       ...authForm,
       [name]: value,
     });
+    // reset the error message when the user starts typing and error effect set to false.
+    setErrorEffect(false);
+    setErrorMessage("");
   };
 
   /**
@@ -279,9 +282,7 @@ export default function AuthLogin() {
                         `border-red-500 placeholder-red-500 text-red-500`
                       }`}
                       name="username"
-                      onAnimationEnd={() => setErrorEffect(false)}
                       onChange={handleAuthFormChange}
-                      onFocus={() => setErrorMessage("")}
                       placeholder="Username"
                       type="username"
                       value={username}
@@ -292,9 +293,7 @@ export default function AuthLogin() {
                         `border-red-500 placeholder-red-500 text-red-500`
                       }`}
                       name="password"
-                      onAnimationEnd={() => setErrorEffect(false)}
                       onChange={handleAuthFormChange}
-                      onFocus={() => setErrorMessage("")}
                       placeholder="Password"
                       type="password"
                       value={password}
@@ -345,9 +344,7 @@ export default function AuthLogin() {
                             className={`sr-only peer`}
                             id="id1"
                             name="email"
-                            onAnimationEnd={() => setErrorEffect(false)}
                             onChange={handleAuthFormChange}
-                            onFocus={() => setErrorMessage("")}
                             type="radio"
                             value={id1}
                           />
@@ -377,9 +374,7 @@ export default function AuthLogin() {
                             className="sr-only peer "
                             id="id2"
                             name="email"
-                            onAnimationEnd={() => setErrorEffect(false)}
                             onChange={handleAuthFormChange}
-                            onFocus={() => setErrorMessage("")}
                             type="radio"
                             value={id2}
                           />
@@ -409,9 +404,7 @@ export default function AuthLogin() {
                             className="sr-only peer "
                             id="id3"
                             name="email"
-                            onAnimationEnd={() => setErrorEffect(false)}
                             onChange={handleAuthFormChange}
-                            onFocus={() => setErrorMessage("")}
                             type="radio"
                             value={id3}
                           />
@@ -460,9 +453,7 @@ export default function AuthLogin() {
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
                         name="code"
-                        onAnimationEnd={() => setErrorEffect(false)}
                         onChange={handleAuthFormChange}
-                        onFocus={() => setErrorMessage("")}
                         placeholder="2FA Code"
                         type="text"
                         value={code}

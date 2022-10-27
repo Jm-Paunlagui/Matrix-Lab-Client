@@ -53,6 +53,9 @@ export default function AuthResetPassword() {
       ...newPassword,
       [name]: value,
     });
+    // reset the error message when the user starts typing and error effect set to false.
+    setErrorEffect(false);
+    setErrorMessage("");
   };
 
   /**
@@ -149,9 +152,7 @@ export default function AuthResetPassword() {
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
                         name="password"
-                        onAnimationEnd={() => setErrorEffect(false)}
                         onChange={handlePasswordChange}
-                        onFocus={() => setErrorMessage("")}
                         placeholder="New password"
                         type="password"
                         value={password}
@@ -162,9 +163,7 @@ export default function AuthResetPassword() {
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
                         name="confirmPassword"
-                        onAnimationEnd={() => setErrorEffect(false)}
                         onChange={handlePasswordChange}
-                        onFocus={() => setErrorMessage("")}
                         placeholder="Confirm new password"
                         type="password"
                         value={confirmPassword}
