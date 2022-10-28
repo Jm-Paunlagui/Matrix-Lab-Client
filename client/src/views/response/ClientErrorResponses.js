@@ -13,26 +13,26 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
  */
 export function Unauthorized() {
   return (
-      <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
-        <div className="flex flex-col items-center justify-center text-center ">
-          <h1 className="text-6xl font-extrabold xl:text-9xl">401</h1>
-          <p className="mb-16 text-3xl font-extrabold xl:text-6xl">
-            Unauthorized Access
-          </p>
+    <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
+      <div className="flex flex-col items-center justify-center text-center ">
+        <h1 className="text-6xl font-extrabold xl:text-9xl">401</h1>
+        <p className="mb-16 text-3xl font-extrabold xl:text-6xl">
+          Unauthorized Access
+        </p>
 
-          <NavLink to="/">
-            <div
-                className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-            >
-              <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faHome}
-              />
-              <h1 className="text-center">Return Home</h1>
-            </div>
-          </NavLink>
-        </div>
+        <NavLink to="/">
+          <div
+            className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+          >
+            <FontAwesomeIcon
+              className={`${ICON_PLACE_SELF_CENTER}`}
+              icon={faHome}
+            />
+            <h1 className="text-center">Return Home</h1>
+          </div>
+        </NavLink>
       </div>
+    </div>
   );
 }
 
@@ -69,25 +69,25 @@ export function PageNotFound() {
  */
 export function InvalidToken() {
   return (
-      <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-6xl font-extrabold xl:text-9xl">498</h1>
-          <p className="mb-16 text-3xl font-extrabold xl:text-6xl">
-            oh no! Invalid Token
-          </p>
+    <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-6xl font-extrabold xl:text-9xl">498</h1>
+        <p className="mb-16 text-3xl font-extrabold xl:text-6xl">
+          oh no! Invalid Token
+        </p>
 
-          <NavLink to="/">
-            <div
-                className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-            >
-              <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faHome}
-              />
-              <h1 className="text-center">Return Home</h1>
-            </div>
-          </NavLink>
-        </div>
+        <NavLink to="/">
+          <div
+            className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+          >
+            <FontAwesomeIcon
+              className={`${ICON_PLACE_SELF_CENTER}`}
+              icon={faHome}
+            />
+            <h1 className="text-center">Return Home</h1>
+          </div>
+        </NavLink>
       </div>
+    </div>
   );
 }
