@@ -17,8 +17,10 @@ import {
   SendToEmail,
   Username,
 } from "../../forms/CredentialForms";
-import { maskEmail } from "../../helpers/Helper";
+import { maskEmail, MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
+
+import { jwtVerify, importSPKI } from 'jose';
 
 /**
  * @description Handles the forgot password request page
@@ -85,14 +87,22 @@ export default function AuthForgotPasswordRequest() {
       .post("/user/check-email", {
         username,
       })
-      .then((response) => {
-        setResetForm({
-          ...resetForm,
-          id1: response.data.email[0],
-          id2: response.data.email[1],
-          id3: response.data.email[2],
-          textChange: "Continue",
-        });
+      .then(async (response) => {
+        jwtVerify(response.data.emails, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256")).then((result) => {
+          setResetForm({
+            ...resetForm,
+            id1: result.payload.sub,
+            id2: result.payload.secondary_email,
+            id3: result.payload.recovery_email,
+            textChange: "Continue",
+          });
+        }).catch((error) => {
+          console.log(error);
+          setErrorMessage("Something went wrong. Please try again.");
+          setErrorEffect(true);
+          setOki(false);
+          setResetForm({ ...resetForm, textChange: "Next" });
+        })
         setCount(count + 1);
         setOki(false);
       })
