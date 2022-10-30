@@ -20,7 +20,7 @@ import {
 import { maskEmail, MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
 
-import { jwtVerify, importSPKI } from 'jose';
+import { jwtVerify, importSPKI } from "jose";
 
 /**
  * @description Handles the forgot password request page
@@ -88,21 +88,26 @@ export default function AuthForgotPasswordRequest() {
         username,
       })
       .then(async (response) => {
-        jwtVerify(response.data.emails, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256")).then((result) => {
-          setResetForm({
-            ...resetForm,
-            id1: result.payload.sub,
-            id2: result.payload.secondary_email,
-            id3: result.payload.recovery_email,
-            textChange: "Continue",
+        jwtVerify(
+          response.data.emails,
+          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+        )
+          .then((result) => {
+            setResetForm({
+              ...resetForm,
+              id1: result.payload.sub,
+              id2: result.payload.secondary_email,
+              id3: result.payload.recovery_email,
+              textChange: "Continue",
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+            setErrorMessage("Something went wrong. Please try again.");
+            setErrorEffect(true);
+            setOki(false);
+            setResetForm({ ...resetForm, textChange: "Next" });
           });
-        }).catch((error) => {
-          console.log(error);
-          setErrorMessage("Something went wrong. Please try again.");
-          setErrorEffect(true);
-          setOki(false);
-          setResetForm({ ...resetForm, textChange: "Next" });
-        })
         setCount(count + 1);
         setOki(false);
       })
