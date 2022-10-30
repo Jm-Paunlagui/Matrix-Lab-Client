@@ -30,7 +30,11 @@ import PublicAbout from "./views/public/PublicAbout.js";
 import PublicHome from "./views/public/PublicHome.js";
 import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
 import PublicRanking from "./views/public/PublicRanking.js";
-import { PageNotFound, InvalidToken, Unauthorized } from './views/response/ClientErrorResponses.js';
+import {
+  PageNotFound,
+  InvalidToken,
+  Unauthorized,
+} from "./views/response/ClientErrorResponses.js";
 import IndexUser from "./views/user/IndexUser";
 import UserDashboard from "./views/user/UserDashboard";
 import UserProfile from "./views/user/UserProfile";
