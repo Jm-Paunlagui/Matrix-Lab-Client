@@ -30,14 +30,13 @@ import PublicAbout from "./views/public/PublicAbout.js";
 import PublicHome from "./views/public/PublicHome.js";
 import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
 import PublicRanking from "./views/public/PublicRanking.js";
-import PageNotFound from "./views/response/PageNotFound.js";
+import { PageNotFound, InvalidToken, Unauthorized } from './views/response/ClientErrorResponses.js';
 import IndexUser from "./views/user/IndexUser";
 import UserDashboard from "./views/user/UserDashboard";
 import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
-import { InvalidToken } from "./views/response/InvalidToken";
 
 /**
  * @description Main component for the application
@@ -194,6 +193,7 @@ export default function App() {
               <Route element={<UserProfile />} exact="true" path="profile" />
             </Route>
 
+            <Route element={<Unauthorized />} path="unauthorized-access" />
             {/**
              * @description Handles page not found route for the application
              */}
