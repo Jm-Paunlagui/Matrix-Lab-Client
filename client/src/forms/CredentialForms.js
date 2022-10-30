@@ -21,7 +21,7 @@ import {
   SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../assets/styles/input-types-styles";
-import { maskEmail } from "../helpers/Helper";
+import { maskEmail, emailRegex } from "../helpers/Helper";
 
 /**
  * @description User login form for the application
@@ -140,7 +140,7 @@ export function TFAbyEmail(
     >
       {/*  Choice of identity */}
       <div className="flex flex-col justify-center mt-6 space-y-6">
-        {id1 ? (
+        {emailRegex.test(id1) ? (
           <li className={`list-none`}>
             <input
               checked={email === id1}
@@ -164,13 +164,13 @@ export function TFAbyEmail(
                 icon={faEnvelope}
                 size={"lg"}
               />
-              <p className="truncate">Email {id1}</p>
+              Email {id1}
             </label>
           </li>
         ) : (
           EMAIL_NOT_SET("Primary")
         )}
-        {id2 ? (
+        {emailRegex.test(id2) ? (
           <li className="list-none">
             <input
               checked={email === id2}
@@ -194,13 +194,13 @@ export function TFAbyEmail(
                 icon={faEnvelope}
                 size={"lg"}
               />
-              <p className="truncate">Email {id2}</p>
+              Email {id2}
             </label>
           </li>
         ) : (
           EMAIL_NOT_SET("Secondary")
         )}
-        {id3 ? (
+        {emailRegex.test(id3) ? (
           <li className="list-none">
             <input
               checked={email === id3}
@@ -224,7 +224,7 @@ export function TFAbyEmail(
                 icon={faEnvelope}
                 size={"lg"}
               />
-              <p className="truncate">Email {id3}</p>
+              Email {id3}
             </label>
           </li>
         ) : (
@@ -473,7 +473,7 @@ export function AssociatedEmails(
     >
       {/*  Choice of identity */}
       <div className="flex flex-col justify-center mt-6 space-y-6">
-        {id1 ? (
+        {emailRegex.test(id1) ? (
           <li className={`list-none`}>
             <input
               checked={confirm_email === id1}
@@ -497,13 +497,13 @@ export function AssociatedEmails(
                 icon={faEnvelope}
                 size={"lg"}
               />
-              <p className="truncate">Email {maskEmail(id1)}</p>
+              Email {maskEmail(id1)}
             </label>
           </li>
         ) : (
           EMAIL_NOT_SET("Primary")
         )}
-        {id2 ? (
+        {emailRegex.test(id2) ? (
           <li className="list-none">
             <input
               checked={confirm_email === id2}
@@ -527,13 +527,13 @@ export function AssociatedEmails(
                 icon={faEnvelope}
                 size={"lg"}
               />
-              <p className="truncate">Email {maskEmail(id2)}</p>
+              Email {maskEmail(id2)}
             </label>
           </li>
         ) : (
           EMAIL_NOT_SET("Secondary")
         )}
-        {id3 ? (
+        {emailRegex.test(id3) ? (
           <li className="list-none">
             <input
               checked={confirm_email === id3}
@@ -557,7 +557,7 @@ export function AssociatedEmails(
                 icon={faEnvelope}
                 size={"lg"}
               />
-              <p className="truncate">Email {maskEmail(id3)}</p>
+              Email {maskEmail(id3)}
             </label>
           </li>
         ) : (
