@@ -15,6 +15,8 @@ import {
   UsernamePassword,
   VerifyTFA,
 } from "../../forms/CredentialForms";
+import { importSPKI, jwtVerify } from 'jose';
+import { MATRIX_RSA_PUBLIC_KEY } from '../../helpers/Helper';
 
 /**
  * @description User login form for the application
@@ -128,14 +130,27 @@ export default function AuthLogin() {
         username,
         password,
       })
-      .then((response) => {
-        setAuthForm({
-          ...authForm,
-          id1: response.data.emails[0],
-          id2: response.data.emails[1],
-          id3: response.data.emails[2],
-          textChange: "Verify email",
-        });
+      .then(async (response) => {
+        jwtVerify(
+            response.data.emails,
+            await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+        )
+            .then((result) => {
+              setAuthForm({
+                ...authForm,
+                id1: result.payload.id1,
+                id2: result.payload.id2,
+                id3: result.payload.id3,
+                textChange: "Continue",
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+              setErrorMessage("Something went wrong. Please try again.");
+              setErrorEffect(true);
+              setOki(false);
+              setAuthForm({ ...authForm, textChange: "Next" });
+            });
         setCount(count + 1);
         setOki(false);
       })
