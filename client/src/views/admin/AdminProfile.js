@@ -176,10 +176,14 @@ export default function AdminProfile() {
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <form>
-                  <div className="flex flex-col space-y-4" onBlur={() =>setProfile({
-                    ...profile,
-                    showButtonforPersonalInfo: true,
-                  })}
+                  <div
+                    className="flex flex-col space-y-4"
+                    onBlur={() =>
+                      setProfile({
+                        ...profile,
+                        showButtonforPersonalInfo: true,
+                      })
+                    }
                   >
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="text-base font-medium text-gray-500">
@@ -295,10 +299,14 @@ export default function AdminProfile() {
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <form>
-                  <div className="flex flex-col space-y-4" onBlur={() =>setProfile({
-                    ...profile,
-                    showButtonforSecurityInfo: true,
-                  })}
+                  <div
+                    className="flex flex-col space-y-4"
+                    onBlur={() =>
+                      setProfile({
+                        ...profile,
+                        showButtonforSecurityInfo: true,
+                      })
+                    }
                   >
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="text-base font-medium text-gray-500">
@@ -408,10 +416,14 @@ export default function AdminProfile() {
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <form>
-                  <div className="flex flex-col space-y-4" onBlur={() =>setProfile({
-                    ...profile,
-                    showButtonforUsername: true,
-                  })}
+                  <div
+                    className="flex flex-col space-y-4"
+                    onBlur={() =>
+                      setProfile({
+                        ...profile,
+                        showButtonforUsername: true,
+                      })
+                    }
                   >
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="text-base font-medium text-gray-500">
@@ -474,11 +486,14 @@ export default function AdminProfile() {
                   </div>
                 </form>
                 <form>
-                  <div className="flex flex-col space-y-4"
-                       onBlur={() =>setProfile({
-                         ...profile,
-                         showButtonforPassword: true,
-                       })}
+                  <div
+                    className="flex flex-col space-y-4"
+                    onBlur={() =>
+                      setProfile({
+                        ...profile,
+                        showButtonforPassword: true,
+                      })
+                    }
                   >
                     <h1 className="mb-4 text-xl font-bold text-gray-700">
                       Change Password
