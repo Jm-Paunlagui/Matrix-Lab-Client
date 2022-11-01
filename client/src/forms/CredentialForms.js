@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import {
   faCircleCheck,
-  faCircleRight,
+  faCaretRight,
   faEnvelope,
   faForward,
   faRepeat,
@@ -33,7 +33,6 @@ import { maskEmail, emailRegex } from "../helpers/Helper";
  * @param password
  * @param textChange
  * @param username
- * @returns {JSX.Element}
  * @constructor
  */
 export function UsernamePassword(
@@ -81,7 +80,7 @@ export function UsernamePassword(
 
       <div className="flex flex-col justify-center mt-6 space-y-6">
         <button
-          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+          className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
           type="submit"
         >
           {oki ? (
@@ -118,7 +117,6 @@ export function UsernamePassword(
  * @param id3
  * @param oki
  * @param textChange
- * @returns {JSX.Element}
  * @constructor
  */
 export function TFAbyEmail(
@@ -268,7 +266,6 @@ export function TFAbyEmail(
  * @param setErrorMessage
  * @param textChange
  * @param textChange2
- * @returns {JSX.Element}
  * @constructor
  */
 export function VerifyTFA(
@@ -382,7 +379,6 @@ export function VerifyTFA(
  * @param oki
  * @param textChange
  * @param username
- * @returns {JSX.Element}
  * @constructor
  */
 export function Username(
@@ -428,7 +424,7 @@ export function Username(
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
-              icon={faCircleRight}
+              icon={faCaretRight}
               size={"lg"}
             />
           )}
@@ -451,7 +447,6 @@ export function Username(
  * @param id3
  * @param oki
  * @param textChange
- * @returns {JSX.Element}
  * @constructor
  */
 export function AssociatedEmails(
@@ -605,7 +600,6 @@ export function AssociatedEmails(
  * @param setErrorMessage
  * @param setResetForm
  * @param textChange
- * @returns {JSX.Element}
  * @constructor
  */
 export function SendToEmail(
