@@ -24,6 +24,7 @@ export const getCookie = (key) => {
   if (typeof window !== "undefined") {
     return cookie.get(key);
   }
+  return false;
 };
 
 // Set in localstorage
@@ -58,14 +59,14 @@ export const isAuth = () => {
         return false;
       }
     }
+    return false;
   }
 };
 
 // Signout
-export const signout = (next) => {
+export const signout = () => {
   removeCookie("token");
   removeLocalStorage("user");
-  next();
 };
 
 export const updateUser = (response, next) => {
