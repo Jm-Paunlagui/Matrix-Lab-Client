@@ -39,7 +39,7 @@ export default function PublicHome() {
         </div>
       </div>
       <div className="mt-4 md:flex md:mt-4 lg:col-span-6 lg:flex">
-        <img  alt="mockup" src={Eval}/>
+        <img alt="mockup" src={Eval} />
       </div>
     </div>
   );

@@ -32,10 +32,11 @@ export default function BackNavigation({
     >
       <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
         <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-          <button  className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
+          <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
             <Link to={backTo}>
               <h1 className={`${isSmall ? "px-5 py-3" : "px-3 py-3"}`}>
-                <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER_1}`}
+                <FontAwesomeIcon
+                  className={`${ICON_PLACE_SELF_CENTER_1}`}
                   icon={faArrowLeft}
                 />
               </h1>

@@ -45,9 +45,9 @@ export default function LeaderboardDepartment() {
 
       <div className=" place-content-center">
         {leaderboard.map((item) => (
-          <div className={`flex flex-col mb-8 w-full bg-white rounded shadow`}
+          <div
+            className={`flex flex-col mb-8 w-full bg-white rounded shadow`}
             key={item.id}
-
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div

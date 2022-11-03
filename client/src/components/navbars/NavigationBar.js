@@ -75,7 +75,7 @@ export default function NavigationBar() {
           <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
             <NavLink to="/">
               <div className="flex items-center px-3 py-2 text-gray-900 transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-                <img alt="logo" className="w-10 h-10" src={logo}  />
+                <img alt="logo" className="w-10 h-10" src={logo} />
                 <h1
                   className={`ml-2 text-xl font-bold tracking-widest ${DELAY_1} md:text-3xl lg:flex`}
                 >
@@ -109,7 +109,7 @@ export default function NavigationBar() {
             >
               <ul className="flex flex-col ml-auto space-y-1">
                 {NavigationBarlinks.map((link) => (
-                  <NavLink  key={link.name} to={link.link}>
+                  <NavLink key={link.name} to={link.link}>
                     <li
                       className={`${
                         link.current
@@ -128,7 +128,7 @@ export default function NavigationBar() {
             </Transition>
             <ul className="flex-col justify-start hidden list-none lg:flex lg:flex-row lg:ml-auto">
               {NavigationBarlinks.map((link) => (
-                <NavLink  key={link.name} to={link.link}>
+                <NavLink key={link.name} to={link.link}>
                   <li
                     className={`${
                       link.current

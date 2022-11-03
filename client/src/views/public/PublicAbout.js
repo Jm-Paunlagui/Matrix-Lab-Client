@@ -372,7 +372,7 @@ export default function PublicAbout() {
           </h1>
         </div>
         <div className="md:flex lg:col-span-5 lg:flex">
-          <img alt="mockup" src={AboutUs}/>
+          <img alt="mockup" src={AboutUs} />
         </div>
       </div>
       <hr />
@@ -401,7 +401,6 @@ export default function PublicAbout() {
 
                     {aboutUs.image ? (
                       <img
-
                         alt={aboutUs.name}
                         className="-mt-12 rounded w-36 h-36"
                         src={aboutUs.image}
@@ -426,9 +425,10 @@ export default function PublicAbout() {
                           <div className="flex items-center" key={social}>
                             {aboutUs.social[social] !== "" ? (
                               <div className="flex items-center justify-center w-12 h-12">
-                                <a className="text-indigo-500 hover:text-indigo-700"
+                                <a
+                                  className="text-indigo-500 hover:text-indigo-700"
                                   href={aboutUs.social[social]}
-                                   rel="noopener noreferrer"
+                                  rel="noopener noreferrer"
                                   target="_blank"
                                 >
                                   <i
@@ -468,7 +468,8 @@ export default function PublicAbout() {
           <div className="flex flex-wrap justify-center items-top">
             <div className="grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 md:gap-4 lg:grid-cols-3 ">
               {Technologies.map((technology) => (
-                <div className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-500 ease-in-out"
+                <div
+                  className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-500 ease-in-out"
                   key={technology.name}
                 >
                   <div className="flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow place-items-center">
@@ -496,9 +497,9 @@ export default function PublicAbout() {
                     </blockquote>
                     <h1 className="mb-4 text-base font-medium text-transparent transition-colors duration-300 ease-in-out delay-150 place-self-start bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text hover:text-indigo-700">
                       <a
-                        href={technology.link} rel="noopener noreferrer"
+                        href={technology.link}
+                        rel="noopener noreferrer"
                         target="_blank"
-
                       >
                         Learn more <i className="fa-solid fa-caret-right" />
                       </a>

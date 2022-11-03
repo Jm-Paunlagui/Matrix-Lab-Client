@@ -56,7 +56,6 @@ export default function Footer() {
                   href="https://twitter.com/messages/719487995892539393-719487995892539393?text="
                   rel="noreferrer noopener"
                   target="_blank"
-
                 >
                   <FontAwesomeIcon icon={faTwitter} />
                 </a>
@@ -69,7 +68,6 @@ export default function Footer() {
                   href="https://www.messenger.com/t/100001178366981"
                   rel="noreferrer noopener"
                   target="_blank"
-
                 >
                   <FontAwesomeIcon icon={faFacebookMessenger} />
                 </a>
@@ -80,7 +78,7 @@ export default function Footer() {
         <div className="flex flex-wrap py-4 text-center">
           <div className="items-center w-full md:flex md:space-x-20 lg:place-content-end lg:px-4 xl:px-44 place-content-center">
             {UsefulLinks.map((link) => (
-              <Link key={link.name} to={`/${link.link}`} >
+              <Link key={link.name} to={`/${link.link}`}>
                 <div
                   className={`block pb-2 text-sm font-semibold hover:text-gray-800 ${DELAY_1}`}
                 >

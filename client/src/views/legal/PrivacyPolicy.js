@@ -9,8 +9,8 @@ export default function PrivacyPolicy() {
   return (
     <>
       <BackNavigation
-          backTo={"/"}
-          hasText
+        backTo={"/"}
+        hasText
         isSmall={false}
         pageTitle={"Privacy Policy"}
       />
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
           </p>
         </div>
         <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
-          <img  alt="mockup" src={Privacy}/>
+          <img alt="mockup" src={Privacy} />
         </div>
       </div>
       <div className="px-4 mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat">
