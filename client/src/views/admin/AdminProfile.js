@@ -1,29 +1,26 @@
+import { importSPKI, jwtVerify } from 'jose';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import {
-  DANGER_BUTTON,
-  ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
-  PRIMARY_BUTTON,
-  TEXT_FIELD,
-} from "../../assets/styles/input-types-styles";
-
-import React, { useState } from "react";
-import { faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  getCookie,
+  removeCookie,
+  setCookie, updateUser
+} from '../../helpers/Auth';
+import { MATRIX_RSA_PUBLIC_KEY } from '../../helpers/Helper';
+import httpClient from '../../http/httpClient';
+import { PersonalInformation, SecurityInformation, SignInInformation } from '../../forms/CredentialForms';
 
 /**
  * @description Handles the admin profile
  */
 export default function AdminProfile() {
   /**
-   * @description Parses the user data from session storage
+   * @description State variables for the admin profile form.
    */
-  const user = JSON.parse(sessionStorage.getItem("user"));
-
   const [profile, setProfile] = useState({
     email: "",
     first_name: "",
     last_name: "",
-    cancelforPersonalInfo: false,
     okforPersonalInfo: false,
     errorEffectforPersonalInfo: false,
     errorMessageforPersonalInfo: "",
@@ -31,14 +28,12 @@ export default function AdminProfile() {
     textChangeforPersonalInfo: "Update",
     secondary_email: "",
     recovery_email: "",
-    cancelforSecurityInfo: false,
     okforSecurityInfo: false,
     errorEffectforSecurityInfo: false,
     errorMessageforSecurityInfo: "",
     showButtonforSecurityInfo: true,
     textChangeforSecurityInfo: "Update",
     username: "",
-    cancelforUsername: false,
     okforUsername: false,
     errorEffectforUsername: false,
     errorMessageforUsername: "",
@@ -47,19 +42,19 @@ export default function AdminProfile() {
     old_password: "",
     new_password: "",
     confirm_password: "",
-    cancelforPassword: false,
     okforPassword: false,
     errorEffectforPassword: false,
     errorMessageforPassword: "",
     showButtonforPassword: true,
     textChangeforPassword: "Update",
+    template: true,
+    role: "",
   });
 
   const {
     email,
     first_name,
     last_name,
-    cancelforPersonalInfo,
     okforPersonalInfo,
     errorEffectforPersonalInfo,
     errorMessageforPersonalInfo,
@@ -67,14 +62,12 @@ export default function AdminProfile() {
     textChangeforPersonalInfo,
     secondary_email,
     recovery_email,
-    cancelforSecurityInfo,
     okforSecurityInfo,
     errorEffectforSecurityInfo,
     errorMessageforSecurityInfo,
     showButtonforSecurityInfo,
     textChangeforSecurityInfo,
     username,
-    cancelforUsername,
     okforUsername,
     errorEffectforUsername,
     errorMessageforUsername,
@@ -83,13 +76,43 @@ export default function AdminProfile() {
     old_password,
     new_password,
     confirm_password,
-    cancelforPassword,
     okforPassword,
     errorEffectforPassword,
     errorMessageforPassword,
     showButtonforPassword,
     textChangeforPassword,
+      template,
+      role
   } = profile;
+
+  const loadProfile = () => {
+    const token = getCookie("token");
+    httpClient
+        .get("/user/get_user",{
+            headers: {
+                Authorization: token,
+            }
+        }).then((response) => {
+            setProfile({
+                ...profile,
+                email: response.data.user.email,
+                first_name: response.data.user.first_name,
+                last_name: response.data.user.last_name,
+                secondary_email: response.data.user.secondary_email,
+                recovery_email: response.data.user.recovery_email,
+                username: response.data.user.username,
+                role: response.data.user.role
+            })
+
+    }).catch((error) => {
+      window.location.href = "/unauthorized-access";
+      toast(`Error: ${error}`, { type: "error" });
+    });
+  }
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
 
   const handleChangeForPersonalInfo = (name) => (event) => {
     setProfile({
@@ -124,9 +147,169 @@ export default function AdminProfile() {
       [name]: event.target.value,
       errorEffectforPassword: false,
       errorMessageforPassword: "",
-      showButtonforPassword: false,
+      template: false,
     });
   };
+
+// Function for jwt verification
+  const verifyJWT = async (token) => {
+    jwtVerify(token, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256")).then((result) => {
+      removeCookie("token");
+      setCookie("token", token);
+      updateUser(result.payload, () => {
+        toast("Profile updated successfully", { type: "success" });
+      })
+    }).catch((error) => {
+      toast(`Error: ${error}`, { type: "error" });
+      window.location.href = "/invalid-token";
+    });
+  }
+
+  const handleUpdatePersonalInfo = async (event) => {
+    event.preventDefault();
+    setProfile({
+      ...profile,
+      okforPersonalInfo: true,
+      textChangeforPersonalInfo: "Updating...",
+    });
+    await httpClient.put("/user/update-personal-info", {
+      email,
+      first_name,
+      last_name,
+    }).then(async (response) => {
+      await verifyJWT(response.data.token).then(() => {
+        setProfile({
+          ...profile,
+          okforPersonalInfo: false,
+          showButtonforPersonalInfo: true,
+          textChangeforPersonalInfo: "Update",
+        });
+      }).catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforPersonalInfo: true,
+          errorMessageforPersonalInfo: error.message,
+          okforPersonalInfo: false,
+          textChangeforPersonalInfo: "Update",
+        })
+      })
+    }).catch((error) => {
+        setProfile({
+            ...profile,
+            errorEffectforPersonalInfo: true,
+            errorMessageforPersonalInfo: error.response.data.message,
+            okforPersonalInfo: false,
+            textChangeforPersonalInfo: "Update",
+        });
+    });
+  }
+
+  const handleUpdateSecurityInfo = async (event) => {
+    event.preventDefault();
+    setProfile({
+      ...profile,
+      okforSecurityInfo: true,
+      textChangeforSecurityInfo: "Updating...",
+    });
+    await httpClient.put("/user/update-security-info", {
+      secondary_email,
+      recovery_email,
+    }).then(async (response) => {
+      await verifyJWT(response.data.token).then(() => {
+        setProfile({
+          ...profile,
+          okforSecurityInfo: false,
+          showButtonforSecurityInfo: true,
+          textChangeforSecurityInfo: "Update",
+        });
+      }).catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforSecurityInfo: true,
+          errorMessageforSecurityInfo: error.message,
+          okforSecurityInfo: false,
+          textChangeforSecurityInfo: "Update",
+        })
+      })
+    }).catch((error) => {
+        setProfile({
+            ...profile,
+            errorEffectforSecurityInfo: true,
+            errorMessageforSecurityInfo: error.response.data.message,
+            okforSecurityInfo: false,
+            textChangeforSecurityInfo: "Update",
+        });
+    });
+  }
+
+  const handleUpdateUsername = async (event) => {
+    event.preventDefault();
+    setProfile({
+      ...profile,
+      okforUsername: true,
+      textChangeforUsername: "Updating...",
+    });
+    await httpClient.put("/user/update-username", {
+      username,
+    }).then(async (response) => {
+      await verifyJWT(response.data.token).then(() => {
+        setProfile({
+          ...profile,
+          okforUsername: false,
+          showButtonforUsername: true,
+          textChangeforUsername: "Update",
+        });
+      }).catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforUsername: true,
+          errorMessageforUsername: error.message,
+          okforUsername: false,
+          textChangeforUsername: "Update",
+        })
+      })
+    }).catch((error) => {
+        setProfile({
+            ...profile,
+            errorEffectforUsername: true,
+            errorMessageforUsername: error.response.data.message,
+            okforUsername: false,
+            textChangeforUsername: "Update",
+        });
+    });
+  }
+
+    const handleUpdatePassword = async (event) => {
+    event.preventDefault();
+    setProfile({
+      ...profile,
+      okforPassword: true,
+      textChangeforPassword: "Updating...",
+    });
+    await httpClient.put("/user/update-password", {
+      old_password,
+      new_password,
+      confirm_password
+    }).then(async (response) => {
+        setProfile({
+          ...profile,
+          old_password: "",
+            new_password: "",
+            confirm_password: "",
+          okforPassword: false,
+          textChangeforPassword: "Update",
+        });
+        toast(response.data.message, { type: "success" });
+    }).catch((error) => {
+        setProfile({
+            ...profile,
+            errorEffectforPassword: true,
+            errorMessageforPassword: error.response.data.message,
+            okforPassword: false,
+            textChangeforPassword: "Update",
+        });
+    });
+  }
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -136,7 +319,7 @@ export default function AdminProfile() {
             Account Management
           </h1>
           <h1 className="text-sm font-medium text-gray-500">
-            @{user.username}
+            @{username}
           </h1>
         </div>
         <div className="col-span-2">
@@ -149,447 +332,62 @@ export default function AdminProfile() {
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
                 <div className="flex flex-col w-full space-y-2">
-                  This account is an {user.role} account. This account has the
+                  This account is an {role} account. This account has the
                   highest privileges in the system.
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
-            ${
-              errorEffectforPersonalInfo ? `animate-wiggle` : "outline-gray-200"
-            }`}
-            onAnimationEnd={() =>
-              setProfile({ ...profile, errorEffectforPersonalInfo: false })
-            }
-          >
-            <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-              <div className="col-span-2 p-8 bg-gray-50">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Personal Information
-                </h1>
-                <p className="mb-4 text-sm text-gray-500">
-                  This information is private and only visible to you and your
-                  organization. It will not be shared with anyone else.
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                <form>
-                  <div
-                    className="flex flex-col space-y-4"
-                    onBlur={() =>
-                      setProfile({
-                        ...profile,
-                        showButtonforPersonalInfo: true,
-                      })
-                    }
-                  >
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Email
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforPersonalInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="email"
-                        onChange={handleChangeForPersonalInfo("email")}
-                        placeholder={user.email}
-                        type="text"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        First Name
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforPersonalInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="first_name"
-                        onChange={handleChangeForPersonalInfo("first_name")}
-                        placeholder={user.first_name}
-                        type="text"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Last Name
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforPersonalInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="last_name"
-                        onChange={handleChangeForPersonalInfo("last_name")}
-                        placeholder={user.last_name}
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  {/* Error message */}
-                  {errorMessageforPersonalInfo ? (
-                    <div className="mt-2 text-sm font-semibold text-red-500">
-                      {errorMessageforPersonalInfo}
-                    </div>
-                  ) : null}
-                  <div
-                    className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                        ${showButtonforPersonalInfo ? "hidden" : "block"}`}
-                  >
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
-                      type="button"
-                    >
-                      {cancelforPersonalInfo ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faXmark}
-                          size={"lg"}
-                        />
-                      )}
-                      Cancel
-                    </button>
-                    <div className="p-1" />
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      type="button"
-                    >
-                      {okforPersonalInfo ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                        />
-                      )}
-                      {textChangeforPersonalInfo}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div
-            className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
-          ${
-            errorEffectforSecurityInfo ? `animate-wiggle` : "outline-gray-200"
-          }`}
-            onAnimationEnd={() =>
-              setProfile({ ...profile, errorEffectforSecurityInfo: false })
-            }
-          >
-            <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-              <div className="col-span-2 p-8 bg-gray-50">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Security and Verification
-                </h1>
-                <p className="mb-4 text-sm text-gray-500">
-                  As of now, you can only prove your identity by providing your
-                  email address. In the future, you will be able to provide
-                  other ways to prove your identity.
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                <form>
-                  <div
-                    className="flex flex-col space-y-4"
-                    onBlur={() =>
-                      setProfile({
-                        ...profile,
-                        showButtonforSecurityInfo: true,
-                      })
-                    }
-                  >
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Secondary Email
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforSecurityInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="secondary_email"
-                        onChange={handleChangeForSecurityInfo(
-                          "secondary_email",
-                        )}
-                        placeholder={user.secondary_email}
-                        type="email"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Recovery Email
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforSecurityInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="recovery_email"
-                        onChange={handleChangeForSecurityInfo("recovery_email")}
-                        placeholder={user.recovery_email}
-                        type="email"
-                      />
-                    </div>
-                  </div>
-                  {/* Error message */}
-                  {errorMessageforSecurityInfo ? (
-                    <div className="mt-2 text-sm font-semibold text-red-500">
-                      {errorMessageforSecurityInfo}
-                    </div>
-                  ) : null}
-                  <div
-                    className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforSecurityInfo ? "hidden" : "block"}`}
-                  >
-                    <button
-                      className={`
-                              px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
-                      type="button"
-                    >
-                      {cancelforSecurityInfo ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faXmark}
-                          size={"lg"}
-                        />
-                      )}
-                      Cancel
-                    </button>
-                    <div className="p-1" />
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      type="button"
-                    >
-                      {okforSecurityInfo ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                        />
-                      )}
-                      {textChangeforSecurityInfo}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div
-            className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2
-          ${
-            errorEffectforUsername || errorEffectforPassword
-              ? `animate-wiggle`
-              : "outline-gray-200"
-          }`}
-            onAnimationEnd={() =>
-              setProfile({
-                ...profile,
-                errorEffectforUsername: false,
-                errorEffectforPassword: false,
-              })
-            }
-          >
-            <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
-              <div className="col-span-2 p-8 bg-gray-50">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Matrix Account Sign-In
-                </h1>
-                <p className="mb-4 text-sm text-gray-500">
-                  We recommend that you periodically update your password to
-                  keep your account secure and prevent unauthorized access to
-                  your account.
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                <form>
-                  <div
-                    className="flex flex-col space-y-4"
-                    onBlur={() =>
-                      setProfile({
-                        ...profile,
-                        showButtonforUsername: true,
-                      })
-                    }
-                  >
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Username
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforUsername &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="username"
-                        onChange={handleChangeForUsername("username")}
-                        placeholder={user.username}
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  {/* Error message */}
-                  {errorMessageforUsername ? (
-                    <div className="mt-2 text-sm font-semibold text-red-500">
-                      {errorMessageforUsername}
-                    </div>
-                  ) : null}
-                  <div
-                    className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforUsername ? "hidden" : "block"}`}
-                  >
-                    <button
-                      className={`
-                        px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
-                      type="button"
-                    >
-                      {cancelforUsername ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faXmark}
-                          size={"lg"}
-                        />
-                      )}
-                      Cancel
-                    </button>
-                    <div className="p-1" />
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      type="button"
-                    >
-                      {okforUsername ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                        />
-                      )}
-                      {textChangeforUsername}
-                    </button>
-                  </div>
-                </form>
-                <form>
-                  <div
-                    className="flex flex-col space-y-4"
-                    onBlur={() =>
-                      setProfile({
-                        ...profile,
-                        showButtonforPassword: true,
-                      })
-                    }
-                  >
-                    <h1 className="mb-4 text-xl font-bold text-gray-700">
-                      Change Password
-                    </h1>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Current Password
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforPassword &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="old_password"
-                        onChange={handleChangeForPassword("old_password")}
-                        placeholder="Current Password"
-                        type="password"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        New Password
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforPassword &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="new_password"
-                        onChange={handleChangeForPassword("new_password")}
-                        placeholder="New Password"
-                        type="password"
-                      />
-                    </div>
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="text-base font-medium text-gray-500">
-                        Confirm New Password
-                      </h1>
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffectforPassword &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        name="confirm_password"
-                        onChange={handleChangeForPassword("confirm_password")}
-                        placeholder="Confirm New Password"
-                        type="password"
-                      />
-                    </div>
-                  </div>
-                  {/* Error message */}
-                  {errorMessageforPassword ? (
-                    <div className="mt-2 text-sm font-semibold text-red-500">
-                      {errorMessageforPassword}
-                    </div>
-                  ) : null}
-                  <div
-                    className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforPassword ? "hidden" : "block"}`}
-                  >
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
-                      type="button"
-                    >
-                      {cancelforPassword ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faXmark}
-                          size={"lg"}
-                        />
-                      )}
-                      Cancel
-                    </button>
-                    <div className="p-1" />
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      type="button"
-                    >
-                      {okforPassword ? (
-                        LOADING_ANIMATION()
-                      ) : (
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                        />
-                      )}
-                      {textChangeforPassword}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+          {new PersonalInformation(
+              errorEffectforPersonalInfo,
+              setProfile,
+              profile,
+              handleUpdatePersonalInfo,
+              handleChangeForPersonalInfo,
+              email,
+              first_name,
+              last_name,
+              errorMessageforPersonalInfo,
+              showButtonforPersonalInfo,
+              okforPersonalInfo,
+              textChangeforPersonalInfo,
+          )}
+          {new SecurityInformation(
+              errorEffectforSecurityInfo,
+              setProfile,
+              profile,
+              handleUpdateSecurityInfo,
+              handleChangeForSecurityInfo,
+              secondary_email,
+              recovery_email,
+              errorMessageforSecurityInfo,
+              showButtonforSecurityInfo,
+              okforSecurityInfo,
+              textChangeforSecurityInfo
+            )}
+          {new SignInInformation(
+              errorEffectforUsername,
+              errorEffectforPassword,
+              setProfile,
+              profile,
+              handleUpdateUsername,
+              handleChangeForUsername,
+              username,
+              errorMessageforUsername,
+              showButtonforUsername,
+              okforUsername,
+              textChangeforUsername,
+              handleUpdatePassword,
+              handleChangeForPassword,
+              old_password,
+              new_password,
+              confirm_password,
+              errorMessageforPassword,
+              showButtonforPassword,
+              okforPassword,
+              textChangeforPassword,
+              template
+          )}
         </div>
       </div>
     </div>

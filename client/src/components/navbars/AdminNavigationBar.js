@@ -1,17 +1,20 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Menu, Transition } from "@headlessui/react";
 import { NavLink, useLocation } from "react-router-dom";
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import httpClient from "../../http/httpClient";
-import Auth from "../../helpers/Auth";
+import { isAuth, signout } from '../../helpers/Auth';
 
+/**
+ * @description Handles the admin navigation bar for the application
+ */
 export default function AdminNavigationBar() {
   /**
    * @description Gets the user data from the Auth helper
    */
-  const user = Auth();
+  const user = isAuth();
 
   /**
    * @description Navigation bar array of objects for the navigation bar links
@@ -47,14 +50,12 @@ export default function AdminNavigationBar() {
     setTimeout(() => {
       window.location.href = "/";
     }, 2100);
-
-    // Destroy the user session storage item
-    sessionStorage.removeItem("user");
+    signout();
   };
 
   /**
    * @description Handles the navigation bar for the admin pages
-   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
+   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
    */
   const navigation = [
     {
@@ -110,23 +111,22 @@ export default function AdminNavigationBar() {
                 <Menu.Button className="inline-flex items-center justify-center p-2 text-gray-500 rounded-md hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
+                    <XMarkIcon  aria-hidden="true" className="block w-6 h-6" />
                   ) : (
-                    <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
+                    <Bars3Icon aria-hidden="true" className="block w-6 h-6" />
                   )}
                 </Menu.Button>
               </div>
               <div className="flex items-center justify-center flex-1 sm:items-stretch lg:justify-start">
                 <div className="flex items-center flex-shrink-0">
-                  <img
+                  <img alt="Your Company"
                     className="block w-auto h-8 md:hidden"
                     src={logo}
-                    alt="Your Company"
+
                   />
-                  <img
+                  <img alt="Your Company"
                     className="hidden w-auto h-8 md:block"
                     src={logo}
-                    alt="Your Company"
                   />
                 </div>
 
@@ -162,7 +162,7 @@ export default function AdminNavigationBar() {
                     >
                       <span className="sr-only">Open user menu</span>
                       <h1 className="text-base font-medium">
-                        {user.first_name}
+                        {user.username}
                       </h1>
                     </Menu.Button>
                   </div>
@@ -212,13 +212,13 @@ export default function AdminNavigationBar() {
             </div>
           </div>
           <Transition
-            show={open}
             enter="transition ease-out duration-100"
             enterFrom="transform opacity-0 scale-95"
             enterTo="transform opacity-100 scale-100"
             leave="transition ease-in duration-75"
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
+            show={open}
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (

@@ -1,42 +1,80 @@
-import React, { useEffect } from "react";
-import httpClient from "../http/httpClient";
-import { toast } from "react-toastify";
+import React from "react";
+import cookie from 'js-cookie';
 
-/**
- * @description Handles the authentication of the user and returns the user data if the user is authenticated
- * @returns {{path: string, role: string, last_name: string, id: string, first_name: string, email: string, username: string}}
- * @constructor
- */
-export default function Auth() {
-  const [user, setUser] = React.useState({
-    id: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    username: "",
-    role: "",
-    path: "",
-  });
-
-  useEffect(() => {
-    (async () => {
-      // Make a single request to the API to get the user data and store it in the session storage
-      const response = await httpClient.get("/user/get_user");
-      if (response.status === 200) {
-        sessionStorage.setItem("user", JSON.stringify(response.data.user));
-        setUser(response.data.user);
-      } else {
-        toast(response.data.message, {
-          type: "error",
-          autoClose: 2500,
-          theme: "colored",
+// Set in Cookie
+export const setCookie = (key, value) => {
+    if (typeof window !== 'undefined') {
+        cookie.set(key, value, {
+            expires: 1
         });
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 3000);
-      }
-    })();
-  }, []);
-
-  return user;
+    }
 }
+// remove from cookie
+export const removeCookie = key => {
+    if (typeof window !== 'undefined') {
+        cookie.remove(key, {
+            expires: 1
+        });
+    }
+};
+
+// Get from cookie such as stored token
+// Will be useful when we need to make request to server with token
+export const getCookie = key => {
+  if (typeof window !== 'undefined') {
+    return cookie.get(key);
+  }
+};
+
+// Set in localstorage
+export const setLocalStorage = (key, value) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+};
+
+// Remove from localstorage
+export const removeLocalStorage = key => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(key);
+  }
+};
+
+// Auth enticate user by passing data to cookie and localstorage during signin
+export const authenticate = (response, next) => {
+  setCookie('token', response.data.token);
+   // setLocalStorage('user', result.payload);
+  next();
+};
+
+// Access user info from localstorage
+export const isAuth = () => {
+  if (typeof window !== 'undefined') {
+    const cookieChecked = getCookie('token');
+    if (cookieChecked) {
+      if (localStorage.getItem('user')) {
+        return JSON.parse(localStorage.getItem('user'));
+      } else {
+        return false;
+      }
+    }
+  }
+};
+
+// Signout
+export const signout = next => {
+  removeCookie('token');
+  removeLocalStorage('user');
+  next();
+};
+
+export const updateUser = (response, next) => {
+  if (typeof window !== 'undefined') {
+    let auth;
+    auth = response
+    localStorage.setItem('user', JSON.stringify(auth));
+  }
+  next();
+};
+
+
