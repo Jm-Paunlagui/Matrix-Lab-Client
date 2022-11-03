@@ -70,9 +70,7 @@ export const signout = () => {
 
 export const updateUser = (response, next) => {
   if (typeof window !== "undefined") {
-    let auth;
-    auth = response;
-    localStorage.setItem("user", JSON.stringify(auth));
+    localStorage.setItem("user", JSON.stringify(response));
   }
   next();
 };
