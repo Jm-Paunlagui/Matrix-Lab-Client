@@ -16,6 +16,8 @@
     "@heroicons/react": "^2.0.10",
     "actually-accessible-react-success-animation": "^1.0.0",
     "axios": "^0.27.2",
+    "jose": "^4.10.4",
+    "js-cookie": "^3.0.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -52,7 +54,6 @@
     "eslint-plugin-react": "^7.31.5",
     "postcss": "^8.4.16",
     "prettier": "2.7.1",
-    "react-app-rewired": "^2.2.1",
     "tailwindcss": "^3.1.8"
   }
 }
