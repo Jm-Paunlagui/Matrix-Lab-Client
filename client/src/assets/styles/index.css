@@ -35,3 +35,9 @@
     stroke-dashoffset: -124;
   }
 }
+
+.custom-styles {
+  --ReactInputVerificationCode-itemWidth: 2rem;
+  --ReactInputVerificationCode-itemHeight: 2rem;
+  --ReactInputVerificationCode-itemSpacing: 1rem;
+}

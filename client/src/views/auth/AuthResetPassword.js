@@ -1,18 +1,20 @@
+import React, { useState } from "react";
+import PasswordChecklist from "react-password-checklist";
+import { Link, useParams } from "react-router-dom";
+
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SuccessAnimation from "actually-accessible-react-success-animation";
+
+import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
+  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import { Link, useParams } from "react-router-dom";
-import React, { useState } from "react";
-import { faSignIn } from "@fortawesome/free-solid-svg-icons";
-
 import BackNavigation from "../../components/navbars/BackNavigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PasswordChecklist from "react-password-checklist";
-import SuccessAnimation from "actually-accessible-react-success-animation";
 import httpClient from "../../http/httpClient";
-import logo from "../../assets/img/android-chrome-192x192.png";
 
 /**
  * @description Handles the forgot password request page
@@ -27,10 +29,10 @@ export default function AuthResetPassword() {
    * @description State variables for the reset password form.
    */
   const [newPassword, setNewPassword] = React.useState({
-    password: "",
-    confirmPassword: "",
-    textChange: "Reset Password",
     buttonDisabled: true,
+    confirmPassword: "",
+    password: "",
+    textChange: "Reset Password",
   });
 
   /**
@@ -51,12 +53,15 @@ export default function AuthResetPassword() {
       ...newPassword,
       [name]: value,
     });
+    // reset the error message when the user starts typing and error effect set to false.
+    setErrorEffect(false);
+    setErrorMessage("");
   };
 
   /**
    * @description Destructs the state variables
    */
-  const { password, confirmPassword, textChange, buttonDisabled } = newPassword;
+  const { buttonDisabled, confirmPassword, password, textChange } = newPassword;
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to reset the password.
@@ -72,7 +77,7 @@ export default function AuthResetPassword() {
       buttonDisabled: true,
     });
     try {
-      const resp = await httpClient.post(`/reset-password/${token}`, {
+      const resp = await httpClient.post(`/user/reset-password/${token}`, {
         password,
       });
       if (resp.statusText === "OK") {
@@ -102,20 +107,20 @@ export default function AuthResetPassword() {
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
               <div className="py-12 bg-white rounded-lg shadow-lg">
-                <SuccessAnimation text="Success!" color="#5cb85c" />
+                <SuccessAnimation color="#5cb85c" text="Success!" />
                 <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
                     Your password has been reset successfully. You can now login
                     with your new password.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button type={"button"} className={`${PRIMARY_BUTTON}`}>
+                    <button className={`${PRIMARY_BUTTON}`} type={"button"}>
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Proceed to
                           <FontAwesomeIcon
-                            icon={faSignIn}
                             className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
+                            icon={faSignIn}
                           />{" "}
                           Sign in
                         </h1>
@@ -127,7 +132,7 @@ export default function AuthResetPassword() {
             ) : (
               <div className={"px-6 lg:px-28"}>
                 <div className="flex items-center justify-center py-2 text-gray-800">
-                  <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
+                  <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
                 </div>
                 <div className="flex-auto mb-24 space-y-6 -mt-14">
                   <div className="mb-3 text-start">
@@ -146,26 +151,22 @@ export default function AuthResetPassword() {
                           errorEffect &&
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
-                        type="password"
-                        placeholder="New password"
-                        value={password}
                         name="password"
                         onChange={handlePasswordChange}
-                        onAnimationEnd={() => setErrorEffect(false)}
-                        onFocus={() => setErrorMessage("")}
+                        placeholder="New password"
+                        type="password"
+                        value={password}
                       />
                       <input
                         className={`${TEXT_FIELD} ${
                           errorEffect &&
                           `border-red-500 placeholder-red-500 text-red-500`
                         }`}
-                        type="password"
-                        placeholder="Confirm new password"
-                        value={confirmPassword}
                         name="confirmPassword"
                         onChange={handlePasswordChange}
-                        onAnimationEnd={() => setErrorEffect(false)}
-                        onFocus={() => setErrorMessage("")}
+                        placeholder="Confirm new password"
+                        type="password"
+                        value={confirmPassword}
                       />
                     </div>
                     {/* Error message */}
@@ -178,6 +179,13 @@ export default function AuthResetPassword() {
                       <PasswordChecklist
                         className="text-sm text-gray-500"
                         iconSize={8}
+                        minLength={8}
+                        onChange={(isValid) => {
+                          setNewPassword({
+                            ...newPassword,
+                            buttonDisabled: !isValid,
+                          });
+                        }}
                         rules={[
                           "minLength",
                           "specialChar",
@@ -185,36 +193,19 @@ export default function AuthResetPassword() {
                           "capital",
                           "match",
                         ]}
-                        minLength={8}
                         value={password}
                         valueAgain={confirmPassword}
-                        onChange={(isValid) => {
-                          setNewPassword({
-                            ...newPassword,
-                            buttonDisabled: !isValid,
-                          });
-                        }}
                       />
                       <div className="flex flex-col justify-center">
                         <button
-                          type="submit"
                           className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
-                            buttonDisabled && `opacity-50 cursor-not-allowed`
+                            buttonDisabled &&
+                            `opacity-50 cursor-not-allowed pointer-events-none`
                           }`}
                           disabled={buttonDisabled}
+                          type="submit"
                         >
-                          {oki ? (
-                            <svg className="spinner mr-1" viewBox="0 0 50 50">
-                              <circle
-                                className="path"
-                                cx="25"
-                                cy="25"
-                                r="20"
-                                fill="transparent"
-                                strokeWidth="5"
-                              />
-                            </svg>
-                          ) : null}
+                          {oki ? LOADING_ANIMATION() : null}
                           {textChange}
                         </button>
                       </div>
