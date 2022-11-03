@@ -61,14 +61,15 @@ export default function App() {
 
   return (
     <>
-      <ToastContainer autoClose={5000}
-          className="z-50"
-          closeOnClick
-          draggable
-          hideProgressBar={false}
-          newestOnTop
-          pauseOnFocusLoss
-          pauseOnHover
+      <ToastContainer
+        autoClose={5000}
+        className="z-50"
+        closeOnClick
+        draggable
+        hideProgressBar={false}
+        newestOnTop
+        pauseOnFocusLoss
+        pauseOnHover
         position="bottom-right"
         rtl={false}
         theme="colored"
