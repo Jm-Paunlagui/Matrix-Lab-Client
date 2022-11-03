@@ -681,31 +681,31 @@ export function SendToEmail(
  * @param role
  * @constructor
  */
-export function AccountType(role){
+export function AccountType(role) {
   return (
-      <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
-        <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
-          <div className="col-span-2 p-8 bg-gray-50">
-            <h1 className="mb-4 text-xl font-bold text-gray-700">
-              Account Type
-            </h1>
-          </div>
-          <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-            {role === "admin" ? (
-                <div className="flex flex-col w-full space-y-2">
-                  This account is an {role} account. This account has the
-                  highest privileges in the system. This account can create, edit, and delete other accounts.
-                </div>
-            ) : (
-                <div className="flex flex-col w-full space-y-2">
-                    This account is a {role} account. This account has the
-                    lowest privileges in the system. This account can only view and edit their own account.
-                </div>
-            )}
-          </div>
+    <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
+      <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2 p-8 bg-gray-50">
+          <h1 className="mb-4 text-xl font-bold text-gray-700">Account Type</h1>
+        </div>
+        <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+          {role === "admin" ? (
+            <div className="flex flex-col w-full space-y-2">
+              This account is an {role} account. This account has the highest
+              privileges in the system. This account can create, edit, and
+              delete other accounts.
+            </div>
+          ) : (
+            <div className="flex flex-col w-full space-y-2">
+              This account is a {role} account. This account has the lowest
+              privileges in the system. This account can only view and edit
+              their own account.
+            </div>
+          )}
         </div>
       </div>
-  )
+    </div>
+  );
 }
 
 /**
