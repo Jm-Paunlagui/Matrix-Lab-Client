@@ -372,7 +372,7 @@ export default function PublicAbout() {
           </h1>
         </div>
         <div className="md:flex lg:col-span-5 lg:flex">
-          <img src={AboutUs} alt="mockup" />
+          <img alt="mockup" src={AboutUs}/>
         </div>
       </div>
       <hr />
@@ -391,7 +391,7 @@ export default function PublicAbout() {
           <div className="flex flex-wrap justify-center items-top">
             <div className="grid w-full grid-cols-1 gap-1 mb-24 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
               {AboutUsDetails.map((aboutUs) => (
-                <div key={aboutUs.name} className="place-content-center ">
+                <div className="place-content-center " key={aboutUs.name}>
                   <div
                     className={
                       "flex flex-col w-full h-full min-w-0  break-words bg-white border-0 rounded-md shadow auto-cols-max auto-rows-max place-items-center"
@@ -401,9 +401,10 @@ export default function PublicAbout() {
 
                     {aboutUs.image ? (
                       <img
-                        src={aboutUs.image}
+
                         alt={aboutUs.name}
                         className="-mt-12 rounded w-36 h-36"
+                        src={aboutUs.image}
                       />
                     ) : (
                       <div className="justify-center p-1 mb-0 -mt-12 w-36 h-36 bg-gradient-to-br from-white to-sky-500 rounded-xl" />
@@ -422,14 +423,13 @@ export default function PublicAbout() {
 
                       <div className="flex justify-center mt-4">
                         {Object.keys(aboutUs.social).map((social) => (
-                          <div key={social} className="flex items-center">
+                          <div className="flex items-center" key={social}>
                             {aboutUs.social[social] !== "" ? (
                               <div className="flex items-center justify-center w-12 h-12">
-                                <a
+                                <a className="text-indigo-500 hover:text-indigo-700"
                                   href={aboutUs.social[social]}
+                                   rel="noopener noreferrer"
                                   target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-indigo-500 hover:text-indigo-700"
                                 >
                                   <i
                                     className={`fab fa-${
@@ -468,17 +468,16 @@ export default function PublicAbout() {
           <div className="flex flex-wrap justify-center items-top">
             <div className="grid grid-cols-1 gap-1 mb-24 md:grid-cols-2 md:gap-4 lg:grid-cols-3 ">
               {Technologies.map((technology) => (
-                <div
+                <div className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-500 ease-in-out"
                   key={technology.name}
-                  className="hover:bg-teal-500 p-0.5 rounded transition-colors delay-150 duration-500 ease-in-out"
                 >
                   <div className="flex flex-col w-full h-full min-w-0 p-6 break-words bg-white border-0 rounded shadow place-items-center">
                     {technology.logo ? (
                       <div className="mt-4">
                         <Icon
-                          icon={technology.logo}
                           color={technology.color}
                           height="96"
+                          icon={technology.logo}
                           width="96"
                         />
                       </div>
@@ -497,9 +496,9 @@ export default function PublicAbout() {
                     </blockquote>
                     <h1 className="mb-4 text-base font-medium text-transparent transition-colors duration-300 ease-in-out delay-150 place-self-start bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text hover:text-indigo-700">
                       <a
-                        href={technology.link}
+                        href={technology.link} rel="noopener noreferrer"
                         target="_blank"
-                        rel="noopener noreferrer"
+
                       >
                         Learn more <i className="fa-solid fa-caret-right" />
                       </a>
