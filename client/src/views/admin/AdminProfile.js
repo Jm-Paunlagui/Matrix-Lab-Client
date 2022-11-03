@@ -55,7 +55,9 @@ export default function AdminProfile() {
     template: true,
     role: "",
   });
-
+  /**
+   * @description Deconstructs the state variables for the admin profile form.
+   */
   const {
     email,
     first_name,
@@ -90,6 +92,9 @@ export default function AdminProfile() {
     role,
   } = profile;
 
+  /**
+   * @description Handles the Profile form change
+   */
   const loadProfile = () => {
     const token = getCookie("token");
     httpClient
@@ -116,10 +121,18 @@ export default function AdminProfile() {
       });
   };
 
+  /**
+   * @description UseEffect hook to load the profile form on page load.
+   */
   useEffect(() => {
     loadProfile();
   }, []);
 
+  /**
+   * @description Handles the Personal Information form change
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleChangeForPersonalInfo = (name) => (event) => {
     setProfile({
       ...profile,
@@ -129,6 +142,12 @@ export default function AdminProfile() {
       showButtonforPersonalInfo: false,
     });
   };
+
+  /**
+   * @description Handles the Security Information form change
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleChangeForSecurityInfo = (name) => (event) => {
     setProfile({
       ...profile,
@@ -138,6 +157,12 @@ export default function AdminProfile() {
       showButtonforSecurityInfo: false,
     });
   };
+
+  /**
+   * @description Handles the Username form change
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleChangeForUsername = (name) => (event) => {
     setProfile({
       ...profile,
@@ -147,6 +172,12 @@ export default function AdminProfile() {
       showButtonforUsername: false,
     });
   };
+
+  /**
+   * @description Handles the Password form change
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleChangeForPassword = (name) => (event) => {
     setProfile({
       ...profile,
@@ -157,7 +188,11 @@ export default function AdminProfile() {
     });
   };
 
-  // Function for jwt verification
+  /**
+   * @description Handles the token verification with the public key for security purposes.
+   * @param token
+   * @returns {Promise<void>}
+   */
   const verifyJWT = async (token) => {
     jwtVerify(token, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"))
       .then((result) => {
@@ -173,6 +208,11 @@ export default function AdminProfile() {
       });
   };
 
+  /**
+   * @description Handles the Personal Information form submission
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleUpdatePersonalInfo = async (event) => {
     event.preventDefault();
     setProfile({
@@ -217,6 +257,11 @@ export default function AdminProfile() {
       });
   };
 
+  /**
+   * @description Handles the Security Information form submission
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleUpdateSecurityInfo = async (event) => {
     event.preventDefault();
     setProfile({
@@ -260,6 +305,11 @@ export default function AdminProfile() {
       });
   };
 
+  /**
+   * @description Handles the Username form submission
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleUpdateUsername = async (event) => {
     event.preventDefault();
     setProfile({
@@ -302,6 +352,11 @@ export default function AdminProfile() {
       });
   };
 
+  /**
+   * @description Handles the Password form submission
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleUpdatePassword = async (event) => {
     event.preventDefault();
     setProfile({
@@ -364,58 +419,58 @@ export default function AdminProfile() {
           </div>
           {
             new PersonalInformation(
-              errorEffectforPersonalInfo,
-              setProfile,
-              profile,
-              handleUpdatePersonalInfo,
-              handleChangeForPersonalInfo,
               email,
-              first_name,
-              last_name,
+              errorEffectforPersonalInfo,
               errorMessageforPersonalInfo,
-              showButtonforPersonalInfo,
+              first_name,
+              handleChangeForPersonalInfo,
+              handleUpdatePersonalInfo,
+              last_name,
               okforPersonalInfo,
+              profile,
+              setProfile,
+              showButtonforPersonalInfo,
               textChangeforPersonalInfo,
             )
           }
           {
             new SecurityInformation(
               errorEffectforSecurityInfo,
-              setProfile,
-              profile,
-              handleUpdateSecurityInfo,
-              handleChangeForSecurityInfo,
-              secondary_email,
-              recovery_email,
               errorMessageforSecurityInfo,
-              showButtonforSecurityInfo,
+              handleChangeForSecurityInfo,
+              handleUpdateSecurityInfo,
               okforSecurityInfo,
+              profile,
+              recovery_email,
+              secondary_email,
+              setProfile,
+              showButtonforSecurityInfo,
               textChangeforSecurityInfo,
             )
           }
           {
             new SignInInformation(
-              errorEffectforUsername,
-              errorEffectforPassword,
-              setProfile,
-              profile,
-              handleUpdateUsername,
-              handleChangeForUsername,
-              username,
-              errorMessageforUsername,
-              showButtonforUsername,
-              okforUsername,
-              textChangeforUsername,
-              handleUpdatePassword,
-              handleChangeForPassword,
-              old_password,
-              new_password,
               confirm_password,
+              errorEffectforPassword,
+              errorEffectforUsername,
               errorMessageforPassword,
-              showButtonforPassword,
+              errorMessageforUsername,
+              handleChangeForPassword,
+              handleChangeForUsername,
+              handleUpdatePassword,
+              handleUpdateUsername,
+              new_password,
               okforPassword,
-              textChangeforPassword,
+              okforUsername,
+              old_password,
+              profile,
+              setProfile,
+              showButtonforPassword,
+              showButtonforUsername,
               template,
+              textChangeforPassword,
+              textChangeforUsername,
+              username,
             )
           }
         </div>

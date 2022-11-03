@@ -676,18 +676,35 @@ export function SendToEmail(
   );
 }
 
+/**
+ * @description Personal information form.
+ * @param email
+ * @param errorEffectforPersonalInfo
+ * @param errorMessageforPersonalInfo
+ * @param first_name
+ * @param handleChangeForPersonalInfo
+ * @param handleUpdatePersonalInfo
+ * @param last_name
+ * @param okforPersonalInfo
+ * @param profile
+ * @param setProfile
+ * @param showButtonforPersonalInfo
+ * @param textChangeforPersonalInfo
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function PersonalInformation(
-  errorEffectforPersonalInfo,
-  setProfile,
-  profile,
-  handleUpdatePersonalInfo,
-  handleChangeForPersonalInfo,
   email,
-  first_name,
-  last_name,
+  errorEffectforPersonalInfo,
   errorMessageforPersonalInfo,
-  showButtonforPersonalInfo,
+  first_name,
+  handleChangeForPersonalInfo,
+  handleUpdatePersonalInfo,
+  last_name,
   okforPersonalInfo,
+  profile,
+  setProfile,
+  showButtonforPersonalInfo,
   textChangeforPersonalInfo,
 ) {
   return (
@@ -793,17 +810,33 @@ export function PersonalInformation(
   );
 }
 
+/**
+ * @description Security Information form.
+ * @param errorEffectforSecurityInfo
+ * @param errorMessageforSecurityInfo
+ * @param handleChangeForSecurityInfo
+ * @param handleUpdateSecurityInfo
+ * @param okforSecurityInfo
+ * @param profile
+ * @param recovery_email
+ * @param secondary_email
+ * @param setProfile
+ * @param showButtonforSecurityInfo
+ * @param textChangeforSecurityInfo
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function SecurityInformation(
   errorEffectforSecurityInfo,
-  setProfile,
-  profile,
-  handleUpdateSecurityInfo,
-  handleChangeForSecurityInfo,
-  secondary_email,
-  recovery_email,
   errorMessageforSecurityInfo,
-  showButtonforSecurityInfo,
+  handleChangeForSecurityInfo,
+  handleUpdateSecurityInfo,
   okforSecurityInfo,
+  profile,
+  recovery_email,
+  secondary_email,
+  setProfile,
+  showButtonforSecurityInfo,
   textChangeforSecurityInfo,
 ) {
   return (
@@ -896,28 +929,54 @@ export function SecurityInformation(
   );
 }
 
+/**
+ * @description Sign In Information form.
+ * @param confirm_password
+ * @param errorEffectforPassword
+ * @param errorEffectforUsername
+ * @param errorMessageforPassword
+ * @param errorMessageforUsername
+ * @param handleChangeForPassword
+ * @param handleChangeForUsername
+ * @param handleUpdatePassword
+ * @param handleUpdateUsername
+ * @param new_password
+ * @param okforPassword
+ * @param okforUsername
+ * @param old_password
+ * @param profile
+ * @param setProfile
+ * @param showButtonforPassword
+ * @param showButtonforUsername
+ * @param template
+ * @param textChangeforPassword
+ * @param textChangeforUsername
+ * @param username
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function SignInInformation(
-  errorEffectforUsername,
-  errorEffectforPassword,
-  setProfile,
-  profile,
-  handleUpdateUsername,
-  handleChangeForUsername,
-  username,
-  errorMessageforUsername,
-  showButtonforUsername,
-  okforUsername,
-  textChangeforUsername,
-  handleUpdatePassword,
-  handleChangeForPassword,
-  old_password,
-  new_password,
   confirm_password,
+  errorEffectforPassword,
+  errorEffectforUsername,
   errorMessageforPassword,
-  showButtonforPassword,
+  errorMessageforUsername,
+  handleChangeForPassword,
+  handleChangeForUsername,
+  handleUpdatePassword,
+  handleUpdateUsername,
+  new_password,
   okforPassword,
-  textChangeforPassword,
+  okforUsername,
+  old_password,
+  profile,
+  setProfile,
+  showButtonforPassword,
+  showButtonforUsername,
   template,
+  textChangeforPassword,
+  textChangeforUsername,
+  username,
 ) {
   return (
     <div
