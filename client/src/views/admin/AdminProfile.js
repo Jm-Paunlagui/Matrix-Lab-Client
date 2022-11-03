@@ -315,7 +315,7 @@ export default function AdminProfile() {
         new_password,
         confirm_password,
       })
-      .then(async (response) => {
+      .then((response) => {
         setProfile({
           ...profile,
           old_password: "",
