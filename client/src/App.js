@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import React, { useLayoutEffect } from "react";
 import {
   Route,
@@ -5,47 +7,40 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import AdminDashboard from "./views/admin/AdminDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
 import AdminTables from "./views/admin/AdminTables.js";
-import IndexAdmin from "./views/admin/IndexAdmin";
-import IndexLeaderboard from "./views/admin/leaderboard/IndexLeaderboard";
-import LeaderboardDepartment from "./views/admin/leaderboard/LeaderboardDepartment";
-import LeaderboardEmployees from "./views/admin/leaderboard/LeaderboardEmployees";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
-import AuthLogout from "./views/auth/AuthLogout";
-import AuthRemoveEmailFromAccount from "./views/auth/AuthRemoveEmailFromAccount";
-import AuthResetPassword from "./views/auth/AuthResetPassword";
+import IndexAdmin from "./views/admin/IndexAdmin";
 import IndexAuth from "./views/auth/IndexAuth.js";
-import PrivacyPolicy from "./views/legal/PrivacyPolicy.js";
-import TermsAndConditions from "./views/legal/TermsAndConditions.js";
+import IndexLeaderboard from "./views/admin/leaderboard/IndexLeaderboard";
 import IndexPublic from "./views/public/IndexPublic.js";
+import LeaderboardDepartment from "./views/admin/leaderboard/LeaderboardDepartment";
+import LeaderboardEmployees from "./views/admin/leaderboard/LeaderboardEmployees";
+import PageNotFound from "./views/response/PageNotFound.js";
+import PrivacyPolicy from "./views/legal/PrivacyPolicy.js";
 import PublicAbout from "./views/public/PublicAbout.js";
 import PublicHome from "./views/public/PublicHome.js";
 import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
 import PublicRanking from "./views/public/PublicRanking.js";
-import {
-  PageNotFound,
-  InvalidToken,
-  Unauthorized,
-} from "./views/response/ClientErrorResponses.js";
+import TermsAndConditions from "./views/legal/TermsAndConditions.js";
+import { ToastContainer } from "react-toastify";
+
 import IndexUser from "./views/user/IndexUser";
 import UserDashboard from "./views/user/UserDashboard";
 import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
-import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
+import EvalCourses from "./views/user/eval/EvalCourses";
+import AuthResetPassword from "./views/auth/AuthResetPassword";
 
 /**
  * @description Main component for the application
  */
-
 export default function App() {
   /**
    * @type {Function}
@@ -60,160 +55,116 @@ export default function App() {
   };
 
   return (
-    <>
-      <ToastContainer
-        autoClose={5000}
-        className="z-50"
-        closeOnClick
-        draggable
-        hideProgressBar={false}
-        newestOnTop
-        pauseOnFocusLoss
-        pauseOnHover
-        position="bottom-right"
-        rtl={false}
-        theme="colored"
-      />
-      <Router>
-        <Wrapper>
-          <Routes>
-            {/**
-             * @description Handles public routes for the application, and the IndexPublic component has the outlet for the
-             * public routes.
-             */}
-            <Route element={<IndexPublic />}>
-              <Route element={<PublicAbout />} exact="true" path="aboutus" />
-              <Route element={<PublicHome />} exact="true" path="/" />
+    <Router>
+      <ToastContainer autoClose={3000} position="bottom-right" />
+      <Wrapper>
+        <Routes>
+          {/**
+           * @description Handles public routes for the application, and the IndexPublic component has the outlet for the
+           * public routes
+           */}
+          <Route element={<IndexPublic />}>
+            <Route exact="true" path="aboutus" element={<PublicAbout />} />
+            <Route exact="true" path="/" element={<PublicHome />} />
+            <Route
+              exact="true"
+              path="leaderboard"
+              element={<PublicLeaderboard />}
+            />
+            <Route exact="true" path="ranking" element={<PublicRanking />} />
+          </Route>
+          {/**
+           * End of public routes
+           */}
+
+          <Route
+            exact="true"
+            path="privacy-policy"
+            element={<PrivacyPolicy />}
+          />
+          <Route
+            exact="true"
+            path="terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
+
+          {/**
+           * @description Handles auth routes for the application, and the IndexAuth component has the outlet for the
+           * auth routes
+           */}
+          <Route element={<IndexAuth />}>
+            <Route
+              exact="true"
+              path="forgot-password"
+              element={<AuthForgotPasswordRequest />}
+            />
+            <Route exact="true" path="auth" element={<AuthLogin />} />
+            <Route
+              exact="true"
+              path="reset-password/:token"
+              element={<AuthResetPassword />}
+            />
+          </Route>
+          {/**
+           * End of auth routes
+           */}
+          {/**
+           * @description Handles admin routes for the application and the IndexAdmin component has the outlet for the
+           * admin routes
+           */}
+          <Route exact="true" path="admin" element={<IndexAdmin />}>
+            <Route exact="true" path="dashboard" element={<AdminDashboard />} />
+            <Route
+              exact="true"
+              path="leaderboard"
+              element={<IndexLeaderboard />}
+            >
               <Route
-                element={<PublicLeaderboard />}
                 exact="true"
-                path="leaderboard"
+                path="departments"
+                element={<LeaderboardDepartment />}
               />
-              <Route element={<PublicRanking />} exact="true" path="ranking" />
+              <Route
+                exact="true"
+                path="employees"
+                element={<LeaderboardEmployees />}
+              />
             </Route>
-            {/**
-             * End of public routes
-             */}
+            <Route exact="true" path="analyze" element={<AdminPrediction />} />
+            <Route exact="true" path="profile" element={<AdminProfile />} />
+            <Route exact="true" path="settings" element={<AdminSettings />} />
+            <Route exact="true" path="management" element={<AdminTables />} />
+          </Route>
+          {/**
+           * End of admin routes
+           * */}
 
-            <Route
-              element={<PrivacyPolicy />}
-              exact="true"
-              path="privacy-policy"
-            />
-            <Route
-              element={<TermsAndConditions />}
-              exact="true"
-              path="terms-and-conditions"
-            />
-
-            {/**
-             * @description Handles auth routes for the application, and the IndexAuth component has the outlet for the
-             * auth routes.
-             */}
-            <Route element={<IndexAuth />}>
-              <Route
-                element={<AuthForgotPasswordRequest />}
-                exact="true"
-                path="forgot-password"
-              />
-              <Route element={<AuthLogin />} exact="true" path="auth" />
-
-              <Route
-                element={<AuthResetPassword />}
-                exact="true"
-                path="reset-password/:token"
-              />
-            </Route>
-            <Route
-              element={<AuthRemoveEmailFromAccount />}
-              exact="true"
-              path="remove-email-from-account/:token"
-            />
-            {/**
-             * End of auth routes
-             */}
-            {/**
-             * @description Handles admin routes for the application, and the IndexAdmin component has the outlet for the
-             * admin routes.
-             */}
-            <Route element={<IndexAdmin />} exact="true" path="admin">
-              <Route
-                element={<AdminDashboard />}
-                exact="true"
-                path="dashboard"
-              />
-              <Route
-                element={<IndexLeaderboard />}
-                exact="true"
-                path="leaderboard"
-              >
+          {/**
+           * @description Handles user routes for the application, and the IndexUser component has the outlet for the
+           * user routes.
+           */}
+          <Route exact="true" path="user" element={<IndexUser />}>
+            <Route exact="true" path="programs" element={<IndexEval />}>
+              <Route exact="true" path="courses" element={<EvalCourses />}>
                 <Route
-                  element={<LeaderboardDepartment />}
-                  exact="true"
-                  path="departments"
-                />
-                <Route
-                  element={<LeaderboardEmployees />}
-                  exact="true"
-                  path="employees"
+                  path=":courseId"
+                  element={<EvalCourseSentimentTable />}
                 />
               </Route>
-              <Route
-                element={<AdminPrediction />}
-                exact="true"
-                path="analyze"
-              />
-              <Route
-                element={<AdminProfile />}
-                exact="true"
-                path="profile/:username"
-              />
-              <Route element={<AdminSettings />} exact="true" path="settings" />
-              <Route element={<AdminTables />} exact="true" path="management" />
-              <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
-            {/**
-             * End of admin routes
-             * */}
+            <Route exact="true" path="dashboard" element={<UserDashboard />} />
+            <Route exact="true" path="profile" element={<UserProfile />} />
+          </Route>
 
-            {/**
-             * @description Handles user routes for the application, and the IndexUser component has the outlet for the
-             * user routes.
-             */}
-            <Route element={<IndexUser />} exact="true" path="user">
-              <Route element={<IndexEval />} exact="true" path="programs">
-                <Route element={<EvalCourses />} exact="true" path="courses">
-                  <Route
-                    element={<EvalCourseSentimentTable />}
-                    path=":courseId"
-                  />
-                </Route>
-              </Route>
-              <Route
-                element={<UserDashboard />}
-                exact="true"
-                path="dashboard"
-              />
-              <Route
-                element={<UserProfile />}
-                exact="true"
-                path="profile/:username"
-              />
-              <Route element={<AuthLogout />} exact="true" path="logout" />
-            </Route>
-
-            <Route element={<Unauthorized />} path="unauthorized-access" />
-            {/**
-             * @description Handles page not found route for the application
-             */}
-            <Route element={<PageNotFound />} path="*" />
-            {/**
-             * End of page not found route
-             */}
-            <Route element={<InvalidToken />} path="invalid-token" />
-          </Routes>
-        </Wrapper>
-      </Router>
-    </>
+          {/**
+           * @description Handles page not found route for the application
+           */}
+          <Route path="*" element={<PageNotFound />} />
+          {/**
+           * End of page not found route
+           */}
+        </Routes>
+      </Wrapper>
+    </Router>
   );
 }
