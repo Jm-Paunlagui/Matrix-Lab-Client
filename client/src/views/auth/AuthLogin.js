@@ -17,6 +17,7 @@ import {
 } from "../../forms/CredentialForms";
 import { importSPKI, jwtVerify } from "jose";
 import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
+import { authenticate, isAuth, setLocalStorage } from '../../helpers/Auth';
 
 /**
  * @description User login form for the application
@@ -136,6 +137,7 @@ export default function AuthLogin() {
           await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
         )
           .then((result) => {
+            console.log(result.payload);
             setAuthForm({
               ...authForm,
               id1: result.payload.id1,
@@ -219,16 +221,27 @@ export default function AuthLogin() {
       .post("/user/verify-2fa", {
         code,
       })
-      .then((response) => {
-        toast(`Welcome back ${username}!`, {
-          type: "success",
-          bodyClassName: "toastify-body",
-        });
-        setAuthForm({
-          ...authForm,
-          textChange: "Success",
-        });
-        navigate(response.data.path);
+      .then(async (response) => {
+        jwtVerify(
+            response.data.token,
+            await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+        ).then((result) => {
+          setLocalStorage("user", result.payload);
+          authenticate(response,() => {
+            toast(`Welcome back ${username}!`, {
+              type: "success",
+              bodyClassName: "toastify-body",
+            });
+            setAuthForm({
+              ...authForm,
+              textChange: "Success",
+            });
+            isAuth().role === "admin" ? navigate(response.data.path) : navigate(response.data.path);
+          })
+        }).catch((error) => {
+          toast(`Error: ${error}`, { type: "error" });
+          navigate("/invalid-token");
+        })
       })
       .catch((error) => {
         setErrorEffect(true);
@@ -280,7 +293,7 @@ export default function AuthLogin() {
                   )}
                 </div>
                 {count === 1
-                  ? UsernamePassword(
+                  ? new UsernamePassword(
                       errorEffect,
                       errorMessage,
                       handleAuthFormChange,
@@ -291,7 +304,7 @@ export default function AuthLogin() {
                       username,
                     )
                   : count === 2
-                  ? TFAbyEmail(
+                  ? new TFAbyEmail(
                       email,
                       errorEffect,
                       errorMessage,
@@ -303,7 +316,7 @@ export default function AuthLogin() {
                       oki,
                       textChange,
                     )
-                  : VerifyTFA(
+                  : new VerifyTFA(
                       authForm,
                       buttonDisabled,
                       code,
