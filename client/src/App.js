@@ -61,17 +61,16 @@ export default function App() {
 
   return (
     <>
-      <ToastContainer
-        className="z-50"
+      <ToastContainer autoClose={5000}
+          className="z-50"
+          closeOnClick
+          draggable
+          hideProgressBar={false}
+          newestOnTop
+          pauseOnFocusLoss
+          pauseOnHover
         position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
         rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
         theme="colored"
       />
       <Router>
