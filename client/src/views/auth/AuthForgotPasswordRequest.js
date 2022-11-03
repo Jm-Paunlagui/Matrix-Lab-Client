@@ -102,8 +102,7 @@ export default function AuthForgotPasswordRequest() {
             });
           })
           .catch((error) => {
-            console.log(error);
-            setErrorMessage("Something went wrong. Please try again.");
+            setErrorMessage(error.message);
             setErrorEffect(true);
             setOki(false);
             setResetForm({ ...resetForm, textChange: "Next" });
