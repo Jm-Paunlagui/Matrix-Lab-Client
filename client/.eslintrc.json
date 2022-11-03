@@ -1,9 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true,
-    "commonjs": true
+    "es2021": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "overrides": [],
@@ -18,7 +16,6 @@
   "rules": {
     "no-unused-vars": "off",
     "jsx-quotes": 1,
-    //    "complexity": ["error", 20],
     "react/display-name": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-boolean-value": 1,
@@ -35,7 +32,7 @@
     "react/jsx-no-undef": 1,
     "react/jsx-pascal-case": 1,
     "react/jsx-sort-prop-types": 0,
-    "react/jsx-sort-props": 1,
+    "react/jsx-sort-props": 0,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1,
     "react/no-danger": 1,

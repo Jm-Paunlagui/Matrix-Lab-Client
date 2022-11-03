@@ -43,7 +43,7 @@ export default function AdminPrediction() {
                       <h1 className="text-base font-medium text-gray-500">
                         CSV file
                       </h1>
-                      <input type="file" className={TEXT_FIELD} />
+                      <input className={TEXT_FIELD} type="file"  />
                       <p
                         className="mt-1 text-sm text-gray-500 dark:text-gray-300"
                         id="file_input_help"
@@ -53,16 +53,16 @@ export default function AdminPrediction() {
                     </div>
                   </div>
                   <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                    <button
+                    <button className={`px-8 py-1 ${DANGER_BUTTON}`}
                       type="button"
-                      className={`px-8 py-1 ${DANGER_BUTTON}`}
+
                     >
                       Cancel
                     </button>
                     <div className="p-1" />
-                    <button
+                    <button className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                       type="button"
-                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+
                     >
                       Analyze and Save
                     </button>
@@ -93,9 +93,9 @@ export default function AdminPrediction() {
                         Host
                       </h1>
                       <input
-                        type="text"
                         className={TEXT_FIELD}
                         placeholder="Host"
+                             type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -103,9 +103,10 @@ export default function AdminPrediction() {
                         User
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
                         placeholder="User"
+                        type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -113,9 +114,10 @@ export default function AdminPrediction() {
                         Password
                       </h1>
                       <input
-                        type="password"
+
                         className={TEXT_FIELD}
                         placeholder="Password"
+                        type="password"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -123,9 +125,9 @@ export default function AdminPrediction() {
                         Database
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="Database"
+                        placeholder="Database" type="text"
                       />
                     </div>
                     <h1 className="text-xl font-bold text-gray-700">
@@ -141,9 +143,9 @@ export default function AdminPrediction() {
                         Table Name
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="Table"
+                        placeholder="Table" type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -151,9 +153,9 @@ export default function AdminPrediction() {
                         Data Source
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="Data Source"
+                        placeholder="Data Source" type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -161,9 +163,9 @@ export default function AdminPrediction() {
                         Evaluatee
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="Evaluatee"
+                        placeholder="Evaluatee" type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -171,9 +173,9 @@ export default function AdminPrediction() {
                         Department
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="Department"
+                        placeholder="Department" type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -181,9 +183,9 @@ export default function AdminPrediction() {
                         Course Code
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="Course Code"
+                        placeholder="Course Code" type="text"
                       />
                     </div>
                     <div className="flex flex-col w-full space-y-2">
@@ -191,23 +193,23 @@ export default function AdminPrediction() {
                         School Year and Semester
                       </h1>
                       <input
-                        type="text"
+
                         className={TEXT_FIELD}
-                        placeholder="School Year and Semester"
+                        placeholder="School Year and Semester" type="text"
                       />
                     </div>
                   </div>
                   <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                    <button
+                    <button className={`px-8 py-1 ${DANGER_BUTTON}`}
                       type="button"
-                      className={`px-8 py-1 ${DANGER_BUTTON}`}
+
                     >
                       Cancel
                     </button>
                     <div className="p-1" />
-                    <button
+                    <button className={`px-8 py-1 ${PRIMARY_BUTTON}`}
                       type="button"
-                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+
                     >
                       Analyze and Save
                     </button>

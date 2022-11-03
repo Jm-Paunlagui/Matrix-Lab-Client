@@ -64,9 +64,9 @@ export default function LeaderboardNavbar() {
       </div>
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
-          <nav
+          <nav aria-label="Pagination"
             className="inline-flex -space-x-px rounded-md shadow isolate"
-            aria-label="Pagination"
+
           >
             {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
             {navigation.map((item) => (

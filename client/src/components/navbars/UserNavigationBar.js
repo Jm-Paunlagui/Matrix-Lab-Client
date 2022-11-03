@@ -4,15 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import React, { Fragment } from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { isAuth, signout } from "../../helpers/Auth";
-import httpClient from "../../http/httpClient";
 
 export default function UserNavigationBar() {
-  /**
-   * @description Gets the user data from the Auth helper
-   */
-  const user = isAuth();
-
   /**
    * @description Navigation bar array of objects for the navigation bar links
    * @type {Location}
@@ -39,20 +32,8 @@ export default function UserNavigationBar() {
   }
 
   /**
-   * @description Handles the logout of the user
-   * @returns {Promise<void>}
-   */
-  const logoutUser = async () => {
-    await httpClient.post("/user/sign-out");
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 2100);
-    signout();
-  };
-
-  /**
    * @description Handles the navigation bar for the admin pages
-   * @type @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
+   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
    */
   const navigation = [
     {
@@ -69,12 +50,12 @@ export default function UserNavigationBar() {
 
   /**
    * @description Handles the profile menu for the admin pages
-   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
+   * @type {[{name: string, href: string},{name: string, href: string}, {name: string, href: string}]}
    */
   const user_controllers = [
     {
       name: "Your Profile",
-      href: `/user/profile/${user.username}`,
+      href: "/user/profile",
       current: isActive("profile"),
     },
     {
@@ -97,23 +78,23 @@ export default function UserNavigationBar() {
                 <Menu.Button className="inline-flex items-center justify-center p-2 text-gray-500 rounded-md hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon aria-hidden="true" className="block w-6 h-6" />
+                    <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
                   ) : (
-                    <Bars3Icon aria-hidden="true" className="block w-6 h-6" />
+                    <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
                   )}
                 </Menu.Button>
               </div>
               <div className="flex items-center justify-center flex-1 sm:items-stretch lg:justify-start">
                 <div className="flex items-center flex-shrink-0">
                   <img
-                    alt="Your Company"
                     className="block w-auto h-8 md:hidden"
                     src={logo}
+                    alt="Your Company"
                   />
                   <img
-                    alt="Your Company"
                     className="hidden w-auto h-8 md:block"
                     src={logo}
+                    alt="Your Company"
                   />
                 </div>
 
@@ -148,7 +129,7 @@ export default function UserNavigationBar() {
                       }`}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <h1 className="text-base font-medium">{user.username}</h1>
+                      <h1 className="text-base font-medium">johnpaunlagui</h1>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -176,10 +157,7 @@ export default function UserNavigationBar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <NavLink
-                            onClick={logoutUser}
-                            to={user_controllers[1].href}
-                          >
+                          <NavLink to={user_controllers[1].href}>
                             <h5
                               className={`${
                                 active ? "bg-gray-100" : ""
@@ -197,13 +175,13 @@ export default function UserNavigationBar() {
             </div>
           </div>
           <Transition
+            show={open}
             enter="transition ease-out duration-100"
             enterFrom="transform opacity-0 scale-95"
             enterTo="transform opacity-100 scale-100"
             leave="transition ease-in duration-75"
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
-            show={open}
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (

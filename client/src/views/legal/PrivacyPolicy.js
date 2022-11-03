@@ -9,9 +9,9 @@ export default function PrivacyPolicy() {
   return (
     <>
       <BackNavigation
+          backTo={"/"}
+          hasText
         isSmall={false}
-        hasText
-        backTo={"/"}
         pageTitle={"Privacy Policy"}
       />
       <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-6 py-8 mx-auto mt-16 lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12 font-Montserrat">
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
           </p>
         </div>
         <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
-          <img src={Privacy} alt="mockup" />
+          <img  alt="mockup" src={Privacy}/>
         </div>
       </div>
       <div className="px-4 mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat">
