@@ -137,7 +137,6 @@ export default function AuthLogin() {
           await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
         )
           .then((result) => {
-            console.log(result.payload);
             setAuthForm({
               ...authForm,
               id1: result.payload.id1,
@@ -147,8 +146,7 @@ export default function AuthLogin() {
             });
           })
           .catch((error) => {
-            console.log(error);
-            setErrorMessage("Something went wrong. Please try again.");
+            setErrorMessage(error.message);
             setErrorEffect(true);
             setOki(false);
             setAuthForm({ ...authForm, textChange: "Next" });
