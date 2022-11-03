@@ -194,7 +194,11 @@ export default function App() {
                 exact="true"
                 path="dashboard"
               />
-              <Route element={<UserProfile />} exact="true" path="profile/:username" />
+              <Route
+                element={<UserProfile />}
+                exact="true"
+                path="profile/:username"
+              />
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
 

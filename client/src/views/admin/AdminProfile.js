@@ -14,7 +14,7 @@ import {
   PersonalInformation,
   SecurityInformation,
   SignInInformation,
-} from '../../forms/CredentialForms';
+} from "../../forms/CredentialForms";
 
 /**
  * @description Handles the admin profile
@@ -403,9 +403,7 @@ export default function AdminProfile() {
           <h1 className="text-sm font-medium text-gray-500">@{username}</h1>
         </div>
         <div className="col-span-2">
-          {
-            new AccountType(role)
-          }
+          {new AccountType(role)}
           {
             new PersonalInformation(
               email,
