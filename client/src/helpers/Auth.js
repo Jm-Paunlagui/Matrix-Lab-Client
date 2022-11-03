@@ -1,7 +1,7 @@
 import cookie from "js-cookie";
 
 /**
- * @description Sets the cookie for the application
+ * @description Sets the cookie for the application with the key and value.
  * @param key
  * @param value
  */
@@ -14,7 +14,7 @@ export const setCookie = (key, value) => {
 };
 
 /**
- * @description Removes the cookie for the application
+ * @description Removes the cookie for the application with the key.
  * @param key
  */
 export const removeCookie = (key) => {
@@ -26,7 +26,7 @@ export const removeCookie = (key) => {
 };
 
 /**
- * @description Gets the cookie for the application
+ * @description Gets the cookie for the application with the key.
  * @param key
  * @returns {boolean|*}
  */
@@ -38,7 +38,7 @@ export const getCookie = (key) => {
 };
 
 /**
- * @description Sets the local storage for the application
+ * @description Sets the local storage for the application with the key and value.
  * @param key
  * @param value
  */
@@ -49,7 +49,7 @@ export const setLocalStorage = (key, value) => {
 };
 
 /**
- * @description Removes the item from local storage
+ * @description Removes the item from local storage for the application with the key.
  * @param key
  */
 export const removeLocalStorage = (key) => {
@@ -59,7 +59,7 @@ export const removeLocalStorage = (key) => {
 };
 
 /**
- * @description Authenticate user by passing data to cookie and localstorage during signin
+ * @description Authenticate user by passing data to cookie and localstorage during signin.
  * @param response
  * @param next
  */
@@ -70,7 +70,7 @@ export const authenticate = (response, next) => {
 };
 
 /**
- * @description Checks if the user is authenticated
+ * @description Checks if the user is authenticated or not. If the cookie is set, then the user is authenticated.
  * @returns {boolean|any}
  */
 export const isAuth = () => {
@@ -88,7 +88,7 @@ export const isAuth = () => {
 };
 
 /**
- * @description Signing out the user
+ * @description Signing out the user by removing the cookie and local storage. Redirecting the user to the home page.
  */
 export const signout = () => {
   removeCookie("token");
@@ -96,7 +96,7 @@ export const signout = () => {
 };
 
 /**
- * @description Handles updating the user data in the local storage
+ * @description Handles updating the user data in the local storage and cookie.
  * @param response
  * @param next
  */

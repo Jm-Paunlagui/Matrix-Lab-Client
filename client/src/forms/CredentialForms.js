@@ -37,16 +37,8 @@ import PasswordChecklist from "react-password-checklist";
  * @param username
  * @constructor
  */
-export function UsernamePassword(
-  errorEffect,
-  errorMessage,
-  handleAuthFormChange,
-  handleAuthFormSubmit,
-  oki,
-  password,
-  textChange,
-  username,
-) {
+export function UsernamePassword(errorEffect, errorMessage, handleAuthFormChange, handleAuthFormSubmit, oki, password,
+                                 textChange, username) {
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -121,18 +113,8 @@ export function UsernamePassword(
  * @param textChange
  * @constructor
  */
-export function TFAbyEmail(
-  email,
-  errorEffect,
-  errorMessage,
-  handle2FAFormSubmit,
-  handleAuthFormChange,
-  id1,
-  id2,
-  id3,
-  oki,
-  textChange,
-) {
+export function TFAbyEmail(email, errorEffect, errorMessage, handle2FAFormSubmit, handleAuthFormChange, id1, id2, id3,
+                           oki, textChange) {
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -270,24 +252,9 @@ export function TFAbyEmail(
  * @param textChange2
  * @constructor
  */
-export function VerifyTFA(
-  authForm,
-  buttonDisabled,
-  code,
-  count,
-  countDown,
-  errorEffect,
-  errorMessage,
-  handle2FAFormSubmit,
-  handle2FAVerifyFormSubmit,
-  handleAuthFormChange,
-  oki,
-  setAuthForm,
-  setCount,
-  setErrorMessage,
-  textChange,
-  textChange2,
-) {
+export function VerifyTFA(authForm, buttonDisabled, code, count, countDown, errorEffect, errorMessage,
+                          handle2FAFormSubmit, handle2FAVerifyFormSubmit, handleAuthFormChange, oki, setAuthForm,
+                          setCount, setErrorMessage, textChange, textChange2) {
   return (
     <>
       <form className="relative mx-auto mt-6 mb-6 max-w-screen">
@@ -604,20 +571,8 @@ export function AssociatedEmails(
  * @param textChange
  * @constructor
  */
-export function SendToEmail(
-  count,
-  email,
-  errorEffect,
-  errorMessage,
-  handleEmailSubmit,
-  handleFormChange,
-  oki,
-  resetForm,
-  setCount,
-  setErrorMessage,
-  setResetForm,
-  textChange,
-) {
+export function SendToEmail(count, email, errorEffect, errorMessage, handleEmailSubmit, handleFormChange, oki,
+                            resetForm, setCount, setErrorMessage, setResetForm, textChange) {
   return (
     <>
       <form
@@ -724,19 +679,9 @@ export function AccountType(role) {
  * @param textChangeforPersonalInfo
  * @constructor
  */
-export function PersonalInformation(
-  email,
-  errorEffectforPersonalInfo,
-  errorMessageforPersonalInfo,
-  first_name,
-  handleChangeForPersonalInfo,
-  handleUpdatePersonalInfo,
-  last_name,
-  okforPersonalInfo,
-  profile,
-  setProfile,
-  showButtonforPersonalInfo,
-  textChangeforPersonalInfo,
+export function PersonalInformation(email, errorEffectforPersonalInfo, errorMessageforPersonalInfo, first_name,
+                                    handleChangeForPersonalInfo, handleUpdatePersonalInfo, last_name, okforPersonalInfo,
+                                    profile, setProfile, showButtonforPersonalInfo, textChangeforPersonalInfo,
 ) {
   return (
     <div
@@ -856,18 +801,10 @@ export function PersonalInformation(
  * @param textChangeforSecurityInfo
  * @constructor
  */
-export function SecurityInformation(
-  errorEffectforSecurityInfo,
-  errorMessageforSecurityInfo,
-  handleChangeForSecurityInfo,
-  handleUpdateSecurityInfo,
-  okforSecurityInfo,
-  profile,
-  recovery_email,
-  secondary_email,
-  setProfile,
-  showButtonforSecurityInfo,
-  textChangeforSecurityInfo,
+export function SecurityInformation(errorEffectforSecurityInfo, errorMessageforSecurityInfo,
+                                    handleChangeForSecurityInfo, handleUpdateSecurityInfo, okforSecurityInfo, profile,
+                                    recovery_email, secondary_email, setProfile, showButtonforSecurityInfo,
+                                    textChangeforSecurityInfo,
 ) {
   return (
     <div
@@ -984,29 +921,12 @@ export function SecurityInformation(
  * @param username
  * @constructor
  */
-export function SignInInformation(
-  confirm_password,
-  errorEffectforPassword,
-  errorEffectforUsername,
-  errorMessageforPassword,
-  errorMessageforUsername,
-  handleChangeForPassword,
-  handleChangeForUsername,
-  handleUpdatePassword,
-  handleUpdateUsername,
-  new_password,
-  okforPassword,
-  okforUsername,
-  old_password,
-  profile,
-  setProfile,
-  showButtonforPassword,
-  showButtonforUsername,
-  template,
-  textChangeforPassword,
-  textChangeforUsername,
-  username,
-) {
+export function SignInInformation(confirm_password, errorEffectforPassword, errorEffectforUsername,
+                                  errorMessageforPassword, errorMessageforUsername, handleChangeForPassword,
+                                  handleChangeForUsername, handleUpdatePassword, handleUpdateUsername, new_password,
+                                  okforPassword, okforUsername, old_password, profile, setProfile, showButtonforPassword,
+                                  showButtonforUsername, template, textChangeforPassword, textChangeforUsername, username,
+                                  ) {
   return (
     <div
       className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2
