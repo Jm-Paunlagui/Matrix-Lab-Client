@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { getCookie, removeCookie, setCookie, updateUser } from '../../helpers/Auth';
-import httpClient from '../../http/httpClient';
-import { toast } from 'react-toastify';
-import { importSPKI, jwtVerify } from 'jose';
-import { MATRIX_RSA_PUBLIC_KEY } from '../../helpers/Helper';
-import { AccountType, PersonalInformation, SecurityInformation, SignInInformation } from '../../forms/CredentialForms';
-
+import React, { useEffect, useState } from "react";
+import {
+  getCookie,
+  removeCookie,
+  setCookie,
+  updateUser,
+} from "../../helpers/Auth";
+import httpClient from "../../http/httpClient";
+import { toast } from "react-toastify";
+import { importSPKI, jwtVerify } from "jose";
+import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
+import {
+  AccountType,
+  PersonalInformation,
+  SecurityInformation,
+  SignInInformation,
+} from "../../forms/CredentialForms";
 
 /**
  * @description Handles the admin profile
@@ -88,27 +97,27 @@ export default function UserProfile() {
   const loadProfile = () => {
     const token = getCookie("token");
     httpClient
-        .get("/user/get_user", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setProfile({
-            ...profile,
-            email: response.data.user.email,
-            first_name: response.data.user.first_name,
-            last_name: response.data.user.last_name,
-            secondary_email: response.data.user.secondary_email,
-            recovery_email: response.data.user.recovery_email,
-            username: response.data.user.username,
-            role: response.data.user.role,
-          });
-        })
-        .catch((error) => {
-          window.location.href = "/unauthorized-access";
-          toast(`Error: ${error}`, { type: "error" });
+      .get("/user/get_user", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        setProfile({
+          ...profile,
+          email: response.data.user.email,
+          first_name: response.data.user.first_name,
+          last_name: response.data.user.last_name,
+          secondary_email: response.data.user.secondary_email,
+          recovery_email: response.data.user.recovery_email,
+          username: response.data.user.username,
+          role: response.data.user.role,
         });
+      })
+      .catch((error) => {
+        window.location.href = "/unauthorized-access";
+        toast(`Error: ${error}`, { type: "error" });
+      });
   };
 
   /**
@@ -185,17 +194,17 @@ export default function UserProfile() {
    */
   const verifyJWT = async (token) => {
     jwtVerify(token, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"))
-        .then((result) => {
-          removeCookie("token");
-          setCookie("token", token);
-          updateUser(result.payload, () => {
-            toast("Profile updated successfully", { type: "success" });
-          });
-        })
-        .catch((error) => {
-          toast(`Error: ${error}`, { type: "error" });
-          window.location.href = "/invalid-token";
+      .then((result) => {
+        removeCookie("token");
+        setCookie("token", token);
+        updateUser(result.payload, () => {
+          toast("Profile updated successfully", { type: "success" });
         });
+      })
+      .catch((error) => {
+        toast(`Error: ${error}`, { type: "error" });
+        window.location.href = "/invalid-token";
+      });
   };
 
   /**
@@ -211,40 +220,40 @@ export default function UserProfile() {
       textChangeforPersonalInfo: "Updating...",
     });
     await httpClient
-        .put("/user/update-personal-info", {
-          email,
-          first_name,
-          last_name,
-        })
-        .then(async (response) => {
-          await verifyJWT(response.data.token)
-              .then(() => {
-                setProfile({
-                  ...profile,
-                  okforPersonalInfo: false,
-                  showButtonforPersonalInfo: true,
-                  textChangeforPersonalInfo: "Update",
-                });
-              })
-              .catch((error) => {
-                setProfile({
-                  ...profile,
-                  errorEffectforPersonalInfo: true,
-                  errorMessageforPersonalInfo: error.message,
-                  okforPersonalInfo: false,
-                  textChangeforPersonalInfo: "Update",
-                });
-              });
-        })
-        .catch((error) => {
-          setProfile({
-            ...profile,
-            errorEffectforPersonalInfo: true,
-            errorMessageforPersonalInfo: error.response.data.message,
-            okforPersonalInfo: false,
-            textChangeforPersonalInfo: "Update",
+      .put("/user/update-personal-info", {
+        email,
+        first_name,
+        last_name,
+      })
+      .then(async (response) => {
+        await verifyJWT(response.data.token)
+          .then(() => {
+            setProfile({
+              ...profile,
+              okforPersonalInfo: false,
+              showButtonforPersonalInfo: true,
+              textChangeforPersonalInfo: "Update",
+            });
+          })
+          .catch((error) => {
+            setProfile({
+              ...profile,
+              errorEffectforPersonalInfo: true,
+              errorMessageforPersonalInfo: error.message,
+              okforPersonalInfo: false,
+              textChangeforPersonalInfo: "Update",
+            });
           });
+      })
+      .catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforPersonalInfo: true,
+          errorMessageforPersonalInfo: error.response.data.message,
+          okforPersonalInfo: false,
+          textChangeforPersonalInfo: "Update",
         });
+      });
   };
 
   /**
@@ -260,39 +269,39 @@ export default function UserProfile() {
       textChangeforSecurityInfo: "Updating...",
     });
     await httpClient
-        .put("/user/update-security-info", {
-          secondary_email,
-          recovery_email,
-        })
-        .then(async (response) => {
-          await verifyJWT(response.data.token)
-              .then(() => {
-                setProfile({
-                  ...profile,
-                  okforSecurityInfo: false,
-                  showButtonforSecurityInfo: true,
-                  textChangeforSecurityInfo: "Update",
-                });
-              })
-              .catch((error) => {
-                setProfile({
-                  ...profile,
-                  errorEffectforSecurityInfo: true,
-                  errorMessageforSecurityInfo: error.message,
-                  okforSecurityInfo: false,
-                  textChangeforSecurityInfo: "Update",
-                });
-              });
-        })
-        .catch((error) => {
-          setProfile({
-            ...profile,
-            errorEffectforSecurityInfo: true,
-            errorMessageforSecurityInfo: error.response.data.message,
-            okforSecurityInfo: false,
-            textChangeforSecurityInfo: "Update",
+      .put("/user/update-security-info", {
+        secondary_email,
+        recovery_email,
+      })
+      .then(async (response) => {
+        await verifyJWT(response.data.token)
+          .then(() => {
+            setProfile({
+              ...profile,
+              okforSecurityInfo: false,
+              showButtonforSecurityInfo: true,
+              textChangeforSecurityInfo: "Update",
+            });
+          })
+          .catch((error) => {
+            setProfile({
+              ...profile,
+              errorEffectforSecurityInfo: true,
+              errorMessageforSecurityInfo: error.message,
+              okforSecurityInfo: false,
+              textChangeforSecurityInfo: "Update",
+            });
           });
+      })
+      .catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforSecurityInfo: true,
+          errorMessageforSecurityInfo: error.response.data.message,
+          okforSecurityInfo: false,
+          textChangeforSecurityInfo: "Update",
         });
+      });
   };
 
   /**
@@ -308,38 +317,38 @@ export default function UserProfile() {
       textChangeforUsername: "Updating...",
     });
     await httpClient
-        .put("/user/update-username", {
-          username,
-        })
-        .then(async (response) => {
-          await verifyJWT(response.data.token)
-              .then(() => {
-                setProfile({
-                  ...profile,
-                  okforUsername: false,
-                  showButtonforUsername: true,
-                  textChangeforUsername: "Update",
-                });
-              })
-              .catch((error) => {
-                setProfile({
-                  ...profile,
-                  errorEffectforUsername: true,
-                  errorMessageforUsername: error.message,
-                  okforUsername: false,
-                  textChangeforUsername: "Update",
-                });
-              });
-        })
-        .catch((error) => {
-          setProfile({
-            ...profile,
-            errorEffectforUsername: true,
-            errorMessageforUsername: error.response.data.message,
-            okforUsername: false,
-            textChangeforUsername: "Update",
+      .put("/user/update-username", {
+        username,
+      })
+      .then(async (response) => {
+        await verifyJWT(response.data.token)
+          .then(() => {
+            setProfile({
+              ...profile,
+              okforUsername: false,
+              showButtonforUsername: true,
+              textChangeforUsername: "Update",
+            });
+          })
+          .catch((error) => {
+            setProfile({
+              ...profile,
+              errorEffectforUsername: true,
+              errorMessageforUsername: error.message,
+              okforUsername: false,
+              textChangeforUsername: "Update",
+            });
           });
+      })
+      .catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforUsername: true,
+          errorMessageforUsername: error.response.data.message,
+          okforUsername: false,
+          textChangeforUsername: "Update",
         });
+      });
   };
 
   /**
@@ -355,31 +364,31 @@ export default function UserProfile() {
       textChangeforPassword: "Updating...",
     });
     await httpClient
-        .put("/user/update-password", {
-          old_password,
-          new_password,
-          confirm_password,
-        })
-        .then((response) => {
-          setProfile({
-            ...profile,
-            old_password: "",
-            new_password: "",
-            confirm_password: "",
-            okforPassword: false,
-            textChangeforPassword: "Update",
-          });
-          toast(response.data.message, { type: "success" });
-        })
-        .catch((error) => {
-          setProfile({
-            ...profile,
-            errorEffectforPassword: true,
-            errorMessageforPassword: error.response.data.message,
-            okforPassword: false,
-            textChangeforPassword: "Update",
-          });
+      .put("/user/update-password", {
+        old_password,
+        new_password,
+        confirm_password,
+      })
+      .then((response) => {
+        setProfile({
+          ...profile,
+          old_password: "",
+          new_password: "",
+          confirm_password: "",
+          okforPassword: false,
+          textChangeforPassword: "Update",
         });
+        toast(response.data.message, { type: "success" });
+      })
+      .catch((error) => {
+        setProfile({
+          ...profile,
+          errorEffectforPassword: true,
+          errorMessageforPassword: error.response.data.message,
+          okforPassword: false,
+          textChangeforPassword: "Update",
+        });
+      });
   };
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -391,63 +400,61 @@ export default function UserProfile() {
           <h1 className="text-sm font-medium text-gray-500">@{username}</h1>
         </div>
         <div className="col-span-2">
-          {
-            new AccountType(role)
-          }
+          {new AccountType(role)}
           {
             new PersonalInformation(
-                email,
-                errorEffectforPersonalInfo,
-                errorMessageforPersonalInfo,
-                first_name,
-                handleChangeForPersonalInfo,
-                handleUpdatePersonalInfo,
-                last_name,
-                okforPersonalInfo,
-                profile,
-                setProfile,
-                showButtonforPersonalInfo,
-                textChangeforPersonalInfo,
+              email,
+              errorEffectforPersonalInfo,
+              errorMessageforPersonalInfo,
+              first_name,
+              handleChangeForPersonalInfo,
+              handleUpdatePersonalInfo,
+              last_name,
+              okforPersonalInfo,
+              profile,
+              setProfile,
+              showButtonforPersonalInfo,
+              textChangeforPersonalInfo,
             )
           }
           {
             new SecurityInformation(
-                errorEffectforSecurityInfo,
-                errorMessageforSecurityInfo,
-                handleChangeForSecurityInfo,
-                handleUpdateSecurityInfo,
-                okforSecurityInfo,
-                profile,
-                recovery_email,
-                secondary_email,
-                setProfile,
-                showButtonforSecurityInfo,
-                textChangeforSecurityInfo,
+              errorEffectforSecurityInfo,
+              errorMessageforSecurityInfo,
+              handleChangeForSecurityInfo,
+              handleUpdateSecurityInfo,
+              okforSecurityInfo,
+              profile,
+              recovery_email,
+              secondary_email,
+              setProfile,
+              showButtonforSecurityInfo,
+              textChangeforSecurityInfo,
             )
           }
           {
             new SignInInformation(
-                confirm_password,
-                errorEffectforPassword,
-                errorEffectforUsername,
-                errorMessageforPassword,
-                errorMessageforUsername,
-                handleChangeForPassword,
-                handleChangeForUsername,
-                handleUpdatePassword,
-                handleUpdateUsername,
-                new_password,
-                okforPassword,
-                okforUsername,
-                old_password,
-                profile,
-                setProfile,
-                showButtonforPassword,
-                showButtonforUsername,
-                template,
-                textChangeforPassword,
-                textChangeforUsername,
-                username,
+              confirm_password,
+              errorEffectforPassword,
+              errorEffectforUsername,
+              errorMessageforPassword,
+              errorMessageforUsername,
+              handleChangeForPassword,
+              handleChangeForUsername,
+              handleUpdatePassword,
+              handleUpdateUsername,
+              new_password,
+              okforPassword,
+              okforUsername,
+              old_password,
+              profile,
+              setProfile,
+              showButtonforPassword,
+              showButtonforUsername,
+              template,
+              textChangeforPassword,
+              textChangeforUsername,
+              username,
             )
           }
         </div>
