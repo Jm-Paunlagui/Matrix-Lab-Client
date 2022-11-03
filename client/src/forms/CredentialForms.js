@@ -8,8 +8,9 @@ import {
   faEnvelope,
   faForward,
   faRepeat,
-  faSignIn, faPenToSquare,
-} from '@fortawesome/free-solid-svg-icons';
+  faSignIn,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -22,7 +23,7 @@ import {
   TEXT_FIELD,
 } from "../assets/styles/input-types-styles";
 import { maskEmail, emailRegex } from "../helpers/Helper";
-import PasswordChecklist from 'react-password-checklist';
+import PasswordChecklist from "react-password-checklist";
 
 /**
  * @description User login form for the application
@@ -676,429 +677,426 @@ export function SendToEmail(
 }
 
 export function PersonalInformation(
-    errorEffectforPersonalInfo,
-    setProfile,
-    profile,
-    handleUpdatePersonalInfo,
-    handleChangeForPersonalInfo,
-    email, first_name, last_name,
-    errorMessageforPersonalInfo,
-    showButtonforPersonalInfo,
-    okforPersonalInfo,
-    textChangeforPersonalInfo,
+  errorEffectforPersonalInfo,
+  setProfile,
+  profile,
+  handleUpdatePersonalInfo,
+  handleChangeForPersonalInfo,
+  email,
+  first_name,
+  last_name,
+  errorMessageforPersonalInfo,
+  showButtonforPersonalInfo,
+  okforPersonalInfo,
+  textChangeforPersonalInfo,
 ) {
   return (
-      <div
-          className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
+    <div
+      className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
             ${
               errorEffectforPersonalInfo ? `animate-wiggle` : "outline-gray-200"
-          }`}
-          onAnimationEnd={() =>
-              setProfile({ ...profile, errorEffectforPersonalInfo: false })
-          }
-      >
-        <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-          <div className="col-span-2 p-8 bg-gray-50">
-            <h1 className="mb-4 text-xl font-bold text-gray-700">
-              Personal Information
-            </h1>
-            <p className="mb-4 text-sm text-gray-500">
-              This information is private and only visible to you and your
-              organization. It will not be shared with anyone else.
-            </p>
-          </div>
-          <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-            <form onSubmit={handleUpdatePersonalInfo} >
-              <div className="flex flex-col space-y-4">
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Email
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforPersonalInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="email"
-                      onChange={handleChangeForPersonalInfo("email")}
-                      placeholder="Email"
-                      type="text"
-                      value={email}
-                  />
-                </div>
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    First Name
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforPersonalInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="first_name"
-                      onChange={handleChangeForPersonalInfo("first_name")}
-                      placeholder="First Name"
-                      type="text"
-                      value={first_name}
-                  />
-                </div>
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Last Name
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforPersonalInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="last_name"
-                      onChange={handleChangeForPersonalInfo("last_name")}
-                      placeholder="Last Name"
-                      type="text"
-                      value={last_name}
-                  />
-                </div>
+            }`}
+      onAnimationEnd={() =>
+        setProfile({ ...profile, errorEffectforPersonalInfo: false })
+      }
+    >
+      <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2 p-8 bg-gray-50">
+          <h1 className="mb-4 text-xl font-bold text-gray-700">
+            Personal Information
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            This information is private and only visible to you and your
+            organization. It will not be shared with anyone else.
+          </p>
+        </div>
+        <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+          <form onSubmit={handleUpdatePersonalInfo}>
+            <div className="flex flex-col space-y-4">
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">Email</h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforPersonalInfo &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="email"
+                  onChange={handleChangeForPersonalInfo("email")}
+                  placeholder="Email"
+                  type="text"
+                  value={email}
+                />
               </div>
-              {/* Error message */}
-              {errorMessageforPersonalInfo ? (
-                  <div className="mt-2 text-sm font-semibold text-red-500">
-                    {errorMessageforPersonalInfo}
-                  </div>
-              ) : null}
-              <div
-                  className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  First Name
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforPersonalInfo &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="first_name"
+                  onChange={handleChangeForPersonalInfo("first_name")}
+                  placeholder="First Name"
+                  type="text"
+                  value={first_name}
+                />
+              </div>
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Last Name
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforPersonalInfo &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="last_name"
+                  onChange={handleChangeForPersonalInfo("last_name")}
+                  placeholder="Last Name"
+                  type="text"
+                  value={last_name}
+                />
+              </div>
+            </div>
+            {/* Error message */}
+            {errorMessageforPersonalInfo ? (
+              <div className="mt-2 text-sm font-semibold text-red-500">
+                {errorMessageforPersonalInfo}
+              </div>
+            ) : null}
+            <div
+              className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
                         ${showButtonforPersonalInfo ? "hidden" : "block"}`}
+            >
+              <button
+                className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                type="submit"
               >
-                <button
-                    className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                    type="submit"
-                >
-                  {okforPersonalInfo ? (
-                      LOADING_ANIMATION()
-                  ) : (
-                      <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                      />
-                  )}
-                  {textChangeforPersonalInfo}
-                </button>
-              </div>
-            </form>
-          </div>
+                {okforPersonalInfo ? (
+                  LOADING_ANIMATION()
+                ) : (
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faPenToSquare}
+                    size={"lg"}
+                  />
+                )}
+                {textChangeforPersonalInfo}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-  )
-}
-
-export function SecurityInformation(
-    errorEffectforSecurityInfo,
-    setProfile,
-    profile,
-    handleUpdateSecurityInfo,
-    handleChangeForSecurityInfo,
-    secondary_email,
-    recovery_email,
-    errorMessageforSecurityInfo,
-    showButtonforSecurityInfo,
-    okforSecurityInfo,
-    textChangeforSecurityInfo,
-){
-  return (
-      <div
-          className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
-          ${
-              errorEffectforSecurityInfo ? `animate-wiggle` : "outline-gray-200"
-          }`}
-          onAnimationEnd={() =>
-              setProfile({ ...profile, errorEffectforSecurityInfo: false })
-          }
-      >
-        <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-          <div className="col-span-2 p-8 bg-gray-50">
-            <h1 className="mb-4 text-xl font-bold text-gray-700">
-              Security and Verification
-            </h1>
-            <p className="mb-4 text-sm text-gray-500">
-              As of now, you can only prove your identity by providing your
-              email address. In the future, you will be able to provide
-              other ways to prove your identity.
-            </p>
-          </div>
-          <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-            <form onSubmit={handleUpdateSecurityInfo}>
-              <div className="flex flex-col space-y-4">
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Secondary Email
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforSecurityInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="secondary_email"
-                      onChange={handleChangeForSecurityInfo(
-                          "secondary_email",
-                      )}
-                      placeholder="Secondary Email"
-                      type="email"
-                      value={secondary_email}
-                  />
-                </div>
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Recovery Email
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforSecurityInfo &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="recovery_email"
-                      onChange={handleChangeForSecurityInfo("recovery_email")}
-                      placeholder="Recovery Email"
-                      type="email"
-                      value={recovery_email}
-                  />
-                </div>
-              </div>
-              {/* Error message */}
-              {errorMessageforSecurityInfo ? (
-                  <div className="mt-2 text-sm font-semibold text-red-500">
-                    {errorMessageforSecurityInfo}
-                  </div>
-              ) : null}
-              <div
-                  className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforSecurityInfo ? "hidden" : "block"}`}
-              >
-                <button
-                    className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                    type="submit"
-                >
-                  {okforSecurityInfo ? (
-                      LOADING_ANIMATION()
-                  ) : (
-                      <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                      />
-                  )}
-                  {textChangeforSecurityInfo}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    </div>
   );
 }
 
-export function SignInInformation (
-    errorEffectforUsername,
-    errorEffectforPassword,
-    setProfile,
-    profile,
-    handleUpdateUsername,
-    handleChangeForUsername,
-    username,
-    errorMessageforUsername,
-    showButtonforUsername,
-    okforUsername,
-    textChangeforUsername,
-    handleUpdatePassword,
-    handleChangeForPassword,
-    old_password,
-    new_password,
-    confirm_password,
-    errorMessageforPassword,
-    showButtonforPassword,
-    okforPassword,
-    textChangeforPassword,
-    template
-){
+export function SecurityInformation(
+  errorEffectforSecurityInfo,
+  setProfile,
+  profile,
+  handleUpdateSecurityInfo,
+  handleChangeForSecurityInfo,
+  secondary_email,
+  recovery_email,
+  errorMessageforSecurityInfo,
+  showButtonforSecurityInfo,
+  okforSecurityInfo,
+  textChangeforSecurityInfo,
+) {
   return (
-      <div
-          className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2
+    <div
+      className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
           ${
-              errorEffectforUsername || errorEffectforPassword
-                  ? `animate-wiggle`
-                  : "outline-gray-200"
+            errorEffectforSecurityInfo ? `animate-wiggle` : "outline-gray-200"
           }`}
-          onAnimationEnd={() =>
-              setProfile({
-                ...profile,
-                errorEffectforUsername: false,
-                errorEffectforPassword: false,
-              })
-          }
-      >
-        <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
-          <div className="col-span-2 p-8 bg-gray-50">
-            <h1 className="mb-4 text-xl font-bold text-gray-700">
-              Matrix Account Sign-In
-            </h1>
-            <p className="mb-4 text-sm text-gray-500">
-              We recommend that you periodically update your password to
-              keep your account secure and prevent unauthorized access to
-              your account.
-            </p>
-          </div>
-          <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-            <form onSubmit={handleUpdateUsername}>
-              <div className="flex flex-col space-y-4">
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Username
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforUsername &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="username"
-                      onChange={handleChangeForUsername("username")}
-                      placeholder="Username"
-                      type="text"
-                      value={username}
-                  />
-                </div>
-              </div>
-              {/* Error message */}
-              {errorMessageforUsername ? (
-                  <div className="mt-2 text-sm font-semibold text-red-500">
-                    {errorMessageforUsername}
-                  </div>
-              ) : null}
-              <div
-                  className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforUsername ? "hidden" : "block"}`}
-              >
-                <button
-                    className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                    type="submit"
-                >
-                  {okforUsername ? (
-                      LOADING_ANIMATION()
-                  ) : (
-                      <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faPenToSquare}
-                          size={"lg"}
-                      />
-                  )}
-                  {textChangeforUsername}
-                </button>
-              </div>
-            </form>
-            <form onSubmit={handleUpdatePassword}>
-              <div className="flex flex-col space-y-4">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Change Password
+      onAnimationEnd={() =>
+        setProfile({ ...profile, errorEffectforSecurityInfo: false })
+      }
+    >
+      <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2 p-8 bg-gray-50">
+          <h1 className="mb-4 text-xl font-bold text-gray-700">
+            Security and Verification
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            As of now, you can only prove your identity by providing your email
+            address. In the future, you will be able to provide other ways to
+            prove your identity.
+          </p>
+        </div>
+        <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+          <form onSubmit={handleUpdateSecurityInfo}>
+            <div className="flex flex-col space-y-4">
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Secondary Email
                 </h1>
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Current Password
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforPassword &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="old_password"
-                      onChange={handleChangeForPassword("old_password")}
-                      placeholder="Current Password"
-                      type="password"
-                      value={old_password}
-                  />
-                </div>
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    New Password
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforPassword &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="new_password"
-                      onChange={handleChangeForPassword("new_password")}
-                      placeholder="New Password"
-                      type="password"
-                      value={new_password}
-                  />
-                </div>
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Confirm New Password
-                  </h1>
-                  <input
-                      className={`${TEXT_FIELD} ${
-                          errorEffectforPassword &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                      }`}
-                      name="confirm_password"
-                      onChange={handleChangeForPassword("confirm_password")}
-                      placeholder="Confirm New Password"
-                      type="password"
-                      value={confirm_password}
-                  />
-                </div>
-              </div>
-              {/* Error message */}
-              {errorMessageforPassword ? (
-                  <div className="mt-2 text-sm font-semibold text-red-500">
-                    {errorMessageforPassword}
-                  </div>
-              ) : null}
-              <div className={`mt-6 space-y-6 ${template ? "hidden" : "block"}`}>
-                <PasswordChecklist
-                    className="text-sm text-gray-500"
-                    iconSize={8}
-                    minLength={8}
-                    onChange={(isValid) => {
-                      setProfile({
-                        ...profile,
-                        showButtonforPassword: !isValid,
-                      });
-                    }}
-                    rules={[
-                      "minLength",
-                      "specialChar",
-                      "number",
-                      "capital",
-                      "match",
-                    ]}
-                    value={new_password}
-                    valueAgain={confirm_password}
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforSecurityInfo &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="secondary_email"
+                  onChange={handleChangeForSecurityInfo("secondary_email")}
+                  placeholder="Secondary Email"
+                  type="email"
+                  value={secondary_email}
                 />
-                <div
-                    className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforPassword ? "hidden" : "block"}`}
-                >
-                  <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      type="submit"
-                  >
-                    {okforPassword ? (
-                        LOADING_ANIMATION()
-                    ) : (
-                        <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faPenToSquare}
-                            size={"lg"}
-                        />
-                    )}
-                    {textChangeforPassword}
-                  </button>
-                </div>
               </div>
-            </form>
-          </div>
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Recovery Email
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforSecurityInfo &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="recovery_email"
+                  onChange={handleChangeForSecurityInfo("recovery_email")}
+                  placeholder="Recovery Email"
+                  type="email"
+                  value={recovery_email}
+                />
+              </div>
+            </div>
+            {/* Error message */}
+            {errorMessageforSecurityInfo ? (
+              <div className="mt-2 text-sm font-semibold text-red-500">
+                {errorMessageforSecurityInfo}
+              </div>
+            ) : null}
+            <div
+              className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
+                          ${showButtonforSecurityInfo ? "hidden" : "block"}`}
+            >
+              <button
+                className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                type="submit"
+              >
+                {okforSecurityInfo ? (
+                  LOADING_ANIMATION()
+                ) : (
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faPenToSquare}
+                    size={"lg"}
+                  />
+                )}
+                {textChangeforSecurityInfo}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-  )
+    </div>
+  );
+}
+
+export function SignInInformation(
+  errorEffectforUsername,
+  errorEffectforPassword,
+  setProfile,
+  profile,
+  handleUpdateUsername,
+  handleChangeForUsername,
+  username,
+  errorMessageforUsername,
+  showButtonforUsername,
+  okforUsername,
+  textChangeforUsername,
+  handleUpdatePassword,
+  handleChangeForPassword,
+  old_password,
+  new_password,
+  confirm_password,
+  errorMessageforPassword,
+  showButtonforPassword,
+  okforPassword,
+  textChangeforPassword,
+  template,
+) {
+  return (
+    <div
+      className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2
+          ${
+            errorEffectforUsername || errorEffectforPassword
+              ? `animate-wiggle`
+              : "outline-gray-200"
+          }`}
+      onAnimationEnd={() =>
+        setProfile({
+          ...profile,
+          errorEffectforUsername: false,
+          errorEffectforPassword: false,
+        })
+      }
+    >
+      <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2 p-8 bg-gray-50">
+          <h1 className="mb-4 text-xl font-bold text-gray-700">
+            Matrix Account Sign-In
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            We recommend that you periodically update your password to keep your
+            account secure and prevent unauthorized access to your account.
+          </p>
+        </div>
+        <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+          <form onSubmit={handleUpdateUsername}>
+            <div className="flex flex-col space-y-4">
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Username
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforUsername &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="username"
+                  onChange={handleChangeForUsername("username")}
+                  placeholder="Username"
+                  type="text"
+                  value={username}
+                />
+              </div>
+            </div>
+            {/* Error message */}
+            {errorMessageforUsername ? (
+              <div className="mt-2 text-sm font-semibold text-red-500">
+                {errorMessageforUsername}
+              </div>
+            ) : null}
+            <div
+              className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
+                          ${showButtonforUsername ? "hidden" : "block"}`}
+            >
+              <button
+                className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                type="submit"
+              >
+                {okforUsername ? (
+                  LOADING_ANIMATION()
+                ) : (
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faPenToSquare}
+                    size={"lg"}
+                  />
+                )}
+                {textChangeforUsername}
+              </button>
+            </div>
+          </form>
+          <form onSubmit={handleUpdatePassword}>
+            <div className="flex flex-col space-y-4">
+              <h1 className="mb-4 text-xl font-bold text-gray-700">
+                Change Password
+              </h1>
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Current Password
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforPassword &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="old_password"
+                  onChange={handleChangeForPassword("old_password")}
+                  placeholder="Current Password"
+                  type="password"
+                  value={old_password}
+                />
+              </div>
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  New Password
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforPassword &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="new_password"
+                  onChange={handleChangeForPassword("new_password")}
+                  placeholder="New Password"
+                  type="password"
+                  value={new_password}
+                />
+              </div>
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Confirm New Password
+                </h1>
+                <input
+                  className={`${TEXT_FIELD} ${
+                    errorEffectforPassword &&
+                    `border-red-500 placeholder-red-500 text-red-500`
+                  }`}
+                  name="confirm_password"
+                  onChange={handleChangeForPassword("confirm_password")}
+                  placeholder="Confirm New Password"
+                  type="password"
+                  value={confirm_password}
+                />
+              </div>
+            </div>
+            {/* Error message */}
+            {errorMessageforPassword ? (
+              <div className="mt-2 text-sm font-semibold text-red-500">
+                {errorMessageforPassword}
+              </div>
+            ) : null}
+            <div className={`mt-6 space-y-6 ${template ? "hidden" : "block"}`}>
+              <PasswordChecklist
+                className="text-sm text-gray-500"
+                iconSize={8}
+                minLength={8}
+                onChange={(isValid) => {
+                  setProfile({
+                    ...profile,
+                    showButtonforPassword: !isValid,
+                  });
+                }}
+                rules={[
+                  "minLength",
+                  "specialChar",
+                  "number",
+                  "capital",
+                  "match",
+                ]}
+                value={new_password}
+                valueAgain={confirm_password}
+              />
+              <div
+                className={`flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2
+                          ${showButtonforPassword ? "hidden" : "block"}`}
+              >
+                <button
+                  className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                  type="submit"
+                >
+                  {okforPassword ? (
+                    LOADING_ANIMATION()
+                  ) : (
+                    <FontAwesomeIcon
+                      className={`${ICON_PLACE_SELF_CENTER}`}
+                      icon={faPenToSquare}
+                      size={"lg"}
+                    />
+                  )}
+                  {textChangeforPassword}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }

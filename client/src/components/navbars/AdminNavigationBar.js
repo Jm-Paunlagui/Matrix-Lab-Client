@@ -1,11 +1,11 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Menu, Transition } from "@headlessui/react";
 import { NavLink, useLocation } from "react-router-dom";
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import httpClient from "../../http/httpClient";
-import { isAuth, signout } from '../../helpers/Auth';
+import { isAuth, signout } from "../../helpers/Auth";
 
 /**
  * @description Handles the admin navigation bar for the application
@@ -111,7 +111,7 @@ export default function AdminNavigationBar() {
                 <Menu.Button className="inline-flex items-center justify-center p-2 text-gray-500 rounded-md hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon  aria-hidden="true" className="block w-6 h-6" />
+                    <XMarkIcon aria-hidden="true" className="block w-6 h-6" />
                   ) : (
                     <Bars3Icon aria-hidden="true" className="block w-6 h-6" />
                   )}
@@ -119,12 +119,13 @@ export default function AdminNavigationBar() {
               </div>
               <div className="flex items-center justify-center flex-1 sm:items-stretch lg:justify-start">
                 <div className="flex items-center flex-shrink-0">
-                  <img alt="Your Company"
+                  <img
+                    alt="Your Company"
                     className="block w-auto h-8 md:hidden"
                     src={logo}
-
                   />
-                  <img alt="Your Company"
+                  <img
+                    alt="Your Company"
                     className="hidden w-auto h-8 md:block"
                     src={logo}
                   />
@@ -161,9 +162,7 @@ export default function AdminNavigationBar() {
                       }`}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <h1 className="text-base font-medium">
-                        {user.username}
-                      </h1>
+                      <h1 className="text-base font-medium">{user.username}</h1>
                     </Menu.Button>
                   </div>
                   <Transition
