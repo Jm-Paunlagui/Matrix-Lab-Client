@@ -1,6 +1,10 @@
 import cookie from "js-cookie";
 
-// Set in Cookie
+/**
+ * @description Sets the cookie for the application
+ * @param key
+ * @param value
+ */
 export const setCookie = (key, value) => {
   if (typeof window !== "undefined") {
     cookie.set(key, value, {
@@ -8,7 +12,11 @@ export const setCookie = (key, value) => {
     });
   }
 };
-// remove from cookie
+
+/**
+ * @description Removes the cookie for the application
+ * @param key
+ */
 export const removeCookie = (key) => {
   if (typeof window !== "undefined") {
     cookie.remove(key, {
@@ -17,8 +25,11 @@ export const removeCookie = (key) => {
   }
 };
 
-// Get from cookie such as stored token
-// Will be useful when we need to make request to server with token
+/**
+ * @description Gets the cookie for the application
+ * @param key
+ * @returns {boolean|*}
+ */
 export const getCookie = (key) => {
   if (typeof window !== "undefined") {
     return cookie.get(key);
@@ -26,28 +37,42 @@ export const getCookie = (key) => {
   return false;
 };
 
-// Set in localstorage
+/**
+ * @description Sets the local storage for the application
+ * @param key
+ * @param value
+ */
 export const setLocalStorage = (key, value) => {
   if (typeof window !== "undefined") {
     localStorage.setItem(key, JSON.stringify(value));
   }
 };
 
-// Remove from localstorage
+/**
+ * @description Removes the item from local storage
+ * @param key
+ */
 export const removeLocalStorage = (key) => {
   if (typeof window !== "undefined") {
     localStorage.removeItem(key);
   }
 };
 
-// Auth enticate user by passing data to cookie and localstorage during signin
+/**
+ * @description Authenticate user by passing data to cookie and localstorage during signin
+ * @param response
+ * @param next
+ */
 export const authenticate = (response, next) => {
   setCookie("token", response.data.token);
   // setLocalStorage('user', result.payload);
   next();
 };
 
-// Access user info from localstorage
+/**
+ * @description Checks if the user is authenticated
+ * @returns {boolean|any}
+ */
 export const isAuth = () => {
   if (typeof window !== "undefined") {
     const cookieChecked = getCookie("token");
@@ -62,12 +87,19 @@ export const isAuth = () => {
   }
 };
 
-// Signout
+/**
+ * @description Signing out the user
+ */
 export const signout = () => {
   removeCookie("token");
   removeLocalStorage("user");
 };
 
+/**
+ * @description Handles updating the user data in the local storage
+ * @param response
+ * @param next
+ */
 export const updateUser = (response, next) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("user", JSON.stringify(response));
