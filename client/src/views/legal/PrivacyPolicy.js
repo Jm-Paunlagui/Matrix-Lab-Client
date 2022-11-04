@@ -1,6 +1,7 @@
-import BackNavigation from "../../components/navbars/BackNavigation";
-import Privacy from "../../assets/img/privacy.svg";
 import React from "react";
+
+import Privacy from "../../assets/img/privacy.svg";
+import BackNavigation from "../../components/navbars/BackNavigation";
 
 /**
  * @description Privacy policy component for the application

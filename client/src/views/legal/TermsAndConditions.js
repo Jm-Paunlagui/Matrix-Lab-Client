@@ -1,6 +1,7 @@
-import BackNavigation from "../../components/navbars/BackNavigation";
 import React from "react";
+
 import Terms from "../../assets/img/terms.svg";
+import BackNavigation from "../../components/navbars/BackNavigation";
 
 /**
  * @description Terms and conditions page for the application

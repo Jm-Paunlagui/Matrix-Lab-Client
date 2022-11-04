@@ -1,6 +1,8 @@
-import AboutUs from "../../assets/img/aboutus.svg";
-import { Icon } from "@iconify/react";
 import React from "react";
+
+import { Icon } from "@iconify/react";
+
+import AboutUs from "../../assets/img/aboutus.svg";
 
 /**
  * @description Json array of the about us page
@@ -391,7 +393,7 @@ export default function PublicAbout() {
           <div className="flex flex-wrap justify-center items-top">
             <div className="grid w-full grid-cols-1 gap-1 mb-24 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
               {AboutUsDetails.map((aboutUs) => (
-                <div className="place-content-center " key={aboutUs.name}>
+                <div className="place-content-center" key={aboutUs.name}>
                   <div
                     className={
                       "flex flex-col w-full h-full min-w-0  break-words bg-white border-0 rounded-md shadow auto-cols-max auto-rows-max place-items-center"

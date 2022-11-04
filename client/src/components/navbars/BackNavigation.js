@@ -1,13 +1,14 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+
 import {
   DEFAULT_BUTTON,
   ICON_PLACE_SELF_CENTER_1,
 } from "../../assets/styles/input-types-styles";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * @description Back Navigation for the application

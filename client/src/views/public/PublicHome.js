@@ -1,11 +1,11 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import Eval from "../../assets/img/eval.svg";
 import {
   PRIMARY_BUTTON,
   SECONDARY_BUTTON,
 } from "../../assets/styles/input-types-styles";
-
-import Eval from "../../assets/img/eval.svg";
-import { Link } from "react-router-dom";
-import React from "react";
 
 /**
  * @description PublicHome page component for the application

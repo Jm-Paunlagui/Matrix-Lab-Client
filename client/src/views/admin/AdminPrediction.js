@@ -1,10 +1,10 @@
+import React from "react";
+
 import {
   DANGER_BUTTON,
   PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-
-import React from "react";
 
 /**
  * @description Handles the admin prediction

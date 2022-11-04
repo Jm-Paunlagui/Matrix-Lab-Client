@@ -1,83 +1,145 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { faSignIn } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SuccessAnimation from "actually-accessible-react-success-animation";
+
+import { toast } from "react-toastify";
+import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
-  SECONDARY_BUTTON,
-  TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
-import React, { useState } from "react";
-import { faSignIn } from "@fortawesome/free-solid-svg-icons";
-
 import BackNavigation from "../../components/navbars/BackNavigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import SuccessAnimation from "actually-accessible-react-success-animation";
+import {
+  AssociatedEmails,
+  SendToEmail,
+  Username,
+} from "../../forms/CredentialForms";
+import { maskEmail, MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
-import logo from "../../assets/img/android-chrome-192x192.png";
+
+import { jwtVerify, importSPKI } from "jose";
 
 /**
  * @description Handles the forgot password request page
  */
+
 export default function AuthForgotPasswordRequest() {
   /**
    * @description State variables for the forgot password form.
    */
   const [resetForm, setResetForm] = useState({
-    username: "",
+    confirm_email: "",
     email: "",
-    emailConfirmation: "",
-    textChange: "Confirm Email",
+    id1: "",
+    id2: "",
+    id3: "",
+    mask: "",
+    textChange: "Next",
+    username: "",
   });
-
   /**
    * @description Handles the Error/Success animation and messages for the forgot password form.
    */
+
   const [oki, setOki] = useState(false);
   const [ok, setOk] = useState(false);
   const [errorEffect, setErrorEffect] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   /**
    * @description Handles the change of the input fields
    * @param event
    */
+
   const handleFormChange = (event) => {
     const { name, value } = event.target;
-    setResetForm((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setResetForm({ ...resetForm, [name]: value });
+    // reset the error message when the user starts typing and error effect set to false.
+    setErrorEffect(false);
+    setErrorMessage("");
   };
-
   /**
    * @description For step counter in the forgot password form.
    */
-  const [count, setCount] = React.useState(1);
 
+  const [count, setCount] = useState(1);
   /**
    * @description Destructs the state variables
    */
-  const { username, email, emailConfirmation, textChange } = resetForm;
+
+  const { confirm_email, email, id1, id2, id3, textChange, username } =
+    resetForm; // Hide email address with mask
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
    * @param event
    * @returns {Promise<void>}
    */
+
   const handleUsernameSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const resp = await httpClient.post("/check-email", { username });
-      if (resp.statusText === "OK") {
-        setResetForm({
-          username,
-          email: "",
-          emailConfirmation: resp.data.email,
-          textChange: "Confirm Email",
-        });
+    setOki(true);
+    setResetForm({ ...resetForm, textChange: "Verifying" });
+
+    await httpClient
+      .post("/user/check-email", {
+        username,
+      })
+      .then(async (response) => {
+        jwtVerify(
+          response.data.emails,
+          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+        )
+          .then((result) => {
+            setResetForm({
+              ...resetForm,
+              id1: result.payload.sub,
+              id2: result.payload.secondary_email,
+              id3: result.payload.recovery_email,
+              textChange: "Continue",
+            });
+          })
+          .catch((error) => {
+            setErrorMessage(error.message);
+            setErrorEffect(true);
+            setOki(false);
+            setResetForm({ ...resetForm, textChange: "Next" });
+          });
         setCount(count + 1);
+        setOki(false);
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setOki(false);
+        setErrorMessage(error.response.data.message);
+        setResetForm({ ...resetForm, textChange: "Next" });
+      });
+  };
+  /**
+   * @description To make a user choose, which email address to use. If the user has multiple email addresses.
+   * @param event
+   * @returns {Promise<void>}
+   */
+
+  const handleVerifyEmailSubmit = (event) => {
+    setOki(true);
+    event.preventDefault();
+
+    try {
+      if (confirm_email !== "") {
+        setResetForm({ ...resetForm, textChange: "Verify Email" });
+        setCount(count + 1);
+        setOki(false);
+      } else {
+        setErrorEffect(true);
+        setOki(false);
+        setErrorMessage("Choose an email");
       }
     } catch (error) {
       setErrorEffect(true);
+      setOki(false);
       setErrorMessage(error.response.data.message);
     }
   };
@@ -90,26 +152,23 @@ export default function AuthForgotPasswordRequest() {
   const handleEmailSubmit = async (event) => {
     event.preventDefault();
     setOki(true);
-    setResetForm({
-      ...resetForm,
-      textChange: "Sending",
-    });
-    try {
-      const resp = await httpClient.post("/forgot-password", {
+    setResetForm({ ...resetForm, textChange: "Sending" });
+    await httpClient
+      .post("/user/forgot-password", {
         email,
-      });
-      if (resp.statusText === "OK") {
+        confirm_email,
+      })
+      .then((response) => {
+        toast(`${response.data.message}`, { type: "info" });
         setOk(true);
-      }
-    } catch (error) {
-      setErrorEffect(true);
-      setErrorMessage(error.response.data.message);
-      setOki(false);
-      setResetForm({
-        ...resetForm,
-        textChange: "Confirm Email",
+        setResetForm({ ...resetForm, textChange: "Success" });
+      })
+      .catch((error) => {
+        setErrorEffect(true);
+        setErrorMessage(error.response.data.message);
+        setOki(false);
+        setResetForm({ ...resetForm, textChange: "Verify Email" });
       });
-    }
   };
 
   return (
@@ -124,7 +183,7 @@ export default function AuthForgotPasswordRequest() {
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
               <div className="py-12 bg-white rounded-lg shadow-lg">
-                <SuccessAnimation text="Success!" color="#5cb85c" />
+                <SuccessAnimation color="#5cb85c" text="Success!" />
                 <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
                     We&#39;ve sent you an email with a link to reset your
@@ -134,13 +193,14 @@ export default function AuthForgotPasswordRequest() {
                     If you don&#39;t see it, check your spam folder.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button type={"button"} className={`${PRIMARY_BUTTON}`}>
+                    <button className={`${PRIMARY_BUTTON}`} type={"button"}>
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Done?
                           <FontAwesomeIcon
-                            icon={faSignIn}
                             className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
+                            icon={faSignIn}
+                            size={"lg"}
                           />{" "}
                           Sign in
                         </h1>
@@ -152,9 +212,9 @@ export default function AuthForgotPasswordRequest() {
             ) : (
               <div className={"px-6 lg:px-28"}>
                 <div className="flex items-center justify-center py-2 text-gray-800">
-                  <img src={logo} alt="logo" className="w-12 h-12 -mt-12" />
+                  <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
                 </div>
-                <h1> Step {count} of 2</h1>
+                <h1> Step {count} of 3</h1>
                 <div className="flex-auto mb-24 space-y-6 -mt-14">
                   <div className="mb-3 text-start">
                     <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
@@ -166,102 +226,56 @@ export default function AuthForgotPasswordRequest() {
                       <p className="text-gray-500">
                         Enter your username below and proceed to the next step.
                       </p>
+                    ) : count === 2 ? (
+                      <p className="text-gray-500">
+                        Choose an email address to receive the password reset
+                        link.
+                      </p>
                     ) : (
                       <p className="text-gray-500">
                         Please confirm your email address below. with the email
-                        address of <b>{emailConfirmation}</b>
+                        address of <b>{maskEmail(confirm_email)}</b>
                       </p>
                     )}
                   </div>
-                  {count === 1 ? (
-                    <form
-                      className="relative mx-auto max-w-screen"
-                      onSubmit={handleUsernameSubmit}
-                    >
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffect &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        type="username"
-                        placeholder="username"
-                        value={username}
-                        name="username"
-                        onChange={handleFormChange}
-                        onAnimationEnd={() => setErrorEffect(false)}
-                        onFocus={() => setErrorMessage("")}
-                      />
-                      {/* Error message */}
-                      {errorMessage ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                          {errorMessage}
-                        </div>
-                      ) : null}
-                      <button
-                        className={`px-5 py-1 pl-4 w-full mt-6 ${PRIMARY_BUTTON} ${
-                          count === 2 ? "hidden" : ""
-                        }`}
-                        type="submit"
-                      >
-                        Next
-                      </button>
-                    </form>
-                  ) : (
-                    <form
-                      className="relative mx-auto max-w-screen"
-                      onSubmit={handleEmailSubmit}
-                    >
-                      <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffect &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        name="email"
-                        onChange={handleFormChange}
-                        onAnimationEnd={() => setErrorEffect(false)}
-                        onFocus={() => setErrorMessage("") && setOki(false)}
-                      />
-                      {/* Error message */}
-                      {errorMessage ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                          {errorMessage}
-                        </div>
-                      ) : null}
-                      <div className="flex flex-col justify-between mt-6 space-y-6">
-                        <button
-                          className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
-                            count === 1 ? "hidden" : ""
-                          }`}
-                          type="button"
-                          onClick={() => setCount(count - 1)}
-                          disabled={count === 1}
-                        >
-                          Previous
-                        </button>
-                        <button
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                          type="submit"
-                        >
-                          {oki ? (
-                            <svg className="spinner mr-1" viewBox="0 0 50 50">
-                              <circle
-                                className="path"
-                                cx="25"
-                                cy="25"
-                                r="20"
-                                fill="transparent"
-                                strokeWidth="5"
-                              />
-                            </svg>
-                          ) : null}
-                          {textChange}
-                        </button>
-                      </div>
-                    </form>
-                  )}
+                  {count === 1
+                    ? Username(
+                        count,
+                        errorEffect,
+                        errorMessage,
+                        handleFormChange,
+                        handleUsernameSubmit,
+                        oki,
+                        textChange,
+                        username,
+                      )
+                    : count === 2
+                    ? AssociatedEmails(
+                        confirm_email,
+                        errorEffect,
+                        errorMessage,
+                        handleFormChange,
+                        handleVerifyEmailSubmit,
+                        id1,
+                        id2,
+                        id3,
+                        oki,
+                        textChange,
+                      )
+                    : SendToEmail(
+                        count,
+                        email,
+                        errorEffect,
+                        errorMessage,
+                        handleEmailSubmit,
+                        handleFormChange,
+                        oki,
+                        resetForm,
+                        setCount,
+                        setErrorMessage,
+                        setResetForm,
+                        textChange,
+                      )}
                 </div>
               </div>
             )}
