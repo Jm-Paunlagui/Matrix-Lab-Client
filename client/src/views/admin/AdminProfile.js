@@ -417,7 +417,7 @@ export default function AdminProfile() {
               profile,
               setProfile,
               showButtonforPersonalInfo,
-              textChangeforPersonalInfo,
+              textChangeforPersonalInfo
             )
           }
           {
@@ -432,7 +432,7 @@ export default function AdminProfile() {
               secondary_email,
               setProfile,
               showButtonforSecurityInfo,
-              textChangeforSecurityInfo,
+              textChangeforSecurityInfo
             )
           }
           {
@@ -457,7 +457,7 @@ export default function AdminProfile() {
               template,
               textChangeforPassword,
               textChangeforUsername,
-              username,
+              username
             )
           }
         </div>

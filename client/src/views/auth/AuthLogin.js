@@ -134,7 +134,7 @@ export default function AuthLogin() {
       .then(async (response) => {
         jwtVerify(
           response.data.emails,
-          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256")
         )
           .then((result) => {
             setAuthForm({
@@ -222,7 +222,7 @@ export default function AuthLogin() {
       .then(async (response) => {
         jwtVerify(
           response.data.token,
-          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256")
         )
           .then((result) => {
             setLocalStorage("user", result.payload);
@@ -303,7 +303,7 @@ export default function AuthLogin() {
                       oki,
                       password,
                       textChange,
-                      username,
+                      username
                     )
                   : count === 2
                   ? new TFAbyEmail(
@@ -316,7 +316,7 @@ export default function AuthLogin() {
                       id2,
                       id3,
                       oki,
-                      textChange,
+                      textChange
                     )
                   : new VerifyTFA(
                       authForm,
@@ -334,7 +334,7 @@ export default function AuthLogin() {
                       setCount,
                       setErrorMessage,
                       textChange,
-                      textChange2,
+                      textChange2
                     )}
               </div>
             </div>

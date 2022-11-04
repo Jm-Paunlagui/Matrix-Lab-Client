@@ -90,7 +90,7 @@ export default function AuthForgotPasswordRequest() {
       .then(async (response) => {
         jwtVerify(
           response.data.emails,
-          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256")
         )
           .then((result) => {
             setResetForm({
@@ -247,7 +247,7 @@ export default function AuthForgotPasswordRequest() {
                         handleUsernameSubmit,
                         oki,
                         textChange,
-                        username,
+                        username
                       )
                     : count === 2
                     ? AssociatedEmails(
@@ -260,7 +260,7 @@ export default function AuthForgotPasswordRequest() {
                         id2,
                         id3,
                         oki,
-                        textChange,
+                        textChange
                       )
                     : SendToEmail(
                         count,
@@ -274,7 +274,7 @@ export default function AuthForgotPasswordRequest() {
                         setCount,
                         setErrorMessage,
                         setResetForm,
-                        textChange,
+                        textChange
                       )}
                 </div>
               </div>
