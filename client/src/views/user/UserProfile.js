@@ -414,7 +414,7 @@ export default function UserProfile() {
               profile,
               setProfile,
               showButtonforPersonalInfo,
-              textChangeforPersonalInfo
+              textChangeforPersonalInfo,
             )
           }
           {
@@ -429,7 +429,7 @@ export default function UserProfile() {
               secondary_email,
               setProfile,
               showButtonforSecurityInfo,
-              textChangeforSecurityInfo
+              textChangeforSecurityInfo,
             )
           }
           {
@@ -454,7 +454,7 @@ export default function UserProfile() {
               template,
               textChangeforPassword,
               textChangeforUsername,
-              username
+              username,
             )
           }
         </div>
