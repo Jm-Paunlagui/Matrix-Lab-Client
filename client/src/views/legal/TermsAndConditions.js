@@ -1,6 +1,7 @@
-import BackNavigation from "../../components/navbars/BackNavigation";
 import React from "react";
+
 import Terms from "../../assets/img/terms.svg";
+import BackNavigation from "../../components/navbars/BackNavigation";
 
 /**
  * @description Terms and conditions page for the application
@@ -9,9 +10,9 @@ export default function TermsAndConditions() {
   return (
     <>
       <BackNavigation
-        isSmall={false}
-        hasText
         backTo={"/"}
+        hasText
+        isSmall={false}
         pageTitle={"Terms and Conditions"}
       />
       <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-6 py-8 mx-auto mt-16 lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12 font-Montserrat">
@@ -30,7 +31,7 @@ export default function TermsAndConditions() {
           </p>
         </div>
         <div className="mt-4 md:flex md:mt-4 lg:col-span-5 lg:flex">
-          <img src={Terms} alt="mockup" />
+          <img alt="mockup" src={Terms} />
         </div>
       </div>
       <div className="px-4 mx-auto mb-20 max-w-7xl sm:px-6 lg:px-8 font-Montserrat">

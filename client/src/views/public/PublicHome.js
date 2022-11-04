@@ -1,11 +1,11 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import Eval from "../../assets/img/eval.svg";
 import {
   PRIMARY_BUTTON,
   SECONDARY_BUTTON,
 } from "../../assets/styles/input-types-styles";
-
-import Eval from "../../assets/img/eval.svg";
-import { Link } from "react-router-dom";
-import React from "react";
 
 /**
  * @description PublicHome page component for the application
@@ -26,12 +26,12 @@ export default function PublicHome() {
           analysis to determine the sentiment of a evaluation.
         </p>
         <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
-          <button type={"button"} className={` ${PRIMARY_BUTTON}`}>
+          <button className={` ${PRIMARY_BUTTON}`} type={"button"}>
             <Link to={"/leaderboard"}>
               <h1 className="px-5 py-3">Leaderboard</h1>
             </Link>
           </button>
-          <button type={"button"} className={` ${SECONDARY_BUTTON}`}>
+          <button className={` ${SECONDARY_BUTTON}`} type={"button"}>
             <Link to={"/ranking"}>
               <h1 className="px-5 py-3">Ranking</h1>
             </Link>
@@ -39,7 +39,7 @@ export default function PublicHome() {
         </div>
       </div>
       <div className="mt-4 md:flex md:mt-4 lg:col-span-6 lg:flex">
-        <img src={Eval} alt="mockup" />
+        <img alt="mockup" src={Eval} />
       </div>
     </div>
   );
