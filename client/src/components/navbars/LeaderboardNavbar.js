@@ -1,6 +1,5 @@
-import { NavLink, useLocation } from "react-router-dom";
-
 import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function LeaderboardNavbar() {
   /**
@@ -65,8 +64,8 @@ export default function LeaderboardNavbar() {
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <nav
-            className="inline-flex -space-x-px rounded-md shadow isolate"
             aria-label="Pagination"
+            className="inline-flex -space-x-px rounded-md shadow isolate"
           >
             {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
             {navigation.map((item) => (

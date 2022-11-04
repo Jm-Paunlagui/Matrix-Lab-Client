@@ -1,13 +1,14 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
-import { Menu, Transition } from "@headlessui/react";
-import { NavLink, useLocation } from "react-router-dom";
-
+import React from "react";
 import { AiFillHome } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
-import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
 import logo from "../../assets/img/android-chrome-192x192.png";
+import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
 
 /**
  * @description NavigationBar component with useful links
@@ -75,7 +76,7 @@ export default function NavigationBar() {
           <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
             <NavLink to="/">
               <div className="flex items-center px-3 py-2 text-gray-900 transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-                <img src={logo} alt="logo" className="w-10 h-10" />
+                <img alt="logo" className="w-10 h-10" src={logo} />
                 <h1
                   className={`ml-2 text-xl font-bold tracking-widest ${DELAY_1} md:text-3xl lg:flex`}
                 >
@@ -99,17 +100,17 @@ export default function NavigationBar() {
             }`}
           >
             <Transition
-              show={open}
               enter="transition ease-out duration-100"
               enterFrom="transform opacity-0 scale-95"
               enterTo="transform opacity-100 scale-100"
               leave="transition ease-in duration-75"
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
+              show={open}
             >
               <ul className="flex flex-col ml-auto space-y-1">
                 {NavigationBarlinks.map((link) => (
-                  <NavLink to={link.link} key={link.name}>
+                  <NavLink key={link.name} to={link.link}>
                     <li
                       className={`${
                         link.current
@@ -128,7 +129,7 @@ export default function NavigationBar() {
             </Transition>
             <ul className="flex-col justify-start hidden list-none lg:flex lg:flex-row lg:ml-auto">
               {NavigationBarlinks.map((link) => (
-                <NavLink to={link.link} key={link.name}>
+                <NavLink key={link.name} to={link.link}>
                   <li
                     className={`${
                       link.current

@@ -1,13 +1,14 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+
 import {
   DEFAULT_BUTTON,
   ICON_PLACE_SELF_CENTER_1,
 } from "../../assets/styles/input-types-styles";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * @description Back Navigation for the application
@@ -32,12 +33,12 @@ export default function BackNavigation({
     >
       <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
         <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-          <button type={"button"} className={`text-left ${DEFAULT_BUTTON}`}>
+          <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
             <Link to={backTo}>
               <h1 className={`${isSmall ? "px-5 py-3" : "px-3 py-3"}`}>
                 <FontAwesomeIcon
-                  icon={faArrowLeft}
                   className={`${ICON_PLACE_SELF_CENTER_1}`}
+                  icon={faArrowLeft}
                 />
               </h1>
             </Link>
