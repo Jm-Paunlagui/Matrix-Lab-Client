@@ -35,4 +35,8 @@ export const emailRegex = new RegExp(
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
 );
 
+/**
+ * @description Public RSA key to decrypt the encrypted data from the server.
+ * @type {string}
+ */
 export const MATRIX_RSA_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----\n${process.env.REACT_APP_MATRIX_RSA_PUBLIC_KEY}\n-----END PUBLIC KEY-----`;
