@@ -79,7 +79,7 @@ export default function UserNavigationBar() {
     },
     {
       name: "Sign out",
-      href: "user/logout",
+      href: "logout",
       current: isActive("logout"),
     },
   ];
