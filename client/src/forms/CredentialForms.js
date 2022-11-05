@@ -906,7 +906,7 @@ export function SecurityInformation(
                   onChange={handleChangeForSecurityInfo("secondary_email")}
                   placeholder="Secondary Email"
                   type="email"
-                  value={secondary_email || ""}
+                  value={secondary_email === null ? "" : secondary_email}
                 />
               </div>
               <div className="flex flex-col w-full space-y-2">
@@ -922,7 +922,7 @@ export function SecurityInformation(
                   onChange={handleChangeForSecurityInfo("recovery_email")}
                   placeholder="Recovery Email"
                   type="email"
-                  value={recovery_email || ""}
+                  value={recovery_email === null ? "" : recovery_email}
                 />
               </div>
             </div>
