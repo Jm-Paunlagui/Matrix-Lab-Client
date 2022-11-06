@@ -257,11 +257,7 @@ export default function AdminPrediction() {
                                       }`
                                     }
                                     key={column.index_number}
-                                    value={
-                                      column.index_number +
-                                      " - " +
-                                      column.column_name
-                                    }
+                                    value={`${column.index_number} - ${column.column_name}`}
                                   >
                                     {({ selected }) => (
                                       <>
@@ -272,8 +268,7 @@ export default function AdminPrediction() {
                                               : "font-normal"
                                           }`}
                                         >
-                                          {column.index_number} -{" "}
-                                          {column.column_name}
+                                          {`${column.index_number} - ${column.column_name}`}
                                         </span>
                                         {selected ? (
                                           <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
@@ -332,11 +327,7 @@ export default function AdminPrediction() {
                                       }`
                                     }
                                     key={column.index_number}
-                                    value={
-                                      column.index_number +
-                                      " - " +
-                                      column.column_name
-                                    }
+                                    value={`${column.index_number} - ${column.column_name}`}
                                   >
                                     {({ selected }) => (
                                       <>
@@ -347,8 +338,7 @@ export default function AdminPrediction() {
                                               : "font-normal"
                                           }`}
                                         >
-                                          {column.index_number} -{" "}
-                                          {column.column_name}
+                                          {`${column.index_number} - ${column.column_name}`}
                                         </span>
                                         {selected ? (
                                           <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
@@ -407,11 +397,7 @@ export default function AdminPrediction() {
                                       }`
                                     }
                                     key={column.index_number}
-                                    value={
-                                      column.index_number +
-                                      " - " +
-                                      column.column_name
-                                    }
+                                    value={`${column.index_number} - ${column.column_name}`}
                                   >
                                     {({ selected }) => (
                                       <>
@@ -422,8 +408,7 @@ export default function AdminPrediction() {
                                               : "font-normal"
                                           }`}
                                         >
-                                          {column.index_number} -{" "}
-                                          {column.column_name}
+                                          {`${column.index_number} - ${column.column_name}`}
                                         </span>
                                         {selected ? (
                                           <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
@@ -482,11 +467,7 @@ export default function AdminPrediction() {
                                       }`
                                     }
                                     key={column.index_number}
-                                    value={
-                                      column.index_number +
-                                      " - " +
-                                      column.column_name
-                                    }
+                                    value={`${column.index_number} - ${column.column_name}`}
                                   >
                                     {({ selected }) => (
                                       <>
@@ -497,8 +478,7 @@ export default function AdminPrediction() {
                                               : "font-normal"
                                           }`}
                                         >
-                                          {column.index_number} -{" "}
-                                          {column.column_name}
+                                          {`${column.index_number} - ${column.column_name}`}
                                         </span>
                                         {selected ? (
                                           <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
