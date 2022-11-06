@@ -40,3 +40,21 @@ export const emailRegex = new RegExp(
  * @type {string}
  */
 export const MATRIX_RSA_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----\n${process.env.REACT_APP_MATRIX_RSA_PUBLIC_KEY}\n-----END PUBLIC KEY-----`;
+
+/**
+ * @description Gets only the number from the string.
+ * @param string
+ * @returns {*}
+ */
+export const getNumberFromString = (string) => {
+  return string.split(" - ")[0];
+}
+
+/**
+ * @description Gets only the name from the string.
+ * @param string
+ * @returns {*}
+ */
+export const getNameFromString = (string) => {
+    return string.split(" - ")[1];
+}
