@@ -1,15 +1,66 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {
-  DANGER_BUTTON,
+  DANGER_BUTTON, LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/input-types-styles";
+import httpClient from "../../http/httpClient";
+import {toast} from "react-toastify";
 
 /**
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
+
+  const [csv_file, setCSVFile] = useState(null);
+  const [handlers, setHandlers] = useState({
+    ok: false,
+    errorEffect: false,
+    errorMessage: "",
+    showButton: true,
+    textChange: "Save",
+  });
+
+  const { ok, errorEffect, errorMessage, showButton, textChange } = handlers;
+
+  const handleChange = (event) => {
+    setCSVFile(event.target.files[0]);
+    console.log(event.target.files[0]);
+  }
+
+  const handleSubmitCSV = async (event) => {
+    event.preventDefault();
+    setHandlers({
+      ...handlers,
+      ok: true,
+      textChange: "Saving...",
+    });
+    const formData = new FormData();
+    formData.append("csv_file", csv_file);
+    await httpClient.post("/data/upload_csv", formData).then(
+        (response) => {
+            setHandlers({
+                ...handlers,
+                ok: false,
+                showButton: false,
+                textChange: "Saved",
+            });
+            toast.success(response.data.message);
+        }
+    ).catch((error) => {
+        setHandlers({
+            ...handlers,
+            ok: false,
+            errorEffect: true,
+            errorMessage: error.response.data.message,
+            textChange: "Save",
+
+        })
+    })
+
+  }
+
   return (
     <div className="px-6 mx-auto max-w-7xl">
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
@@ -20,7 +71,14 @@ export default function AdminPrediction() {
           <h1 className="text-sm font-medium text-gray-500">@johnpaunlagui</h1>
         </div>
         <div className="col-span-2">
-          <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
+          <div className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2 
+            ${
+              errorEffect ? `animate-wiggle` : "outline-gray-200"
+          }`}
+               onAnimationEnd={() =>
+                     setHandlers({ ...handlers, errorEffect: false })
+               }
+          >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
@@ -34,7 +92,7 @@ export default function AdminPrediction() {
                 </p>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                <form>
+                <form encType={"multipart/form-data"} onSubmit={handleSubmitCSV}>
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
                       <h1 className="mb-4 text-xl font-bold text-gray-700">
@@ -43,7 +101,7 @@ export default function AdminPrediction() {
                       <h1 className="text-base font-medium text-gray-500">
                         CSV file
                       </h1>
-                      <input className={TEXT_FIELD} type="file" />
+                      <input className={TEXT_FIELD} name="csv_file" onChange={handleChange} type="file"/>
                       <p
                         className="mt-1 text-sm text-gray-500 dark:text-gray-300"
                         id="file_input_help"
@@ -52,19 +110,24 @@ export default function AdminPrediction() {
                       </p>
                     </div>
                   </div>
+                  {/* Error message */}
+                  {errorMessage ? (
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
+                  ) : null}
                   <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                    <button
-                      className={`px-8 py-1 ${DANGER_BUTTON}`}
-                      type="button"
-                    >
-                      Cancel
-                    </button>
                     <div className="p-1" />
                     <button
-                      className={`px-8 py-1 ${PRIMARY_BUTTON}`}
-                      type="button"
+                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                      type="submit"
                     >
-                      Analyze and Save
+                      {ok ? (
+                          LOADING_ANIMATION()
+                        ) :
+                            null
+                        }
+                      {textChange}
                     </button>
                   </div>
                 </form>
@@ -75,11 +138,11 @@ export default function AdminPrediction() {
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  from Database
+                  Reading the CSV file
                 </h1>
                 <p className="mb-4 text-sm">
-                  All of the entries in your database will be analyzed and the
-                  results will be displayed here. This will take a while.
+                  All of the entries in the CSV file will be read and the system will predict the sentiment of each entry.
+                  The result will be saved in the database.
                 </p>
               </div>
               <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
