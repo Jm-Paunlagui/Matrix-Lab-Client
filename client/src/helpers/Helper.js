@@ -48,7 +48,7 @@ export const MATRIX_RSA_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----\n${process.env.
  */
 export const getNumberFromString = (string) => {
   return string.split(" - ")[0];
-}
+};
 
 /**
  * @description Gets only the name from the string.
@@ -56,5 +56,5 @@ export const getNumberFromString = (string) => {
  * @returns {*}
  */
 export const getNameFromString = (string) => {
-    return string.split(" - ")[1];
-}
+  return string.split(" - ")[1];
+};
