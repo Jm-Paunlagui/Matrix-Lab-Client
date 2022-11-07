@@ -66,37 +66,38 @@ export default function AdminPrediction() {
 
   const { show_columns, csv_file_name, csv_columns_to_pick } = csv_columns;
 
-  const [selectedColumn, setSelectedColumn] = useState({
-    selected_column_for_sentence: "",
-    selected_column_for_evaluatee: "",
-    selected_column_for_department: "",
-    selected_column_for_course_code: "",
-  });
+  const [selectedColumn, setSelectedColumn] =
+    useState({
+        selected_column_for_sentence: "",
+        selected_column_for_evaluatee: "",
+        selected_column_for_department: "",
+        selected_column_for_course_code: ""
+    });
 
   const {
     selected_column_for_sentence,
     selected_column_for_evaluatee,
     selected_column_for_department,
     selected_column_for_course_code,
-  } = selectedColumn;
+    } = selectedColumn;
 
   // onChange for the select column for sentence listbox headless ui
-  const handleSelect = (name) => (value) => {
-    setSelectedColumn({
-      ...selectedColumn,
-      [name]: value,
-    });
-  };
+    const handleSelect = (name) => (value) => {
+        setSelectedColumn({
+            ...selectedColumn,
+            [name]: value,
+        })
+    }
 
   const [extras, setExtras] = useState({
     csv_question: "",
     school_year: "",
   });
-  const { csv_question, school_year } = extras;
+    const { csv_question, school_year } = extras;
 
   const handleExtras = (name) => (event) => {
-    setExtras({ ...extras, [name]: event.target.value });
-  };
+    setExtras({ ...extras, [name]: event.target.value })
+  }
 
   const handleSubmitCSVToView = async (event) => {
     event.preventDefault();
@@ -108,7 +109,7 @@ export default function AdminPrediction() {
     const formData = new FormData();
     formData.append("csv_file_to_view", csv_file_to_view);
     await httpClient
-      .post("/data/view_columns", formData)
+      .post("/data/view-columns", formData)
       .then(async (response) => {
         setHandlers({
           ...handlers,
@@ -147,35 +148,24 @@ export default function AdminPrediction() {
       okToAnS: true,
       textChangeToAnS: "Analyzing and Saving...",
     });
-    const formData = new FormData();
-    formData.append("file_name", csv_file_name);
-    formData.append("csv_question", csv_question);
-    formData.append("school_year", school_year);
-    formData.append(
-      "selected_column_for_sentence",
-      selected_column_for_sentence,
-    );
-    formData.append(
-      "selected_column_for_evaluatee",
-      selected_column_for_evaluatee,
-    );
-    formData.append(
-      "selected_column_for_department",
-      selected_column_for_department,
-    );
-    formData.append(
-      "selected_column_for_course_code",
-      selected_column_for_course_code,
-    );
-    await httpClient
-      .post("/data/analyze_and_save", formData)
-      .then(async (response) => {
-        setHandlers({
-          ...handlers,
-          okToAnS: false,
-          showButtonToAnS: false,
-          textChangeToAnS: "Analyzed and Saved",
-        });
+    // const formData = new FormData();
+    // formData.append("file_name", csv_file_name);
+    // formData.append("csv_question", csv_question);
+    // formData.append("school_year", school_year);
+    // formData.append("selected_column_for_sentence", getNumberFromString(selected_column_for_sentence));
+    // formData.append("selected_column_for_evaluatee", getNumberFromString(selected_column_for_evaluatee));
+    // formData.append("selected_column_for_department", getNumberFromString(selected_column_for_department));
+    // formData.append("selected_column_for_course_code", getNumberFromString(selected_column_for_course_code));
+    httpClient.post("/data/analyze-save-csv", {
+        file_name: csv_file_name,
+        csv_question: csv_question,
+        school_year: school_year,
+        selected_column_for_sentence: getNumberFromString(selected_column_for_sentence),
+        selected_column_for_evaluatee: getNumberFromString(selected_column_for_evaluatee),
+        selected_column_for_department: getNumberFromString(selected_column_for_department),
+        selected_column_for_course_code: getNumberFromString(selected_column_for_course_code),
+    })
+      .then((response) => {
         toast.success(response.data.message);
       })
       .catch((error) => {
@@ -187,7 +177,7 @@ export default function AdminPrediction() {
           textChangeToAnS: "Analyze and Save",
         }) || toast.error(error.message);
       });
-  };
+  }
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -293,18 +283,13 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Sentence
                         </h1>
-                        <Listbox
-                          name={"sentence"}
-                          onChange={handleSelect(
-                            "selected_column_for_sentence",
-                          )}
+                        <Listbox name={"sentence"}
+                          onChange={handleSelect("selected_column_for_sentence")}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_sentence
-                                  ? selected_column_for_sentence
-                                  : "Select a column"}
+                                {selected_column_for_sentence ? selected_column_for_sentence : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -367,18 +352,13 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Evaluatee
                         </h1>
-                        <Listbox
-                          name="selected_column_for_evaluatee"
-                          onChange={handleSelect(
-                            "selected_column_for_evaluatee",
-                          )}
+                        <Listbox name="selected_column_for_evaluatee"
+                          onChange={handleSelect("selected_column_for_evaluatee")}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_evaluatee
-                                  ? selected_column_for_evaluatee
-                                  : "Select a column"}
+                                {selected_column_for_evaluatee ? selected_column_for_evaluatee : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -441,18 +421,13 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Department
                         </h1>
-                        <Listbox
-                          name="selected_column_for_department"
-                          onChange={handleSelect(
-                            "selected_column_for_department",
-                          )}
+                        <Listbox name="selected_column_for_department"
+                          onChange={handleSelect("selected_column_for_department")}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_department
-                                  ? selected_column_for_department
-                                  : "Select a column"}
+                                {selected_column_for_department ? selected_column_for_department : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -515,18 +490,13 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Course Code
                         </h1>
-                        <Listbox
-                          name="selected_column_for_course_code"
-                          onChange={handleSelect(
-                            "selected_column_for_course_code",
-                          )}
+                        <Listbox name="selected_column_for_course_code"
+                          onChange={handleSelect("selected_column_for_course_code")}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_course_code
-                                  ? selected_column_for_course_code
-                                  : "Select a column"}
+                                {selected_column_for_course_code ? selected_column_for_course_code : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -590,43 +560,43 @@ export default function AdminPrediction() {
                           School Year
                         </h1>
                         <input
-                          className={`truncate ${TEXT_FIELD}`}
-                          name="school_year"
-                          onChange={handleExtras("school_year")}
-                          placeholder="School Year"
-                          type="text"
-                          value={school_year}
+                            className={`truncate ${TEXT_FIELD}`}
+                            name="school_year"
+                            onChange={handleExtras("school_year")}
+                            placeholder="School Year"
+                            type="text"
+                            value={school_year}
                         />
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         {selected_column_for_sentence ? (
-                          <h1 className="text-base font-medium text-gray-500">
-                            Please type {'"'}
-                            <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
-                              {getNameFromString(selected_column_for_sentence)}
-                            </b>
-                            {'"'} to confirm.
-                          </h1>
+                        <h1 className="text-base font-medium text-gray-500">
+                          Please type {"\""}
+                          <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
+                          {getNameFromString(selected_column_for_sentence)}
+                          </b>
+                          {"\""} to confirm.
+                        </h1>
                         ) : (
-                          <h1 className="text-base font-medium text-gray-500">
+                        <h1 className="text-base font-medium text-gray-500">
                             Select a column for sentence.
-                          </h1>
+                        </h1>
                         )}
                         <input
-                          className={`truncate ${TEXT_FIELD}`}
-                          name="csv_question"
-                          onChange={handleExtras("csv_question")}
-                          placeholder="Question"
-                          type="text"
-                          value={csv_question}
+                            className={`truncate ${TEXT_FIELD}`}
+                            name="csv_question"
+                            onChange={handleExtras("csv_question")}
+                            placeholder="Question"
+                            type="text"
+                            value={csv_question}
                         />
                       </div>
-                    </div>
+                  </div>
                     {/* Error message */}
                     {errorMessageToAnS ? (
-                      <div className="mt-2 text-sm font-semibold text-red-500">
-                        {errorMessageToAnS}
-                      </div>
+                        <div className="mt-2 text-sm font-semibold text-red-500">
+                          {errorMessageToAnS}
+                        </div>
                     ) : null}
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
                       <button
