@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
+  ICON_PLACE_SELF_CENTER,
   LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
@@ -15,6 +16,8 @@ import {
   MATRIX_RSA_PUBLIC_KEY,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import {faMagnifyingGlassChart} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 /**
  * @description Handles the admin prediction
@@ -87,6 +90,10 @@ export default function AdminPrediction() {
             ...selectedColumn,
             [name]: value,
         })
+      setHandlers({
+        ...handlers,
+        errorMessageToAnS: "",
+      })
     }
 
   const [extras, setExtras] = useState({
@@ -97,6 +104,10 @@ export default function AdminPrediction() {
 
   const handleExtras = (name) => (event) => {
     setExtras({ ...extras, [name]: event.target.value })
+    setHandlers({
+        ...handlers,
+        errorMessageToAnS: "",
+    })
   }
 
   const handleSubmitCSVToView = async (event) => {
@@ -148,7 +159,16 @@ export default function AdminPrediction() {
       okToAnS: true,
       textChangeToAnS: "Analyzing and Saving...",
     });
-    await httpClient.post("/data/analyze-save-csv", {
+    if (getNameFromString(selected_column_for_sentence) !== csv_question) {
+        setHandlers({
+            ...handlers,
+            okToAnS: false,
+            errorEffectToAnS: true,
+            errorMessageToAnS: "Question column does not match the selected column for sentence",
+            textChangeToAnS: "Analyze and Save",
+        });
+    } else {
+      await httpClient.post("/data/analyze-save-csv", {
         file_name: csv_file_name,
         csv_question: csv_question,
         school_year: school_year,
@@ -156,25 +176,28 @@ export default function AdminPrediction() {
         selected_column_for_evaluatee: getNumberFromString(selected_column_for_evaluatee),
         selected_column_for_department: getNumberFromString(selected_column_for_department),
         selected_column_for_course_code: getNumberFromString(selected_column_for_course_code),
-    })
-      .then((response) => {
-        toast.success(response.data.message);
-        setHandlers({
-            ...handlers,
-            okToAnS: false,
-            showButtonToAnS: false,
-            textChangeToAnS: "Analyzed and Saved",
-        });
       })
-      .catch((error) => {
-        setHandlers({
-          ...handlers,
-          okToAnS: false,
-          errorEffectToAnS: true,
-          errorMessageToAnS: error.response.data.message,
-          textChangeToAnS: "Analyze and Save",
-        }) || toast.error(error.message);
-      });
+          .then((response) => {
+            toast.success(response.data.message);
+            setHandlers({
+              ...handlers,
+              okToAnS: false,
+              showButtonToAnS: false,
+              textChangeToAnS: "Analyzed and Saved",
+            });
+          })
+          .catch((error) => {
+            setHandlers({
+              ...handlers,
+              textChange: "View",
+              okToAnS: false,
+              errorEffectToAnS: true,
+              errorMessageToAnS: error.response.data.message,
+              textChangeToAnS: "Analyze and Save",
+            }) || toast.error(error.message);
+          });
+    }
+
   }
 
   return (
@@ -191,9 +214,9 @@ export default function AdminPrediction() {
         <div className="col-span-2">
           <div
             className={`flex flex-col w-full mb-48 bg-white rounded outline outline-2 
-            ${errorEffect ? `animate-wiggle` : "outline-gray-200"}`}
+            ${errorEffect || errorEffectToAnS ? `animate-wiggle` : "outline-gray-200"}`}
             onAnimationEnd={() =>
-              setHandlers({ ...handlers, errorEffect: false })
+              setHandlers({ ...handlers, errorEffect: false, errorEffectToAnS: false })
             }
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
@@ -598,9 +621,18 @@ export default function AdminPrediction() {
                     ) : null}
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
                       <button
-                        className={`px-8 py-1 ${PRIMARY_BUTTON}`}
+                        className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                         type="submit"
                       >
+                        {okToAnS ? (
+                            LOADING_ANIMATION()
+                        ) : (
+                            <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                                icon={faMagnifyingGlassChart}
+                                size={"lg"}
+                            />
+                        )}
                         Analyze and Save
                       </button>
                     </div>
