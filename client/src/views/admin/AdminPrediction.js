@@ -16,8 +16,8 @@ import {
   MATRIX_RSA_PUBLIC_KEY,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import {faMagnifyingGlassChart} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
  * @description Handles the admin prediction
@@ -69,46 +69,45 @@ export default function AdminPrediction() {
 
   const { show_columns, csv_file_name, csv_columns_to_pick } = csv_columns;
 
-  const [selectedColumn, setSelectedColumn] =
-    useState({
-        selected_column_for_sentence: "",
-        selected_column_for_evaluatee: "",
-        selected_column_for_department: "",
-        selected_column_for_course_code: ""
-    });
+  const [selectedColumn, setSelectedColumn] = useState({
+    selected_column_for_sentence: "",
+    selected_column_for_evaluatee: "",
+    selected_column_for_department: "",
+    selected_column_for_course_code: "",
+  });
 
   const {
     selected_column_for_sentence,
     selected_column_for_evaluatee,
     selected_column_for_department,
     selected_column_for_course_code,
-    } = selectedColumn;
+  } = selectedColumn;
 
   // onChange for the select column for sentence listbox headless ui
-    const handleSelect = (name) => (value) => {
-        setSelectedColumn({
-            ...selectedColumn,
-            [name]: value,
-        })
-      setHandlers({
-        ...handlers,
-        errorMessageToAnS: "",
-      })
-    }
+  const handleSelect = (name) => (value) => {
+    setSelectedColumn({
+      ...selectedColumn,
+      [name]: value,
+    });
+    setHandlers({
+      ...handlers,
+      errorMessageToAnS: "",
+    });
+  };
 
   const [extras, setExtras] = useState({
     csv_question: "",
     school_year: "",
   });
-    const { csv_question, school_year } = extras;
+  const { csv_question, school_year } = extras;
 
   const handleExtras = (name) => (event) => {
-    setExtras({ ...extras, [name]: event.target.value })
+    setExtras({ ...extras, [name]: event.target.value });
     setHandlers({
-        ...handlers,
-        errorMessageToAnS: "",
-    })
-  }
+      ...handlers,
+      errorMessageToAnS: "",
+    });
+  };
 
   const handleSubmitCSVToView = async (event) => {
     event.preventDefault();
@@ -160,45 +159,54 @@ export default function AdminPrediction() {
       textChangeToAnS: "Analyzing and Saving...",
     });
     if (getNameFromString(selected_column_for_sentence) !== csv_question) {
-        setHandlers({
+      setHandlers({
+        ...handlers,
+        okToAnS: false,
+        errorEffectToAnS: true,
+        errorMessageToAnS:
+          "Question column does not match the selected column for sentence",
+        textChangeToAnS: "Analyze and Save",
+      });
+    } else {
+      await httpClient
+        .post("/data/analyze-save-csv", {
+          file_name: csv_file_name,
+          csv_question: csv_question,
+          school_year: school_year,
+          selected_column_for_sentence: getNumberFromString(
+            selected_column_for_sentence,
+          ),
+          selected_column_for_evaluatee: getNumberFromString(
+            selected_column_for_evaluatee,
+          ),
+          selected_column_for_department: getNumberFromString(
+            selected_column_for_department,
+          ),
+          selected_column_for_course_code: getNumberFromString(
+            selected_column_for_course_code,
+          ),
+        })
+        .then((response) => {
+          toast.success(response.data.message);
+          setHandlers({
             ...handlers,
             okToAnS: false,
-            errorEffectToAnS: true,
-            errorMessageToAnS: "Question column does not match the selected column for sentence",
-            textChangeToAnS: "Analyze and Save",
-        });
-    } else {
-      await httpClient.post("/data/analyze-save-csv", {
-        file_name: csv_file_name,
-        csv_question: csv_question,
-        school_year: school_year,
-        selected_column_for_sentence: getNumberFromString(selected_column_for_sentence),
-        selected_column_for_evaluatee: getNumberFromString(selected_column_for_evaluatee),
-        selected_column_for_department: getNumberFromString(selected_column_for_department),
-        selected_column_for_course_code: getNumberFromString(selected_column_for_course_code),
-      })
-          .then((response) => {
-            toast.success(response.data.message);
-            setHandlers({
-              ...handlers,
-              okToAnS: false,
-              showButtonToAnS: false,
-              textChangeToAnS: "Analyzed and Saved",
-            });
-          })
-          .catch((error) => {
-            setHandlers({
-              ...handlers,
-              textChange: "View",
-              okToAnS: false,
-              errorEffectToAnS: true,
-              errorMessageToAnS: error.response.data.message,
-              textChangeToAnS: "Analyze and Save",
-            }) || toast.error(error.message);
+            showButtonToAnS: false,
+            textChangeToAnS: "Analyzed and Saved",
           });
+        })
+        .catch((error) => {
+          setHandlers({
+            ...handlers,
+            textChange: "View",
+            okToAnS: false,
+            errorEffectToAnS: true,
+            errorMessageToAnS: error.response.data.message,
+            textChangeToAnS: "Analyze and Save",
+          }) || toast.error(error.message);
+        });
     }
-
-  }
+  };
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -214,9 +222,17 @@ export default function AdminPrediction() {
         <div className="col-span-2">
           <div
             className={`flex flex-col w-full mb-48 bg-white rounded outline outline-2 
-            ${errorEffect || errorEffectToAnS ? `animate-wiggle` : "outline-gray-200"}`}
+            ${
+              errorEffect || errorEffectToAnS
+                ? `animate-wiggle`
+                : "outline-gray-200"
+            }`}
             onAnimationEnd={() =>
-              setHandlers({ ...handlers, errorEffect: false, errorEffectToAnS: false })
+              setHandlers({
+                ...handlers,
+                errorEffect: false,
+                errorEffectToAnS: false,
+              })
             }
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
@@ -304,13 +320,18 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Sentence
                         </h1>
-                        <Listbox name={"sentence"}
-                          onChange={handleSelect("selected_column_for_sentence")}
+                        <Listbox
+                          name={"sentence"}
+                          onChange={handleSelect(
+                            "selected_column_for_sentence",
+                          )}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_sentence ? selected_column_for_sentence : "Select a column"}
+                                {selected_column_for_sentence
+                                  ? selected_column_for_sentence
+                                  : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -373,13 +394,18 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Evaluatee
                         </h1>
-                        <Listbox name="selected_column_for_evaluatee"
-                          onChange={handleSelect("selected_column_for_evaluatee")}
+                        <Listbox
+                          name="selected_column_for_evaluatee"
+                          onChange={handleSelect(
+                            "selected_column_for_evaluatee",
+                          )}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_evaluatee ? selected_column_for_evaluatee : "Select a column"}
+                                {selected_column_for_evaluatee
+                                  ? selected_column_for_evaluatee
+                                  : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -442,13 +468,18 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Department
                         </h1>
-                        <Listbox name="selected_column_for_department"
-                          onChange={handleSelect("selected_column_for_department")}
+                        <Listbox
+                          name="selected_column_for_department"
+                          onChange={handleSelect(
+                            "selected_column_for_department",
+                          )}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_department ? selected_column_for_department : "Select a column"}
+                                {selected_column_for_department
+                                  ? selected_column_for_department
+                                  : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -511,13 +542,18 @@ export default function AdminPrediction() {
                         <h1 className="text-base font-medium text-gray-500">
                           Course Code
                         </h1>
-                        <Listbox name="selected_column_for_course_code"
-                          onChange={handleSelect("selected_column_for_course_code")}
+                        <Listbox
+                          name="selected_column_for_course_code"
+                          onChange={handleSelect(
+                            "selected_column_for_course_code",
+                          )}
                         >
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate">
-                                {selected_column_for_course_code ? selected_column_for_course_code : "Select a column"}
+                                {selected_column_for_course_code
+                                  ? selected_column_for_course_code
+                                  : "Select a column"}
                               </span>
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
@@ -581,43 +617,43 @@ export default function AdminPrediction() {
                           School Year
                         </h1>
                         <input
-                            className={`truncate ${TEXT_FIELD}`}
-                            name="school_year"
-                            onChange={handleExtras("school_year")}
-                            placeholder="School Year"
-                            type="text"
-                            value={school_year}
+                          className={`truncate ${TEXT_FIELD}`}
+                          name="school_year"
+                          onChange={handleExtras("school_year")}
+                          placeholder="School Year"
+                          type="text"
+                          value={school_year}
                         />
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         {selected_column_for_sentence ? (
-                        <h1 className="text-base font-medium text-gray-500">
-                          Please type {"\""}
-                          <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
-                          {getNameFromString(selected_column_for_sentence)}
-                          </b>
-                          {"\""} to confirm.
-                        </h1>
+                          <h1 className="text-base font-medium text-gray-500">
+                            Please type {'"'}
+                            <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
+                              {getNameFromString(selected_column_for_sentence)}
+                            </b>
+                            {'"'} to confirm.
+                          </h1>
                         ) : (
-                        <h1 className="text-base font-medium text-gray-500">
+                          <h1 className="text-base font-medium text-gray-500">
                             Select a column for sentence.
-                        </h1>
+                          </h1>
                         )}
                         <input
-                            className={`truncate ${TEXT_FIELD}`}
-                            name="csv_question"
-                            onChange={handleExtras("csv_question")}
-                            placeholder="Question"
-                            type="text"
-                            value={csv_question}
+                          className={`truncate ${TEXT_FIELD}`}
+                          name="csv_question"
+                          onChange={handleExtras("csv_question")}
+                          placeholder="Question"
+                          type="text"
+                          value={csv_question}
                         />
                       </div>
-                  </div>
+                    </div>
                     {/* Error message */}
                     {errorMessageToAnS ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                          {errorMessageToAnS}
-                        </div>
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessageToAnS}
+                      </div>
                     ) : null}
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
                       <button
@@ -625,13 +661,13 @@ export default function AdminPrediction() {
                         type="submit"
                       >
                         {okToAnS ? (
-                            LOADING_ANIMATION()
+                          LOADING_ANIMATION()
                         ) : (
-                            <FontAwesomeIcon
-                                className={`${ICON_PLACE_SELF_CENTER}`}
-                                icon={faMagnifyingGlassChart}
-                                size={"lg"}
-                            />
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faMagnifyingGlassChart}
+                            size={"lg"}
+                          />
                         )}
                         Analyze and Save
                       </button>
