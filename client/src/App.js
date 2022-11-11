@@ -14,9 +14,9 @@ import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
 import AdminTables from "./views/admin/AdminTables.js";
 import IndexAdmin from "./views/admin/IndexAdmin";
-import IndexLeaderboard from "./views/admin/leaderboard/IndexLeaderboard";
-import LeaderboardDepartment from "./views/admin/leaderboard/LeaderboardDepartment";
-import LeaderboardEmployees from "./views/admin/leaderboard/LeaderboardEmployees";
+import IndexLeaderboard from "./views/leaderboard/IndexLeaderboard";
+import LeaderboardDepartment from "./views/leaderboard/LeaderboardDepartment";
+import LeaderboardEmployees from "./views/leaderboard/LeaderboardEmployees";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
 import AuthLogout from "./views/auth/AuthLogout";
@@ -28,8 +28,6 @@ import TermsAndConditions from "./views/legal/TermsAndConditions.js";
 import IndexPublic from "./views/public/IndexPublic.js";
 import PublicAbout from "./views/public/PublicAbout.js";
 import PublicHome from "./views/public/PublicHome.js";
-import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
-import PublicRanking from "./views/public/PublicRanking.js";
 import {
   PageNotFound,
   InvalidToken,
@@ -85,11 +83,11 @@ export default function App() {
               <Route element={<PublicAbout />} exact="true" path="aboutus" />
               <Route element={<PublicHome />} exact="true" path="/" />
               <Route
-                element={<PublicLeaderboard />}
+                element={<LeaderboardDepartment />}
                 exact="true"
                 path="leaderboard"
               />
-              <Route element={<PublicRanking />} exact="true" path="ranking" />
+              <Route element={<LeaderboardEmployees />} exact="true" path="ranking" />
             </Route>
             {/**
              * End of public routes
