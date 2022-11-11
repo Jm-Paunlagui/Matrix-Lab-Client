@@ -87,7 +87,11 @@ export default function App() {
                 exact="true"
                 path="leaderboard"
               />
-              <Route element={<LeaderboardEmployees />} exact="true" path="ranking" />
+              <Route
+                element={<LeaderboardEmployees />}
+                exact="true"
+                path="ranking"
+              />
             </Route>
             {/**
              * End of public routes
