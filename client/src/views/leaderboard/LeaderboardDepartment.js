@@ -41,9 +41,13 @@ export default function LeaderboardDepartment() {
               <div
                 className={`flex flex-col mb-8 w-full bg-white rounded shadow
                 ${
-                    top_department[department].id === 0 ? "border-solid border-4 border-yellow-100" :
-                        top_department[department].id === 1 ? "border-solid border-4 border-gray-100" :
-                            top_department[department].id === 2 ? "border-solid border-4 border-orange-100" : "border-solid border-4 border-blue-100"
+                  top_department[department].id === 0
+                    ? "border-solid border-4 border-yellow-100"
+                    : top_department[department].id === 1
+                    ? "border-solid border-4 border-gray-100"
+                    : top_department[department].id === 2
+                    ? "border-solid border-4 border-orange-100"
+                    : "border-solid border-4 border-blue-100"
                 }`}
                 key={top_department[department].id}
               >
@@ -51,9 +55,13 @@ export default function LeaderboardDepartment() {
                   <div
                     className={`col-span-1 py-5 items-center justify-center w-full
                     ${
-                        top_department[department].id === 0 ? "bg-yellow-50" :
-                            top_department[department].id === 1 ? "bg-gray-50" :
-                                top_department[department].id === 2 ? "bg-orange-50" : "bg-blue-50"
+                      top_department[department].id === 0
+                        ? "bg-yellow-50"
+                        : top_department[department].id === 1
+                        ? "bg-gray-50"
+                        : top_department[department].id === 2
+                        ? "bg-orange-50"
+                        : "bg-blue-50"
                     }`}
                   >
                     <div className="flex flex-col items-center justify-center w-full p-4">
@@ -66,17 +74,26 @@ export default function LeaderboardDepartment() {
                     <div className="grid grid-cols-3 gap-8 py-4 md:grid-cols-6 md:gap-20">
                       <div className="flex flex-col items-center justify-center w-full">
                         <div
-                            className={`flex items-center justify-center w-10 h-10 text-white rounded ${
-                                top_department[department].id === 0 ? "bg-yellow-500" :
-                                    top_department[department].id === 1 ? "bg-gray-500" :
-                                        top_department[department].id === 2 ? "bg-orange-500" : "bg-blue-500"
-                            }`}
-                        >
-                          <i className={`fas ${
-                              top_department[department].id === 0 ? "fa-trophy" :
-                                  top_department[department].id === 1 ? "fa-medal" :
-                                      top_department[department].id === 2 ? "fa-award" : "fa-crown"
+                          className={`flex items-center justify-center w-10 h-10 text-white rounded ${
+                            top_department[department].id === 0
+                              ? "bg-yellow-500"
+                              : top_department[department].id === 1
+                              ? "bg-gray-500"
+                              : top_department[department].id === 2
+                              ? "bg-orange-500"
+                              : "bg-blue-500"
                           }`}
+                        >
+                          <i
+                            className={`fas ${
+                              top_department[department].id === 0
+                                ? "fa-trophy"
+                                : top_department[department].id === 1
+                                ? "fa-medal"
+                                : top_department[department].id === 2
+                                ? "fa-award"
+                                : "fa-crown"
+                            }`}
                           />
                         </div>
                         <h1 className="text-2xl font-bold text-gray-500">
