@@ -198,11 +198,11 @@ export default function AdminPrediction() {
             ...extras,
             csv_question: "",
             school_year: "",
-          })
-            setSelectedColumn({
-                ...selectedColumn,
-                selected_column_for_sentence: "",
-            })
+          });
+          setSelectedColumn({
+            ...selectedColumn,
+            selected_column_for_sentence: "",
+          });
           setCSVFileToView(null);
           setCSVColumns({
             ...csv_columns,
