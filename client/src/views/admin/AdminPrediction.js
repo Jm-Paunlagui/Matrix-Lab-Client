@@ -81,6 +81,8 @@ export default function AdminPrediction() {
   const semester = [
     { name: "1st Semester", id: 1 },
     { name: "2nd Semester", id: 2 },
+    { name: "3rd Semester", id: 3 },
+    { name: "Summer", id: 4 },
   ];
 
   const {
