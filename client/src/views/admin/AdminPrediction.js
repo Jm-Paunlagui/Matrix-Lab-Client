@@ -194,6 +194,22 @@ export default function AdminPrediction() {
             showButtonToAnS: false,
             textChangeToAnS: "Analyzed and Saved",
           });
+          setExtras({
+            ...extras,
+            csv_question: "",
+            school_year: "",
+          })
+            setSelectedColumn({
+                ...selectedColumn,
+                selected_column_for_sentence: "",
+            })
+          setCSVFileToView(null);
+          setCSVColumns({
+            ...csv_columns,
+            show_columns: false,
+            csv_file_name: "",
+            csv_columns_to_pick: [],
+          });
         })
         .catch((error) => {
           setHandlers({
