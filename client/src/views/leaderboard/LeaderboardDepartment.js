@@ -14,7 +14,7 @@ export default function LeaderboardDepartment() {
   const { loading, top_department } = topDepartment;
 
   useEffect(() => {
-    httpClient.get("/data/get-top-department").then((response) => {
+    httpClient.get("/data/get-top-department-overall").then((response) => {
       console.log(response.data);
       setTopDepartment({
         ...topDepartment,
@@ -32,10 +32,10 @@ export default function LeaderboardDepartment() {
         <>
           <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64">
             <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
-              Top Performing Departments
+              Sentiment of Departments
             </h1>
           </div>
-
+          {top_department.length > 0 ? (
           <div className=" place-content-center">
             {Object.keys(top_department).map((department) => (
               <div
@@ -170,6 +170,13 @@ export default function LeaderboardDepartment() {
               </div>
             ))}
           </div>
+              ) : (
+              <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64 border-double border-4 border-red-600 rounded-lg">
+                <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-gray-500  md:text-5xl lg:text-7xl">
+                    No Data Available
+                </h1>
+              </div>
+                )}
         </>
       )}
     </div>

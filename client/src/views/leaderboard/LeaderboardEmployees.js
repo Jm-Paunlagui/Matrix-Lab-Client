@@ -17,7 +17,7 @@ export default function LeaderboardRanking() {
   const { loading, top_professors } = topProfessors;
 
   useEffect(() => {
-    httpClient.get("/data/get-top-professors").then((response) => {
+    httpClient.get("/data/get-top-professors-overall").then((response) => {
       console.log(response.data);
       setTopProfessors({
         ...topProfessors,
@@ -35,10 +35,10 @@ export default function LeaderboardRanking() {
         <>
           <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64">
             <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
-              Top Performing Employees
+              Sentiment of Professors
             </h1>
           </div>
-
+            {top_professors.length > 0 ? (
           <div className=" place-content-center">
             {Object.keys(top_professors).map((professor) => (
               <div
@@ -181,6 +181,13 @@ export default function LeaderboardRanking() {
               </div>
             ))}
           </div>
+            ) : (
+                <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64 border-double border-4 border-red-600 rounded-lg">
+                  <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-gray-500  md:text-5xl lg:text-7xl">
+                    No Data Available
+                  </h1>
+                </div>
+            )}
         </>
       )}
     </div>
