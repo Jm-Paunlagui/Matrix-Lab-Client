@@ -40,7 +40,8 @@ export default function LeaderboardRanking() {
               Sentiment of Professors
             </h1>
             <p className="text-base font-medium text-gray-500">
-              Overall sentiment of professors in year {year} based on sentiments of all courses taught by the professor.
+              Overall sentiment of professors in year {year} based on sentiments
+              of all courses taught by the professor.
             </p>
           </div>
           {top_professors.length > 0 ? (
