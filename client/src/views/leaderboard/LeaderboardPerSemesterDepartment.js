@@ -1,13 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import LoadingPage from "../../components/loading/LoadingPage";
-import httpClient from "../../http/httpClient";
+
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import {
-  SECONDARY_BUTTON,
-  TEXT_FIELD,
-} from "../../assets/styles/input-types-styles";
+
+import { TEXT_FIELD } from "../../assets/styles/input-types-styles";
+import LoadingPage from "../../components/loading/LoadingPage";
+import { getNumberFromString } from "../../helpers/Helper";
+import httpClient from "../../http/httpClient";
 
 export default function LeaderboardPerSemesterDepartment() {
   const [topDepartmentPerSem, setTopDepartmentPerSem] = useState({
@@ -15,9 +14,7 @@ export default function LeaderboardPerSemesterDepartment() {
     top_department_per_sem: {},
     title: "",
     s_y: "",
-    next_page: "",
-    previous_page: "",
-    total_pages: "",
+    page: 1,
     pages_to_choose: {},
     on_page: "",
   });
@@ -27,37 +24,37 @@ export default function LeaderboardPerSemesterDepartment() {
     top_department_per_sem,
     title,
     s_y,
-    next_page,
-    previous_page,
-    total_pages,
+    page,
     pages_to_choose,
     on_page,
   } = topDepartmentPerSem;
 
-  const page = useParams();
-
-  const handleSelect = (name) => (value) => {
-    setTopDepartmentPerSem({ ...topDepartmentPerSem, [name]: value });
-  };
-
-  useEffect(() => {
+  const getTopDepartmentPerSem = (page) => {
     httpClient
-      .get(`/data/get-top-department-by-file/${page.page}`)
+      .get(`/data/get-top-department-by-file/${page}`)
       .then((response) => {
-        console.log(response.data);
         setTopDepartmentPerSem({
           ...topDepartmentPerSem,
           loading: false,
           top_department_per_sem: response.data.top_department_per_sem,
           title: response.data.question_type,
           s_y: response.data.s_y,
-          next_page: response.data.next_page,
-          previous_page: response.data.previous_page,
-          total_pages: response.data.total_pages,
           pages_to_choose: response.data.pages_to_choose,
         });
       });
-  }, []);
+  };
+
+  const handleSelect = (name) => (value) => {
+    setTopDepartmentPerSem({
+      ...topDepartmentPerSem,
+      [name]: value,
+      page: getNumberFromString(value),
+    });
+  };
+
+  useEffect(() => {
+    getTopDepartmentPerSem(page);
+  }, [page]);
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -74,8 +71,8 @@ export default function LeaderboardPerSemesterDepartment() {
             <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
               <div className="col-span-1">
                 <div className=" place-content-center">
-                  <div className="grid w-full h-full mb-8 grid-cols-1 rounded border-solid border-4 border-gray-100">
-                    <div className="col-span-1 py-5 items-center justify-center w-full bg-gray-50">
+                  <div className="grid w-full h-full grid-cols-1 mb-8 border-4 border-gray-100 border-solid rounded">
+                    <div className="items-center justify-center w-full col-span-1 py-5">
                       <div className="flex flex-col items-center justify-center w-full p-4">
                         <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
                           {title}
@@ -88,85 +85,78 @@ export default function LeaderboardPerSemesterDepartment() {
                   </div>
                 </div>
                 <div className=" place-content-center">
-                  <div className="grid w-full h-full grid-cols-1 rounded border-solid border-4 border-gray-100">
-                    <div className=" px-4 py-5 items-center justify-center w-full bg-gray-50">
-                      <div className="flex flex-col items-start">
-                        <h1 className="text-base font-medium text-gray-500">
-                          View by:
-                        </h1>
-                        <Listbox
-                          name={"on_page"}
-                          onChange={handleSelect("on_page")}
-                        >
-                          <div className="relative mt-1">
-                            <Listbox.Button className={TEXT_FIELD}>
-                              <span className="block truncate text-start">
-                                {on_page
-                                  ? on_page
-                                  : "Select School Year and Semester"}
-                              </span>
-                              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                <ChevronUpDownIcon
-                                  aria-hidden="true"
-                                  className="h-5 w-5 text-gray-400"
-                                />
-                              </span>
-                            </Listbox.Button>
-                            <Transition
-                              as={Fragment}
-                              enter="transition duration-100 ease-out"
-                              enterFrom="transform scale-95 opacity-0"
-                              enterTo="transform scale-100 opacity-100"
-                              leave="transition duration-75 ease-out"
-                              leaveFrom="transform scale-100 opacity-100"
-                              leaveTo="transform scale-95 opacity-0"
-                            >
-                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {Object.keys(pages_to_choose).map(
-                                  (page) => (
-                                    console.log(pages_to_choose[page].page),
-                                    (
-                                      <Listbox.Option
-                                        className={({ active }) =>
-                                          `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                            active
-                                              ? "bg-blue-100 text-blue-900"
-                                              : "text-gray-900"
-                                          }`
-                                        }
-                                        key={page}
-                                        value={`${pages_to_choose[page].page} - ${pages_to_choose[page].school_year} - ${pages_to_choose[page].school_semester}`}
+                  <div className="grid w-full h-full grid-cols-1 p-4 border-4 border-gray-100 border-solid rounded">
+                    <div className="flex flex-col w-full space-y-2">
+                      <h1 className="text-base font-medium text-gray-500">
+                        View by:
+                      </h1>
+                      <Listbox
+                        name={"on_page"}
+                        onChange={handleSelect("on_page")}
+                      >
+                        <div className="relative mt-1">
+                          <Listbox.Button className={TEXT_FIELD}>
+                            <span className="block truncate text-start">
+                              {on_page
+                                ? on_page
+                                : "Select School Year and Semester"}
+                            </span>
+                            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                              <ChevronUpDownIcon
+                                aria-hidden="true"
+                                className="w-5 h-5 text-gray-400"
+                              />
+                            </span>
+                          </Listbox.Button>
+                          <Transition
+                            as={Fragment}
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0"
+                          >
+                            <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              {Object.keys(pages_to_choose).map((page) => (
+                                <Listbox.Option
+                                  className={({ active }) =>
+                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                                      active
+                                        ? "bg-blue-100 text-blue-900"
+                                        : "text-gray-900"
+                                    }`
+                                  }
+                                  key={page}
+                                  value={`${pages_to_choose[page].page} - ${pages_to_choose[page].school_year} - ${pages_to_choose[page].school_semester}`}
+                                >
+                                  {({ selected }) => (
+                                    <>
+                                      <span
+                                        className={`block truncate ${
+                                          selected
+                                            ? "font-medium"
+                                            : "font-normal"
+                                        }`}
                                       >
-                                        {({ selected }) => (
-                                          <>
-                                            <span
-                                              className={`block truncate ${
-                                                selected
-                                                  ? "font-medium"
-                                                  : "font-normal"
-                                              }`}
-                                            >
-                                              {`${pages_to_choose[page].page} - ${pages_to_choose[page].school_year} - ${pages_to_choose[page].school_semester}`}
-                                            </span>
-                                            {selected ? (
-                                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                                <CheckIcon
-                                                  aria-hidden="true"
-                                                  className="h-5 w-5"
-                                                />
-                                              </span>
-                                            ) : null}
-                                          </>
-                                        )}
-                                      </Listbox.Option>
-                                    )
-                                  ),
-                                )}
-                              </Listbox.Options>
-                            </Transition>
-                          </div>
-                        </Listbox>
-                      </div>
+                                        {`${pages_to_choose[page].page} - ${pages_to_choose[page].school_year} - ${pages_to_choose[page].school_semester}`}
+                                      </span>
+                                      {selected ? (
+                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                          <CheckIcon
+                                            aria-hidden="true"
+                                            className="w-5 h-5"
+                                          />
+                                        </span>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </Listbox.Option>
+                              ))}
+                            </Listbox.Options>
+                          </Transition>
+                        </div>
+                      </Listbox>
                     </div>
                   </div>
                 </div>
