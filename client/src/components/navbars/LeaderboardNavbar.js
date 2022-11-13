@@ -29,7 +29,7 @@ export default function LeaderboardNavbar() {
 
   /**
    * @description Handles the navigation bar for the admin pages
-   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
+   * @type {[{current: boolean, name: string, href: string}]}
    */
   const navigation = [
     {
@@ -42,6 +42,11 @@ export default function LeaderboardNavbar() {
       href: "/admin/leaderboard/employees",
       current: isActive("employees"),
     },
+    {
+        name: "Per Semester Department",
+        href: "/admin/leaderboard/per-semester-department/1",
+        current: isActive("per-semester-department"),
+    }
   ];
 
   return (

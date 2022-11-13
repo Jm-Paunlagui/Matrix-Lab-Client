@@ -17,6 +17,7 @@ import IndexAdmin from "./views/admin/IndexAdmin";
 import IndexLeaderboard from "./views/leaderboard/IndexLeaderboard";
 import LeaderboardDepartment from "./views/leaderboard/LeaderboardDepartment";
 import LeaderboardEmployees from "./views/leaderboard/LeaderboardEmployees";
+import LeaderboardPerSemesterDepartment from "./views/leaderboard/LeaderboardPerSemesterDepartment";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
 import AuthLogout from "./views/auth/AuthLogout";
@@ -158,6 +159,11 @@ export default function App() {
                   element={<LeaderboardEmployees />}
                   exact="true"
                   path="employees"
+                />
+                <Route
+                  element={<LeaderboardPerSemesterDepartment />}
+                    exact="true"
+                    path="per-semester-department/:page"
                 />
               </Route>
               <Route
