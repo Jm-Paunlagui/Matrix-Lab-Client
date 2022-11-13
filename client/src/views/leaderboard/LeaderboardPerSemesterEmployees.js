@@ -33,7 +33,6 @@ export default function LeaderboardPerSemesterEmployees() {
     httpClient
       .get(`/data/get-top-professors-by-file/${page}`)
       .then((response) => {
-        console.log("prof", response.data.top_professor_per_sem);
         setTopEmployeePerSem({
           ...topEmployeePerSem,
           loading: false,
