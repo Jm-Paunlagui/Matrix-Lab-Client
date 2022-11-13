@@ -146,11 +146,7 @@ export default function App() {
                 exact="true"
                 path="dashboard"
               />
-              <Route
-                element={<IndexInsights />}
-                exact="true"
-                path="insights"
-              >
+              <Route element={<IndexInsights />} exact="true" path="insights">
                 <Route
                   element={<InsightsDepartment />}
                   exact="true"
