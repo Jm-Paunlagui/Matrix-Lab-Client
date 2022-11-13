@@ -54,8 +54,8 @@ export default function NavigationBar() {
       name: "Leaderboard",
       icon: <MdLeaderboard size={16} />,
       icon_: <MdLeaderboard size={24} />,
-      link: "/leaderboard",
-      current: isActive("leaderboard"),
+      link: "/insights",
+      current: isActive("insights"),
     },
     {
       name: "Ranking",

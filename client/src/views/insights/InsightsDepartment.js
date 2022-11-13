@@ -4,9 +4,9 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 
 /**
- * @description Handles the admin leaderboard
+ * @description Handles the admin insights
  */
-export default function LeaderboardDepartment() {
+export default function InsightsDepartment() {
   const [topDepartment, setTopDepartment] = useState({
     loading: true,
     top_department: {},

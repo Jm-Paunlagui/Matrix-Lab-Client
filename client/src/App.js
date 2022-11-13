@@ -14,11 +14,11 @@ import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
 import AdminTables from "./views/admin/AdminTables.js";
 import IndexAdmin from "./views/admin/IndexAdmin";
-import IndexLeaderboard from "./views/leaderboard/IndexLeaderboard";
-import LeaderboardDepartment from "./views/leaderboard/LeaderboardDepartment";
-import LeaderboardEmployees from "./views/leaderboard/LeaderboardEmployees";
-import LeaderboardPerSemesterDepartment from "./views/leaderboard/LeaderboardPerSemesterDepartment";
-import LeaderboardPerSemesterEmployees from "./views/leaderboard/LeaderboardPerSemesterEmployees";
+import IndexInsights from "./views/insights/IndexInsights";
+import InsightsDepartment from "./views/insights/InsightsDepartment";
+import InsightsEmployees from "./views/insights/InsightsEmployees";
+import InsightsPerSemesterDepartment from "./views/insights/InsightsPerSemesterDepartment";
+import InsightsPerSemesterEmployees from "./views/insights/InsightsPerSemesterEmployees";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
 import AuthLogout from "./views/auth/AuthLogout";
@@ -85,12 +85,12 @@ export default function App() {
               <Route element={<PublicAbout />} exact="true" path="aboutus" />
               <Route element={<PublicHome />} exact="true" path="/" />
               <Route
-                element={<LeaderboardDepartment />}
+                element={<InsightsDepartment />}
                 exact="true"
                 path="leaderboard"
               />
               <Route
-                element={<LeaderboardEmployees />}
+                element={<InsightsEmployees />}
                 exact="true"
                 path="ranking"
               />
@@ -147,27 +147,27 @@ export default function App() {
                 path="dashboard"
               />
               <Route
-                element={<IndexLeaderboard />}
+                element={<IndexInsights />}
                 exact="true"
-                path="leaderboard"
+                path="insights"
               >
                 <Route
-                  element={<LeaderboardDepartment />}
+                  element={<InsightsDepartment />}
                   exact="true"
                   path="departments"
                 />
                 <Route
-                  element={<LeaderboardEmployees />}
+                  element={<InsightsEmployees />}
                   exact="true"
                   path="employees"
                 />
                 <Route
-                  element={<LeaderboardPerSemesterDepartment />}
+                  element={<InsightsPerSemesterDepartment />}
                   exact="true"
                   path="per-semester-department"
                 />
                 <Route
-                  element={<LeaderboardPerSemesterEmployees />}
+                  element={<InsightsPerSemesterEmployees />}
                   exact="true"
                   path="per-semester-employee"
                 />

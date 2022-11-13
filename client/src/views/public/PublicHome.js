@@ -27,7 +27,7 @@ export default function PublicHome() {
         </p>
         <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
           <button className={` ${PRIMARY_BUTTON}`} type={"button"}>
-            <Link to={"/leaderboard"}>
+            <Link to={"/insights"}>
               <h1 className="px-5 py-3">Leaderboard</h1>
             </Link>
           </button>

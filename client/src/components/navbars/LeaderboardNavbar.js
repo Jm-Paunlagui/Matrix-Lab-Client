@@ -37,28 +37,28 @@ export default function LeaderboardNavbar() {
   const navigation = [
     {
       name: "Department",
-      href: "/admin/leaderboard/departments",
+      href: "/admin/insights/departments",
       current: isActive("departments"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
     {
       name: "Employee",
-      href: "/admin/leaderboard/employees",
+      href: "/admin/insights/employees",
       current: isActive("employees"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
     {
       name: "Per Semester Department",
-      href: "/admin/leaderboard/per-semester-department",
+      href: "/admin/insights/per-semester-department",
       current: isActive("per-semester-department"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
     {
       name: "Per Semester Employee",
-      href: "/admin/leaderboard/per-semester-employee",
+      href: "/admin/insights/per-semester-employee",
       current: isActive("per-semester-employee"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,

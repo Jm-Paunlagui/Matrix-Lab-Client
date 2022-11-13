@@ -74,9 +74,9 @@ export default function AdminNavigationBar() {
       current: isActive("analyze"),
     },
     {
-      name: "Leaderboard",
-      href: "/admin/leaderboard/departments",
-      current: isActive("leaderboard"),
+      name: "Insights",
+      href: "/admin/insights/departments",
+      current: isActive("insights"),
     },
   ];
 

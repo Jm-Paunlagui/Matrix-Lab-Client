@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import React from "react";
 
 /**
- * @description Handles about, home, leaderboard, privacy, and terms page for the application
+ * @description Handles about, home, insights, privacy, and terms page for the application
  */
 export default function IndexPublic() {
   return (

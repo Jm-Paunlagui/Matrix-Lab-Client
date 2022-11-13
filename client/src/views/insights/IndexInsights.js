@@ -5,7 +5,7 @@ import React from "react";
 /**
  * @description Handles admin pages for the application
  */
-export default function IndexLeaderboard() {
+export default function IndexInsights() {
   return (
     <>
       <LeaderboardNavbar />

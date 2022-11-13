@@ -4,7 +4,7 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import { isAuth } from "../../helpers/Auth";
 
 /**
- * @description Handles the admin leaderboard
+ * @description Handles the admin insights
  */
 export default function LeaderboardRanking() {
   const [topProfessors, setTopProfessors] = useState({

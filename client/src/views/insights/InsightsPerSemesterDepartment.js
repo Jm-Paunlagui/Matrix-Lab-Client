@@ -8,10 +8,10 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import { getNumberFromString } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
 
-export default function LeaderboardPerSemesterEmployees() {
-  const [topEmployeePerSem, setTopEmployeePerSem] = useState({
+export default function InsightsPerSemesterDepartment() {
+  const [topDepartmentPerSem, setTopDepartmentPerSem] = useState({
     loading: true,
-    top_professor_per_sem: {},
+    top_department_per_sem: {},
     title: "",
     s_y: "",
     page: 1,
@@ -21,22 +21,22 @@ export default function LeaderboardPerSemesterEmployees() {
 
   const {
     loading,
-    top_professor_per_sem,
+    top_department_per_sem,
     title,
     s_y,
     page,
     pages_to_choose,
     on_page,
-  } = topEmployeePerSem;
+  } = topDepartmentPerSem;
 
-  const getTopEmployeePerSem = (page) => {
+  const getTopDepartmentPerSem = (page) => {
     httpClient
-      .get(`/data/get-top-professors-by-file/${page}`)
+      .get(`/data/get-top-department-by-file/${page}`)
       .then((response) => {
-        setTopEmployeePerSem({
-          ...topEmployeePerSem,
+        setTopDepartmentPerSem({
+          ...topDepartmentPerSem,
           loading: false,
-          top_professor_per_sem: response.data.top_professor_per_sem,
+          top_department_per_sem: response.data.top_department_per_sem,
           title: response.data.question_type,
           s_y: response.data.s_y,
           pages_to_choose: response.data.pages_to_choose,
@@ -45,15 +45,15 @@ export default function LeaderboardPerSemesterEmployees() {
   };
 
   const handleSelect = (name) => (value) => {
-    setTopEmployeePerSem({
-      ...topEmployeePerSem,
+    setTopDepartmentPerSem({
+      ...topDepartmentPerSem,
       [name]: value,
       page: getNumberFromString(value),
     });
   };
 
   useEffect(() => {
-    getTopEmployeePerSem(page);
+    getTopDepartmentPerSem(page);
   }, [page]);
 
   return (
@@ -64,10 +64,10 @@ export default function LeaderboardPerSemesterEmployees() {
         <>
           <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64">
             <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
-              Sentiment of Professors
+              Sentiment of Departments
             </h1>
           </div>
-          {top_professor_per_sem.length > 0 ? (
+          {top_department_per_sem.length > 0 ? (
             <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
               <div className="col-span-1">
                 <div className=" place-content-center">
@@ -163,36 +163,37 @@ export default function LeaderboardPerSemesterEmployees() {
               </div>
               <div className="col-span-2">
                 <div className=" place-content-center">
-                  {Object.keys(top_professor_per_sem).map((professor) => (
+                  {Object.keys(top_department_per_sem).map((department) => (
                     <div
                       className={`flex flex-col mb-8 w-full bg-white rounded shadow
                                     ${
-                                      top_professor_per_sem[professor].id === 0
+                                      top_department_per_sem[department].id ===
+                                      0
                                         ? "border-solid border-4 border-yellow-100"
-                                        : top_professor_per_sem[professor]
+                                        : top_department_per_sem[department]
                                             .id === 1
                                         ? "border-solid border-4 border-gray-100"
-                                        : top_professor_per_sem[professor]
+                                        : top_department_per_sem[department]
                                             .id === 2
                                         ? "border-solid border-4 border-orange-100"
                                         : "border-solid border-4 border-blue-100"
                                     }`}
-                      key={top_professor_per_sem[professor].id}
+                      key={top_department_per_sem[department].id}
                     >
                       <div className="grid w-full h-full grid-cols-1 rounded">
                         <div
                           className={`col-span-1 py-5 items-center justify-center w-full
                                                ${
-                                                 top_professor_per_sem[
-                                                   professor
+                                                 top_department_per_sem[
+                                                   department
                                                  ].id === 0
                                                    ? "bg-yellow-50"
-                                                   : top_professor_per_sem[
-                                                       professor
+                                                   : top_department_per_sem[
+                                                       department
                                                      ].id === 1
                                                    ? "bg-gray-50"
-                                                   : top_professor_per_sem[
-                                                       professor
+                                                   : top_department_per_sem[
+                                                       department
                                                      ].id === 2
                                                    ? "bg-orange-50"
                                                    : "bg-blue-50"
@@ -200,7 +201,7 @@ export default function LeaderboardPerSemesterEmployees() {
                         >
                           <div className="flex flex-col items-center justify-center w-full p-4">
                             <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
-                              {top_professor_per_sem[professor].professor}
+                              {top_department_per_sem[department].department}
                             </h1>
                           </div>
                         </div>
@@ -209,31 +210,33 @@ export default function LeaderboardPerSemesterEmployees() {
                             <div className="flex flex-col items-center justify-center w-full">
                               <div
                                 className={`flex items-center justify-center w-10 h-10 text-white rounded ${
-                                  top_professor_per_sem[professor].id === 0
+                                  top_department_per_sem[department].id === 0
                                     ? "bg-yellow-500"
-                                    : top_professor_per_sem[professor].id === 1
+                                    : top_department_per_sem[department].id ===
+                                      1
                                     ? "bg-gray-500"
-                                    : top_professor_per_sem[professor].id === 2
+                                    : top_department_per_sem[department].id ===
+                                      2
                                     ? "bg-orange-500"
                                     : "bg-blue-500"
                                 }`}
                               >
                                 <i
                                   className={`fas ${
-                                    top_professor_per_sem[professor].id === 0
+                                    top_department_per_sem[department].id === 0
                                       ? "fa-trophy"
-                                      : top_professor_per_sem[professor].id ===
-                                        1
+                                      : top_department_per_sem[department]
+                                          .id === 1
                                       ? "fa-medal"
-                                      : top_professor_per_sem[professor].id ===
-                                        2
+                                      : top_department_per_sem[department]
+                                          .id === 2
                                       ? "fa-award"
                                       : "fa-crown"
                                   }`}
                                 />
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
-                                {top_professor_per_sem[professor].id + 1}
+                                {top_department_per_sem[department].id + 1}
                               </h1>
                               <h1 className="text-sm font-medium text-gray-500">
                                 Rank
@@ -245,7 +248,7 @@ export default function LeaderboardPerSemesterEmployees() {
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
                                 {
-                                  top_professor_per_sem[professor]
+                                  top_department_per_sem[department]
                                     .overall_sentiment
                                 }
                               </h1>
@@ -259,7 +262,7 @@ export default function LeaderboardPerSemesterEmployees() {
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
                                 {
-                                  top_professor_per_sem[professor]
+                                  top_department_per_sem[department]
                                     .positive_sentiments_percentage
                                 }
                               </h1>
@@ -273,7 +276,7 @@ export default function LeaderboardPerSemesterEmployees() {
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
                                 {
-                                  top_professor_per_sem[professor]
+                                  top_department_per_sem[department]
                                     .negative_sentiments_percentage
                                 }
                               </h1>
@@ -287,7 +290,7 @@ export default function LeaderboardPerSemesterEmployees() {
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
                                 {
-                                  top_professor_per_sem[professor]
+                                  top_department_per_sem[department]
                                     .number_of_sentiments
                                 }
                               </h1>
@@ -300,7 +303,7 @@ export default function LeaderboardPerSemesterEmployees() {
                                 <i className="fas fa-share-nodes" />
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
-                                {top_professor_per_sem[professor].share}
+                                {top_department_per_sem[department].share}
                               </h1>
                               <h1 className="text-sm font-medium text-gray-500">
                                 Share
