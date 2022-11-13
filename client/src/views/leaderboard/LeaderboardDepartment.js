@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import httpClient from "../../http/httpClient";
+
 import LoadingPage from "../../components/loading/LoadingPage";
+import httpClient from "../../http/httpClient";
 
 /**
  * @description Handles the admin leaderboard
@@ -9,9 +10,10 @@ export default function LeaderboardDepartment() {
   const [topDepartment, setTopDepartment] = useState({
     loading: true,
     top_department: {},
+    year: "",
   });
 
-  const { loading, top_department } = topDepartment;
+  const { loading, top_department, year } = topDepartment;
 
   useEffect(() => {
     httpClient.get("/data/get-top-department-overall").then((response) => {
@@ -20,6 +22,7 @@ export default function LeaderboardDepartment() {
         ...topDepartment,
         loading: false,
         top_department: response.data.top_department,
+        year: response.data.year,
       });
     });
   }, []);
@@ -34,6 +37,9 @@ export default function LeaderboardDepartment() {
             <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
               Sentiment of Departments
             </h1>
+            <p className="text-base font-medium text-gray-500">
+              Overall sentiment of departments in year {year} based on sentiments of all professors in the department.
+            </p>
           </div>
           {top_department.length > 0 ? (
             <div className=" place-content-center">
@@ -171,8 +177,8 @@ export default function LeaderboardDepartment() {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64 border-double border-4 border-red-600 rounded-lg">
-              <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-gray-500  md:text-5xl lg:text-7xl">
+            <div className="flex flex-col items-center justify-center w-full h-40 p-4 border-4 border-red-600 border-double rounded-lg md:h-48 lg:h-64">
+              <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-gray-500 md:text-5xl lg:text-7xl">
                 No Data Available
               </h1>
             </div>

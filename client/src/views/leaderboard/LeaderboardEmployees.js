@@ -10,11 +10,12 @@ export default function LeaderboardRanking() {
   const [topProfessors, setTopProfessors] = useState({
     loading: true,
     top_professors: {},
+    year: "",
   });
 
   const user = isAuth();
 
-  const { loading, top_professors } = topProfessors;
+  const { loading, top_professors, year } = topProfessors;
 
   useEffect(() => {
     httpClient.get("/data/get-top-professors-overall").then((response) => {
@@ -23,6 +24,7 @@ export default function LeaderboardRanking() {
         ...topProfessors,
         loading: false,
         top_professors: response.data.top_professors,
+        year: response.data.year,
       });
     });
   }, []);
@@ -37,6 +39,9 @@ export default function LeaderboardRanking() {
             <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
               Sentiment of Professors
             </h1>
+            <p className="text-base font-medium text-gray-500">
+              Overall sentiment of professors in year {year} based on sentiments of all courses taught by the professor.
+            </p>
           </div>
           {top_professors.length > 0 ? (
             <div className=" place-content-center">
