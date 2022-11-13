@@ -43,10 +43,10 @@ export default function LeaderboardNavbar() {
       current: isActive("employees"),
     },
     {
-        name: "Per Semester Department",
-        href: "/admin/leaderboard/per-semester-department/1",
-        current: isActive("per-semester-department"),
-    }
+      name: "Per Semester Department",
+      href: "/admin/leaderboard/per-semester-department/1",
+      current: isActive("per-semester-department"),
+    },
   ];
 
   return (

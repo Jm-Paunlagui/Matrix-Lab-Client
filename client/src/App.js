@@ -162,8 +162,8 @@ export default function App() {
                 />
                 <Route
                   element={<LeaderboardPerSemesterDepartment />}
-                    exact="true"
-                    path="per-semester-department/:page"
+                  exact="true"
+                  path="per-semester-department/:page"
                 />
               </Route>
               <Route
