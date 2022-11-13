@@ -18,6 +18,7 @@ import IndexLeaderboard from "./views/leaderboard/IndexLeaderboard";
 import LeaderboardDepartment from "./views/leaderboard/LeaderboardDepartment";
 import LeaderboardEmployees from "./views/leaderboard/LeaderboardEmployees";
 import LeaderboardPerSemesterDepartment from "./views/leaderboard/LeaderboardPerSemesterDepartment";
+import LeaderboardPerSemesterEmployees from "./views/leaderboard/LeaderboardPerSemesterEmployees";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
 import AuthLogout from "./views/auth/AuthLogout";
@@ -163,7 +164,12 @@ export default function App() {
                 <Route
                   element={<LeaderboardPerSemesterDepartment />}
                   exact="true"
-                  path="per-semester-department/:page"
+                  path="per-semester-department"
+                />
+                <Route
+                    element={<LeaderboardPerSemesterEmployees />}
+                    exact="true"
+                    path="per-semester-employee"
                 />
               </Route>
               <Route

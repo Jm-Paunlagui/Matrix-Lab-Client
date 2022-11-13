@@ -44,9 +44,14 @@ export default function LeaderboardNavbar() {
     },
     {
       name: "Per Semester Department",
-      href: "/admin/leaderboard/per-semester-department/1",
+      href: "/admin/leaderboard/per-semester-department",
       current: isActive("per-semester-department"),
     },
+    {
+        name: "Per Semester Employee",
+        href: "/admin/leaderboard/per-semester-employee",
+        current: isActive("per-semester-employee"),
+    }
   ];
 
   return (
