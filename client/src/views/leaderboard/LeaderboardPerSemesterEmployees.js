@@ -185,15 +185,15 @@ export default function LeaderboardPerSemesterEmployees() {
                           className={`col-span-1 py-5 items-center justify-center w-full
                                                ${
                                                  top_professor_per_sem[
-                                                     professor
+                                                   professor
                                                  ].id === 0
                                                    ? "bg-yellow-50"
                                                    : top_professor_per_sem[
-                                                         professor
+                                                       professor
                                                      ].id === 1
                                                    ? "bg-gray-50"
                                                    : top_professor_per_sem[
-                                                             professor
+                                                       professor
                                                      ].id === 2
                                                    ? "bg-orange-50"
                                                    : "bg-blue-50"
