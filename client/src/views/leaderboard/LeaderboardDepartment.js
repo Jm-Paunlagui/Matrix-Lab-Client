@@ -38,7 +38,8 @@ export default function LeaderboardDepartment() {
               Sentiment of Departments
             </h1>
             <p className="text-base font-medium text-gray-500">
-              Overall sentiment of departments in year {year} based on sentiments of all professors in the department.
+              Overall sentiment of departments in year {year} based on
+              sentiments of all professors in the department.
             </p>
           </div>
           {top_department.length > 0 ? (
