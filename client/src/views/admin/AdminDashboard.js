@@ -99,7 +99,6 @@ export default function AdminDashboard() {
       {loading ? (
         LoadingPage()
       ) : (
-        <>
           <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
             {Object.keys(details).map((detail) => (
               <div
@@ -192,7 +191,6 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
-        </>
       )}
     </div>
   );
