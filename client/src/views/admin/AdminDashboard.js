@@ -33,9 +33,7 @@ export default function AdminDashboard() {
   const labels = [
     ...Object.keys(total_responses).map((key) => {
       return (
-        total_responses[key].school_year +
-        " " +
-        total_responses[key].school_semester
+        `${total_responses[key].school_year} ${total_responses[key].semester}`
       );
     }),
   ];
@@ -49,9 +47,7 @@ export default function AdminDashboard() {
         label: [
           ...Object.keys(total_responses).map((key) => {
             return (
-              total_responses[key].school_year +
-              " " +
-              total_responses[key].school_semester
+                `${total_responses[key].school_year} ${total_responses[key].semester}`
             );
           }),
         ],
