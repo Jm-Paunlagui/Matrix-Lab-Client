@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import { Link, useParams } from "react-router-dom";
 
@@ -15,7 +15,7 @@ import {
 } from "../../assets/styles/input-types-styles";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the forgot password request page
@@ -98,19 +98,19 @@ export default function AuthResetPassword() {
 
   function decodeToken() {
     httpClient
-        .get(`/user/verify-reset-password-token/${token}`)
-        .then((res) => {
-            if (res.data.status === "success") {
-                setNewPassword({
-                ...newPassword,
-                buttonDisabled: false,
-                });
-            }
-        })
-        .catch((err) => {
-          window.location.href = "/invalid-token";
-          toast(`Error: ${err.response.data.message}`, { type: "error" });
-        });
+      .get(`/user/verify-reset-password-token/${token}`)
+      .then((res) => {
+        if (res.data.status === "success") {
+          setNewPassword({
+            ...newPassword,
+            buttonDisabled: false,
+          });
+        }
+      })
+      .catch((err) => {
+        window.location.href = "/invalid-token";
+        toast(`Error: ${err.response.data.message}`, { type: "error" });
+      });
   }
 
   useEffect(() => {
