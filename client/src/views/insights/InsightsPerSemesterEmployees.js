@@ -8,30 +8,43 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import { getNumberFromString } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
 
+/**
+ * @description Handles the Insights for the department per semester
+ */
 export default function InsightsPerSemesterEmployees() {
+  /**
+   * @description The initial state of the data
+   */
   const [topEmployeePerSem, setTopEmployeePerSem] = useState({
     loading: true,
     top_professor_per_sem: {},
     title: "",
     s_y: "",
-    page: 1,
-    pages_to_choose: {},
-    on_page: "",
+    file_number: 1,
+    files_to_choose: {},
+    on_file_number: "",
   });
 
+  /**
+   * @description The destructured data from the state
+   */
   const {
     loading,
     top_professor_per_sem,
     title,
     s_y,
-    page,
-    pages_to_choose,
-    on_page,
+    file_number,
+    files_to_choose,
+    on_file_number,
   } = topEmployeePerSem;
 
-  const getTopEmployeePerSem = (page) => {
+  /**
+   * @description Get the top professor per semester from the backend
+   * @param file_number
+   */
+  const getTopEmployeePerSem = (file_number) => {
     httpClient
-      .get(`/data/get-top-professors-by-file/${page}`)
+      .get(`/data/get-top-professors-by-file/${file_number}`)
       .then((response) => {
         setTopEmployeePerSem({
           ...topEmployeePerSem,
@@ -39,11 +52,14 @@ export default function InsightsPerSemesterEmployees() {
           top_professor_per_sem: response.data.top_professor_per_sem,
           title: response.data.question_type,
           s_y: response.data.s_y,
-          pages_to_choose: response.data.pages_to_choose,
+          files_to_choose: response.data.pages_to_choose,
         });
       });
   };
 
+  /**
+   * @description Get the value of the file number from the dropdown list
+   */
   const handleSelect = (name) => (value) => {
     setTopEmployeePerSem({
       ...topEmployeePerSem,
@@ -52,9 +68,12 @@ export default function InsightsPerSemesterEmployees() {
     });
   };
 
+  /**
+   * @description Updates the file number to get the data from the backend
+   */
   useEffect(() => {
-    getTopEmployeePerSem(page);
-  }, [page]);
+    getTopEmployeePerSem(file_number);
+  }, [file_number]);
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -91,14 +110,14 @@ export default function InsightsPerSemesterEmployees() {
                         View by:
                       </h1>
                       <Listbox
-                        name={"on_page"}
-                        onChange={handleSelect("on_page")}
+                        name={"on_file_number"}
+                        onChange={handleSelect("on_file_number")}
                       >
                         <div className="relative mt-1">
                           <Listbox.Button className={TEXT_FIELD}>
                             <span className="block truncate text-start">
-                              {on_page
-                                ? on_page
+                              {on_file_number
+                                ? on_file_number
                                 : "Select School Year and Semester"}
                             </span>
                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -118,7 +137,7 @@ export default function InsightsPerSemesterEmployees() {
                             leaveTo="transform scale-95 opacity-0"
                           >
                             <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                              {Object.keys(pages_to_choose).map((page) => (
+                              {Object.keys(files_to_choose).map((file) => (
                                 <Listbox.Option
                                   className={({ active }) =>
                                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
@@ -127,8 +146,8 @@ export default function InsightsPerSemesterEmployees() {
                                         : "text-gray-900"
                                     }`
                                   }
-                                  key={page}
-                                  value={`${pages_to_choose[page].page} - ${pages_to_choose[page].school_year} - ${pages_to_choose[page].school_semester}`}
+                                  key={file}
+                                  value={`${files_to_choose[file].page} - ${files_to_choose[file].school_year} - ${files_to_choose[file].school_semester}`}
                                 >
                                   {({ selected }) => (
                                     <>
@@ -139,7 +158,7 @@ export default function InsightsPerSemesterEmployees() {
                                             : "font-normal"
                                         }`}
                                       >
-                                        {`${pages_to_choose[page].page} - ${pages_to_choose[page].school_year} - ${pages_to_choose[page].school_semester}`}
+                                        {`${files_to_choose[file].page} - ${files_to_choose[file].school_year} - ${files_to_choose[file].school_semester}`}
                                       </span>
                                       {selected ? (
                                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">

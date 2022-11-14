@@ -4,9 +4,9 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import { isAuth } from "../../helpers/Auth";
 
 /**
- * @description Handles the admin insights
+ * @description Handles the Insights for the department
  */
-export default function LeaderboardRanking() {
+export default function InsightsEmployees() {
   const [topProfessors, setTopProfessors] = useState({
     loading: true,
     top_professors: {},

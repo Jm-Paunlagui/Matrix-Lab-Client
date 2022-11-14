@@ -4,7 +4,7 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 
 /**
- * @description Handles the admin insights
+ * @description Handles the Insights for the department
  */
 export default function InsightsDepartment() {
   const [topDepartment, setTopDepartment] = useState({
