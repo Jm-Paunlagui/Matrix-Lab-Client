@@ -48,7 +48,7 @@ export default function InsightsPerSemesterEmployees() {
     setTopEmployeePerSem({
       ...topEmployeePerSem,
       [name]: value,
-      page: getNumberFromString(value),
+      file_number: getNumberFromString(value),
     });
   };
 

@@ -14,9 +14,9 @@ export default function InsightsPerSemesterDepartment() {
     top_department_per_sem: {},
     title: "",
     s_y: "",
-    page: 1,
+    file_number: 1,
     pages_to_choose: {},
-    on_page: "",
+    on_file_number: "",
   });
 
   const {
@@ -24,14 +24,14 @@ export default function InsightsPerSemesterDepartment() {
     top_department_per_sem,
     title,
     s_y,
-    page,
+    file_number,
     pages_to_choose,
-    on_page,
+    on_file_number,
   } = topDepartmentPerSem;
 
-  const getTopDepartmentPerSem = (page) => {
+  const getTopDepartmentPerSem = (file_number) => {
     httpClient
-      .get(`/data/get-top-department-by-file/${page}`)
+      .get(`/data/get-top-department-by-file/${file_number}`)
       .then((response) => {
         setTopDepartmentPerSem({
           ...topDepartmentPerSem,
@@ -53,8 +53,8 @@ export default function InsightsPerSemesterDepartment() {
   };
 
   useEffect(() => {
-    getTopDepartmentPerSem(page);
-  }, [page]);
+    getTopDepartmentPerSem(file_number);
+  }, [file_number]);
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -91,14 +91,14 @@ export default function InsightsPerSemesterDepartment() {
                         View by:
                       </h1>
                       <Listbox
-                        name={"on_page"}
-                        onChange={handleSelect("on_page")}
+                        name={"on_file_number"}
+                        onChange={handleSelect("on_file_number")}
                       >
                         <div className="relative mt-1">
                           <Listbox.Button className={TEXT_FIELD}>
                             <span className="block truncate text-start">
-                              {on_page
-                                ? on_page
+                              {on_file_number
+                                ? on_file_number
                                 : "Select School Year and Semester"}
                             </span>
                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
