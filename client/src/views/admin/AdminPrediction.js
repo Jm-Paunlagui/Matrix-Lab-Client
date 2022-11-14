@@ -54,6 +54,10 @@ export default function AdminPrediction() {
     textChangeToAnS,
   } = handlers;
 
+  /**
+   * @description Gets the file to view from the user and sets the state
+   * @param event
+   */
   const handleChange = (event) => {
     setCSVFileToView(event.target.files[0]);
     setHandlers({
@@ -111,6 +115,9 @@ export default function AdminPrediction() {
   });
   const { csv_question, school_year } = extras;
 
+  /**
+   * @description Gets the input from the user and sets the state
+   */
   const handleExtras = (name) => (event) => {
     setExtras({ ...extras, [name]: event.target.value });
     setHandlers({
@@ -119,6 +126,11 @@ export default function AdminPrediction() {
     });
   };
 
+  /**
+   * @description Handles the view of the csv file and to select the columns
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleSubmitCSVToView = async (event) => {
     event.preventDefault();
     setHandlers({
@@ -161,6 +173,11 @@ export default function AdminPrediction() {
       });
   };
 
+  /**
+   * @description Handles the analysis and saving of the csv file
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleSubmitToAnalyzeAndSave = async (event) => {
     event.preventDefault();
     setHandlers({
