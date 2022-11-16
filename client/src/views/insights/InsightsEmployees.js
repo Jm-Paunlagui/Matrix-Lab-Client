@@ -57,9 +57,7 @@ export default function InsightsEmployees() {
             }`}
                   key={top_professors[professor].id}
                 >
-                  <div
-                    className={`grid w-full h-full grid-cols-1 rounded `}
-                  >
+                  <div className={`grid w-full h-full grid-cols-1 rounded `}>
                     <div
                       className={`col-span-1 py-5 items-center justify-center w-full
                 ${
