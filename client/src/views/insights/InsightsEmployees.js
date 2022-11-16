@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import httpClient from "../../http/httpClient";
 import LoadingPage from "../../components/loading/LoadingPage";
-import { isAuth } from "../../helpers/Auth";
 
 /**
  * @description Handles the Insights for the department
@@ -12,8 +11,6 @@ export default function InsightsEmployees() {
     top_professors: {},
     year: "",
   });
-
-  const user = isAuth();
 
   const { loading, top_professors, year } = topProfessors;
 
@@ -61,11 +58,7 @@ export default function InsightsEmployees() {
                   key={top_professors[professor].id}
                 >
                   <div
-                    className={`grid w-full h-full grid-cols-1 rounded ${
-                      user.role === "admin" || user.role === "user"
-                        ? ""
-                        : "md:grid-cols-5"
-                    }`}
+                    className={`grid w-full h-full grid-cols-1 rounded `}
                   >
                     <div
                       className={`col-span-1 py-5 items-center justify-center w-full
@@ -81,9 +74,7 @@ export default function InsightsEmployees() {
                     >
                       <div className="flex flex-col items-center justify-center w-full p-4">
                         <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
-                          {user.role === "admin" || user.role === "user"
-                            ? top_professors[professor].professor
-                            : top_professors[professor].hidden_professor}
+                          {top_professors[professor].professor}
                         </h1>
                       </div>
                     </div>
