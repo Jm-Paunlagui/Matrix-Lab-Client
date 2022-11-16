@@ -86,10 +86,7 @@ export default function AdminPrediction() {
     { name: "Summer", id: 4 },
   ];
 
-  const {
-    selected_column_for_sentence,
-    selected_semester,
-  } = selectedColumn;
+  const { selected_column_for_sentence, selected_semester } = selectedColumn;
 
   // onChange for the select column for sentence listbox headless ui
   const handleSelect = (name) => (value) => {
@@ -251,14 +248,19 @@ export default function AdminPrediction() {
           </h1>
         </div>
         <div className="col-span-2">
-          <div className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2  ${
-            errorEffect || errorEffectToAnS ? `animate-wiggle` : "outline-gray-200"
-          }`}
-               onAnimationEnd={() => setHandlers({
-                 ...handlers,
-                 errorEffect: false,
-                    errorEffectToAnS: false,
-               })}
+          <div
+            className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2  ${
+              errorEffect || errorEffectToAnS
+                ? `animate-wiggle`
+                : "outline-gray-200"
+            }`}
+            onAnimationEnd={() =>
+              setHandlers({
+                ...handlers,
+                errorEffect: false,
+                errorEffectToAnS: false,
+              })
+            }
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
