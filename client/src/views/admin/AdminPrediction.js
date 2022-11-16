@@ -1,7 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
-  DANGER_BUTTON,
   ICON_PLACE_SELF_CENTER,
   LOADING_ANIMATION,
   PRIMARY_BUTTON,
@@ -26,18 +25,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function AdminPrediction() {
   const user = isAuth();
 
+  const inputRef = useRef(null);
+
   const [csv_file_to_view, setCSVFileToView] = useState();
 
   const [handlers, setHandlers] = useState({
     ok: false,
     errorEffect: false,
     errorMessage: "",
-    showButton: true,
     textChange: "View",
     okToAnS: false,
     errorEffectToAnS: false,
     errorMessageToAnS: "",
-    showButtonToAnS: true,
     textChangeToAnS: "Analyze and Save",
   });
 
@@ -45,12 +44,10 @@ export default function AdminPrediction() {
     ok,
     errorEffect,
     errorMessage,
-    showButton,
     textChange,
     okToAnS,
     errorEffectToAnS,
     errorMessageToAnS,
-    showButtonToAnS,
     textChangeToAnS,
   } = handlers;
 
@@ -91,9 +88,6 @@ export default function AdminPrediction() {
 
   const {
     selected_column_for_sentence,
-    selected_column_for_evaluatee,
-    selected_column_for_department,
-    selected_column_for_course_code,
     selected_semester,
   } = selectedColumn;
 
@@ -135,7 +129,7 @@ export default function AdminPrediction() {
     event.preventDefault();
     setHandlers({
       ...handlers,
-      okToView: true,
+      ok: true,
       textChange: "Viewing...",
     });
     const formData = new FormData();
@@ -145,7 +139,7 @@ export default function AdminPrediction() {
       .then(async (response) => {
         setHandlers({
           ...handlers,
-          okToView: false,
+          ok: false,
           showButtonToView: false,
           textChangeToView: "Viewed",
         });
@@ -221,8 +215,10 @@ export default function AdminPrediction() {
           setSelectedColumn({
             ...selectedColumn,
             selected_column_for_sentence: "",
+            selected_semester: "",
           });
           setCSVFileToView(null);
+          inputRef.current.value = "";
           setCSVColumns({
             ...csv_columns,
             show_columns: false,
@@ -255,7 +251,15 @@ export default function AdminPrediction() {
           </h1>
         </div>
         <div className="col-span-2">
-          <div className="flex flex-col w-full mb-8 bg-white rounded outline outline-2 outline-gray-200">
+          <div className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2  ${
+            errorEffect || errorEffectToAnS ? `animate-wiggle` : "outline-gray-200"
+          }`}
+               onAnimationEnd={() => setHandlers({
+                 ...handlers,
+                 errorEffect: false,
+                    errorEffectToAnS: false,
+               })}
+          >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
               <div className="col-span-2 p-8 bg-gray-50">
                 <h1 className="mb-4 text-xl font-bold text-gray-700">
@@ -296,6 +300,7 @@ export default function AdminPrediction() {
                         className={TEXT_FIELD}
                         name="csv_file_to_view"
                         onChange={handleChange}
+                        ref={inputRef}
                         type="file"
                       />
                       <p
@@ -546,7 +551,7 @@ export default function AdminPrediction() {
                             size={"lg"}
                           />
                         )}
-                        Analyze and Save
+                        {textChangeToAnS}
                       </button>
                     </div>
                   </form>
