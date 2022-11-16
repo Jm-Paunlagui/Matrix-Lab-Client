@@ -434,12 +434,12 @@ export default function AdminPrediction() {
                           School Year
                         </h1>
                         <input
-                            className={`truncate ${TEXT_FIELD}`}
-                            name="school_year"
-                            onChange={handleExtras("school_year")}
-                            placeholder="e.g. S.Y. 2020-2021"
-                            type="text"
-                            value={school_year}
+                          className={`truncate ${TEXT_FIELD}`}
+                          name="school_year"
+                          onChange={handleExtras("school_year")}
+                          placeholder="e.g. S.Y. 2020-2021"
+                          type="text"
+                          value={school_year}
                         />
                         <Listbox
                           name={"semester"}
