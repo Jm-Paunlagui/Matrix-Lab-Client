@@ -356,15 +356,15 @@ export default function AdminPrediction() {
                         />
                       </div>
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="text-base font-medium text-gray-500">
-                          Sentence
-                        </h1>
                         <Listbox
                           name={"sentence"}
                           onChange={handleSelect(
                             "selected_column_for_sentence",
                           )}
                         >
+                          <Listbox.Label className="block text-base font-medium text-gray-500">
+                            Sentence
+                          </Listbox.Label>
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate text-start">
@@ -431,12 +431,23 @@ export default function AdminPrediction() {
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         <h1 className="text-base font-medium text-gray-500">
-                          School Year and Semester
+                          School Year
                         </h1>
+                        <input
+                            className={`truncate ${TEXT_FIELD}`}
+                            name="school_year"
+                            onChange={handleExtras("school_year")}
+                            placeholder="e.g. S.Y. 2020-2021"
+                            type="text"
+                            value={school_year}
+                        />
                         <Listbox
                           name={"semester"}
                           onChange={handleSelect("selected_semester")}
                         >
+                          <Listbox.Label className="block text-base font-medium text-gray-500">
+                            Semester
+                          </Listbox.Label>
                           <div className="relative mt-1">
                             <Listbox.Button className={TEXT_FIELD}>
                               <span className="block truncate text-start">
@@ -500,14 +511,6 @@ export default function AdminPrediction() {
                             </Transition>
                           </div>
                         </Listbox>
-                        <input
-                          className={`truncate ${TEXT_FIELD}`}
-                          name="school_year"
-                          onChange={handleExtras("school_year")}
-                          placeholder="e.g. S.Y. 2020-2021"
-                          type="text"
-                          value={school_year}
-                        />
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         {selected_column_for_sentence ? (
