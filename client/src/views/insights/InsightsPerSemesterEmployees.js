@@ -121,7 +121,6 @@ export default function InsightsPerSemesterEmployees() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
-      <>
         <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64">
           <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
             Sentiment of Professors
@@ -318,7 +317,6 @@ export default function InsightsPerSemesterEmployees() {
             )}
           </div>
         </div>
-      </>
     </div>
   );
 }
