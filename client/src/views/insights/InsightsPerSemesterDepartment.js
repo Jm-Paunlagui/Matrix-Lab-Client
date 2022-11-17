@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {ViewInsightHistory} from "../../forms/CredentialForms";
+import { ViewInsightHistory } from "../../forms/CredentialForms";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -154,7 +154,8 @@ export default function InsightsPerSemesterDepartment() {
                   });
                 }}
               >
-                {new ViewInsightHistory(
+                {
+                  new ViewInsightHistory(
                     handleViewFile,
                     handleSelect,
                     school_year,
@@ -166,7 +167,8 @@ export default function InsightsPerSemesterDepartment() {
                     errorMessage,
                     ok,
                     textChange,
-                )}
+                  )
+                }
               </div>
             </div>
           </div>

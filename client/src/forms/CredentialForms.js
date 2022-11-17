@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -9,7 +9,8 @@ import {
   faForward,
   faRepeat,
   faSignIn,
-  faPenToSquare, faMagnifyingGlassChart,
+  faPenToSquare,
+  faMagnifyingGlassChart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -24,8 +25,8 @@ import {
 } from "../assets/styles/input-types-styles";
 import { maskEmail, emailRegex } from "../helpers/Helper";
 import PasswordChecklist from "react-password-checklist";
-import {Listbox, Transition} from "@headlessui/react";
-import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/20/solid";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 /**
  * @description User login form for the application
@@ -1208,239 +1209,216 @@ export function SignInInformation(
  * @constructor
  */
 export function ViewInsightHistory(
-    handleViewFile,
-    handleSelect,
-    school_year,
-    school_year_to_choose,
-    school_semester,
-    school_semester_to_choose,
-    csv_question,
-    csv_question_to_choose,
-    errorMessage,
-    ok,
-    textChange,
-){
+  handleViewFile,
+  handleSelect,
+  school_year,
+  school_year_to_choose,
+  school_semester,
+  school_semester_to_choose,
+  csv_question,
+  csv_question_to_choose,
+  errorMessage,
+  ok,
+  textChange,
+) {
   return (
-      <form onSubmit={handleViewFile}>
-        <div className="flex flex-col w-full space-y-2">
-          <Listbox
-              name={"school_year"}
-              onChange={handleSelect("school_year")}
-          >
-            <Listbox.Label className="block text-base font-medium text-gray-700">
-              View by:
-            </Listbox.Label>
-            <div className="relative mt-1">
-              <Listbox.Button className={TEXT_FIELD}>
-                          <span className="block truncate text-start">
-                            {school_year ? school_year : "Select School Year"}
-                          </span>
-                <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                            <ChevronUpDownIcon
-                                aria-hidden="true"
-                                className="w-5 h-5 text-gray-400"
-                            />
-                          </span>
-              </Listbox.Button>
-              <Transition
-                  as={Fragment}
-                  enter="transition duration-100 ease-out"
-                  enterFrom="transform scale-95 opacity-0"
-                  enterTo="transform scale-100 opacity-100"
-                  leave="transition duration-75 ease-out"
-                  leaveFrom="transform scale-100 opacity-100"
-                  leaveTo="transform scale-95 opacity-0"
-              >
-                <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {school_year_to_choose.map((file) => (
-                      <Listbox.Option
-                          className={({ active }) =>
-                              `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active
-                                      ? "bg-blue-100 text-blue-900"
-                                      : "text-gray-900"
-                              }`
-                          }
-                          key={file.id}
-                          value={file.school_year}
-                      >
-                        {({ selected }) => (
-                            <>
-                                    <span
-                                        className={`block truncate ${
-                                            selected ? "font-medium" : "font-normal"
-                                        }`}
-                                    >
-                                      {file.school_year}
-                                    </span>
-                              {selected ? (
-                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                        <CheckIcon
-                                            aria-hidden="true"
-                                            className="w-5 h-5"
-                                        />
-                                      </span>
-                              ) : null}
-                            </>
-                        )}
-                      </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              </Transition>
-            </div>
-          </Listbox>
-          <Listbox
-              name={"school_semester"}
-              onChange={handleSelect("school_semester")}
-          >
-            <div className="relative mt-1">
-              <Listbox.Button className={TEXT_FIELD}>
-                          <span className="block truncate text-start">
-                            {school_semester
-                                ? school_semester
-                                : "Select Semester"}
-                          </span>
-                <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                            <ChevronUpDownIcon
-                                aria-hidden="true"
-                                className="w-5 h-5 text-gray-400"
-                            />
-                          </span>
-              </Listbox.Button>
-              <Transition
-                  as={Fragment}
-                  enter="transition duration-100 ease-out"
-                  enterFrom="transform scale-95 opacity-0"
-                  enterTo="transform scale-100 opacity-100"
-                  leave="transition duration-75 ease-out"
-                  leaveFrom="transform scale-100 opacity-100"
-                  leaveTo="transform scale-95 opacity-0"
-              >
-                <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {school_semester_to_choose.map((file) => (
-                      <Listbox.Option
-                          className={({ active }) =>
-                              `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active
-                                      ? "bg-blue-100 text-blue-900"
-                                      : "text-gray-900"
-                              }`
-                          }
-                          key={file.id}
-                          value={file.school_semester}
-                      >
-                        {({ selected }) => (
-                            <>
-                                    <span
-                                        className={`block truncate ${
-                                            selected ? "font-medium" : "font-normal"
-                                        }`}
-                                    >
-                                      {file.school_semester}
-                                    </span>
-                              {selected ? (
-                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                        <CheckIcon
-                                            aria-hidden="true"
-                                            className="w-5 h-5"
-                                        />
-                                      </span>
-                              ) : null}
-                            </>
-                        )}
-                      </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              </Transition>
-            </div>
-          </Listbox>
-          <Listbox
-              name={"csv_question"}
-              onChange={handleSelect("csv_question")}
-          >
-            <div className="relative mt-1">
-              <Listbox.Button className={TEXT_FIELD}>
-                          <span className="block truncate text-start">
-                            {csv_question ? csv_question : "Select Topic"}
-                          </span>
-                <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                            <ChevronUpDownIcon
-                                aria-hidden="true"
-                                className="w-5 h-5 text-gray-400"
-                            />
-                          </span>
-              </Listbox.Button>
-              <Transition
-                  as={Fragment}
-                  enter="transition duration-100 ease-out"
-                  enterFrom="transform scale-95 opacity-0"
-                  enterTo="transform scale-100 opacity-100"
-                  leave="transition duration-75 ease-out"
-                  leaveFrom="transform scale-100 opacity-100"
-                  leaveTo="transform scale-95 opacity-0"
-              >
-                <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                  {csv_question_to_choose.map((file) => (
-                      <Listbox.Option
-                          className={({ active }) =>
-                              `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active
-                                      ? "bg-blue-100 text-blue-900"
-                                      : "text-gray-900"
-                              }`
-                          }
-                          key={file.id}
-                          value={file.csv_question}
-                      >
-                        {({ selected }) => (
-                            <>
-                                    <span
-                                        className={`block truncate ${
-                                            selected ? "font-medium" : "font-normal"
-                                        }`}
-                                    >
-                                      {file.csv_question}
-                                    </span>
-                              {selected ? (
-                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                        <CheckIcon
-                                            aria-hidden="true"
-                                            className="w-5 h-5"
-                                        />
-                                      </span>
-                              ) : null}
-                            </>
-                        )}
-                      </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              </Transition>
-            </div>
-          </Listbox>
-        </div>
-        {/* Error message */}
-        {errorMessage ? (
-            <div className="mt-2 text-sm font-semibold text-red-500">
-              {errorMessage}
-            </div>
-        ) : null}
-        <div className="flex flex-col justify-end w-full mt-8 lg:space-x-2">
-          <button
-              className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-              type="submit"
-          >
-            {ok ? (
-                LOADING_ANIMATION()
-            ) : (
-                <FontAwesomeIcon
-                    className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faMagnifyingGlassChart}
-                    size={"lg"}
+    <form onSubmit={handleViewFile}>
+      <div className="flex flex-col w-full space-y-2">
+        <Listbox name={"school_year"} onChange={handleSelect("school_year")}>
+          <Listbox.Label className="block text-base font-medium text-gray-700">
+            View by:
+          </Listbox.Label>
+          <div className="relative mt-1">
+            <Listbox.Button className={TEXT_FIELD}>
+              <span className="block truncate text-start">
+                {school_year ? school_year : "Select School Year"}
+              </span>
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <ChevronUpDownIcon
+                  aria-hidden="true"
+                  className="w-5 h-5 text-gray-400"
                 />
-            )}
-            {textChange}
-          </button>
+              </span>
+            </Listbox.Button>
+            <Transition
+              as={Fragment}
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                {school_year_to_choose.map((file) => (
+                  <Listbox.Option
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? "bg-blue-100 text-blue-900" : "text-gray-900"
+                      }`
+                    }
+                    key={file.id}
+                    value={file.school_year}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
+                          }`}
+                        >
+                          {file.school_year}
+                        </span>
+                        {selected ? (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                            <CheckIcon aria-hidden="true" className="w-5 h-5" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </Listbox>
+        <Listbox
+          name={"school_semester"}
+          onChange={handleSelect("school_semester")}
+        >
+          <div className="relative mt-1">
+            <Listbox.Button className={TEXT_FIELD}>
+              <span className="block truncate text-start">
+                {school_semester ? school_semester : "Select Semester"}
+              </span>
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <ChevronUpDownIcon
+                  aria-hidden="true"
+                  className="w-5 h-5 text-gray-400"
+                />
+              </span>
+            </Listbox.Button>
+            <Transition
+              as={Fragment}
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                {school_semester_to_choose.map((file) => (
+                  <Listbox.Option
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? "bg-blue-100 text-blue-900" : "text-gray-900"
+                      }`
+                    }
+                    key={file.id}
+                    value={file.school_semester}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
+                          }`}
+                        >
+                          {file.school_semester}
+                        </span>
+                        {selected ? (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                            <CheckIcon aria-hidden="true" className="w-5 h-5" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </Listbox>
+        <Listbox name={"csv_question"} onChange={handleSelect("csv_question")}>
+          <div className="relative mt-1">
+            <Listbox.Button className={TEXT_FIELD}>
+              <span className="block truncate text-start">
+                {csv_question ? csv_question : "Select Topic"}
+              </span>
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <ChevronUpDownIcon
+                  aria-hidden="true"
+                  className="w-5 h-5 text-gray-400"
+                />
+              </span>
+            </Listbox.Button>
+            <Transition
+              as={Fragment}
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                {csv_question_to_choose.map((file) => (
+                  <Listbox.Option
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? "bg-blue-100 text-blue-900" : "text-gray-900"
+                      }`
+                    }
+                    key={file.id}
+                    value={file.csv_question}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
+                          }`}
+                        >
+                          {file.csv_question}
+                        </span>
+                        {selected ? (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                            <CheckIcon aria-hidden="true" className="w-5 h-5" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </Listbox>
+      </div>
+      {/* Error message */}
+      {errorMessage ? (
+        <div className="mt-2 text-sm font-semibold text-red-500">
+          {errorMessage}
         </div>
-      </form>
-  )
+      ) : null}
+      <div className="flex flex-col justify-end w-full mt-8 lg:space-x-2">
+        <button
+          className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+          type="submit"
+        >
+          {ok ? (
+            LOADING_ANIMATION()
+          ) : (
+            <FontAwesomeIcon
+              className={`${ICON_PLACE_SELF_CENTER}`}
+              icon={faMagnifyingGlassChart}
+              size={"lg"}
+            />
+          )}
+          {textChange}
+        </button>
+      </div>
+    </form>
+  );
 }
