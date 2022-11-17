@@ -48,7 +48,7 @@ export default function InsightsPerSemesterEmployees() {
    */
   const getTopEmployeePerSem = () => {
     httpClient.get(`/data/options-for-file`).then((response) => {
-      console.log(response.data);
+      
       setTopEmployeePerSem({
         ...topEmployeePerSem,
         loading: false,
@@ -97,7 +97,7 @@ export default function InsightsPerSemesterEmployees() {
         csv_question: csv_question,
       })
       .then((response) => {
-        console.log(response.data.top_professors);
+        
         setTopEmployeePerSem({
           ...topEmployeePerSem,
           top_professor_per_sem: response.data.top_professors,
@@ -108,7 +108,7 @@ export default function InsightsPerSemesterEmployees() {
         });
       })
       .catch((error) => {
-        console.log(error.response.data);
+        
         setTopEmployeePerSem({
           ...topEmployeePerSem,
           error: true,

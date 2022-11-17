@@ -17,7 +17,7 @@ export default function InsightsDepartment() {
 
   useEffect(() => {
     httpClient.get("/data/get-top-department-overall").then((response) => {
-      console.log(response.data);
+      
       setTopDepartment({
         ...topDepartment,
         loading: false,
