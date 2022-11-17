@@ -71,7 +71,7 @@ export default function InsightsPerSemesterDepartment() {
   };
 
   /**
-   * @description Get the value of the file number from the dropdown list
+   * @description Get the value of the file number from the dropdown list.
    */
   const handleSelect = (name) => (value) => {
     setTopDepartmentPerSem({
@@ -82,12 +82,17 @@ export default function InsightsPerSemesterDepartment() {
   };
 
   /**
-   * @description Updates the file number to get the data from the backend
+   * @description Updates the file number to get the data from the backend.
    */
   useEffect(() => {
     getTopEmployeePerSem();
   }, []);
 
+  /**
+   * @description Gets the data from the backend and displays it to the page.
+   * @param event
+   * @returns {Promise<void>}
+   */
   const handleViewFile = async (event) => {
     event.preventDefault();
     setTopDepartmentPerSem({

@@ -96,6 +96,9 @@ export default function AuthResetPassword() {
     }
   };
 
+  /**
+   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login page.
+   */
   function decodeToken() {
     httpClient
       .get(`/user/verify-reset-password-token/${token}`)
