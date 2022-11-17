@@ -10,7 +10,7 @@ export default function IndexPublic() {
   return (
     <>
       <NavigationBar />
-      <div className="mt-16 bg-white font-Montserrat">
+      <div className="mt-16 md:mt-8 bg-white font-Montserrat">
         <Outlet />
       </div>
       <Footer />
