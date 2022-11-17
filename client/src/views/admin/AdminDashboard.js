@@ -19,7 +19,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     httpClient.get("/data/get-all-data-from-csv").then((response) => {
-      console.log(response.data);
+      
       setData({
         ...data,
         loading: false,
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     }),
   ];
 
-  console.log(labels);
+  
   // Create the data object for the chart to use to display the total responses
   const dataForChart = {
     labels: labels,
