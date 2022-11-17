@@ -16,7 +16,6 @@ export default function InsightsEmployees() {
 
   useEffect(() => {
     httpClient.get("/data/get-top-professors-overall").then((response) => {
-      
       setTopProfessors({
         ...topProfessors,
         loading: false,
