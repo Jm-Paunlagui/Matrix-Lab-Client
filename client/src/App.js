@@ -87,12 +87,12 @@ export default function App() {
               <Route
                 element={<InsightsDepartment />}
                 exact="true"
-                path="leaderboard"
+                path="department-sentiment-overall"
               />
               <Route
-                element={<InsightsEmployees />}
+                element={<InsightsPerSemesterDepartment />}
                 exact="true"
-                path="ranking"
+                path="department-sentiment"
               />
             </Route>
             {/**
