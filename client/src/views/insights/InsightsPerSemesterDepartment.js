@@ -48,7 +48,6 @@ export default function InsightsPerSemesterDepartment() {
    */
   const getTopEmployeePerSem = () => {
     httpClient.get(`/data/options-for-file`).then((response) => {
-      
       setTopDepartmentPerSem({
         ...topDepartmentPerSem,
         loading: false,
@@ -97,7 +96,6 @@ export default function InsightsPerSemesterDepartment() {
         csv_question: csv_question,
       })
       .then((response) => {
-        
         setTopDepartmentPerSem({
           ...topDepartmentPerSem,
           top_department_per_sem: response.data.top_departments,
