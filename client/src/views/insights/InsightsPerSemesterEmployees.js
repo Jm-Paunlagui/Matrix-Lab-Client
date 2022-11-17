@@ -91,9 +91,9 @@ export default function InsightsPerSemesterEmployees() {
     });
     await httpClient
       .post("/data/get-top-professors-by-file", {
-        school_year: school_year,
-        school_semester: school_semester,
-        csv_question: csv_question,
+        school_year,
+        school_semester,
+        csv_question,
       })
       .then((response) => {
         setTopEmployeePerSem({
