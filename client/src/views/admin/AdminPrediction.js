@@ -155,6 +155,11 @@ export default function AdminPrediction() {
         });
       })
       .catch((error) => {
+        setCSVColumns({
+            ...csv_columns,
+            show_columns: false,
+            csv_file_name: "",
+        })
         setHandlers({
           ...handlers,
           ok: false,
