@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useRef } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
+  DANGER_BUTTON,
   ICON_PLACE_SELF_CENTER,
   LOADING_ANIMATION,
   PRIMARY_BUTTON,
@@ -16,7 +17,7 @@ import {
   MATRIX_RSA_PUBLIC_KEY,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlassChart, faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
@@ -224,6 +225,24 @@ export default function AdminPrediction() {
           });
         })
         .catch((error) => {
+          setExtras({
+            ...extras,
+            csv_question: "",
+            school_year: "",
+          });
+          setSelectedColumn({
+            ...selectedColumn,
+            selected_column_for_sentence: "",
+            selected_semester: "",
+          });
+          setCSVFileToView(null);
+          inputRef.current.value = "";
+          setCSVColumns({
+            ...csv_columns,
+            show_columns: true,
+            csv_file_name: "",
+            csv_columns_to_pick: [],
+          });
           setHandlers({
             ...handlers,
             textChange: "View",
@@ -235,6 +254,21 @@ export default function AdminPrediction() {
         });
     }
   };
+
+  const handleClose = () => {
+    setCSVColumns({
+      ...csv_columns,
+      show_columns: false,
+      csv_file_name: "",
+      csv_columns_to_pick: [],
+    });
+    setHandlers({
+      ...handlers,
+      errorEffect: false,
+      errorEffectToAnS: false,
+      errorMessageToAnS: "",
+    });
+  }
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -543,6 +577,20 @@ export default function AdminPrediction() {
                       </div>
                     ) : null}
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
+                      {errorMessageToAnS ? (
+                          <button
+                              className={`px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
+                              onClick={handleClose}
+                              type="button"
+                          >
+
+                                <FontAwesomeIcon
+                                    className={`${ICON_PLACE_SELF_CENTER}`}
+                                    icon={faArrowRotateRight}
+                                />
+                            Try Again
+                          </button>
+                      ): (
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
                         type="submit"
@@ -553,11 +601,11 @@ export default function AdminPrediction() {
                           <FontAwesomeIcon
                             className={`${ICON_PLACE_SELF_CENTER}`}
                             icon={faMagnifyingGlassChart}
-                            size={"lg"}
                           />
                         )}
                         {textChangeToAnS}
                       </button>
+                        )}
                     </div>
                   </form>
                 ) : null}
