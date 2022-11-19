@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {NoData} from "../../assets/styles/input-types-styles";
+import { NoData } from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -172,7 +172,7 @@ export default function InsightsEmployees() {
               ))}
             </div>
           ) : (
-              NoData("No Data Available")
+            NoData("No Data Available")
           )}
         </>
       )}

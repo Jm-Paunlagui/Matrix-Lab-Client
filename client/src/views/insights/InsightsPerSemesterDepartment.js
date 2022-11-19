@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {NoData} from "../../assets/styles/input-types-styles";
+import { NoData } from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
