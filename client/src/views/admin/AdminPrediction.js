@@ -17,7 +17,10 @@ import {
   MATRIX_RSA_PUBLIC_KEY,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { faMagnifyingGlassChart, faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlassChart,
+  faArrowRotateRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
@@ -156,10 +159,10 @@ export default function AdminPrediction() {
       })
       .catch((error) => {
         setCSVColumns({
-            ...csv_columns,
-            show_columns: false,
-            csv_file_name: "",
-        })
+          ...csv_columns,
+          show_columns: false,
+          csv_file_name: "",
+        });
         setHandlers({
           ...handlers,
           ok: false,
@@ -273,7 +276,7 @@ export default function AdminPrediction() {
       errorEffectToAnS: false,
       errorMessageToAnS: "",
     });
-  }
+  };
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -583,34 +586,33 @@ export default function AdminPrediction() {
                     ) : null}
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
                       {errorMessageToAnS ? (
-                          <button
-                              className={`px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
-                              onClick={handleClose}
-                              type="button"
-                          >
-
-                                <FontAwesomeIcon
-                                    className={`${ICON_PLACE_SELF_CENTER}`}
-                                    icon={faArrowRotateRight}
-                                />
-                            Try Again
-                          </button>
-                      ): (
-                      <button
-                        className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                        type="submit"
-                      >
-                        {okToAnS ? (
-                          LOADING_ANIMATION()
-                        ) : (
+                        <button
+                          className={`px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
+                          onClick={handleClose}
+                          type="button"
+                        >
                           <FontAwesomeIcon
                             className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faMagnifyingGlassChart}
+                            icon={faArrowRotateRight}
                           />
-                        )}
-                        {textChangeToAnS}
-                      </button>
-                        )}
+                          Try Again
+                        </button>
+                      ) : (
+                        <button
+                          className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                          type="submit"
+                        >
+                          {okToAnS ? (
+                            LOADING_ANIMATION()
+                          ) : (
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faMagnifyingGlassChart}
+                            />
+                          )}
+                          {textChangeToAnS}
+                        </button>
+                      )}
                     </div>
                   </form>
                 ) : null}
