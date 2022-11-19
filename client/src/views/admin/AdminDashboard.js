@@ -82,9 +82,9 @@ export default function AdminDashboard() {
                 <div className="flex items-center justify-center">
                   <div
                     className={`flex items-center justify-center w-10 h-10 text-white rounded ${
-                      overall.title === "Positive"
+                      overall.title === "Positive  Sentiments"
                         ? "bg-green-500"
-                        : overall.title === "Negative"
+                        : overall.title === "Negative Sentiments"
                         ? "bg-red-500"
                         : "bg-blue-500"
                     }`}
