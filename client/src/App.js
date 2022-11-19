@@ -181,9 +181,21 @@ export default function App() {
                 path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
-              <Route element={<IndexManagement />} exact="true" path="management">
-                <Route element={<ManagementFiles />} exact="true" path="files" />
-                <Route element={<ManagementProfessors />} exact="true" path="professors" />
+              <Route
+                element={<IndexManagement />}
+                exact="true"
+                path="management"
+              >
+                <Route
+                  element={<ManagementFiles />}
+                  exact="true"
+                  path="files"
+                />
+                <Route
+                  element={<ManagementProfessors />}
+                  exact="true"
+                  path="professors"
+                />
               </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
