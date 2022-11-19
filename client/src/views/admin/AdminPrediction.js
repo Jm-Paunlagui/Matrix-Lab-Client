@@ -231,8 +231,7 @@ export default function AdminPrediction() {
           csv_file_name: "",
             csv_columns_to_pick: [],
           });
-        });
-        .catch((error) => {
+        }).catch((error) => {
           setExtras({
             ...extras,
             csv_question: "",
