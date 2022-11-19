@@ -69,7 +69,7 @@ export function EMAIL_NOT_SET(email_type = "") {
 
 export function NoData(type = "") {
   return (
-    <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
+    <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500">
       <div className="grid w-full grid-cols-1 rounded">
         <div className="col-span-1 w-full">
           <div className="flex flex-row w-full p-4 justify-center items-center">

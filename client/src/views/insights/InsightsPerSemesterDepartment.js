@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
+import {NoData} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -304,11 +305,7 @@ export default function InsightsPerSemesterDepartment() {
                   ))}
                 </>
               ) : (
-                <div className="flex flex-col items-center justify-center w-full h-40 p-4 border-4 border-red-600 border-double rounded-lg md:h-48 lg:h-64">
-                  <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-gray-500 md:text-5xl lg:text-7xl">
-                    Select what to view
-                  </h1>
-                </div>
+                NoData("Choose the following options to view the data")
               )}
             </div>
           )}
