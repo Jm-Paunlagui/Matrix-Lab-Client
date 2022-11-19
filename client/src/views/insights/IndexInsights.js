@@ -1,4 +1,3 @@
-import LeaderboardNavbar from "../../components/navbars/LeaderboardNavbar";
 import { Outlet } from "react-router-dom";
 import React from "react";
 
@@ -8,7 +7,6 @@ import React from "react";
 export default function IndexInsights() {
   return (
     <>
-      <LeaderboardNavbar />
       <div className="mt-16 font-Montserrat">
         <Outlet />
       </div>

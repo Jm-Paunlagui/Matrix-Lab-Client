@@ -12,7 +12,6 @@ import AdminDashboard from "./views/admin/AdminDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
-import AdminTables from "./views/admin/AdminTables.js";
 import IndexAdmin from "./views/admin/IndexAdmin";
 import IndexInsights from "./views/insights/IndexInsights";
 import InsightsDepartment from "./views/insights/InsightsDepartment";
@@ -41,6 +40,9 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
+import IndexManagement from "./views/admin/management/IndexManagement";
+import ManagementFiles from "./views/admin/management/ManagementFiles";
+import ManagementProfessors from "./views/admin/management/ManagementProfessors";
 
 /**
  * @description Main component for the application
@@ -179,7 +181,10 @@ export default function App() {
                 path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
-              <Route element={<AdminTables />} exact="true" path="management" />
+              <Route element={<IndexManagement />} exact="true" path="management">
+                <Route element={<ManagementFiles />} exact="true" path="files" />
+                <Route element={<ManagementProfessors />} exact="true" path="professors" />
+              </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
             {/**
