@@ -6,7 +6,7 @@ import React, { Fragment } from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import httpClient from "../../http/httpClient";
 import { isAuth, signout } from "../../helpers/Auth";
-import {BsAwardFill} from "react-icons/bs";
+import { BsAwardFill } from "react-icons/bs";
 
 /**
  * @description Handles the admin navigation bar for the application
@@ -152,7 +152,7 @@ export default function AdminNavigationBar() {
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
-    ];
+  ];
 
   return (
     <Menu
@@ -207,40 +207,41 @@ export default function AdminNavigationBar() {
                       <Menu as="div" className="relative">
                         <div>
                           <Menu.Button
-                              className={`flex text-sm rounded ${
-                                  isActive("management")
-                                      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
-                                      : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                              }`}
+                            className={`flex text-sm rounded ${
+                              isActive("management")
+                                ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
+                                : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                            }`}
                           >
-                            <h1 className="text-base font-medium">Data Management</h1>
+                            <h1 className="text-base font-medium">
+                              Data Management
+                            </h1>
                           </Menu.Button>
                         </div>
                         <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-100"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="absolute right-0 z-10 w-60 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {navigation_for_management.map((item) => (
-                                <Menu.Item key={item.name}>
-                                  <NavLink to={item.href} >
-                                    <h5
-                                        className={`${
-                                            item.current
-                                                ? "z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                                                : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                                        } block px-4 py-2 text-sm text-gray-700`}
-                                    >
-                                      {item.name}
-                                    </h5>
-                                  </NavLink>
-
-                                </Menu.Item>
+                              <Menu.Item key={item.name}>
+                                <NavLink to={item.href}>
+                                  <h5
+                                    className={`${
+                                      item.current
+                                        ? "z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                                        : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                                    } block px-4 py-2 text-sm text-gray-700`}
+                                  >
+                                    {item.name}
+                                  </h5>
+                                </NavLink>
+                              </Menu.Item>
                             ))}
                           </Menu.Items>
                         </Transition>
@@ -250,40 +251,39 @@ export default function AdminNavigationBar() {
                       <Menu as="div" className="relative">
                         <div>
                           <Menu.Button
-                              className={`flex text-sm rounded ${
-                                  isActive("insights")
-                                      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
-                                      : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                              }`}
+                            className={`flex text-sm rounded ${
+                              isActive("insights")
+                                ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
+                                : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                            }`}
                           >
                             <h1 className="text-base font-medium">Insights</h1>
                           </Menu.Button>
                         </div>
                         <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-100"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="absolute right-0 z-10 w-60 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {navigation_for_insights.map((item) => (
-                                <Menu.Item key={item.name}>
-                                      <NavLink to={item.href} >
-                                        <h5
-                                            className={`${
-                                                item.current
-                                                    ? "z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                                                    : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                                            } block px-4 py-2 text-sm text-gray-700`}
-                                        >
-                                          {item.name}
-                                        </h5>
-                                      </NavLink>
-
-                                </Menu.Item>
+                              <Menu.Item key={item.name}>
+                                <NavLink to={item.href}>
+                                  <h5
+                                    className={`${
+                                      item.current
+                                        ? "z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                                        : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                                    } block px-4 py-2 text-sm text-gray-700`}
+                                  >
+                                    {item.name}
+                                  </h5>
+                                </NavLink>
+                              </Menu.Item>
                             ))}
                           </Menu.Items>
                         </Transition>
@@ -291,7 +291,6 @@ export default function AdminNavigationBar() {
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <div className="absolute inset-y-0 inset-auto right-0 flex items-center ml-6">
@@ -320,18 +319,17 @@ export default function AdminNavigationBar() {
                   >
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
-                          <NavLink to={admin_controllers[0].href}>
-                            <h5
-                                className={`${
-                                    admin_controllers[0].current
-                                        ? "z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                                        : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                                } block px-4 py-2 text-sm text-gray-700`}
-                            >
-                              {admin_controllers[0].name}
-                            </h5>
-                          </NavLink>
-
+                        <NavLink to={admin_controllers[0].href}>
+                          <h5
+                            className={`${
+                              admin_controllers[0].current
+                                ? "z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                                : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                            } block px-4 py-2 text-sm text-gray-700`}
+                          >
+                            {admin_controllers[0].name}
+                          </h5>
+                        </NavLink>
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
@@ -378,45 +376,41 @@ export default function AdminNavigationBar() {
                   </h5>
                 </NavLink>
               ))}
-              <hr/>
-              <h5
-                  className={`block px-3 py-2 text-base font-bold`}
-              >
+              <hr />
+              <h5 className={`block px-3 py-2 text-base font-bold`}>
                 Data Management
               </h5>
-              <hr/>
+              <hr />
               {navigation_for_management.map((item) => (
-                  <NavLink key={item.name} to={item.href}>
-                    <h5
-                        className={`${
-                            item.current
-                                ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                                : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                        } block px-3 py-2 text-base font-medium`}
-                    >
-                      {item.name}
-                    </h5>
-                  </NavLink>
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                        : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                    } block px-3 py-2 text-base font-medium`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
               ))}
-              <hr/>
-              <h5
-                  className={`block px-3 py-2 text-base font-bold`}
-              >
+              <hr />
+              <h5 className={`block px-3 py-2 text-base font-bold`}>
                 Insights
               </h5>
-              <hr/>
+              <hr />
               {navigation_for_insights.map((item) => (
-              <NavLink key={item.name} to={item.href}>
-                <h5
-                    className={`${  
-                        item.current
-                            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                            : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                        : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
                     } block px-3 py-2 text-base font-medium`}
-                >
-                  {item.name}
-                </h5>
-              </NavLink>
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
               ))}
             </div>
           </Transition>
