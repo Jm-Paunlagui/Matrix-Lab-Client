@@ -150,7 +150,7 @@ export default function AdminPrediction() {
           await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
         ).then((result) => {
           setCSVColumns({
-            ...csv_columns,
+          ...csv_columns,
             show_columns: true,
             csv_file_name: result.payload.csv_file_name,
             csv_columns_to_pick: result.payload.csv_columns,
@@ -227,11 +227,11 @@ export default function AdminPrediction() {
           inputRef.current.value = "";
           setCSVColumns({
             ...csv_columns,
-            show_columns: false,
-            csv_file_name: "",
+          show_columns: false,
+          csv_file_name: "",
             csv_columns_to_pick: [],
           });
-        })
+        });
         .catch((error) => {
           setExtras({
             ...extras,
