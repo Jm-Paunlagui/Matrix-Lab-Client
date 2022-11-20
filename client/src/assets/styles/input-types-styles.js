@@ -95,29 +95,27 @@ export function NoData(type = "") {
 }
 
 Header.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string,
-}
+  title: PropTypes.string,
+  body: PropTypes.string,
+};
 
-export function Header({title, body}) {
+export function Header({ title, body }) {
   return (
-      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500">
-        <div className="grid w-full grid-cols-1 rounded">
-          <div className="col-span-1 w-full">
-            <div className="flex flex-row w-full p-4 justify-center items-center">
-              <h1 className="text-2xl font-extrabold leading-none text-left text-white md:text-5xl lg:text-7xl">
-                {title}
-              </h1>
-            </div>
+    <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500">
+      <div className="grid w-full grid-cols-1 rounded">
+        <div className="col-span-1 w-full">
+          <div className="flex flex-row w-full p-4 justify-center items-center">
+            <h1 className="text-2xl font-extrabold leading-none text-left text-white md:text-5xl lg:text-7xl">
+              {title}
+            </h1>
           </div>
-          <div className="col-span-4">
-            <div className="flex flex-row justify-center w-full p-4">
-              <p className="text-base font-medium text-white">
-                {body}
-              </p>
-            </div>
+        </div>
+        <div className="col-span-4">
+          <div className="flex flex-row justify-center w-full p-4">
+            <p className="text-base font-medium text-white">{body}</p>
           </div>
         </div>
       </div>
-  )
+    </div>
+  );
 }
