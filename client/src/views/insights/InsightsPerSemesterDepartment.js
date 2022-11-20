@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {NoData} from "../../assets/styles/input-types-styles";
+import {Header, NoData} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -118,31 +118,16 @@ export default function InsightsPerSemesterDepartment() {
   };
 
   return (
-    <div className="px-6 mx-auto max-w-7xl">
-      <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64">
-        <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
-          Sentiment of Departments
-        </h1>
-      </div>
+    <div className="px-6 mx-auto max-w-7xl pt-8">
+      <Header
+          body={"Insights for the department per semester"}
+          title="Top Department Per Semester"
+      />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
-          <div className=" place-content-center">
-            <div className="grid w-full h-full grid-cols-1 mb-8 rounded outline outline-2 outline-gray-100">
-              <div className="items-center justify-center w-full col-span-1 py-5">
-                <div className="flex flex-col items-center justify-center w-full p-4">
-                  <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-                    {csv_question}
-                  </h1>
-                  <h1 className="text-sm font-medium text-gray-500">
-                    @{school_year} {school_semester}
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="place-content-center">
             <div
-              className={`grid w-full h-full grid-cols-1 p-4 rounded outline outline-2  ${
+              className={`grid w-full h-full grid-cols-1 p-4 bg-white rounded outline outline-2  ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {
@@ -174,12 +159,12 @@ export default function InsightsPerSemesterDepartment() {
           {loading ? (
             LoadingPage()
           ) : (
-            <div className=" place-content-center">
+            <div className=" place-content-center space-y-8">
               {top_department_per_sem.length > 0 ? (
                 <>
                   {top_department_per_sem.map((department) => (
                     <div
-                      className={`flex flex-col mb-8 w-full bg-white rounded shadow
+                      className={`flex flex-col w-full bg-white rounded shadow
                                       ${
                                         department.id === 0
                                           ? "border-solid border-4 border-yellow-100"

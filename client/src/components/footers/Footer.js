@@ -37,7 +37,7 @@ const UsefulLinks = [
  */
 export default function Footer() {
   return (
-    <footer className="px-6 pt-8 pb-6 mt-auto text-gray-500 font-Montserrat ">
+    <footer className="px-6 pt-8 pb-6 mt-auto text-gray-500 font-Montserrat bg-blue-50">
       <div className="container mx-auto max-w-7xl">
         <hr className="my-6 border-gray-300" />
         <div className="flex flex-wrap py-4 text-center">

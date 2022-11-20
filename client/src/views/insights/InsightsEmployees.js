@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {NoData} from "../../assets/styles/input-types-styles";
+import {Header, NoData} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -28,25 +28,20 @@ export default function InsightsEmployees() {
   }, []);
 
   return (
-    <div className="px-6 mx-auto max-w-7xl">
+    <div className="px-6 mx-auto max-w-7xl pt-8">
       {loading ? (
         LoadingPage()
       ) : (
         <>
-          <div className="flex flex-col items-center justify-center w-full h-40 p-4 md:h-48 lg:h-64">
-            <h1 className="py-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 md:text-5xl lg:text-7xl">
-              Sentiment of Professors
-            </h1>
-            <p className="text-base font-medium text-gray-500">
-              Overall sentiment of professors in year {year} based on sentiments
-              of all courses taught by the professor.
-            </p>
-          </div>
+          <Header
+            body={`Overall sentiment of professors in year ${year} based on sentiments of all courses taught by the professor.`}
+            title="Sentiment of Professors"
+          />
           {top_professors.length > 0 ? (
-            <div className=" place-content-center">
+            <div className=" place-content-center pt-8 space-y-8">
               {top_professors.map((professor) => (
                 <div
-                  className={`flex flex-col mb-8 w-full bg-white rounded shadow
+                  className={`flex flex-col w-full bg-white rounded shadow
             ${
               professor.id === 0
                 ? "border-solid border-4 border-yellow-100"

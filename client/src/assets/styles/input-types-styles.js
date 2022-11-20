@@ -101,7 +101,7 @@ Header.propTypes = {
 
 export function Header({title, body}) {
   return (
-      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500">
+      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-blue-700">
         <div className="grid w-full grid-cols-1 rounded">
           <div className="col-span-1 w-full">
             <div className="flex flex-row w-full p-4 justify-center items-center">
