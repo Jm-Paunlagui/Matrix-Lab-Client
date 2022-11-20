@@ -4,6 +4,7 @@ import {
   faExclamationCircle,
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider border border-gray-200 rounded-lg`;
 
@@ -19,6 +20,8 @@ export const DEFAULT_BUTTON_TRANSITION = `${DELAY_3} border border-transparent r
 
 // px-5 py-3 pl-4 for a button
 // px-5 py-3 for link
+export const ACCENT_BUTTON = `font-semibold tracking-wide text-teal-600 bg-white hover:bg-teal-700 hover:text-white ${DEFAULT_BUTTON_TRANSITION}`;
+export const MAIN_BUTTON = `font-semibold tracking-wide text-blue-500 bg-white hover:bg-blue-700 hover:text-white ${DEFAULT_BUTTON_TRANSITION}`;
 export const DEFAULT_BUTTON = ` font-semibold tracking-wide text-gray-500 border-2 hover:text-black ${DEFAULT_BUTTON_TRANSITION}`;
 export const PRIMARY_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(30,64,175)] hover:shadow-[0_2px_0px_rgb(30,64,175)] font-semibold tracking-wide text-white bg-blue-500 border-2 hover:bg-white hover:text-blue-500 hover:border-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const SECONDARY_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(55,48,163)] hover:shadow-[0_2px_0px_rgb(55,48,163)] font-semibold tracking-wide text-white bg-indigo-500 border-2 hover:bg-white hover:text-indigo-500 hover:border-indigo-500 ${DEFAULT_BUTTON_TRANSITION}`;
@@ -89,4 +92,32 @@ export function NoData(type = "") {
       </div>
     </div>
   );
+}
+
+Header.propTypes = {
+    title: PropTypes.string,
+    body: PropTypes.string,
+}
+
+export function Header({title, body}) {
+  return (
+      <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500">
+        <div className="grid w-full grid-cols-1 rounded">
+          <div className="col-span-1 w-full">
+            <div className="flex flex-row w-full p-4 justify-center items-center">
+              <h1 className="text-2xl font-extrabold leading-none text-left text-white md:text-5xl lg:text-7xl">
+                {title}
+              </h1>
+            </div>
+          </div>
+          <div className="col-span-4">
+            <div className="flex flex-row justify-center w-full p-4">
+              <p className="text-base font-medium text-white">
+                {body}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  )
 }
