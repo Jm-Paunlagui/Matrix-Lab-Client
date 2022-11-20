@@ -3,7 +3,6 @@ import {
     ACCENT_BUTTON, Header,
     ICON_PLACE_SELF_CENTER, MAIN_BUTTON,
     NoData,
-    PRIMARY_BUTTON,
 } from "../../../assets/styles/input-types-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -113,7 +112,7 @@ export default function ManagementFiles() {
             body={"View and Delete files CSV files that have been analyzed by the system."}
             title={"File Management"}
         />
-      {files.length > 0 ? (
+      {files.length < 0 ? (
           <>
             <div className="flex flex-col w-full p-4">
               <h1 className="text-start font-medium text-gray-700">
@@ -251,7 +250,11 @@ export default function ManagementFiles() {
               </button>
             </div>
           </>
-      ) : (NoData("No Files Found"))}
+      ) : (
+          <div className={"pt-8"}>
+              {NoData("No Files Found")}
+          </div>
+      )}
     </div>
   );
 }
