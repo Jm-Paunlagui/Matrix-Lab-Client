@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {Header, NoData} from "../../assets/styles/input-types-styles";
+import { Header, NoData } from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -34,8 +34,8 @@ export default function InsightsDepartment() {
       ) : (
         <>
           <Header
-              body={`Overall sentiment of departments in year ${year} based on sentiments of all courses taught by the department.`}
-              title="Sentiment of Departments"
+            body={`Overall sentiment of departments in year ${year} based on sentiments of all courses taught by the department.`}
+            title="Sentiment of Departments"
           />
           {top_department.length > 0 ? (
             <div className=" place-content-center pt-8 space-y-8">
@@ -167,9 +167,7 @@ export default function InsightsDepartment() {
               ))}
             </div>
           ) : (
-              <div className={"pt-8"}>
-                {NoData("No Data Found")}
-              </div>
+            <div className={"pt-8"}>{NoData("No Data Found")}</div>
           )}
         </>
       )}
