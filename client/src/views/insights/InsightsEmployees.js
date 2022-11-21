@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {Header, NoData} from "../../assets/styles/input-types-styles";
+import { Header, NoData } from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -167,9 +167,7 @@ export default function InsightsEmployees() {
               ))}
             </div>
           ) : (
-              <div className={"pt-8"}>
-                {NoData("No Data Found")}
-              </div>
+            <div className={"pt-8"}>{NoData("No Data Found")}</div>
           )}
         </>
       )}
