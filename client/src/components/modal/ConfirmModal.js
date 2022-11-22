@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 ConfirmModal.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
     to_delete: PropTypes.string,
     onConfirm: PropTypes.func,
 }
