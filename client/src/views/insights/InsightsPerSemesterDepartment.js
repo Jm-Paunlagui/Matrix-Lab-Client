@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {Header, NoData} from "../../assets/styles/input-types-styles";
+import { Header, NoData } from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -120,8 +120,8 @@ export default function InsightsPerSemesterDepartment() {
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
       <Header
-          body={"Insights for the department per semester"}
-          title="Top Department Per Semester"
+        body={"Insights for the department per semester"}
+        title="Top Department Per Semester"
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
