@@ -14,6 +14,7 @@ import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import {toast} from "react-toastify";
 import ConfirmModal from "../../../components/modal/ConfirmModal";
+import {Link} from "react-router-dom";
 
 /**
  * @description Handles the files to view and delete
@@ -175,11 +176,13 @@ export default function ManagementFiles() {
                                           className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
                                           type="button"
                                       >
-                                          <FontAwesomeIcon
-                                              className={`${ICON_PLACE_SELF_CENTER}`}
-                                              icon={faFileCsv}
-                                          />
-                                          View
+                                          <Link to={`${file.id}`}>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faFileCsv}
+                                              />
+                                              View
+                                          </Link>
                                       </button>
                                       <button
                                           className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}

@@ -43,6 +43,8 @@ import IndexEval from "./views/user/eval/IndexEval";
 import IndexManagement from "./views/admin/management/IndexManagement";
 import ManagementFiles from "./views/admin/management/ManagementFiles";
 import ManagementProfessors from "./views/admin/management/ManagementProfessors";
+import ManagementFileData from "./views/admin/management/ManagementFileData";
+import ManagementReadDataResponse from "./views/admin/management/ManagementReadDataResponse";
 
 /**
  * @description Main component for the application
@@ -143,59 +145,21 @@ export default function App() {
              * admin routes.
              */}
             <Route element={<IndexAdmin />} exact="true" path="admin">
-              <Route
-                element={<AdminDashboard />}
-                exact="true"
-                path="dashboard"
-              />
+              <Route element={<AdminDashboard />} exact="true" path="dashboard" />
               <Route element={<IndexInsights />} exact="true" path="insights">
-                <Route
-                  element={<InsightsDepartment />}
-                  exact="true"
-                  path="departments"
-                />
-                <Route
-                  element={<InsightsEmployees />}
-                  exact="true"
-                  path="employees"
-                />
-                <Route
-                  element={<InsightsPerSemesterDepartment />}
-                  exact="true"
-                  path="per-semester-department"
-                />
-                <Route
-                  element={<InsightsPerSemesterEmployees />}
-                  exact="true"
-                  path="per-semester-employee"
-                />
+                <Route element={<InsightsDepartment />} exact="true" path="departments" />
+                <Route element={<InsightsEmployees />} exact="true" path="employees" />
+                <Route element={<InsightsPerSemesterDepartment />} exact="true" path="per-semester-department" />
+                <Route element={<InsightsPerSemesterEmployees />} exact="true" path="per-semester-employee" />
               </Route>
-              <Route
-                element={<AdminPrediction />}
-                exact="true"
-                path="analyze"
-              />
-              <Route
-                element={<AdminProfile />}
-                exact="true"
-                path="profile/:username"
-              />
+              <Route element={<AdminPrediction />} exact="true" path="analyze" />
+              <Route element={<AdminProfile />} exact="true" path="profile/:username" />
               <Route element={<AdminSettings />} exact="true" path="settings" />
-              <Route
-                element={<IndexManagement />}
-                exact="true"
-                path="management"
-              >
-                <Route
-                  element={<ManagementFiles />}
-                  exact="true"
-                  path="files"
-                />
-                <Route
-                  element={<ManagementProfessors />}
-                  exact="true"
-                  path="professors"
-                />
+              <Route element={<IndexManagement />} exact="true" path="management">
+                <Route element={<ManagementFiles />} exact="true" path="files" />
+                <Route element={<ManagementFileData />} exact="true" path="files/:fileId" />
+                <Route element={<ManagementReadDataResponse />} exact="true" path="files/:fileId/:read_responses" />
+                <Route element={<ManagementProfessors />} exact="true" path="professors" />
               </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
@@ -210,22 +174,11 @@ export default function App() {
             <Route element={<IndexUser />} exact="true" path="user">
               <Route element={<IndexEval />} exact="true" path="programs">
                 <Route element={<EvalCourses />} exact="true" path="courses">
-                  <Route
-                    element={<EvalCourseSentimentTable />}
-                    path=":courseId"
-                  />
+                  <Route element={<EvalCourseSentimentTable />} path=":courseId" />
                 </Route>
               </Route>
-              <Route
-                element={<UserDashboard />}
-                exact="true"
-                path="dashboard"
-              />
-              <Route
-                element={<UserProfile />}
-                exact="true"
-                path="profile/:username"
-              />
+              <Route element={<UserDashboard />} exact="true" path="dashboard" />
+              <Route element={<UserProfile />} exact="true" path="profile/:username" />
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
 
