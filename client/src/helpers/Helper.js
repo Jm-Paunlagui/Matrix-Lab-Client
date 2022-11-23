@@ -58,3 +58,20 @@ export const getNumberFromString = (string) => {
 export const getNameFromString = (string) => {
   return string.split(" - ")[1];
 };
+
+/**
+ * @description Formats to a readable text.
+ * @param name
+ * @returns {*}
+ */
+export const toReadableName = (name) => {
+  // remove file extension from the name if it exists
+    const fileName = name.split(".")[0];
+    // replace all underscores with spaces
+    const readableName = fileName.replace(/_/g, " ");
+    // capitalize the first letter of each word
+    return readableName.replace(/\w\S*/g, (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+    }
+    );
+};

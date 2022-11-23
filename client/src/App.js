@@ -44,6 +44,7 @@ import IndexManagement from "./views/admin/management/IndexManagement";
 import ManagementFiles from "./views/admin/management/ManagementFiles";
 import ManagementProfessors from "./views/admin/management/ManagementProfessors";
 import ManagementFileData from "./views/admin/management/ManagementFileData";
+import ManagementListofDataResponse from "./views/admin/management/ManagementListofDataResponse";
 import ManagementReadDataResponse from "./views/admin/management/ManagementReadDataResponse";
 
 /**
@@ -158,7 +159,8 @@ export default function App() {
               <Route element={<IndexManagement />} exact="true" path="management">
                 <Route element={<ManagementFiles />} exact="true" path="files" />
                 <Route element={<ManagementFileData />} exact="true" path="files/:fileId" />
-                <Route element={<ManagementReadDataResponse />} exact="true" path="files/:fileId/:read_responses" />
+                <Route element={<ManagementListofDataResponse />} exact="true" path="files/:fileId/:read_responses" />
+                <Route element={<ManagementReadDataResponse />} exact="true" path="files/:fileId/:read_responses/:file_name" />
                 <Route element={<ManagementProfessors />} exact="true" path="professors" />
               </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
