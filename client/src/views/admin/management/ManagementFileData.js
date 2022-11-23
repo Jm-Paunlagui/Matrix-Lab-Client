@@ -231,7 +231,7 @@ export default function ManagementFileData() {
                                           </div>
                                           <div className="flex flex-row w-full py-2">
                                               <h1 className="text-base font-bold leading-none text-blue-600">
-                                                  Courses
+                                                  Subjects Taught
                                               </h1>
                                           </div>
                                           <div className="flex flex-row w-full py-2">
