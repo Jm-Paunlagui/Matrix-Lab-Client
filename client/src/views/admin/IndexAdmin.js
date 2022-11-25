@@ -10,7 +10,7 @@ export default function IndexAdmin() {
   return isAuth().role === "admin" ? (
     <>
       <AdminNavigationBar />
-      <div className="mt-16 font-Montserrat bg-blue-50">
+      <div className="mt-16 font-Montserrat">
         <Outlet />
       </div>
     </>

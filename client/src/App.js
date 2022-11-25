@@ -65,7 +65,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className="bg-blue-100 min-h-screen">
       <ToastContainer
         autoClose={5000}
         className="z-50"
@@ -149,7 +149,7 @@ export default function App() {
               <Route
                 element={<AdminDashboard />}
                 exact="true"
-                path="dashboard"
+                path="analytics"
               />
               <Route element={<IndexInsights />} exact="true" path="insights">
                 <Route
@@ -259,6 +259,6 @@ export default function App() {
           </Routes>
         </Wrapper>
       </Router>
-    </>
+    </div>
   );
 }

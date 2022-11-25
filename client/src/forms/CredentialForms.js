@@ -716,10 +716,9 @@ export function AccountType(role) {
  * @param email
  * @param errorEffectforPersonalInfo
  * @param errorMessageforPersonalInfo
- * @param first_name
+ * @param full_name
  * @param handleChangeForPersonalInfo
  * @param handleUpdatePersonalInfo
- * @param last_name
  * @param okforPersonalInfo
  * @param profile
  * @param setProfile
@@ -731,10 +730,9 @@ export function PersonalInformation(
   email,
   errorEffectforPersonalInfo,
   errorMessageforPersonalInfo,
-  first_name,
+  full_name,
   handleChangeForPersonalInfo,
   handleUpdatePersonalInfo,
-  last_name,
   okforPersonalInfo,
   profile,
   setProfile,
@@ -780,34 +778,18 @@ export function PersonalInformation(
               </div>
               <div className="flex flex-col w-full space-y-2">
                 <h1 className="text-base font-medium text-gray-500">
-                  First Name
+                  Full Name
                 </h1>
                 <input
                   className={`${TEXT_FIELD} ${
                     errorEffectforPersonalInfo &&
                     `border-red-500 placeholder-red-500 text-red-500`
                   }`}
-                  name="first_name"
-                  onChange={handleChangeForPersonalInfo("first_name")}
-                  placeholder="First Name"
+                  name="full_name"
+                  onChange={handleChangeForPersonalInfo("full_name")}
+                  placeholder="Full Name"
                   type="text"
-                  value={first_name}
-                />
-              </div>
-              <div className="flex flex-col w-full space-y-2">
-                <h1 className="text-base font-medium text-gray-500">
-                  Last Name
-                </h1>
-                <input
-                  className={`${TEXT_FIELD} ${
-                    errorEffectforPersonalInfo &&
-                    `border-red-500 placeholder-red-500 text-red-500`
-                  }`}
-                  name="last_name"
-                  onChange={handleChangeForPersonalInfo("last_name")}
-                  placeholder="Last Name"
-                  type="text"
-                  value={last_name}
+                  value={full_name}
                 />
               </div>
             </div>

@@ -167,7 +167,7 @@ export default function InsightsEmployees() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8"}>{NoData("No Data Found")}</div>
+            <div className={"pt-8 pb-8"}>{NoData("No Data Found")}</div>
           )}
         </>
       )}

@@ -213,7 +213,7 @@ export default function ManagementFiles() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8"}>{NoData("No Files Found")}</div>
+            <div className={"pb-8"}>{NoData("No Files Found")}</div>
           )}
           <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">
             <div className="flex flex-row items-center justify-center w-full lg:w-1/2">
