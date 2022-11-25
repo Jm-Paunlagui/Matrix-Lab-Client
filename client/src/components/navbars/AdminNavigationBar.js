@@ -195,7 +195,8 @@ export default function AdminNavigationBar() {
                         <h5
                           className={`${
                             item.current
-                              ? 'bg-blue-800 text-white' : 'text-blue-100 hover:bg-blue-700 hover:text-white'
+                              ? "bg-blue-800 text-white"
+                              : "text-blue-100 hover:bg-blue-700 hover:text-white"
                           } px-3 py-2 rounded-md text-base font-medium`}
                         >
                           {item.name}
@@ -208,7 +209,8 @@ export default function AdminNavigationBar() {
                           <Menu.Button
                             className={`flex text-sm rounded ${
                               isActive("management")
-                              ? 'bg-blue-800 text-white' : 'text-blue-100 hover:bg-blue-700 hover:text-white'
+                                ? "bg-blue-800 text-white"
+                                : "text-blue-100 hover:bg-blue-700 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
                           >
                             <h1 className="text-base font-medium text-blue-100">
@@ -231,8 +233,9 @@ export default function AdminNavigationBar() {
                                 <NavLink to={item.href}>
                                   <h5
                                     className={`${
-                                        item.current
-                                            ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-blue-700 hover:text-white'
+                                      item.current
+                                        ? "bg-blue-800 text-white"
+                                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
                                     } px-3 py-2 rounded-md text-sm font-medium`}
                                   >
                                     {item.name}
@@ -250,10 +253,13 @@ export default function AdminNavigationBar() {
                           <Menu.Button
                             className={`flex text-sm rounded ${
                               isActive("insights")
-                            ? 'bg-blue-800 text-white' : 'text-blue-100 hover:bg-blue-700 hover:text-white'
+                                ? "bg-blue-800 text-white"
+                                : "text-blue-100 hover:bg-blue-700 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
                           >
-                            <h1 className="text-base font-medium text-blue-100">Insights</h1>
+                            <h1 className="text-base font-medium text-blue-100">
+                              Insights
+                            </h1>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -271,8 +277,9 @@ export default function AdminNavigationBar() {
                                 <NavLink to={item.href}>
                                   <h5
                                     className={`${
-                                        item.current
-                                            ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-blue-700 hover:text-white'
+                                      item.current
+                                        ? "bg-blue-800 text-white"
+                                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
                                     } px-3 py-2 rounded-md text-sm font-medium`}
                                   >
                                     {item.name}
@@ -295,7 +302,8 @@ export default function AdminNavigationBar() {
                     <Menu.Button
                       className={`flex text-sm rounded ${
                         isActive("profile")
-                        ? 'bg-blue-800 text-white' : 'text-blue-100 hover:bg-blue-700 hover:text-white'
+                          ? "bg-blue-800 text-white"
+                          : "text-blue-100 hover:bg-blue-700 hover:text-white"
                       } px-3 py-2 rounded-md text-sm font-medium`}
                     >
                       <span className="sr-only">Open user menu</span>
@@ -316,7 +324,9 @@ export default function AdminNavigationBar() {
                         <NavLink to={admin_controllers[0].href}>
                           <h5
                             className={`${
-                              admin_controllers[0].current ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-blue-700 hover:text-white'
+                              admin_controllers[0].current
+                                ? "bg-blue-800 text-white"
+                                : "text-blue-700 hover:bg-blue-700 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
                           >
                             {admin_controllers[0].name}
@@ -331,8 +341,9 @@ export default function AdminNavigationBar() {
                           >
                             <h5
                               className={`${
-                                  active
-                                      ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-gray-700 hover:text-white'
+                                active
+                                  ? "bg-blue-800 text-white"
+                                  : "text-blue-700 hover:bg-gray-700 hover:text-white"
                               } px-3 py-2 rounded-md text-sm font-medium`}
                             >
                               {admin_controllers[1].name}
@@ -356,15 +367,18 @@ export default function AdminNavigationBar() {
             show={open}
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
-              <h5 className={`block px-3 py-2 text-base font-bold text-blue-700`}>
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+              >
                 Dashboard
               </h5>
               {navigation.map((item) => (
                 <NavLink key={item.name} to={item.href}>
                   <h5
                     className={`${
-                        item.current
-                            ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-blue-700 hover:text-white'
+                      item.current
+                        ? "bg-blue-800 text-white"
+                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
                     } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
@@ -372,7 +386,9 @@ export default function AdminNavigationBar() {
                 </NavLink>
               ))}
 
-              <h5 className={`block px-3 py-2 text-base font-bold text-blue-700`}>
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+              >
                 Data Management
               </h5>
 
@@ -380,8 +396,9 @@ export default function AdminNavigationBar() {
                 <NavLink key={item.name} to={item.href}>
                   <h5
                     className={`${
-                        item.current
-                            ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-blue-700 hover:text-white'
+                      item.current
+                        ? "bg-blue-800 text-white"
+                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
                     } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
@@ -389,7 +406,9 @@ export default function AdminNavigationBar() {
                 </NavLink>
               ))}
 
-              <h5 className={`block px-3 py-2 text-base font-bold text-blue-700`}>
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+              >
                 Insights
               </h5>
 
@@ -397,8 +416,9 @@ export default function AdminNavigationBar() {
                 <NavLink key={item.name} to={item.href}>
                   <h5
                     className={`${
-                        item.current
-                            ? 'bg-blue-800 text-white' : 'text-blue-700 hover:bg-blue-700 hover:text-white'
+                      item.current
+                        ? "bg-blue-800 text-white"
+                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
                     } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
