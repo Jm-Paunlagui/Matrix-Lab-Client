@@ -64,8 +64,8 @@ export default function ManagementFileData() {
    * @param event
    */
   const handleSearchForProfessor = (event) => {
-    let value = event.target.value.toLowerCase();
-    let result = data_professors.filter((data) => {
+    const value = event.target.value.toLowerCase();
+    const result = data_professors.filter((data) => {
       return data.evaluatee_list.toLowerCase().search(value) !== -1;
     });
     setFilteredProfessors(result);
@@ -76,8 +76,8 @@ export default function ManagementFileData() {
    * @param event
    */
   const handleSearchForDepartment = (event) => {
-    let value = event.target.value.toLowerCase();
-    let result = data_departments.filter((data) => {
+    const value = event.target.value.toLowerCase();
+    const result = data_departments.filter((data) => {
       return data.department_list.toLowerCase().search(value) !== -1;
     });
     setFilteredDepartments(result);

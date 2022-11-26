@@ -124,8 +124,8 @@ export default function InsightsPerSemesterEmployees() {
    * @param event
    */
   const handleSearch = (event) => {
-    let value = event.target.value.toLowerCase();
-    let result = top_professor_per_sem.filter((data) => {
+    const value = event.target.value.toLowerCase();
+    const result = top_professor_per_sem.filter((data) => {
       return data.professor.toLowerCase().search(value) !== -1;
     });
     setFilteredTopEmployeePerSem(result);

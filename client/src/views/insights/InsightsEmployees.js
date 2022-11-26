@@ -28,8 +28,8 @@ export default function InsightsEmployees() {
    * @param event
    */
   const handleSearch = (event) => {
-    let value = event.target.value.toLowerCase();
-    let result = top_professors.filter((data) => {
+    const value = event.target.value.toLowerCase();
+    const result = top_professors.filter((data) => {
       return data.professor.toLowerCase().search(value) !== -1;
     });
     setFilteredTopProfessors(result);

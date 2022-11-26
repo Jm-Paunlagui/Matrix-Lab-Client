@@ -28,8 +28,8 @@ export default function InsightsDepartment() {
    * @param event
    */
   const handleSearchForDepartment = (event) => {
-    let value = event.target.value.toLowerCase();
-    let result = top_department.filter((data) => {
+    const value = event.target.value.toLowerCase();
+    const result = top_department.filter((data) => {
       return data.department.toLowerCase().search(value) !== -1;
     });
     setFilteredTopDepartment(result);
