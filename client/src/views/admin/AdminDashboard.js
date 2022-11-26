@@ -18,7 +18,6 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     httpClient.get("/data/get-all-data-from-csv").then((response) => {
-      console.log(response.data.total_responses);
       setData({
         ...data,
         loading: false,
