@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
+import {
+  Header,
+  NoData,
+  SearchBar,
+} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -44,7 +48,9 @@ export default function InsightsPerSemesterEmployees() {
     textChange,
   } = topEmployeePerSem;
 
-  const [filteredTopEmployeePerSem, setFilteredTopEmployeePerSem] = useState(top_professor_per_sem);
+  const [filteredTopEmployeePerSem, setFilteredTopEmployeePerSem] = useState(
+    top_professor_per_sem,
+  );
 
   /**
    * @description Get the top professor per a semester from the backend
@@ -100,7 +106,7 @@ export default function InsightsPerSemesterEmployees() {
           ok: false,
           textChange: "View Insights",
         });
-        setFilteredTopEmployeePerSem(response.data.top_professors)
+        setFilteredTopEmployeePerSem(response.data.top_professors);
       })
       .catch((error) => {
         setTopEmployeePerSem({
@@ -117,12 +123,10 @@ export default function InsightsPerSemesterEmployees() {
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_professor_per_sem.filter((data) => {
-      return (
-          data.professor.toLowerCase().search(value) !== -1
-      );
+      return data.professor.toLowerCase().search(value) !== -1;
     });
-    setFilteredTopEmployeePerSem(result)
-  }
+    setFilteredTopEmployeePerSem(result);
+  };
 
   /**
    * @description Updates the file number to get the data from the backend.
@@ -140,11 +144,11 @@ export default function InsightsPerSemesterEmployees() {
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
           <SearchBar
-              name="searchValue"
-              onChange={(event) =>handleSearch(event)}
-              placeholder="Search"
-              style={"mb-8"}
-              type="text"
+            name="searchValue"
+            onChange={(event) => handleSearch(event)}
+            placeholder="Search"
+            style={"mb-8"}
+            type="text"
           />
           <div className="place-content-center">
             <div

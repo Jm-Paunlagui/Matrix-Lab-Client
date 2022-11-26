@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
+import {
+  Header,
+  NoData,
+  SearchBar,
+} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -44,7 +48,8 @@ export default function InsightsPerSemesterDepartment() {
     textChange,
   } = topDepartmentPerSem;
 
-  const [filteredTopDepartmentPerSem, setFilteredTopDepartmentPerSem] = useState(top_department_per_sem);
+  const [filteredTopDepartmentPerSem, setFilteredTopDepartmentPerSem] =
+    useState(top_department_per_sem);
 
   /**
    * @description Get the top professor per a semester from the backend
@@ -123,12 +128,10 @@ export default function InsightsPerSemesterDepartment() {
   const handleSearchForDepartment = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_department_per_sem.filter((data) => {
-      return (
-          data.department.toLowerCase().search(value) !== -1
-      );
+      return data.department.toLowerCase().search(value) !== -1;
     });
     setFilteredTopDepartmentPerSem(result);
-  }
+  };
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -139,11 +142,11 @@ export default function InsightsPerSemesterDepartment() {
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
           <SearchBar
-              name="searchValue"
-              onChange={(event) =>handleSearchForDepartment(event)}
-              placeholder="Search"
-              style={"mb-8"}
-              type="text"
+            name="searchValue"
+            onChange={(event) => handleSearchForDepartment(event)}
+            placeholder="Search"
+            style={"mb-8"}
+            type="text"
           />
           <div className="place-content-center">
             <div
