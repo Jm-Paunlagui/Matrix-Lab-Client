@@ -40,3 +40,55 @@ export const emailRegex = new RegExp(
  * @type {string}
  */
 export const MATRIX_RSA_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----\n${process.env.REACT_APP_MATRIX_RSA_PUBLIC_KEY}\n-----END PUBLIC KEY-----`;
+
+/**
+ * @description Gets only the number from the string.
+ * @param string
+ * @returns {*}
+ */
+export const getNumberFromString = (string) => {
+  return string.split(" - ")[0];
+};
+
+/**
+ * @description Gets only the name from the string.
+ * @param string
+ * @returns {*}
+ */
+export const getNameFromString = (string) => {
+  return string.split(" - ")[1];
+};
+
+/**
+ * @description Formats to a readable text.
+ * @param name
+ * @returns {*}
+ */
+export const toReadableName = (name) => {
+  // remove file extension from the name if it exists
+  const fileName = name.split(".")[0];
+  // replace all underscores with spaces
+  const readableName = fileName.replace(/_/g, " ");
+  // capitalize the first letter of each word
+  return readableName.replace(/\w\S*/g, (txt) => {
+    return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+  });
+};
+
+/**
+ * @description Removes the brackets from the string.
+ * @param str
+ * @returns {*}
+ */
+export const removeBrackets = (str) => {
+  return str.replace(/[[\]']+/g, "");
+};
+
+/**
+ * @description Removes the commas from the string.
+ * @param str
+ * @returns {*}
+ */
+export const removeComma = (str) => {
+  return str.replace(/[, ]+/g, "_");
+};

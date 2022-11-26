@@ -3,7 +3,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
-
+import { BsAwardFill } from "react-icons/bs";
 import { Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -54,8 +54,15 @@ export default function NavigationBar() {
       name: "Leaderboard",
       icon: <MdLeaderboard size={16} />,
       icon_: <MdLeaderboard size={24} />,
-      link: "/leaderboard",
-      current: isActive("leaderboard"),
+      link: "/department-sentiment-overall",
+      current: isActive("department-sentiment-overall"),
+    },
+    {
+      name: "Ranking",
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+      link: "/department-sentiment",
+      current: isActive("department-sentiment"),
     },
     {
       name: "Sign In",

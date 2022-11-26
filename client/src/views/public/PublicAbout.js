@@ -240,7 +240,7 @@ const Technologies = [
     logo: "logos:mariadb-icon",
     link: "https://mariadb.org/",
     description:
-      "MariaDB is a free and open-source relational database management system (RDBMS) based on the MySQL server. ",
+      "MariaDB is a free and open-source relational database management_files system (RDBMS) based on the MySQL server. ",
   },
   {
     name: "MySQL",
@@ -249,7 +249,7 @@ const Technologies = [
     logo: "logos:mysql-icon",
     link: "https://www.mysql.com/",
     description:
-      "MySQL is a relational database management system (RDBMS) that is used to create, manage, and administer databases.",
+      "MySQL is a relational database management_files system (RDBMS) that is used to create, manage, and administer databases.",
   },
   {
     name: "phpMyAdmin",
@@ -258,7 +258,7 @@ const Technologies = [
     logo: "simple-icons:phpmyadmin",
     link: "https://www.phpmyadmin.net/",
     description:
-      "phpMyAdmin is a free software web application for MySQL and MariaDB. It is a fully featured, easy to use, and fully standards-compliant web based MySQL database management system (DBMS) with a focus on ease of use and user friendlyness.",
+      "phpMyAdmin is a free software web application for MySQL and MariaDB. It is a fully featured, easy to use, and fully standards-compliant web based MySQL database management_files system (DBMS) with a focus on ease of use and user friendlyness.",
   },
   {
     name: "Visual Studio Code",

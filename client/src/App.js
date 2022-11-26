@@ -12,11 +12,12 @@ import AdminDashboard from "./views/admin/AdminDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
-import AdminTables from "./views/admin/AdminTables.js";
 import IndexAdmin from "./views/admin/IndexAdmin";
-import IndexLeaderboard from "./views/admin/leaderboard/IndexLeaderboard";
-import LeaderboardDepartment from "./views/admin/leaderboard/LeaderboardDepartment";
-import LeaderboardEmployees from "./views/admin/leaderboard/LeaderboardEmployees";
+import IndexInsights from "./views/insights/IndexInsights";
+import InsightsDepartment from "./views/insights/InsightsDepartment";
+import InsightsEmployees from "./views/insights/InsightsEmployees";
+import InsightsPerSemesterDepartment from "./views/insights/InsightsPerSemesterDepartment";
+import InsightsPerSemesterEmployees from "./views/insights/InsightsPerSemesterEmployees";
 import AuthForgotPasswordRequest from "./views/auth/AuthForgotPasswordRequest.js";
 import AuthLogin from "./views/auth/AuthLogin.js";
 import AuthLogout from "./views/auth/AuthLogout";
@@ -28,8 +29,6 @@ import TermsAndConditions from "./views/legal/TermsAndConditions.js";
 import IndexPublic from "./views/public/IndexPublic.js";
 import PublicAbout from "./views/public/PublicAbout.js";
 import PublicHome from "./views/public/PublicHome.js";
-import PublicLeaderboard from "./views/public/PublicLeaderboard.js";
-import PublicRanking from "./views/public/PublicRanking.js";
 import {
   PageNotFound,
   InvalidToken,
@@ -41,6 +40,12 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
+import IndexManagement from "./views/admin/management_files/IndexManagement";
+import ManagementFiles from "./views/admin/management_files/ManagementFiles";
+import ManagementProfessors from "./views/admin/management_files/ManagementProfessors";
+import ManagementFileData from "./views/admin/management_files/ManagementFileData";
+import ManagementListofDataResponse from "./views/admin/management_files/ManagementListofDataResponse";
+import ManagementReadDataResponse from "./views/admin/management_files/ManagementReadDataResponse";
 
 /**
  * @description Main component for the application
@@ -60,7 +65,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className="bg-blue-100 min-h-screen">
       <ToastContainer
         autoClose={5000}
         className="z-50"
@@ -85,11 +90,15 @@ export default function App() {
               <Route element={<PublicAbout />} exact="true" path="aboutus" />
               <Route element={<PublicHome />} exact="true" path="/" />
               <Route
-                element={<PublicLeaderboard />}
+                element={<InsightsDepartment />}
                 exact="true"
-                path="leaderboard"
+                path="department-sentiment-overall"
               />
-              <Route element={<PublicRanking />} exact="true" path="ranking" />
+              <Route
+                element={<InsightsPerSemesterDepartment />}
+                exact="true"
+                path="department-sentiment"
+              />
             </Route>
             {/**
              * End of public routes
@@ -140,22 +149,28 @@ export default function App() {
               <Route
                 element={<AdminDashboard />}
                 exact="true"
-                path="dashboard"
+                path="analytics"
               />
-              <Route
-                element={<IndexLeaderboard />}
-                exact="true"
-                path="leaderboard"
-              >
+              <Route element={<IndexInsights />} exact="true" path="insights">
                 <Route
-                  element={<LeaderboardDepartment />}
+                  element={<InsightsDepartment />}
                   exact="true"
                   path="departments"
                 />
                 <Route
-                  element={<LeaderboardEmployees />}
+                  element={<InsightsEmployees />}
                   exact="true"
                   path="employees"
+                />
+                <Route
+                  element={<InsightsPerSemesterDepartment />}
+                  exact="true"
+                  path="per-semester-department"
+                />
+                <Route
+                  element={<InsightsPerSemesterEmployees />}
+                  exact="true"
+                  path="per-semester-employee"
                 />
               </Route>
               <Route
@@ -169,7 +184,37 @@ export default function App() {
                 path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
-              <Route element={<AdminTables />} exact="true" path="management" />
+              <Route
+                element={<IndexManagement />}
+                exact="true"
+                path="management"
+              >
+                <Route
+                  element={<ManagementFiles />}
+                  exact="true"
+                  path="files"
+                />
+                <Route
+                  element={<ManagementFileData />}
+                  exact="true"
+                  path="files/:fileId"
+                />
+                <Route
+                  element={<ManagementListofDataResponse />}
+                  exact="true"
+                  path="files/:fileId/:read_responses"
+                />
+                <Route
+                  element={<ManagementReadDataResponse />}
+                  exact="true"
+                  path="files/:fileId/:read_responses/:file_name"
+                />
+                <Route
+                  element={<ManagementProfessors />}
+                  exact="true"
+                  path="professors"
+                />
+              </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
             {/**
@@ -214,6 +259,6 @@ export default function App() {
           </Routes>
         </Wrapper>
       </Router>
-    </>
+    </div>
   );
 }

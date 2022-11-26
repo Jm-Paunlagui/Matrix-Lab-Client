@@ -239,7 +239,7 @@ export default function AuthForgotPasswordRequest() {
                     )}
                   </div>
                   {count === 1
-                    ? Username(
+                    ? new Username(
                         count,
                         errorEffect,
                         errorMessage,
@@ -250,7 +250,7 @@ export default function AuthForgotPasswordRequest() {
                         username,
                       )
                     : count === 2
-                    ? AssociatedEmails(
+                    ? new AssociatedEmails(
                         confirm_email,
                         errorEffect,
                         errorMessage,
@@ -262,7 +262,7 @@ export default function AuthForgotPasswordRequest() {
                         oki,
                         textChange,
                       )
-                    : SendToEmail(
+                    : new SendToEmail(
                         count,
                         email,
                         errorEffect,

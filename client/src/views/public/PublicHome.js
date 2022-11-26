@@ -12,7 +12,7 @@ import {
  */
 export default function PublicHome() {
   return (
-    <div className="flex flex-col items-center max-w-screen-xl min-h-screen py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 md:pt-28 pt-28">
+    <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 md:pt-28 pt-28">
       <div className=" place-self-center lg:col-span-6">
         <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-700 md:text-5xl xl:text-6xl">
           Sentiment Analysis
@@ -27,13 +27,13 @@ export default function PublicHome() {
         </p>
         <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
           <button className={` ${PRIMARY_BUTTON}`} type={"button"}>
-            <Link to={"/leaderboard"}>
-              <h1 className="px-5 py-3">Leaderboard</h1>
+            <Link to={"/department-sentiment-overall"}>
+              <h1 className="px-5 py-3">Overall Insight</h1>
             </Link>
           </button>
           <button className={` ${SECONDARY_BUTTON}`} type={"button"}>
-            <Link to={"/ranking"}>
-              <h1 className="px-5 py-3">Ranking</h1>
+            <Link to={"/department-sentiment"}>
+              <h1 className="px-5 py-3">Insight History</h1>
             </Link>
           </button>
         </div>

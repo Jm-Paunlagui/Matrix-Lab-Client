@@ -6,6 +6,7 @@ import React, { Fragment } from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import httpClient from "../../http/httpClient";
 import { isAuth, signout } from "../../helpers/Auth";
+import { BsAwardFill } from "react-icons/bs";
 
 /**
  * @description Handles the admin navigation bar for the application
@@ -42,6 +43,15 @@ export default function AdminNavigationBar() {
   }
 
   /**
+   * @description Handles the sub link if it is active or not.
+   * @param link
+   * @returns {boolean}
+   */
+  function isActiveSubs(link) {
+    return splitLocation[3] === link;
+  }
+
+  /**
    * @description Handles the logout of the user
    * @returns {Promise<void>}
    */
@@ -59,24 +69,14 @@ export default function AdminNavigationBar() {
    */
   const navigation = [
     {
-      name: "Dashboard",
-      href: "/admin/dashboard",
-      current: isActive("dashboard"),
-    },
-    {
-      name: "Management",
-      href: "/admin/management",
-      current: isActive("management"),
+      name: "Analytics",
+      href: "/admin/analytics",
+      current: isActive("analytics"),
     },
     {
       name: "Analyze",
       href: "/admin/analyze",
       current: isActive("analyze"),
-    },
-    {
-      name: "Leaderboard",
-      href: "/admin/leaderboard/departments",
-      current: isActive("leaderboard"),
     },
   ];
 
@@ -97,10 +97,62 @@ export default function AdminNavigationBar() {
     },
   ];
 
+  const navigation_for_insights = [
+    {
+      name: "Department",
+      href: "/admin/insights/departments",
+      current: isActiveSubs("departments"),
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+    },
+    {
+      name: "Employee",
+      href: "/admin/insights/employees",
+      current: isActiveSubs("employees"),
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+    },
+    {
+      name: "Per Semester Department",
+      href: "/admin/insights/per-semester-department",
+      current: isActiveSubs("per-semester-department"),
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+    },
+    {
+      name: "Per Semester Employee",
+      href: "/admin/insights/per-semester-employee",
+      current: isActiveSubs("per-semester-employee"),
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+    },
+  ];
+
+  /**
+   * @description Handles the navigation bar for the admin pages
+   * @type {[{current: boolean, name: string, href: string}]}
+   */
+  const navigation_for_management = [
+    {
+      name: "File Management",
+      href: "/admin/management_files/files",
+      current: isActiveSubs("files"),
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+    },
+    {
+      name: "Professors Management",
+      href: "/admin/management_files/professors",
+      current: isActiveSubs("professors"),
+      icon: <BsAwardFill size={16} />,
+      icon_: <BsAwardFill size={24} />,
+    },
+  ];
+
   return (
     <Menu
       as="nav"
-      className="fixed top-0 z-50 w-full shadow-md backdrop-blur-xl bg-white/50 font-Montserrat"
+      className="fixed top-0 z-50 w-full shadow bg-blue-500 font-Montserrat"
     >
       {({ open }) => (
         <>
@@ -108,7 +160,7 @@ export default function AdminNavigationBar() {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
-                <Menu.Button className="inline-flex items-center justify-center p-2 text-gray-500 rounded-md hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Menu.Button className="inline-flex items-center justify-center p-2 text-blue-100 rounded-md ">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon aria-hidden="true" className="block w-6 h-6" />
@@ -121,12 +173,12 @@ export default function AdminNavigationBar() {
                 <div className="flex items-center flex-shrink-0">
                   <img
                     alt="Your Company"
-                    className="block w-auto h-8 md:hidden"
+                    className="block w-auto h-10 md:hidden"
                     src={logo}
                   />
                   <img
                     alt="Your Company"
-                    className="hidden w-auto h-8 md:block"
+                    className="hidden w-auto h-10 md:block"
                     src={logo}
                   />
                 </div>
@@ -138,14 +190,102 @@ export default function AdminNavigationBar() {
                         <h5
                           className={`${
                             item.current
-                              ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                              : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                          } block px-3 py-2 text-base font-medium`}
+                              ? "bg-blue-800 text-white"
+                              : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                          } px-3 py-2 rounded-md text-base font-medium`}
                         >
                           {item.name}
                         </h5>
                       </NavLink>
                     ))}
+                    <div className="text-base font-medium">
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button
+                            className={`flex text-sm rounded ${
+                              isActive("management_files")
+                                ? "bg-blue-800 text-white"
+                                : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                            } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            <h1 className="text-base font-medium text-blue-100">
+                              Data Management
+                            </h1>
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 w-60 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {navigation_for_management.map((item) => (
+                              <Menu.Item key={item.name}>
+                                <NavLink to={item.href}>
+                                  <h5
+                                    className={`${
+                                      item.current
+                                        ? "bg-blue-800 text-white"
+                                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                                    } px-3 py-2 rounded-md text-sm font-medium`}
+                                  >
+                                    {item.name}
+                                  </h5>
+                                </NavLink>
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
+                    <div className="text-base font-medium">
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button
+                            className={`flex text-sm rounded ${
+                              isActive("insights")
+                                ? "bg-blue-800 text-white"
+                                : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                            } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            <h1 className="text-base font-medium text-blue-100">
+                              Insights
+                            </h1>
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 w-60 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {navigation_for_insights.map((item) => (
+                              <Menu.Item key={item.name}>
+                                <NavLink to={item.href}>
+                                  <h5
+                                    className={`${
+                                      item.current
+                                        ? "bg-blue-800 text-white"
+                                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                                    } px-3 py-2 rounded-md text-sm font-medium`}
+                                  >
+                                    {item.name}
+                                  </h5>
+                                </NavLink>
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -157,9 +297,9 @@ export default function AdminNavigationBar() {
                     <Menu.Button
                       className={`flex text-sm rounded ${
                         isActive("profile")
-                          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-bold"
-                          : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                      }`}
+                          ? "bg-blue-800 text-white"
+                          : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                      } px-3 py-2 rounded-md text-sm font-medium`}
                     >
                       <span className="sr-only">Open user menu</span>
                       <h1 className="text-base font-medium">{user.username}</h1>
@@ -176,17 +316,17 @@ export default function AdminNavigationBar() {
                   >
                     <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
-                        {({ active }) => (
-                          <NavLink to={admin_controllers[0].href}>
-                            <h5
-                              className={`${
-                                active ? "bg-gray-100" : ""
-                              } block px-4 py-2 text-sm text-gray-700`}
-                            >
-                              {admin_controllers[0].name}
-                            </h5>
-                          </NavLink>
-                        )}
+                        <NavLink to={admin_controllers[0].href}>
+                          <h5
+                            className={`${
+                              admin_controllers[0].current
+                                ? "bg-blue-800 text-white"
+                                : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                            } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            {admin_controllers[0].name}
+                          </h5>
+                        </NavLink>
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
@@ -196,8 +336,10 @@ export default function AdminNavigationBar() {
                           >
                             <h5
                               className={`${
-                                active ? "bg-gray-100" : ""
-                              } block px-4 py-2 text-sm text-gray-700`}
+                                active
+                                  ? "bg-blue-800 text-white"
+                                  : "text-blue-700 hover:bg-gray-700 hover:text-white"
+                              } px-3 py-2 rounded-md text-sm font-medium`}
                             >
                               {admin_controllers[1].name}
                             </h5>
@@ -219,15 +361,60 @@ export default function AdminNavigationBar() {
             leaveTo="transform opacity-0 scale-95"
             show={open}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+              >
+                Dashboard
+              </h5>
               {navigation.map((item) => (
                 <NavLink key={item.name} to={item.href}>
                   <h5
                     className={`${
                       item.current
-                        ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                        : "hover:text-transparent bg-clip-text hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-500"
-                    } block px-3 py-2 text-base font-medium`}
+                        ? "bg-blue-800 text-white"
+                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
+              ))}
+
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+              >
+                Data Management
+              </h5>
+
+              {navigation_for_management.map((item) => (
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "bg-blue-800 text-white"
+                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
+              ))}
+
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+              >
+                Insights
+              </h5>
+
+              {navigation_for_insights.map((item) => (
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "bg-blue-800 text-white"
+                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                    } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
                   </h5>

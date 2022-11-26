@@ -107,12 +107,12 @@ export default function UserNavigationBar() {
                 <div className="flex items-center flex-shrink-0">
                   <img
                     alt="Your Company"
-                    className="block w-auto h-8 md:hidden"
+                    className="block w-auto h-10 md:hidden"
                     src={logo}
                   />
                   <img
                     alt="Your Company"
-                    className="hidden w-auto h-8 md:block"
+                    className="hidden w-auto h-10 md:block"
                     src={logo}
                   />
                 </div>

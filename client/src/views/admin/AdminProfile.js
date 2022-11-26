@@ -25,8 +25,7 @@ export default function AdminProfile() {
    */
   const [profile, setProfile] = useState({
     email: "",
-    first_name: "",
-    last_name: "",
+    full_name: "",
     okforPersonalInfo: false,
     errorEffectforPersonalInfo: false,
     errorMessageforPersonalInfo: "",
@@ -61,8 +60,7 @@ export default function AdminProfile() {
    */
   const {
     email,
-    first_name,
-    last_name,
+    full_name,
     okforPersonalInfo,
     errorEffectforPersonalInfo,
     errorMessageforPersonalInfo,
@@ -108,8 +106,7 @@ export default function AdminProfile() {
         setProfile({
           ...profile,
           email: response.data.user.email,
-          first_name: response.data.user.first_name,
-          last_name: response.data.user.last_name,
+          full_name: response.data.user.full_name,
           secondary_email: response.data.user.secondary_email,
           recovery_email: response.data.user.recovery_email,
           username: response.data.user.username,
@@ -118,7 +115,7 @@ export default function AdminProfile() {
       })
       .catch((error) => {
         window.location.href = "/unauthorized-access";
-        toast(`Error: ${error}`, { type: "error" });
+        toast(`Error: ${error.message}`, { type: "error" });
       });
   };
 
@@ -224,8 +221,7 @@ export default function AdminProfile() {
     await httpClient
       .put("/user/update-personal-info", {
         email,
-        first_name,
-        last_name,
+        full_name,
       })
       .then(async (response) => {
         await verifyJWT(response.data.token)
@@ -409,10 +405,9 @@ export default function AdminProfile() {
               email,
               errorEffectforPersonalInfo,
               errorMessageforPersonalInfo,
-              first_name,
+              full_name,
               handleChangeForPersonalInfo,
               handleUpdatePersonalInfo,
-              last_name,
               okforPersonalInfo,
               profile,
               setProfile,
