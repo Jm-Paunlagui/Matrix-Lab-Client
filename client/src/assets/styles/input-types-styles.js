@@ -144,7 +144,7 @@ export function SearchBar({ placeholder, onChange, name, style }) {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     name: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.string,
   };
   return (
     <div
