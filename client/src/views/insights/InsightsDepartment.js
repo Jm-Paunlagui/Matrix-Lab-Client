@@ -36,6 +36,7 @@ export default function InsightsDepartment() {
         top_department: response.data.top_department,
         year: response.data.year,
       });
+      setFilteredTopDepartment(response.data.top_department);
     });
   }, []);
 
