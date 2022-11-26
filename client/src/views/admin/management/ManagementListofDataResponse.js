@@ -100,8 +100,7 @@ export default function ManagementListofDataResponse() {
                 type="text"
               />
               {filteredListOfTaughtCourses.length > 0 ? (
-                  <>
-                    <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+                  <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
                 {filteredListOfTaughtCourses.map((file) => (
                   <div
                     className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
@@ -165,7 +164,6 @@ export default function ManagementListofDataResponse() {
                   </div>
                 ))}
               </div>
-                  </>
               ) : (
                   <div className={"pt-8"}>{new NoData("No data to display")}</div>
               )}
