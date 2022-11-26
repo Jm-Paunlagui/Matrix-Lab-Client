@@ -1,7 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faExclamationCircle, faSearch,
+  faExclamationCircle,
+  faSearch,
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
@@ -121,28 +122,27 @@ export function Header({ title, body }) {
 }
 
 SearchBar.propTypes = {
-    placeholder: PropTypes.string,
-    onChange: PropTypes.func,
-    name: PropTypes.string,
-    style: PropTypes.object,
-}
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+  style: PropTypes.object,
+};
 
 export function SearchBar({ placeholder, onChange, name, style }) {
   return (
-      <div className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${style}`}>
-        <div className="flex flex-row items-center w-full">
-          <FontAwesomeIcon
-              className="text-gray-600"
-              icon={faSearch}
-          />
-          <input
-              className="w-full px-2 py-1 ml-2 text-gray-600 bg-transparent outline-none "
-              name={name}
-              onChange={onChange}
-              placeholder={placeholder}
-              type="text"
-          />
-        </div>
+    <div
+      className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${style}`}
+    >
+      <div className="flex flex-row items-center w-full">
+        <FontAwesomeIcon className="text-gray-600" icon={faSearch} />
+        <input
+          className="w-full px-2 py-1 ml-2 text-gray-600 bg-transparent outline-none "
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+          type="text"
+        />
       </div>
+    </div>
   );
 }

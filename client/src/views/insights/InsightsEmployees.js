@@ -194,7 +194,9 @@ export default function InsightsEmployees() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8 pb-8"}>{new NoData("No Professor Found")}</div>
+            <div className={"pt-8 pb-8"}>
+              {new NoData("No Professor Found")}
+            </div>
           )}
         </>
       )}

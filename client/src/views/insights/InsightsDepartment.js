@@ -194,7 +194,9 @@ export default function InsightsDepartment() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8 pb-8"}>{new NoData("No Department Found")}</div>
+            <div className={"pt-8 pb-8"}>
+              {new NoData("No Department Found")}
+            </div>
           )}
         </>
       )}
