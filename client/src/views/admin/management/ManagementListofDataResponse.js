@@ -16,19 +16,19 @@ import { toReadableName } from "../../../helpers/Helper";
 export default function ManagementListofDataResponse() {
   const { fileId, read_responses } = useParams();
 
-  const [listOfTaugthCourses, setListOfTaugthCourses] = useState({
+  const [listOfTaughtCourses, setListOfTaughtCourses] = useState({
     loading: true,
     file_list: [],
   });
 
-  const { loading, file_list } = listOfTaugthCourses;
+  const { loading, file_list } = listOfTaughtCourses;
 
   const loadListOfTaughtCourses = (fileId, read_responses) => {
     httpClient
       .get(`/data/get-list-of-taught-courses/${fileId}/${read_responses}`)
       .then((response) => {
-        setListOfTaugthCourses({
-          ...listOfTaugthCourses,
+        setListOfTaughtCourses({
+          ...listOfTaughtCourses,
           loading: false,
           file_list: response.data.file_list,
         });
