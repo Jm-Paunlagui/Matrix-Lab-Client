@@ -135,14 +135,14 @@ export default function AdminNavigationBar() {
   const navigation_for_management = [
     {
       name: "File Management",
-      href: "/admin/management_files/files",
+      href: "/admin/management/files",
       current: isActiveSubs("files"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
     {
       name: "Professors Management",
-      href: "/admin/management_files/professors",
+      href: "/admin/management/professors",
       current: isActiveSubs("professors"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
