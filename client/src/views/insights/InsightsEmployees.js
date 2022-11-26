@@ -57,7 +57,8 @@ export default function InsightsEmployees() {
             body={`Overall sentiment of professors in year ${year} based on sentiments of all courses taught by the professor.`}
             title="Sentiment of Professors"
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearch(event)}
             placeholder="Search"

@@ -4,7 +4,8 @@ import {
   Header,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData, SearchBar,
+  NoData,
+  SearchBar,
 } from "../../../assets/styles/input-types-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -54,9 +55,13 @@ export default function ManagementFiles() {
   const handleSearchForFile = (event) => {
     const searchValue = event.target.value;
     const filteredList = files.filter((file) => {
-      return file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
-        file.school_semester.toLowerCase().includes(searchValue.toLowerCase()) ||
-        file.csv_question.toLowerCase().includes(searchValue.toLowerCase());
+      return (
+        file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
+        file.school_semester
+          .toLowerCase()
+          .includes(searchValue.toLowerCase()) ||
+        file.csv_question.toLowerCase().includes(searchValue.toLowerCase())
+      );
     });
     setFilteredListOfFiles(filteredList);
   };
@@ -145,11 +150,12 @@ export default function ManagementFiles() {
         LoadingPage()
       ) : (
         <>
-          <SearchBar customStyle="mt-8"
-                     name="searchValue"
-                     onChange={(event) => handleSearchForFile(event)}
-                     placeholder="Search"
-                     type="text"
+          <SearchBar
+            customStyle="mt-8"
+            name="searchValue"
+            onChange={(event) => handleSearchForFile(event)}
+            placeholder="Search"
+            type="text"
           />
           <div className="flex flex-col w-full p-4">
             <h1 className="text-start font-medium text-gray-700">
