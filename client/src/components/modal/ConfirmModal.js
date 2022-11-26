@@ -9,14 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
-ConfirmModal.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  id: PropTypes.number,
-  to_delete: PropTypes.string,
-  onConfirm: PropTypes.func,
-};
-
 /**
  * @description A modal to confirm the deletion of a file
  * @param title
@@ -33,6 +25,14 @@ export default function ConfirmModal({
   to_delete,
   onConfirm,
 }) {
+  ConfirmModal.propTypes = {
+    title: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number,
+    to_delete: PropTypes.string,
+    onConfirm: PropTypes.func,
+  };
+
   const [open, setOpen] = useState(false);
 
   const cancelButtonRef = useRef(null);
