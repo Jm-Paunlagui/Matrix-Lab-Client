@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
-import {removeBrackets, removeComma} from "../../../helpers/Helper";
-import {toast} from "react-toastify";
+import { removeBrackets, removeComma } from "../../../helpers/Helper";
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -113,7 +113,8 @@ export default function ManagementFileData() {
             body={"List of departments that detected in the uploaded file."}
             title={"Department Data"}
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
@@ -216,7 +217,8 @@ export default function ManagementFileData() {
             body={"List of Professors that detected in the uploaded file."}
             title={"Professor Data"}
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForProfessor(event)}
             placeholder="Search"
@@ -323,7 +325,9 @@ export default function ManagementFileData() {
                 ))}
               </>
             ) : (
-              <div className={"col-span-4"}>{new NoData("No Professor Found")}</div>
+              <div className={"col-span-4"}>
+                {new NoData("No Professor Found")}
+              </div>
             )}
           </div>
         </>
