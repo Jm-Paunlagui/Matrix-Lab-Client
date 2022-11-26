@@ -115,7 +115,7 @@ export default function AdminProfile() {
       })
       .catch((error) => {
         window.location.href = "/unauthorized-access";
-        toast(`Error: ${error}`, { type: "error" });
+        toast(`Error: ${error.message}`, { type: "error" });
       });
   };
 

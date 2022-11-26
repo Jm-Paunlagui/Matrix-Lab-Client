@@ -56,7 +56,7 @@ export default function ManagementFileData() {
         setFilteredDepartments(response.data.department_file);
       })
       .catch((error) => {
-        toast.error("Error loading the data. " + error.message);
+        toast.error(`Error: ${error.message}`);
       });
   };
 
