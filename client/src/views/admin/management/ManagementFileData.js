@@ -113,11 +113,10 @@ export default function ManagementFileData() {
             body={"List of departments that detected in the uploaded file."}
             title={"Department Data"}
           />
-          <SearchBar
+          <SearchBar customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
-            style="mt-8"
             type="text"
           />
           <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">

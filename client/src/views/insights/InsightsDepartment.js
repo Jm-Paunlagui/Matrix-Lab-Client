@@ -57,11 +57,10 @@ export default function InsightsDepartment() {
             body={`Overall sentiment of departments in year ${year} based on sentiments of all courses taught by the department.`}
             title="Sentiment of Departments"
           />
-          <SearchBar
+          <SearchBar customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
-            style="mt-8"
             type="text"
           />
           {filteredTopDepartment.length > 0 ? (

@@ -139,16 +139,16 @@ export function Header({ title, body }) {
  * @param style
  * @constructor
  */
-export function SearchBar({ placeholder, onChange, name, style }) {
+export function SearchBar({ placeholder, onChange, name, customStyle }) {
   SearchBar.propTypes = {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     name: PropTypes.string,
-    style: PropTypes.string,
+    customStyle: PropTypes.string,
   };
   return (
     <div
-      className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${style}`}
+      className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${customStyle}`}
     >
       <div className="flex flex-row items-center w-full">
         <FontAwesomeIcon className="text-gray-600" icon={faSearch} />

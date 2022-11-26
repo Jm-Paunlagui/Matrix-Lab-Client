@@ -145,11 +145,10 @@ export default function InsightsPerSemesterDepartment() {
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
-          <SearchBar
+          <SearchBar customStyle="mb-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
-            style="mb-8"
             type="text"
           />
           <div className="place-content-center">

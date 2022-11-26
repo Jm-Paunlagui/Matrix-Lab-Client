@@ -92,11 +92,10 @@ export default function ManagementListofDataResponse() {
                 }
                 title={`${toReadableName(read_responses)}`}
               />
-              <SearchBar
+              <SearchBar customStyle="mt-8"
                 name="searchValue"
                 onChange={(event) => handleSearchForCourse(event)}
                 placeholder="Search"
-                style="mt-8"
                 type="text"
               />
               {filteredListOfTaughtCourses.length > 0 ? (
