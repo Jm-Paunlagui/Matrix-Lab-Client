@@ -135,7 +135,7 @@ export default function ManagementListofDataResponse() {
               </div>
             </>
           ) : (
-            <div className={"pt-8"}>{NoData("No data to display")}</div>
+            <div className={"pt-8"}>{new NoData("No data to display")}</div>
           )}
         </>
       )}

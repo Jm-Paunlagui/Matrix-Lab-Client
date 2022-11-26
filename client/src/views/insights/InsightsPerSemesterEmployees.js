@@ -119,7 +119,10 @@ export default function InsightsPerSemesterEmployees() {
       });
   };
 
-  // Search onchange
+  /**
+   * @description Handles the search bar value and filters the data
+   * @param event
+   */
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_professor_per_sem.filter((data) => {
@@ -315,7 +318,7 @@ export default function InsightsPerSemesterEmployees() {
                   ))}
                 </>
               ) : (
-                NoData("Choose the following options to view the data")
+                new NoData("Choose the following options to view the data")
               )}
             </div>
           )}

@@ -23,6 +23,10 @@ export default function InsightsDepartment() {
   const [filteredTopDepartment, setFilteredTopDepartment] =
     useState(top_department);
 
+  /**
+   * @description Handles the search bar value and filters the data
+   * @param event
+   */
   const handleSearchForDepartment = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_department.filter((data) => {
@@ -190,7 +194,7 @@ export default function InsightsDepartment() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8 pb-8"}>{NoData("No Department Found")}</div>
+            <div className={"pt-8 pb-8"}>{new NoData("No Department Found")}</div>
           )}
         </>
       )}

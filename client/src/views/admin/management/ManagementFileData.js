@@ -4,12 +4,11 @@ import {
   DEFAULT_BUTTON,
   Header,
   ICON_PLACE_SELF_CENTER,
-  NoData,
-  SearchBar,
+  NoData, SearchBar,
 } from "../../../assets/styles/input-types-styles";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faFileCsv} from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
 export default function ManagementFileData() {
@@ -24,8 +23,7 @@ export default function ManagementFileData() {
   const { loading, data_departments, data_professors } = fileInfo;
 
   const [filteredProfessors, setFilteredProfessors] = useState(data_professors);
-  const [filteredDepartments, setFilteredDepartments] =
-    useState(data_departments);
+  const [filteredDepartments, setFilteredDepartments] = useState(data_departments);
 
   const loadAll = (fileId) => {
     setFileInfo({ ...fileInfo, loading: true });
@@ -60,22 +58,27 @@ export default function ManagementFileData() {
   const handleSearchForProfessor = (event) => {
     let value = event.target.value.toLowerCase();
     let result = data_professors.filter((data) => {
-      return data.evaluatee_list.toLowerCase().search(value) !== -1;
+        return (
+            data.evaluatee_list.toLowerCase().search(value) !== -1
+        );
     });
     setFilteredProfessors(result);
-  };
+  }
 
-  const handleSearchForDepartment = (event) => {
+    const handleSearchForDepartment = (event) => {
     let value = event.target.value.toLowerCase();
     let result = data_departments.filter((data) => {
-      return data.department_list.toLowerCase().search(value) !== -1;
+        return (
+            data.department_list.toLowerCase().search(value) !== -1
+        );
     });
     setFilteredDepartments(result);
-  };
+  }
 
   useEffect(() => {
     loadAll(fileId);
   }, [fileId]);
+
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -98,124 +101,122 @@ export default function ManagementFileData() {
         LoadingPage()
       ) : (
         <>
-          <Header
-            body={"List of departments that detected in the uploaded file."}
-            title={"Department Data"}
-          />
-          <SearchBar
-            name="searchValue"
-            onChange={(event) => handleSearchForDepartment(event)}
-            placeholder="Search"
-            style={"mt-8"}
-            type="text"
-          />
-          <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
-            {filteredDepartments.length > 0 ? (
-              <>
-                {filteredDepartments.map((department) => (
-                  <div
-                    className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
-                    key={department.department_list}
-                  >
-                    <div className="col-span-1 w-full">
-                      <div className="flex flex-row w-full p-4">
-                        <h1 className="text-md font-bold leading-none text-blue-600">
-                          Department:
-                        </h1>
-                        <h1 className="text-md leading-none text-gray-600 ml-2">
-                          {department.department_list}
-                        </h1>
-                      </div>
-                    </div>
-                    <hr className="w-full border-gray-300" />
-                    <div className="col-span-4 text-start p-4">
-                      <div className="flex flex-row w-full py-2">
-                        <h1 className="text-base font-bold leading-none text-blue-600">
-                          Details
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          No. of Professors:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_evaluatee}
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          No. of Courses:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_evaluatee_course_code}
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          No. of Responses:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_number_of_sentiments}
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          Overall Rating:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_overall_sentiment}%
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          Negative Score:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_negative_sentiments_percentage}
-                          %
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          Positive Score:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_positive_sentiments_percentage}
-                          %
-                        </h1>
-                      </div>
-                      <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
-                          Share of Voice:
-                        </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
-                          {department.department_share}%
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <div className={"col-span-4"}>
-                {NoData("No Department Found")}
+              <Header
+                body={"List of departments that detected in the uploaded file."}
+                title={"Department Data"}
+              />
+              <SearchBar
+                  name="searchValue"
+                  onChange={(event) =>handleSearchForDepartment(event)}
+                  placeholder="Search"
+                  style={"mt-8"}
+                  type="text"
+              />
+              <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+                {filteredDepartments.length > 0 ? (
+                    <>
+                      {filteredDepartments.map((department) => (
+                        <div
+                            className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                            key={department.department_list}
+                        >
+                          <div className="col-span-1 w-full">
+                            <div className="flex flex-row w-full p-4">
+                              <h1 className="text-md font-bold leading-none text-blue-600">
+                                Department:
+                              </h1>
+                              <h1 className="text-md leading-none text-gray-600 ml-2">
+                                {department.department_list}
+                              </h1>
+                            </div>
+                          </div>
+                          <hr className="w-full border-gray-300" />
+                          <div className="col-span-4 text-start p-4">
+                            <div className="flex flex-row w-full py-2">
+                              <h1 className="text-base font-bold leading-none text-blue-600">
+                                Details
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                No. of Professors:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_evaluatee}
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                No. of Courses:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_evaluatee_course_code}
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                No. of Responses:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_number_of_sentiments}
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                Overall Rating:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_overall_sentiment}%
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                Negative Score:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_negative_sentiments_percentage}
+                                %
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                Positive Score:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_positive_sentiments_percentage}
+                                %
+                              </h1>
+                            </div>
+                            <div className="flex flex-row items-start w-full py-2">
+                              <h1 className="text-base font-medium leading-none text-gray-600">
+                                Share of Voice:
+                              </h1>
+                              <h1 className="ml-2 text-base leading-none text-gray-600">
+                                {department.department_share}%
+                              </h1>
+                            </div>
+                          </div>
+                        </div>
+                    ))}
+                    </>
+                  ) : (
+                    <div className={"col-span-4"}>{NoData("No Department Found")}</div>
+                  )}
               </div>
-            )}
-          </div>
-          <Header
-            body={"List of Professors that detected in the uploaded file."}
-            title={"Professor Data"}
-          />
-          <SearchBar
-            name="searchValue"
-            onChange={(event) => handleSearchForProfessor(event)}
-            placeholder="Search"
-            style={"mt-8"}
-            type="text"
-          />
-          <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
-            {filteredProfessors.length > 0 ? (
-              <>
+              <Header
+                body={"List of Professors that detected in the uploaded file."}
+                title={"Professor Data"}
+              />
+              <SearchBar
+                  name="searchValue"
+                  onChange={(event) =>handleSearchForProfessor(event)}
+                  placeholder="Search"
+                  style={"mt-8"}
+                  type="text"
+              />
+              <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+                {filteredProfessors.length > 0 ? (
+                    <>
                 {filteredProfessors.map((professor) => (
                   <div
                     className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
@@ -312,11 +313,11 @@ export default function ManagementFileData() {
                     </div>
                   </div>
                 ))}
-              </>
-            ) : (
-              <div className={"col-span-4"}>{NoData("No Professor Found")}</div>
-            )}
-          </div>
+                    </>
+                ) : (
+                <div className={"col-span-4"}>{NoData("No Professor Found")}</div>
+                )}
+              </div>
         </>
       )}
     </div>

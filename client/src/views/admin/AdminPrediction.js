@@ -263,6 +263,9 @@ export default function AdminPrediction() {
     }
   };
 
+  /**
+   * @description Close the error message
+   */
   const handleClose = () => {
     setCSVColumns({
       ...csv_columns,

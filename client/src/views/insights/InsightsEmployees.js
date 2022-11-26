@@ -23,7 +23,10 @@ export default function InsightsEmployees() {
   const [filteredTopProfessors, setFilteredTopProfessors] =
     useState(top_professors);
 
-  // Search onchange
+  /**
+   * @description Handles the search bar value and filters the data
+   * @param event
+   */
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_professors.filter((data) => {
@@ -191,7 +194,7 @@ export default function InsightsEmployees() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8 pb-8"}>{NoData("No Professor Found")}</div>
+            <div className={"pt-8 pb-8"}>{new NoData("No Professor Found")}</div>
           )}
         </>
       )}

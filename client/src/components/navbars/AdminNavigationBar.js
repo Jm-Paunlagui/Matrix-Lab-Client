@@ -42,6 +42,11 @@ export default function AdminNavigationBar() {
     return splitLocation[2] === link;
   }
 
+  /**
+   * @description Handles the sub link if it is active or not.
+   * @param link
+   * @returns {boolean}
+   */
   function isActiveSubs(link) {
     return splitLocation[3] === link;
   }
@@ -68,21 +73,11 @@ export default function AdminNavigationBar() {
       href: "/admin/analytics",
       current: isActive("analytics"),
     },
-    // {
-    //   name: "Management",
-    //   href: "/admin/management/files",
-    //   current: isActive("management"),
-    // },
     {
       name: "Analyze",
       href: "/admin/analyze",
       current: isActive("analyze"),
-    },
-    // {
-    //   name: "Insights",
-    //   href: "/admin/insights/departments",
-    //   current: isActive("insights"),
-    // },
+    }
   ];
 
   /**

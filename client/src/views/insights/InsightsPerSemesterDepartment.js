@@ -125,6 +125,10 @@ export default function InsightsPerSemesterDepartment() {
       });
   };
 
+  /**
+   * @description Handles the search bar value and filters the data
+   * @param event
+   */
   const handleSearchForDepartment = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_department_per_sem.filter((data) => {
@@ -313,7 +317,7 @@ export default function InsightsPerSemesterDepartment() {
                   ))}
                 </>
               ) : (
-                NoData("Choose the following options to view the data")
+                new NoData("Choose the following options to view the data")
               )}
             </div>
           )}
