@@ -77,7 +77,7 @@ export default function AdminNavigationBar() {
       name: "Analyze",
       href: "/admin/analyze",
       current: isActive("analyze"),
-    }
+    },
   ];
 
   /**
