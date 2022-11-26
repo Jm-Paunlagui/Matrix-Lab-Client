@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
+import {
+  Header,
+  NoData,
+  SearchBar,
+} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -16,18 +20,17 @@ export default function InsightsEmployees() {
 
   const { loading, top_professors, year } = topProfessors;
 
-  const [filteredTopProfessors, setFilteredTopProfessors] = useState(top_professors);
+  const [filteredTopProfessors, setFilteredTopProfessors] =
+    useState(top_professors);
 
   // Search onchange
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_professors.filter((data) => {
-      return (
-          data.professor.toLowerCase().search(value) !== -1
-      );
+      return data.professor.toLowerCase().search(value) !== -1;
     });
     setFilteredTopProfessors(result);
-  }
+  };
 
   useEffect(() => {
     httpClient.get("/data/get-top-professors-overall").then((response) => {
@@ -52,11 +55,11 @@ export default function InsightsEmployees() {
             title="Sentiment of Professors"
           />
           <SearchBar
-              name="searchValue"
-              onChange={(event) =>handleSearch(event)}
-              placeholder="Search"
-              style={"mt-8"}
-              type="text"
+            name="searchValue"
+            onChange={(event) => handleSearch(event)}
+            placeholder="Search"
+            style={"mt-8"}
+            type="text"
           />
           {filteredTopProfessors.length > 0 ? (
             <div className=" place-content-center pt-8 space-y-8">

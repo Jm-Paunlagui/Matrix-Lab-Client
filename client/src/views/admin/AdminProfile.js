@@ -221,7 +221,7 @@ export default function AdminProfile() {
     await httpClient
       .put("/user/update-personal-info", {
         email,
-        full_name
+        full_name,
       })
       .then(async (response) => {
         await verifyJWT(response.data.token)
