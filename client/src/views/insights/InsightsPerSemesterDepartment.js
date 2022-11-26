@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import { Header, NoData } from "../../assets/styles/input-types-styles";
+import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -43,6 +43,8 @@ export default function InsightsPerSemesterDepartment() {
     errorMessage,
     textChange,
   } = topDepartmentPerSem;
+
+  const [filteredTopDepartmentPerSem, setFilteredTopDepartmentPerSem] = useState(top_department_per_sem);
 
   /**
    * @description Get the top professor per a semester from the backend
@@ -105,6 +107,7 @@ export default function InsightsPerSemesterDepartment() {
           ok: false,
           textChange: "View Insights",
         });
+        setFilteredTopDepartmentPerSem(response.data.top_departments);
       })
       .catch((error) => {
         setTopDepartmentPerSem({
@@ -117,6 +120,16 @@ export default function InsightsPerSemesterDepartment() {
       });
   };
 
+  const handleSearchForDepartment = (event) => {
+    let value = event.target.value.toLowerCase();
+    let result = top_department_per_sem.filter((data) => {
+      return (
+          data.department.toLowerCase().search(value) !== -1
+      );
+    });
+    setFilteredTopDepartmentPerSem(result);
+  }
+
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
       <Header
@@ -125,6 +138,13 @@ export default function InsightsPerSemesterDepartment() {
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
+          <SearchBar
+              name="searchValue"
+              onChange={(event) =>handleSearchForDepartment(event)}
+              placeholder="Search"
+              style={"mb-8"}
+              type="text"
+          />
           <div className="place-content-center">
             <div
               className={`grid w-full h-full grid-cols-1 p-4 bg-white rounded outline outline-2  ${
@@ -160,9 +180,9 @@ export default function InsightsPerSemesterDepartment() {
             LoadingPage()
           ) : (
             <div className=" place-content-center space-y-8">
-              {top_department_per_sem.length > 0 ? (
+              {filteredTopDepartmentPerSem.length > 0 ? (
                 <>
-                  {top_department_per_sem.map((department) => (
+                  {filteredTopDepartmentPerSem.map((department) => (
                     <div
                       className={`flex flex-col w-full bg-white rounded shadow
                                       ${

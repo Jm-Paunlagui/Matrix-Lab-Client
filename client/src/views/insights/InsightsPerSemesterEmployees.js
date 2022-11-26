@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import { Header, NoData } from "../../assets/styles/input-types-styles";
+import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -44,6 +44,8 @@ export default function InsightsPerSemesterEmployees() {
     textChange,
   } = topEmployeePerSem;
 
+  const [filteredTopEmployeePerSem, setFilteredTopEmployeePerSem] = useState(top_professor_per_sem);
+
   /**
    * @description Get the top professor per a semester from the backend
    */
@@ -69,13 +71,6 @@ export default function InsightsPerSemesterEmployees() {
       errorMessage: "",
     });
   };
-
-  /**
-   * @description Updates the file number to get the data from the backend.
-   */
-  useEffect(() => {
-    getTopEmployeePerSem();
-  }, []);
 
   /**
    * @description Gets the data from the backend and displays it on the page.
@@ -105,6 +100,7 @@ export default function InsightsPerSemesterEmployees() {
           ok: false,
           textChange: "View Insights",
         });
+        setFilteredTopEmployeePerSem(response.data.top_professors)
       })
       .catch((error) => {
         setTopEmployeePerSem({
@@ -117,6 +113,24 @@ export default function InsightsPerSemesterEmployees() {
       });
   };
 
+  // Search onchange
+  const handleSearch = (event) => {
+    let value = event.target.value.toLowerCase();
+    let result = top_professor_per_sem.filter((data) => {
+      return (
+          data.professor.toLowerCase().search(value) !== -1
+      );
+    });
+    setFilteredTopEmployeePerSem(result)
+  }
+
+  /**
+   * @description Updates the file number to get the data from the backend.
+   */
+  useEffect(() => {
+    getTopEmployeePerSem();
+  }, []);
+
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
       <Header
@@ -125,6 +139,13 @@ export default function InsightsPerSemesterEmployees() {
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
+          <SearchBar
+              name="searchValue"
+              onChange={(event) =>handleSearch(event)}
+              placeholder="Search"
+              style={"mb-8"}
+              type="text"
+          />
           <div className="place-content-center">
             <div
               className={`grid w-full h-full grid-cols-1 p-4 bg-white rounded outline outline-2  ${
@@ -160,9 +181,9 @@ export default function InsightsPerSemesterEmployees() {
             LoadingPage()
           ) : (
             <div className=" place-content-center space-y-8">
-              {top_professor_per_sem.length > 0 ? (
+              {filteredTopEmployeePerSem.length > 0 ? (
                 <>
-                  {top_professor_per_sem.map((professor) => (
+                  {filteredTopEmployeePerSem.map((professor) => (
                     <div
                       className={`flex flex-col w-full bg-white rounded shadow
                                       ${

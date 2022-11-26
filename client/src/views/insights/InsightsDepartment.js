@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { Header, NoData } from "../../assets/styles/input-types-styles";
+import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -15,6 +15,18 @@ export default function InsightsDepartment() {
   });
 
   const { loading, top_department, year } = topDepartment;
+
+  const [filteredTopDepartment, setFilteredTopDepartment] = useState(top_department);
+
+  const handleSearchForDepartment = (event) => {
+    let value = event.target.value.toLowerCase();
+    let result = top_department.filter((data) => {
+      return (
+          data.department.toLowerCase().search(value) !== -1
+      );
+    });
+    setFilteredTopDepartment(result);
+  }
 
   useEffect(() => {
     httpClient.get("/data/get-top-department-overall").then((response) => {
@@ -37,9 +49,16 @@ export default function InsightsDepartment() {
             body={`Overall sentiment of departments in year ${year} based on sentiments of all courses taught by the department.`}
             title="Sentiment of Departments"
           />
-          {top_department.length > 0 ? (
+          <SearchBar
+              name="searchValue"
+              onChange={(event) =>handleSearchForDepartment(event)}
+              placeholder="Search"
+              style={"mt-8"}
+              type="text"
+          />
+          {filteredTopDepartment.length > 0 ? (
             <div className=" place-content-center pt-8 space-y-8">
-              {top_department.map((department) => (
+              {filteredTopDepartment.map((department) => (
                 <div
                   className={`flex flex-col w-full bg-white rounded shadow
                 ${
@@ -167,7 +186,7 @@ export default function InsightsDepartment() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8 pb-8"}>{NoData("No Data Found")}</div>
+            <div className={"pt-8 pb-8"}>{NoData("No Department Found")}</div>
           )}
         </>
       )}

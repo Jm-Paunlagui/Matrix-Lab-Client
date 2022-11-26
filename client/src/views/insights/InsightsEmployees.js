@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { Header, NoData } from "../../assets/styles/input-types-styles";
+import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -16,6 +16,19 @@ export default function InsightsEmployees() {
 
   const { loading, top_professors, year } = topProfessors;
 
+  const [filteredTopProfessors, setFilteredTopProfessors] = useState(top_professors);
+
+  // Search onchange
+  const handleSearch = (event) => {
+    let value = event.target.value.toLowerCase();
+    let result = top_professors.filter((data) => {
+      return (
+          data.professor.toLowerCase().search(value) !== -1
+      );
+    });
+    setFilteredTopProfessors(result);
+  }
+
   useEffect(() => {
     httpClient.get("/data/get-top-professors-overall").then((response) => {
       setTopProfessors({
@@ -24,6 +37,7 @@ export default function InsightsEmployees() {
         top_professors: response.data.top_professors,
         year: response.data.year,
       });
+      setFilteredTopProfessors(response.data.top_professors);
     });
   }, []);
 
@@ -37,9 +51,16 @@ export default function InsightsEmployees() {
             body={`Overall sentiment of professors in year ${year} based on sentiments of all courses taught by the professor.`}
             title="Sentiment of Professors"
           />
-          {top_professors.length > 0 ? (
+          <SearchBar
+              name="searchValue"
+              onChange={(event) =>handleSearch(event)}
+              placeholder="Search"
+              style={"mt-8"}
+              type="text"
+          />
+          {filteredTopProfessors.length > 0 ? (
             <div className=" place-content-center pt-8 space-y-8">
-              {top_professors.map((professor) => (
+              {filteredTopProfessors.map((professor) => (
                 <div
                   className={`flex flex-col w-full bg-white rounded shadow
             ${
@@ -167,7 +188,7 @@ export default function InsightsEmployees() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8 pb-8"}>{NoData("No Data Found")}</div>
+            <div className={"pt-8 pb-8"}>{NoData("No Professor Found")}</div>
           )}
         </>
       )}
