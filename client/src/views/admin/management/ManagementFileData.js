@@ -12,7 +12,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
+import {removeBrackets, removeComma} from "../../../helpers/Helper";
+
+/**
+ * @description Handles the lists data of the file department and professor
+ */
 export default function ManagementFileData() {
+  /**
+   * @description Gets the file id from the url to load the data
+   * @type {string}
+   */
   const fileId = useParams().fileId;
 
   const [fileInfo, setFileInfo] = useState({
@@ -27,6 +36,10 @@ export default function ManagementFileData() {
   const [filteredDepartments, setFilteredDepartments] =
     useState(data_departments);
 
+  /**
+   * @description Loads the data from the backend
+   * @param fileId
+   */
   const loadAll = (fileId) => {
     setFileInfo({ ...fileInfo, loading: true });
 
@@ -46,17 +59,10 @@ export default function ManagementFileData() {
       });
   };
 
-  // Remove the [] and '' from the string in professor.evaluatee_course_code
-  const removeBrackets = (str) => {
-    return str.replace(/[[\]']+/g, "");
-  };
-
-  // Remove the [] and '' from the string in professor.evaluatee_list
-  const removeComma = (str) => {
-    return str.replace(/[, ]+/g, "_");
-  };
-
-  // Search onchange
+  /**
+   * @description Filters the professors by the search input
+   * @param event
+   */
   const handleSearchForProfessor = (event) => {
     let value = event.target.value.toLowerCase();
     let result = data_professors.filter((data) => {
@@ -65,6 +71,10 @@ export default function ManagementFileData() {
     setFilteredProfessors(result);
   };
 
+  /**
+   * @description Filters the departments by the search input
+   * @param event
+   */
   const handleSearchForDepartment = (event) => {
     let value = event.target.value.toLowerCase();
     let result = data_departments.filter((data) => {
@@ -198,7 +208,7 @@ export default function ManagementFileData() {
               </>
             ) : (
               <div className={"col-span-4"}>
-                {NoData("No Department Found")}
+                {new NoData("No Department Found")}
               </div>
             )}
           </div>
@@ -314,7 +324,7 @@ export default function ManagementFileData() {
                 ))}
               </>
             ) : (
-              <div className={"col-span-4"}>{NoData("No Professor Found")}</div>
+              <div className={"col-span-4"}>{new NoData("No Professor Found")}</div>
             )}
           </div>
         </>

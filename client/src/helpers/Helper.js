@@ -74,3 +74,21 @@ export const toReadableName = (name) => {
     return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
   });
 };
+
+/**
+ * @description Removes the brackets from the string.
+ * @param str
+ * @returns {*}
+ */
+export const removeBrackets = (str) => {
+  return str.replace(/[[\]']+/g, "");
+};
+
+/**
+ * @description Removes the commas from the string.
+ * @param str
+ * @returns {*}
+ */
+export const removeComma = (str) => {
+  return str.replace(/[, ]+/g, "_");
+};

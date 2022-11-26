@@ -71,6 +71,11 @@ export function EMAIL_NOT_SET(email_type = "") {
   );
 }
 
+/**
+ * @description For no data found
+ * @param type
+ * @constructor
+ */
 export function NoData(type = "") {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500">
@@ -95,12 +100,17 @@ export function NoData(type = "") {
   );
 }
 
-Header.propTypes = {
-  title: PropTypes.string,
-  body: PropTypes.string,
-};
-
+/**
+ * @description Header for the page
+ * @param title
+ * @param body
+ * @constructor
+ */
 export function Header({ title, body }) {
+  Header.propTypes = {
+    title: PropTypes.string,
+    body: PropTypes.string,
+  };
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-blue-500">
       <div className="grid w-full grid-cols-1 rounded">
@@ -121,14 +131,21 @@ export function Header({ title, body }) {
   );
 }
 
-SearchBar.propTypes = {
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func,
-  name: PropTypes.string,
-  style: PropTypes.object,
-};
-
+/**
+ * @description Search bar for filtering data
+ * @param placeholder
+ * @param onChange
+ * @param name
+ * @param style
+ * @constructor
+ */
 export function SearchBar({ placeholder, onChange, name, style }) {
+  SearchBar.propTypes = {
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+    name: PropTypes.string,
+    style: PropTypes.object,
+  };
   return (
     <div
       className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${style}`}

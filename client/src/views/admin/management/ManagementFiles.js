@@ -45,6 +45,10 @@ export default function ManagementFiles() {
     total_pages,
   } = fileData;
 
+  /**
+   * @description Loads the files from the backend
+   * @param page
+   */
   const loadFiles = (page) => {
     setFileData({
       ...fileData,
@@ -73,6 +77,10 @@ export default function ManagementFiles() {
     loadFiles(page);
   }, [page]);
 
+  /**
+   * @description Handles the delete of a file from the backend
+   * @param file
+   */
   const handleDelete = (file) => {
     httpClient
       .delete(`/data/delete-csv-file/${file}`)
@@ -85,6 +93,10 @@ export default function ManagementFiles() {
       });
   };
 
+  /**
+   * @description Handles the download of a file from the backend
+   * @param file
+   */
   const handleDownload = (file) => {
     httpClient
       .get(`/data/download-csv-file/${file}`, { responseType: "blob" })
