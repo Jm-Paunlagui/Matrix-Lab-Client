@@ -61,7 +61,7 @@ export default function InsightsEmployees() {
             name="searchValue"
             onChange={(event) => handleSearch(event)}
             placeholder="Search"
-            style={"mt-8"}
+            style="mt-8"
             type="text"
           />
           {filteredTopProfessors.length > 0 ? (

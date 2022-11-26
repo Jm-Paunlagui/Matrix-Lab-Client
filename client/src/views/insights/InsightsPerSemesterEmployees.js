@@ -150,7 +150,7 @@ export default function InsightsPerSemesterEmployees() {
             name="searchValue"
             onChange={(event) => handleSearch(event)}
             placeholder="Search"
-            style={"mb-8"}
+            style="mb-8"
             type="text"
           />
           <div className="place-content-center">

@@ -61,7 +61,7 @@ export default function InsightsDepartment() {
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
-            style={"mt-8"}
+            style="mt-8"
             type="text"
           />
           {filteredTopDepartment.length > 0 ? (

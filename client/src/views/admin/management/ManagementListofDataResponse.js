@@ -96,7 +96,7 @@ export default function ManagementListofDataResponse() {
                 name="searchValue"
                 onChange={(event) => handleSearchForCourse(event)}
                 placeholder="Search"
-                style={"mt-8"}
+                style="mt-8"
                 type="text"
               />
               {filteredListOfTaughtCourses.length > 0 ? (

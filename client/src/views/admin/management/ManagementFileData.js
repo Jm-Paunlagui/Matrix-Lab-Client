@@ -13,6 +13,7 @@ import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import {removeBrackets, removeComma} from "../../../helpers/Helper";
+import {toast} from "react-toastify";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -55,7 +56,7 @@ export default function ManagementFileData() {
         setFilteredDepartments(response.data.department_file);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Error loading the data. " + error.message);
       });
   };
 
@@ -116,7 +117,7 @@ export default function ManagementFileData() {
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
-            style={"mt-8"}
+            style="mt-8"
             type="text"
           />
           <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
