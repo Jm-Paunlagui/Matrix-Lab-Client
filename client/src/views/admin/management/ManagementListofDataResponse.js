@@ -85,7 +85,6 @@ export default function ManagementListofDataResponse() {
         LoadingPage()
       ) : (
         <>
-
               <Header
                 body={
                   "View the responses of the file below. You can also download the responses as a CSV file."

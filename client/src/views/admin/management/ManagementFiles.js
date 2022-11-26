@@ -4,7 +4,7 @@ import {
   Header,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData,
+  NoData, SearchBar,
 } from "../../../assets/styles/input-types-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -45,6 +45,22 @@ export default function ManagementFiles() {
     total_pages,
   } = fileData;
 
+  const [filteredListOfFiles, setFilteredListOfFiles] = useState(files);
+
+  /**
+   * @description Filters the list of files based on the search value
+   * @param event
+   */
+  const handleSearchForFile = (event) => {
+    const searchValue = event.target.value;
+    const filteredList = files.filter((file) => {
+      return file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
+        file.school_semester.toLowerCase().includes(searchValue.toLowerCase()) ||
+        file.csv_question.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    setFilteredListOfFiles(filteredList);
+  };
+
   /**
    * @description Loads the files from the backend
    * @param page
@@ -70,6 +86,7 @@ export default function ManagementFiles() {
           total_items: response.data.total_items,
           total_pages: response.data.total_pages,
         });
+        setFilteredListOfFiles(response.data.csv_files);
       });
   };
 
@@ -128,14 +145,20 @@ export default function ManagementFiles() {
         LoadingPage()
       ) : (
         <>
+          <SearchBar customStyle="mt-8"
+                     name="searchValue"
+                     onChange={(event) => handleSearchForFile(event)}
+                     placeholder="Search"
+                     type="text"
+          />
           <div className="flex flex-col w-full p-4">
             <h1 className="text-start font-medium text-gray-700">
               Page {current_page} of {total_pages}
             </h1>
           </div>
-          {files.length > 0 ? (
+          {filteredListOfFiles.length > 0 ? (
             <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-              {files.map((file) => (
+              {filteredListOfFiles.map((file) => (
                 <div
                   className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
                   key={file.id}
