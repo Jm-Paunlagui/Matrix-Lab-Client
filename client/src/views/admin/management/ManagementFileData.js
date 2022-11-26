@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
-import {removeBrackets, removeComma} from "../../../helpers/Helper";
-import {toast} from "react-toastify";
+import { removeBrackets, removeComma } from "../../../helpers/Helper";
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -325,7 +325,9 @@ export default function ManagementFileData() {
                 ))}
               </>
             ) : (
-              <div className={"col-span-4"}>{new NoData("No Professor Found")}</div>
+              <div className={"col-span-4"}>
+                {new NoData("No Professor Found")}
+              </div>
             )}
           </div>
         </>
