@@ -40,12 +40,12 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
-import IndexManagement from "./views/admin/management/IndexManagement";
-import ManagementFiles from "./views/admin/management/ManagementFiles";
-import ManagementProfessors from "./views/admin/management/ManagementProfessors";
-import ManagementFileData from "./views/admin/management/ManagementFileData";
-import ManagementListofDataResponse from "./views/admin/management/ManagementListofDataResponse";
-import ManagementReadDataResponse from "./views/admin/management/ManagementReadDataResponse";
+import IndexManagement from "./views/admin/management_files/IndexManagement";
+import ManagementFiles from "./views/admin/management_files/ManagementFiles";
+import ManagementProfessors from "./views/admin/management_files/ManagementProfessors";
+import ManagementFileData from "./views/admin/management_files/ManagementFileData";
+import ManagementListofDataResponse from "./views/admin/management_files/ManagementListofDataResponse";
+import ManagementReadDataResponse from "./views/admin/management_files/ManagementReadDataResponse";
 
 /**
  * @description Main component for the application

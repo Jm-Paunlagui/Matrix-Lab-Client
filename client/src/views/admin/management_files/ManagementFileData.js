@@ -93,7 +93,7 @@ export default function ManagementFileData() {
       <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
         <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
           <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
-            <Link to={"/admin/management/files"}>
+            <Link to={"/admin/management_files/files"}>
               <h1 className="px-5 py-3">
                 <FontAwesomeIcon
                   className={`${ICON_PLACE_SELF_CENTER}`}

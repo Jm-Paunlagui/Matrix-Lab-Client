@@ -135,14 +135,14 @@ export default function AdminNavigationBar() {
   const navigation_for_management = [
     {
       name: "File Management",
-      href: "/admin/management/files",
+      href: "/admin/management_files/files",
       current: isActiveSubs("files"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
     {
       name: "Professors Management",
-      href: "/admin/management/professors",
+      href: "/admin/management_files/professors",
       current: isActiveSubs("professors"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
@@ -203,7 +203,7 @@ export default function AdminNavigationBar() {
                         <div>
                           <Menu.Button
                             className={`flex text-sm rounded ${
-                              isActive("management")
+                              isActive("management_files")
                                 ? "bg-blue-800 text-white"
                                 : "text-blue-100 hover:bg-blue-700 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
