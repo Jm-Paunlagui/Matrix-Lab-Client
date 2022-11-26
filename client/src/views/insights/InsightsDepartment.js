@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {Header, NoData, SearchBar} from "../../assets/styles/input-types-styles";
+import {
+  Header,
+  NoData,
+  SearchBar,
+} from "../../assets/styles/input-types-styles";
 
 /**
  * @description Handles the Insights for the department
@@ -16,17 +20,16 @@ export default function InsightsDepartment() {
 
   const { loading, top_department, year } = topDepartment;
 
-  const [filteredTopDepartment, setFilteredTopDepartment] = useState(top_department);
+  const [filteredTopDepartment, setFilteredTopDepartment] =
+    useState(top_department);
 
   const handleSearchForDepartment = (event) => {
     let value = event.target.value.toLowerCase();
     let result = top_department.filter((data) => {
-      return (
-          data.department.toLowerCase().search(value) !== -1
-      );
+      return data.department.toLowerCase().search(value) !== -1;
     });
     setFilteredTopDepartment(result);
-  }
+  };
 
   useEffect(() => {
     httpClient.get("/data/get-top-department-overall").then((response) => {
@@ -51,11 +54,11 @@ export default function InsightsDepartment() {
             title="Sentiment of Departments"
           />
           <SearchBar
-              name="searchValue"
-              onChange={(event) =>handleSearchForDepartment(event)}
-              placeholder="Search"
-              style={"mt-8"}
-              type="text"
+            name="searchValue"
+            onChange={(event) => handleSearchForDepartment(event)}
+            placeholder="Search"
+            style={"mt-8"}
+            type="text"
           />
           {filteredTopDepartment.length > 0 ? (
             <div className=" place-content-center pt-8 space-y-8">
