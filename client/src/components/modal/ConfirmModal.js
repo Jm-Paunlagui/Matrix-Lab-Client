@@ -3,7 +3,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import {
   ACCENT_BUTTON,
-  DANGER_BUTTON,
   ICON_PLACE_SELF_CENTER,
 } from "../../assets/styles/input-types-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +17,15 @@ ConfirmModal.propTypes = {
   onConfirm: PropTypes.func,
 };
 
+/**
+ * @description A modal to confirm the deletion of a file
+ * @param title
+ * @param description
+ * @param id
+ * @param to_delete
+ * @param onConfirm
+ * @constructor
+ */
 export default function ConfirmModal({
   title,
   description,

@@ -5,7 +5,7 @@ import {
   DEFAULT_BUTTON,
   Header,
   ICON_PLACE_SELF_CENTER,
-  NoData,
+  NoData, SearchBar,
 } from "../../../assets/styles/input-types-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,9 @@ import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import { toReadableName } from "../../../helpers/Helper";
 
+/**
+ * @description Lists the courses to read each course's data
+ */
 export default function ManagementListofDataResponse() {
   const { fileId, read_responses } = useParams();
 
@@ -23,6 +26,13 @@ export default function ManagementListofDataResponse() {
 
   const { loading, file_list } = listOfTaughtCourses;
 
+  const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] = useState(file_list);
+
+  /**
+   * @description Loads the list of taught courses
+   * @param fileId
+   * @param read_responses
+   */
   const loadListOfTaughtCourses = (fileId, read_responses) => {
     httpClient
       .get(`/data/get-list-of-taught-courses/${fileId}/${read_responses}`)
@@ -32,8 +42,22 @@ export default function ManagementListofDataResponse() {
           loading: false,
           file_list: response.data.file_list,
         });
+        setFilteredListOfTaughtCourses(response.data.file_list);
       });
   };
+
+  /**
+   * @description Filters the list of taught courses
+   * @param event
+   */
+  const handleSearchForCourse = (event) => {
+    const searchValue = event.target.value;
+    const filteredList = file_list.filter((course) => {
+      return course.file_title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        course.file_name.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    setFilteredListOfTaughtCourses(filteredList);
+  }
 
   useEffect(() => {
     loadListOfTaughtCourses(fileId, read_responses);
@@ -61,16 +85,24 @@ export default function ManagementListofDataResponse() {
         LoadingPage()
       ) : (
         <>
-          {file_list.length > 0 ? (
-            <>
+
               <Header
                 body={
                   "View the responses of the file below. You can also download the responses as a CSV file."
                 }
                 title={`${toReadableName(read_responses)}`}
               />
-              <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
-                {file_list.map((file) => (
+              <SearchBar
+                name="searchValue"
+                onChange={(event) => handleSearchForCourse(event)}
+                placeholder="Search"
+                style={"mt-8"}
+                type="text"
+              />
+              {filteredListOfTaughtCourses.length > 0 ? (
+                  <>
+                    <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+                {filteredListOfTaughtCourses.map((file) => (
                   <div
                     className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
                     key={file.id}
@@ -133,10 +165,10 @@ export default function ManagementListofDataResponse() {
                   </div>
                 ))}
               </div>
-            </>
-          ) : (
-            <div className={"pt-8"}>{new NoData("No data to display")}</div>
-          )}
+                  </>
+              ) : (
+                  <div className={"pt-8"}>{new NoData("No data to display")}</div>
+              )}
         </>
       )}
     </div>
