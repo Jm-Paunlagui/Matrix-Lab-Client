@@ -152,7 +152,7 @@ export default function AdminNavigationBar() {
   return (
     <Menu
       as="nav"
-      className="fixed top-0 z-50 w-full shadow bg-blue-500 font-Montserrat"
+      className="fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
     >
       {({ open }) => (
         <>
@@ -203,7 +203,7 @@ export default function AdminNavigationBar() {
                         <div>
                           <Menu.Button
                             className={`flex text-sm rounded ${
-                              isActive("management_files")
+                              isActive("management")
                                 ? "bg-blue-800 text-white"
                                 : "text-blue-100 hover:bg-blue-700 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
@@ -222,7 +222,7 @@ export default function AdminNavigationBar() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 z-10 w-60 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {navigation_for_management.map((item) => (
                               <Menu.Item key={item.name}>
                                 <NavLink to={item.href}>
@@ -266,7 +266,7 @@ export default function AdminNavigationBar() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 z-10 w-60 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {navigation_for_insights.map((item) => (
                               <Menu.Item key={item.name}>
                                 <NavLink to={item.href}>
