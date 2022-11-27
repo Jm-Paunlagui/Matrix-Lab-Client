@@ -7,9 +7,9 @@ import { isAuth } from "../../../helpers/Auth";
  */
 export default function IndexManagementFiles() {
   return isAuth().role === "admin" ? (
-      <div className="mt-16 font-Montserrat">
-        <Outlet />
-      </div>
+    <div className="mt-16 font-Montserrat">
+      <Outlet />
+    </div>
   ) : (
     <Navigate to="/unauthorized-access" />
   );

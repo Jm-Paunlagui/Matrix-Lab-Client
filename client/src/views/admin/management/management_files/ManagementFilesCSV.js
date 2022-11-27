@@ -3,7 +3,7 @@ import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData
+  NoData,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,8 +17,8 @@ import LoadingPage from "../../../../components/loading/LoadingPage";
 import { toast } from "react-toastify";
 import ConfirmModal from "../../../../components/modal/ConfirmModal";
 import { Link } from "react-router-dom";
-import {Header} from "../../../../components/headers/Header";
-import {SearchBar} from "../../../../components/searchbar/SearchBar";
+import { Header } from "../../../../components/headers/Header";
+import { SearchBar } from "../../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the files to view and delete
@@ -55,9 +55,13 @@ export default function ManagementFilesCSV() {
   const handleSearchForFile = (event) => {
     const searchValue = event.target.value;
     const filteredList = files_list.filter((file) => {
-      return file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
-        file.school_semester.toLowerCase().includes(searchValue.toLowerCase()) ||
-        file.csv_question.toLowerCase().includes(searchValue.toLowerCase());
+      return (
+        file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
+        file.school_semester
+          .toLowerCase()
+          .includes(searchValue.toLowerCase()) ||
+        file.csv_question.toLowerCase().includes(searchValue.toLowerCase())
+      );
     });
     setFilteredListOfFiles(filteredList);
   };
@@ -143,11 +147,12 @@ export default function ManagementFilesCSV() {
         LoadingPage()
       ) : (
         <>
-          <SearchBar customStyle="mt-8"
-                     name="searchValue"
-                     onChange={(event) => handleSearchForFile(event)}
-                     placeholder="Search"
-                     type="text"
+          <SearchBar
+            customStyle="mt-8"
+            name="searchValue"
+            onChange={(event) => handleSearchForFile(event)}
+            placeholder="Search"
+            type="text"
           />
           <div className="flex flex-col w-full p-4">
             <h1 className="text-start font-medium text-blue-500">
@@ -262,7 +267,9 @@ export default function ManagementFilesCSV() {
               className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
               disabled={!has_prev}
-              onClick={() => setFileData({ ...fileData, page_number: page_number - 1 })}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number - 1 })
+              }
               type="button"
             >
               <FontAwesomeIcon
@@ -275,7 +282,9 @@ export default function ManagementFilesCSV() {
               className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
               disabled={!has_next}
-              onClick={() => setFileData({ ...fileData, page_number: page_number + 1 })}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number + 1 })
+              }
               type="button"
             >
               <FontAwesomeIcon

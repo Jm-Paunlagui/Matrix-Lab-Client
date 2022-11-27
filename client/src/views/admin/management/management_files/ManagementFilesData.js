@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../../http/httpClient";
 import LoadingPage from "../../../../components/loading/LoadingPage";
-import {removeBrackets, removeComma} from "../../../../helpers/Helper";
-import {toast} from "react-toastify";
+import { removeBrackets, removeComma } from "../../../../helpers/Helper";
+import { toast } from "react-toastify";
 import BackTo from "../../../../components/buttons/BackTo";
-import {Header} from "../../../../components/headers/Header";
-import {SearchBar} from "../../../../components/searchbar/SearchBar";
+import { Header } from "../../../../components/headers/Header";
+import { SearchBar } from "../../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -99,7 +99,8 @@ export default function ManagementFilesData() {
             body={"List of departments that detected in the uploaded file."}
             title={"Department Data"}
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
@@ -202,7 +203,8 @@ export default function ManagementFilesData() {
             body={"List of Professors that detected in the uploaded file."}
             title={"Professor Data"}
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForProfessor(event)}
             placeholder="Search"
@@ -309,7 +311,9 @@ export default function ManagementFilesData() {
                 ))}
               </>
             ) : (
-              <div className={"col-span-4"}>{new NoData("No Professor Found")}</div>
+              <div className={"col-span-4"}>
+                {new NoData("No Professor Found")}
+              </div>
             )}
           </div>
         </>

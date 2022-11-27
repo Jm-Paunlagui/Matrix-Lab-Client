@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {
-  NoData,
-} from "../../assets/styles/styled-components";
-import {Header} from "../../components/headers/Header";
-import {SearchBar} from "../../components/searchbar/SearchBar";
+import { NoData } from "../../assets/styles/styled-components";
+import { Header } from "../../components/headers/Header";
+import { SearchBar } from "../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -145,7 +143,8 @@ export default function InsightsPerSemesterDepartment() {
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
-          <SearchBar customStyle="mb-8"
+          <SearchBar
+            customStyle="mb-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"

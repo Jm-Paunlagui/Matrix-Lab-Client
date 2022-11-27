@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {
-  NoData,
-} from "../../assets/styles/styled-components";
-import {Header} from "../../components/headers/Header";
-import {SearchBar} from "../../components/searchbar/SearchBar";
+import { NoData } from "../../assets/styles/styled-components";
+import { Header } from "../../components/headers/Header";
+import { SearchBar } from "../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the Insights for the department
@@ -57,7 +55,8 @@ export default function InsightsEmployees() {
             body={`Overall sentiment of professors in year ${year} based on sentiments of all courses taught by the professor.`}
             title="Sentiment of Professors"
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearch(event)}
             placeholder="Search"
