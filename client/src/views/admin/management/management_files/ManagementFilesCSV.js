@@ -26,27 +26,27 @@ import {SearchBar} from "../../../../components/searchbar/SearchBar";
 export default function ManagementFilesCSV() {
   const [fileData, setFileData] = useState({
     loading: true,
-    files: [],
+    files_list: [],
     current_page: "",
     has_next: false,
     has_prev: true,
-    page: 1,
+    page_number: 1,
     total_items: "",
     total_pages: "",
   });
 
   const {
     loading,
-    files,
+    files_list,
     current_page,
     has_next,
     has_prev,
-    page,
+    page_number,
     total_items,
     total_pages,
   } = fileData;
 
-  const [filteredListOfFiles, setFilteredListOfFiles] = useState(files);
+  const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
   /**
    * @description Filters the list of files based on the search value
@@ -54,7 +54,7 @@ export default function ManagementFilesCSV() {
    */
   const handleSearchForFile = (event) => {
     const searchValue = event.target.value;
-    const filteredList = files.filter((file) => {
+    const filteredList = files_list.filter((file) => {
       return file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
         file.school_semester.toLowerCase().includes(searchValue.toLowerCase()) ||
         file.csv_question.toLowerCase().includes(searchValue.toLowerCase());
@@ -81,9 +81,6 @@ export default function ManagementFilesCSV() {
           current_page: response.data.current_page,
           has_next: response.data.has_next,
           has_prev: response.data.has_prev,
-          items_per_page: response.data.items_per_page,
-          next_page: response.data.next_page,
-          prev_page: response.data.prev_page,
           total_items: response.data.total_items,
           total_pages: response.data.total_pages,
         });
@@ -92,8 +89,8 @@ export default function ManagementFilesCSV() {
   };
 
   useEffect(() => {
-    loadFiles(page);
-  }, [page]);
+    loadFiles(page_number);
+  }, [page_number]);
 
   /**
    * @description Handles the delete of a file from the backend
@@ -103,7 +100,7 @@ export default function ManagementFilesCSV() {
     httpClient
       .delete(`/data/delete-csv-file/${file}`)
       .then((response) => {
-        loadFiles(page);
+        loadFiles(page_number);
         toast.success(response.data.message);
       })
       .catch((error) => {
@@ -256,7 +253,7 @@ export default function ManagementFilesCSV() {
               {/*    Page details*/}
               <div className="flex flex-row items-center justify-center w-full">
                 <h1 className="text-base font-medium leading-none t text-blue-500">
-                  Showing {files.length} of {total_items} files in total (
+                  Showing {files_list.length} of {total_items} files in total (
                   {total_pages} pages)
                 </h1>
               </div>
@@ -265,7 +262,7 @@ export default function ManagementFilesCSV() {
               className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
               disabled={!has_prev}
-              onClick={() => setFileData({ ...fileData, page: page - 1 })}
+              onClick={() => setFileData({ ...fileData, page_number: page_number - 1 })}
               type="button"
             >
               <FontAwesomeIcon
@@ -278,7 +275,7 @@ export default function ManagementFilesCSV() {
               className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
               disabled={!has_next}
-              onClick={() => setFileData({ ...fileData, page: page + 1 })}
+              onClick={() => setFileData({ ...fileData, page_number: page_number + 1 })}
               type="button"
             >
               <FontAwesomeIcon
