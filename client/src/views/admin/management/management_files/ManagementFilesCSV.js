@@ -23,7 +23,7 @@ import {SearchBar} from "../../../../components/searchbar/SearchBar";
 /**
  * @description Handles the files to view and delete
  */
-export default function ManagementFiles() {
+export default function ManagementFilesCSV() {
   const [fileData, setFileData] = useState({
     loading: true,
     files: [],
