@@ -46,6 +46,8 @@ import ManagementFilesUsers from "./views/admin/management/management_users/Mana
 import ManagementFilesData from "./views/admin/management/management_files/ManagementFilesData";
 import ManagementFilesListofDataResponse from "./views/admin/management/management_files/ManagementFilesListofDataResponse";
 import ManagementFilesReadDataResponse from "./views/admin/management/management_files/ManagementFilesReadDataResponse";
+import IndexFiles from "./views/admin/management/management_files/IndexFiles";
+import IndexUsers from "./views/admin/management/management_users/IndexUsers";
 
 /**
  * @description Main component for the application
@@ -190,32 +192,35 @@ export default function App() {
                 path="management"
               >
                 <Route
-                  element={<ManagementFiles />}
+                  element={<IndexFiles />}
                   exact="true"
                   path="files"
                 >
+                  <Route element={<ManagementFiles />} exact="true" path="data" />
                   <Route
                       element={<ManagementFilesData />}
                       exact="true"
-                      path=":fileId"
+                      path="data/:fileId"
                   />
                   <Route
                       element={<ManagementFilesListofDataResponse />}
                       exact="true"
-                      path=":fileId/:read_responses"
+                      path="data/:fileId/:read_responses"
                   />
                   <Route
                       element={<ManagementFilesReadDataResponse />}
                       exact="true"
-                      path=":fileId/:read_responses/:file_name"
+                      path="data/:fileId/:read_responses/:file_name"
                   />
                 </Route>
 
                 <Route
-                  element={<ManagementFilesUsers />}
+                  element={<IndexUsers />}
                   exact="true"
-                  path="professors"
-                />
+                  path="users"
+                >
+                  <Route element={<ManagementFilesUsers />} exact="true" path="professors" />
+                </Route>
               </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>

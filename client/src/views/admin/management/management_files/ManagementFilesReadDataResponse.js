@@ -46,7 +46,7 @@ export default function ManagementFilesReadDataResponse() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
-      <BackTo text="Back" to={`/admin/management/files/${fileId}/${read_responses}`} />
+      <BackTo text="Back" to={`/admin/management/files/data/${fileId}/${read_responses}`} />
       {loading ? (
           LoadingPage()
       ) : (

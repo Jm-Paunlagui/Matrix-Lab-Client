@@ -53,6 +53,15 @@ export default function AdminNavigationBar() {
   }
 
   /**
+   * @description Handles the sub link if it is active or not.
+   * @param link
+   * @returns {boolean}
+   */
+  function isActiveSubs4(link) {
+    return splitLocation[4] === link;
+  }
+
+  /**
    * @description Handles the logout of the user
    * @returns {Promise<void>}
    */
@@ -136,15 +145,15 @@ export default function AdminNavigationBar() {
   const navigation_for_management = [
     {
       name: "File Management",
-      href: "/admin/management/files",
-      current: isActiveSubs("files"),
+      href: "/admin/management/files/data",
+      current: isActiveSubs4("data"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
     {
       name: "Professors Management",
-      href: "/admin/management/professors",
-      current: isActiveSubs("professors"),
+      href: "/admin/management/users/professors",
+      current: isActiveSubs4("professors"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },

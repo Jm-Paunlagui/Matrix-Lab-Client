@@ -90,7 +90,7 @@ export default function ManagementFilesData() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
-      <BackTo text="Back" to="/admin/management/files" />
+      <BackTo text="Back" to="/admin/management/files/data" />
       {loading ? (
         LoadingPage()
       ) : (

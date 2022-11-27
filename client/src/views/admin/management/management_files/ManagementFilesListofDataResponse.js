@@ -66,7 +66,7 @@ export default function ManagementFilesListofDataResponse() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
-      <BackTo text="Back" to={`/admin/management/files/${fileId}`} />
+      <BackTo text="Back" to={`/admin/management/files/data/${fileId}`} />
       {loading ? (
         LoadingPage()
       ) : (
