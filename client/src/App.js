@@ -41,7 +41,7 @@ import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
 import IndexManagementFiles from "./views/admin/management/IndexManagementFiles";
-import ManagementFiles from "./views/admin/management/management_files/ManagementFiles";
+import ManagementFilesCSV from "./views/admin/management/management_files/ManagementFilesCSV";
 import ManagementFilesUsers from "./views/admin/management/management_users/ManagementFilesUsers";
 import ManagementFilesData from "./views/admin/management/management_files/ManagementFilesData";
 import ManagementFilesListofDataResponse from "./views/admin/management/management_files/ManagementFilesListofDataResponse";
@@ -196,7 +196,7 @@ export default function App() {
                   exact="true"
                   path="files"
                 >
-                  <Route element={<ManagementFiles />} exact="true" path="data" />
+                  <Route element={<ManagementFilesCSV />} exact="true" path="data" />
                   <Route
                       element={<ManagementFilesData />}
                       exact="true"
