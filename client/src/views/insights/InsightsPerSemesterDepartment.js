@@ -153,7 +153,7 @@ export default function InsightsPerSemesterDepartment() {
           />
           <div className="place-content-center">
             <div
-              className={`grid w-full h-full grid-cols-1 p-4 bg-white rounded outline outline-2  ${
+              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded outline outline-2  ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {

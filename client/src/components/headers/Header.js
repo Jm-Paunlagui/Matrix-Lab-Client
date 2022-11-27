@@ -13,7 +13,7 @@ export function Header({ title, body }) {
         body: PropTypes.string,
     };
     return (
-        <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-blue-50">
+        <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-blue-50 shadow">
             <div className="grid w-full grid-cols-1 rounded">
                 <div className="col-span-1 w-full">
                     <div className="flex flex-row w-full p-4 justify-center items-center">

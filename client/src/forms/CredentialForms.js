@@ -15,6 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
+  ACCENT_BUTTON,
   EMAIL_NOT_SET,
   ICON_PLACE_SELF_CENTER,
   LOADING_ANIMATION,
@@ -1207,12 +1208,12 @@ export function ViewInsightHistory(
     <form onSubmit={handleViewFile}>
       <div className="flex flex-col w-full space-y-2">
         <Listbox name={"school_year"} onChange={handleSelect("school_year")}>
-          <Listbox.Label className="block text-base font-medium text-gray-700">
+          <Listbox.Label className="block text-base font-bold text-blue-500">
             View by:
           </Listbox.Label>
           <div className="relative mt-1">
             <Listbox.Button className={TEXT_FIELD}>
-              <span className="block truncate text-start">
+              <span className="block truncate text-start text-gray-500">
                 {school_year ? school_year : "Select School Year"}
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -1236,7 +1237,7 @@ export function ViewInsightHistory(
                   <Listbox.Option
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-blue-100 text-blue-900" : "text-gray-900"
+                        active ? "bg-blue-100 text-blue-500" : "text-gray-500"
                       }`
                     }
                     key={file.id}
@@ -1252,7 +1253,7 @@ export function ViewInsightHistory(
                           {file.school_year}
                         </span>
                         {selected ? (
-                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                             <CheckIcon aria-hidden="true" className="w-5 h-5" />
                           </span>
                         ) : null}
@@ -1270,7 +1271,7 @@ export function ViewInsightHistory(
         >
           <div className="relative mt-1">
             <Listbox.Button className={TEXT_FIELD}>
-              <span className="block truncate text-start">
+              <span className="block truncate text-start text-gray-500">
                 {school_semester ? school_semester : "Select Semester"}
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -1294,7 +1295,7 @@ export function ViewInsightHistory(
                   <Listbox.Option
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-blue-100 text-blue-900" : "text-gray-900"
+                        active ? "bg-blue-100 text-blue-500" : "text-gray-500"
                       }`
                     }
                     key={file.id}
@@ -1325,7 +1326,7 @@ export function ViewInsightHistory(
         <Listbox name={"csv_question"} onChange={handleSelect("csv_question")}>
           <div className="relative mt-1">
             <Listbox.Button className={TEXT_FIELD}>
-              <span className="block truncate text-start">
+              <span className="block truncate text-start text-gray-500">
                 {csv_question ? csv_question : "Select Topic"}
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -1349,7 +1350,7 @@ export function ViewInsightHistory(
                   <Listbox.Option
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-blue-100 text-blue-900" : "text-gray-900"
+                        active ? "bg-blue-100 text-blue-500" : "text-gray-500"
                       }`
                     }
                     key={file.id}
@@ -1365,7 +1366,7 @@ export function ViewInsightHistory(
                           {file.csv_question}
                         </span>
                         {selected ? (
-                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                             <CheckIcon aria-hidden="true" className="w-5 h-5" />
                           </span>
                         ) : null}
@@ -1386,7 +1387,7 @@ export function ViewInsightHistory(
       ) : null}
       <div className="flex flex-col justify-end w-full mt-8 lg:space-x-2">
         <button
-          className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+          className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
           type="submit"
         >
           {ok ? (

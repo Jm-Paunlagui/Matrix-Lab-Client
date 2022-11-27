@@ -93,7 +93,7 @@ export default function InsightsEmployees() {
                 }`}
                     >
                       <div className="flex flex-col items-center justify-center w-full p-4">
-                        <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
+                        <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
                           {professor.professor}
                         </h1>
                       </div>

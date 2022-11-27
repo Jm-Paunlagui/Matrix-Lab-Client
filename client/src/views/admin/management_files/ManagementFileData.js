@@ -110,7 +110,7 @@ export default function ManagementFileData() {
               <>
                 {filteredDepartments.map((department) => (
                   <div
-                    className="flex flex-col mb-4 w-full bg-blue-100 rounded-lg shadow-md"
+                    className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                     key={department.department_list}
                   >
                     <div className="col-span-1 w-full">
@@ -118,7 +118,7 @@ export default function ManagementFileData() {
                         <h1 className="text-md font-bold leading-none text-blue-500">
                           Department:
                         </h1>
-                        <h1 className="text-md leading-none text-blue-400 ml-2">
+                        <h1 className="text-md leading-none text-gray-500 ml-2">
                           {department.department_list}
                         </h1>
                       </div>
@@ -131,60 +131,60 @@ export default function ManagementFileData() {
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-blue-500">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           No. of Professors:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_evaluatee}
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           No. of Courses:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_evaluatee_course_code}
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           No. of Responses:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_number_of_sentiments}
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Overall Rating:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_overall_sentiment}%
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Negative Score:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_negative_sentiments_percentage}
                           %
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Positive Score:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_positive_sentiments_percentage}
                           %
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Share of Voice:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {department.department_share}%
                         </h1>
                       </div>
@@ -213,15 +213,15 @@ export default function ManagementFileData() {
               <>
                 {filteredProfessors.map((professor) => (
                   <div
-                    className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                    className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                     key={professor.evaluatee_list}
                   >
                     <div className="col-span-1 w-full">
                       <div className="flex flex-row w-full p-4">
-                        <h1 className="text-md font-bold leading-none text-blue-600">
+                        <h1 className="text-md font-bold leading-none text-blue-500">
                           Professor:
                         </h1>
-                        <h1 className="text-md leading-none text-gray-600 ml-2">
+                        <h1 className="text-md leading-none text-gray-500 ml-2">
                           {professor.evaluatee_list}
                         </h1>
                       </div>
@@ -229,57 +229,57 @@ export default function ManagementFileData() {
                     <hr className="w-full border-gray-300" />
                     <div className="col-span-4 text-start p-4">
                       <div className="flex flex-row w-full py-2">
-                        <h1 className="text-base font-bold leading-none text-blue-600">
+                        <h1 className="text-base font-bold leading-none text-blue-500">
                           Details
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           No. of Responses:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {professor.evaluatee_number_of_sentiments}
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Overall Rating:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {professor.evaluatee_overall_sentiment}%
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Negative Score:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {professor.evaluatee_negative_sentiments_percentage}%
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Positive Score:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {professor.evaluatee_positive_sentiments_percentage}%
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           Share of Voice:
                         </h1>
-                        <h1 className="ml-2 text-base leading-none text-gray-600">
+                        <h1 className="ml-2 text-base leading-none text-gray-500">
                           {professor.evaluatee_share}%
                         </h1>
                       </div>
                       <div className="flex flex-row w-full py-2">
-                        <h1 className="text-base font-bold leading-none text-blue-600">
+                        <h1 className="text-base font-bold leading-none text-blue-500">
                           Subjects Taught
                         </h1>
                       </div>
                       <div className="flex flex-row w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-gray-500">
                           {removeBrackets(professor.evaluatee_course_code)}
                         </h1>
                       </div>

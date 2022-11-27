@@ -153,7 +153,7 @@ export default function ManagementFiles() {
                      type="text"
           />
           <div className="flex flex-col w-full p-4">
-            <h1 className="text-start font-medium text-gray-700">
+            <h1 className="text-start font-medium text-blue-500">
               Page {current_page} of {total_pages}
             </h1>
           </div>
@@ -161,7 +161,7 @@ export default function ManagementFiles() {
             <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
               {filteredListOfFiles.map((file) => (
                 <div
-                  className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                   key={file.id}
                 >
                   <div className="col-span-1 w-full">
@@ -169,7 +169,7 @@ export default function ManagementFiles() {
                       <h1 className="text-md font-bold leading-none text-blue-600">
                         File ID
                       </h1>
-                      <h1 className="text-md leading-none text-gray-600 ml-2">
+                      <h1 className="text-md leading-none text-gray-500 ml-2">
                         {file.id}
                       </h1>
                     </div>
@@ -177,12 +177,12 @@ export default function ManagementFiles() {
                   <hr className="w-full border-gray-300" />
                   <div className="col-span-4 text-start p-4">
                     <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-600">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
                         Details
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-600">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         School Year:
                       </h1>
                       <h1 className="ml-2 text-base leading-none text-gray-600">
@@ -190,25 +190,25 @@ export default function ManagementFiles() {
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-600">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         School Semester:
                       </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
                         {file.school_semester}
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-600">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         Topic:
                       </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
                         {file.csv_question}
                       </h1>
                     </div>
                   </div>
                   <div className="col-span-1 w-full">
                     <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-600">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
                         Actions
                       </h1>
                     </div>
@@ -255,7 +255,7 @@ export default function ManagementFiles() {
             <div className="flex flex-row items-center justify-center w-full lg:w-1/2">
               {/*    Page details*/}
               <div className="flex flex-row items-center justify-center w-full">
-                <h1 className="text-base font-medium leading-none t text-gray-700">
+                <h1 className="text-base font-medium leading-none t text-blue-500">
                   Showing {files.length} of {total_items} files in total (
                   {total_pages} pages)
                 </h1>

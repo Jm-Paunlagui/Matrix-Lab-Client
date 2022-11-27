@@ -15,7 +15,7 @@ export default function BackTo({to, text}) {
             <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
                 <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
                     <Link to={to}>
-                        <h1 className="px-5 py-3 text-blue-50">
+                        <h1 className="px-5 py-3">
                             <FontAwesomeIcon
                                 className={`${ICON_PLACE_SELF_CENTER}`}
                                 icon={faArrowLeft}

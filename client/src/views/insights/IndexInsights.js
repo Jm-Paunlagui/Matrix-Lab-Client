@@ -6,7 +6,7 @@ import React from "react";
  */
 export default function IndexInsights() {
   return (
-      <div className="mt-16 font-Montserrat bg-blue-50">
+      <div className="mt-16 font-Montserrat">
         <Outlet />
       </div>
   );

@@ -14,7 +14,7 @@ export default function LoadingPage() {
             <div className={`px-5 py-1 pl-4 flex flex-row justify-center`}>
               {LOADING_ANIMATION()}
               {/* Animated text */}
-              <h6 className="text-xl font-bold text-black">Getting data</h6>
+              <h6 className="text-xl font-bold text-blue-500">Getting data</h6>
             </div>
           </div>
         </div>

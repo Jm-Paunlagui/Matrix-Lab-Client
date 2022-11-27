@@ -25,7 +25,7 @@ export function SearchBar({ placeholder, onChange, name, customStyle }) {
             <div className="flex flex-row items-center w-full">
                 <FontAwesomeIcon className="text-blue-500" icon={faSearch} />
                 <input
-                    className="w-full px-2 py-1 ml-2 text-blue-500 bg-transparent outline-none "
+                    className="w-full px-2 py-1 ml-2 text-gray-500 bg-transparent outline-none "
                     name={name}
                     onChange={onChange}
                     placeholder={placeholder}
