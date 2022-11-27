@@ -223,7 +223,7 @@ export default function AdminNavigationBar() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {navigation_for_management.map((item) => (
                               <Menu.Item key={item.name}>
                                 <NavLink to={item.href}>
@@ -267,7 +267,7 @@ export default function AdminNavigationBar() {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {navigation_for_insights.map((item) => (
                               <Menu.Item key={item.name}>
                                 <NavLink to={item.href}>
@@ -315,7 +315,7 @@ export default function AdminNavigationBar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         <NavLink to={admin_controllers[0].href}>
                           <h5
@@ -362,7 +362,7 @@ export default function AdminNavigationBar() {
             leaveTo="transform opacity-0 scale-95"
             show={open}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-100">
               <h5
                 className={`block px-3 py-2 text-base font-bold text-blue-500`}
               >

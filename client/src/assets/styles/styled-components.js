@@ -2,10 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationCircle,
-  faSearch,
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 
 export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider border border-gray-200 rounded-lg`;
 
@@ -95,70 +93,6 @@ export function NoData(type = "") {
             </h1>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-/**
- * @description Header for the page
- * @param title
- * @param body
- * @constructor
- */
-export function Header({ title, body }) {
-  Header.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string,
-  };
-  return (
-    <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-blue-500">
-      <div className="grid w-full grid-cols-1 rounded">
-        <div className="col-span-1 w-full">
-          <div className="flex flex-row w-full p-4 justify-center items-center">
-            <h1 className="text-2xl font-extrabold leading-none text-left text-white md:text-5xl lg:text-7xl">
-              {title}
-            </h1>
-          </div>
-        </div>
-        <div className="col-span-4">
-          <div className="flex flex-row justify-center w-full p-4">
-            <p className="text-base font-medium text-white">{body}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/**
- * @description Search bar for filtering data
- * @param placeholder
- * @param onChange
- * @param name
- * @param style
- * @constructor
- */
-export function SearchBar({ placeholder, onChange, name, customStyle }) {
-  SearchBar.propTypes = {
-    placeholder: PropTypes.string,
-    onChange: PropTypes.func,
-    name: PropTypes.string,
-    customStyle: PropTypes.string,
-  };
-  return (
-    <div
-      className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${customStyle}`}
-    >
-      <div className="flex flex-row items-center w-full">
-        <FontAwesomeIcon className="text-gray-600" icon={faSearch} />
-        <input
-          className="w-full px-2 py-1 ml-2 text-gray-600 bg-transparent outline-none "
-          name={name}
-          onChange={onChange}
-          placeholder={placeholder}
-          type="text"
-        />
       </div>
     </div>
   );

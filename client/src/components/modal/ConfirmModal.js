@@ -4,7 +4,7 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";

@@ -5,7 +5,7 @@ import Eval from "../../assets/img/eval.svg";
 import {
   PRIMARY_BUTTON,
   SECONDARY_BUTTON,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 
 /**
  * @description PublicHome page component for the application

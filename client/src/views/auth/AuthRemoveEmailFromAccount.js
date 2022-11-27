@@ -15,7 +15,7 @@ import {
   PRIMARY_BUTTON,
   PRIMARY_RADIO,
   SECONDARY_BUTTON,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import httpClient from "../../http/httpClient";
 import { maskUsername } from "../../helpers/Helper";
 import { toast } from "react-toastify";

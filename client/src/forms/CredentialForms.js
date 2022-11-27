@@ -22,7 +22,7 @@ import {
   PRIMARY_RADIO,
   SECONDARY_BUTTON,
   TEXT_FIELD,
-} from "../assets/styles/input-types-styles";
+} from "../assets/styles/styled-components";
 import { maskEmail, emailRegex } from "../helpers/Helper";
 import PasswordChecklist from "react-password-checklist";
 import { Listbox, Transition } from "@headlessui/react";

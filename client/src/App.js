@@ -65,7 +65,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-blue-100 min-h-screen">
+    <div className="bg-blue-500 min-h-screen">
       <ToastContainer
         autoClose={5000}
         className="z-50"

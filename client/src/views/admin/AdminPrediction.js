@@ -6,7 +6,7 @@ import {
   LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
 import { isAuth } from "../../helpers/Auth";

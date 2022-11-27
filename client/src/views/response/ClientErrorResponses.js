@@ -3,7 +3,7 @@ import React from "react";
 import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 

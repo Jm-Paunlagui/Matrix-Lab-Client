@@ -6,7 +6,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { ICON_PLACE_SELF_CENTER } from "../../assets/styles/input-types-styles";
+import { ICON_PLACE_SELF_CENTER } from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";

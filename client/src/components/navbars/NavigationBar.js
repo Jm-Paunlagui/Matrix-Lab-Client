@@ -8,7 +8,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
+import { DELAY_1, DELAY_3 } from "../../assets/styles/styled-components";
 
 /**
  * @description NavigationBar component with useful links

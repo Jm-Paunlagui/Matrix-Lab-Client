@@ -10,7 +10,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import {
   AssociatedEmails,

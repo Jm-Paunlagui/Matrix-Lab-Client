@@ -3,10 +3,10 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
 import {
-  Header,
   NoData,
-  SearchBar,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
+import {Header} from "../../components/headers/Header";
+import {SearchBar} from "../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the Insights for the department per semester

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LOADING_ANIMATION } from "../../assets/styles/input-types-styles";
+import { LOADING_ANIMATION } from "../../assets/styles/styled-components";
 
 /**
  * @description Logout in the loading animation

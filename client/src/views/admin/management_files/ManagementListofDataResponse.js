@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ACCENT_BUTTON,
-  DEFAULT_BUTTON,
-  Header,
   ICON_PLACE_SELF_CENTER,
-  NoData, SearchBar,
-} from "../../../assets/styles/input-types-styles";
+  NoData,
+} from "../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
+import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import { toReadableName } from "../../../helpers/Helper";
+import BackTo from "../../../components/buttons/BackTo";
+import {Header} from "../../../components/headers/Header";
+import {SearchBar} from "../../../components/searchbar/SearchBar";
 
 /**
  * @description Lists the courses to read each course's data
@@ -65,22 +66,7 @@ export default function ManagementListofDataResponse() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
-      <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
-        <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-          <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
-            <Link to={`/admin/management/files/${fileId}`}>
-              <h1 className="px-5 py-3">
-                <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faArrowLeft}
-                />
-                Back
-              </h1>
-            </Link>
-          </button>
-        </div>
-      </div>
-
+      <BackTo text="Back" to={`/admin/management/files/${fileId}`} />
       {loading ? (
         LoadingPage()
       ) : (

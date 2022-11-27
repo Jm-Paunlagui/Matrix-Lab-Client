@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
-  Header,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData, SearchBar,
-} from "../../../assets/styles/input-types-styles";
+  NoData
+} from "../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
@@ -18,6 +17,8 @@ import LoadingPage from "../../../components/loading/LoadingPage";
 import { toast } from "react-toastify";
 import ConfirmModal from "../../../components/modal/ConfirmModal";
 import { Link } from "react-router-dom";
+import {Header} from "../../../components/headers/Header";
+import {SearchBar} from "../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the files to view and delete

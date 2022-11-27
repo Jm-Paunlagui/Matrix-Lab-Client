@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
+import { DELAY_1, DELAY_3 } from "../../assets/styles/styled-components";
 
 /**
  * @type {Array}

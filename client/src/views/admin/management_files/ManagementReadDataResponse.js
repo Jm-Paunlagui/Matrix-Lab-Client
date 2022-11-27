@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  DEFAULT_BUTTON,
-  Header,
-  ICON_PLACE_SELF_CENTER,
-} from "../../../assets/styles/input-types-styles";
-import { Link, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
 import { toReadableName } from "../../../helpers/Helper";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
+import BackTo from "../../../components/buttons/BackTo";
+import {Header} from "../../../components/headers/Header";
 
 /**
  * @description Displays the sentiment score of the file along with the response
@@ -51,21 +46,7 @@ export default function ManagementReadDataResponse() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
-      <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
-        <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-          <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
-            <Link to={`/admin/management/files/${fileId}/${read_responses}`}>
-              <h1 className="px-5 py-3">
-                <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faArrowLeft}
-                />
-                Back
-              </h1>
-            </Link>
-          </button>
-        </div>
-      </div>
+      <BackTo text="Back" to={`/admin/management/files/${fileId}/${read_responses}`} />
       {loading ? (
           LoadingPage()
       ) : (

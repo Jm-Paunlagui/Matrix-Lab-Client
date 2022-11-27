@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import {
   DEFAULT_BUTTON,
   ICON_PLACE_SELF_CENTER_1,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 
 /**
  * @description Back Navigation for the application

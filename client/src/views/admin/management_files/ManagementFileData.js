@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
-  DEFAULT_BUTTON,
-  Header,
   ICON_PLACE_SELF_CENTER,
   NoData,
-  SearchBar,
-} from "../../../assets/styles/input-types-styles";
+} from "../../../assets/styles/styled-components";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faFileCsv } from "@fortawesome/free-solid-svg-icons";
+import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../http/httpClient";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import {removeBrackets, removeComma} from "../../../helpers/Helper";
 import {toast} from "react-toastify";
+import BackTo from "../../../components/buttons/BackTo";
+import {Header} from "../../../components/headers/Header";
+import {SearchBar} from "../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -90,21 +90,7 @@ export default function ManagementFileData() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
-      <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
-        <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-          <button className={`text-left ${DEFAULT_BUTTON}`} type={"button"}>
-            <Link to={"/admin/management/files"}>
-              <h1 className="px-5 py-3">
-                <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faArrowLeft}
-                />
-                Back
-              </h1>
-            </Link>
-          </button>
-        </div>
-      </div>
+      <BackTo text="Back" to="/admin/management/files" />
       {loading ? (
         LoadingPage()
       ) : (
@@ -124,15 +110,15 @@ export default function ManagementFileData() {
               <>
                 {filteredDepartments.map((department) => (
                   <div
-                    className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                    className="flex flex-col mb-4 w-full bg-blue-100 rounded-lg shadow-md"
                     key={department.department_list}
                   >
                     <div className="col-span-1 w-full">
                       <div className="flex flex-row w-full p-4">
-                        <h1 className="text-md font-bold leading-none text-blue-600">
+                        <h1 className="text-md font-bold leading-none text-blue-500">
                           Department:
                         </h1>
-                        <h1 className="text-md leading-none text-gray-600 ml-2">
+                        <h1 className="text-md leading-none text-blue-400 ml-2">
                           {department.department_list}
                         </h1>
                       </div>
@@ -140,12 +126,12 @@ export default function ManagementFileData() {
                     <hr className="w-full border-gray-300" />
                     <div className="col-span-4 text-start p-4">
                       <div className="flex flex-row w-full py-2">
-                        <h1 className="text-base font-bold leading-none text-blue-600">
+                        <h1 className="text-base font-bold leading-none text-blue-500">
                           Details
                         </h1>
                       </div>
                       <div className="flex flex-row items-start w-full py-2">
-                        <h1 className="text-base font-medium leading-none text-gray-600">
+                        <h1 className="text-base font-medium leading-none text-blue-500">
                           No. of Professors:
                         </h1>
                         <h1 className="ml-2 text-base leading-none text-gray-600">
