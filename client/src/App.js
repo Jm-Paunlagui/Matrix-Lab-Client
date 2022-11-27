@@ -40,12 +40,12 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
-import IndexManagement from "./views/admin/management_files/IndexManagement";
+import IndexManagementFiles from "./views/admin/management_files/IndexManagementFiles";
 import ManagementFiles from "./views/admin/management_files/ManagementFiles";
-import ManagementProfessors from "./views/admin/management_files/ManagementProfessors";
-import ManagementFileData from "./views/admin/management_files/ManagementFileData";
-import ManagementListofDataResponse from "./views/admin/management_files/ManagementListofDataResponse";
-import ManagementReadDataResponse from "./views/admin/management_files/ManagementReadDataResponse";
+import ManagementFilesProfessors from "./views/admin/management_files/ManagementFilesProfessors";
+import ManagementFilesData from "./views/admin/management_files/ManagementFilesData";
+import ManagementFilesListofDataResponse from "./views/admin/management_files/ManagementFilesListofDataResponse";
+import ManagementFilesReadDataResponse from "./views/admin/management_files/ManagementFilesReadDataResponse";
 
 /**
  * @description Main component for the application
@@ -185,7 +185,7 @@ export default function App() {
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route
-                element={<IndexManagement />}
+                element={<IndexManagementFiles />}
                 exact="true"
                 path="management"
               >
@@ -195,22 +195,22 @@ export default function App() {
                   path="files"
                 />
                 <Route
-                  element={<ManagementFileData />}
+                  element={<ManagementFilesData />}
                   exact="true"
                   path="files/:fileId"
                 />
                 <Route
-                  element={<ManagementListofDataResponse />}
+                  element={<ManagementFilesListofDataResponse />}
                   exact="true"
                   path="files/:fileId/:read_responses"
                 />
                 <Route
-                  element={<ManagementReadDataResponse />}
+                  element={<ManagementFilesReadDataResponse />}
                   exact="true"
                   path="files/:fileId/:read_responses/:file_name"
                 />
                 <Route
-                  element={<ManagementProfessors />}
+                  element={<ManagementFilesProfessors />}
                   exact="true"
                   path="professors"
                 />

@@ -9,7 +9,7 @@ import {Header} from "../../../components/headers/Header";
 /**
  * @description Displays the sentiment score of the file along with the response
  */
-export default function ManagementReadDataResponse() {
+export default function ManagementFilesReadDataResponse() {
   /**
    * @description Gets the information from the url
    */

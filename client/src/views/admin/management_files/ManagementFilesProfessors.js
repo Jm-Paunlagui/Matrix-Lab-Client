@@ -3,6 +3,6 @@ import React from "react";
 /**
  * @description Handles the admin tables
  */
-export default function ManagementProfessors() {
+export default function ManagementFilesProfessors() {
   return <div>ManagementProfessors</div>;
 }

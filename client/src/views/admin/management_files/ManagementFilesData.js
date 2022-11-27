@@ -18,7 +18,7 @@ import {SearchBar} from "../../../components/searchbar/SearchBar";
 /**
  * @description Handles the lists data of the file department and professor
  */
-export default function ManagementFileData() {
+export default function ManagementFilesData() {
   /**
    * @description Gets the file id from the url to load the data
    * @type {string}

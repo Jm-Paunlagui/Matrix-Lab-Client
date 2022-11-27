@@ -17,7 +17,7 @@ import {SearchBar} from "../../../components/searchbar/SearchBar";
 /**
  * @description Lists the courses to read each course's data
  */
-export default function ManagementListofDataResponse() {
+export default function ManagementFilesListofDataResponse() {
   const { fileId, read_responses } = useParams();
 
   const [listOfTaughtCourses, setListOfTaughtCourses] = useState({
