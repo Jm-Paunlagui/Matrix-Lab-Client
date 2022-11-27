@@ -1,12 +1,13 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Menu, Transition } from "@headlessui/react";
-import { NavLink, useLocation } from "react-router-dom";
 import React, { Fragment } from "react";
+import { BsAwardFill } from "react-icons/bs";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import httpClient from "../../http/httpClient";
 import { isAuth, signout } from "../../helpers/Auth";
-import { BsAwardFill } from "react-icons/bs";
+import httpClient from "../../http/httpClient";
 
 /**
  * @description Handles the admin navigation bar for the application
@@ -190,8 +191,8 @@ export default function AdminNavigationBar() {
                         <h5
                           className={`${
                             item.current
-                              ? "bg-blue-800 text-white"
-                              : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                              ? "bg-blue-400 text-white"
+                              : "text-blue-100 hover:bg-blue-400 hover:text-white"
                           } px-3 py-2 rounded-md text-base font-medium`}
                         >
                           {item.name}
@@ -204,13 +205,13 @@ export default function AdminNavigationBar() {
                           <Menu.Button
                             className={`flex text-sm rounded ${
                               isActive("management")
-                                ? "bg-blue-800 text-white"
-                                : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-100 hover:bg-blue-400 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
                           >
-                            <h1 className="text-base font-medium text-blue-100">
+                            <div className="text-base font-medium text-blue-100 hover:text-white">
                               Data Management
-                            </h1>
+                            </div>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -229,8 +230,8 @@ export default function AdminNavigationBar() {
                                   <h5
                                     className={`${
                                       item.current
-                                        ? "bg-blue-800 text-white"
-                                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                                        ? "bg-blue-400 text-white"
+                                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
                                     } px-3 py-2 rounded-md text-sm font-medium`}
                                   >
                                     {item.name}
@@ -248,11 +249,11 @@ export default function AdminNavigationBar() {
                           <Menu.Button
                             className={`flex text-sm rounded ${
                               isActive("insights")
-                                ? "bg-blue-800 text-white"
-                                : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-100 hover:bg-blue-400 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
                           >
-                            <h1 className="text-base font-medium text-blue-100">
+                            <h1 className="text-base font-medium text-blue-100 hover:text-white">
                               Insights
                             </h1>
                           </Menu.Button>
@@ -273,8 +274,8 @@ export default function AdminNavigationBar() {
                                   <h5
                                     className={`${
                                       item.current
-                                        ? "bg-blue-800 text-white"
-                                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                                        ? "bg-blue-400 text-white"
+                                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
                                     } px-3 py-2 rounded-md text-sm font-medium`}
                                   >
                                     {item.name}
@@ -297,8 +298,8 @@ export default function AdminNavigationBar() {
                     <Menu.Button
                       className={`flex text-sm rounded ${
                         isActive("profile")
-                          ? "bg-blue-800 text-white"
-                          : "text-blue-100 hover:bg-blue-700 hover:text-white"
+                          ? "bg-blue-400 text-white"
+                          : "text-blue-100 hover:bg-blue-400 hover:text-white"
                       } px-3 py-2 rounded-md text-sm font-medium`}
                     >
                       <span className="sr-only">Open user menu</span>
@@ -320,8 +321,8 @@ export default function AdminNavigationBar() {
                           <h5
                             className={`${
                               admin_controllers[0].current
-                                ? "bg-blue-800 text-white"
-                                : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-500 hover:bg-blue-400 hover:text-white"
                             } px-3 py-2 rounded-md text-sm font-medium`}
                           >
                             {admin_controllers[0].name}
@@ -337,8 +338,8 @@ export default function AdminNavigationBar() {
                             <h5
                               className={`${
                                 active
-                                  ? "bg-blue-800 text-white"
-                                  : "text-blue-700 hover:bg-gray-700 hover:text-white"
+                                  ? "bg-blue-400 text-white"
+                                  : "text-blue-500 hover:bg-gray-700 hover:text-white"
                               } px-3 py-2 rounded-md text-sm font-medium`}
                             >
                               {admin_controllers[1].name}
@@ -363,7 +364,7 @@ export default function AdminNavigationBar() {
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
               <h5
-                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
               >
                 Dashboard
               </h5>
@@ -372,8 +373,8 @@ export default function AdminNavigationBar() {
                   <h5
                     className={`${
                       item.current
-                        ? "bg-blue-800 text-white"
-                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
                     } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
@@ -382,7 +383,7 @@ export default function AdminNavigationBar() {
               ))}
 
               <h5
-                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
               >
                 Data Management
               </h5>
@@ -392,8 +393,8 @@ export default function AdminNavigationBar() {
                   <h5
                     className={`${
                       item.current
-                        ? "bg-blue-800 text-white"
-                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
                     } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
@@ -402,7 +403,7 @@ export default function AdminNavigationBar() {
               ))}
 
               <h5
-                className={`block px-3 py-2 text-base font-bold text-blue-700`}
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
               >
                 Insights
               </h5>
@@ -412,8 +413,8 @@ export default function AdminNavigationBar() {
                   <h5
                     className={`${
                       item.current
-                        ? "bg-blue-800 text-white"
-                        : "text-blue-700 hover:bg-blue-700 hover:text-white"
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
                     } px-3 py-2 rounded-md text-sm font-medium`}
                   >
                     {item.name}
