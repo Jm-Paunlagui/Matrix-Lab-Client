@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { toReadableName } from "../../../helpers/Helper";
-import httpClient from "../../../http/httpClient";
-import LoadingPage from "../../../components/loading/LoadingPage";
-import BackTo from "../../../components/buttons/BackTo";
-import {Header} from "../../../components/headers/Header";
+import { toReadableName } from "../../../../helpers/Helper";
+import httpClient from "../../../../http/httpClient";
+import LoadingPage from "../../../../components/loading/LoadingPage";
+import BackTo from "../../../../components/buttons/BackTo";
+import {Header} from "../../../../components/headers/Header";
 
 /**
  * @description Displays the sentiment score of the file along with the response

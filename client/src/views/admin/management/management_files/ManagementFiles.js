@@ -4,7 +4,7 @@ import {
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
   NoData
-} from "../../../assets/styles/styled-components";
+} from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
@@ -12,13 +12,13 @@ import {
   faFileCsv,
   faFileArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
-import httpClient from "../../../http/httpClient";
-import LoadingPage from "../../../components/loading/LoadingPage";
+import httpClient from "../../../../http/httpClient";
+import LoadingPage from "../../../../components/loading/LoadingPage";
 import { toast } from "react-toastify";
-import ConfirmModal from "../../../components/modal/ConfirmModal";
+import ConfirmModal from "../../../../components/modal/ConfirmModal";
 import { Link } from "react-router-dom";
-import {Header} from "../../../components/headers/Header";
-import {SearchBar} from "../../../components/searchbar/SearchBar";
+import {Header} from "../../../../components/headers/Header";
+import {SearchBar} from "../../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the files to view and delete

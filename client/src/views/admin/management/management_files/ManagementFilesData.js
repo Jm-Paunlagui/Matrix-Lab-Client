@@ -3,17 +3,17 @@ import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   NoData,
-} from "../../../assets/styles/styled-components";
+} from "../../../../assets/styles/styled-components";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
-import httpClient from "../../../http/httpClient";
-import LoadingPage from "../../../components/loading/LoadingPage";
-import {removeBrackets, removeComma} from "../../../helpers/Helper";
+import httpClient from "../../../../http/httpClient";
+import LoadingPage from "../../../../components/loading/LoadingPage";
+import {removeBrackets, removeComma} from "../../../../helpers/Helper";
 import {toast} from "react-toastify";
-import BackTo from "../../../components/buttons/BackTo";
-import {Header} from "../../../components/headers/Header";
-import {SearchBar} from "../../../components/searchbar/SearchBar";
+import BackTo from "../../../../components/buttons/BackTo";
+import {Header} from "../../../../components/headers/Header";
+import {SearchBar} from "../../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the lists data of the file department and professor

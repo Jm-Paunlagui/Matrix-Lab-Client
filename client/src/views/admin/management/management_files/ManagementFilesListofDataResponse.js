@@ -4,15 +4,15 @@ import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   NoData,
-} from "../../../assets/styles/styled-components";
+} from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
-import httpClient from "../../../http/httpClient";
-import LoadingPage from "../../../components/loading/LoadingPage";
-import { toReadableName } from "../../../helpers/Helper";
-import BackTo from "../../../components/buttons/BackTo";
-import {Header} from "../../../components/headers/Header";
-import {SearchBar} from "../../../components/searchbar/SearchBar";
+import httpClient from "../../../../http/httpClient";
+import LoadingPage from "../../../../components/loading/LoadingPage";
+import { toReadableName } from "../../../../helpers/Helper";
+import BackTo from "../../../../components/buttons/BackTo";
+import {Header} from "../../../../components/headers/Header";
+import {SearchBar} from "../../../../components/searchbar/SearchBar";
 
 /**
  * @description Lists the courses to read each course's data
