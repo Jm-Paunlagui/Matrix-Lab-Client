@@ -137,6 +137,14 @@ export default function ManagementFilesUsers() {
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
                       <h1 className="text-base font-medium leading-none text-gray-500">
+                        Username:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                        {user.username}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         Role:
                       </h1>
                       <h1 className="ml-2 text-base leading-none text-gray-500">
