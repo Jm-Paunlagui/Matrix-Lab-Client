@@ -244,7 +244,7 @@ export default function App() {
               <Route
                 element={<UserDashboard />}
                 exact="true"
-                path="dashboard"
+                path="analytics"
               />
               <Route
                 element={<UserProfile />}
