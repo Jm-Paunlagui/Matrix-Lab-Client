@@ -79,9 +79,7 @@ export default function ManagementFilesUsers() {
     loadListOfUsers(page_number);
   }, [page_number]);
 
-  const handleDeleteUser = (id) => {
-
-  }
+  const handleDeleteUser = (id) => {};
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -193,24 +191,26 @@ export default function ManagementFilesUsers() {
                       </h1>
                     </div>
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                      <DangerConfirmModal body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
-                                          description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
-                                          id={user.id}
-                                          title="Restore Authorization"
-                                          type_of_modal="restore"
-                      />
-                      <DangerConfirmModal body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
-                                          description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
-                                          id={user.id}
-                                          title="Remove Authorization"
+                      <DangerConfirmModal
+                        body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                        description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                        id={user.id}
+                        title="Restore Authorization"
+                        type_of_modal="restore"
                       />
                       <DangerConfirmModal
-                          body={`Are you sure you want to delete ${user.full_name} from the system?`}
-                          description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
-                          id={user.id}
-                          onConfirm={handleDeleteUser}
-                          title="Delete User Confirmation"
-                          type_of_modal="delete"
+                        body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                        description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+                        id={user.id}
+                        title="Remove Authorization"
+                      />
+                      <DangerConfirmModal
+                        body={`Are you sure you want to delete ${user.full_name} from the system?`}
+                        description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
+                        id={user.id}
+                        onConfirm={handleDeleteUser}
+                        title="Delete User Confirmation"
+                        type_of_modal="delete"
                       />
                     </div>
                   </div>

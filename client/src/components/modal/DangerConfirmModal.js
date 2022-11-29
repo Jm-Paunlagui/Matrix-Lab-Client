@@ -6,7 +6,7 @@ import {
   ICON_PLACE_SELF_CENTER,
 } from "../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrash, faLock, faRotate} from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faLock, faRotate } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 /**
@@ -19,9 +19,10 @@ import PropTypes from "prop-types";
  * @constructor
  */
 export default function DangerConfirmModal({
-    type_of_modal,
+  type_of_modal,
   title,
-  description, body,
+  description,
+  body,
   id,
   onConfirm,
 }) {
@@ -47,9 +48,19 @@ export default function DangerConfirmModal({
       >
         <FontAwesomeIcon
           className={`${ICON_PLACE_SELF_CENTER}`}
-          icon={type_of_modal === "delete" ? faTrash : type_of_modal === "restore" ? faRotate : faLock}
+          icon={
+            type_of_modal === "delete"
+              ? faTrash
+              : type_of_modal === "restore"
+              ? faRotate
+              : faLock
+          }
         />
-        {type_of_modal === "delete" ? "Delete" : type_of_modal === "restore" ? "Restore" : "Lock"}
+        {type_of_modal === "delete"
+          ? "Delete"
+          : type_of_modal === "restore"
+          ? "Restore"
+          : "Lock"}
       </button>
       <Transition.Root as={Fragment} show={open}>
         <Dialog
