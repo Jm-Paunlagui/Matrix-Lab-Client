@@ -9,7 +9,6 @@ import {
   MAIN_BUTTON,
   NoData,
 } from "../../../../assets/styles/styled-components";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
@@ -18,6 +17,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
+import {toast} from "react-toastify";
 
 /**
  * @description Handles the admin tables
@@ -50,7 +50,9 @@ export default function ManagementFilesUsers() {
   const handleSearchForUsers = (event) => {
     const searchValue = event.target.value;
     const filteredList = users.filter((user) => {
-      return user.full_name.toLowerCase().includes(searchValue.toLowerCase());
+      return user.full_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+          user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
+          user.department_name.toLowerCase().includes(searchValue.toLowerCase());
     });
     setFilteredListOfUsers(filteredList);
   };
@@ -75,11 +77,38 @@ export default function ManagementFilesUsers() {
     });
   };
 
+  const handleCreateUser = (id) => {
+    httpClient.post(`/user/on-click-create/${id}`).then((response) => {
+      toast.success(response.data.message);
+      loadListOfUsers(page_number);
+    }).catch((error) => {
+        toast.error(error.response.data.message);
+    });
+  };
+
+  const handleLockUser = (id) => {
+    httpClient.post(`/user/lock-account/${id}`).then((response) => {
+      toast.success(response.data.message);
+      loadListOfUsers(page_number);
+    }).catch((error) => {
+        toast.error(error.response.data.message);
+    });
+  };
+
+    const handleUnlockUser = (id) => {
+    httpClient.post(`/user/unlock-account/${id}`).then((response) => {
+      toast.success(response.data.message);
+        loadListOfUsers(page_number);
+    }).catch((error) => {
+        toast.error(error.response.data.message);
+    });
+  }
+
+  const handleDeleteUser = (id) => {};
+
   useEffect(() => {
     loadListOfUsers(page_number);
   }, [page_number]);
-
-  const handleDeleteUser = (id) => {};
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -114,11 +143,8 @@ export default function ManagementFilesUsers() {
                 >
                   <div className="col-span-1 w-full">
                     <div className="flex flex-row w-full p-4">
-                      <h1 className="text-md font-bold leading-none text-blue-600">
-                        User ID
-                      </h1>
-                      <h1 className="text-md leading-none text-gray-500 ml-2">
-                        {user.id}
+                      <h1 className="text-md font-bold leading-none text-blue-500">
+                        {user.full_name}
                       </h1>
                     </div>
                   </div>
@@ -127,14 +153,6 @@ export default function ManagementFilesUsers() {
                     <div className="flex flex-row w-full py-2">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Details
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Full Name:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
-                        {user.full_name}
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
@@ -153,6 +171,14 @@ export default function ManagementFilesUsers() {
                         {user.role}
                       </h1>
                     </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Department:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {user.department_name}
+                      </h1>
+                    </div>
                   </div>
                   <div className="col-span-1 w-full">
                     <div className="flex flex-row w-full px-4">
@@ -163,15 +189,14 @@ export default function ManagementFilesUsers() {
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
                       <button
                         className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        onClick={() => handleCreateUser(user.id)}
                         type="button"
                       >
-                        <Link to={`${user.id}`}>
                           <FontAwesomeIcon
                             className={`${ICON_PLACE_SELF_CENTER}`}
                             icon={faUserPlus}
                           />
                           Create
-                        </Link>
                       </button>
                       <button
                         className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
@@ -191,19 +216,24 @@ export default function ManagementFilesUsers() {
                       </h1>
                     </div>
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                      {user.is_locked ? (
                       <DangerConfirmModal
                         body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
                         description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
                         id={user.id}
+                        onConfirm={handleUnlockUser}
                         title="Restore Authorization"
                         type_of_modal="restore"
                       />
+                        ) : (
                       <DangerConfirmModal
                         body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
                         description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
                         id={user.id}
+                        onConfirm={handleLockUser}
                         title="Remove Authorization"
                       />
+                        )}
                       <DangerConfirmModal
                         body={`Are you sure you want to delete ${user.full_name} from the system?`}
                         description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
