@@ -17,7 +17,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the admin tables
@@ -50,9 +50,11 @@ export default function ManagementFilesUsers() {
   const handleSearchForUsers = (event) => {
     const searchValue = event.target.value;
     const filteredList = users.filter((user) => {
-      return user.full_name.toLowerCase().includes(searchValue.toLowerCase()) ||
-          user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
-          user.department_name.toLowerCase().includes(searchValue.toLowerCase());
+      return (
+        user.full_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.department_name.toLowerCase().includes(searchValue.toLowerCase())
+      );
     });
     setFilteredListOfUsers(filteredList);
   };
@@ -78,31 +80,40 @@ export default function ManagementFilesUsers() {
   };
 
   const handleCreateUser = (id) => {
-    httpClient.post(`/user/on-click-create/${id}`).then((response) => {
-      toast.success(response.data.message);
-      loadListOfUsers(page_number);
-    }).catch((error) => {
+    httpClient
+      .post(`/user/on-click-create/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
         toast.error(error.response.data.message);
-    });
+      });
   };
 
   const handleLockUser = (id) => {
-    httpClient.post(`/user/lock-account/${id}`).then((response) => {
-      toast.success(response.data.message);
-      loadListOfUsers(page_number);
-    }).catch((error) => {
+    httpClient
+      .post(`/user/lock-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
         toast.error(error.response.data.message);
-    });
+      });
   };
 
-    const handleUnlockUser = (id) => {
-    httpClient.post(`/user/unlock-account/${id}`).then((response) => {
-      toast.success(response.data.message);
+  const handleUnlockUser = (id) => {
+    httpClient
+      .post(`/user/unlock-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
         loadListOfUsers(page_number);
-    }).catch((error) => {
+      })
+      .catch((error) => {
         toast.error(error.response.data.message);
-    });
-  }
+      });
+  };
 
   const handleDeleteUser = (id) => {};
 
@@ -192,11 +203,11 @@ export default function ManagementFilesUsers() {
                         onClick={() => handleCreateUser(user.id)}
                         type="button"
                       >
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faUserPlus}
-                          />
-                          Create
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faUserPlus}
+                        />
+                        Create
                       </button>
                       <button
                         className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
@@ -217,23 +228,23 @@ export default function ManagementFilesUsers() {
                     </div>
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
                       {user.is_locked ? (
-                      <DangerConfirmModal
-                        body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
-                        description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
-                        id={user.id}
-                        onConfirm={handleUnlockUser}
-                        title="Restore Authorization"
-                        type_of_modal="restore"
-                      />
-                        ) : (
-                      <DangerConfirmModal
-                        body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
-                        description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
-                        id={user.id}
-                        onConfirm={handleLockUser}
-                        title="Remove Authorization"
-                      />
-                        )}
+                        <DangerConfirmModal
+                          body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                          description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                          id={user.id}
+                          onConfirm={handleUnlockUser}
+                          title="Restore Authorization"
+                          type_of_modal="restore"
+                        />
+                      ) : (
+                        <DangerConfirmModal
+                          body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                          description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+                          id={user.id}
+                          onConfirm={handleLockUser}
+                          title="Remove Authorization"
+                        />
+                      )}
                       <DangerConfirmModal
                         body={`Are you sure you want to delete ${user.full_name} from the system?`}
                         description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
