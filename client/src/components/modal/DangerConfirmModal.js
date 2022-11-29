@@ -2,11 +2,11 @@ import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import {
-  ACCENT_BUTTON,
+  DANGER_BUTTON,
   ICON_PLACE_SELF_CENTER,
 } from "../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {faTrash, faLock, faRotate} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 /**
@@ -18,18 +18,19 @@ import PropTypes from "prop-types";
  * @param onConfirm
  * @constructor
  */
-export default function ConfirmModal({
+export default function DangerConfirmModal({
+    type_of_modal,
   title,
-  description,
+  description, body,
   id,
-  to_delete,
   onConfirm,
 }) {
-  ConfirmModal.propTypes = {
+  DangerConfirmModal.propTypes = {
+    type_of_modal: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    body: PropTypes.string,
     id: PropTypes.number,
-    to_delete: PropTypes.string,
     onConfirm: PropTypes.func,
   };
 
@@ -40,15 +41,15 @@ export default function ConfirmModal({
   return (
     <>
       <button
-        className={`py-1 px-2 flex flex-row justify-center  ${ACCENT_BUTTON}`}
+        className={`py-1 px-2 flex flex-row justify-center  ${DANGER_BUTTON}`}
         onClick={() => setOpen(true)}
         type="button"
       >
         <FontAwesomeIcon
           className={`${ICON_PLACE_SELF_CENTER}`}
-          icon={faTrash}
+          icon={type_of_modal === "delete" ? faTrash : type_of_modal === "restore" ? faRotate : faLock}
         />
-        Delete
+        {type_of_modal === "delete" ? "Delete" : type_of_modal === "restore" ? "Restore" : "Lock"}
       </button>
       <Transition.Root as={Fragment} show={open}>
         <Dialog
@@ -100,10 +101,7 @@ export default function ConfirmModal({
                           {description}
                         </Dialog.Description>
                         <Dialog.Description className="mt-1 text-sm text-gray-500">
-                          Are you sure you want to delete{" "}
-                          <span className="font-bold">{to_delete}</span> with
-                          File ID number of{" "}
-                          <span className="font-bold">{id}</span>?
+                          {body}
                         </Dialog.Description>
                       </div>
                     </div>

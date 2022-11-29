@@ -17,7 +17,7 @@ import {
   faFileArrowDown,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import ConfirmModal from "../../../../components/modal/ConfirmModal";
+import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 
 /**
  * @description Handles the admin tables
@@ -78,6 +78,10 @@ export default function ManagementFilesUsers() {
   useEffect(() => {
     loadListOfUsers(page_number);
   }, [page_number]);
+
+  const handleDeleteUser = (id) => {
+
+  }
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -155,7 +159,7 @@ export default function ManagementFilesUsers() {
                   <div className="col-span-1 w-full">
                     <div className="flex flex-row w-full px-4">
                       <h1 className="text-base font-bold leading-none text-blue-500">
-                        Actions
+                        General
                       </h1>
                     </div>
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
@@ -182,12 +186,31 @@ export default function ManagementFilesUsers() {
                         />
                         Download
                       </button>
-                      <ConfirmModal
-                        description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
-                        id={user.id}
-                        //onConfirm={handleDelete}
-                        title="Delete File Confirmation"
-                        //to_delete={file.csv_question}
+                    </div>
+                    <div className="flex flex-row w-full px-4">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
+                        Danger Zone
+                      </h1>
+                    </div>
+                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                      <DangerConfirmModal body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                                          description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          title="Restore Authorization"
+                                          type_of_modal="restore"
+                      />
+                      <DangerConfirmModal body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                                          description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          title="Remove Authorization"
+                      />
+                      <DangerConfirmModal
+                          body={`Are you sure you want to delete ${user.full_name} from the system?`}
+                          description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
+                          id={user.id}
+                          onConfirm={handleDeleteUser}
+                          title="Delete User Confirmation"
+                          type_of_modal="delete"
                       />
                     </div>
                   </div>

@@ -15,7 +15,7 @@ import {
 import httpClient from "../../../../http/httpClient";
 import LoadingPage from "../../../../components/loading/LoadingPage";
 import { toast } from "react-toastify";
-import ConfirmModal from "../../../../components/modal/ConfirmModal";
+import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { Link } from "react-router-dom";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
@@ -238,12 +238,13 @@ export default function ManagementFilesCSV() {
                         />
                         Download
                       </button>
-                      <ConfirmModal
+                      <DangerConfirmModal
+                        body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
                         description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
                         id={file.id}
                         onConfirm={handleDelete}
                         title="Delete File Confirmation"
-                        to_delete={file.csv_question}
+                        type_of_modal="delete"
                       />
                     </div>
                   </div>

@@ -20,12 +20,13 @@ export const DEFAULT_BUTTON_TRANSITION = `${DELAY_3} border border-transparent r
 // px-5 py-3 pl-4 for a button
 // px-5 py-3 for link
 export const ACCENT_BUTTON = `font-semibold tracking-wide text-teal-600 bg-blue-100 hover:bg-teal-700 hover:text-blue-50 ${DEFAULT_BUTTON_TRANSITION}`;
+export const DANGER_BUTTON = `font-semibold tracking-wide text-red-600 bg-blue-100 hover:bg-red-700 hover:text-red-50 ${DEFAULT_BUTTON_TRANSITION}`;
 export const MAIN_BUTTON = `font-semibold tracking-wide text-blue-500 bg-blue-100 hover:bg-blue-500 hover:text-blue-50 ${DEFAULT_BUTTON_TRANSITION}`;
 export const DEFAULT_BUTTON = ` font-semibold tracking-wide text-blue-500 border-2 hover:text-blue-50 hover:bg-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const PRIMARY_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(30,64,175)] hover:shadow-[0_2px_0px_rgb(30,64,175)] font-semibold tracking-wide text-white bg-blue-500 border-2 hover:bg-white hover:text-blue-500 hover:border-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const SECONDARY_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(55,48,163)] hover:shadow-[0_2px_0px_rgb(55,48,163)] font-semibold tracking-wide text-white bg-indigo-500 border-2 hover:bg-white hover:text-indigo-500 hover:border-indigo-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const SUCCESS_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(17,94,89)] hover:shadow-[0_2px_0px_rgb(17,94,89)] font-semibold tracking-wide text-white bg-teal-500 border-2 hover:bg-white hover:text-teal-500 hover:border-teal-500 ${DEFAULT_BUTTON_TRANSITION}`;
-export const DANGER_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(153,27,27)] hover:shadow-[0_2px_0px_rgb(153,27,27)] font-semibold tracking-wide text-white bg-red-500 border-2 hover:bg-white hover:text-red-500 hover:border-red-500 ${DEFAULT_BUTTON_TRANSITION}`;
+//export const DANGER_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(153,27,27)] hover:shadow-[0_2px_0px_rgb(153,27,27)] font-semibold tracking-wide text-white bg-red-500 border-2 hover:bg-white hover:text-red-500 hover:border-red-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const WARNING_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(133,77,14)] hover:shadow-[0_2px_0px_rgb(133,77,14)] font-semibold tracking-wide text-white bg-yellow-500 border-2 hover:bg-white hover:text-yellow-500 hover:border-yellow-500 ${DEFAULT_BUTTON_TRANSITION};`;
 export const INFO_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(0,0,0)] hover:shadow-[0_2px_0px_rgb(0,0,0)] font-semibold tracking-wide text-white bg-blue-500 border-2 hover:bg-white hover:text-blue-500 hover border-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 
