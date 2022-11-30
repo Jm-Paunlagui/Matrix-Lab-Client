@@ -22,7 +22,7 @@ import {
   faArrowRotateRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Header} from "../../components/headers/Header";
+import { Header } from "../../components/headers/Header";
 
 /**
  * @description Handles the admin prediction
@@ -285,10 +285,10 @@ export default function AdminPrediction() {
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
       <Header
-          body={
-            "Upload a CSV file to analyze and choose the column that contains the responses to analyze. The system will automatically create users but you have to manually send the credentials to them if the results are ready."
-          }
-          title={"Sentiment Analysis"}
+        body={
+          "Upload a CSV file to analyze and choose the column that contains the responses to analyze. The system will automatically create users but you have to manually send the credentials to them if the results are ready."
+        }
+        title={"Sentiment Analysis"}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="flex flex-col items-center justify-center w-full h-32 p-4 bg-white rounded md:h-48 outline outline-2 outline-gray-200">
