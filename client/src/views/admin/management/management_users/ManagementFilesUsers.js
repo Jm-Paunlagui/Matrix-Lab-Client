@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
   faCaretRight,
-  faFileArrowDown,
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
@@ -162,6 +161,69 @@ export default function ManagementFilesUsers() {
             placeholder="Search"
             type="text"
           />
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+              <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                <div className="flex flex-row w-full">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Mass Actions
+                  </h1>
+                </div>
+                <button
+                    className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                    type="button"
+                >
+                  <FontAwesomeIcon
+                      className={`${ICON_PLACE_SELF_CENTER}`}
+                      icon={faUserPlus}
+                  />
+                  Create
+                </button>
+              </div>
+            </div>
+            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+              <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                <div className="flex flex-row w-full">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Mass Danger Actions
+                  </h1>
+                </div>
+                <DangerConfirmModal
+                    body={`Are you sure you want to restore the authorization of  to the system?`}
+                    description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+
+                    title="Restore Authorization"
+                    type_of_modal="unlock"
+                />
+
+                <DangerConfirmModal
+                    body={`Are you sure you want to remove the authorization of  to the system?`}
+                    description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+
+
+                    title="Remove Authorization"
+                    type_of_modal="lock"
+                />
+
+
+                <DangerConfirmModal
+                    body={`Are you sure you want to restore the account of  to the system?`}
+                    description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+
+                    title="Restore Account"
+                    type_of_modal="restore"
+                />
+
+                <DangerConfirmModal
+                    body={`Are you sure you want to delete  from the system?`}
+                    description="This action cannot be undone. This will permanently delete the users account from the system."
+
+                    title="Delete User Confirmation"
+                    type_of_modal="delete"
+                />
+              </div>
+            </div>
+          </div>
           <div className="flex flex-col w-full p-4">
             <h1 className="text-start font-medium text-blue-500">
               Page {current_page} of {total_pages}
