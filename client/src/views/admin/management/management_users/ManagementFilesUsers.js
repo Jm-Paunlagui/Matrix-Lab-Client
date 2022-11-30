@@ -173,12 +173,12 @@ export default function ManagementFilesUsers() {
                   </h1>
                 </div>
                 <button
-                    className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                    type="button"
+                  className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                  type="button"
                 >
                   <FontAwesomeIcon
-                      className={`${ICON_PLACE_SELF_CENTER}`}
-                      icon={faUserPlus}
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faUserPlus}
                   />
                   Create
                 </button>
@@ -192,37 +192,31 @@ export default function ManagementFilesUsers() {
                   </h1>
                 </div>
                 <DangerConfirmModal
-                    body={`Are you sure you want to restore the authorization of  to the system?`}
-                    description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
-
-                    title="Restore Authorization"
-                    type_of_modal="unlock"
+                  body={`Are you sure you want to restore the authorization of  to the system?`}
+                  description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                  title="Restore Authorization"
+                  type_of_modal="unlock"
                 />
 
                 <DangerConfirmModal
-                    body={`Are you sure you want to remove the authorization of  to the system?`}
-                    description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
-
-
-                    title="Remove Authorization"
-                    type_of_modal="lock"
-                />
-
-
-                <DangerConfirmModal
-                    body={`Are you sure you want to restore the account of  to the system?`}
-                    description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
-
-                    title="Restore Account"
-                    type_of_modal="restore"
+                  body={`Are you sure you want to remove the authorization of  to the system?`}
+                  description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+                  title="Remove Authorization"
+                  type_of_modal="lock"
                 />
 
                 <DangerConfirmModal
-                    body={`Are you sure you want to delete  from the system?`}
-                    description="This action cannot be undone. This will permanently delete the users account from the system."
+                  body={`Are you sure you want to restore the account of  to the system?`}
+                  description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                  title="Restore Account"
+                  type_of_modal="restore"
+                />
 
-                    title="Delete User Confirmation"
-                    type_of_modal="delete"
+                <DangerConfirmModal
+                  body={`Are you sure you want to delete  from the system?`}
+                  description="This action cannot be undone. This will permanently delete the users account from the system."
+                  title="Delete User Confirmation"
+                  type_of_modal="delete"
                 />
               </div>
             </div>
