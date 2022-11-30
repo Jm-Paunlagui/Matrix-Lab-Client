@@ -7,7 +7,7 @@ import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData,
+  NoData, STATUS_GREEN, STATUS_RED, STATUS_WARNING,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -115,7 +115,29 @@ export default function ManagementFilesUsers() {
       });
   };
 
-  const handleDeleteUser = (id) => {};
+  const handleDeleteUser = (id) => {
+    httpClient
+      .delete(`/user/delete-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
+
+  const handleRestoreUser = (id) => {
+    httpClient
+      .post(`/user/restore-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
   useEffect(() => {
     loadListOfUsers(page_number);
@@ -161,6 +183,37 @@ export default function ManagementFilesUsers() {
                   </div>
                   <hr className="w-full border-gray-300" />
                   <div className="col-span-4 text-start p-4">
+                    <div className="flex flex-row w-full py-2">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
+                        Status
+                      </h1>
+                    </div>
+                    <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                      <div className={`p-2 flex flex-row justify-center ${
+                        user.is_active ? STATUS_GREEN : STATUS_WARNING
+                      }`}
+                      >
+                        <h1 className="text-sm leading-none uppercase">
+                          {user.is_active ? "Activated" : "Deactivated"}
+                        </h1>
+                      </div>
+                      <div className={`p-2 flex flex-row justify-center ${
+                        user.is_locked ? STATUS_RED : STATUS_GREEN
+                      }`}
+                      >
+                        <h1 className="text-sm leading-none uppercase">
+                          {user.is_locked ? "Locked" : "Unlocked"}
+                        </h1>
+                      </div>
+                      <div className={`p-2 flex flex-row justify-center ${
+                        user.is_deleted ? STATUS_RED : STATUS_GREEN
+                      }`}
+                      >
+                        <h1 className="text-sm leading-none uppercase">
+                          {user.is_deleted ? "Deleted" : "Not Deleted"}
+                        </h1>
+                      </div>
+                    </div>
                     <div className="flex flex-row w-full py-2">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Details
@@ -209,17 +262,6 @@ export default function ManagementFilesUsers() {
                         />
                         Create
                       </button>
-                      <button
-                        className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        // onClick={() => handleDownload(file.id)}
-                        type="button"
-                      >
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faFileArrowDown}
-                        />
-                        Download
-                      </button>
                     </div>
                     <div className="flex flex-row w-full px-4">
                       <h1 className="text-base font-bold leading-none text-blue-500">
@@ -229,12 +271,12 @@ export default function ManagementFilesUsers() {
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
                       {user.is_locked ? (
                         <DangerConfirmModal
-                          body={`Are you sure you want to remove the authorization of ${user.full_name} to the system?`}
+                          body={`Are you sure you want to restore the authorization of ${user.full_name} to the system?`}
                           description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
                           id={user.id}
                           onConfirm={handleUnlockUser}
                           title="Restore Authorization"
-                          type_of_modal="restore"
+                          type_of_modal="unlock"
                         />
                       ) : (
                         <DangerConfirmModal
@@ -243,16 +285,28 @@ export default function ManagementFilesUsers() {
                           id={user.id}
                           onConfirm={handleLockUser}
                           title="Remove Authorization"
+                          type_of_modal="lock"
                         />
                       )}
-                      <DangerConfirmModal
-                        body={`Are you sure you want to delete ${user.full_name} from the system?`}
-                        description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
-                        id={user.id}
-                        onConfirm={handleDeleteUser}
-                        title="Delete User Confirmation"
-                        type_of_modal="delete"
-                      />
+                        {user.is_deleted ? (
+                            <DangerConfirmModal
+                                body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
+                                description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                                id={user.id}
+                                onConfirm={handleRestoreUser}
+                                title="Restore Account"
+                                type_of_modal="restore"
+                            />
+                        ) : (
+                            <DangerConfirmModal
+                                body={`Are you sure you want to delete ${user.full_name} from the system?`}
+                                description="This action cannot be undone. This will permanently delete the users account from the system."
+                                id={user.id}
+                                onConfirm={handleDeleteUser}
+                                title="Delete User Confirmation"
+                                type_of_modal="delete"
+                            />
+                        )}
                     </div>
                   </div>
                 </div>
