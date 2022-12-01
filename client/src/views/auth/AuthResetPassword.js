@@ -9,13 +9,13 @@ import SuccessAnimation from "actually-accessible-react-success-animation";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
+import {LoadingAnimation} from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the forgot password request page
@@ -230,7 +230,7 @@ export default function AuthResetPassword() {
                           disabled={buttonDisabled}
                           type="submit"
                         >
-                          {oki ? LOADING_ANIMATION() : null}
+                          {oki ? <LoadingAnimation moreClasses="text-teal-600" /> : null}
                           {textChange}
                         </button>
                       </div>

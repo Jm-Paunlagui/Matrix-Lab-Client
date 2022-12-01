@@ -11,7 +11,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   DANGER_RADIO,
   ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   PRIMARY_RADIO,
   SECONDARY_BUTTON,
@@ -19,6 +18,7 @@ import {
 import httpClient from "../../http/httpClient";
 import { maskUsername } from "../../helpers/Helper";
 import { toast } from "react-toastify";
+import {LoadingAnimation} from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the forgot password request page
@@ -286,7 +286,7 @@ export default function AuthRemoveEmailFromAccount() {
                           disabled={buttonDisabled}
                           type="submit"
                         >
-                          {oki ? LOADING_ANIMATION() : null}
+                          {oki ? <LoadingAnimation moreClasses="text-teal-600" /> : null}
                           {textChange}
                         </button>
                       </div>

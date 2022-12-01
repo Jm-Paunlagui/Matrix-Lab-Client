@@ -18,7 +18,6 @@ import {
   ACCENT_BUTTON,
   EMAIL_NOT_SET,
   ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   PRIMARY_RADIO,
   SECONDARY_BUTTON,
@@ -28,6 +27,7 @@ import { maskEmail, emailRegex } from "../helpers/Helper";
 import PasswordChecklist from "react-password-checklist";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import {LoadingAnimation} from "../components/loading/LoadingPage";
 
 /**
  * @description User login form for the application
@@ -90,7 +90,7 @@ export function UsernamePassword(
           type="submit"
         >
           {oki ? (
-            LOADING_ANIMATION()
+            <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -246,7 +246,7 @@ export function TFAbyEmail(
           className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON}`}
           type="submit"
         >
-          {oki ? LOADING_ANIMATION() : null}
+          {oki ? <LoadingAnimation moreClasses="text-teal-600" /> : null}
           {textChange}
         </button>
       </div>
@@ -323,7 +323,7 @@ export function VerifyTFA(
               type="reset"
             >
               {oki ? (
-                LOADING_ANIMATION()
+                  <LoadingAnimation moreClasses="text-teal-600" />
               ) : (
                 <FontAwesomeIcon
                   className={`${ICON_PLACE_SELF_CENTER}`}
@@ -341,7 +341,7 @@ export function VerifyTFA(
               type="submit"
             >
               {oki ? (
-                LOADING_ANIMATION()
+                  <LoadingAnimation moreClasses="text-teal-600" />
               ) : (
                 <FontAwesomeIcon
                   className={`${ICON_PLACE_SELF_CENTER}`}
@@ -426,7 +426,7 @@ export function Username(
           type="submit"
         >
           {oki ? (
-            LOADING_ANIMATION()
+              <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -577,7 +577,7 @@ export function AssociatedEmails(
           type="submit"
         >
           {oki ? (
-            LOADING_ANIMATION()
+              <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -650,7 +650,7 @@ export function SendToEmail(
             type="submit"
           >
             {oki ? (
-              LOADING_ANIMATION()
+                <LoadingAnimation moreClasses="text-teal-600" />
             ) : (
               <FontAwesomeIcon
                 className={`${ICON_PLACE_SELF_CENTER}`}
@@ -809,7 +809,7 @@ export function PersonalInformation(
                 type="submit"
               >
                 {okforPersonalInfo ? (
-                  LOADING_ANIMATION()
+                    <LoadingAnimation moreClasses="text-teal-600" />
                 ) : (
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
@@ -927,7 +927,7 @@ export function SecurityInformation(
                 type="submit"
               >
                 {okforSecurityInfo ? (
-                  LOADING_ANIMATION()
+                    <LoadingAnimation moreClasses="text-teal-600" />
                 ) : (
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
@@ -1054,7 +1054,7 @@ export function SignInInformation(
                 type="submit"
               >
                 {okforUsername ? (
-                  LOADING_ANIMATION()
+                    <LoadingAnimation moreClasses="text-teal-600" />
                 ) : (
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
@@ -1156,7 +1156,7 @@ export function SignInInformation(
                   type="submit"
                 >
                   {okforPassword ? (
-                    LOADING_ANIMATION()
+                      <LoadingAnimation moreClasses="text-teal-600" />
                   ) : (
                     <FontAwesomeIcon
                       className={`${ICON_PLACE_SELF_CENTER}`}
@@ -1391,7 +1391,7 @@ export function ViewInsightHistory(
           type="submit"
         >
           {ok ? (
-            LOADING_ANIMATION()
+              <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}

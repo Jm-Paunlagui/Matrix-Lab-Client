@@ -1,11 +1,9 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, {Fragment, useState, useCallback} from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
   ACCENT_BUTTON,
   DANGER_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
-  PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/styled-components";
 import httpClient from "../../http/httpClient";
@@ -25,6 +23,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
 import { useDropzone } from "react-dropzone";
+import {LoadingAnimation} from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin prediction
@@ -32,7 +31,7 @@ import { useDropzone } from "react-dropzone";
 export default function AdminPrediction() {
   const user = isAuth();
 
-  const inputRef = useRef(null);
+  //const inputRef = useRef(null);
 
   const [csv_file_to_view, setCSVFileToView] = useState();
 
@@ -58,29 +57,26 @@ export default function AdminPrediction() {
     textChangeToAnS,
   } = handlers;
 
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({
-      accept: "text/csv",
-      onDrop: (acceptedFiles) => {
-        setCSVFileToView(acceptedFiles[0]);
-        setHandlers({
-          ...handlers,
-          errorMessage: "",
-        });
-      },
-    });
+  const onDrop = useCallback(acceptedFiles => {
+    // Do something with the files
+    setCSVFileToView(acceptedFiles[0]);
+    setHandlers({
+        ...handlers,
+      errorMessage: "",
+    })
+  }, [])
 
-  /**
-   * @description Gets the file to view from the user and sets the state
-   * @param event
-   */
-  const handleChange = (event) => {
-    setCSVFileToView(event.target.files[0]);
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles} =
+    useDropzone({onDrop});
+
+  const removeAll = () => {
+    setCSVFileToView(null);
     setHandlers({
       ...handlers,
       errorMessage: "",
-    });
-  };
+    })
+    acceptedFiles.splice(0, acceptedFiles.length);
+  }
 
   const [csv_columns, setCSVColumns] = useState({
     show_columns: false,
@@ -173,6 +169,7 @@ export default function AdminPrediction() {
         });
       })
       .catch((error) => {
+        removeAll()
         setCSVColumns({
           ...csv_columns,
           show_columns: false,
@@ -238,16 +235,17 @@ export default function AdminPrediction() {
             selected_column_for_sentence: "",
             selected_semester: "",
           });
-          setCSVFileToView(null);
-          inputRef.current.value = "";
           setCSVColumns({
             ...csv_columns,
             show_columns: false,
             csv_file_name: "",
             csv_columns_to_pick: [],
           });
+          // remove the file from the dropzone
+          removeAll();
         })
         .catch((error) => {
+          removeAll();
           setExtras({
             ...extras,
             csv_question: "",
@@ -258,8 +256,6 @@ export default function AdminPrediction() {
             selected_column_for_sentence: "",
             selected_semester: "",
           });
-          setCSVFileToView(null);
-          inputRef.current.value = "";
           setCSVColumns({
             ...csv_columns,
             show_columns: true,
@@ -282,6 +278,7 @@ export default function AdminPrediction() {
    * @description Close the error message
    */
   const handleClose = () => {
+    removeAll();
     setCSVColumns({
       ...csv_columns,
       show_columns: false,
@@ -330,7 +327,7 @@ export default function AdminPrediction() {
         <div className="col-span-2">
           <div
             className={`flex flex-col w-full bg-blue-50 rounded-lg shadow ${
-              errorEffect || errorEffectToAnS ? `animate-wiggle` : ""
+              errorEffect || errorEffectToAnS ? `animate-wiggle outline outline-2` : ""
             }`}
             onAnimationEnd={() =>
               setHandlers({
@@ -356,7 +353,9 @@ export default function AdminPrediction() {
                         {...getRootProps()}
                       >
                         <label
-                          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100"
+                          className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ${
+                              errorEffect || errorEffectToAnS ? `animate-wiggle border-red-500` : "border-gray-300"
+                          }`}
                           htmlFor="dropzone-file"
                         >
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -375,24 +374,18 @@ export default function AdminPrediction() {
                                 strokeWidth="2"
                               />
                             </svg>
-                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                            <p className="mb-2 text-sm text-gray-500">
                               <span className="font-semibold">
                                 Click to upload
                               </span>{" "}
                               or drag and drop
                             </p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                            <p className="text-xs text-gray-500">
                               CSV files only
                             </p>
                           </div>
                           <input
-                            className="hidden"
-                            id="dropzone-file"
-                            name="csv_file_to_view"
                             {...getInputProps()}
-                            // onChange={handleChange}
-                            ref={inputRef}
-                            type="file"
                           />
                           {isDragActive ? (
                             <p className="text-sm text-gray-500">
@@ -409,7 +402,7 @@ export default function AdminPrediction() {
                               className="text-sm text-gray-500"
                               key={file.path}
                             >
-                              {file.path} - {file.size} bytes
+                              {file ? `${file.path} - ${file.size} bytes` : ""}
                             </p>
                           ))}
                         </label>
@@ -434,7 +427,7 @@ export default function AdminPrediction() {
                       className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
                       type="submit"
                     >
-                      {ok ? LOADING_ANIMATION() : null}
+                      {ok ? <LoadingAnimation moreClasses="text-teal-600" /> : null}
                       {textChange}
                     </button>
                   </div>
@@ -671,11 +664,11 @@ export default function AdminPrediction() {
                         </button>
                       ) : (
                         <button
-                          className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                          className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
                           type="submit"
                         >
                           {okToAnS ? (
-                            LOADING_ANIMATION()
+                              <LoadingAnimation moreClasses="text-teal-600" />
                           ) : (
                             <FontAwesomeIcon
                               className={`${ICON_PLACE_SELF_CENTER}`}

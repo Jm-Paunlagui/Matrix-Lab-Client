@@ -84,9 +84,9 @@ export default function AdminNavigationBar() {
       current: isActive("analytics"),
     },
     {
-      name: "Analyze",
-      href: "/admin/analyze",
-      current: isActive("analyze"),
+      name: "Sentiment Analysis",
+      href: "/admin/sentiment-analysis",
+      current: isActive("sentiment-analysis"),
     },
   ];
 

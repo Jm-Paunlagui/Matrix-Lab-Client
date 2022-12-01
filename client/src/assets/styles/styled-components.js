@@ -43,24 +43,6 @@ export const SECONDARY_RADIO = `bg-white text-gray-500 border border-gray-300 ro
 export const DANGER_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-red-500 peer-checked:text-red-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 
 /**
- * @description Circular loading animation
- */
-export function LOADING_ANIMATION() {
-  return (
-    <svg className="mr-1 spinner text-blue-500" viewBox="0 0 50 50">
-      <circle
-        className="path"
-        cx="25"
-        cy="25"
-        fill="transparent"
-        r="20"
-        strokeWidth="5"
-      />
-    </svg>
-  );
-}
-
-/**
  * @description Recovery email not set
  */
 export function EMAIL_NOT_SET(email_type = "") {

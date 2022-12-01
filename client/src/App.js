@@ -178,7 +178,7 @@ export default function App() {
               <Route
                 element={<AdminPrediction />}
                 exact="true"
-                path="analyze"
+                path="sentiment-analysis"
               />
               <Route
                 element={<AdminProfile />}
