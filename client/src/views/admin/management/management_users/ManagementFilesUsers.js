@@ -15,8 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
-  faCaretRight,
-  faUserPlus,
+  faCaretRight, faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { toast } from "react-toastify";
@@ -141,6 +140,66 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  const handleCreateAllUsers = async () => {
+    await httpClient
+        .post(`/user/mass-create-all`)
+        .then((response) => {
+          toast.success(response.data.message);
+          loadListOfUsers(page_number);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+  }
+
+    const handleLockAllUsers = async () => {
+    await httpClient
+        .post(`/user/mass-lock-account`)
+        .then((response) => {
+          toast.success(response.data.message);
+          loadListOfUsers(page_number);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+    }
+
+    const handleUnlockAllUsers = async () => {
+    await httpClient
+        .post(`/user/mass-unlock-account`)
+        .then((response) => {
+          toast.success(response.data.message);
+          loadListOfUsers(page_number);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+    }
+
+    const handleDeleteAllUsers = async () => {
+    await httpClient
+        .delete(`/user/mass-delete-account`)
+        .then((response) => {
+          toast.success(response.data.message);
+          loadListOfUsers(page_number);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+    }
+
+    const handleRestoreAllUsers = async () => {
+    await httpClient
+        .post(`/user/mass-restore-account`)
+        .then((response) => {
+          toast.success(response.data.message);
+          loadListOfUsers(page_number);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+    }
+
   useEffect(() => {
     loadListOfUsers(page_number);
   }, [page_number]);
@@ -174,13 +233,14 @@ export default function ManagementFilesUsers() {
                 </div>
                 <button
                   className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                  onClick={() => handleCreateAllUsers()}
                   type="button"
                 >
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faUserPlus}
+                    icon={faPlay}
                   />
-                  Create
+                  Activate All
                 </button>
               </div>
             </div>
@@ -192,29 +252,33 @@ export default function ManagementFilesUsers() {
                   </h1>
                 </div>
                 <DangerConfirmModal
-                  body={`Are you sure you want to restore the authorization of  to the system?`}
+                  body={`Are you sure you want to restore all users authorization to the system?`}
                   description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                  onConfirm={() => handleUnlockAllUsers()}
                   title="Restore Authorization"
                   type_of_modal="unlock"
                 />
 
                 <DangerConfirmModal
-                  body={`Are you sure you want to remove the authorization of  to the system?`}
+                  body={`Are you sure you want to remove all users authorization to the system?`}
                   description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+                    onConfirm={() => handleLockAllUsers()}
                   title="Remove Authorization"
                   type_of_modal="lock"
                 />
 
                 <DangerConfirmModal
-                  body={`Are you sure you want to restore the account of  to the system?`}
+                  body={`Are you sure you want to restore all users account to the system?`}
                   description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                    onConfirm={() => handleRestoreAllUsers()}
                   title="Restore Account"
                   type_of_modal="restore"
                 />
 
                 <DangerConfirmModal
-                  body={`Are you sure you want to delete  from the system?`}
-                  description="This action cannot be undone. This will permanently delete the users account from the system."
+                  body={`Are you sure you want to temporarily delete all users account to the system?`}
+                  description="This action cannot be undone. This will temporarily delete the users account from the system."
+                    onConfirm={() => handleDeleteAllUsers()}
                   title="Delete User Confirmation"
                   type_of_modal="delete"
                 />
@@ -307,24 +371,6 @@ export default function ManagementFilesUsers() {
                     </div>
                   </div>
                   <div className="col-span-1 w-full">
-                    <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        General
-                      </h1>
-                    </div>
-                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                      <button
-                        className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        onClick={() => handleCreateUser(user.id)}
-                        type="button"
-                      >
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faUserPlus}
-                        />
-                        Create
-                      </button>
-                    </div>
                     <div className="flex flex-row w-full px-4">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Danger Zone
