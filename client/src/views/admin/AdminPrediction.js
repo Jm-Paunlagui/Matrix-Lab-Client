@@ -291,20 +291,34 @@ export default function AdminPrediction() {
         title={"Sentiment Analysis"}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
-        <div className="flex flex-col items-center justify-center w-full h-32 p-4 bg-white rounded md:h-48 outline outline-2 outline-gray-200">
-          <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            Sentiment Analysis
+        <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Right Format of CSV File to Upload
           </h1>
-          <h1 className="text-sm font-medium text-gray-500">
-            @{user.username}
-          </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Your CSV file should contain the following headers:{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              evaluatee, email, department, course code
+            </b>{" "}
+            and pick a header for the{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              sentence
+            </b>
+            .
+          </p>
+          <p className="text-sm text-gray-500 font-medium">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              sentence
+            </b>{" "}
+            is the header that contains the responses of the students.
+          </p>
         </div>
         <div className="col-span-2">
           <div
-            className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2  ${
+            className={`flex flex-col w-full bg-blue-50 rounded shadow ${
               errorEffect || errorEffectToAnS
                 ? `animate-wiggle`
-                : "outline-gray-200"
+                : ""
             }`}
             onAnimationEnd={() =>
               setHandlers({
@@ -315,50 +329,26 @@ export default function AdminPrediction() {
             }
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
-              <div className="col-span-2 p-8 bg-gray-50">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Analyze CSV file
-                </h1>
-                <p className="mb-4 text-sm">
-                  Your CSV file should contain the following headers:{" "}
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    evaluatee, department, course code and
-                  </b>{" "}
-                  pick a header for the{" "}
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    sentence
-                  </b>
-                  .
-                </p>
-                <p className="mb-4 text-sm">
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    sentence
-                  </b>{" "}
-                  is the header that contains the responses of the students.
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
+
+              <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
                 <form
                   encType={"multipart/form-data"}
                   onSubmit={handleSubmitCSVToView}
                 >
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-col w-full space-y-2">
-                      <h1 className="mb-4 text-xl font-bold text-gray-700">
+                      <h1 className="mb-4 text-xl font-bold text-blue-500">
                         Upload CSV File
                       </h1>
-                      <h1 className="text-base font-medium text-gray-500">
-                        CSV file
-                      </h1>
                       <input
-                        className={TEXT_FIELD}
+                        className={`${TEXT_FIELD} text-gray-500 bg-white`}
                         name="csv_file_to_view"
                         onChange={handleChange}
                         ref={inputRef}
                         type="file"
                       />
                       <p
-                        className="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                        className="mt-1 text-sm text-gray-500"
                         id="file_input_help"
                       >
                         The file must be a .csv file.
@@ -386,21 +376,21 @@ export default function AdminPrediction() {
                   <form onSubmit={handleSubmitToAnalyzeAndSave}>
                     <div className="flex flex-col space-y-4">
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="mb-4 text-xl font-bold text-gray-700">
+                        <h1 className="mb-4 text-xl font-bold text-blue-500">
                           Header Selection
                         </h1>
                       </div>
-                      <p className="">
+                      <p className="text-gray-500">
                         Select the header that contains the responses to be
                         analyzed. The responses should be in the form of a
                         sentence. For example, &ldquo;I like the teacher&ldquo;.
                       </p>
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="text-base font-medium text-gray-500">
+                        <h1 className="text-base font-medium text-blue-500">
                           File Name
                         </h1>
                         <input
-                          className={TEXT_FIELD}
+                          className={`${TEXT_FIELD} cursor-not-allowed text-gray-500 bg-white`}
                           disabled
                           placeholder="File Name"
                           type="text"
@@ -414,11 +404,11 @@ export default function AdminPrediction() {
                             "selected_column_for_sentence",
                           )}
                         >
-                          <Listbox.Label className="block text-base font-medium text-gray-500">
+                          <Listbox.Label className="block text-base font-medium text-blue-500">
                             Sentence
                           </Listbox.Label>
                           <div className="relative mt-1">
-                            <Listbox.Button className={TEXT_FIELD}>
+                            <Listbox.Button className={`${TEXT_FIELD} text-gray-500 bg-white`}>
                               <span className="block truncate text-start">
                                 {selected_column_for_sentence
                                   ? selected_column_for_sentence
@@ -427,7 +417,7 @@ export default function AdminPrediction() {
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
                                   aria-hidden="true"
-                                  className="h-5 w-5 text-gray-400"
+                                  className="h-5 w-5 text-blue-500"
                                 />
                               </span>
                             </Listbox.Button>
@@ -446,8 +436,8 @@ export default function AdminPrediction() {
                                     className={({ active }) =>
                                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                         active
-                                          ? "bg-blue-100 text-blue-900"
-                                          : "text-gray-900"
+                                          ? "bg-blue-100 text-blue-500"
+                                          : "text-gray-500"
                                       }`
                                     }
                                     key={column.id}
@@ -465,7 +455,7 @@ export default function AdminPrediction() {
                                           {`${column.id} - ${column.name}`}
                                         </span>
                                         {selected ? (
-                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                                             <CheckIcon
                                               aria-hidden="true"
                                               className="h-5 w-5"
@@ -482,11 +472,11 @@ export default function AdminPrediction() {
                         </Listbox>
                       </div>
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="text-base font-medium text-gray-500">
+                        <h1 className="text-base font-medium text-blue-500">
                           School Year
                         </h1>
                         <input
-                          className={`truncate ${TEXT_FIELD}`}
+                          className={`truncate ${TEXT_FIELD} text-gray-500 bg-white`}
                           name="school_year"
                           onChange={handleExtras("school_year")}
                           placeholder="e.g. S.Y. 2020-2021"
@@ -497,11 +487,11 @@ export default function AdminPrediction() {
                           name={"semester"}
                           onChange={handleSelect("selected_semester")}
                         >
-                          <Listbox.Label className="block text-base font-medium text-gray-500">
+                          <Listbox.Label className="block text-base font-medium text-blue-500">
                             Semester
                           </Listbox.Label>
                           <div className="relative mt-1">
-                            <Listbox.Button className={TEXT_FIELD}>
+                            <Listbox.Button className={`${TEXT_FIELD} text-gray-500 bg-white`}>
                               <span className="block truncate text-start">
                                 {selected_semester
                                   ? selected_semester
@@ -510,7 +500,7 @@ export default function AdminPrediction() {
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
                                   aria-hidden="true"
-                                  className="h-5 w-5 text-gray-400"
+                                  className="h-5 w-5 text-blue-500"
                                 />
                               </span>
                             </Listbox.Button>
@@ -529,8 +519,8 @@ export default function AdminPrediction() {
                                     className={({ active }) =>
                                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                         active
-                                          ? "bg-blue-100 text-blue-900"
-                                          : "text-gray-900"
+                                          ? "bg-blue-100 text-blue-500"
+                                          : "text-gray-500"
                                       }`
                                     }
                                     key={sem.id}
@@ -548,7 +538,7 @@ export default function AdminPrediction() {
                                           {sem.name}
                                         </span>
                                         {selected ? (
-                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                                             <CheckIcon
                                               aria-hidden="true"
                                               className="h-5 w-5"
@@ -566,7 +556,7 @@ export default function AdminPrediction() {
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         {selected_column_for_sentence ? (
-                          <h1 className="text-base font-medium text-gray-500">
+                          <h1 className="text-base font-medium text-blue-500">
                             Please type {'"'}
                             <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
                               {getNameFromString(selected_column_for_sentence)}
@@ -574,12 +564,12 @@ export default function AdminPrediction() {
                             {'"'} to confirm.
                           </h1>
                         ) : (
-                          <h1 className="text-base font-medium text-gray-500">
+                          <h1 className="text-base font-medium text-blue-500">
                             Select a column for sentence.
                           </h1>
                         )}
-                        <input
-                          className={`truncate ${TEXT_FIELD}`}
+                        <input autoComplete={"off"}
+                          className={`truncate ${TEXT_FIELD} text-gray-700 bg-white`}
                           name="csv_question"
                           onChange={handleExtras("csv_question")}
                           placeholder="Question"

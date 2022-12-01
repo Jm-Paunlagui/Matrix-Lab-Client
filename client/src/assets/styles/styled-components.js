@@ -5,7 +5,7 @@ import {
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider border border-gray-200 rounded-lg`;
+export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider border border-gray-500 rounded-lg`;
 
 export const DELAY_1 = "transition duration-300 ease-in-out delay-150";
 export const DELAY_3 = "transition duration-300 ease-in-out delay-300";
