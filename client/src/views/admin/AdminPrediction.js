@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useRef } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
+  ACCENT_BUTTON,
   DANGER_BUTTON,
   ICON_PLACE_SELF_CENTER,
   LOADING_ANIMATION,
@@ -23,6 +24,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
+import {useDropzone} from "react-dropzone";
 
 /**
  * @description Handles the admin prediction
@@ -55,6 +57,17 @@ export default function AdminPrediction() {
     errorMessageToAnS,
     textChangeToAnS,
   } = handlers;
+
+  const {getRootProps, getInputProps, isDragActive, acceptedFiles} = useDropzone({
+    accept: "text/csv",
+    onDrop: (acceptedFiles) => {
+        setCSVFileToView(acceptedFiles[0]);
+        setHandlers({
+            ...handlers,
+          errorMessage: "",
+        })
+    },
+    });
 
   /**
    * @description Gets the file to view from the user and sets the state
@@ -315,7 +328,7 @@ export default function AdminPrediction() {
         </div>
         <div className="col-span-2">
           <div
-            className={`flex flex-col w-full bg-blue-50 rounded shadow ${
+            className={`flex flex-col w-full bg-blue-50 rounded-lg shadow ${
               errorEffect || errorEffectToAnS ? `animate-wiggle` : ""
             }`}
             onAnimationEnd={() =>
@@ -326,7 +339,7 @@ export default function AdminPrediction() {
               })
             }
           >
-            <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
+            <div className="grid w-full h-full grid-cols-1  md:grid-cols-5">
               <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
                 <form
                   encType={"multipart/form-data"}
@@ -337,13 +350,43 @@ export default function AdminPrediction() {
                       <h1 className="mb-4 text-xl font-bold text-blue-500">
                         Upload CSV File
                       </h1>
-                      <input
-                        className={`${TEXT_FIELD} text-gray-500 bg-white`}
-                        name="csv_file_to_view"
-                        onChange={handleChange}
-                        ref={inputRef}
-                        type="file"
-                      />
+                      <div className="flex items-center justify-center w-full"
+                           {...getRootProps()}
+                      >
+                        <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100"
+                               htmlFor="dropzone-file"
+                        >
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none"
+                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+                            </svg>
+                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                              <span className="font-semibold">Click to upload</span> or drag and drop</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                                CSV files only
+                            </p>
+                          </div>
+                          <input className="hidden" id="dropzone-file" name="csv_file_to_view"
+                                 {...getInputProps()}
+                                 // onChange={handleChange}
+                                 ref={inputRef}
+                                 type="file"
+                          />
+                          {isDragActive ? (
+                            <p className="text-sm text-gray-500">Drop the files here ...</p>
+                            ) : (
+                                <p className="text-sm text-gray-500">Drag &#39;n&#39; drop some files here, or click to select files</p>
+                            )}
+                          {acceptedFiles.map((file) => (
+                            <p className="text-sm text-gray-500" key={file.path}>
+                                {file.path} - {file.size} bytes
+                            </p>
+                            )
+                          )}
+                        </label>
+                      </div>
                       <p
                         className="mt-1 text-sm text-gray-500"
                         id="file_input_help"
@@ -361,7 +404,7 @@ export default function AdminPrediction() {
                   <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
                     <div className="p-1" />
                     <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+                      className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
                       type="submit"
                     >
                       {ok ? LOADING_ANIMATION() : null}
