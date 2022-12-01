@@ -15,7 +15,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
-  faCaretRight, faPlay,
+  faCaretRight,
+  faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { toast } from "react-toastify";
@@ -142,63 +143,63 @@ export default function ManagementFilesUsers() {
 
   const handleCreateAllUsers = async () => {
     await httpClient
-        .post(`/user/mass-create-all`)
-        .then((response) => {
-          toast.success(response.data.message);
-          loadListOfUsers(page_number);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-  }
+      .post(`/user/mass-create-all`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
-    const handleLockAllUsers = async () => {
+  const handleLockAllUsers = async () => {
     await httpClient
-        .post(`/user/mass-lock-account`)
-        .then((response) => {
-          toast.success(response.data.message);
-          loadListOfUsers(page_number);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-    }
+      .post(`/user/mass-lock-account`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
-    const handleUnlockAllUsers = async () => {
+  const handleUnlockAllUsers = async () => {
     await httpClient
-        .post(`/user/mass-unlock-account`)
-        .then((response) => {
-          toast.success(response.data.message);
-          loadListOfUsers(page_number);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-    }
+      .post(`/user/mass-unlock-account`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
-    const handleDeleteAllUsers = async () => {
+  const handleDeleteAllUsers = async () => {
     await httpClient
-        .delete(`/user/mass-delete-account`)
-        .then((response) => {
-          toast.success(response.data.message);
-          loadListOfUsers(page_number);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-    }
+      .delete(`/user/mass-delete-account`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
-    const handleRestoreAllUsers = async () => {
+  const handleRestoreAllUsers = async () => {
     await httpClient
-        .post(`/user/mass-restore-account`)
-        .then((response) => {
-          toast.success(response.data.message);
-          loadListOfUsers(page_number);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-        });
-    }
+      .post(`/user/mass-restore-account`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
   useEffect(() => {
     loadListOfUsers(page_number);
@@ -262,7 +263,7 @@ export default function ManagementFilesUsers() {
                 <DangerConfirmModal
                   body={`Are you sure you want to remove all users authorization to the system?`}
                   description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
-                    onConfirm={() => handleLockAllUsers()}
+                  onConfirm={() => handleLockAllUsers()}
                   title="Remove Authorization"
                   type_of_modal="lock"
                 />
@@ -270,7 +271,7 @@ export default function ManagementFilesUsers() {
                 <DangerConfirmModal
                   body={`Are you sure you want to restore all users account to the system?`}
                   description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
-                    onConfirm={() => handleRestoreAllUsers()}
+                  onConfirm={() => handleRestoreAllUsers()}
                   title="Restore Account"
                   type_of_modal="restore"
                 />
@@ -278,7 +279,7 @@ export default function ManagementFilesUsers() {
                 <DangerConfirmModal
                   body={`Are you sure you want to temporarily delete all users account to the system?`}
                   description="This action cannot be undone. This will temporarily delete the users account from the system."
-                    onConfirm={() => handleDeleteAllUsers()}
+                  onConfirm={() => handleDeleteAllUsers()}
                   title="Delete User Confirmation"
                   type_of_modal="delete"
                 />
