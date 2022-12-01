@@ -316,9 +316,7 @@ export default function AdminPrediction() {
         <div className="col-span-2">
           <div
             className={`flex flex-col w-full bg-blue-50 rounded shadow ${
-              errorEffect || errorEffectToAnS
-                ? `animate-wiggle`
-                : ""
+              errorEffect || errorEffectToAnS ? `animate-wiggle` : ""
             }`}
             onAnimationEnd={() =>
               setHandlers({
@@ -329,7 +327,6 @@ export default function AdminPrediction() {
             }
           >
             <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
-
               <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
                 <form
                   encType={"multipart/form-data"}
@@ -408,7 +405,9 @@ export default function AdminPrediction() {
                             Sentence
                           </Listbox.Label>
                           <div className="relative mt-1">
-                            <Listbox.Button className={`${TEXT_FIELD} text-gray-500 bg-white`}>
+                            <Listbox.Button
+                              className={`${TEXT_FIELD} text-gray-500 bg-white`}
+                            >
                               <span className="block truncate text-start">
                                 {selected_column_for_sentence
                                   ? selected_column_for_sentence
@@ -491,7 +490,9 @@ export default function AdminPrediction() {
                             Semester
                           </Listbox.Label>
                           <div className="relative mt-1">
-                            <Listbox.Button className={`${TEXT_FIELD} text-gray-500 bg-white`}>
+                            <Listbox.Button
+                              className={`${TEXT_FIELD} text-gray-500 bg-white`}
+                            >
                               <span className="block truncate text-start">
                                 {selected_semester
                                   ? selected_semester
@@ -568,7 +569,8 @@ export default function AdminPrediction() {
                             Select a column for sentence.
                           </h1>
                         )}
-                        <input autoComplete={"off"}
+                        <input
+                          autoComplete={"off"}
                           className={`truncate ${TEXT_FIELD} text-gray-700 bg-white`}
                           name="csv_question"
                           onChange={handleExtras("csv_question")}

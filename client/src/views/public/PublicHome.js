@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Eval from "../../assets/img/hero.svg";
-import {
-  ACCENT_BUTTON,
-} from "../../assets/styles/styled-components";
+import { ACCENT_BUTTON } from "../../assets/styles/styled-components";
 
 /**
  * @description PublicHome page component for the application
@@ -25,12 +23,18 @@ export default function PublicHome() {
           analysis to determine the sentiment of a evaluation.
         </p>
         <div className="flex flex-col mb-8 space-y-4 sm:flex-row sm:justify-left sm:space-y-0 sm:space-x-4">
-          <button className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`} type={"button"}>
+          <button
+            className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+            type={"button"}
+          >
             <Link to={"/department-sentiment-overall"}>
               <h1 className="px-5 py-3">Overall Insight</h1>
             </Link>
           </button>
-          <button className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`} type={"button"}>
+          <button
+            className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+            type={"button"}
+          >
             <Link to={"/department-sentiment"}>
               <h1 className="px-5 py-3">Insight History</h1>
             </Link>

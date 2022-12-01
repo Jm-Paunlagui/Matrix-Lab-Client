@@ -121,8 +121,8 @@ export default function NavigationBar() {
                     <li
                       className={`${
                         link.current
-                            ? "bg-blue-400 text-white"
-                            : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                          ? "bg-blue-400 text-white"
+                          : "text-blue-100 hover:bg-blue-400 hover:text-white"
                       } ${DELAY_1} flex items-center px-8 py-2 rounded-md text-base font-medium`}
                     >
                       {link.icon}
@@ -140,8 +140,8 @@ export default function NavigationBar() {
                   <li
                     className={`${
                       link.current
-                          ? "bg-blue-400 text-white"
-                          : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-100 hover:bg-blue-400 hover:text-white"
                     } ${DELAY_1} flex items-center px-8 py-2 rounded-md text-base font-medium`}
                   >
                     {link.icon_}
