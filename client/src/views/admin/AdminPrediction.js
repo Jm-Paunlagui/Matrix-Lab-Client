@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useCallback} from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
   ACCENT_BUTTON,
@@ -23,7 +23,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
 import { useDropzone } from "react-dropzone";
-import {LoadingAnimation} from "../../components/loading/LoadingPage";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin prediction
@@ -57,26 +57,26 @@ export default function AdminPrediction() {
     textChangeToAnS,
   } = handlers;
 
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     setCSVFileToView(acceptedFiles[0]);
     setHandlers({
-        ...handlers,
+      ...handlers,
       errorMessage: "",
-    })
-  }, [])
+    });
+  }, []);
 
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles} =
-    useDropzone({onDrop});
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
+    useDropzone({ onDrop });
 
   const removeAll = () => {
     setCSVFileToView(null);
     setHandlers({
       ...handlers,
       errorMessage: "",
-    })
+    });
     acceptedFiles.splice(0, acceptedFiles.length);
-  }
+  };
 
   const [csv_columns, setCSVColumns] = useState({
     show_columns: false,
@@ -169,7 +169,7 @@ export default function AdminPrediction() {
         });
       })
       .catch((error) => {
-        removeAll()
+        removeAll();
         setCSVColumns({
           ...csv_columns,
           show_columns: false,
@@ -327,7 +327,9 @@ export default function AdminPrediction() {
         <div className="col-span-2">
           <div
             className={`flex flex-col w-full bg-blue-50 rounded-lg shadow ${
-              errorEffect || errorEffectToAnS ? `animate-wiggle outline outline-2` : ""
+              errorEffect || errorEffectToAnS
+                ? `animate-wiggle outline outline-2`
+                : ""
             }`}
             onAnimationEnd={() =>
               setHandlers({
@@ -354,7 +356,9 @@ export default function AdminPrediction() {
                       >
                         <label
                           className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ${
-                              errorEffect || errorEffectToAnS ? `animate-wiggle border-red-500` : "border-gray-300"
+                            errorEffect || errorEffectToAnS
+                              ? `animate-wiggle border-red-500`
+                              : "border-gray-300"
                           }`}
                           htmlFor="dropzone-file"
                         >
@@ -384,9 +388,7 @@ export default function AdminPrediction() {
                               CSV files only
                             </p>
                           </div>
-                          <input
-                            {...getInputProps()}
-                          />
+                          <input {...getInputProps()} />
                           {isDragActive ? (
                             <p className="text-sm text-gray-500">
                               Drop the files here ...
@@ -427,7 +429,9 @@ export default function AdminPrediction() {
                       className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
                       type="submit"
                     >
-                      {ok ? <LoadingAnimation moreClasses="text-teal-600" /> : null}
+                      {ok ? (
+                        <LoadingAnimation moreClasses="text-teal-600" />
+                      ) : null}
                       {textChange}
                     </button>
                   </div>
@@ -668,7 +672,7 @@ export default function AdminPrediction() {
                           type="submit"
                         >
                           {okToAnS ? (
-                              <LoadingAnimation moreClasses="text-teal-600" />
+                            <LoadingAnimation moreClasses="text-teal-600" />
                           ) : (
                             <FontAwesomeIcon
                               className={`${ICON_PLACE_SELF_CENTER}`}

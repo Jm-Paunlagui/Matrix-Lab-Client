@@ -15,7 +15,7 @@ import {
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
-import {LoadingAnimation} from "../../components/loading/LoadingPage";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the forgot password request page
@@ -230,7 +230,9 @@ export default function AuthResetPassword() {
                           disabled={buttonDisabled}
                           type="submit"
                         >
-                          {oki ? <LoadingAnimation moreClasses="text-teal-600" /> : null}
+                          {oki ? (
+                            <LoadingAnimation moreClasses="text-teal-600" />
+                          ) : null}
                           {textChange}
                         </button>
                       </div>

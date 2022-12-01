@@ -27,7 +27,7 @@ import { maskEmail, emailRegex } from "../helpers/Helper";
 import PasswordChecklist from "react-password-checklist";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import {LoadingAnimation} from "../components/loading/LoadingPage";
+import { LoadingAnimation } from "../components/loading/LoadingPage";
 
 /**
  * @description User login form for the application
@@ -323,7 +323,7 @@ export function VerifyTFA(
               type="reset"
             >
               {oki ? (
-                  <LoadingAnimation moreClasses="text-teal-600" />
+                <LoadingAnimation moreClasses="text-teal-600" />
               ) : (
                 <FontAwesomeIcon
                   className={`${ICON_PLACE_SELF_CENTER}`}
@@ -341,7 +341,7 @@ export function VerifyTFA(
               type="submit"
             >
               {oki ? (
-                  <LoadingAnimation moreClasses="text-teal-600" />
+                <LoadingAnimation moreClasses="text-teal-600" />
               ) : (
                 <FontAwesomeIcon
                   className={`${ICON_PLACE_SELF_CENTER}`}
@@ -426,7 +426,7 @@ export function Username(
           type="submit"
         >
           {oki ? (
-              <LoadingAnimation moreClasses="text-teal-600" />
+            <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -577,7 +577,7 @@ export function AssociatedEmails(
           type="submit"
         >
           {oki ? (
-              <LoadingAnimation moreClasses="text-teal-600" />
+            <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -650,7 +650,7 @@ export function SendToEmail(
             type="submit"
           >
             {oki ? (
-                <LoadingAnimation moreClasses="text-teal-600" />
+              <LoadingAnimation moreClasses="text-teal-600" />
             ) : (
               <FontAwesomeIcon
                 className={`${ICON_PLACE_SELF_CENTER}`}
@@ -809,7 +809,7 @@ export function PersonalInformation(
                 type="submit"
               >
                 {okforPersonalInfo ? (
-                    <LoadingAnimation moreClasses="text-teal-600" />
+                  <LoadingAnimation moreClasses="text-teal-600" />
                 ) : (
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
@@ -927,7 +927,7 @@ export function SecurityInformation(
                 type="submit"
               >
                 {okforSecurityInfo ? (
-                    <LoadingAnimation moreClasses="text-teal-600" />
+                  <LoadingAnimation moreClasses="text-teal-600" />
                 ) : (
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
@@ -1054,7 +1054,7 @@ export function SignInInformation(
                 type="submit"
               >
                 {okforUsername ? (
-                    <LoadingAnimation moreClasses="text-teal-600" />
+                  <LoadingAnimation moreClasses="text-teal-600" />
                 ) : (
                   <FontAwesomeIcon
                     className={`${ICON_PLACE_SELF_CENTER}`}
@@ -1156,7 +1156,7 @@ export function SignInInformation(
                   type="submit"
                 >
                   {okforPassword ? (
-                      <LoadingAnimation moreClasses="text-teal-600" />
+                    <LoadingAnimation moreClasses="text-teal-600" />
                   ) : (
                     <FontAwesomeIcon
                       className={`${ICON_PLACE_SELF_CENTER}`}
@@ -1391,7 +1391,7 @@ export function ViewInsightHistory(
           type="submit"
         >
           {ok ? (
-              <LoadingAnimation moreClasses="text-teal-600" />
+            <LoadingAnimation moreClasses="text-teal-600" />
           ) : (
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
