@@ -12,10 +12,7 @@ import {
   STATUS_WARNING,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faCaretLeft,
-    faCaretRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { toast } from "react-toastify";
 
@@ -48,21 +45,34 @@ export default function ManagementFilesUsers() {
   const [filteredListOfUsers, setFilteredListOfUsers] = useState(users);
 
   const [loadingAnimation, setLoadingAnimation] = useState({
-      massActivation: false,
-      textChangeActivation: "Activate all",
-      massDeactivation: false,
-        textChangeDeactivation: "Deactivate all",
-      massUnlocked: false,
-        textChangeUnlocked: "Unlock all",
-      massLocked: false,
-        textChangeLocked: "Lock all",
-      massRestore: false,
-        textChangeRestore: "Restore all",
-      massDelete: false,
-        textChangeDelete: "Delete all",
+    massActivation: false,
+    textChangeActivation: "Activate all",
+    massDeactivation: false,
+    textChangeDeactivation: "Deactivate all",
+    massUnlocked: false,
+    textChangeUnlocked: "Unlock all",
+    massLocked: false,
+    textChangeLocked: "Lock all",
+    massRestore: false,
+    textChangeRestore: "Restore all",
+    massDelete: false,
+    textChangeDelete: "Delete all",
   });
 
-  const { massActivation, textChangeActivation, massDeactivation, textChangeDeactivation, massUnlocked, textChangeUnlocked, massLocked, textChangeLocked, massRestore, textChangeRestore, massDelete, textChangeDelete } = loadingAnimation;
+  const {
+    massActivation,
+    textChangeActivation,
+    massDeactivation,
+    textChangeDeactivation,
+    massUnlocked,
+    textChangeUnlocked,
+    massLocked,
+    textChangeLocked,
+    massRestore,
+    textChangeRestore,
+    massDelete,
+    textChangeDelete,
+  } = loadingAnimation;
 
   const handleSearchForUsers = (event) => {
     const searchValue = event.target.value;
@@ -108,71 +118,71 @@ export default function ManagementFilesUsers() {
       });
   };
 
-    const handleDeactivateUser = async (id) => {
-        await httpClient
-            .post(`/user/on-click-deactivate/${id}`)
-            .then((response) => {
-                toast.success(response.data.message);
-                loadListOfUsers(page_number);
-            })
-            .catch((error) => {
-                toast.error(error.response.data.message);
-            });
-    }
+  const handleDeactivateUser = async (id) => {
+    await httpClient
+      .post(`/user/on-click-deactivate/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
 
   const handleLockUser = async (id) => {
-      await httpClient
-          .post(`/user/lock-account/${id}`)
-          .then((response) => {
-              toast.success(response.data.message);
-              loadListOfUsers(page_number);
-          })
-          .catch((error) => {
-              toast.error(error.response.data.message);
-          });
+    await httpClient
+      .post(`/user/lock-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   const handleUnlockUser = async (id) => {
-      await httpClient
-          .post(`/user/unlock-account/${id}`)
-          .then((response) => {
-              toast.success(response.data.message);
-              loadListOfUsers(page_number);
-          })
-          .catch((error) => {
-              toast.error(error.response.data.message);
-          });
+    await httpClient
+      .post(`/user/unlock-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   const handleDeleteUser = async (id) => {
-      await httpClient
-          .delete(`/user/delete-account/${id}`)
-          .then((response) => {
-              toast.success(response.data.message);
-              loadListOfUsers(page_number);
-          })
-          .catch((error) => {
-              toast.error(error.response.data.message);
-          });
+    await httpClient
+      .delete(`/user/delete-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   const handleRestoreUser = async (id) => {
-      await httpClient
-          .post(`/user/restore-account/${id}`)
-          .then((response) => {
-              toast.success(response.data.message);
-              loadListOfUsers(page_number);
-          })
-          .catch((error) => {
-              toast.error(error.response.data.message);
-          });
+    await httpClient
+      .post(`/user/restore-account/${id}`)
+      .then((response) => {
+        toast.success(response.data.message);
+        loadListOfUsers(page_number);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   const handleCreateAllUsers = async () => {
     setLoadingAnimation({
-        ...loadingAnimation,
-        massActivation: true,
-        textChangeActivation: "Activating...",
+      ...loadingAnimation,
+      massActivation: true,
+      textChangeActivation: "Activating...",
     });
     await httpClient
       .post(`/user/mass-create-all`)
@@ -180,25 +190,26 @@ export default function ManagementFilesUsers() {
         toast.success(response.data.message);
         loadListOfUsers(page_number);
         setLoadingAnimation({
-            ...loadingAnimation,
-            massActivation: false,
-            textChangeActivation: "Activate all",
-        })
+          ...loadingAnimation,
+          massActivation: false,
+          textChangeActivation: "Activate all",
+        });
       })
       .catch((error) => {
         toast.error(error.response.data.message);
         setLoadingAnimation({
           ...loadingAnimation,
-          massActivation: false, textChangeActivation: "Activate all",
-        })
+          massActivation: false,
+          textChangeActivation: "Activate all",
+        });
       });
   };
 
   const handleDeactivateAllUsers = async () => {
     setLoadingAnimation({
-        ...loadingAnimation,
-        massDeactivation: true,
-        textChangeDeactivation: "Deactivating...",
+      ...loadingAnimation,
+      massDeactivation: true,
+      textChangeDeactivation: "Deactivating...",
     });
     await httpClient
       .post(`/user/mass-deactivate-all`)
@@ -206,25 +217,26 @@ export default function ManagementFilesUsers() {
         toast.success(response.data.message);
         loadListOfUsers(page_number);
         setLoadingAnimation({
-            ...loadingAnimation,
-            massDeactivation: false,
-            textChangeDeactivation: "Deactivate all",
-        })
+          ...loadingAnimation,
+          massDeactivation: false,
+          textChangeDeactivation: "Deactivate all",
+        });
       })
       .catch((error) => {
         toast.error(error.response.data.message);
         setLoadingAnimation({
           ...loadingAnimation,
-          massDeactivation: false, textChangeDeactivation: "Deactivate all",
-        })
+          massDeactivation: false,
+          textChangeDeactivation: "Deactivate all",
+        });
       });
-  }
+  };
 
   const handleLockAllUsers = async () => {
     setLoadingAnimation({
-        ...loadingAnimation,
-        massLocked: true,
-        textChangeLocked: "Locking...",
+      ...loadingAnimation,
+      massLocked: true,
+      textChangeLocked: "Locking...",
     });
     await httpClient
       .post(`/user/mass-lock-account`)
@@ -232,26 +244,26 @@ export default function ManagementFilesUsers() {
         toast.success(response.data.message);
         loadListOfUsers(page_number);
         setLoadingAnimation({
-            ...loadingAnimation,
-            massLocked: false,
-            textChangeLocked: "Lock all",
-        })
+          ...loadingAnimation,
+          massLocked: false,
+          textChangeLocked: "Lock all",
+        });
       })
       .catch((error) => {
         toast.error(error.response.data.message);
         setLoadingAnimation({
           ...loadingAnimation,
           massLocked: false,
-            textChangeLocked: "Lock all",
-        })
+          textChangeLocked: "Lock all",
+        });
       });
   };
 
   const handleUnlockAllUsers = async () => {
     setLoadingAnimation({
-        ...loadingAnimation,
-        massUnlocked: true,
-        textChangeUnlocked: "Unlocking...",
+      ...loadingAnimation,
+      massUnlocked: true,
+      textChangeUnlocked: "Unlocking...",
     });
     await httpClient
       .post(`/user/mass-unlock-account`)
@@ -261,7 +273,7 @@ export default function ManagementFilesUsers() {
         setLoadingAnimation({
           ...loadingAnimation,
           massUnlocked: false,
-            textChangeUnlocked: "Unlock all",
+          textChangeUnlocked: "Unlock all",
         });
       })
       .catch((error) => {
@@ -269,16 +281,16 @@ export default function ManagementFilesUsers() {
         setLoadingAnimation({
           ...loadingAnimation,
           massUnlocked: false,
-            textChangeUnlocked: "Unlock all",
+          textChangeUnlocked: "Unlock all",
         });
       });
   };
 
   const handleDeleteAllUsers = async () => {
     setLoadingAnimation({
-        ...loadingAnimation,
-        massDelete: true,
-        textChangeDelete: "Deleting...",
+      ...loadingAnimation,
+      massDelete: true,
+      textChangeDelete: "Deleting...",
     });
     await httpClient
       .delete(`/user/mass-delete-account`)
@@ -288,7 +300,7 @@ export default function ManagementFilesUsers() {
         setLoadingAnimation({
           ...loadingAnimation,
           massDelete: false,
-            textChangeDelete: "Delete all",
+          textChangeDelete: "Delete all",
         });
       })
       .catch((error) => {
@@ -296,16 +308,16 @@ export default function ManagementFilesUsers() {
         setLoadingAnimation({
           ...loadingAnimation,
           massDelete: false,
-            textChangeDelete: "Delete all",
+          textChangeDelete: "Delete all",
         });
       });
   };
 
   const handleRestoreAllUsers = async () => {
     setLoadingAnimation({
-        ...loadingAnimation,
-        massRestore: true,
-        textChangeRestore: "Restoring...",
+      ...loadingAnimation,
+      massRestore: true,
+      textChangeRestore: "Restoring...",
     });
     await httpClient
       .post(`/user/mass-restore-account`)
@@ -315,7 +327,7 @@ export default function ManagementFilesUsers() {
         setLoadingAnimation({
           ...loadingAnimation,
           massRestore: false,
-            textChangeRestore: "Restore all",
+          textChangeRestore: "Restore all",
         });
       })
       .catch((error) => {
@@ -323,7 +335,7 @@ export default function ManagementFilesUsers() {
         setLoadingAnimation({
           ...loadingAnimation,
           massRestore: false,
-            textChangeRestore: "Restore all",
+          textChangeRestore: "Restore all",
         });
       });
   };
@@ -359,16 +371,16 @@ export default function ManagementFilesUsers() {
                     Mass Actions
                   </h1>
                 </div>
-                  <DangerConfirmModal
-                      body={`Are you sure you want to Activate all users in the system?`}
-                      description="This action cannot be undone. All users will able to access the system to view their sentiment scores. This action will also send an email to all users to notify them that their account has been activated."
-                      is_Mass
-                      is_loading={massActivation}
-                      onClick={() => handleCreateAllUsers()}
-                      textChange={textChangeActivation}
-                      title="Activate All Users"
-                      type_of_modal="activate"
-                  />
+                <DangerConfirmModal
+                  body={`Are you sure you want to Activate all users in the system?`}
+                  description="This action cannot be undone. All users will able to access the system to view their sentiment scores. This action will also send an email to all users to notify them that their account has been activated."
+                  is_Mass
+                  is_loading={massActivation}
+                  onClick={() => handleCreateAllUsers()}
+                  textChange={textChangeActivation}
+                  title="Activate All Users"
+                  type_of_modal="activate"
+                />
               </div>
             </div>
             <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
@@ -378,17 +390,17 @@ export default function ManagementFilesUsers() {
                     Mass Danger Actions
                   </h1>
                 </div>
-                  <DangerConfirmModal
-                      body={`Are you sure you want to deactivate all users?`}
-                      description="This action cannot be undone. The users you are trying to Deactivate will not be able to login to the system to view their sentiment scores."
-                      is_Mass
-                      is_danger
-                      is_loading={massDeactivation}
-                      onConfirm={() => handleDeactivateAllUsers()}
-                      textChange={textChangeDeactivation}
-                      title="Deactivate all users"
-                      type_of_modal="deactivate"
-                  />
+                <DangerConfirmModal
+                  body={`Are you sure you want to deactivate all users?`}
+                  description="This action cannot be undone. The users you are trying to Deactivate will not be able to login to the system to view their sentiment scores."
+                  is_Mass
+                  is_danger
+                  is_loading={massDeactivation}
+                  onConfirm={() => handleDeactivateAllUsers()}
+                  textChange={textChangeDeactivation}
+                  title="Deactivate all users"
+                  type_of_modal="deactivate"
+                />
                 <DangerConfirmModal
                   body={`Are you sure you want to restore all users authorization to the system?`}
                   description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
@@ -420,7 +432,7 @@ export default function ManagementFilesUsers() {
                   is_danger
                   is_loading={massRestore}
                   onConfirm={() => handleRestoreAllUsers()}
-                    textChange={textChangeRestore}
+                  textChange={textChangeRestore}
                   title="Restore Account"
                   type_of_modal="restore"
                 />
@@ -432,7 +444,7 @@ export default function ManagementFilesUsers() {
                   is_danger
                   is_loading={massDelete}
                   onConfirm={() => handleDeleteAllUsers()}
-                    textChange={textChangeDelete}
+                  textChange={textChangeDelete}
                   title="Delete User Confirmation"
                   type_of_modal="delete"
                 />
@@ -525,38 +537,38 @@ export default function ManagementFilesUsers() {
                     </div>
                   </div>
                   <div className="col-span-1 w-full">
-                      <div className="flex flex-row w-full px-4">
-                          <h1 className="text-base font-bold leading-none text-blue-500">
-                              General
-                          </h1>
-                      </div>
-                      <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                          <DangerConfirmModal
-                              body={`Are you sure you want to Activate the user account of ${user.full_name}?`}
-                              description="This action cannot be undone. The user you are trying to Activate will be able to access the system to view their sentiment scores."
-                              id={user.id}
-                              is_Mass={false}
-                              onConfirm={handleCreateUser}
-                              title="Activate User Account"
-                              type_of_modal="activate"
-                          />
-                      </div>
+                    <div className="flex flex-row w-full px-4">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
+                        General
+                      </h1>
+                    </div>
+                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                      <DangerConfirmModal
+                        body={`Are you sure you want to Activate the user account of ${user.full_name}?`}
+                        description="This action cannot be undone. The user you are trying to Activate will be able to access the system to view their sentiment scores."
+                        id={user.id}
+                        is_Mass={false}
+                        onConfirm={handleCreateUser}
+                        title="Activate User Account"
+                        type_of_modal="activate"
+                      />
+                    </div>
                     <div className="flex flex-row w-full px-4">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Danger Zone
                       </h1>
                     </div>
                     <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                        <DangerConfirmModal
-                            body={`Are you sure you want to deactivate the user account of ${user.full_name}?`}
-                            description="This action cannot be undone. The user you are trying to deactivate will be unable to access the system to view their sentiment scores."
-                            id={user.id}
-                            is_Mass={false}
-                            is_danger
-                            onConfirm={handleDeactivateUser}
-                            title="Deactivate User Account"
-                            type_of_modal="deactivate"
-                        />
+                      <DangerConfirmModal
+                        body={`Are you sure you want to deactivate the user account of ${user.full_name}?`}
+                        description="This action cannot be undone. The user you are trying to deactivate will be unable to access the system to view their sentiment scores."
+                        id={user.id}
+                        is_Mass={false}
+                        is_danger
+                        onConfirm={handleDeactivateUser}
+                        title="Deactivate User Account"
+                        type_of_modal="deactivate"
+                      />
                       {user.is_locked ? (
                         <DangerConfirmModal
                           body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
