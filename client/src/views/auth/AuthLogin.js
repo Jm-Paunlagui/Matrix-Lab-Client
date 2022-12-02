@@ -132,27 +132,35 @@ export default function AuthLogin() {
         password,
       })
       .then(async (response) => {
-        jwtVerify(
-          response.data.emails,
-          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
-        )
-          .then((result) => {
-            setAuthForm({
-              ...authForm,
-              id1: result.payload.id1,
-              id2: result.payload.id2,
-              id3: result.payload.id3,
-              textChange: "Continue",
-            });
-          })
-          .catch((error) => {
-            setErrorMessage(error.message);
-            setErrorEffect(true);
-            setOki(false);
-            setAuthForm({ ...authForm, textChange: "Next" });
-          });
-        setCount(count + 1);
-        setOki(false);
+        if (response.data.status === "success") {
+          jwtVerify(
+              response.data.emails,
+              await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+          )
+              .then((result) => {
+                setAuthForm({
+                  ...authForm,
+                  id1: result.payload.id1,
+                  id2: result.payload.id2,
+                  id3: result.payload.id3,
+                  textChange: "Continue",
+                });
+                setErrorMessage("");
+                setCount(count + 1);
+                setOki(false);
+              })
+              .catch((error) => {
+                setErrorMessage(error.message);
+                setErrorEffect(true);
+                setOki(false);
+                setAuthForm({ ...authForm, textChange: "Sign In" });
+              });
+        }else {
+          setErrorMessage(response.data.message);
+          setErrorEffect(true);
+          setOki(false);
+          setAuthForm({ ...authForm, textChange: "Sign In" });
+        }
       })
       .catch((error) => {
         setErrorEffect(true);
