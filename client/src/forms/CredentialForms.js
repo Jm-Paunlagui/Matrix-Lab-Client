@@ -43,15 +43,15 @@ import PropTypes from "prop-types";
  * @constructor
  */
 export function UsernamePassword({
-                                   errorEffect,
-                                   errorMessage,
-                                   handleAuthFormChange,
-                                   handleAuthFormSubmit,
-                                   oki,
-                                   password,
-                                   textChange,
-                                   username,
-                                 }) {
+  errorEffect,
+  errorMessage,
+  handleAuthFormChange,
+  handleAuthFormSubmit,
+  oki,
+  password,
+  textChange,
+  username,
+}) {
   UsernamePassword.propTypes = {
     errorEffect: PropTypes.bool,
     errorMessage: PropTypes.string,
@@ -61,7 +61,7 @@ export function UsernamePassword({
     password: PropTypes.string,
     textChange: PropTypes.string,
     username: PropTypes.string,
-  }
+  };
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -148,18 +148,18 @@ export function TFAbyEmail({
   oki,
   textChange,
 }) {
-    TFAbyEmail.propTypes = {
-        email: PropTypes.string,
-        errorEffect: PropTypes.bool,
-        errorMessage: PropTypes.string,
-        handle2FAFormSubmit: PropTypes.func,
-        handleAuthFormChange: PropTypes.func,
-        id1: PropTypes.string,
-        id2: PropTypes.string,
-        id3: PropTypes.string,
-        oki: PropTypes.bool,
-        textChange: PropTypes.string,
-    }
+  TFAbyEmail.propTypes = {
+    email: PropTypes.string,
+    errorEffect: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handle2FAFormSubmit: PropTypes.func,
+    handleAuthFormChange: PropTypes.func,
+    id1: PropTypes.string,
+    id2: PropTypes.string,
+    id3: PropTypes.string,
+    oki: PropTypes.bool,
+    textChange: PropTypes.string,
+  };
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -317,25 +317,25 @@ export function VerifyTFA({
   textChange2,
   setCountDown,
 }) {
-    VerifyTFA.propTypes = {
-        authForm: PropTypes.object,
-        buttonDisabled: PropTypes.bool,
-        code: PropTypes.string,
-        count: PropTypes.number,
-        countDown: PropTypes.number,
-        errorEffect: PropTypes.bool,
-        errorMessage: PropTypes.string,
-        handle2FAFormSubmit: PropTypes.func,
-        handle2FAVerifyFormSubmit: PropTypes.func,
-        handleAuthFormChange: PropTypes.func,
-        oki: PropTypes.bool,
-        setAuthForm: PropTypes.func,
-        setCount: PropTypes.func,
-        setErrorMessage: PropTypes.func,
-        textChange: PropTypes.string,
-        textChange2: PropTypes.string,
-        setCountDown: PropTypes.func,
-    }
+  VerifyTFA.propTypes = {
+    authForm: PropTypes.object,
+    buttonDisabled: PropTypes.bool,
+    code: PropTypes.string,
+    count: PropTypes.number,
+    countDown: PropTypes.number,
+    errorEffect: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handle2FAFormSubmit: PropTypes.func,
+    handle2FAVerifyFormSubmit: PropTypes.func,
+    handleAuthFormChange: PropTypes.func,
+    oki: PropTypes.bool,
+    setAuthForm: PropTypes.func,
+    setCount: PropTypes.func,
+    setErrorMessage: PropTypes.func,
+    textChange: PropTypes.string,
+    textChange2: PropTypes.string,
+    setCountDown: PropTypes.func,
+  };
   return (
     <>
       <form className="relative mx-auto mt-6 mb-6 max-w-screen">

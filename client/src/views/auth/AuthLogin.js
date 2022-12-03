@@ -306,48 +306,50 @@ export default function AuthLogin() {
                     </p>
                   )}
                 </div>
-                {count === 1
-                  ? <UsernamePassword
-                      errorEffect={errorEffect}
-                      errorMessage={errorMessage}
-                      handleAuthFormChange={handleAuthFormChange}
-                      handleAuthFormSubmit={handleAuthFormSubmit}
-                      oki={oki}
-                      password={password}
-                      textChange={textChange}
-                      username={username}
-                    />
-                  : count === 2
-                  ? <TFAbyEmail
-                      email={email}
-                      errorEffect={errorEffect}
-                      errorMessage={errorMessage}
-                      handle2FAFormSubmit={handle2FAFormSubmit}
-                      handleAuthFormChange={handleAuthFormChange}
-                      id1={id1}
-                      id2={id2}
-                      id3={id3}
-                      oki={oki}
-                      textChange={textChange}
-                    />
-                  : <VerifyTFA
-                      authForm={authForm}
-                      buttonDisabled={buttonDisabled}
-                      code={code}
-                      count={count}
-                      countDown={countDown}
-                      errorEffect={errorEffect}
-                      errorMessage={errorMessage}
-                      handle2FAFormSubmit={handle2FAFormSubmit}
-                      handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
-                      handleAuthFormChange={handleAuthFormChange}
-                      oki={oki}
-                      setAuthForm={setAuthForm}
-                      setCount={setCount}
-                      setErrorMessage={setErrorMessage}
-                      textChange={textChange}
-                      textChange2={textChange2}
-                    />}
+                {count === 1 ? (
+                  <UsernamePassword
+                    errorEffect={errorEffect}
+                    errorMessage={errorMessage}
+                    handleAuthFormChange={handleAuthFormChange}
+                    handleAuthFormSubmit={handleAuthFormSubmit}
+                    oki={oki}
+                    password={password}
+                    textChange={textChange}
+                    username={username}
+                  />
+                ) : count === 2 ? (
+                  <TFAbyEmail
+                    email={email}
+                    errorEffect={errorEffect}
+                    errorMessage={errorMessage}
+                    handle2FAFormSubmit={handle2FAFormSubmit}
+                    handleAuthFormChange={handleAuthFormChange}
+                    id1={id1}
+                    id2={id2}
+                    id3={id3}
+                    oki={oki}
+                    textChange={textChange}
+                  />
+                ) : (
+                  <VerifyTFA
+                    authForm={authForm}
+                    buttonDisabled={buttonDisabled}
+                    code={code}
+                    count={count}
+                    countDown={countDown}
+                    errorEffect={errorEffect}
+                    errorMessage={errorMessage}
+                    handle2FAFormSubmit={handle2FAFormSubmit}
+                    handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
+                    handleAuthFormChange={handleAuthFormChange}
+                    oki={oki}
+                    setAuthForm={setAuthForm}
+                    setCount={setCount}
+                    setErrorMessage={setErrorMessage}
+                    textChange={textChange}
+                    textChange2={textChange2}
+                  />
+                )}
               </div>
             </div>
           </div>
