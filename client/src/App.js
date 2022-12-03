@@ -48,6 +48,7 @@ import ManagementFilesListofDataResponse from "./views/admin/management/manageme
 import ManagementFilesReadDataResponse from "./views/admin/management/management_files/ManagementFilesReadDataResponse";
 import IndexFiles from "./views/admin/management/management_files/IndexFiles";
 import IndexUsers from "./views/admin/management/management_users/IndexUsers";
+import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
 
 /**
  * @description Main component for the application
@@ -134,6 +135,7 @@ export default function App() {
                 exact="true"
                 path="reset-password/:token"
               />
+              <Route element={<AuthAdminUnlock />} exact="true" path="admin-unlock/:token" />
             </Route>
             <Route
               element={<AuthRemoveEmailFromAccount />}

@@ -192,7 +192,11 @@ export default function AuthLogin() {
       .then((response) => {
         toast(`${response.data.message}`, { type: "info" });
         setCountDown(30);
-        setCount(count + 1);
+        if (count >= 3) {
+          setCount(count);
+        } else {
+          setCount(count + 1);
+        }
         setAuthForm({
           ...authForm,
           textChange: "Verify code",

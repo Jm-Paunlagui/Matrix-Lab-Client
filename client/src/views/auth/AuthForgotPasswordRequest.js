@@ -36,7 +36,6 @@ export default function AuthForgotPasswordRequest() {
     id1: "",
     id2: "",
     id3: "",
-    mask: "",
     textChange: "Next",
     username: "",
   });

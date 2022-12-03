@@ -272,6 +272,7 @@ export function TFAbyEmail(
  * @param setErrorMessage
  * @param textChange
  * @param textChange2
+ * @param setCountDown
  * @constructor
  */
 export function VerifyTFA(
@@ -291,6 +292,7 @@ export function VerifyTFA(
   setErrorMessage,
   textChange,
   textChange2,
+    setCountDown,
 ) {
   return (
     <>
@@ -319,7 +321,9 @@ export function VerifyTFA(
                 `opacity-50 cursor-not-allowed pointer-events-none`
               }`}
               name="resend"
-              onClick={handle2FAFormSubmit}
+              onClick={function (event){
+                handle2FAFormSubmit(event) && setCountDown(0)
+              }}
               type="reset"
             >
               {oki ? (
