@@ -28,6 +28,7 @@ import PasswordChecklist from "react-password-checklist";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { LoadingAnimation } from "../components/loading/LoadingPage";
+import PropTypes from "prop-types";
 
 /**
  * @description User login form for the application
@@ -41,16 +42,26 @@ import { LoadingAnimation } from "../components/loading/LoadingPage";
  * @param username
  * @constructor
  */
-export function UsernamePassword(
-  errorEffect,
-  errorMessage,
-  handleAuthFormChange,
-  handleAuthFormSubmit,
-  oki,
-  password,
-  textChange,
-  username,
-) {
+export function UsernamePassword({
+                                   errorEffect,
+                                   errorMessage,
+                                   handleAuthFormChange,
+                                   handleAuthFormSubmit,
+                                   oki,
+                                   password,
+                                   textChange,
+                                   username,
+                                 }) {
+  UsernamePassword.propTypes = {
+    errorEffect: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handleAuthFormChange: PropTypes.func,
+    handleAuthFormSubmit: PropTypes.func,
+    oki: PropTypes.bool,
+    password: PropTypes.string,
+    textChange: PropTypes.string,
+    username: PropTypes.string,
+  }
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -125,7 +136,7 @@ export function UsernamePassword(
  * @param textChange
  * @constructor
  */
-export function TFAbyEmail(
+export function TFAbyEmail({
   email,
   errorEffect,
   errorMessage,
@@ -136,7 +147,19 @@ export function TFAbyEmail(
   id3,
   oki,
   textChange,
-) {
+}) {
+    TFAbyEmail.propTypes = {
+        email: PropTypes.string,
+        errorEffect: PropTypes.bool,
+        errorMessage: PropTypes.string,
+        handle2FAFormSubmit: PropTypes.func,
+        handleAuthFormChange: PropTypes.func,
+        id1: PropTypes.string,
+        id2: PropTypes.string,
+        id3: PropTypes.string,
+        oki: PropTypes.bool,
+        textChange: PropTypes.string,
+    }
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -275,7 +298,7 @@ export function TFAbyEmail(
  * @param setCountDown
  * @constructor
  */
-export function VerifyTFA(
+export function VerifyTFA({
   authForm,
   buttonDisabled,
   code,
@@ -293,7 +316,26 @@ export function VerifyTFA(
   textChange,
   textChange2,
   setCountDown,
-) {
+}) {
+    VerifyTFA.propTypes = {
+        authForm: PropTypes.object,
+        buttonDisabled: PropTypes.bool,
+        code: PropTypes.string,
+        count: PropTypes.number,
+        countDown: PropTypes.number,
+        errorEffect: PropTypes.bool,
+        errorMessage: PropTypes.string,
+        handle2FAFormSubmit: PropTypes.func,
+        handle2FAVerifyFormSubmit: PropTypes.func,
+        handleAuthFormChange: PropTypes.func,
+        oki: PropTypes.bool,
+        setAuthForm: PropTypes.func,
+        setCount: PropTypes.func,
+        setErrorMessage: PropTypes.func,
+        textChange: PropTypes.string,
+        textChange2: PropTypes.string,
+        setCountDown: PropTypes.func,
+    }
   return (
     <>
       <form className="relative mx-auto mt-6 mb-6 max-w-screen">
