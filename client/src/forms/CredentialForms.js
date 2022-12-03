@@ -292,7 +292,7 @@ export function VerifyTFA(
   setErrorMessage,
   textChange,
   textChange2,
-    setCountDown,
+  setCountDown,
 ) {
   return (
     <>
@@ -321,8 +321,8 @@ export function VerifyTFA(
                 `opacity-50 cursor-not-allowed pointer-events-none`
               }`}
               name="resend"
-              onClick={function (event){
-                handle2FAFormSubmit(event) && setCountDown(0)
+              onClick={function (event) {
+                handle2FAFormSubmit(event) && setCountDown(0);
               }}
               type="reset"
             >
