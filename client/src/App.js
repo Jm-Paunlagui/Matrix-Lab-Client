@@ -135,7 +135,11 @@ export default function App() {
                 exact="true"
                 path="reset-password/:token"
               />
-              <Route element={<AuthAdminUnlock />} exact="true" path="admin-unlock/:token" />
+              <Route
+                element={<AuthAdminUnlock />}
+                exact="true"
+                path="admin-unlock/:token"
+              />
             </Route>
             <Route
               element={<AuthRemoveEmailFromAccount />}
