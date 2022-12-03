@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import BackNavigation from "../../components/navbars/BackNavigation";
 import {ICON_PLACE_SELF_CENTER, PRIMARY_BUTTON} from "../../assets/styles/styled-components";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignIn} from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/img/android-chrome-192x192.png";
