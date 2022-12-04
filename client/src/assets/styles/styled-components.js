@@ -5,7 +5,7 @@ import {
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider border border-gray-500 rounded-lg`;
+export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent`;
 
 export const DELAY_1 = "transition duration-300 ease-in-out delay-150";
 export const DELAY_3 = "transition duration-300 ease-in-out delay-300";
@@ -38,7 +38,7 @@ export const SUCCESS_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(17,94,8
 export const WARNING_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(133,77,14)] hover:shadow-[0_2px_0px_rgb(133,77,14)] font-semibold tracking-wide text-white bg-yellow-500 border-2 hover:bg-white hover:text-yellow-500 hover:border-yellow-500 ${DEFAULT_BUTTON_TRANSITION};`;
 export const INFO_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(0,0,0)] hover:shadow-[0_2px_0px_rgb(0,0,0)] font-semibold tracking-wide text-white bg-blue-500 border-2 hover:bg-white hover:text-blue-500 hover border-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 
-export const PRIMARY_RADIO = `bg-white text-gray-500 border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:text-blue-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
+export const PRIMARY_RADIO = `bg-white text-gray-500 outline-blue-100 cursor-pointer focus:outline-none hover:bg-blue-50 peer-checked:ring-blue-400 peer-checked:text-blue-400 peer-checked:ring-2 peer-checked:outline-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 export const SECONDARY_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-indigo-500 peer-checked:text-blue-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 export const DANGER_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-red-500 peer-checked:text-red-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 
@@ -48,12 +48,11 @@ export const DANGER_RADIO = `bg-white text-gray-500 border border-gray-300 round
 export function EMAIL_NOT_SET(email_type = "") {
   return (
     <div
-      className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 border-yellow-600 rounded-lg cursor-default text-white bg-yellow-400`}
+      className={`px-5 py-1 pl-4 flex flex-row justify-start rounded-lg cursor-default text-white bg-yellow-500`}
     >
       <FontAwesomeIcon
         className={`${ICON_PLACE_SELF_CENTER}`}
         icon={faWarning}
-        size={"lg"}
       />
       {email_type} email not set up yet for this account.
     </div>

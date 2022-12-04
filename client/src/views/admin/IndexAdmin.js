@@ -2,6 +2,7 @@ import AdminNavigationBar from "../../components/navbars/AdminNavigationBar";
 import { Navigate, Outlet } from "react-router-dom";
 import React from "react";
 import { isAuth } from "../../helpers/Auth";
+import BreadCrumb from "../../components/breadcrumb/Breadcrumb";
 
 /**
  * @description Handles admin pages for the application
@@ -11,6 +12,7 @@ export default function IndexAdmin() {
     <>
       <AdminNavigationBar />
       <div className="mt-16 font-Montserrat">
+        <BreadCrumb />
         <Outlet />
       </div>
     </>

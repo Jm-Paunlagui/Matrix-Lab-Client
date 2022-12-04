@@ -7,7 +7,7 @@ import { isAuth } from "../../../../helpers/Auth";
  */
 export default function IndexUsers() {
   return isAuth().role === "admin" ? (
-    <div className="mt-16 font-Montserrat">
+    <div className="font-Montserrat">
       <Outlet />
     </div>
   ) : (

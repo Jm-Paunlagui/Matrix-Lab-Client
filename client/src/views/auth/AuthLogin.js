@@ -274,7 +274,7 @@ export default function AuthLogin() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div
-            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
+            className={`relative flex flex-col w-full min-w-0 break-words bg-blue-50 border rounded-lg shadow-lg 
                 ${errorEffect && `animate-wiggle`}`}
             onAnimationEnd={() => setErrorEffect(false)}
           >
@@ -284,7 +284,7 @@ export default function AuthLogin() {
                 <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
               </div>
               <div className="flex-auto pt-0 mb-24 -mt-14">
-                <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
+                <h6 className="mt-16 text-lg font-bold text-blue-500 xl:text-2xl">
                   {count === 1
                     ? "Sign in to MATRIX LAB"
                     : count === 2
@@ -299,7 +299,6 @@ export default function AuthLogin() {
                       <FontAwesomeIcon
                         className={`${ICON_PLACE_SELF_CENTER}`}
                         icon={faEnvelope}
-                        size={"lg"}
                       />
                       We emailed a code to {email}. Please enter the code to
                       sign in.

@@ -8,7 +8,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import AdminDashboard from "./views/admin/AdminDashboard.js";
+import OverallDashboard from "./views/admin/dashboard/dashboard_overall/OverallDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
@@ -49,6 +49,8 @@ import ManagementFilesReadDataResponse from "./views/admin/management/management
 import IndexFiles from "./views/admin/management/management_files/IndexFiles";
 import IndexUsers from "./views/admin/management/management_users/IndexUsers";
 import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
+import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
+import IndexOverall from "./views/admin/dashboard/dashboard_overall/IndexOverall";
 
 /**
  * @description Main component for the application
@@ -154,11 +156,6 @@ export default function App() {
              * admin routes.
              */}
             <Route element={<IndexAdmin />} exact="true" path="admin">
-              <Route
-                element={<AdminDashboard />}
-                exact="true"
-                path="analytics"
-              />
               <Route element={<IndexInsights />} exact="true" path="insights">
                 <Route
                   element={<InsightsDepartment />}
@@ -192,6 +189,23 @@ export default function App() {
                 path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
+              <Route
+                  element={<IndexDashBoard />}
+                  exact="true"
+                  path="dashboard"
+              >
+                <Route
+                    element={<IndexOverall />}
+                    exact="true"
+                    path="overall"
+                >
+                    <Route
+                        element={<OverallDashboard />}
+                        exact="true"
+                        path="analytics"
+                    />
+                </Route>
+              </Route>
               <Route
                 element={<IndexManagementFiles />}
                 exact="true"

@@ -163,19 +163,19 @@ export default function InsightsPerSemesterDepartment() {
               }}
             >
               {
-                new ViewInsightHistory(
-                  handleViewFile,
-                  handleSelect,
-                  school_year,
-                  school_year_to_choose,
-                  school_semester,
-                  school_semester_to_choose,
-                  csv_question,
-                  csv_question_to_choose,
-                  errorMessage,
-                  ok,
-                  textChange,
-                )
+                <ViewInsightHistory
+                    csv_question={csv_question}
+                    csv_question_to_choose={csv_question_to_choose}
+                    errorMessage={errorMessage}
+                    handleSelect={handleSelect}
+                    handleViewFile={handleViewFile}
+                    ok={ok}
+                    school_semester={school_semester}
+                    school_semester_to_choose={school_semester_to_choose}
+                    school_year={school_year}
+                    school_year_to_choose={school_year_to_choose}
+                    textChange={textChange}
+                />
               }
             </div>
           </div>
@@ -215,7 +215,7 @@ export default function InsightsPerSemesterDepartment() {
                                                  }`}
                         >
                           <div className="flex flex-col items-center justify-center w-full p-4">
-                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
+                            <h1 className="text-5xl font-black leading-none tracking-tight text-blue-500">
                               {department.department}
                             </h1>
                           </div>
@@ -231,7 +231,7 @@ export default function InsightsPerSemesterDepartment() {
                                     ? "bg-gray-500"
                                     : department.id === 2
                                     ? "bg-orange-500"
-                                    : "bg-blue-500"
+                                    : "bg-cyan-500"
                                 }`}
                               >
                                 <i

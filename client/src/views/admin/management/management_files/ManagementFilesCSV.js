@@ -136,7 +136,7 @@ export default function ManagementFilesCSV() {
   };
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl mt-8">
       <Header
         body={
           "View and Delete files CSV files that have been analyzed by the system."

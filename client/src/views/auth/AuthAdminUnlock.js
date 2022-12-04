@@ -55,7 +55,6 @@ export default function AuthAdminUnlock() {
     textChange2,
     username,
     buttonDisabled,
-    is_resend,
   } = toUnlock;
   /**
    * @description Handles the Error/Success animation and messages for the reset password form.
@@ -291,7 +290,7 @@ export default function AuthAdminUnlock() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div
-            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
+            className={`relative flex flex-col w-full min-w-0 break-words bg-blue-50 border rounded-lg shadow-lg
                           ${errorEffect && `animate-wiggle`}`}
             onAnimationEnd={() => setErrorEffect(false)}
           >
@@ -315,7 +314,6 @@ export default function AuthAdminUnlock() {
                           <FontAwesomeIcon
                             className={`ml-2 ${ICON_PLACE_SELF_CENTER}`}
                             icon={faSignIn}
-                            size={"lg"}
                           />{" "}
                           Sign in
                         </h1>
@@ -329,13 +327,13 @@ export default function AuthAdminUnlock() {
                 <div className="flex items-center justify-center py-2 text-gray-800">
                   <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
                 </div>
-                <h1> Step {count > 4 ? 4 : count} of 4</h1>
                 <div className="flex-auto mb-24 space-y-6 -mt-14">
                   <div className="mb-3 text-start">
-                    <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
+                    <h6 className="mt-16 text-lg font-bold text-blue-500 xl:text-2xl">
                       Let&#39;s get you back in
                     </h6>
                   </div>
+                  <h1 className="font-medium"> Step {count > 4 ? 4 : count} of 4</h1>
                   <div className="mb-3 text-start">
                     {count === 1 ? (
                       <p className="text-gray-500">
@@ -359,64 +357,53 @@ export default function AuthAdminUnlock() {
                     )}
                   </div>
                   {count === 1
-                    ? new Username(
-                        count,
-                        errorEffect,
-                        errorMessage,
-                        handleFormChange,
-                        handleUsernameSubmit,
-                        oki,
-                        textChange,
-                        username,
-                      )
+                    ? <Username
+                        count={count}
+                        errorEffect={errorEffect}
+                        errorMessage={errorMessage}
+                        handleFormChange={handleFormChange}
+                        handleUsernameSubmit={handleUsernameSubmit}
+                        oki={oki}
+                        textChange={textChange}
+                        username={username}
+                      />
                     : count === 2
-                    ? new AssociatedEmails(
-                        confirm_email,
-                        errorEffect,
-                        errorMessage,
-                        handleFormChange,
-                        handleVerifyEmailSubmit,
-                        id1,
-                        id2,
-                        id3,
-                        oki,
-                        textChange,
-                      )
+                    ? <AssociatedEmails confirm_email={confirm_email} errorEffect={errorEffect} errorMessage={errorMessage} handleFormChange={handleFormChange} handleVerifyEmailSubmit={handleVerifyEmailSubmit} id1={id1} id2={id2} id3={id3} oki={oki} textChange={textChange} />
                     : count === 3
-                    ? new SendToEmail(
-                        count,
-                        email,
-                        errorEffect,
-                        errorMessage,
-                        handleEmailSubmit,
-                        handleFormChange,
-                        oki,
-                        toUnlock,
-                        setCount,
-                        setErrorMessage,
-                        setToUnlock,
-                        textChange,
-                      )
-                    : new VerifyTFA(
-                        toUnlock,
-                        buttonDisabled,
-                        code,
-                        count,
-                        countDown,
-                        errorEffect,
-                        errorMessage,
-                        handleEmailSubmit,
-                        handle2FAVerifyFormSubmit,
-                        handleFormChange,
-                        oki,
-                        setToUnlock,
-                        setCount,
-                        setErrorMessage,
-                        textChange,
-                        textChange2,
-                        is_resend,
-                        setCountDown,
-                      )}
+                    ? <SendToEmail
+                        count={count}
+                        email={email}
+                        errorEffect={errorEffect}
+                        errorMessage={errorMessage}
+                        handleEmailSubmit={handleEmailSubmit}
+                        handleFormChange={handleFormChange}
+                        oki={oki}
+                        setCount={setCount}
+                        setErrorMessage={setErrorMessage}
+                        setToUnlock={setToUnlock}
+                        textChange={textChange}
+                        toUnlock={toUnlock}
+                      />
+                    :  <VerifyTFA
+                        authForm={toUnlock}
+                        buttonDisabled={buttonDisabled}
+                        code={code}
+                        count={count}
+                        countDown={countDown}
+                        errorEffect={errorEffect}
+                        errorMessage={errorMessage}
+                        handle2FAFormSubmit={handleEmailSubmit}
+                        handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
+                        handleFormChange={handleFormChange}
+                        oki={oki}
+                        setAuthForm={setToUnlock}
+                        setCount={setCount}
+                        setCountDown={setCountDown}
+                        setErrorMessage={setErrorMessage}
+                        textChange={textChange}
+                        textChange2={textChange2}
+                       />
+                  }
                 </div>
               </div>
             )}

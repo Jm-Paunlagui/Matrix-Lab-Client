@@ -233,7 +233,6 @@ export default function AuthRemoveEmailFromAccount() {
                           <FontAwesomeIcon
                             className={`${ICON_PLACE_SELF_CENTER}`}
                             icon={faCircleXmark}
-                            size={"lg"}
                           />
                           <p>
                             No, remove my email address {email} from{" "}
@@ -262,7 +261,6 @@ export default function AuthRemoveEmailFromAccount() {
                           <FontAwesomeIcon
                             className={`${ICON_PLACE_SELF_CENTER}`}
                             icon={faCircleCheck}
-                            size={"lg"}
                           />
                           <p>
                             Yes, {maskUsername(username)} is my Matrix account

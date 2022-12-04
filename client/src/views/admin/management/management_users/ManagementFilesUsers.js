@@ -345,7 +345,7 @@ export default function ManagementFilesUsers() {
   }, [page_number]);
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl">
       <Header
         body={
           "Create a new user for the system to view and analyze their sentiment scores."

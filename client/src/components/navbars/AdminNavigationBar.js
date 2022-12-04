@@ -75,14 +75,9 @@ export default function AdminNavigationBar() {
 
   /**
    * @description Handles the navigation bar for the admin pages
-   * @type {[{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string},{current: boolean, name: string, href: string}]}
+   * @type {[{current: boolean, name: string, href: string}]}
    */
   const navigation = [
-    {
-      name: "Analytics",
-      href: "/admin/analytics",
-      current: isActive("analytics"),
-    },
     {
       name: "Sentiment Analysis",
       href: "/admin/sentiment-analysis",
@@ -159,6 +154,16 @@ export default function AdminNavigationBar() {
     },
   ];
 
+  const navigation_for_dashboard = [
+    {
+        name: "Analytics",
+        href: "/admin/dashboard/overall/analytics",
+        current: isActiveSubs4("analytics"),
+        icon: <BsAwardFill size={16} />,
+        icon_: <BsAwardFill size={24} />,
+    }
+  ]
+
   return (
     <Menu
       as="nav"
@@ -195,6 +200,50 @@ export default function AdminNavigationBar() {
 
                 <div className="hidden sm:ml-6 lg:block">
                   <div className="flex space-x-4">
+                    <div className="text-base font-medium">
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button
+                              className={`flex text-sm rounded ${
+                                  isActive("dashboard")
+                                      ? "bg-blue-400 text-white"
+                                      : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                              } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            <div className="text-base font-medium text-blue-100 hover:text-white">
+                              Dashboard
+                            </div>
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute left-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {navigation_for_dashboard.map((item) => (
+                                <Menu.Item key={item.name}>
+                                  <NavLink to={item.href}>
+                                    <h5
+                                        className={`${
+                                            item.current
+                                                ? "bg-blue-400 text-white"
+                                                : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                                        } px-3 py-2 rounded-md text-sm font-medium`}
+                                    >
+                                      {item.name}
+                                    </h5>
+                                  </NavLink>
+                                </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
                     {navigation.map((item) => (
                       <NavLink key={item.name} to={item.href}>
                         <h5
@@ -373,9 +422,27 @@ export default function AdminNavigationBar() {
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-100">
               <h5
-                className={`block px-3 py-2 text-base font-bold text-blue-500`}
+                  className={`block px-3 py-2 text-base font-bold text-blue-500`}
               >
                 Dashboard
+              </h5>
+              {navigation_for_dashboard.map((item) => (
+                  <NavLink key={item.name} to={item.href}>
+                    <h5
+                        className={`${
+                            item.current
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                        } px-3 py-2 rounded-md text-sm font-medium`}
+                    >
+                      {item.name}
+                    </h5>
+                  </NavLink>
+              ))}
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
+              >
+                Deep Learning Model
               </h5>
               {navigation.map((item) => (
                 <NavLink key={item.name} to={item.href}>
