@@ -242,6 +242,8 @@ export default function ManagementFilesCSV() {
                         body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
                         description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
                         id={file.id}
+                        is_Mass={false}
+                        is_danger
                         onConfirm={handleDelete}
                         title="Delete File Confirmation"
                         type_of_modal="delete"
