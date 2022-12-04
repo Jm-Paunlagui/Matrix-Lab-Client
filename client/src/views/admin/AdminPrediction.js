@@ -16,7 +16,7 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
- faCaretLeft,
+  faCaretLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
@@ -27,7 +27,6 @@ import { LoadingAnimation } from "../../components/loading/LoadingPage";
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
-
   const [csv_file_to_view, setCSVFileToView] = useState();
 
   const [handlers, setHandlers] = useState({
@@ -248,7 +247,7 @@ export default function AdminPrediction() {
         .catch((error) => {
           removeAll();
           // Back to the first step
-            setCount(1);
+          setCount(1);
           // setExtras({
           //   ...extras,
           //   csv_question: "",
@@ -326,354 +325,357 @@ export default function AdminPrediction() {
             <div className="grid w-full h-full grid-cols-1  md:grid-cols-5">
               <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
                 <h1 className="text-xl font-bold text-blue-500">
-                  {count === 1 ? "Upload CSV File" : count === 2 ? "Header Selection" : "Analyze and Save CSV File"}
+                  {count === 1
+                    ? "Upload CSV File"
+                    : count === 2
+                    ? "Header Selection"
+                    : "Analyze and Save CSV File"}
                 </h1>
                 <h1 className="font-medium"> Step {count} of 3</h1>
                 {count === 1 ? (
-                <form
-                  encType={"multipart/form-data"}
-                  onSubmit={handleSubmitCSVToView}
-                >
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex flex-col w-full space-y-2">
-                      <div
-                        className="flex items-center justify-center w-full"
-                        {...getRootProps()}
-                      >
-                        <label
-                          className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ${
-                            errorEffect || errorEffectToAnS
-                              ? `animate-wiggle border-red-500`
-                              : "border-gray-300"
-                          }`}
-                          htmlFor="dropzone-file"
+                  <form
+                    encType={"multipart/form-data"}
+                    onSubmit={handleSubmitCSVToView}
+                  >
+                    <div className="flex flex-col space-y-4">
+                      <div className="flex flex-col w-full space-y-2">
+                        <div
+                          className="flex items-center justify-center w-full"
+                          {...getRootProps()}
                         >
-                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg
-                              aria-hidden="true"
-                              className="w-10 h-10 mb-3 text-gray-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                              />
-                            </svg>
-                            <p className="mb-2 text-sm text-gray-500">
-                              <span className="font-semibold">
-                                Click to upload
-                              </span>{" "}
-                              or drag and drop
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              CSV files only
-                            </p>
-                          </div>
-                          <input {...getInputProps()} />
-                          {isDragActive ? (
-                            <p className="text-sm text-gray-500">
-                              Drop the files here ...
-                            </p>
-                          ) : (
-                            <p className="text-sm text-gray-500">
-                              Drag &#39;n&#39; drop some files here, or click to
-                              select files
-                            </p>
-                          )}
-                          {acceptedFiles.map((file) => (
-                            <p
-                              className="text-sm text-gray-500"
-                              key={file.path}
-                            >
-                              {file ? `${file.path} - ${file.size} bytes` : ""}
-                            </p>
-                          ))}
-                        </label>
-                      </div>
-                      <p
-                        className="mt-1 text-sm text-gray-500"
-                        id="file_input_help"
-                      >
-                        The file must be a .csv file.
-                      </p>
-                    </div>
-                  </div>
-                  {/* Error message */}
-                  {errorMessage ? (
-                    <div className="mt-2 text-sm font-semibold text-red-500">
-                      {errorMessage}
-                    </div>
-                  ) : null}
-                  <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                    <div className="p-1" />
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                      type="submit"
-                    >
-                      {ok ? (
-                        <LoadingAnimation />
-                      ) : null}
-                      {textChange}
-                    </button>
-                  </div>
-                </form>
-                ) : count === 2 ? (
-                    <form onSubmit={handleSubmitToAnalyzeAndSave}>
-                          <div className="flex flex-col space-y-4">
-
-                            <p className="text-gray-500">
-                              Select the header that contains the responses to be
-                              analyzed. The responses should be in the form of a
-                              sentence. For example, &ldquo;I like the teacher&ldquo;.
-                            </p>
-                            <div className="flex flex-col w-full space-y-2">
-                              <h1 className="text-base font-medium text-blue-500">
-                                File Name
-                              </h1>
-                              <input
-                                  className={`${TEXT_FIELD} cursor-not-allowed text-gray-500 bg-white`}
-                                  disabled
-                                  placeholder="File Name"
-                                  type="text"
-                                  value={csv_file_name}
-                              />
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                              <Listbox
-                                  name={"sentence"}
-                                  onChange={handleSelect(
-                                      "selected_column_for_sentence",
-                                  )}
+                          <label
+                            className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ${
+                              errorEffect || errorEffectToAnS
+                                ? `animate-wiggle border-red-500`
+                                : "border-gray-300"
+                            }`}
+                            htmlFor="dropzone-file"
+                          >
+                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                              <svg
+                                aria-hidden="true"
+                                className="w-10 h-10 mb-3 text-gray-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
                               >
-                                <Listbox.Label className="block text-base font-medium text-blue-500">
-                                  Sentence
-                                </Listbox.Label>
-                                <div className="relative mt-1">
-                                  <Listbox.Button
-                                      className={`${TEXT_FIELD} text-gray-500 bg-white`}
-                                  >
+                                <path
+                                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                />
+                              </svg>
+                              <p className="mb-2 text-sm text-gray-500">
+                                <span className="font-semibold">
+                                  Click to upload
+                                </span>{" "}
+                                or drag and drop
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                CSV files only
+                              </p>
+                            </div>
+                            <input {...getInputProps()} />
+                            {isDragActive ? (
+                              <p className="text-sm text-gray-500">
+                                Drop the files here ...
+                              </p>
+                            ) : (
+                              <p className="text-sm text-gray-500">
+                                Drag &#39;n&#39; drop some files here, or click
+                                to select files
+                              </p>
+                            )}
+                            {acceptedFiles.map((file) => (
+                              <p
+                                className="text-sm text-gray-500"
+                                key={file.path}
+                              >
+                                {file
+                                  ? `${file.path} - ${file.size} bytes`
+                                  : ""}
+                              </p>
+                            ))}
+                          </label>
+                        </div>
+                        <p
+                          className="mt-1 text-sm text-gray-500"
+                          id="file_input_help"
+                        >
+                          The file must be a .csv file.
+                        </p>
+                      </div>
+                    </div>
+                    {/* Error message */}
+                    {errorMessage ? (
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
+                    ) : null}
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
+                      <div className="p-1" />
+                      <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        type="submit"
+                      >
+                        {ok ? <LoadingAnimation /> : null}
+                        {textChange}
+                      </button>
+                    </div>
+                  </form>
+                ) : count === 2 ? (
+                  <form onSubmit={handleSubmitToAnalyzeAndSave}>
+                    <div className="flex flex-col space-y-4">
+                      <p className="text-gray-500">
+                        Select the header that contains the responses to be
+                        analyzed. The responses should be in the form of a
+                        sentence. For example, &ldquo;I like the teacher&ldquo;.
+                      </p>
+                      <div className="flex flex-col w-full space-y-2">
+                        <h1 className="text-base font-medium text-blue-500">
+                          File Name
+                        </h1>
+                        <input
+                          className={`${TEXT_FIELD} cursor-not-allowed text-gray-500 bg-white`}
+                          disabled
+                          placeholder="File Name"
+                          type="text"
+                          value={csv_file_name}
+                        />
+                      </div>
+                      <div className="flex flex-col w-full space-y-2">
+                        <Listbox
+                          name={"sentence"}
+                          onChange={handleSelect(
+                            "selected_column_for_sentence",
+                          )}
+                        >
+                          <Listbox.Label className="block text-base font-medium text-blue-500">
+                            Sentence
+                          </Listbox.Label>
+                          <div className="relative mt-1">
+                            <Listbox.Button
+                              className={`${TEXT_FIELD} text-gray-500 bg-white`}
+                            >
                               <span className="block truncate text-start">
                                 {selected_column_for_sentence
-                                    ? selected_column_for_sentence
-                                    : "Select a column"}
+                                  ? selected_column_for_sentence
+                                  : "Select a column"}
                               </span>
-                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
-                                    aria-hidden="true"
-                                    className="h-5 w-5 text-blue-500"
+                                  aria-hidden="true"
+                                  className="h-5 w-5 text-blue-500"
                                 />
                               </span>
-                                  </Listbox.Button>
-                                  <Transition
-                                      as={Fragment}
-                                      enter="transition duration-100 ease-out"
-                                      enterFrom="transform scale-95 opacity-0"
-                                      enterTo="transform scale-100 opacity-100"
-                                      leave="transition duration-75 ease-out"
-                                      leaveFrom="transform scale-100 opacity-100"
-                                      leaveTo="transform scale-95 opacity-0"
+                            </Listbox.Button>
+                            <Transition
+                              as={Fragment}
+                              enter="transition duration-100 ease-out"
+                              enterFrom="transform scale-95 opacity-0"
+                              enterTo="transform scale-100 opacity-100"
+                              leave="transition duration-75 ease-out"
+                              leaveFrom="transform scale-100 opacity-100"
+                              leaveTo="transform scale-95 opacity-0"
+                            >
+                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                {csv_columns_to_pick.map((column) => (
+                                  <Listbox.Option
+                                    className={({ active }) =>
+                                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                                        active
+                                          ? "bg-blue-100 text-blue-500"
+                                          : "text-gray-500"
+                                      }`
+                                    }
+                                    key={column.id}
+                                    value={`${column.id} - ${column.name}`}
                                   >
-                                    <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                      {csv_columns_to_pick.map((column) => (
-                                          <Listbox.Option
-                                              className={({ active }) =>
-                                                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                                      active
-                                                          ? "bg-blue-100 text-blue-500"
-                                                          : "text-gray-500"
-                                                  }`
-                                              }
-                                              key={column.id}
-                                              value={`${column.id} - ${column.name}`}
-                                          >
-                                            {({ selected }) => (
-                                                <>
+                                    {({ selected }) => (
+                                      <>
                                         <span
-                                            className={`block truncate ${
-                                                selected
-                                                    ? "font-medium"
-                                                    : "font-normal"
-                                            }`}
+                                          className={`block truncate ${
+                                            selected
+                                              ? "font-medium"
+                                              : "font-normal"
+                                          }`}
                                         >
                                           {`${column.id} - ${column.name}`}
                                         </span>
-                                                  {selected ? (
-                                                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
+                                        {selected ? (
+                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                                             <CheckIcon
-                                                aria-hidden="true"
-                                                className="h-5 w-5"
+                                              aria-hidden="true"
+                                              className="h-5 w-5"
                                             />
                                           </span>
-                                                  ) : null}
-                                                </>
-                                            )}
-                                          </Listbox.Option>
-                                      ))}
-                                    </Listbox.Options>
-                                  </Transition>
-                                </div>
-                              </Listbox>
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                              <h1 className="text-base font-medium text-blue-500">
-                                School Year
-                              </h1>
-                              <input
-                                  className={`truncate ${TEXT_FIELD} text-gray-500 bg-white`}
-                                  name="school_year"
-                                  onChange={handleExtras("school_year")}
-                                  placeholder="e.g. S.Y. 2020-2021"
-                                  type="text"
-                                  value={school_year}
-                              />
-                              <Listbox
-                                  name={"semester"}
-                                  onChange={handleSelect("selected_semester")}
-                              >
-                                <Listbox.Label className="block text-base font-medium text-blue-500">
-                                  Semester
-                                </Listbox.Label>
-                                <div className="relative mt-1">
-                                  <Listbox.Button
-                                      className={`${TEXT_FIELD} text-gray-500 bg-white`}
-                                  >
+                                        ) : null}
+                                      </>
+                                    )}
+                                  </Listbox.Option>
+                                ))}
+                              </Listbox.Options>
+                            </Transition>
+                          </div>
+                        </Listbox>
+                      </div>
+                      <div className="flex flex-col w-full space-y-2">
+                        <h1 className="text-base font-medium text-blue-500">
+                          School Year
+                        </h1>
+                        <input
+                          className={`truncate ${TEXT_FIELD} text-gray-500 bg-white`}
+                          name="school_year"
+                          onChange={handleExtras("school_year")}
+                          placeholder="e.g. S.Y. 2020-2021"
+                          type="text"
+                          value={school_year}
+                        />
+                        <Listbox
+                          name={"semester"}
+                          onChange={handleSelect("selected_semester")}
+                        >
+                          <Listbox.Label className="block text-base font-medium text-blue-500">
+                            Semester
+                          </Listbox.Label>
+                          <div className="relative mt-1">
+                            <Listbox.Button
+                              className={`${TEXT_FIELD} text-gray-500 bg-white`}
+                            >
                               <span className="block truncate text-start">
                                 {selected_semester
-                                    ? selected_semester
-                                    : "Select a semester"}
+                                  ? selected_semester
+                                  : "Select a semester"}
                               </span>
-                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
-                                    aria-hidden="true"
-                                    className="h-5 w-5 text-blue-500"
+                                  aria-hidden="true"
+                                  className="h-5 w-5 text-blue-500"
                                 />
                               </span>
-                                  </Listbox.Button>
-                                  <Transition
-                                      as={Fragment}
-                                      enter="transition duration-100 ease-out"
-                                      enterFrom="transform scale-95 opacity-0"
-                                      enterTo="transform scale-100 opacity-100"
-                                      leave="transition duration-75 ease-out"
-                                      leaveFrom="transform scale-100 opacity-100"
-                                      leaveTo="transform scale-95 opacity-0"
+                            </Listbox.Button>
+                            <Transition
+                              as={Fragment}
+                              enter="transition duration-100 ease-out"
+                              enterFrom="transform scale-95 opacity-0"
+                              enterTo="transform scale-100 opacity-100"
+                              leave="transition duration-75 ease-out"
+                              leaveFrom="transform scale-100 opacity-100"
+                              leaveTo="transform scale-95 opacity-0"
+                            >
+                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                {semester.map((sem) => (
+                                  <Listbox.Option
+                                    className={({ active }) =>
+                                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                                        active
+                                          ? "bg-blue-100 text-blue-500"
+                                          : "text-gray-500"
+                                      }`
+                                    }
+                                    key={sem.id}
+                                    value={sem.name}
                                   >
-                                    <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                      {semester.map((sem) => (
-                                          <Listbox.Option
-                                              className={({ active }) =>
-                                                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                                      active
-                                                          ? "bg-blue-100 text-blue-500"
-                                                          : "text-gray-500"
-                                                  }`
-                                              }
-                                              key={sem.id}
-                                              value={sem.name}
-                                          >
-                                            {({ selected }) => (
-                                                <>
+                                    {({ selected }) => (
+                                      <>
                                         <span
-                                            className={`block truncate ${
-                                                selected
-                                                    ? "font-medium"
-                                                    : "font-normal"
-                                            }`}
+                                          className={`block truncate ${
+                                            selected
+                                              ? "font-medium"
+                                              : "font-normal"
+                                          }`}
                                         >
                                           {sem.name}
                                         </span>
-                                                  {selected ? (
-                                                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
+                                        {selected ? (
+                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                                             <CheckIcon
-                                                aria-hidden="true"
-                                                className="h-5 w-5"
+                                              aria-hidden="true"
+                                              className="h-5 w-5"
                                             />
                                           </span>
-                                                  ) : null}
-                                                </>
-                                            )}
-                                          </Listbox.Option>
-                                      ))}
-                                    </Listbox.Options>
-                                  </Transition>
-                                </div>
-                              </Listbox>
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                              {selected_column_for_sentence ? (
-                                  <h1 className="text-base font-medium text-blue-500">
-                                    Please type {'"'}
-                                    <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
-                                      {getNameFromString(selected_column_for_sentence)}
-                                    </b>
-                                    {'"'} to confirm.
-                                  </h1>
-                              ) : (
-                                  <h1 className="text-base font-medium text-blue-500">
-                                    Select a column for sentence.
-                                  </h1>
-                              )}
-                              <input
-                                  autoComplete={"off"}
-                                  className={`truncate ${TEXT_FIELD} text-gray-700 bg-white`}
-                                  name="csv_question"
-                                  onChange={handleExtras("csv_question")}
-                                  placeholder="Question"
-                                  type="text"
-                                  value={csv_question}
-                              />
-                            </div>
+                                        ) : null}
+                                      </>
+                                    )}
+                                  </Listbox.Option>
+                                ))}
+                              </Listbox.Options>
+                            </Transition>
                           </div>
-                          {/* Error message */}
-                          {errorMessageToAnS ? (
-                              <div className="mt-2 text-sm font-semibold text-red-500">
-                                {errorMessageToAnS}
-                              </div>
-                          ) : null}
-                          <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
-                            <button
-                                className={`px-5 py-1 pl-4 ${ACCENT_BUTTON} ${
-                                    count === 1 ? "hidden" : ""
-                                }`}
-                                onClick={() => {
-                                  setCount(count - 1);
+                        </Listbox>
+                      </div>
+                      <div className="flex flex-col w-full space-y-2">
+                        {selected_column_for_sentence ? (
+                          <h1 className="text-base font-medium text-blue-500">
+                            Please type {'"'}
+                            <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
+                              {getNameFromString(selected_column_for_sentence)}
+                            </b>
+                            {'"'} to confirm.
+                          </h1>
+                        ) : (
+                          <h1 className="text-base font-medium text-blue-500">
+                            Select a column for sentence.
+                          </h1>
+                        )}
+                        <input
+                          autoComplete={"off"}
+                          className={`truncate ${TEXT_FIELD} text-gray-700 bg-white`}
+                          name="csv_question"
+                          onChange={handleExtras("csv_question")}
+                          placeholder="Question"
+                          type="text"
+                          value={csv_question}
+                        />
+                      </div>
+                    </div>
+                    {/* Error message */}
+                    {errorMessageToAnS ? (
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessageToAnS}
+                      </div>
+                    ) : null}
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
+                      <button
+                        className={`px-5 py-1 pl-4 ${ACCENT_BUTTON} ${
+                          count === 1 ? "hidden" : ""
+                        }`}
+                        onClick={() => {
+                          setCount(count - 1);
 
-                                  setHandlers({
-                                    ...handlers,
-                                    textChange: "View",
-                                    errorMessageToAnS: "",
-                                  })
-                                }}
-                                type="button"
-                            >
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faCaretLeft}
-                              />
-                              Previous
-                            </button>
+                          setHandlers({
+                            ...handlers,
+                            textChange: "View",
+                            errorMessageToAnS: "",
+                          });
+                        }}
+                        type="button"
+                      >
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faCaretLeft}
+                        />
+                        Previous
+                      </button>
 
-                                <button
-                                    className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                                    type="submit"
-                                >
-                                  {okToAnS ? (
-                                      <LoadingAnimation />
-                                  ) : (
-                                      <FontAwesomeIcon
-                                          className={`${ICON_PLACE_SELF_CENTER}`}
-                                          icon={faMagnifyingGlassChart}
-                                      />
-                                  )}
-                                  {textChangeToAnS}
-                                </button>
-                          </div>
-                        </form>
+                      <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        type="submit"
+                      >
+                        {okToAnS ? (
+                          <LoadingAnimation />
+                        ) : (
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faMagnifyingGlassChart}
+                          />
+                        )}
+                        {textChangeToAnS}
+                      </button>
+                    </div>
+                  </form>
                 ) : null}
               </div>
             </div>

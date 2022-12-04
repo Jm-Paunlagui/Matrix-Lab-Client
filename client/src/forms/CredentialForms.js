@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
-    faCheck,
-    faCaretRight,
-    faEnvelope,
-    faForward,
-    faRepeat,
-    faSignIn,
-    faPenToSquare,
-    faMagnifyingGlassChart, faCaretLeft, faCheckDouble,
+  faCheck,
+  faCaretRight,
+  faEnvelope,
+  faForward,
+  faRepeat,
+  faSignIn,
+  faPenToSquare,
+  faMagnifyingGlassChart,
+  faCaretLeft,
+  faCheckDouble,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -67,7 +69,9 @@ export function UsernamePassword({
     >
       <input
         className={`${TEXT_FIELD} outline outline-2 ${
-          errorEffect ? `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
+          errorEffect
+            ? `outline-red-500 placeholder-red-500 text-red-500`
+            : `text-gray-500 bg-white outline-blue-100`
         }`}
         name="username"
         onChange={handleAuthFormChange}
@@ -76,9 +80,11 @@ export function UsernamePassword({
         value={username}
       />
       <input
-          className={`pr-12 mt-5 ${TEXT_FIELD} outline outline-2 ${
-              errorEffect ? `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-          }`}
+        className={`pr-12 mt-5 ${TEXT_FIELD} outline outline-2 ${
+          errorEffect
+            ? `outline-red-500 placeholder-red-500 text-red-500`
+            : `text-gray-500 bg-white outline-blue-100`
+        }`}
         name="password"
         onChange={handleAuthFormChange}
         placeholder="Password"
@@ -191,62 +197,62 @@ export function TFAbyEmail({
             </label>
           </li>
         ) : (
-            <>
-                {emailRegex.test(id2) ? (
-                    <li className="list-none">
-                        <input
-                            checked={email === id2}
-                            className="sr-only peer "
-                            id="id2"
-                            name="email"
-                            onChange={handleAuthFormChange}
-                            type="radio"
-                            value={id2}
-                        />
-                        <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                                errorEffect
-                                    ? `outline-red-500 placeholder-red-500 text-red-500`
-                                    : PRIMARY_RADIO
-                            }`}
-                            htmlFor="id2"
-                        >
-                            <FontAwesomeIcon
-                                className={`${ICON_PLACE_SELF_CENTER}`}
-                                icon={faEnvelope}
-                            />
-                            Email {id2}
-                        </label>
-                    </li>
-                ) : null}
-                {emailRegex.test(id3) ? (
-                    <li className="list-none">
-                        <input
-                            checked={email === id3}
-                            className="sr-only peer "
-                            id="id3"
-                            name="email"
-                            onChange={handleAuthFormChange}
-                            type="radio"
-                            value={id3}
-                        />
-                        <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                                errorEffect
-                                    ? `outline-red-500 placeholder-red-500 text-red-500`
-                                    : PRIMARY_RADIO
-                            }`}
-                            htmlFor="id3"
-                        >
-                            <FontAwesomeIcon
-                                className={`${ICON_PLACE_SELF_CENTER}`}
-                                icon={faEnvelope}
-                            />
-                            Email {id3}
-                        </label>
-                    </li>
-                ) : null}
-            </>
+          <>
+            {emailRegex.test(id2) ? (
+              <li className="list-none">
+                <input
+                  checked={email === id2}
+                  className="sr-only peer "
+                  id="id2"
+                  name="email"
+                  onChange={handleAuthFormChange}
+                  type="radio"
+                  value={id2}
+                />
+                <label
+                  className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                    errorEffect
+                      ? `outline-red-500 placeholder-red-500 text-red-500`
+                      : PRIMARY_RADIO
+                  }`}
+                  htmlFor="id2"
+                >
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faEnvelope}
+                  />
+                  Email {id2}
+                </label>
+              </li>
+            ) : null}
+            {emailRegex.test(id3) ? (
+              <li className="list-none">
+                <input
+                  checked={email === id3}
+                  className="sr-only peer "
+                  id="id3"
+                  name="email"
+                  onChange={handleAuthFormChange}
+                  type="radio"
+                  value={id3}
+                />
+                <label
+                  className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                    errorEffect
+                      ? `outline-red-500 placeholder-red-500 text-red-500`
+                      : PRIMARY_RADIO
+                  }`}
+                  htmlFor="id3"
+                >
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faEnvelope}
+                  />
+                  Email {id3}
+                </label>
+              </li>
+            ) : null}
+          </>
         )}
       </div>
       {/* Error message */}
@@ -260,12 +266,14 @@ export function TFAbyEmail({
           className={`px-5 py-1 pl-4 flex flex-row justify-center ${ACCENT_BUTTON}`}
           type="submit"
         >
-          {oki ? <LoadingAnimation /> :
-              <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={textChange === "Continue" ? faForward : faCheck}
-              />
-          }
+          {oki ? (
+            <LoadingAnimation />
+          ) : (
+            <FontAwesomeIcon
+              className={`${ICON_PLACE_SELF_CENTER}`}
+              icon={textChange === "Continue" ? faForward : faCheck}
+            />
+          )}
           {textChange}
         </button>
       </div>
@@ -336,9 +344,11 @@ export function VerifyTFA({
     <>
       <form className="relative mx-auto mt-6 mb-6 max-w-screen">
         <input
-            className={`${TEXT_FIELD} outline outline-2 ${
-                errorEffect ? `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-            }`}
+          className={`${TEXT_FIELD} outline outline-2 ${
+            errorEffect
+              ? `outline-red-500 placeholder-red-500 text-red-500`
+              : `text-gray-500 bg-white outline-blue-100`
+          }`}
           name="code"
           onChange={handleAuthFormChange}
           placeholder="2FA Code"
@@ -409,10 +419,10 @@ export function VerifyTFA({
         }}
         type="button"
       >
-          <FontAwesomeIcon
-              className={`${ICON_PLACE_SELF_CENTER}`}
-              icon={faCaretLeft}
-          />
+        <FontAwesomeIcon
+          className={`${ICON_PLACE_SELF_CENTER}`}
+          icon={faCaretLeft}
+        />
         Previous
       </button>
     </>
@@ -441,25 +451,27 @@ export function Username({
   textChange,
   username,
 }) {
-    Username.propTypes = {
-        count: PropTypes.number,
-        errorEffect: PropTypes.bool,
-        errorMessage: PropTypes.string,
-        handleFormChange: PropTypes.func,
-        handleUsernameSubmit: PropTypes.func,
-        oki: PropTypes.bool,
-        textChange: PropTypes.string,
-        username: PropTypes.string,
-    }
+  Username.propTypes = {
+    count: PropTypes.number,
+    errorEffect: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handleFormChange: PropTypes.func,
+    handleUsernameSubmit: PropTypes.func,
+    oki: PropTypes.bool,
+    textChange: PropTypes.string,
+    username: PropTypes.string,
+  };
   return (
     <form
       className="relative mx-auto max-w-screen"
       onSubmit={handleUsernameSubmit}
     >
       <input
-          className={`${TEXT_FIELD} outline outline-2 ${
-              errorEffect ? `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-          }`}
+        className={`${TEXT_FIELD} outline outline-2 ${
+          errorEffect
+            ? `outline-red-500 placeholder-red-500 text-red-500`
+            : `text-gray-500 bg-white outline-blue-100`
+        }`}
         name="username"
         onChange={handleFormChange}
         placeholder="username"
@@ -520,18 +532,18 @@ export function AssociatedEmails({
   oki,
   textChange,
 }) {
-    AssociatedEmails.propTypes = {
-        confirm_email: PropTypes.string,
-        errorEffect: PropTypes.bool,
-        errorMessage: PropTypes.string,
-        handleFormChange: PropTypes.func,
-        handleVerifyEmailSubmit: PropTypes.func,
-        id1: PropTypes.string,
-        id2: PropTypes.string,
-        id3: PropTypes.string,
-        oki: PropTypes.bool,
-        textChange: PropTypes.string,
-    }
+  AssociatedEmails.propTypes = {
+    confirm_email: PropTypes.string,
+    errorEffect: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handleFormChange: PropTypes.func,
+    handleVerifyEmailSubmit: PropTypes.func,
+    id1: PropTypes.string,
+    id2: PropTypes.string,
+    id3: PropTypes.string,
+    oki: PropTypes.bool,
+    textChange: PropTypes.string,
+  };
   return (
     <form
       className="relative mx-auto mt-6 mb-6 max-w-screen"
@@ -551,11 +563,11 @@ export function AssociatedEmails({
               value={id1}
             />
             <label
-                className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                        ? `outline-red-500 placeholder-red-500 text-red-500`
-                        : PRIMARY_RADIO
-                }`}
+              className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                errorEffect
+                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                  : PRIMARY_RADIO
+              }`}
               htmlFor="id1"
             >
               <FontAwesomeIcon
@@ -580,11 +592,11 @@ export function AssociatedEmails({
               value={id2}
             />
             <label
-                className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                        ? `outline-red-500 placeholder-red-500 text-red-500`
-                        : PRIMARY_RADIO
-                }`}
+              className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                errorEffect
+                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                  : PRIMARY_RADIO
+              }`}
               htmlFor="id2"
             >
               <FontAwesomeIcon
@@ -609,11 +621,11 @@ export function AssociatedEmails({
               value={id3}
             />
             <label
-                className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                        ? `outline-red-500 placeholder-red-500 text-red-500`
-                        : PRIMARY_RADIO
-                }`}
+              className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                errorEffect
+                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                  : PRIMARY_RADIO
+              }`}
               htmlFor="id3"
             >
               <FontAwesomeIcon
@@ -683,20 +695,20 @@ export function SendToEmail({
   setResetForm,
   textChange,
 }) {
-    SendToEmail.propTypes = {
-        count: PropTypes.number,
-        email: PropTypes.string,
-        errorEffect: PropTypes.bool,
-        errorMessage: PropTypes.string,
-        handleEmailSubmit: PropTypes.func,
-        handleFormChange: PropTypes.func,
-        oki: PropTypes.bool,
-        resetForm: PropTypes.object,
-        setCount: PropTypes.func,
-        setErrorMessage: PropTypes.func,
-        setResetForm: PropTypes.func,
-        textChange: PropTypes.string,
-    }
+  SendToEmail.propTypes = {
+    count: PropTypes.number,
+    email: PropTypes.string,
+    errorEffect: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    handleEmailSubmit: PropTypes.func,
+    handleFormChange: PropTypes.func,
+    oki: PropTypes.bool,
+    resetForm: PropTypes.object,
+    setCount: PropTypes.func,
+    setErrorMessage: PropTypes.func,
+    setResetForm: PropTypes.func,
+    textChange: PropTypes.string,
+  };
   return (
     <>
       <form
@@ -704,9 +716,11 @@ export function SendToEmail({
         onSubmit={handleEmailSubmit}
       >
         <input
-            className={`${TEXT_FIELD} outline outline-2 ${
-                errorEffect ? `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-            }`}
+          className={`${TEXT_FIELD} outline outline-2 ${
+            errorEffect
+              ? `outline-red-500 placeholder-red-500 text-red-500`
+              : `text-gray-500 bg-white outline-blue-100`
+          }`}
           name="email"
           onChange={handleFormChange}
           placeholder="Email"
@@ -760,30 +774,28 @@ export function SendToEmail({
  * @constructor
  */
 export function AccountType({ role }) {
-    AccountType.propTypes = {
-        role: PropTypes.string,
-    }
+  AccountType.propTypes = {
+    role: PropTypes.string,
+  };
   return (
-      <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow mb-8">
-          <h1 className="mb-4 text-xl font-bold text-blue-500">
-              Account Type
-          </h1>
-          <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
-              {role === "admin" ? (
-                  <div className="flex flex-col w-full space-y-2">
-                      This account is an {role} account. This account has the highest
-                      privileges in the system. This account can create, edit, and
-                      delete other accounts.
-                  </div>
-              ) : (
-                  <div className="flex flex-col w-full space-y-2">
-                      This account is a {role} account. This account has the lowest
-                      privileges in the system. This account can only view and edit
-                      their own account.
-                  </div>
-              )}
+    <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow mb-8">
+      <h1 className="mb-4 text-xl font-bold text-blue-500">Account Type</h1>
+      <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
+        {role === "admin" ? (
+          <div className="flex flex-col w-full space-y-2">
+            This account is an {role} account. This account has the highest
+            privileges in the system. This account can create, edit, and delete
+            other accounts.
           </div>
+        ) : (
+          <div className="flex flex-col w-full space-y-2">
+            This account is a {role} account. This account has the lowest
+            privileges in the system. This account can only view and edit their
+            own account.
+          </div>
+        )}
       </div>
+    </div>
   );
 }
 
@@ -815,101 +827,105 @@ export function PersonalInformation({
   showButtonforPersonalInfo,
   textChangeforPersonalInfo,
 }) {
-    PersonalInformation.propTypes = {
-        email: PropTypes.string,
-        errorEffectforPersonalInfo: PropTypes.bool,
-        errorMessageforPersonalInfo: PropTypes.string,
-        full_name: PropTypes.string,
-        handleChangeForPersonalInfo: PropTypes.func,
-        handleUpdatePersonalInfo: PropTypes.func,
-        okforPersonalInfo: PropTypes.bool,
-        profile: PropTypes.object,
-        setProfile: PropTypes.func,
-        showButtonforPersonalInfo: PropTypes.bool,
-        textChangeforPersonalInfo: PropTypes.string,
-    }
+  PersonalInformation.propTypes = {
+    email: PropTypes.string,
+    errorEffectforPersonalInfo: PropTypes.bool,
+    errorMessageforPersonalInfo: PropTypes.string,
+    full_name: PropTypes.string,
+    handleChangeForPersonalInfo: PropTypes.func,
+    handleUpdatePersonalInfo: PropTypes.func,
+    okforPersonalInfo: PropTypes.bool,
+    profile: PropTypes.object,
+    setProfile: PropTypes.func,
+    showButtonforPersonalInfo: PropTypes.bool,
+    textChangeforPersonalInfo: PropTypes.string,
+  };
   return (
     <div
       className={`flex flex-col w-full mb-8 p-8 bg-blue-50 rounded-lg shadow
             ${
-              errorEffectforPersonalInfo ? `animate-wiggle outline outline-2` : ""
+              errorEffectforPersonalInfo
+                ? `animate-wiggle outline outline-2`
+                : ""
             }`}
       id="personal-information"
       onAnimationEnd={() =>
         setProfile({ ...profile, errorEffectforPersonalInfo: false })
       }
     >
-        <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-            <div className="col-span-2">
-                <h1 className="mb-4 text-xl font-bold text-blue-500">
-                    Personal Information
+      <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2">
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Personal Information
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            This information is private and only visible to you and your
+            organization. It will not be shared with anyone else.
+          </p>
+        </div>
+        <div className="col-span-3 md:pl-8">
+          <form onSubmit={handleUpdatePersonalInfo}>
+            <div className="flex flex-col space-y-4">
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">Email</h1>
+                <input
+                  className={`${TEXT_FIELD} outline outline-2 ${
+                    errorEffectforPersonalInfo
+                      ? `outline-red-500 placeholder-red-500 text-red-500`
+                      : `text-gray-500 bg-white outline-blue-100`
+                  }`}
+                  name="email"
+                  onChange={handleChangeForPersonalInfo("email")}
+                  placeholder="Email"
+                  type="text"
+                  value={email}
+                />
+              </div>
+              <div className="flex flex-col w-full space-y-2">
+                <h1 className="text-base font-medium text-gray-500">
+                  Full Name
                 </h1>
-                <p className="mb-4 text-sm text-gray-500">
-                    This information is private and only visible to you and your
-                    organization. It will not be shared with anyone else.
-                </p>
+                <input
+                  className={`${TEXT_FIELD} outline outline-2 ${
+                    errorEffectforPersonalInfo
+                      ? `outline-red-500 placeholder-red-500 text-red-500`
+                      : `text-gray-500 bg-white outline-blue-100`
+                  }`}
+                  name="full_name"
+                  onChange={handleChangeForPersonalInfo("full_name")}
+                  placeholder="Full Name"
+                  type="text"
+                  value={full_name}
+                />
+              </div>
             </div>
-            <div className="col-span-3 md:pl-8">
-                <form onSubmit={handleUpdatePersonalInfo}>
-                    <div className="flex flex-col space-y-4">
-                        <div className="flex flex-col w-full space-y-2">
-                            <h1 className="text-base font-medium text-gray-500">Email</h1>
-                            <input
-                                className={`${TEXT_FIELD} outline outline-2 ${
-                                    errorEffectforPersonalInfo ?
-                                        `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                }`}
-                                name="email"
-                                onChange={handleChangeForPersonalInfo("email")}
-                                placeholder="Email"
-                                type="text"
-                                value={email}
-                            />
-                        </div>
-                        <div className="flex flex-col w-full space-y-2">
-                            <h1 className="text-base font-medium text-gray-500">
-                                Full Name
-                            </h1>
-                            <input
-                                className={`${TEXT_FIELD} outline outline-2 ${
-                                    errorEffectforPersonalInfo ?
-                                        `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                }`}
-                                name="full_name"
-                                onChange={handleChangeForPersonalInfo("full_name")}
-                                placeholder="Full Name"
-                                type="text"
-                                value={full_name}
-                            />
-                        </div>
-                    </div>
-                    {/* Error message */}
-                    {errorMessageforPersonalInfo ? (
-                        <div className="mt-2 text-sm font-semibold text-red-500">
-                            {errorMessageforPersonalInfo}
-                        </div>
-                    ) : null}
-                    <div
-                        className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
+            {/* Error message */}
+            {errorMessageforPersonalInfo ? (
+              <div className="mt-2 text-sm font-semibold text-red-500">
+                {errorMessageforPersonalInfo}
+              </div>
+            ) : null}
+            <div
+              className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
                         ${showButtonforPersonalInfo ? "hidden" : "block"}`}
-                    >
-                        <button
-                            className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                            type="submit"
-                        >
-                            {okforPersonalInfo ? (
-                                <LoadingAnimation />
-                            ) : (
-                                <FontAwesomeIcon
-                                    className={`${ICON_PLACE_SELF_CENTER}`}
-                                    icon={faPenToSquare}
-                                />
-                            )}
-                            {textChangeforPersonalInfo}
-                        </button>
-                    </div>
-                </form>
+            >
+              <button
+                className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                type="submit"
+              >
+                {okforPersonalInfo ? (
+                  <LoadingAnimation />
+                ) : (
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faPenToSquare}
+                  />
+                )}
+                {textChangeforPersonalInfo}
+              </button>
             </div>
+          </form>
+        </div>
       </div>
     </div>
   );
@@ -943,107 +959,109 @@ export function SecurityInformation({
   showButtonforSecurityInfo,
   textChangeforSecurityInfo,
 }) {
-    SecurityInformation.propTypes = {
-        errorEffectforSecurityInfo: PropTypes.bool,
-        errorMessageforSecurityInfo: PropTypes.string,
-        handleChangeForSecurityInfo: PropTypes.func,
-        handleUpdateSecurityInfo: PropTypes.func,
-        okforSecurityInfo: PropTypes.bool,
-        profile: PropTypes.object,
-        recovery_email: PropTypes.string,
-        secondary_email: PropTypes.string,
-        setProfile: PropTypes.func,
-        showButtonforSecurityInfo: PropTypes.bool,
-        textChangeforSecurityInfo: PropTypes.string,
-    }
+  SecurityInformation.propTypes = {
+    errorEffectforSecurityInfo: PropTypes.bool,
+    errorMessageforSecurityInfo: PropTypes.string,
+    handleChangeForSecurityInfo: PropTypes.func,
+    handleUpdateSecurityInfo: PropTypes.func,
+    okforSecurityInfo: PropTypes.bool,
+    profile: PropTypes.object,
+    recovery_email: PropTypes.string,
+    secondary_email: PropTypes.string,
+    setProfile: PropTypes.func,
+    showButtonforSecurityInfo: PropTypes.bool,
+    textChangeforSecurityInfo: PropTypes.string,
+  };
   return (
     <div
       className={`flex flex-col w-full mb-8 p-8 bg-blue-50 rounded-lg shadow
           ${
             errorEffectforSecurityInfo ? `animate-wiggle outline outline-2` : ""
           }`}
-        id="security-information"
+      id="security-information"
       onAnimationEnd={() =>
         setProfile({ ...profile, errorEffectforSecurityInfo: false })
       }
     >
-        <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-            <div className="col-span-2">
-                <h1 className="mb-4 text-xl font-bold text-blue-500">
-                    Security Information
-                </h1>
-              <p className="mb-4 text-sm text-gray-500">
-                As of now, you can only prove your identity by providing your email
-                address. In the future, you will be able to provide other ways to
-                prove your identity.
-              </p>
-            </div>
-            <div className="col-span-3 md:pl-8">
-                <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
-                    <form onSubmit={handleUpdateSecurityInfo}>
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex flex-col w-full space-y-2">
-                                <h1 className="text-base font-medium text-gray-500">
-                                    Secondary Email
-                                </h1>
-                                <input
-                                    className={`${TEXT_FIELD} outline outline-2 ${
-                                        errorEffectforSecurityInfo ?
-                                            `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                    }`}
-                                    name="secondary_email"
-                                    onChange={handleChangeForSecurityInfo("secondary_email")}
-                                    placeholder="Secondary Email"
-                                    type="email"
-                                    value={secondary_email === null ? "" : secondary_email}
-                                />
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                                <h1 className="text-base font-medium text-gray-500">
-                                    Recovery Email
-                                </h1>
-                                <input
-                                    className={`${TEXT_FIELD} outline outline-2 ${
-                                        errorEffectforSecurityInfo ?
-                                            `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                    }`}
-                                    name="recovery_email"
-                                    onChange={handleChangeForSecurityInfo("recovery_email")}
-                                    placeholder="Recovery Email"
-                                    type="email"
-                                    value={recovery_email === null ? "" : recovery_email}
-                                />
-                            </div>
-                        </div>
-                        {/* Error message */}
-                        {errorMessageforSecurityInfo ? (
-                            <div className="mt-2 text-sm font-semibold text-red-500">
-                                {errorMessageforSecurityInfo}
-                            </div>
-                        ) : null}
-                        <div
-                            className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
-                          ${showButtonforSecurityInfo ? "hidden" : "block"}`}
-                        >
-                            <button
-                                className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                                type="submit"
-                            >
-                                {okforSecurityInfo ? (
-                                    <LoadingAnimation />
-                                ) : (
-                                    <FontAwesomeIcon
-                                        className={`${ICON_PLACE_SELF_CENTER}`}
-                                        icon={faPenToSquare}
-                                    />
-                                )}
-                                {textChangeforSecurityInfo}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2">
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Security Information
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            As of now, you can only prove your identity by providing your email
+            address. In the future, you will be able to provide other ways to
+            prove your identity.
+          </p>
         </div>
+        <div className="col-span-3 md:pl-8">
+          <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
+            <form onSubmit={handleUpdateSecurityInfo}>
+              <div className="flex flex-col space-y-4">
+                <div className="flex flex-col w-full space-y-2">
+                  <h1 className="text-base font-medium text-gray-500">
+                    Secondary Email
+                  </h1>
+                  <input
+                    className={`${TEXT_FIELD} outline outline-2 ${
+                      errorEffectforSecurityInfo
+                        ? `outline-red-500 placeholder-red-500 text-red-500`
+                        : `text-gray-500 bg-white outline-blue-100`
+                    }`}
+                    name="secondary_email"
+                    onChange={handleChangeForSecurityInfo("secondary_email")}
+                    placeholder="Secondary Email"
+                    type="email"
+                    value={secondary_email === null ? "" : secondary_email}
+                  />
+                </div>
+                <div className="flex flex-col w-full space-y-2">
+                  <h1 className="text-base font-medium text-gray-500">
+                    Recovery Email
+                  </h1>
+                  <input
+                    className={`${TEXT_FIELD} outline outline-2 ${
+                      errorEffectforSecurityInfo
+                        ? `outline-red-500 placeholder-red-500 text-red-500`
+                        : `text-gray-500 bg-white outline-blue-100`
+                    }`}
+                    name="recovery_email"
+                    onChange={handleChangeForSecurityInfo("recovery_email")}
+                    placeholder="Recovery Email"
+                    type="email"
+                    value={recovery_email === null ? "" : recovery_email}
+                  />
+                </div>
+              </div>
+              {/* Error message */}
+              {errorMessageforSecurityInfo ? (
+                <div className="mt-2 text-sm font-semibold text-red-500">
+                  {errorMessageforSecurityInfo}
+                </div>
+              ) : null}
+              <div
+                className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
+                          ${showButtonforSecurityInfo ? "hidden" : "block"}`}
+              >
+                <button
+                  className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                  type="submit"
+                >
+                  {okforSecurityInfo ? (
+                    <LoadingAnimation />
+                  ) : (
+                    <FontAwesomeIcon
+                      className={`${ICON_PLACE_SELF_CENTER}`}
+                      icon={faPenToSquare}
+                    />
+                  )}
+                  {textChangeforSecurityInfo}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1096,37 +1114,38 @@ export function SignInInformation({
   textChangeforUsername,
   username,
 }) {
-    SignInInformation.propTypes = {
-        confirm_password: PropTypes.string,
-        errorEffectforPassword: PropTypes.bool,
-        errorEffectforUsername: PropTypes.bool,
-        errorMessageforPassword: PropTypes.string,
-        errorMessageforUsername: PropTypes.string,
-        handleChangeForPassword: PropTypes.func,
-        handleChangeForUsername: PropTypes.func,
-        handleUpdatePassword: PropTypes.func,
-        handleUpdateUsername: PropTypes.func,
-        new_password: PropTypes.string,
-        okforPassword: PropTypes.bool,
-        okforUsername: PropTypes.bool,
-        old_password: PropTypes.string,
-        profile: PropTypes.object,
-        setProfile: PropTypes.func,
-        showButtonforPassword: PropTypes.bool,
-        showButtonforUsername: PropTypes.bool,
-        template: PropTypes.object,
-        textChangeforPassword: PropTypes.string,
-        textChangeforUsername: PropTypes.string,
-        username: PropTypes.string,
-    }
+  SignInInformation.propTypes = {
+    confirm_password: PropTypes.string,
+    errorEffectforPassword: PropTypes.bool,
+    errorEffectforUsername: PropTypes.bool,
+    errorMessageforPassword: PropTypes.string,
+    errorMessageforUsername: PropTypes.string,
+    handleChangeForPassword: PropTypes.func,
+    handleChangeForUsername: PropTypes.func,
+    handleUpdatePassword: PropTypes.func,
+    handleUpdateUsername: PropTypes.func,
+    new_password: PropTypes.string,
+    okforPassword: PropTypes.bool,
+    okforUsername: PropTypes.bool,
+    old_password: PropTypes.string,
+    profile: PropTypes.object,
+    setProfile: PropTypes.func,
+    showButtonforPassword: PropTypes.bool,
+    showButtonforUsername: PropTypes.bool,
+    template: PropTypes.object,
+    textChangeforPassword: PropTypes.string,
+    textChangeforUsername: PropTypes.string,
+    username: PropTypes.string,
+  };
   return (
     <div
       className={`flex flex-col w-full p-8 bg-blue-50 rounded-lg shadow space-y-4
           ${
             errorEffectforUsername || errorEffectforPassword
-              ? `animate-wiggle outline outline-2` : ""
+              ? `animate-wiggle outline outline-2`
+              : ""
           }`}
-        id="sign-in-information"
+      id="sign-in-information"
       onAnimationEnd={() =>
         setProfile({
           ...profile,
@@ -1135,179 +1154,186 @@ export function SignInInformation({
         })
       }
     >
-        <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-            <div className="col-span-2">
-              <h1 className="mb-4 text-xl font-bold text-blue-500">
-                Matrix Account Sign-In
-              </h1>
-              <p className="mb-4 text-sm text-gray-500">
-                We recommend that you periodically update your password to keep your
-                account secure and prevent unauthorized access to your account.
-              </p>
-            </div>
-            <div className="col-span-3 md:pl-8">
-                <div className="flex flex-col w-full h-full col-span-3 pb-8 space-y-4">
-                    <form onSubmit={handleUpdateUsername}>
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex flex-col w-full space-y-2">
-                                <h1 className="text-base font-medium text-gray-500">
-                                    Username
-                                </h1>
-                                <input
-                                    className={`${TEXT_FIELD} outline outline-2 ${
-                                        errorEffectforUsername ?
-                                            `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                    }`}
-                                    name="username"
-                                    onChange={handleChangeForUsername("username")}
-                                    placeholder="Username"
-                                    type="text"
-                                    value={username}
-                                />
-                            </div>
-                        </div>
-                        {/* Error message */}
-                        {errorMessageforUsername ? (
-                            <div className="mt-2 text-sm font-semibold text-red-500">
-                                {errorMessageforUsername}
-                            </div>
-                        ) : null}
-                        <div
-                            className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
+      <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2">
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Matrix Account Sign-In
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            We recommend that you periodically update your password to keep your
+            account secure and prevent unauthorized access to your account.
+          </p>
+        </div>
+        <div className="col-span-3 md:pl-8">
+          <div className="flex flex-col w-full h-full col-span-3 pb-8 space-y-4">
+            <form onSubmit={handleUpdateUsername}>
+              <div className="flex flex-col space-y-4">
+                <div className="flex flex-col w-full space-y-2">
+                  <h1 className="text-base font-medium text-gray-500">
+                    Username
+                  </h1>
+                  <input
+                    className={`${TEXT_FIELD} outline outline-2 ${
+                      errorEffectforUsername
+                        ? `outline-red-500 placeholder-red-500 text-red-500`
+                        : `text-gray-500 bg-white outline-blue-100`
+                    }`}
+                    name="username"
+                    onChange={handleChangeForUsername("username")}
+                    placeholder="Username"
+                    type="text"
+                    value={username}
+                  />
+                </div>
+              </div>
+              {/* Error message */}
+              {errorMessageforUsername ? (
+                <div className="mt-2 text-sm font-semibold text-red-500">
+                  {errorMessageforUsername}
+                </div>
+              ) : null}
+              <div
+                className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
                           ${showButtonforUsername ? "hidden" : "block"}`}
-                        >
-                            <button
-                                className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                                type="submit"
-                            >
-                                {okforUsername ? (
-                                    <LoadingAnimation />
-                                ) : (
-                                    <FontAwesomeIcon
-                                        className={`${ICON_PLACE_SELF_CENTER}`}
-                                        icon={faPenToSquare}
-                                    />
-                                )}
-                                {textChangeforUsername}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+              >
+                <button
+                  className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                  type="submit"
+                >
+                  {okforUsername ? (
+                    <LoadingAnimation />
+                  ) : (
+                    <FontAwesomeIcon
+                      className={`${ICON_PLACE_SELF_CENTER}`}
+                      icon={faPenToSquare}
+                    />
+                  )}
+                  {textChangeforUsername}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
-            <div className="col-span-2">
-                <h1 className="mb-4 text-xl font-bold text-blue-500">
-                    Change Password
-                </h1>
-                <p className="mb-4 text-sm text-gray-500">
-                    Please follow the password requirements below to ensure your account is secure. (Shows password requirements when you fill the form)
-                </p>
-            </div>
-            <div className="col-span-3 md:pl-8">
-                <div className="flex flex-col w-full h-full col-span-3 pb-8 space-y-4">
-                    <form onSubmit={handleUpdatePassword}>
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex flex-col w-full space-y-2">
-                                <h1 className="text-base font-medium text-gray-500">
-                                    Current Password
-                                </h1>
-                                <input
-                                    className={`${TEXT_FIELD} outline outline-2 ${
-                                        errorEffectforPassword ?
-                                            `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                    }`}
-                                    name="old_password"
-                                    onChange={handleChangeForPassword("old_password")}
-                                    placeholder="Current Password"
-                                    type="password"
-                                    value={old_password}
-                                />
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                                <h1 className="text-base font-medium text-gray-500">
-                                    New Password
-                                </h1>
-                                <input
-                                    className={`${TEXT_FIELD} outline outline-2 ${
-                                        errorEffectforPassword ?
-                                            `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                    }`}
-                                    name="new_password"
-                                    onChange={handleChangeForPassword("new_password")}
-                                    placeholder="New Password"
-                                    type="password"
-                                    value={new_password}
-                                />
-                            </div>
-                            <div className="flex flex-col w-full space-y-2">
-                                <h1 className="text-base font-medium text-gray-500">
-                                    Confirm New Password
-                                </h1>
-                                <input
-                                    className={`${TEXT_FIELD} outline outline-2 ${
-                                        errorEffectforPassword ?
-                                            `outline-red-500 placeholder-red-500 text-red-500` : `text-gray-500 bg-white outline-blue-100`
-                                    }`}
-                                    name="confirm_password"
-                                    onChange={handleChangeForPassword("confirm_password")}
-                                    placeholder="Confirm New Password"
-                                    type="password"
-                                    value={confirm_password}
-                                />
-                            </div>
-                        </div>
-                        {/* Error message */}
-                        {errorMessageforPassword ? (
-                            <div className="mt-2 text-sm font-semibold text-red-500">
-                                {errorMessageforPassword}
-                            </div>
-                        ) : null}
-                        <div className={`mt-6 space-y-6 ${template ? "hidden" : "block"}`}>
-                            <PasswordChecklist
-                                className="text-sm text-gray-500"
-                                iconSize={8}
-                                minLength={8}
-                                onChange={(isValid) => {
-                                    setProfile({
-                                        ...profile,
-                                        showButtonforPassword: !isValid,
-                                    });
-                                }}
-                                rules={[
-                                    "minLength",
-                                    "specialChar",
-                                    "number",
-                                    "capital",
-                                    "match",
-                                ]}
-                                value={new_password}
-                                valueAgain={confirm_password}
-                            />
-                            <div
-                                className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
+      </div>
+      <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
+        <div className="col-span-2">
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Change Password
+          </h1>
+          <p className="mb-4 text-sm text-gray-500">
+            Please follow the password requirements below to ensure your account
+            is secure. (Shows password requirements when you fill the form)
+          </p>
+        </div>
+        <div className="col-span-3 md:pl-8">
+          <div className="flex flex-col w-full h-full col-span-3 pb-8 space-y-4">
+            <form onSubmit={handleUpdatePassword}>
+              <div className="flex flex-col space-y-4">
+                <div className="flex flex-col w-full space-y-2">
+                  <h1 className="text-base font-medium text-gray-500">
+                    Current Password
+                  </h1>
+                  <input
+                    className={`${TEXT_FIELD} outline outline-2 ${
+                      errorEffectforPassword
+                        ? `outline-red-500 placeholder-red-500 text-red-500`
+                        : `text-gray-500 bg-white outline-blue-100`
+                    }`}
+                    name="old_password"
+                    onChange={handleChangeForPassword("old_password")}
+                    placeholder="Current Password"
+                    type="password"
+                    value={old_password}
+                  />
+                </div>
+                <div className="flex flex-col w-full space-y-2">
+                  <h1 className="text-base font-medium text-gray-500">
+                    New Password
+                  </h1>
+                  <input
+                    className={`${TEXT_FIELD} outline outline-2 ${
+                      errorEffectforPassword
+                        ? `outline-red-500 placeholder-red-500 text-red-500`
+                        : `text-gray-500 bg-white outline-blue-100`
+                    }`}
+                    name="new_password"
+                    onChange={handleChangeForPassword("new_password")}
+                    placeholder="New Password"
+                    type="password"
+                    value={new_password}
+                  />
+                </div>
+                <div className="flex flex-col w-full space-y-2">
+                  <h1 className="text-base font-medium text-gray-500">
+                    Confirm New Password
+                  </h1>
+                  <input
+                    className={`${TEXT_FIELD} outline outline-2 ${
+                      errorEffectforPassword
+                        ? `outline-red-500 placeholder-red-500 text-red-500`
+                        : `text-gray-500 bg-white outline-blue-100`
+                    }`}
+                    name="confirm_password"
+                    onChange={handleChangeForPassword("confirm_password")}
+                    placeholder="Confirm New Password"
+                    type="password"
+                    value={confirm_password}
+                  />
+                </div>
+              </div>
+              {/* Error message */}
+              {errorMessageforPassword ? (
+                <div className="mt-2 text-sm font-semibold text-red-500">
+                  {errorMessageforPassword}
+                </div>
+              ) : null}
+              <div
+                className={`mt-6 space-y-6 ${template ? "hidden" : "block"}`}
+              >
+                <PasswordChecklist
+                  className="text-sm text-gray-500"
+                  iconSize={8}
+                  minLength={8}
+                  onChange={(isValid) => {
+                    setProfile({
+                      ...profile,
+                      showButtonforPassword: !isValid,
+                    });
+                  }}
+                  rules={[
+                    "minLength",
+                    "specialChar",
+                    "number",
+                    "capital",
+                    "match",
+                  ]}
+                  value={new_password}
+                  valueAgain={confirm_password}
+                />
+                <div
+                  className={`flex flex-col justify-start w-full mt-8 lg:flex-row lg:space-x-2
                           ${showButtonforPassword ? "hidden" : "block"}`}
-                            >
-                                <button
-                                    className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                                    type="submit"
-                                >
-                                    {okforPassword ? (
-                                        <LoadingAnimation />
-                                    ) : (
-                                        <FontAwesomeIcon
-                                            className={`${ICON_PLACE_SELF_CENTER}`}
-                                            icon={faPenToSquare}
-                                        />
-                                    )}
-                                    {textChangeforPassword}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                >
+                  <button
+                    className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                    type="submit"
+                  >
+                    {okforPassword ? (
+                      <LoadingAnimation />
+                    ) : (
+                      <FontAwesomeIcon
+                        className={`${ICON_PLACE_SELF_CENTER}`}
+                        icon={faPenToSquare}
+                      />
+                    )}
+                    {textChangeforPassword}
+                  </button>
                 </div>
-            </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
   );
 }
@@ -1340,27 +1366,28 @@ export function ViewInsightHistory({
   ok,
   textChange,
 }) {
-    ViewInsightHistory.propTypes = {
-        handleViewFile: PropTypes.func.isRequired,
-        handleSelect: PropTypes.func.isRequired,
-        school_year: PropTypes.string.isRequired,
-        school_year_to_choose: PropTypes.array.isRequired,
-        school_semester: PropTypes.string.isRequired,
-        school_semester_to_choose: PropTypes.array.isRequired,
-        csv_question: PropTypes.string.isRequired,
-        csv_question_to_choose: PropTypes.array.isRequired,
-        errorMessage: PropTypes.string.isRequired,
-        ok: PropTypes.bool.isRequired,
-        textChange: PropTypes.string.isRequired,
-    }
+  ViewInsightHistory.propTypes = {
+    handleViewFile: PropTypes.func.isRequired,
+    handleSelect: PropTypes.func.isRequired,
+    school_year: PropTypes.string.isRequired,
+    school_year_to_choose: PropTypes.array.isRequired,
+    school_semester: PropTypes.string.isRequired,
+    school_semester_to_choose: PropTypes.array.isRequired,
+    csv_question: PropTypes.string.isRequired,
+    csv_question_to_choose: PropTypes.array.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+    ok: PropTypes.bool.isRequired,
+    textChange: PropTypes.string.isRequired,
+  };
   return (
     <form onSubmit={handleViewFile}>
-        <h1 className="mb-4 text-xl font-bold text-blue-500">
-            View Previous Insight
-        </h1>
-        <p className="mb-4 text-sm text-gray-500">
-            You can view your previous insight here by selecting a specific school year, semester and the topic you want to view.
-        </p>
+      <h1 className="mb-4 text-xl font-bold text-blue-500">
+        View Previous Insight
+      </h1>
+      <p className="mb-4 text-sm text-gray-500">
+        You can view your previous insight here by selecting a specific school
+        year, semester and the topic you want to view.
+      </p>
       <div className="flex flex-col w-full space-y-2">
         <Listbox name={"school_year"} onChange={handleSelect("school_year")}>
           <Listbox.Label className="block text-base font-bold text-blue-500">
@@ -1424,9 +1451,9 @@ export function ViewInsightHistory({
           name={"school_semester"}
           onChange={handleSelect("school_semester")}
         >
-            <Listbox.Label className="block text-base font-bold text-blue-500">
-                Semester
-            </Listbox.Label>
+          <Listbox.Label className="block text-base font-bold text-blue-500">
+            Semester
+          </Listbox.Label>
           <div className="relative mt-1">
             <Listbox.Button className={`${TEXT_FIELD} bg-white`}>
               <span className="block truncate text-start text-gray-500">
@@ -1482,9 +1509,9 @@ export function ViewInsightHistory({
           </div>
         </Listbox>
         <Listbox name={"csv_question"} onChange={handleSelect("csv_question")}>
-            <Listbox.Label className="block text-base font-bold text-blue-500">
-                Question
-            </Listbox.Label>
+          <Listbox.Label className="block text-base font-bold text-blue-500">
+            Question
+          </Listbox.Label>
           <div className="relative mt-1">
             <Listbox.Button className={`${TEXT_FIELD} bg-white`}>
               <span className="block truncate text-start text-gray-500">

@@ -164,17 +164,17 @@ export default function InsightsPerSemesterDepartment() {
             >
               {
                 <ViewInsightHistory
-                    csv_question={csv_question}
-                    csv_question_to_choose={csv_question_to_choose}
-                    errorMessage={errorMessage}
-                    handleSelect={handleSelect}
-                    handleViewFile={handleViewFile}
-                    ok={ok}
-                    school_semester={school_semester}
-                    school_semester_to_choose={school_semester_to_choose}
-                    school_year={school_year}
-                    school_year_to_choose={school_year_to_choose}
-                    textChange={textChange}
+                  csv_question={csv_question}
+                  csv_question_to_choose={csv_question_to_choose}
+                  errorMessage={errorMessage}
+                  handleSelect={handleSelect}
+                  handleViewFile={handleViewFile}
+                  ok={ok}
+                  school_semester={school_semester}
+                  school_semester_to_choose={school_semester_to_choose}
+                  school_year={school_year}
+                  school_year_to_choose={school_year_to_choose}
+                  textChange={textChange}
                 />
               }
             </div>

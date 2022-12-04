@@ -189,21 +189,13 @@ export default function App() {
                 path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
-              <Route
-                  element={<IndexDashBoard />}
-                  exact="true"
-                  path="dashboard"
-              >
-                <Route
-                    element={<IndexOverall />}
+              <Route element={<IndexDashBoard />} exact="true" path="dashboard">
+                <Route element={<IndexOverall />} exact="true" path="overall">
+                  <Route
+                    element={<OverallDashboard />}
                     exact="true"
-                    path="overall"
-                >
-                    <Route
-                        element={<OverallDashboard />}
-                        exact="true"
-                        path="analytics"
-                    />
+                    path="analytics"
+                  />
                 </Route>
               </Route>
               <Route

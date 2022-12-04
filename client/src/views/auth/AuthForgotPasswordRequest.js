@@ -236,44 +236,46 @@ export default function AuthForgotPasswordRequest() {
                       </p>
                     )}
                   </div>
-                  {count === 1
-                    ? <Username
-                        count={count}
-                        errorEffect={errorEffect}
-                        errorMessage={errorMessage}
-                        handleFormChange={handleFormChange}
-                        handleUsernameSubmit={handleUsernameSubmit}
-                        oki={oki}
-                        textChange={textChange}
-                        username={username}
-                      />
-                    : count === 2
-                    ? <AssociatedEmails
-                        confirm_email={confirm_email}
-                        errorEffect={errorEffect}
-                        errorMessage={errorMessage}
-                        handleFormChange={handleFormChange}
-                        handleVerifyEmailSubmit={handleVerifyEmailSubmit}
-                        id1={id1}
-                        id2={id2}
-                        id3={id3}
-                        oki={oki}
-                        textChange={textChange}
-                      />
-                    : <SendToEmail
-                        count={count}
-                        email={email}
-                        errorEffect={errorEffect}
-                        errorMessage={errorMessage}
-                        handleEmailSubmit={handleEmailSubmit}
-                        handleFormChange={handleFormChange}
-                        oki={oki}
-                        resetForm={resetForm}
-                        setCount={setCount}
-                        setErrorMessage={setErrorMessage}
-                        setResetForm={setResetForm}
-                        textChange={textChange}
-                      />}
+                  {count === 1 ? (
+                    <Username
+                      count={count}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handleFormChange={handleFormChange}
+                      handleUsernameSubmit={handleUsernameSubmit}
+                      oki={oki}
+                      textChange={textChange}
+                      username={username}
+                    />
+                  ) : count === 2 ? (
+                    <AssociatedEmails
+                      confirm_email={confirm_email}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handleFormChange={handleFormChange}
+                      handleVerifyEmailSubmit={handleVerifyEmailSubmit}
+                      id1={id1}
+                      id2={id2}
+                      id3={id3}
+                      oki={oki}
+                      textChange={textChange}
+                    />
+                  ) : (
+                    <SendToEmail
+                      count={count}
+                      email={email}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handleEmailSubmit={handleEmailSubmit}
+                      handleFormChange={handleFormChange}
+                      oki={oki}
+                      resetForm={resetForm}
+                      setCount={setCount}
+                      setErrorMessage={setErrorMessage}
+                      setResetForm={setResetForm}
+                      textChange={textChange}
+                    />
+                  )}
                 </div>
               </div>
             )}

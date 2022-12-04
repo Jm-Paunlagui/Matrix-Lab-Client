@@ -15,8 +15,8 @@ import {
   SecurityInformation,
   SignInInformation,
 } from "../../forms/CredentialForms";
-import {Header} from "../../components/headers/Header";
-import {LoadingAnimation} from "../../components/loading/LoadingPage";
+import { Header } from "../../components/headers/Header";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin profile
@@ -394,10 +394,10 @@ export default function AdminProfile() {
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
       <Header
-          body={
-            "Update your personal information, security information, username, and password."
-          }
-          title={username ? username : <LoadingAnimation />}
+        body={
+          "Update your personal information, security information, username, and password."
+        }
+        title={username ? username : <LoadingAnimation />}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="flex flex-col w-full p-8 bg-blue-50 rounded-lg shadow">
@@ -407,10 +407,9 @@ export default function AdminProfile() {
           <p className="mb-4 text-sm text-gray-500 text-center">
             @{username ? username : <LoadingAnimation />}
           </p>
-
         </div>
         <div className="col-span-2">
-          {<AccountType role={role}/>}
+          {<AccountType role={role} />}
           {
             <PersonalInformation
               email={email}

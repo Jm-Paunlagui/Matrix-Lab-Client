@@ -333,7 +333,10 @@ export default function AuthAdminUnlock() {
                       Let&#39;s get you back in
                     </h6>
                   </div>
-                  <h1 className="font-medium"> Step {count > 4 ? 4 : count} of 4</h1>
+                  <h1 className="font-medium">
+                    {" "}
+                    Step {count > 4 ? 4 : count} of 4
+                  </h1>
                   <div className="mb-3 text-start">
                     {count === 1 ? (
                       <p className="text-gray-500">
@@ -356,54 +359,66 @@ export default function AuthAdminUnlock() {
                       </p>
                     )}
                   </div>
-                  {count === 1
-                    ? <Username
-                        count={count}
-                        errorEffect={errorEffect}
-                        errorMessage={errorMessage}
-                        handleFormChange={handleFormChange}
-                        handleUsernameSubmit={handleUsernameSubmit}
-                        oki={oki}
-                        textChange={textChange}
-                        username={username}
-                      />
-                    : count === 2
-                    ? <AssociatedEmails confirm_email={confirm_email} errorEffect={errorEffect} errorMessage={errorMessage} handleFormChange={handleFormChange} handleVerifyEmailSubmit={handleVerifyEmailSubmit} id1={id1} id2={id2} id3={id3} oki={oki} textChange={textChange} />
-                    : count === 3
-                    ? <SendToEmail
-                        count={count}
-                        email={email}
-                        errorEffect={errorEffect}
-                        errorMessage={errorMessage}
-                        handleEmailSubmit={handleEmailSubmit}
-                        handleFormChange={handleFormChange}
-                        oki={oki}
-                        setCount={setCount}
-                        setErrorMessage={setErrorMessage}
-                        setToUnlock={setToUnlock}
-                        textChange={textChange}
-                        toUnlock={toUnlock}
-                      />
-                    :  <VerifyTFA
-                        authForm={toUnlock}
-                        buttonDisabled={buttonDisabled}
-                        code={code}
-                        count={count}
-                        countDown={countDown}
-                        errorEffect={errorEffect}
-                        errorMessage={errorMessage}
-                        handle2FAFormSubmit={handleEmailSubmit}
-                        handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
-                        handleFormChange={handleFormChange}
-                        oki={oki}
-                        setAuthForm={setToUnlock}
-                        setCount={setCount}
-                        setCountDown={setCountDown}
-                        setErrorMessage={setErrorMessage}
-                        textChange={textChange}
-                        textChange2={textChange2}
-                       />
-                  }
+                  {count === 1 ? (
+                    <Username
+                      count={count}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handleFormChange={handleFormChange}
+                      handleUsernameSubmit={handleUsernameSubmit}
+                      oki={oki}
+                      textChange={textChange}
+                      username={username}
+                    />
+                  ) : count === 2 ? (
+                    <AssociatedEmails
+                      confirm_email={confirm_email}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handleFormChange={handleFormChange}
+                      handleVerifyEmailSubmit={handleVerifyEmailSubmit}
+                      id1={id1}
+                      id2={id2}
+                      id3={id3}
+                      oki={oki}
+                      textChange={textChange}
+                    />
+                  ) : count === 3 ? (
+                    <SendToEmail
+                      count={count}
+                      email={email}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handleEmailSubmit={handleEmailSubmit}
+                      handleFormChange={handleFormChange}
+                      oki={oki}
+                      setCount={setCount}
+                      setErrorMessage={setErrorMessage}
+                      setToUnlock={setToUnlock}
+                      textChange={textChange}
+                      toUnlock={toUnlock}
+                    />
+                  ) : (
+                    <VerifyTFA
+                      authForm={toUnlock}
+                      buttonDisabled={buttonDisabled}
+                      code={code}
+                      count={count}
+                      countDown={countDown}
+                      errorEffect={errorEffect}
+                      errorMessage={errorMessage}
+                      handle2FAFormSubmit={handleEmailSubmit}
+                      handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
+                      handleFormChange={handleFormChange}
+                      oki={oki}
+                      setAuthForm={setToUnlock}
+                      setCount={setCount}
+                      setCountDown={setCountDown}
+                      setErrorMessage={setErrorMessage}
+                      textChange={textChange}
+                      textChange2={textChange2}
+                    />
+                  )}
                 </div>
               </div>
             )}

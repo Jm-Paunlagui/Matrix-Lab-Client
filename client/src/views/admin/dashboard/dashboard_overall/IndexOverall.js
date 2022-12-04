@@ -5,12 +5,12 @@ import { isAuth } from "../../../../helpers/Auth";
 /**
  * @description Handles admin pages for the application
  */
-export default function IndexOverall(){
-    return isAuth().role === "admin" ? (
-        <div className="font-Montserrat">
-            <Outlet />
-        </div>
-    ) : (
-        <Navigate to="/unauthorized-access" />
-    );
+export default function IndexOverall() {
+  return isAuth().role === "admin" ? (
+    <div className="font-Montserrat">
+      <Outlet />
+    </div>
+  ) : (
+    <Navigate to="/unauthorized-access" />
+  );
 }
