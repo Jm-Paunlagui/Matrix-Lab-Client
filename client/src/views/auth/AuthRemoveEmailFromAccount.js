@@ -9,11 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
+  ACCENT_BUTTON,
   DANGER_RADIO,
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
   PRIMARY_RADIO,
-  SECONDARY_BUTTON,
 } from "../../assets/styles/styled-components";
 import httpClient from "../../http/httpClient";
 import { maskUsername } from "../../helpers/Helper";
@@ -149,7 +148,7 @@ export default function AuthRemoveEmailFromAccount() {
       <div className="flex items-center content-center justify-center">
         <div className="w-full">
           <div
-            className={`relative flex flex-col w-full min-w-0 break-words bg-white
+            className={`relative flex flex-col w-full min-w-0 break-words
                           ${errorEffect && `animate-wiggle`}`}
             onAnimationEnd={() => setErrorEffect(false)}
           >
@@ -164,7 +163,7 @@ export default function AuthRemoveEmailFromAccount() {
                 </div>
 
                 {/*  Sign in button*/}
-                <button className={`${SECONDARY_BUTTON}`} type={"button"}>
+                <button className={`${ACCENT_BUTTON}`} type={"button"}>
                   <Link to={"/auth"}>
                     <h1 className="px-5 py-1">Sign in</h1>
                   </Link>
@@ -277,7 +276,7 @@ export default function AuthRemoveEmailFromAccount() {
                     <div className="mt-6 space-y-6">
                       <div className="flex flex-col justify-center w-1/3 md:w-2/12">
                         <button
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${ACCENT_BUTTON} ${
                             buttonDisabled &&
                             `opacity-50 cursor-not-allowed pointer-events-none`
                           }`}

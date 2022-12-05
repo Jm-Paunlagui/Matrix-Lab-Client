@@ -16,7 +16,7 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
-  faCaretLeft,
+  faCaretLeft, faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
@@ -52,6 +52,91 @@ export default function AdminPrediction() {
     errorMessageToAnS,
     textChangeToAnS,
   } = handlers;
+
+  const [timeAnalyze, setTimeAnalyze] = useState({
+    overall_time: "",
+    pre_formatter_time: "",
+    post_formatter_time: "",
+    tokenizer_time: "",
+    padding_time: "",
+    model_time: "",
+    prediction_time: "",
+    sentiment_time: "",
+    adding_predictions_time: "",
+    analysis_user_time: "",
+    analysis_department_time: "",
+    analysis_collection_time: "",
+  });
+
+  const {
+    overall_time,
+    pre_formatter_time,
+    post_formatter_time,
+    tokenizer_time,
+    padding_time,
+    model_time,
+    prediction_time,
+    sentiment_time,
+    adding_predictions_time,
+    analysis_user_time,
+    analysis_department_time,
+    analysis_collection_time,
+    } = timeAnalyze;
+
+  function timeFormat(time) {
+    // If the time is greater than 1 minute then format it to minutes and seconds else format it to seconds
+    if (time >= 60) {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.round(time - minutes * 60)
+
+        // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
+        if (minutes === 1 && seconds === 1) {
+            return `${minutes} minute and ${seconds} second`
+        }
+        else if (minutes === 1) {
+            return `${minutes} minute and ${seconds} seconds`
+        }
+        else if (seconds === 1) {
+            return `${minutes} minutes and ${seconds} second`
+        }
+        else {
+            return `${minutes} minutes and ${seconds} seconds`
+        }
+    } else if (time <= 60 && time > 1) {
+        const seconds = Math.round(time)
+        const milliseconds = Math.round((time - seconds) * 1000)
+        // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
+        if (seconds === 1 && milliseconds === 1) {
+            return `${seconds} second and ${milliseconds} millisecond`
+        }
+        else if (seconds === 1) {
+            return `${seconds} second and ${milliseconds} milliseconds`
+        }
+        else if (milliseconds === 1) {
+            return `${seconds} seconds and ${milliseconds} millisecond`
+        }
+        else {
+            return `${seconds} seconds and ${milliseconds} milliseconds`
+        }
+    } else {
+      const milliseconds = Math.round(time * 1000)
+      const microseconds = Math.round((time - milliseconds) * 1000)
+
+      // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
+      if (milliseconds === 1 && microseconds === 1) {
+        return `${milliseconds} millisecond and ${microseconds} microsecond`
+      }
+      else if (milliseconds === 1) {
+        return `${milliseconds} millisecond and ${microseconds} microseconds`
+      }
+      else if (microseconds === 1) {
+        return `${milliseconds} milliseconds and ${microseconds} microsecond`
+      }
+      else {
+        return `${milliseconds} milliseconds and ${microseconds} microseconds`
+      }
+    }
+  }
 
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
@@ -220,12 +305,29 @@ export default function AdminPrediction() {
         })
         .then((response) => {
           toast.success(response.data.message);
+          console.log(response.data);
+          console.log(response.data.overall_time);
           setHandlers({
             ...handlers,
             okToAnS: false,
             showButtonToAnS: false,
             textChangeToAnS: "Analyzed and Saved",
           });
+          setTimeAnalyze({
+            ...timeAnalyze,
+            overall_time: response.data.overall_time,
+            pre_formatter_time: response.data.pre_formatter_time,
+            post_formatter_time: response.data.post_formatter_time,
+            tokenizer_time: response.data.tokenizer_time,
+            padding_time: response.data.padding_time,
+            model_time: response.data.model_time,
+            prediction_time: response.data.prediction_time,
+            sentiment_time: response.data.sentiment_time,
+            adding_predictions_time: response.data.adding_predictions_time,
+            analysis_user_time: response.data.analysis_user_time,
+            analysis_department_time: response.data.analysis_department_time,
+            analysis_collection_time: response.data.analysis_collection_time
+          })
           setExtras({
             ...extras,
             csv_question: "",
@@ -302,11 +404,20 @@ export default function AdminPrediction() {
             </b>
             .
           </p>
-          <p className="text-sm text-gray-500 font-medium">
+          <p className="mb-4 text-sm text-gray-500 font-medium">
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
               sentence
             </b>{" "}
             is the header that contains the responses of the students.
+          </p>
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            System&#39;s First Run
+          </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            On the first run, the system will take a long time to analyze and save the data. This is because the system is automatically creating users and saving the data to the database but the Admin will send the credentials to the users if the results are ready right through their email.
+          </p>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Performance of the system will improve as the system will not create users on the next run. The system will only analyze and save the data.
           </p>
         </div>
         <div className="col-span-2">
@@ -333,7 +444,7 @@ export default function AdminPrediction() {
                     ? "Header Selection"
                     : "Time elapsed"}
                 </h1>
-                <h1 className="font-medium"> Step {count} of 3</h1>
+                <h1 className="font-medium">{count === 3 ? `${timeFormat(overall_time)}` : `Step ${count} of 2`}</h1>
                 {count === 1 ? (
                   <form
                     encType={"multipart/form-data"}
@@ -705,7 +816,18 @@ export default function AdminPrediction() {
                           tags.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">Pass: 1</h1>
+                            <p className="text-gray-500">
+                              {timeFormat(pre_formatter_time)}
+                            </p>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">Pass: 2</h1>
+                            <p className="text-gray-500">
+                              {timeFormat(post_formatter_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -723,7 +845,14 @@ export default function AdminPrediction() {
                           mismatch in the tokens.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(tokenizer_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -743,7 +872,14 @@ export default function AdminPrediction() {
                           sequence. We have used a maximum length of 300.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(padding_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -761,7 +897,14 @@ export default function AdminPrediction() {
                           the model is large in size.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(model_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -786,7 +929,22 @@ export default function AdminPrediction() {
                           percentage format: 13.00%
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                                Actual Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(prediction_time)}
+                            </p>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Converting to Percentage
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(sentiment_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -800,12 +958,19 @@ export default function AdminPrediction() {
                           future use.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                                Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(adding_predictions_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime title={"User Account Automation"}>
+                      <DisclosureTime title={"User Account Automation and Analysis Computations"}>
                         <p className="text-gray-500">
                           While we are processing your data, we are also
                           creating a user account for you. This is done to make
@@ -819,7 +984,14 @@ export default function AdminPrediction() {
                           page.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                                Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_user_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -841,7 +1013,14 @@ export default function AdminPrediction() {
                           page and choose file to view.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                                Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_department_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
@@ -863,7 +1042,14 @@ export default function AdminPrediction() {
                           page and choose file and Professor to view.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <di>dsadassa</di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                                Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_collection_time)}
+                            </p>
+                          </div>
                         </div>
                       </DisclosureTime>
                     </div>
