@@ -157,8 +157,8 @@ export default function AdminNavigationBar() {
   const navigation_for_dashboard = [
     {
       name: "Analytics",
-      href: "/admin/dashboard/overall/analytics",
-      current: isActiveSubs4("analytics"),
+      href: "/admin/dashboard/analytics",
+      current: isActiveSubs("analytics"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },

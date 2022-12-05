@@ -8,7 +8,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import OverallDashboard from "./views/admin/dashboard/dashboard_overall/OverallDashboard.js";
+import OverallDashboard from "./views/admin/dashboard/OverallDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
@@ -50,7 +50,6 @@ import IndexFiles from "./views/admin/management/management_files/IndexFiles";
 import IndexUsers from "./views/admin/management/management_users/IndexUsers";
 import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
 import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
-import IndexOverall from "./views/admin/dashboard/dashboard_overall/IndexOverall";
 
 /**
  * @description Main component for the application
@@ -190,13 +189,13 @@ export default function App() {
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route element={<IndexDashBoard />} exact="true" path="dashboard">
-                <Route element={<IndexOverall />} exact="true" path="overall">
+
                   <Route
                     element={<OverallDashboard />}
                     exact="true"
                     path="analytics"
                   />
-                </Route>
+
               </Route>
               <Route
                 element={<IndexManagementFiles />}

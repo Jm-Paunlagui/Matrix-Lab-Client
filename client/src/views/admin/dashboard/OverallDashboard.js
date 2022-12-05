@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import LoadingPage from "../../../../components/loading/LoadingPage";
-import httpClient from "../../../../http/httpClient";
+import LoadingPage from "../../../components/loading/LoadingPage";
+import httpClient from "../../../http/httpClient";
 
 /**
  * @description Handles the admin profile
