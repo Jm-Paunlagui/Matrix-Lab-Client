@@ -13,7 +13,7 @@ import {
   getNumberFromString,
   MATRIX_RSA_PUBLIC_KEY,
 } from "../../helpers/Helper";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
   faCaretLeft,
@@ -22,6 +22,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
 import { useDropzone } from "react-dropzone";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
+import {Link} from "react-router-dom";
+import DisclosureTime from "../../components/disclosure/DisclosureTime";
 
 /**
  * @description Handles the admin prediction
@@ -329,7 +331,7 @@ export default function AdminPrediction() {
                     ? "Upload CSV File"
                     : count === 2
                     ? "Header Selection"
-                    : "Analyze and Save CSV File"}
+                    : "Time elapsed"}
                 </h1>
                 <h1 className="font-medium"> Step {count} of 3</h1>
                 {count === 1 ? (
@@ -676,7 +678,144 @@ export default function AdminPrediction() {
                       </button>
                     </div>
                   </form>
-                ) : null}
+                ) : (
+                    <div className="flex flex-col space-y-4">
+                      <p className="text-gray-500">
+                        Why does it take so long? Here&#39;s why: We are using a
+                        deep learning model to analyze your data. This model is a
+                        neural network that is trained to understand the meaning of your
+                        data. This process takes time. We are working on making this process faster.
+                      </p>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime
+                            title={"Removed Empty Columns and Text Preprocessing"}
+                        >
+                          <p className="text-gray-500">
+                            We are removing empty columns from your data. This is to make sure that the model does not get confused by empty columns in your data.
+                          </p>
+                          <p className="text-gray-500">
+                            We are also doing some text preprocessing which includes removing punctuations, numbers, non-ascii characters, tabs, carriage, newline, whitespace, multiple_whitespaces (also at the beginning and end of the response) ,special_characters, urls, emails, html tags.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Tokenization"}>
+                          <p className="text-gray-500">
+                            Neural networks utilize numbers as their inputs, so we need to convert our input text into numbers.
+                          </p>
+                          <p className="text-gray-500">
+                            Tokenization is the process of converting text into tokens. A token is a sequence of characters or a substring of the text. In our trained model, we used its own tokenizer to tokenize the text to avoid any mismatch in the tokens.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Padding and Truncating the Sequences"}>
+                          <p className="text-gray-500">
+                            We need to make sure that all the sequences are of the same length. This is because neural networks cannot process inputs of different lengths.
+                          </p>
+                          <p className="text-gray-500">
+                            It is required to pad the sequences with zeros to make them of the same length and truncate the sequences that are longer than the maximum length of the sequence. We have used a maximum length of 300.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Loading the Model"}>
+                          <p className="text-gray-500">
+                            Loading the model is the process of loading the trained model into the memory. This is done to make the model ready for inference.
+                          </p>
+                          <p className="text-gray-500">
+                            Inference is the process of predicting the output of the model. In our case, the model is predicting the meaning of the text. This process takes time because the model is large in size.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Predicting the Meaning of the Text"}>
+                          <p className="text-gray-500">
+                            This is the final step of the process. We are predicting the meaning of the text using the trained model.
+                          </p>
+                          <p className="text-gray-500">
+                            We are also using a threshold of 0.5 to filter out the predictions that are less than 0.5. This is done to make sure that the predictions are accurate.
+                          </p>
+                          <p className="text-gray-500">
+                            We also converted the predictions into a readable format, from -e notation to a percentage format. example of -e notation: -1.3e-01, example of percentage format: 13.00%
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Writing the Predictions to a CSV File"}>
+                          <p className="text-gray-500">
+                            We are writing the predictions to a CSV file. This is done to make sure that the predictions are saved for future use.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"User Account Automation"}>
+                          <p className="text-gray-500">
+                            While we are processing your data, we are also creating a user account for you. This is done to make sure that you can access your predictions in the future. You can manage these accounts in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/users/professors"}>User management</Link></span> page.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Department Analysis Computations"}>
+                          <p className="text-gray-500">
+                            While we are processing your data, we are also computing the department analysis. This is done to make sure that you can access the department analysis in the future. You can access the department analysis in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/files/data"}>File Management</Link></span> page and choose file to view.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <DisclosureTime title={"Collection Provider Analysis Computations"}>
+                          <p className="text-gray-500">
+                            This process also takes time because it compiles each professor&#39;s courses and responses into there own respective folders. This is done to make sure that the professor can access their predictions in the future. You can access the collection provider analysis in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/files/data"}>File Management</Link></span> page and choose file and Professor to view.
+                          </p>
+                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                            <di>
+                              dsadassa
+                            </di>
+                          </div>
+                        </DisclosureTime>
+                      </div>
+                    </div>
+                )}
               </div>
             </div>
           </div>
