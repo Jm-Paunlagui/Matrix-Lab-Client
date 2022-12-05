@@ -16,7 +16,8 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
-  faCaretLeft, faExclamationCircle,
+  faCaretLeft,
+  faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
@@ -81,59 +82,50 @@ export default function AdminPrediction() {
     analysis_user_time,
     analysis_department_time,
     analysis_collection_time,
-    } = timeAnalyze;
+  } = timeAnalyze;
 
   function timeFormat(time) {
     // If the time is greater than 1 minute then format it to minutes and seconds else format it to seconds
     if (time >= 60) {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.round(time - minutes * 60)
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.round(time - minutes * 60);
 
-        // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
-        if (minutes === 1 && seconds === 1) {
-            return `${minutes} minute and ${seconds} second`
-        }
-        else if (minutes === 1) {
-            return `${minutes} minute and ${seconds} seconds`
-        }
-        else if (seconds === 1) {
-            return `${minutes} minutes and ${seconds} second`
-        }
-        else {
-            return `${minutes} minutes and ${seconds} seconds`
-        }
+      // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
+      if (minutes === 1 && seconds === 1) {
+        return `${minutes} minute and ${seconds} second`;
+      } else if (minutes === 1) {
+        return `${minutes} minute and ${seconds} seconds`;
+      } else if (seconds === 1) {
+        return `${minutes} minutes and ${seconds} second`;
+      } else {
+        return `${minutes} minutes and ${seconds} seconds`;
+      }
     } else if (time <= 60 && time > 1) {
-        const seconds = Math.round(time)
-        const milliseconds = Math.round((time - seconds) * 1000)
-        // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
-        if (seconds === 1 && milliseconds === 1) {
-            return `${seconds} second and ${milliseconds} millisecond`
-        }
-        else if (seconds === 1) {
-            return `${seconds} second and ${milliseconds} milliseconds`
-        }
-        else if (milliseconds === 1) {
-            return `${seconds} seconds and ${milliseconds} millisecond`
-        }
-        else {
-            return `${seconds} seconds and ${milliseconds} milliseconds`
-        }
+      const seconds = Math.round(time);
+      const milliseconds = Math.round((time - seconds) * 1000);
+      // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
+      if (seconds === 1 && milliseconds === 1) {
+        return `${seconds} second and ${milliseconds} millisecond`;
+      } else if (seconds === 1) {
+        return `${seconds} second and ${milliseconds} milliseconds`;
+      } else if (milliseconds === 1) {
+        return `${seconds} seconds and ${milliseconds} millisecond`;
+      } else {
+        return `${seconds} seconds and ${milliseconds} milliseconds`;
+      }
     } else {
-      const milliseconds = Math.round(time * 1000)
-      const microseconds = Math.round((time - milliseconds) * 1000)
+      const milliseconds = Math.round(time * 1000);
+      const microseconds = Math.round((time - milliseconds) * 1000);
 
       // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
       if (milliseconds === 1 && microseconds === 1) {
-        return `${milliseconds} millisecond and ${microseconds} microsecond`
-      }
-      else if (milliseconds === 1) {
-        return `${milliseconds} millisecond and ${microseconds} microseconds`
-      }
-      else if (microseconds === 1) {
-        return `${milliseconds} milliseconds and ${microseconds} microsecond`
-      }
-      else {
-        return `${milliseconds} milliseconds and ${microseconds} microseconds`
+        return `${milliseconds} millisecond and ${microseconds} microsecond`;
+      } else if (milliseconds === 1) {
+        return `${milliseconds} millisecond and ${microseconds} microseconds`;
+      } else if (microseconds === 1) {
+        return `${milliseconds} milliseconds and ${microseconds} microsecond`;
+      } else {
+        return `${milliseconds} milliseconds and ${microseconds} microseconds`;
       }
     }
   }
@@ -326,8 +318,8 @@ export default function AdminPrediction() {
             adding_predictions_time: response.data.adding_predictions_time,
             analysis_user_time: response.data.analysis_user_time,
             analysis_department_time: response.data.analysis_department_time,
-            analysis_collection_time: response.data.analysis_collection_time
-          })
+            analysis_collection_time: response.data.analysis_collection_time,
+          });
           setExtras({
             ...extras,
             csv_question: "",
@@ -414,10 +406,16 @@ export default function AdminPrediction() {
             System&#39;s First Run
           </h1>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            On the first run, the system will take a long time to analyze and save the data. This is because the system is automatically creating users and saving the data to the database but the Admin will send the credentials to the users if the results are ready right through their email.
+            On the first run, the system will take a long time to analyze and
+            save the data. This is because the system is automatically creating
+            users and saving the data to the database but the Admin will send
+            the credentials to the users if the results are ready right through
+            their email.
           </p>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            Performance of the system will improve as the system will not create users on the next run. The system will only analyze and save the data.
+            Performance of the system will improve as the system will not create
+            users on the next run. The system will only analyze and save the
+            data.
           </p>
         </div>
         <div className="col-span-2">
@@ -444,7 +442,11 @@ export default function AdminPrediction() {
                     ? "Header Selection"
                     : "Time elapsed"}
                 </h1>
-                <h1 className="font-medium">{count === 3 ? `${timeFormat(overall_time)}` : `Step ${count} of 2`}</h1>
+                <h1 className="font-medium">
+                  {count === 3
+                    ? `${timeFormat(overall_time)}`
+                    : `Step ${count} of 2`}
+                </h1>
                 {count === 1 ? (
                   <form
                     encType={"multipart/form-data"}
@@ -817,13 +819,17 @@ export default function AdminPrediction() {
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
-                            <h1 className="text-base font-medium text-blue-500">Pass: 1</h1>
+                            <h1 className="text-base font-medium text-blue-500">
+                              Pass: 1
+                            </h1>
                             <p className="text-gray-500">
                               {timeFormat(pre_formatter_time)}
                             </p>
                           </div>
                           <div className="bg-white p-2 rounded-lg">
-                            <h1 className="text-base font-medium text-blue-500">Pass: 2</h1>
+                            <h1 className="text-base font-medium text-blue-500">
+                              Pass: 2
+                            </h1>
                             <p className="text-gray-500">
                               {timeFormat(post_formatter_time)}
                             </p>
@@ -931,7 +937,7 @@ export default function AdminPrediction() {
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">
-                                Actual Time taken
+                              Actual Time taken
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(prediction_time)}
@@ -960,7 +966,7 @@ export default function AdminPrediction() {
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">
-                                Time taken
+                              Time taken
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(adding_predictions_time)}
@@ -970,7 +976,11 @@ export default function AdminPrediction() {
                       </DisclosureTime>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime title={"User Account Automation and Analysis Computations"}>
+                      <DisclosureTime
+                        title={
+                          "User Account Automation and Analysis Computations"
+                        }
+                      >
                         <p className="text-gray-500">
                           While we are processing your data, we are also
                           creating a user account for you. This is done to make
@@ -986,7 +996,7 @@ export default function AdminPrediction() {
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">
-                                Time taken
+                              Time taken
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(analysis_user_time)}
@@ -1015,7 +1025,7 @@ export default function AdminPrediction() {
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">
-                                Time taken
+                              Time taken
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(analysis_department_time)}
@@ -1044,7 +1054,7 @@ export default function AdminPrediction() {
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">
-                                Time taken
+                              Time taken
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(analysis_collection_time)}
