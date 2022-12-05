@@ -3,11 +3,11 @@ import { ChevronUpIcon } from '@heroicons/react/20/solid'
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function DisclosureTime({
+export default function DisclosureTogglable({
     title,
     children,
 }){
-    DisclosureTime.propTypes = {
+    DisclosureTogglable.propTypes = {
         title: PropTypes.string,
         children: PropTypes.node,
     }

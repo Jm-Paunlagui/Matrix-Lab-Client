@@ -23,7 +23,7 @@ import { Header } from "../../components/headers/Header";
 import { useDropzone } from "react-dropzone";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 import {Link} from "react-router-dom";
-import DisclosureTime from "../../components/disclosure/DisclosureTime";
+import DisclosureTogglable from "../../components/disclosure/DisclosureTogglable";
 
 /**
  * @description Handles the admin prediction
@@ -687,7 +687,7 @@ export default function AdminPrediction() {
                         data. This process takes time. We are working on making this process faster.
                       </p>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime
+                        <DisclosureTogglable
                             title={"Removed Empty Columns and Text Preprocessing"}
                         >
                           <p className="text-gray-500">
@@ -701,10 +701,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Tokenization"}>
+                        <DisclosureTogglable title={"Tokenization"}>
                           <p className="text-gray-500">
                             Neural networks utilize numbers as their inputs, so we need to convert our input text into numbers.
                           </p>
@@ -716,10 +716,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Padding and Truncating the Sequences"}>
+                        <DisclosureTogglable title={"Padding and Truncating the Sequences"}>
                           <p className="text-gray-500">
                             We need to make sure that all the sequences are of the same length. This is because neural networks cannot process inputs of different lengths.
                           </p>
@@ -731,10 +731,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Loading the Model"}>
+                        <DisclosureTogglable title={"Loading the Model"}>
                           <p className="text-gray-500">
                             Loading the model is the process of loading the trained model into the memory. This is done to make the model ready for inference.
                           </p>
@@ -746,10 +746,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Predicting the Meaning of the Text"}>
+                        <DisclosureTogglable title={"Predicting the Meaning of the Text"}>
                           <p className="text-gray-500">
                             This is the final step of the process. We are predicting the meaning of the text using the trained model.
                           </p>
@@ -764,10 +764,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Writing the Predictions to a CSV File"}>
+                        <DisclosureTogglable title={"Writing the Predictions to a CSV File"}>
                           <p className="text-gray-500">
                             We are writing the predictions to a CSV file. This is done to make sure that the predictions are saved for future use.
                           </p>
@@ -776,10 +776,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"User Account Automation"}>
+                        <DisclosureTogglable title={"User Account Automation"}>
                           <p className="text-gray-500">
                             While we are processing your data, we are also creating a user account for you. This is done to make sure that you can access your predictions in the future. You can manage these accounts in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/users/professors"}>User management</Link></span> page.
                           </p>
@@ -788,10 +788,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Department Analysis Computations"}>
+                        <DisclosureTogglable title={"Department Analysis Computations"}>
                           <p className="text-gray-500">
                             While we are processing your data, we are also computing the department analysis. This is done to make sure that you can access the department analysis in the future. You can access the department analysis in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/files/data"}>File Management</Link></span> page and choose file to view.
                           </p>
@@ -800,10 +800,10 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                       <div className="flex flex-col w-full">
-                        <DisclosureTime title={"Collection Provider Analysis Computations"}>
+                        <DisclosureTogglable title={"Collection Provider Analysis Computations"}>
                           <p className="text-gray-500">
                             This process also takes time because it compiles each professor&#39;s courses and responses into there own respective folders. This is done to make sure that the professor can access their predictions in the future. You can access the collection provider analysis in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/files/data"}>File Management</Link></span> page and choose file and Professor to view.
                           </p>
@@ -812,7 +812,7 @@ export default function AdminPrediction() {
                               dsadassa
                             </di>
                           </div>
-                        </DisclosureTime>
+                        </DisclosureTogglable>
                       </div>
                     </div>
                 )}
