@@ -41,7 +41,6 @@ export default function AuthAdminUnlock() {
     textChange: "Next",
     textChange2: "",
     username: "",
-    is_resend: false,
   });
   const {
     name,
@@ -409,7 +408,7 @@ export default function AuthAdminUnlock() {
                       errorMessage={errorMessage}
                       handle2FAFormSubmit={handleEmailSubmit}
                       handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
-                      handleFormChange={handleFormChange}
+                      handleAuthFormChange={handleFormChange}
                       oki={oki}
                       setAuthForm={setToUnlock}
                       setCount={setCount}
