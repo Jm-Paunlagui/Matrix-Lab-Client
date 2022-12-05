@@ -8,6 +8,7 @@ import SuccessAnimation from "actually-accessible-react-success-animation";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
+  ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   PRIMARY_BUTTON,
   TEXT_FIELD,
@@ -131,7 +132,7 @@ export default function AuthResetPassword() {
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
-              <div className="py-12 bg-white rounded-lg shadow-lg">
+              <div className="py-12 bg-blue-50 rounded-lg shadow-lg">
                 <SuccessAnimation color="#5cb85c" text="Success!" />
                 <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
@@ -139,7 +140,7 @@ export default function AuthResetPassword() {
                     with your new password.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button className={`${PRIMARY_BUTTON}`} type={"button"}>
+                    <button className={`${ACCENT_BUTTON}`} type={"button"}>
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Proceed to

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import {
+  ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
 } from "../../assets/styles/styled-components";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -295,7 +295,7 @@ export default function AuthAdminUnlock() {
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
-              <div className="py-12 bg-white rounded-lg shadow-lg">
+              <div className="py-12 bg-blue-50 rounded-lg shadow-lg">
                 <SuccessAnimation color="#5cb85c" text="Success!" />
                 <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
@@ -306,7 +306,7 @@ export default function AuthAdminUnlock() {
                     If you don&#39;t see it, check your spam folder.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button className={`${PRIMARY_BUTTON}`} type={"button"}>
+                    <button className={`${ACCENT_BUTTON}`} type={"button"}>
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Done?
