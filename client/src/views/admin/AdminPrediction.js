@@ -392,17 +392,20 @@ export default function AdminPrediction() {
       analysis_user_time: "",
       analysis_department_time: "",
       analysis_collection_time: "",
-    })
-    setCount(1);
-    await httpClient.post("/data/delete-uploaded-csv-file", {
-      file_name: csv_file_name,
-    }).then((response) => {
-      toast.success(response.data.message);
-    }).catch((error) => {
-      toast.error(error.message);
     });
+    setCount(1);
+    await httpClient
+      .post("/data/delete-uploaded-csv-file", {
+        file_name: csv_file_name,
+      })
+      .then((response) => {
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
     removeAll();
-  }
+  };
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -442,10 +445,14 @@ export default function AdminPrediction() {
             save the data. This is because the system is{" "}
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
               automatically creates user accounts
-            </b>{" "} and saves the results to there respective folders based on the user&#39;s full name.
+            </b>{" "}
+            and saves the results to there respective folders based on the
+            user&#39;s full name.
           </p>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            Performance of the system will improve as the system manages to save a lot of data. The system will also be able to analyze and save the data faster every time it runs{" "}
+            Performance of the system will improve as the system manages to save
+            a lot of data. The system will also be able to analyze and save the
+            data faster every time it runs{" "}
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
               but it still depends on the size of the data to analyze and save.
             </b>
@@ -454,12 +461,14 @@ export default function AdminPrediction() {
             Account Credentials
           </h1>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            Admin will send the credentials to the users if the results are ready right through their email. You can manage these accounts in the{" "}
+            Admin will send the credentials to the users if the results are
+            ready right through their email. You can manage these accounts in
+            the{" "}
             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                            <Link to={"/admin/management/users/professors"}>
-                              User management
-                            </Link>
-                          </span>{" "}
+              <Link to={"/admin/management/users/professors"}>
+                User management
+              </Link>
+            </span>{" "}
             page.
           </p>
         </div>
@@ -1110,24 +1119,27 @@ export default function AdminPrediction() {
                     </div>
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
                       <button
-                          className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
-                          onClick={() => {
-                            setCount(2)
-                          }}
-                          type="button"
+                        className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                        onClick={() => {
+                          setCount(2);
+                        }}
+                        type="button"
                       >
                         <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faCaretLeft}
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faCaretLeft}
                         />
                         Next Header to Analyze
                       </button>
                       <button
-                          className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                          onClick={handleResetWhenDone}
-                          type="button"
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        onClick={handleResetWhenDone}
+                        type="button"
                       >
-                        <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`} icon={faFlagCheckered} />
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faFlagCheckered}
+                        />
                         Finish
                       </button>
                     </div>
