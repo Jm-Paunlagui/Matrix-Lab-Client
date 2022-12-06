@@ -13,17 +13,18 @@ import {
   getNumberFromString,
   MATRIX_RSA_PUBLIC_KEY,
 } from "../../helpers/Helper";
-import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/20/solid";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
   faCaretLeft,
+  faFlagCheckered,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
 import { useDropzone } from "react-dropzone";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
-import {Link} from "react-router-dom";
-import DisclosureTogglable from "../../components/disclosure/DisclosureTogglable";
+import { Link } from "react-router-dom";
+import DisclosureTime from "../../components/disclosure/DisclosureTime";
 
 /**
  * @description Handles the admin prediction
@@ -52,6 +53,82 @@ export default function AdminPrediction() {
     errorMessageToAnS,
     textChangeToAnS,
   } = handlers;
+
+  const [timeAnalyze, setTimeAnalyze] = useState({
+    overall_time: "",
+    pre_formatter_time: "",
+    post_formatter_time: "",
+    tokenizer_time: "",
+    padding_time: "",
+    model_time: "",
+    prediction_time: "",
+    sentiment_time: "",
+    adding_predictions_time: "",
+    analysis_user_time: "",
+    analysis_department_time: "",
+    analysis_collection_time: "",
+  });
+
+  const {
+    overall_time,
+    pre_formatter_time,
+    post_formatter_time,
+    tokenizer_time,
+    padding_time,
+    model_time,
+    prediction_time,
+    sentiment_time,
+    adding_predictions_time,
+    analysis_user_time,
+    analysis_department_time,
+    analysis_collection_time,
+  } = timeAnalyze;
+
+  function timeFormat(time) {
+    // If the time is greater than 1 minute then format it to minutes and seconds else format it to seconds
+    if (time >= 60) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.round(time - minutes * 60);
+
+      // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
+      if (minutes === 1 && seconds === 1) {
+        return `${minutes} minute and ${seconds} second`;
+      } else if (minutes === 1) {
+        return `${minutes} minute and ${seconds} seconds`;
+      } else if (seconds === 1) {
+        return `${minutes} minutes and ${seconds} second`;
+      } else {
+        return `${minutes} minutes and ${seconds} seconds`;
+      }
+    } else if (time <= 60 && time > 1) {
+      const seconds = Math.round(time);
+      const milliseconds = Math.round((time - seconds) * 1000);
+      // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
+      if (seconds === 1 && milliseconds === 1) {
+        return `${seconds} second and ${milliseconds} millisecond`;
+      } else if (seconds === 1) {
+        return `${seconds} second and ${milliseconds} milliseconds`;
+      } else if (milliseconds === 1) {
+        return `${seconds} seconds and ${milliseconds} millisecond`;
+      } else {
+        return `${seconds} seconds and ${milliseconds} milliseconds`;
+      }
+    } else {
+      const milliseconds = Math.round(time * 1000);
+      const microseconds = Math.round((time - milliseconds) * 1000);
+
+      // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
+      if (milliseconds === 1 && microseconds === 1) {
+        return `${milliseconds} millisecond and ${microseconds} microsecond`;
+      } else if (milliseconds === 1) {
+        return `${milliseconds} millisecond and ${microseconds} microseconds`;
+      } else if (microseconds === 1) {
+        return `${milliseconds} milliseconds and ${microseconds} microsecond`;
+      } else {
+        return `${milliseconds} milliseconds and ${microseconds} microseconds`;
+      }
+    }
+  }
 
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
@@ -153,7 +230,7 @@ export default function AdminPrediction() {
           ...handlers,
           ok: false,
           showButtonToView: false,
-          textChange: "Viewed",
+          textChange: "View",
         });
         toast.success(response.data.message);
         jwtVerify(
@@ -226,24 +303,21 @@ export default function AdminPrediction() {
             showButtonToAnS: false,
             textChangeToAnS: "Analyzed and Saved",
           });
-          setExtras({
-            ...extras,
-            csv_question: "",
-            school_year: "",
+          setTimeAnalyze({
+            ...timeAnalyze,
+            overall_time: response.data.overall_time,
+            pre_formatter_time: response.data.pre_formatter_time,
+            post_formatter_time: response.data.post_formatter_time,
+            tokenizer_time: response.data.tokenizer_time,
+            padding_time: response.data.padding_time,
+            model_time: response.data.model_time,
+            prediction_time: response.data.prediction_time,
+            sentiment_time: response.data.sentiment_time,
+            adding_predictions_time: response.data.adding_predictions_time,
+            analysis_user_time: response.data.analysis_user_time,
+            analysis_department_time: response.data.analysis_department_time,
+            analysis_collection_time: response.data.analysis_collection_time,
           });
-          setSelectedColumn({
-            ...selectedColumn,
-            selected_column_for_sentence: "",
-            selected_semester: "",
-          });
-          setCSVColumns({
-            ...csv_columns,
-            show_columns: false,
-            csv_file_name: "",
-            csv_columns_to_pick: [],
-          });
-          // remove the file from the dropzone
-          removeAll();
           setCount(count + 1);
         })
         .catch((error) => {
@@ -278,6 +352,61 @@ export default function AdminPrediction() {
     }
   };
 
+  const handleResetWhenDone = async () => {
+    console.log("Resetting");
+    setExtras({
+      ...extras,
+      csv_question: "",
+      school_year: "",
+    });
+    setSelectedColumn({
+      ...selectedColumn,
+      selected_column_for_sentence: "",
+      selected_semester: "",
+    });
+    setCSVColumns({
+      ...csv_columns,
+      show_columns: true,
+      csv_file_name: "",
+      csv_columns_to_pick: [],
+    });
+    setHandlers({
+      ...handlers,
+      textChange: "View",
+      okToAnS: false,
+      errorEffectToAnS: false,
+      errorMessageToAnS: "",
+      textChangeToAnS: "Analyze and Save",
+    });
+    setTimeAnalyze({
+      ...timeAnalyze,
+      overall_time: "",
+      pre_formatter_time: "",
+      post_formatter_time: "",
+      tokenizer_time: "",
+      padding_time: "",
+      model_time: "",
+      prediction_time: "",
+      sentiment_time: "",
+      adding_predictions_time: "",
+      analysis_user_time: "",
+      analysis_department_time: "",
+      analysis_collection_time: "",
+    });
+    setCount(1);
+    await httpClient
+      .post("/data/delete-uploaded-csv-file", {
+        file_name: csv_file_name,
+      })
+      .then((response) => {
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+    removeAll();
+  };
+
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
       <Header
@@ -302,11 +431,45 @@ export default function AdminPrediction() {
             </b>
             .
           </p>
-          <p className="text-sm text-gray-500 font-medium">
+          <p className="mb-4 text-sm text-gray-500 font-medium">
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
               sentence
             </b>{" "}
             is the header that contains the responses of the students.
+          </p>
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            System&#39;s First Run
+          </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            On the first run, the system will take a long time to analyze and
+            save the data. This is because the system is{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              automatically creates user accounts
+            </b>{" "}
+            and saves the results to there respective folders based on the
+            user&#39;s full name.
+          </p>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Performance of the system will improve as the system manages to save
+            a lot of data. The system will also be able to analyze and save the
+            data faster every time it runs{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              but it still depends on the size of the data to analyze and save.
+            </b>
+          </p>
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Account Credentials
+          </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Admin will send the credentials to the users if the results are
+            ready right through their email. You can manage these accounts in
+            the{" "}
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              <Link to={"/admin/management/users/professors"}>
+                User management
+              </Link>
+            </span>{" "}
+            page.
           </p>
         </div>
         <div className="col-span-2">
@@ -333,7 +496,11 @@ export default function AdminPrediction() {
                     ? "Header Selection"
                     : "Time elapsed"}
                 </h1>
-                <h1 className="font-medium"> Step {count} of 3</h1>
+                <h1 className="font-medium">
+                  {count === 3
+                    ? `${timeFormat(overall_time)}`
+                    : `Step ${count} of 2`}
+                </h1>
                 {count === 1 ? (
                   <form
                     encType={"multipart/form-data"}
@@ -679,142 +846,304 @@ export default function AdminPrediction() {
                     </div>
                   </form>
                 ) : (
-                    <div className="flex flex-col space-y-4">
-                      <p className="text-gray-500">
-                        Why does it take so long? Here&#39;s why: We are using a
-                        deep learning model to analyze your data. This model is a
-                        neural network that is trained to understand the meaning of your
-                        data. This process takes time. We are working on making this process faster.
-                      </p>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable
-                            title={"Removed Empty Columns and Text Preprocessing"}
-                        >
-                          <p className="text-gray-500">
-                            We are removing empty columns from your data. This is to make sure that the model does not get confused by empty columns in your data.
-                          </p>
-                          <p className="text-gray-500">
-                            We are also doing some text preprocessing which includes removing punctuations, numbers, non-ascii characters, tabs, carriage, newline, whitespace, multiple_whitespaces (also at the beginning and end of the response) ,special_characters, urls, emails, html tags.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
+                  <div className="flex flex-col space-y-4">
+                    <p className="text-gray-500">
+                      Why does it take so long? Here&#39;s why: We are using a
+                      deep learning model to analyze your data. This model is a
+                      neural network that is trained to understand the meaning
+                      of your data. This process takes time. We are working on
+                      making this process faster.
+                    </p>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={"Removed Empty Columns and Text Preprocessing"}
+                      >
+                        <p className="text-gray-500">
+                          We are removing empty columns from your data. This is
+                          to make sure that the model does not get confused by
+                          empty columns in your data.
+                        </p>
+                        <p className="text-gray-500">
+                          We are also doing some text preprocessing which
+                          includes removing punctuations, numbers, non-ascii
+                          characters, tabs, carriage, newline, whitespace,
+                          multiple_whitespaces (also at the beginning and end of
+                          the response) ,special_characters, urls, emails, html
+                          tags.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Pass: 1
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(pre_formatter_time)}
+                            </p>
                           </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Tokenization"}>
-                          <p className="text-gray-500">
-                            Neural networks utilize numbers as their inputs, so we need to convert our input text into numbers.
-                          </p>
-                          <p className="text-gray-500">
-                            Tokenization is the process of converting text into tokens. A token is a sequence of characters or a substring of the text. In our trained model, we used its own tokenizer to tokenize the text to avoid any mismatch in the tokens.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Pass: 2
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(post_formatter_time)}
+                            </p>
                           </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Padding and Truncating the Sequences"}>
-                          <p className="text-gray-500">
-                            We need to make sure that all the sequences are of the same length. This is because neural networks cannot process inputs of different lengths.
-                          </p>
-                          <p className="text-gray-500">
-                            It is required to pad the sequences with zeros to make them of the same length and truncate the sequences that are longer than the maximum length of the sequence. We have used a maximum length of 300.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Loading the Model"}>
-                          <p className="text-gray-500">
-                            Loading the model is the process of loading the trained model into the memory. This is done to make the model ready for inference.
-                          </p>
-                          <p className="text-gray-500">
-                            Inference is the process of predicting the output of the model. In our case, the model is predicting the meaning of the text. This process takes time because the model is large in size.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Predicting the Meaning of the Text"}>
-                          <p className="text-gray-500">
-                            This is the final step of the process. We are predicting the meaning of the text using the trained model.
-                          </p>
-                          <p className="text-gray-500">
-                            We are also using a threshold of 0.5 to filter out the predictions that are less than 0.5. This is done to make sure that the predictions are accurate.
-                          </p>
-                          <p className="text-gray-500">
-                            We also converted the predictions into a readable format, from -e notation to a percentage format. example of -e notation: -1.3e-01, example of percentage format: 13.00%
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Writing the Predictions to a CSV File"}>
-                          <p className="text-gray-500">
-                            We are writing the predictions to a CSV file. This is done to make sure that the predictions are saved for future use.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"User Account Automation"}>
-                          <p className="text-gray-500">
-                            While we are processing your data, we are also creating a user account for you. This is done to make sure that you can access your predictions in the future. You can manage these accounts in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/users/professors"}>User management</Link></span> page.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Department Analysis Computations"}>
-                          <p className="text-gray-500">
-                            While we are processing your data, we are also computing the department analysis. This is done to make sure that you can access the department analysis in the future. You can access the department analysis in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/files/data"}>File Management</Link></span> page and choose file to view.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable title={"Collection Provider Analysis Computations"}>
-                          <p className="text-gray-500">
-                            This process also takes time because it compiles each professor&#39;s courses and responses into there own respective folders. This is done to make sure that the professor can access their predictions in the future. You can access the collection provider analysis in the <span className="text-blue-500 font-medium"><Link to={"/admin/management/files/data"}>File Management</Link></span> page and choose file and Professor to view.
-                          </p>
-                          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                            <di>
-                              dsadassa
-                            </di>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
+                        </div>
+                      </DisclosureTime>
                     </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime title={"Tokenization"}>
+                        <p className="text-gray-500">
+                          Neural networks utilize numbers as their inputs, so we
+                          need to convert our input text into numbers.
+                        </p>
+                        <p className="text-gray-500">
+                          Tokenization is the process of converting text into
+                          tokens. A token is a sequence of characters or a
+                          substring of the text. In our trained model, we used
+                          its own tokenizer to tokenize the text to avoid any
+                          mismatch in the tokens.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(tokenizer_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={"Padding and Truncating the Sequences"}
+                      >
+                        <p className="text-gray-500">
+                          We need to make sure that all the sequences are of the
+                          same length. This is because neural networks cannot
+                          process inputs of different lengths.
+                        </p>
+                        <p className="text-gray-500">
+                          It is required to pad the sequences with zeros to make
+                          them of the same length and truncate the sequences
+                          that are longer than the maximum length of the
+                          sequence. We have used a maximum length of 300.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(padding_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime title={"Loading the Model"}>
+                        <p className="text-gray-500">
+                          Loading the model is the process of loading the
+                          trained model into the memory. This is done to make
+                          the model ready for inference.
+                        </p>
+                        <p className="text-gray-500">
+                          Inference is the process of predicting the output of
+                          the model. In our case, the model is predicting the
+                          meaning of the text. This process takes time because
+                          the model is large in size.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(model_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={"Predicting the Meaning of the Text"}
+                      >
+                        <p className="text-gray-500">
+                          This is the final step of the process. We are
+                          predicting the meaning of the text using the trained
+                          model.
+                        </p>
+                        <p className="text-gray-500">
+                          We are also using a threshold of 0.5 to filter out the
+                          predictions that are less than 0.5. This is done to
+                          make sure that the predictions are accurate.
+                        </p>
+                        <p className="text-gray-500">
+                          We also converted the predictions into a readable
+                          format, from -e notation to a percentage format.
+                          example of -e notation: -1.3e-01, example of
+                          percentage format: 13.00%
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Actual Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(prediction_time)}
+                            </p>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Converting to Percentage
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(sentiment_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={"Writing the Predictions to a CSV File"}
+                      >
+                        <p className="text-gray-500">
+                          We are writing the predictions to a CSV file. This is
+                          done to make sure that the predictions are saved for
+                          future use.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(adding_predictions_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={
+                          "User Account Automation and Analysis Computations"
+                        }
+                      >
+                        <p className="text-gray-500">
+                          While we are processing your data, we are also
+                          creating a user account for you. This is done to make
+                          sure that you can access your predictions in the
+                          future. You can manage these accounts in the{" "}
+                          <span className="text-blue-500 font-medium">
+                            <Link to={"/admin/management/users/professors"}>
+                              User management
+                            </Link>
+                          </span>{" "}
+                          page.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_user_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={"Department Analysis Computations"}
+                      >
+                        <p className="text-gray-500">
+                          While we are processing your data, we are also
+                          computing the department analysis. This is done to
+                          make sure that you can access the department analysis
+                          in the future. You can access the department analysis
+                          in the{" "}
+                          <span className="text-blue-500 font-medium">
+                            <Link to={"/admin/management/files/data"}>
+                              File Management
+                            </Link>
+                          </span>{" "}
+                          page and choose file to view.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_department_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTime
+                        title={"Collection Provider Analysis Computations"}
+                      >
+                        <p className="text-gray-500">
+                          This process also takes time because it compiles each
+                          professor&#39;s courses and responses into there own
+                          respective folders. This is done to make sure that the
+                          professor can access their predictions in the future.
+                          You can access the collection provider analysis in the{" "}
+                          <span className="text-blue-500 font-medium">
+                            <Link to={"/admin/management/files/data"}>
+                              File Management
+                            </Link>
+                          </span>{" "}
+                          page and choose file and Professor to view.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_collection_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
+                      <button
+                        className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                        onClick={() => {
+                          setCount(2);
+                        }}
+                        type="button"
+                      >
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faCaretLeft}
+                        />
+                        Next Header to Analyze
+                      </button>
+                      <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        onClick={handleResetWhenDone}
+                        type="button"
+                      >
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faFlagCheckered}
+                        />
+                        Finish
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
