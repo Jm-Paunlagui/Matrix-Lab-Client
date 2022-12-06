@@ -17,7 +17,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
   faCaretLeft,
-  faExclamationCircle,
+  faFlagCheckered,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Header } from "../../components/headers/Header";
@@ -230,7 +230,7 @@ export default function AdminPrediction() {
           ...handlers,
           ok: false,
           showButtonToView: false,
-          textChange: "Viewed",
+          textChange: "View",
         });
         toast.success(response.data.message);
         jwtVerify(
@@ -297,8 +297,6 @@ export default function AdminPrediction() {
         })
         .then((response) => {
           toast.success(response.data.message);
-          console.log(response.data);
-          console.log(response.data.overall_time);
           setHandlers({
             ...handlers,
             okToAnS: false,
@@ -320,24 +318,6 @@ export default function AdminPrediction() {
             analysis_department_time: response.data.analysis_department_time,
             analysis_collection_time: response.data.analysis_collection_time,
           });
-          setExtras({
-            ...extras,
-            csv_question: "",
-            school_year: "",
-          });
-          setSelectedColumn({
-            ...selectedColumn,
-            selected_column_for_sentence: "",
-            selected_semester: "",
-          });
-          setCSVColumns({
-            ...csv_columns,
-            show_columns: false,
-            csv_file_name: "",
-            csv_columns_to_pick: [],
-          });
-          // remove the file from the dropzone
-          removeAll();
           setCount(count + 1);
         })
         .catch((error) => {
@@ -371,6 +351,58 @@ export default function AdminPrediction() {
         });
     }
   };
+
+  const handleResetWhenDone = async () => {
+    console.log("Resetting");
+    setExtras({
+      ...extras,
+      csv_question: "",
+      school_year: "",
+    });
+    setSelectedColumn({
+      ...selectedColumn,
+      selected_column_for_sentence: "",
+      selected_semester: "",
+    });
+    setCSVColumns({
+      ...csv_columns,
+      show_columns: true,
+      csv_file_name: "",
+      csv_columns_to_pick: [],
+    });
+    setHandlers({
+      ...handlers,
+      textChange: "View",
+      okToAnS: false,
+      errorEffectToAnS: false,
+      errorMessageToAnS: "",
+      textChangeToAnS: "Analyze and Save",
+    });
+    setTimeAnalyze({
+      ...timeAnalyze,
+      overall_time: "",
+      pre_formatter_time: "",
+      post_formatter_time: "",
+      tokenizer_time: "",
+      padding_time: "",
+      model_time: "",
+      prediction_time: "",
+      sentiment_time: "",
+      adding_predictions_time: "",
+      analysis_user_time: "",
+      analysis_department_time: "",
+      analysis_collection_time: "",
+    })
+    setCount(1);
+    await httpClient.post("/data/delete-uploaded-csv-file", {
+      file_name: csv_file_name,
+    }).then((response) => {
+      toast.success(response.data.message);
+    }).catch((error) => {
+      toast.error(error.message);
+    });
+    removeAll();
+  }
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -407,15 +439,28 @@ export default function AdminPrediction() {
           </h1>
           <p className="mb-4 text-sm text-gray-500 font-medium">
             On the first run, the system will take a long time to analyze and
-            save the data. This is because the system is automatically creating
-            users and saving the data to the database but the Admin will send
-            the credentials to the users if the results are ready right through
-            their email.
+            save the data. This is because the system is{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              automatically creates user accounts
+            </b>{" "} and saves the results to there respective folders based on the user&#39;s full name.
           </p>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            Performance of the system will improve as the system will not create
-            users on the next run. The system will only analyze and save the
-            data.
+            Performance of the system will improve as the system manages to save a lot of data. The system will also be able to analyze and save the data faster every time it runs{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              but it still depends on the size of the data to analyze and save.
+            </b>
+          </p>
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Account Credentials
+          </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Admin will send the credentials to the users if the results are ready right through their email. You can manage these accounts in the{" "}
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+                            <Link to={"/admin/management/users/professors"}>
+                              User management
+                            </Link>
+                          </span>{" "}
+            page.
           </p>
         </div>
         <div className="col-span-2">
@@ -1062,6 +1107,29 @@ export default function AdminPrediction() {
                           </div>
                         </div>
                       </DisclosureTime>
+                    </div>
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
+                      <button
+                          className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                          onClick={() => {
+                            setCount(2)
+                          }}
+                          type="button"
+                      >
+                        <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faCaretLeft}
+                        />
+                        Next Header to Analyze
+                      </button>
+                      <button
+                          className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                          onClick={handleResetWhenDone}
+                          type="button"
+                      >
+                        <FontAwesomeIcon className={`${ICON_PLACE_SELF_CENTER}`} icon={faFlagCheckered} />
+                        Finish
+                      </button>
                     </div>
                   </div>
                 )}
