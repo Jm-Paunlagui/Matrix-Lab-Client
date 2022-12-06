@@ -24,7 +24,7 @@ import { Header } from "../../components/headers/Header";
 import { useDropzone } from "react-dropzone";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 import { Link } from "react-router-dom";
-import DisclosureTime from "../../components/disclosure/DisclosureTime";
+import DisclosureTogglable from "../../components/disclosure/DisclosureTogglable";
 
 /**
  * @description Handles the admin prediction
@@ -855,7 +855,7 @@ export default function AdminPrediction() {
                       making this process faster.
                     </p>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={"Removed Empty Columns and Text Preprocessing"}
                       >
                         <p className="text-gray-500">
@@ -889,10 +889,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime title={"Tokenization"}>
+                      <DisclosureTogglable title={"Tokenization"}>
                         <p className="text-gray-500">
                           Neural networks utilize numbers as their inputs, so we
                           need to convert our input text into numbers.
@@ -914,10 +914,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={"Padding and Truncating the Sequences"}
                       >
                         <p className="text-gray-500">
@@ -941,10 +941,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime title={"Loading the Model"}>
+                      <DisclosureTogglable title={"Loading the Model"}>
                         <p className="text-gray-500">
                           Loading the model is the process of loading the
                           trained model into the memory. This is done to make
@@ -966,10 +966,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={"Predicting the Meaning of the Text"}
                       >
                         <p className="text-gray-500">
@@ -1006,10 +1006,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={"Writing the Predictions to a CSV File"}
                       >
                         <p className="text-gray-500">
@@ -1027,10 +1027,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={
                           "User Account Automation and Analysis Computations"
                         }
@@ -1057,10 +1057,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={"Department Analysis Computations"}
                       >
                         <p className="text-gray-500">
@@ -1086,10 +1086,10 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col w-full">
-                      <DisclosureTime
+                      <DisclosureTogglable
                         title={"Collection Provider Analysis Computations"}
                       >
                         <p className="text-gray-500">
@@ -1115,7 +1115,7 @@ export default function AdminPrediction() {
                             </p>
                           </div>
                         </div>
-                      </DisclosureTime>
+                      </DisclosureTogglable>
                     </div>
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
                       <button
