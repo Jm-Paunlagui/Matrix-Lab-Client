@@ -97,9 +97,8 @@ export default function AdminPrediction() {
         return `${minutes} minute and ${seconds} seconds`;
       } else if (seconds === 1) {
         return `${minutes} minutes and ${seconds} second`;
-      } else {
-        return `${minutes} minutes and ${seconds} seconds`;
       }
+      return `${minutes} minutes and ${seconds} seconds`;
     } else if (time <= 60 && time > 1) {
       const seconds = Math.round(time);
       const milliseconds = Math.round((time - seconds) * 1000);
@@ -110,9 +109,8 @@ export default function AdminPrediction() {
         return `${seconds} second and ${milliseconds} milliseconds`;
       } else if (milliseconds === 1) {
         return `${seconds} seconds and ${milliseconds} millisecond`;
-      } else {
-        return `${seconds} seconds and ${milliseconds} milliseconds`;
       }
+      return `${seconds} seconds and ${milliseconds} milliseconds`;
     } else {
       const milliseconds = Math.round(time * 1000);
       const microseconds = Math.round((time - milliseconds) * 1000);
@@ -124,9 +122,8 @@ export default function AdminPrediction() {
         return `${milliseconds} millisecond and ${microseconds} microseconds`;
       } else if (microseconds === 1) {
         return `${milliseconds} milliseconds and ${microseconds} microsecond`;
-      } else {
-        return `${milliseconds} milliseconds and ${microseconds} microseconds`;
       }
+      return `${milliseconds} milliseconds and ${microseconds} microseconds`;
     }
   }
 
