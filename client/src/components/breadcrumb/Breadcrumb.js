@@ -16,7 +16,7 @@ export default function BreadCrumb() {
         // Last item in the array is the page name, make it bold
         .map((x, i, a) =>
           i === a.length - 1 ? (
-            <b className="bg-cyan-100 text-blue-500 rounded p-2" key={i}>
+            <b className="bg-cyan-100 text-blue-500 rounded p-2" key={x}>
               {x}
             </b>
           ) : (
