@@ -8,20 +8,14 @@ export default function BreadCrumb() {
 
   // Link is http://localhost:3000/admin/analytics format to a friendly format for the breadcrumb like Admin  / Analytics
   const friendlyPath = (path) => {
-    return path
-      .split("/")
-      .filter((x) => x)
-      .map((x) => x[0].toUpperCase() + x.slice(1))
-      .map((x, i, a) =>
-        i === a.length - 1 ? (
-          <b className="bg-cyan-100 text-blue-500 rounded p-2" key={x}>
-            {x}
-          </b>
-        ) : (
-          x
-        ),
-      )
-      .reduce((prev, curr) => [prev, " / ", curr]);
+    return (
+      path
+        .split("/")
+        .filter((x) => x)
+        .map((x) => x[0].toUpperCase() + x.slice(1))
+        .map((x, i, a) => (i === a.length - 1 ? <b className="bg-cyan-100 text-blue-500 rounded p-2" key={x}>{x}</b> : x))
+        .reduce((prev, curr) => [prev, " / ", curr])
+    );
   };
 
   useEffect(() => {
