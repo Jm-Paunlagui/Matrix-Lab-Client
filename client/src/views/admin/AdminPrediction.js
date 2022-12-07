@@ -111,7 +111,7 @@ export default function AdminPrediction() {
         return `${seconds} seconds and ${milliseconds} millisecond`;
       }
       return `${seconds} seconds and ${milliseconds} milliseconds`;
-    } else {
+    }
       const milliseconds = Math.round(time * 1000);
       const microseconds = Math.round((time - milliseconds) * 1000);
 
@@ -124,7 +124,7 @@ export default function AdminPrediction() {
         return `${milliseconds} milliseconds and ${microseconds} microsecond`;
       }
       return `${milliseconds} milliseconds and ${microseconds} microseconds`;
-    }
+
   }
 
   const onDrop = useCallback((acceptedFiles) => {
