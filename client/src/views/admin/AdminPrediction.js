@@ -353,7 +353,6 @@ export default function AdminPrediction() {
   };
 
   const handleResetWhenDone = async () => {
-    
     setExtras({
       ...extras,
       csv_question: "",
