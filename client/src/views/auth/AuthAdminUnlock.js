@@ -236,7 +236,7 @@ export default function AuthAdminUnlock() {
       .get(`/user/verify-unlock-token/${token}`)
       .then((res) => {
         if (res.data.status === "success") {
-          console.log(res.data);
+          
           setToUnlock({
             ...toUnlock,
             name: res.data.user_data.name,
