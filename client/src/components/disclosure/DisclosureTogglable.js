@@ -9,7 +9,6 @@ export default function DisclosureTogglable({ title, children }) {
     children: PropTypes.node,
   };
   return (
-    <>
       <Disclosure>
         {({ open }) => (
           <>
@@ -36,6 +35,5 @@ export default function DisclosureTogglable({ title, children }) {
           </>
         )}
       </Disclosure>
-    </>
   );
 }
