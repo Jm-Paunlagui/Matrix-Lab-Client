@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
-import {
-  Header,
-  NoData,
-  SearchBar,
-} from "../../assets/styles/input-types-styles";
+import { NoData } from "../../assets/styles/styled-components";
+import { Header } from "../../components/headers/Header";
+import { SearchBar } from "../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -145,7 +143,8 @@ export default function InsightsPerSemesterDepartment() {
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1">
-          <SearchBar customStyle="mb-8"
+          <SearchBar
+            customStyle="mb-8"
             name="searchValue"
             onChange={(event) => handleSearchForDepartment(event)}
             placeholder="Search"
@@ -153,7 +152,7 @@ export default function InsightsPerSemesterDepartment() {
           />
           <div className="place-content-center">
             <div
-              className={`grid w-full h-full grid-cols-1 p-4 bg-white rounded outline outline-2  ${
+              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded outline outline-2  ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {
@@ -164,19 +163,19 @@ export default function InsightsPerSemesterDepartment() {
               }}
             >
               {
-                new ViewInsightHistory(
-                  handleViewFile,
-                  handleSelect,
-                  school_year,
-                  school_year_to_choose,
-                  school_semester,
-                  school_semester_to_choose,
-                  csv_question,
-                  csv_question_to_choose,
-                  errorMessage,
-                  ok,
-                  textChange,
-                )
+                <ViewInsightHistory
+                  csv_question={csv_question}
+                  csv_question_to_choose={csv_question_to_choose}
+                  errorMessage={errorMessage}
+                  handleSelect={handleSelect}
+                  handleViewFile={handleViewFile}
+                  ok={ok}
+                  school_semester={school_semester}
+                  school_semester_to_choose={school_semester_to_choose}
+                  school_year={school_year}
+                  school_year_to_choose={school_year_to_choose}
+                  textChange={textChange}
+                />
               }
             </div>
           </div>
@@ -216,7 +215,7 @@ export default function InsightsPerSemesterDepartment() {
                                                  }`}
                         >
                           <div className="flex flex-col items-center justify-center w-full p-4">
-                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
+                            <h1 className="text-5xl font-black leading-none tracking-tight text-blue-500">
                               {department.department}
                             </h1>
                           </div>
@@ -232,7 +231,7 @@ export default function InsightsPerSemesterDepartment() {
                                     ? "bg-gray-500"
                                     : department.id === 2
                                     ? "bg-orange-500"
-                                    : "bg-blue-500"
+                                    : "bg-cyan-500"
                                 }`}
                               >
                                 <i

@@ -15,6 +15,8 @@ import {
   SecurityInformation,
   SignInInformation,
 } from "../../forms/CredentialForms";
+import { Header } from "../../components/headers/Header";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin profile
@@ -390,70 +392,78 @@ export default function AdminProfile() {
   };
 
   return (
-    <div className="px-6 mx-auto max-w-7xl">
+    <div className="px-6 mx-auto max-w-7xl pt-8">
+      <Header
+        body={
+          "Update your personal information, security information, username, and password."
+        }
+        title={username ? username : <LoadingAnimation />}
+      />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
-        <div className="flex flex-col items-center justify-center w-full h-32 p-4 bg-white rounded md:h-48 outline outline-2 outline-gray-200">
-          <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+        <div className="flex flex-col w-full p-8 bg-blue-50 rounded-lg shadow">
+          <h1 className="mb-4 text-xl font-bold text-blue-500 text-center">
             Account Management
           </h1>
-          <h1 className="text-sm font-medium text-gray-500">@{username}</h1>
+          <p className="mb-4 text-sm text-gray-500 text-center">
+            @{username ? username : <LoadingAnimation />}
+          </p>
         </div>
         <div className="col-span-2">
-          {new AccountType(role)}
+          {<AccountType role={role} />}
           {
-            new PersonalInformation(
-              email,
-              errorEffectforPersonalInfo,
-              errorMessageforPersonalInfo,
-              full_name,
-              handleChangeForPersonalInfo,
-              handleUpdatePersonalInfo,
-              okforPersonalInfo,
-              profile,
-              setProfile,
-              showButtonforPersonalInfo,
-              textChangeforPersonalInfo,
-            )
+            <PersonalInformation
+              email={email}
+              errorEffectforPersonalInfo={errorEffectforPersonalInfo}
+              errorMessageforPersonalInfo={errorMessageforPersonalInfo}
+              full_name={full_name}
+              handleChangeForPersonalInfo={handleChangeForPersonalInfo}
+              handleUpdatePersonalInfo={handleUpdatePersonalInfo}
+              okforPersonalInfo={okforPersonalInfo}
+              profile={profile}
+              setProfile={setProfile}
+              showButtonforPersonalInfo={showButtonforPersonalInfo}
+              textChangeforPersonalInfo={textChangeforPersonalInfo}
+            />
           }
           {
-            new SecurityInformation(
-              errorEffectforSecurityInfo,
-              errorMessageforSecurityInfo,
-              handleChangeForSecurityInfo,
-              handleUpdateSecurityInfo,
-              okforSecurityInfo,
-              profile,
-              recovery_email,
-              secondary_email,
-              setProfile,
-              showButtonforSecurityInfo,
-              textChangeforSecurityInfo,
-            )
+            <SecurityInformation
+              errorEffectforSecurityInfo={errorEffectforSecurityInfo}
+              errorMessageforSecurityInfo={errorMessageforSecurityInfo}
+              handleChangeForSecurityInfo={handleChangeForSecurityInfo}
+              handleUpdateSecurityInfo={handleUpdateSecurityInfo}
+              okforSecurityInfo={okforSecurityInfo}
+              profile={profile}
+              recovery_email={recovery_email}
+              secondary_email={secondary_email}
+              setProfile={setProfile}
+              showButtonforSecurityInfo={showButtonforSecurityInfo}
+              textChangeforSecurityInfo={textChangeforSecurityInfo}
+            />
           }
           {
-            new SignInInformation(
-              confirm_password,
-              errorEffectforPassword,
-              errorEffectforUsername,
-              errorMessageforPassword,
-              errorMessageforUsername,
-              handleChangeForPassword,
-              handleChangeForUsername,
-              handleUpdatePassword,
-              handleUpdateUsername,
-              new_password,
-              okforPassword,
-              okforUsername,
-              old_password,
-              profile,
-              setProfile,
-              showButtonforPassword,
-              showButtonforUsername,
-              template,
-              textChangeforPassword,
-              textChangeforUsername,
-              username,
-            )
+            <SignInInformation
+              confirm_password={confirm_password}
+              errorEffectforPassword={errorEffectforPassword}
+              errorEffectforUsername={errorEffectforUsername}
+              errorMessageforPassword={errorMessageforPassword}
+              errorMessageforUsername={errorMessageforUsername}
+              handleChangeForPassword={handleChangeForPassword}
+              handleChangeForUsername={handleChangeForUsername}
+              handleUpdatePassword={handleUpdatePassword}
+              handleUpdateUsername={handleUpdateUsername}
+              new_password={new_password}
+              okforPassword={okforPassword}
+              okforUsername={okforUsername}
+              old_password={old_password}
+              profile={profile}
+              setProfile={setProfile}
+              showButtonforPassword={showButtonforPassword}
+              showButtonforUsername={showButtonforUsername}
+              template={template}
+              textChangeforPassword={textChangeforPassword}
+              textChangeforUsername={textChangeforUsername}
+              username={username}
+            />
           }
         </div>
       </div>

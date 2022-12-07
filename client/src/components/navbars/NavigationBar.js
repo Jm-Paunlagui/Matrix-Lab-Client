@@ -8,7 +8,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
+import { DELAY_1 } from "../../assets/styles/styled-components";
 
 /**
  * @description NavigationBar component with useful links
@@ -76,13 +76,13 @@ export default function NavigationBar() {
   return (
     <Menu
       as={"nav"}
-      className="fixed top-0 z-50 flex flex-wrap items-center justify-between w-full p-1 shadow-md backdrop-blur-xl bg-white/50 font-Montserrat"
+      className="fixed top-0 z-50 flex flex-wrap items-center justify-between w-full p-1 shadow-md bg-blue-500 font-Montserrat"
     >
       {({ open }) => (
         <div className="container flex flex-wrap items-center justify-between mx-auto max-w-7xl">
           <div className="flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
             <NavLink to="/">
-              <div className="flex items-center px-3 py-2 text-gray-900 transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
+              <div className="flex items-center px-3 py-2 text-blue-100 transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
                 <img alt="logo" className="w-10 h-10" src={logo} />
                 <h1
                   className={`ml-2 text-xl font-bold tracking-widest ${DELAY_1} md:text-3xl lg:flex`}
@@ -91,7 +91,7 @@ export default function NavigationBar() {
                 </h1>
               </div>
             </NavLink>
-            <Menu.Button className={`block px-3 py-1  lg:hidden`}>
+            <Menu.Button className={`block px-3 py-1 text-blue-100 lg:hidden`}>
               <span className="sr-only">Open main menu</span>
               {open ? (
                 <XMarkIcon className="block w-6 h-6" />
@@ -121,9 +121,9 @@ export default function NavigationBar() {
                     <li
                       className={`${
                         link.current
-                          ? "text-blue-900 border-y-2 border-blue-900"
-                          : ""
-                      } ${DELAY_3} flex items-center justify-start px-4 py-4 text-gray-700 hover:text-blue-900`}
+                          ? "bg-blue-400 text-white"
+                          : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                      } ${DELAY_1} flex items-center px-8 py-2 rounded-md text-base font-medium`}
                     >
                       {link.icon}
                       <h1 className="block ml-1 text-lg font-medium">
@@ -140,9 +140,9 @@ export default function NavigationBar() {
                   <li
                     className={`${
                       link.current
-                        ? "text-blue-900 border-b-2 border-blue-900"
-                        : ""
-                    } ${DELAY_3} flex items-center px-8 py-4 text-gray-700 hover:text-blue-900`}
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                    } ${DELAY_1} flex items-center px-8 py-2 rounded-md text-base font-medium`}
                   >
                     {link.icon_}
                   </li>

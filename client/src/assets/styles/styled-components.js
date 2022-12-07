@@ -2,12 +2,10 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationCircle,
-  faSearch,
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 
-export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider border border-gray-200 rounded-lg`;
+export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent`;
 
 export const DELAY_1 = "transition duration-300 ease-in-out delay-150";
 export const DELAY_3 = "transition duration-300 ease-in-out delay-300";
@@ -21,37 +19,28 @@ export const DEFAULT_BUTTON_TRANSITION = `${DELAY_3} border border-transparent r
 
 // px-5 py-3 pl-4 for a button
 // px-5 py-3 for link
-export const ACCENT_BUTTON = `font-semibold tracking-wide text-teal-600 bg-white hover:bg-teal-700 hover:text-white ${DEFAULT_BUTTON_TRANSITION}`;
-export const MAIN_BUTTON = `font-semibold tracking-wide text-blue-500 bg-white hover:bg-blue-700 hover:text-white ${DEFAULT_BUTTON_TRANSITION}`;
-export const DEFAULT_BUTTON = ` font-semibold tracking-wide text-gray-500 border-2 hover:text-black ${DEFAULT_BUTTON_TRANSITION}`;
+export const ACCENT_BUTTON = `font-semibold tracking-wide text-teal-600 bg-blue-100 hover:bg-teal-700 hover:text-blue-50 shadow ${DEFAULT_BUTTON_TRANSITION}`;
+export const DANGER_BUTTON = `font-semibold tracking-wide text-red-600 bg-blue-100 hover:bg-red-700 hover:text-red-50 shadow ${DEFAULT_BUTTON_TRANSITION}`;
+export const MAIN_BUTTON = `font-semibold tracking-wide text-blue-500 bg-blue-100 hover:bg-blue-500 hover:text-blue-50 shadow ${DEFAULT_BUTTON_TRANSITION}`;
+
+export const STATUS_GREEN =
+  "font-semibold tracking-wide text-teal-600 bg-teal-100 rounded-lg";
+export const STATUS_RED =
+  "font-semibold tracking-wide text-red-600 bg-red-100 rounded-lg";
+export const STATUS_WARNING =
+  "font-semibold tracking-wide text-yellow-600 bg-yellow-100 rounded-lg";
+
+export const DEFAULT_BUTTON = ` font-semibold tracking-wide text-blue-500 border-2 hover:text-blue-50 hover:bg-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const PRIMARY_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(30,64,175)] hover:shadow-[0_2px_0px_rgb(30,64,175)] font-semibold tracking-wide text-white bg-blue-500 border-2 hover:bg-white hover:text-blue-500 hover:border-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const SECONDARY_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(55,48,163)] hover:shadow-[0_2px_0px_rgb(55,48,163)] font-semibold tracking-wide text-white bg-indigo-500 border-2 hover:bg-white hover:text-indigo-500 hover:border-indigo-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const SUCCESS_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(17,94,89)] hover:shadow-[0_2px_0px_rgb(17,94,89)] font-semibold tracking-wide text-white bg-teal-500 border-2 hover:bg-white hover:text-teal-500 hover:border-teal-500 ${DEFAULT_BUTTON_TRANSITION}`;
-export const DANGER_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(153,27,27)] hover:shadow-[0_2px_0px_rgb(153,27,27)] font-semibold tracking-wide text-white bg-red-500 border-2 hover:bg-white hover:text-red-500 hover:border-red-500 ${DEFAULT_BUTTON_TRANSITION}`;
+//export const DANGER_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(153,27,27)] hover:shadow-[0_2px_0px_rgb(153,27,27)] font-semibold tracking-wide text-white bg-red-500 border-2 hover:bg-white hover:text-red-500 hover:border-red-500 ${DEFAULT_BUTTON_TRANSITION}`;
 export const WARNING_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(133,77,14)] hover:shadow-[0_2px_0px_rgb(133,77,14)] font-semibold tracking-wide text-white bg-yellow-500 border-2 hover:bg-white hover:text-yellow-500 hover:border-yellow-500 ${DEFAULT_BUTTON_TRANSITION};`;
 export const INFO_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(0,0,0)] hover:shadow-[0_2px_0px_rgb(0,0,0)] font-semibold tracking-wide text-white bg-blue-500 border-2 hover:bg-white hover:text-blue-500 hover border-blue-500 ${DEFAULT_BUTTON_TRANSITION}`;
 
-export const PRIMARY_RADIO = `bg-white text-gray-500 border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:text-blue-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
+export const PRIMARY_RADIO = `bg-white text-gray-500 outline-blue-100 cursor-pointer focus:outline-none hover:bg-blue-50 peer-checked:ring-blue-400 peer-checked:text-blue-400 peer-checked:ring-2 peer-checked:outline-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 export const SECONDARY_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-indigo-500 peer-checked:text-blue-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 export const DANGER_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-red-500 peer-checked:text-red-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
-
-/**
- * @description Circular loading animation
- */
-export function LOADING_ANIMATION() {
-  return (
-    <svg className="mr-1 spinner" viewBox="0 0 50 50">
-      <circle
-        className="path"
-        cx="25"
-        cy="25"
-        fill="transparent"
-        r="20"
-        strokeWidth="5"
-      />
-    </svg>
-  );
-}
 
 /**
  * @description Recovery email not set
@@ -59,12 +48,11 @@ export function LOADING_ANIMATION() {
 export function EMAIL_NOT_SET(email_type = "") {
   return (
     <div
-      className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 border-yellow-600 rounded-lg cursor-default text-white bg-yellow-400`}
+      className={`px-5 py-1 pl-4 flex flex-row justify-start rounded-lg cursor-default text-white bg-yellow-500`}
     >
       <FontAwesomeIcon
         className={`${ICON_PLACE_SELF_CENTER}`}
         icon={faWarning}
-        size={"lg"}
       />
       {email_type} email not set up yet for this account.
     </div>
@@ -95,70 +83,6 @@ export function NoData(type = "") {
             </h1>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-/**
- * @description Header for the page
- * @param title
- * @param body
- * @constructor
- */
-export function Header({ title, body }) {
-  Header.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string,
-  };
-  return (
-    <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-blue-500">
-      <div className="grid w-full grid-cols-1 rounded">
-        <div className="col-span-1 w-full">
-          <div className="flex flex-row w-full p-4 justify-center items-center">
-            <h1 className="text-2xl font-extrabold leading-none text-left text-white md:text-5xl lg:text-7xl">
-              {title}
-            </h1>
-          </div>
-        </div>
-        <div className="col-span-4">
-          <div className="flex flex-row justify-center w-full p-4">
-            <p className="text-base font-medium text-white">{body}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/**
- * @description Search bar for filtering data
- * @param placeholder
- * @param onChange
- * @param name
- * @param style
- * @constructor
- */
-export function SearchBar({ placeholder, onChange, name, customStyle }) {
-  SearchBar.propTypes = {
-    placeholder: PropTypes.string,
-    onChange: PropTypes.func,
-    name: PropTypes.string,
-    customStyle: PropTypes.string,
-  };
-  return (
-    <div
-      className={`flex flex-row items-center justify-between w-full px-4 py-2 bg-white rounded-lg shadow-md ${customStyle}`}
-    >
-      <div className="flex flex-row items-center w-full">
-        <FontAwesomeIcon className="text-gray-600" icon={faSearch} />
-        <input
-          className="w-full px-2 py-1 ml-2 text-gray-600 bg-transparent outline-none "
-          name={name}
-          onChange={onChange}
-          placeholder={placeholder}
-          type="text"
-        />
       </div>
     </div>
   );

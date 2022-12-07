@@ -57,8 +57,8 @@ export default function UserNavigationBar() {
   const navigation = [
     {
       name: "Dashboard",
-      href: "/user/dashboard",
-      current: isActive("dashboard"),
+      href: "/user/analytics",
+      current: isActive("analytics"),
     },
     {
       name: "Programs",

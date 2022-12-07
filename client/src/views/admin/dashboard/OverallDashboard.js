@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import LoadingPage from "../../components/loading/LoadingPage";
-import httpClient from "../../http/httpClient";
+import LoadingPage from "../../../components/loading/LoadingPage";
+import httpClient from "../../../http/httpClient";
 
 /**
  * @description Handles the admin profile
  */
-export default function AdminDashboard() {
+export default function OverallDashboard() {
   const [data, setData] = useState({
     loading: true,
     details: [],
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
           {details.map((detail) => (
             <div
-              className="flex flex-col items-start p-4 bg-white rounded outline outline-2 outline-gray-200"
+              className="flex flex-col items-start p-4 bg-blue-50 rounded-lg shadow"
               key={detail.id}
             >
               <div className="flex items-center justify-center">
@@ -77,7 +77,7 @@ export default function AdminDashboard() {
           </div>
           {overall_sentiments.map((overall) => (
             <div className="lg:col-span-2" key={overall.id}>
-              <div className="flex flex-col items-start justify-center w-full p-4 bg-white rounded outline outline-2 outline-gray-200">
+              <div className="flex flex-col items-start justify-center w-full p-4 bg-blue-50 rounded-lg shadow">
                 <div className="flex items-center justify-center">
                   <div
                     className={`flex items-center justify-center w-10 h-10 text-white rounded ${

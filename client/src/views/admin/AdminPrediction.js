@@ -1,15 +1,12 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
-  DANGER_BUTTON,
+  ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
-  PRIMARY_BUTTON,
   TEXT_FIELD,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
-import { isAuth } from "../../helpers/Auth";
 import { importSPKI, jwtVerify } from "jose";
 import {
   getNameFromString,
@@ -19,18 +16,20 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
   faMagnifyingGlassChart,
-  faArrowRotateRight,
+  faCaretLeft,
+  faFlagCheckered,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Header } from "../../components/headers/Header";
+import { useDropzone } from "react-dropzone";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
+import { Link } from "react-router-dom";
+import DisclosureTogglable from "../../components/disclosure/DisclosureTogglable";
 
 /**
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
-  const user = isAuth();
-
-  const inputRef = useRef(null);
-
   const [csv_file_to_view, setCSVFileToView] = useState();
 
   const [handlers, setHandlers] = useState({
@@ -55,25 +54,105 @@ export default function AdminPrediction() {
     textChangeToAnS,
   } = handlers;
 
-  /**
-   * @description Gets the file to view from the user and sets the state
-   * @param event
-   */
-  const handleChange = (event) => {
-    setCSVFileToView(event.target.files[0]);
+  const [timeAnalyze, setTimeAnalyze] = useState({
+    overall_time: "",
+    pre_formatter_time: "",
+    post_formatter_time: "",
+    tokenizer_time: "",
+    padding_time: "",
+    model_time: "",
+    prediction_time: "",
+    sentiment_time: "",
+    adding_predictions_time: "",
+    analysis_user_time: "",
+    analysis_department_time: "",
+    analysis_collection_time: "",
+  });
+
+  const {
+    overall_time,
+    pre_formatter_time,
+    post_formatter_time,
+    tokenizer_time,
+    padding_time,
+    model_time,
+    prediction_time,
+    sentiment_time,
+    adding_predictions_time,
+    analysis_user_time,
+    analysis_department_time,
+    analysis_collection_time,
+  } = timeAnalyze;
+
+  function timeFormat(time) {
+    // If the time is greater than 1 minute then format it to minutes and seconds else format it to seconds
+    if (time >= 60) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.round(time - minutes * 60);
+
+      // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
+      if (minutes === 1 && seconds === 1) {
+        return `${minutes} minute and ${seconds} second`;
+      } else if (minutes === 1) {
+        return `${minutes} minute and ${seconds} seconds`;
+      } else if (seconds === 1) {
+        return `${minutes} minutes and ${seconds} second`;
+      }
+      return `${minutes} minutes and ${seconds} seconds`;
+    } else if (time <= 60 && time > 1) {
+      const seconds = Math.round(time);
+      const milliseconds = Math.round((time - seconds) * 1000);
+      // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
+      if (seconds === 1 && milliseconds === 1) {
+        return `${seconds} second and ${milliseconds} millisecond`;
+      } else if (seconds === 1) {
+        return `${seconds} second and ${milliseconds} milliseconds`;
+      } else if (milliseconds === 1) {
+        return `${seconds} seconds and ${milliseconds} millisecond`;
+      }
+      return `${seconds} seconds and ${milliseconds} milliseconds`;
+    }
+    const milliseconds = Math.round(time * 1000);
+    const microseconds = Math.round((time - milliseconds) * 1000);
+
+    // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
+    if (milliseconds === 1 && microseconds === 1) {
+      return `${milliseconds} millisecond and ${microseconds} microsecond`;
+    } else if (milliseconds === 1) {
+      return `${milliseconds} millisecond and ${microseconds} microseconds`;
+    } else if (microseconds === 1) {
+      return `${milliseconds} milliseconds and ${microseconds} microsecond`;
+    }
+    return `${milliseconds} milliseconds and ${microseconds} microseconds`;
+  }
+
+  const onDrop = useCallback((acceptedFiles) => {
+    // Do something with the files
+    setCSVFileToView(acceptedFiles[0]);
     setHandlers({
       ...handlers,
       errorMessage: "",
     });
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
+    useDropzone({ onDrop });
+
+  const removeAll = () => {
+    setCSVFileToView(null);
+    setHandlers({
+      ...handlers,
+      errorMessage: "",
+    });
+    acceptedFiles.splice(0, acceptedFiles.length);
   };
 
   const [csv_columns, setCSVColumns] = useState({
-    show_columns: false,
     csv_file_name: "",
     csv_columns_to_pick: [],
   });
 
-  const { show_columns, csv_file_name, csv_columns_to_pick } = csv_columns;
+  const { csv_file_name, csv_columns_to_pick } = csv_columns;
 
   const [selectedColumn, setSelectedColumn] = useState({
     selected_column_for_sentence: "",
@@ -91,6 +170,11 @@ export default function AdminPrediction() {
   ];
 
   const { selected_column_for_sentence, selected_semester } = selectedColumn;
+
+  /**
+   * @description For step counter in the forgot password form.
+   */
+  const [count, setCount] = useState(1);
 
   // onChange for the select column for sentence listbox headless ui
   const handleSelect = (name) => (value) => {
@@ -142,7 +226,7 @@ export default function AdminPrediction() {
           ...handlers,
           ok: false,
           showButtonToView: false,
-          textChangeToView: "Viewed",
+          textChange: "View",
         });
         toast.success(response.data.message);
         jwtVerify(
@@ -156,8 +240,10 @@ export default function AdminPrediction() {
             csv_columns_to_pick: result.payload.csv_columns,
           });
         });
+        setCount(count + 1);
       })
       .catch((error) => {
+        removeAll();
         setCSVColumns({
           ...csv_columns,
           show_columns: false,
@@ -213,44 +299,43 @@ export default function AdminPrediction() {
             showButtonToAnS: false,
             textChangeToAnS: "Analyzed and Saved",
           });
-          setExtras({
-            ...extras,
-            csv_question: "",
-            school_year: "",
+          setTimeAnalyze({
+            ...timeAnalyze,
+            overall_time: response.data.overall_time,
+            pre_formatter_time: response.data.pre_formatter_time,
+            post_formatter_time: response.data.post_formatter_time,
+            tokenizer_time: response.data.tokenizer_time,
+            padding_time: response.data.padding_time,
+            model_time: response.data.model_time,
+            prediction_time: response.data.prediction_time,
+            sentiment_time: response.data.sentiment_time,
+            adding_predictions_time: response.data.adding_predictions_time,
+            analysis_user_time: response.data.analysis_user_time,
+            analysis_department_time: response.data.analysis_department_time,
+            analysis_collection_time: response.data.analysis_collection_time,
           });
-          setSelectedColumn({
-            ...selectedColumn,
-            selected_column_for_sentence: "",
-            selected_semester: "",
-          });
-          setCSVFileToView(null);
-          inputRef.current.value = "";
-          setCSVColumns({
-            ...csv_columns,
-            show_columns: false,
-            csv_file_name: "",
-            csv_columns_to_pick: [],
-          });
+          setCount(count + 1);
         })
         .catch((error) => {
-          setExtras({
-            ...extras,
-            csv_question: "",
-            school_year: "",
-          });
-          setSelectedColumn({
-            ...selectedColumn,
-            selected_column_for_sentence: "",
-            selected_semester: "",
-          });
-          setCSVFileToView(null);
-          inputRef.current.value = "";
-          setCSVColumns({
-            ...csv_columns,
-            show_columns: true,
-            csv_file_name: "",
-            csv_columns_to_pick: [],
-          });
+          removeAll();
+          // Back to the first step
+          setCount(1);
+          // setExtras({
+          //   ...extras,
+          //   csv_question: "",
+          //   school_year: "",
+          // });
+          // setSelectedColumn({
+          //   ...selectedColumn,
+          //   selected_column_for_sentence: "",
+          //   selected_semester: "",
+          // });
+          // setCSVColumns({
+          //   ...csv_columns,
+          //   show_columns: true,
+          //   csv_file_name: "",
+          //   csv_columns_to_pick: [],
+          // });
           setHandlers({
             ...handlers,
             textChange: "View",
@@ -263,41 +348,131 @@ export default function AdminPrediction() {
     }
   };
 
-  /**
-   * @description Close the error message
-   */
-  const handleClose = () => {
+  const handleResetWhenDone = async () => {
+    setExtras({
+      ...extras,
+      csv_question: "",
+      school_year: "",
+    });
+    setSelectedColumn({
+      ...selectedColumn,
+      selected_column_for_sentence: "",
+      selected_semester: "",
+    });
     setCSVColumns({
       ...csv_columns,
-      show_columns: false,
+      show_columns: true,
       csv_file_name: "",
       csv_columns_to_pick: [],
     });
     setHandlers({
       ...handlers,
-      errorEffect: false,
+      textChange: "View",
+      okToAnS: false,
       errorEffectToAnS: false,
       errorMessageToAnS: "",
+      textChangeToAnS: "Analyze and Save",
     });
+    setTimeAnalyze({
+      ...timeAnalyze,
+      overall_time: "",
+      pre_formatter_time: "",
+      post_formatter_time: "",
+      tokenizer_time: "",
+      padding_time: "",
+      model_time: "",
+      prediction_time: "",
+      sentiment_time: "",
+      adding_predictions_time: "",
+      analysis_user_time: "",
+      analysis_department_time: "",
+      analysis_collection_time: "",
+    });
+    setCount(1);
+    await httpClient
+      .post("/data/delete-uploaded-csv-file", {
+        file_name: csv_file_name,
+      })
+      .then((response) => {
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+    removeAll();
   };
 
   return (
-    <div className="px-6 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
-        <div className="flex flex-col items-center justify-center w-full h-32 p-4 bg-white rounded md:h-48 outline outline-2 outline-gray-200">
-          <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            Sentiment Analysis
+    <div className="px-6 mx-auto max-w-7xl pt-8">
+      <Header
+        body={
+          "Upload a CSV file to analyze and choose the column that contains the responses to analyze. The system will automatically create users but you have to manually send the credentials to them if the results are ready."
+        }
+        title={"Sentiment Analysis"}
+      />
+      <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-8">
+        <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Right Format of CSV File to Upload
           </h1>
-          <h1 className="text-sm font-medium text-gray-500">
-            @{user.username}
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Your CSV file should contain the following headers:{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              evaluatee, email, department, course code
+            </b>{" "}
+            and pick a header for the{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              sentence
+            </b>
+            .
+          </p>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              sentence
+            </b>{" "}
+            is the header that contains the responses of the students.
+          </p>
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            System&#39;s First Run
           </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            On the first run, the system will take a long time to analyze and
+            save the data. This is because the system is{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              automatically creates user accounts
+            </b>{" "}
+            and saves the results to there respective folders based on the
+            user&#39;s full name.
+          </p>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Performance of the system will improve as the system manages to save
+            a lot of data. The system will also be able to analyze and save the
+            data faster every time it runs{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              but it still depends on the size of the data to analyze and save.
+            </b>
+          </p>
+          <h1 className="mb-4 text-xl font-bold text-blue-500">
+            Account Credentials
+          </h1>
+          <p className="mb-4 text-sm text-gray-500 font-medium">
+            Admin will send the credentials to the users if the results are
+            ready right through their email. You can manage these accounts in
+            the{" "}
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              <Link to={"/admin/management/users/professors"}>
+                User management
+              </Link>
+            </span>{" "}
+            page.
+          </p>
         </div>
         <div className="col-span-2">
           <div
-            className={`flex flex-col w-full mb-8 bg-white rounded outline outline-2  ${
+            className={`flex flex-col w-full bg-blue-50 rounded-lg shadow ${
               errorEffect || errorEffectToAnS
-                ? `animate-wiggle`
-                : "outline-gray-200"
+                ? `animate-wiggle outline outline-2`
+                : ""
             }`}
             onAnimationEnd={() =>
               setHandlers({
@@ -307,93 +482,127 @@ export default function AdminPrediction() {
               })
             }
           >
-            <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
-              <div className="col-span-2 p-8 bg-gray-50">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">
-                  Analyze CSV file
+            <div className="grid w-full h-full grid-cols-1  md:grid-cols-5">
+              <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
+                <h1 className="text-xl font-bold text-blue-500">
+                  {count === 1
+                    ? "Upload CSV File"
+                    : count === 2
+                    ? "Header Selection"
+                    : "Time elapsed"}
                 </h1>
-                <p className="mb-4 text-sm">
-                  Your CSV file should contain the following headers:{" "}
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    evaluatee, department, course code and
-                  </b>{" "}
-                  pick a header for the{" "}
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    sentence
-                  </b>
-                  .
-                </p>
-                <p className="mb-4 text-sm">
-                  <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-                    sentence
-                  </b>{" "}
-                  is the header that contains the responses of the students.
-                </p>
-              </div>
-              <div className="flex flex-col w-full h-full col-span-3 p-8 pb-8 space-y-4">
-                <form
-                  encType={"multipart/form-data"}
-                  onSubmit={handleSubmitCSVToView}
-                >
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex flex-col w-full space-y-2">
-                      <h1 className="mb-4 text-xl font-bold text-gray-700">
-                        Upload CSV File
-                      </h1>
-                      <h1 className="text-base font-medium text-gray-500">
-                        CSV file
-                      </h1>
-                      <input
-                        className={TEXT_FIELD}
-                        name="csv_file_to_view"
-                        onChange={handleChange}
-                        ref={inputRef}
-                        type="file"
-                      />
-                      <p
-                        className="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                        id="file_input_help"
-                      >
-                        The file must be a .csv file.
-                      </p>
-                    </div>
-                  </div>
-                  {/* Error message */}
-                  {errorMessage ? (
-                    <div className="mt-2 text-sm font-semibold text-red-500">
-                      {errorMessage}
-                    </div>
-                  ) : null}
-                  <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                    <div className="p-1" />
-                    <button
-                      className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                      type="submit"
-                    >
-                      {ok ? LOADING_ANIMATION() : null}
-                      {textChange}
-                    </button>
-                  </div>
-                </form>
-                {show_columns ? (
-                  <form onSubmit={handleSubmitToAnalyzeAndSave}>
+                <h1 className="font-medium">
+                  {count === 3
+                    ? `${timeFormat(overall_time)}`
+                    : `Step ${count} of 2`}
+                </h1>
+                {count === 1 ? (
+                  <form
+                    encType={"multipart/form-data"}
+                    onSubmit={handleSubmitCSVToView}
+                  >
                     <div className="flex flex-col space-y-4">
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="mb-4 text-xl font-bold text-gray-700">
-                          Header Selection
-                        </h1>
+                        <div
+                          className="flex items-center justify-center w-full"
+                          {...getRootProps()}
+                        >
+                          <label
+                            className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ${
+                              errorEffect || errorEffectToAnS
+                                ? `animate-wiggle border-red-500`
+                                : "border-gray-300"
+                            }`}
+                            htmlFor="dropzone-file"
+                          >
+                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                              <svg
+                                aria-hidden="true"
+                                className="w-10 h-10 mb-3 text-gray-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                />
+                              </svg>
+                              <p className="mb-2 text-sm text-gray-500">
+                                <span className="font-semibold">
+                                  Click to upload
+                                </span>{" "}
+                                or drag and drop
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                CSV files only
+                              </p>
+                            </div>
+                            <input {...getInputProps()} />
+                            {isDragActive ? (
+                              <p className="text-sm text-gray-500">
+                                Drop the files here ...
+                              </p>
+                            ) : (
+                              <p className="text-sm text-gray-500">
+                                Drag &#39;n&#39; drop some files here, or click
+                                to select files
+                              </p>
+                            )}
+                            {acceptedFiles.map((file) => (
+                              <p
+                                className="text-sm text-gray-500"
+                                key={file.path}
+                              >
+                                {file
+                                  ? `${file.path} - ${file.size} bytes`
+                                  : ""}
+                              </p>
+                            ))}
+                          </label>
+                        </div>
+                        <p
+                          className="mt-1 text-sm text-gray-500"
+                          id="file_input_help"
+                        >
+                          The file must be a .csv file.
+                        </p>
                       </div>
-                      <p className="">
+                    </div>
+                    {/* Error message */}
+                    {errorMessage ? (
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
+                    ) : null}
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
+                      <div className="p-1" />
+                      <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        type="submit"
+                      >
+                        {ok ? <LoadingAnimation /> : null}
+                        {textChange}
+                      </button>
+                    </div>
+                  </form>
+                ) : count === 2 ? (
+                  <form onSubmit={handleSubmitToAnalyzeAndSave}>
+                    <div className="flex flex-col space-y-4">
+                      <p className="text-gray-500">
                         Select the header that contains the responses to be
                         analyzed. The responses should be in the form of a
                         sentence. For example, &ldquo;I like the teacher&ldquo;.
                       </p>
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="text-base font-medium text-gray-500">
+                        <h1 className="text-base font-medium text-blue-500">
                           File Name
                         </h1>
                         <input
-                          className={TEXT_FIELD}
+                          className={`${TEXT_FIELD} cursor-not-allowed text-gray-500 bg-white`}
                           disabled
                           placeholder="File Name"
                           type="text"
@@ -407,11 +616,13 @@ export default function AdminPrediction() {
                             "selected_column_for_sentence",
                           )}
                         >
-                          <Listbox.Label className="block text-base font-medium text-gray-500">
+                          <Listbox.Label className="block text-base font-medium text-blue-500">
                             Sentence
                           </Listbox.Label>
                           <div className="relative mt-1">
-                            <Listbox.Button className={TEXT_FIELD}>
+                            <Listbox.Button
+                              className={`${TEXT_FIELD} text-gray-500 bg-white`}
+                            >
                               <span className="block truncate text-start">
                                 {selected_column_for_sentence
                                   ? selected_column_for_sentence
@@ -420,7 +631,7 @@ export default function AdminPrediction() {
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
                                   aria-hidden="true"
-                                  className="h-5 w-5 text-gray-400"
+                                  className="h-5 w-5 text-blue-500"
                                 />
                               </span>
                             </Listbox.Button>
@@ -439,8 +650,8 @@ export default function AdminPrediction() {
                                     className={({ active }) =>
                                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                         active
-                                          ? "bg-blue-100 text-blue-900"
-                                          : "text-gray-900"
+                                          ? "bg-blue-100 text-blue-500"
+                                          : "text-gray-500"
                                       }`
                                     }
                                     key={column.id}
@@ -458,7 +669,7 @@ export default function AdminPrediction() {
                                           {`${column.id} - ${column.name}`}
                                         </span>
                                         {selected ? (
-                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                                             <CheckIcon
                                               aria-hidden="true"
                                               className="h-5 w-5"
@@ -475,11 +686,11 @@ export default function AdminPrediction() {
                         </Listbox>
                       </div>
                       <div className="flex flex-col w-full space-y-2">
-                        <h1 className="text-base font-medium text-gray-500">
+                        <h1 className="text-base font-medium text-blue-500">
                           School Year
                         </h1>
                         <input
-                          className={`truncate ${TEXT_FIELD}`}
+                          className={`truncate ${TEXT_FIELD} text-gray-500 bg-white`}
                           name="school_year"
                           onChange={handleExtras("school_year")}
                           placeholder="e.g. S.Y. 2020-2021"
@@ -490,11 +701,13 @@ export default function AdminPrediction() {
                           name={"semester"}
                           onChange={handleSelect("selected_semester")}
                         >
-                          <Listbox.Label className="block text-base font-medium text-gray-500">
+                          <Listbox.Label className="block text-base font-medium text-blue-500">
                             Semester
                           </Listbox.Label>
                           <div className="relative mt-1">
-                            <Listbox.Button className={TEXT_FIELD}>
+                            <Listbox.Button
+                              className={`${TEXT_FIELD} text-gray-500 bg-white`}
+                            >
                               <span className="block truncate text-start">
                                 {selected_semester
                                   ? selected_semester
@@ -503,7 +716,7 @@ export default function AdminPrediction() {
                               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                 <ChevronUpDownIcon
                                   aria-hidden="true"
-                                  className="h-5 w-5 text-gray-400"
+                                  className="h-5 w-5 text-blue-500"
                                 />
                               </span>
                             </Listbox.Button>
@@ -522,8 +735,8 @@ export default function AdminPrediction() {
                                     className={({ active }) =>
                                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                         active
-                                          ? "bg-blue-100 text-blue-900"
-                                          : "text-gray-900"
+                                          ? "bg-blue-100 text-blue-500"
+                                          : "text-gray-500"
                                       }`
                                     }
                                     key={sem.id}
@@ -541,7 +754,7 @@ export default function AdminPrediction() {
                                           {sem.name}
                                         </span>
                                         {selected ? (
-                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-500">
                                             <CheckIcon
                                               aria-hidden="true"
                                               className="h-5 w-5"
@@ -559,7 +772,7 @@ export default function AdminPrediction() {
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         {selected_column_for_sentence ? (
-                          <h1 className="text-base font-medium text-gray-500">
+                          <h1 className="text-base font-medium text-blue-500">
                             Please type {'"'}
                             <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
                               {getNameFromString(selected_column_for_sentence)}
@@ -567,12 +780,13 @@ export default function AdminPrediction() {
                             {'"'} to confirm.
                           </h1>
                         ) : (
-                          <h1 className="text-base font-medium text-gray-500">
+                          <h1 className="text-base font-medium text-blue-500">
                             Select a column for sentence.
                           </h1>
                         )}
                         <input
-                          className={`truncate ${TEXT_FIELD}`}
+                          autoComplete={"off"}
+                          className={`truncate ${TEXT_FIELD} text-gray-700 bg-white`}
                           name="csv_question"
                           onChange={handleExtras("csv_question")}
                           placeholder="Question"
@@ -587,38 +801,345 @@ export default function AdminPrediction() {
                         {errorMessageToAnS}
                       </div>
                     ) : null}
-                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2">
-                      {errorMessageToAnS ? (
-                        <button
-                          className={`px-8 py-1 flex flex-row justify-center ${DANGER_BUTTON}`}
-                          onClick={handleClose}
-                          type="button"
-                        >
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
+                      <button
+                        className={`px-5 py-1 pl-4 ${ACCENT_BUTTON} ${
+                          count === 1 ? "hidden" : ""
+                        }`}
+                        onClick={() => {
+                          setCount(count - 1);
+
+                          setHandlers({
+                            ...handlers,
+                            textChange: "View",
+                            errorMessageToAnS: "",
+                          });
+                        }}
+                        type="button"
+                      >
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faCaretLeft}
+                        />
+                        Previous
+                      </button>
+
+                      <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        type="submit"
+                      >
+                        {okToAnS ? (
+                          <LoadingAnimation />
+                        ) : (
                           <FontAwesomeIcon
                             className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faArrowRotateRight}
+                            icon={faMagnifyingGlassChart}
                           />
-                          Try Again
-                        </button>
-                      ) : (
-                        <button
-                          className={`px-8 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
-                          type="submit"
-                        >
-                          {okToAnS ? (
-                            LOADING_ANIMATION()
-                          ) : (
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faMagnifyingGlassChart}
-                            />
-                          )}
-                          {textChangeToAnS}
-                        </button>
-                      )}
+                        )}
+                        {textChangeToAnS}
+                      </button>
                     </div>
                   </form>
-                ) : null}
+                ) : (
+                  <div className="flex flex-col space-y-4">
+                    <p className="text-gray-500">
+                      Why does it take so long? Here&#39;s why: We are using a
+                      deep learning model to analyze your data. This model is a
+                      neural network that is trained to understand the meaning
+                      of your data. This process takes time. We are working on
+                      making this process faster.
+                    </p>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Removed Empty Columns and Text Preprocessing"}
+                      >
+                        <p className="text-gray-500">
+                          We are removing empty columns from your data. This is
+                          to make sure that the model does not get confused by
+                          empty columns in your data.
+                        </p>
+                        <p className="text-gray-500">
+                          We are also doing some text preprocessing which
+                          includes removing punctuations, numbers, non-ascii
+                          characters, tabs, carriage, newline, whitespace,
+                          multiple_whitespaces (also at the beginning and end of
+                          the response) ,special_characters, urls, emails, html
+                          tags.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Pass: 1
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(pre_formatter_time)}
+                            </p>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Pass: 2
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(post_formatter_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable title={"Tokenization"}>
+                        <p className="text-gray-500">
+                          Neural networks utilize numbers as their inputs, so we
+                          need to convert our input text into numbers.
+                        </p>
+                        <p className="text-gray-500">
+                          Tokenization is the process of converting text into
+                          tokens. A token is a sequence of characters or a
+                          substring of the text. In our trained model, we used
+                          its own tokenizer to tokenize the text to avoid any
+                          mismatch in the tokens.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(tokenizer_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Padding and Truncating the Sequences"}
+                      >
+                        <p className="text-gray-500">
+                          We need to make sure that all the sequences are of the
+                          same length. This is because neural networks cannot
+                          process inputs of different lengths.
+                        </p>
+                        <p className="text-gray-500">
+                          It is required to pad the sequences with zeros to make
+                          them of the same length and truncate the sequences
+                          that are longer than the maximum length of the
+                          sequence. We have used a maximum length of 300.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(padding_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable title={"Loading the Model"}>
+                        <p className="text-gray-500">
+                          Loading the model is the process of loading the
+                          trained model into the memory. This is done to make
+                          the model ready for inference.
+                        </p>
+                        <p className="text-gray-500">
+                          Inference is the process of predicting the output of
+                          the model. In our case, the model is predicting the
+                          meaning of the text. This process takes time because
+                          the model is large in size.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(model_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Predicting the Meaning of the Text"}
+                      >
+                        <p className="text-gray-500">
+                          This is the final step of the process. We are
+                          predicting the meaning of the text using the trained
+                          model.
+                        </p>
+                        <p className="text-gray-500">
+                          We are also using a threshold of 0.5 to filter out the
+                          predictions that are less than 0.5. This is done to
+                          make sure that the predictions are accurate.
+                        </p>
+                        <p className="text-gray-500">
+                          We also converted the predictions into a readable
+                          format, from -e notation to a percentage format.
+                          example of -e notation: -1.3e-01, example of
+                          percentage format: 13.00%
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Actual Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(prediction_time)}
+                            </p>
+                          </div>
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Converting to Percentage
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(sentiment_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Writing the Predictions to a CSV File"}
+                      >
+                        <p className="text-gray-500">
+                          We are writing the predictions to a CSV file. This is
+                          done to make sure that the predictions are saved for
+                          future use.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(adding_predictions_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={
+                          "User Account Automation and Analysis Computations"
+                        }
+                      >
+                        <p className="text-gray-500">
+                          While we are processing your data, we are also
+                          creating a user account for you. This is done to make
+                          sure that you can access your predictions in the
+                          future. You can manage these accounts in the{" "}
+                          <span className="text-blue-500 font-medium">
+                            <Link to={"/admin/management/users/professors"}>
+                              User management
+                            </Link>
+                          </span>{" "}
+                          page.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_user_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Department Analysis Computations"}
+                      >
+                        <p className="text-gray-500">
+                          While we are processing your data, we are also
+                          computing the department analysis. This is done to
+                          make sure that you can access the department analysis
+                          in the future. You can access the department analysis
+                          in the{" "}
+                          <span className="text-blue-500 font-medium">
+                            <Link to={"/admin/management/files/data"}>
+                              File Management
+                            </Link>
+                          </span>{" "}
+                          page and choose file to view.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_department_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Collection Provider Analysis Computations"}
+                      >
+                        <p className="text-gray-500">
+                          This process also takes time because it compiles each
+                          professor&#39;s courses and responses into there own
+                          respective folders. This is done to make sure that the
+                          professor can access their predictions in the future.
+                          You can access the collection provider analysis in the{" "}
+                          <span className="text-blue-500 font-medium">
+                            <Link to={"/admin/management/files/data"}>
+                              File Management
+                            </Link>
+                          </span>{" "}
+                          page and choose file and Professor to view.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(analysis_collection_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
+                      <button
+                        className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                        onClick={() => {
+                          setCount(2);
+                        }}
+                        type="button"
+                      >
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faCaretLeft}
+                        />
+                        Next Header to Analyze
+                      </button>
+                      <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        onClick={handleResetWhenDone}
+                        type="button"
+                      >
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faFlagCheckered}
+                        />
+                        Finish
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

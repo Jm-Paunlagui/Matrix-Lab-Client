@@ -8,14 +8,15 @@ import SuccessAnimation from "actually-accessible-react-success-animation";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
+  ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  LOADING_ANIMATION,
   PRIMARY_BUTTON,
   TEXT_FIELD,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the forgot password request page
@@ -125,13 +126,13 @@ export default function AuthResetPassword() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div
-            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
+            className={`relative flex flex-col w-full min-w-0 break-words bg-blue-50 border rounded-lg shadow-lg
                           ${errorEffect && `animate-wiggle`}`}
             onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
-              <div className="py-12 bg-white rounded-lg shadow-lg">
+              <div className="py-12 bg-blue-50 rounded-lg shadow-lg">
                 <SuccessAnimation color="#5cb85c" text="Success!" />
                 <div className="px-6 space-y-6 text-center text-gray-500">
                   <p className="text-lg">
@@ -139,7 +140,7 @@ export default function AuthResetPassword() {
                     with your new password.
                   </p>
                   <div className="flex flex-col justify-center">
-                    <button className={`${PRIMARY_BUTTON}`} type={"button"}>
+                    <button className={`${ACCENT_BUTTON}`} type={"button"}>
                       <Link to={"/auth"}>
                         <h1 className="px-5 py-1">
                           Proceed to
@@ -230,7 +231,9 @@ export default function AuthResetPassword() {
                           disabled={buttonDisabled}
                           type="submit"
                         >
-                          {oki ? LOADING_ANIMATION() : null}
+                          {oki ? (
+                            <LoadingAnimation moreClasses="text-teal-600" />
+                          ) : null}
                           {textChange}
                         </button>
                       </div>

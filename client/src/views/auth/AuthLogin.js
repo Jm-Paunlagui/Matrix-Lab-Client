@@ -6,7 +6,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
-import { ICON_PLACE_SELF_CENTER } from "../../assets/styles/input-types-styles";
+import { ICON_PLACE_SELF_CENTER } from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
@@ -132,27 +132,35 @@ export default function AuthLogin() {
         password,
       })
       .then(async (response) => {
-        jwtVerify(
-          response.data.emails,
-          await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
-        )
-          .then((result) => {
-            setAuthForm({
-              ...authForm,
-              id1: result.payload.id1,
-              id2: result.payload.id2,
-              id3: result.payload.id3,
-              textChange: "Continue",
+        if (response.data.status === "success") {
+          jwtVerify(
+            response.data.emails,
+            await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"),
+          )
+            .then((result) => {
+              setAuthForm({
+                ...authForm,
+                id1: result.payload.id1,
+                id2: result.payload.id2,
+                id3: result.payload.id3,
+                textChange: "Continue",
+              });
+              setErrorMessage("");
+              setCount(count + 1);
+              setOki(false);
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+              setErrorEffect(true);
+              setOki(false);
+              setAuthForm({ ...authForm, textChange: "Sign In" });
             });
-          })
-          .catch((error) => {
-            setErrorMessage(error.message);
-            setErrorEffect(true);
-            setOki(false);
-            setAuthForm({ ...authForm, textChange: "Next" });
-          });
-        setCount(count + 1);
-        setOki(false);
+        } else {
+          setErrorMessage(response.data.message);
+          setErrorEffect(true);
+          setOki(false);
+          setAuthForm({ ...authForm, textChange: "Sign In" });
+        }
       })
       .catch((error) => {
         setErrorEffect(true);
@@ -184,7 +192,11 @@ export default function AuthLogin() {
       .then((response) => {
         toast(`${response.data.message}`, { type: "info" });
         setCountDown(30);
-        setCount(count + 1);
+        if (count >= 3) {
+          setCount(count);
+        } else {
+          setCount(count + 1);
+        }
         setAuthForm({
           ...authForm,
           textChange: "Verify code",
@@ -262,7 +274,7 @@ export default function AuthLogin() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div
-            className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg 
+            className={`relative flex flex-col w-full min-w-0 break-words bg-blue-50 border rounded-lg shadow-lg 
                 ${errorEffect && `animate-wiggle`}`}
             onAnimationEnd={() => setErrorEffect(false)}
           >
@@ -272,7 +284,7 @@ export default function AuthLogin() {
                 <img alt="logo" className="w-12 h-12 -mt-12" src={logo} />
               </div>
               <div className="flex-auto pt-0 mb-24 -mt-14">
-                <h6 className="mt-16 text-lg font-bold text-gray-500 xl:text-2xl">
+                <h6 className="mt-16 text-lg font-bold text-blue-500 xl:text-2xl">
                   {count === 1
                     ? "Sign in to MATRIX LAB"
                     : count === 2
@@ -287,55 +299,56 @@ export default function AuthLogin() {
                       <FontAwesomeIcon
                         className={`${ICON_PLACE_SELF_CENTER}`}
                         icon={faEnvelope}
-                        size={"lg"}
                       />
                       We emailed a code to {email}. Please enter the code to
                       sign in.
                     </p>
                   )}
                 </div>
-                {count === 1
-                  ? new UsernamePassword(
-                      errorEffect,
-                      errorMessage,
-                      handleAuthFormChange,
-                      handleAuthFormSubmit,
-                      oki,
-                      password,
-                      textChange,
-                      username,
-                    )
-                  : count === 2
-                  ? new TFAbyEmail(
-                      email,
-                      errorEffect,
-                      errorMessage,
-                      handle2FAFormSubmit,
-                      handleAuthFormChange,
-                      id1,
-                      id2,
-                      id3,
-                      oki,
-                      textChange,
-                    )
-                  : new VerifyTFA(
-                      authForm,
-                      buttonDisabled,
-                      code,
-                      count,
-                      countDown,
-                      errorEffect,
-                      errorMessage,
-                      handle2FAFormSubmit,
-                      handle2FAVerifyFormSubmit,
-                      handleAuthFormChange,
-                      oki,
-                      setAuthForm,
-                      setCount,
-                      setErrorMessage,
-                      textChange,
-                      textChange2,
-                    )}
+                {count === 1 ? (
+                  <UsernamePassword
+                    errorEffect={errorEffect}
+                    errorMessage={errorMessage}
+                    handleAuthFormChange={handleAuthFormChange}
+                    handleAuthFormSubmit={handleAuthFormSubmit}
+                    oki={oki}
+                    password={password}
+                    textChange={textChange}
+                    username={username}
+                  />
+                ) : count === 2 ? (
+                  <TFAbyEmail
+                    email={email}
+                    errorEffect={errorEffect}
+                    errorMessage={errorMessage}
+                    handle2FAFormSubmit={handle2FAFormSubmit}
+                    handleAuthFormChange={handleAuthFormChange}
+                    id1={id1}
+                    id2={id2}
+                    id3={id3}
+                    oki={oki}
+                    textChange={textChange}
+                  />
+                ) : (
+                  <VerifyTFA
+                    authForm={authForm}
+                    buttonDisabled={buttonDisabled}
+                    code={code}
+                    count={count}
+                    countDown={countDown}
+                    errorEffect={errorEffect}
+                    errorMessage={errorMessage}
+                    handle2FAFormSubmit={handle2FAFormSubmit}
+                    handle2FAVerifyFormSubmit={handle2FAVerifyFormSubmit}
+                    handleAuthFormChange={handleAuthFormChange}
+                    oki={oki}
+                    setAuthForm={setAuthForm}
+                    setCount={setCount}
+                    setErrorMessage={setErrorMessage}
+                    textChange={textChange}
+                    textChange2={textChange2}
+                  />
+                )}
               </div>
             </div>
           </div>

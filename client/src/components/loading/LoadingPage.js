@@ -1,6 +1,27 @@
 import React from "react";
 
-import { LOADING_ANIMATION } from "../../assets/styles/input-types-styles";
+import PropTypes from "prop-types";
+
+/**
+ * @description Circular loading animation
+ */
+export function LoadingAnimation({ moreClasses }) {
+  LoadingAnimation.propTypes = {
+    moreClasses: PropTypes.string,
+  };
+  return (
+    <svg className={`mr-1 spinner ${moreClasses}`} viewBox="0 0 50 50">
+      <circle
+        className="path"
+        cx="25"
+        cy="25"
+        fill="transparent"
+        r="20"
+        strokeWidth="5"
+      />
+    </svg>
+  );
+}
 
 /**
  * @description Logout in the loading animation
@@ -12,9 +33,9 @@ export default function LoadingPage() {
         <div className="w-full flex items-center content-center justify-center h-full">
           <div className="flex flex-col justify-center animate-pulse">
             <div className={`px-5 py-1 pl-4 flex flex-row justify-center`}>
-              {LOADING_ANIMATION()}
+              {<LoadingAnimation moreClasses="text-blue-500" />}
               {/* Animated text */}
-              <h6 className="text-xl font-bold text-black">Getting data</h6>
+              <h6 className="text-xl font-bold text-blue-500">Getting data</h6>
             </div>
           </div>
         </div>

@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import {
-  Header,
-  NoData,
-  SearchBar,
-} from "../../assets/styles/input-types-styles";
+import { NoData } from "../../assets/styles/styled-components";
+import { Header } from "../../components/headers/Header";
+import { SearchBar } from "../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the Insights for the department
@@ -57,7 +55,8 @@ export default function InsightsEmployees() {
             body={`Overall sentiment of professors in year ${year} based on sentiments of all courses taught by the professor.`}
             title="Sentiment of Professors"
           />
-          <SearchBar customStyle="mt-8"
+          <SearchBar
+            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearch(event)}
             placeholder="Search"
@@ -93,7 +92,7 @@ export default function InsightsEmployees() {
                 }`}
                     >
                       <div className="flex flex-col items-center justify-center w-full p-4">
-                        <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
+                        <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
                           {professor.professor}
                         </h1>
                       </div>

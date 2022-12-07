@@ -8,7 +8,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import AdminDashboard from "./views/admin/AdminDashboard.js";
+import OverallDashboard from "./views/admin/dashboard/OverallDashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
@@ -40,12 +40,16 @@ import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
 import IndexEval from "./views/user/eval/IndexEval";
-import IndexManagement from "./views/admin/management_files/IndexManagement";
-import ManagementFiles from "./views/admin/management_files/ManagementFiles";
-import ManagementProfessors from "./views/admin/management_files/ManagementProfessors";
-import ManagementFileData from "./views/admin/management_files/ManagementFileData";
-import ManagementListofDataResponse from "./views/admin/management_files/ManagementListofDataResponse";
-import ManagementReadDataResponse from "./views/admin/management_files/ManagementReadDataResponse";
+import IndexManagementFiles from "./views/admin/management/IndexManagementFiles";
+import ManagementFilesCSV from "./views/admin/management/management_files/ManagementFilesCSV";
+import ManagementFilesUsers from "./views/admin/management/management_users/ManagementFilesUsers";
+import ManagementFilesData from "./views/admin/management/management_files/ManagementFilesData";
+import ManagementFilesListofDataResponse from "./views/admin/management/management_files/ManagementFilesListofDataResponse";
+import ManagementFilesReadDataResponse from "./views/admin/management/management_files/ManagementFilesReadDataResponse";
+import IndexFiles from "./views/admin/management/management_files/IndexFiles";
+import IndexUsers from "./views/admin/management/management_users/IndexUsers";
+import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
+import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
 
 /**
  * @description Main component for the application
@@ -65,7 +69,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-blue-100 min-h-screen">
+    <div className="bg-blue-200 min-h-screen">
       <ToastContainer
         autoClose={5000}
         className="z-50"
@@ -132,6 +136,11 @@ export default function App() {
                 exact="true"
                 path="reset-password/:token"
               />
+              <Route
+                element={<AuthAdminUnlock />}
+                exact="true"
+                path="admin-unlock/:token"
+              />
             </Route>
             <Route
               element={<AuthRemoveEmailFromAccount />}
@@ -146,11 +155,6 @@ export default function App() {
              * admin routes.
              */}
             <Route element={<IndexAdmin />} exact="true" path="admin">
-              <Route
-                element={<AdminDashboard />}
-                exact="true"
-                path="analytics"
-              />
               <Route element={<IndexInsights />} exact="true" path="insights">
                 <Route
                   element={<InsightsDepartment />}
@@ -176,7 +180,7 @@ export default function App() {
               <Route
                 element={<AdminPrediction />}
                 exact="true"
-                path="analyze"
+                path="sentiment-analysis"
               />
               <Route
                 element={<AdminProfile />}
@@ -184,36 +188,48 @@ export default function App() {
                 path="profile/:username"
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
+              <Route element={<IndexDashBoard />} exact="true" path="dashboard">
+                <Route
+                  element={<OverallDashboard />}
+                  exact="true"
+                  path="analytics"
+                />
+              </Route>
               <Route
-                element={<IndexManagement />}
+                element={<IndexManagementFiles />}
                 exact="true"
                 path="management"
               >
-                <Route
-                  element={<ManagementFiles />}
-                  exact="true"
-                  path="files"
-                />
-                <Route
-                  element={<ManagementFileData />}
-                  exact="true"
-                  path="files/:fileId"
-                />
-                <Route
-                  element={<ManagementListofDataResponse />}
-                  exact="true"
-                  path="files/:fileId/:read_responses"
-                />
-                <Route
-                  element={<ManagementReadDataResponse />}
-                  exact="true"
-                  path="files/:fileId/:read_responses/:file_name"
-                />
-                <Route
-                  element={<ManagementProfessors />}
-                  exact="true"
-                  path="professors"
-                />
+                <Route element={<IndexFiles />} exact="true" path="files">
+                  <Route
+                    element={<ManagementFilesCSV />}
+                    exact="true"
+                    path="data"
+                  />
+                  <Route
+                    element={<ManagementFilesData />}
+                    exact="true"
+                    path="data/:fileId"
+                  />
+                  <Route
+                    element={<ManagementFilesListofDataResponse />}
+                    exact="true"
+                    path="data/:fileId/:read_responses"
+                  />
+                  <Route
+                    element={<ManagementFilesReadDataResponse />}
+                    exact="true"
+                    path="data/:fileId/:read_responses/:file_name"
+                  />
+                </Route>
+
+                <Route element={<IndexUsers />} exact="true" path="users">
+                  <Route
+                    element={<ManagementFilesUsers />}
+                    exact="true"
+                    path="professors"
+                  />
+                </Route>
               </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
@@ -237,7 +253,7 @@ export default function App() {
               <Route
                 element={<UserDashboard />}
                 exact="true"
-                path="dashboard"
+                path="analytics"
               />
               <Route
                 element={<UserProfile />}

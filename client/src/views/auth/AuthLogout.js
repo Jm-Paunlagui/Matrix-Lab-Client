@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LOADING_ANIMATION } from "../../assets/styles/input-types-styles";
+import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
  * @description Logout in the loading animation
@@ -13,7 +13,7 @@ export default function AuthLogout() {
           <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
             <div className="flex flex-col justify-center">
               <div className={`px-5 py-1 pl-4 flex flex-row justify-center`}>
-                {LOADING_ANIMATION()}
+                {<LoadingAnimation moreClasses="text-teal-600" />}
                 <h6 className="text-xl font-bold text-gray-500">
                   Logging out...
                 </h6>

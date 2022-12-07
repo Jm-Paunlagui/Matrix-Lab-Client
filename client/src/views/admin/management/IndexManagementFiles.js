@@ -5,11 +5,11 @@ import { isAuth } from "../../../helpers/Auth";
 /**
  * @description Handles admin pages for the application
  */
-export default function IndexManagement() {
+export default function IndexManagementFiles() {
   return isAuth().role === "admin" ? (
-      <div className="mt-16 font-Montserrat">
-        <Outlet />
-      </div>
+    <div className="font-Montserrat">
+      <Outlet />
+    </div>
   ) : (
     <Navigate to="/unauthorized-access" />
   );

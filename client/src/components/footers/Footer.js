@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { DELAY_1, DELAY_3 } from "../../assets/styles/input-types-styles";
+import { DELAY_1, DELAY_3 } from "../../assets/styles/styled-components";
 
 /**
  * @type {Array}
@@ -37,12 +37,12 @@ const UsefulLinks = [
  */
 export default function Footer() {
   return (
-    <footer className="px-6 pt-8 pb-6 mt-auto text-gray-500 font-Montserrat bg-blue-50">
+    <footer className="px-6 pt-8 pb-6 mt-auto text-blue-500 font-Montserrat">
       <div className="container mx-auto max-w-7xl">
         <hr className="my-6 border-gray-300" />
         <div className="flex flex-wrap py-4 text-center">
           <div className="items-center w-full lg:flex lg:space-x-6 place-content-center">
-            <h4 className="text-2xl font-semibold text-gray-600">
+            <h4 className="text-2xl font-semibold">
               Let&apos;s keep in touch!
             </h4>
             <h5 className="text-lg">
@@ -92,10 +92,10 @@ export default function Footer() {
         <hr className="my-6 border-gray-300" />
         <div className="flex flex-wrap md:justify-between">
           <div className="w-full px-4 mx-auto text-center md:w-4/12">
-            <div className="py-1 text-sm font-semibold text-gray-500">
+            <div className="py-1 text-sm font-semibold text-blue-500">
               Copyright © {new Date().getFullYear()} Matrix Lab by{" "}
               <Link to="https://www.creative-tim.com?ref=nr-footer">
-                <div className="text-gray-500 hover:text-gray-800">
+                <div className="text-blue-500 hover:text-blue-800">
                   Morning Group.
                 </div>
               </Link>

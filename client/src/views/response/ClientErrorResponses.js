@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import {
+  ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
-} from "../../assets/styles/input-types-styles";
+} from "../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,7 +22,7 @@ export function Unauthorized() {
 
         <NavLink to="/">
           <div
-            className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+            className={`px-5 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
           >
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -50,7 +50,7 @@ export function PageNotFound() {
 
         <NavLink to="/">
           <div
-            className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+            className={`px-5 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
           >
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}
@@ -78,7 +78,7 @@ export function InvalidToken() {
 
         <NavLink to="/">
           <div
-            className={`px-5 py-1 flex flex-row justify-center ${PRIMARY_BUTTON}`}
+            className={`px-5 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
           >
             <FontAwesomeIcon
               className={`${ICON_PLACE_SELF_CENTER}`}

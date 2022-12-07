@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
-  Header,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData, SearchBar,
-} from "../../../assets/styles/input-types-styles";
+  NoData,
+} from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretLeft,
@@ -13,39 +12,41 @@ import {
   faFileCsv,
   faFileArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
-import httpClient from "../../../http/httpClient";
-import LoadingPage from "../../../components/loading/LoadingPage";
+import httpClient from "../../../../http/httpClient";
+import LoadingPage from "../../../../components/loading/LoadingPage";
 import { toast } from "react-toastify";
-import ConfirmModal from "../../../components/modal/ConfirmModal";
+import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { Link } from "react-router-dom";
+import { Header } from "../../../../components/headers/Header";
+import { SearchBar } from "../../../../components/searchbar/SearchBar";
 
 /**
  * @description Handles the files to view and delete
  */
-export default function ManagementFiles() {
+export default function ManagementFilesCSV() {
   const [fileData, setFileData] = useState({
     loading: true,
-    files: [],
+    files_list: [],
     current_page: "",
     has_next: false,
     has_prev: true,
-    page: 1,
+    page_number: 1,
     total_items: "",
     total_pages: "",
   });
 
   const {
     loading,
-    files,
+    files_list,
     current_page,
     has_next,
     has_prev,
-    page,
+    page_number,
     total_items,
     total_pages,
   } = fileData;
 
-  const [filteredListOfFiles, setFilteredListOfFiles] = useState(files);
+  const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
   /**
    * @description Filters the list of files based on the search value
@@ -53,10 +54,14 @@ export default function ManagementFiles() {
    */
   const handleSearchForFile = (event) => {
     const searchValue = event.target.value;
-    const filteredList = files.filter((file) => {
-      return file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
-        file.school_semester.toLowerCase().includes(searchValue.toLowerCase()) ||
-        file.csv_question.toLowerCase().includes(searchValue.toLowerCase());
+    const filteredList = files_list.filter((file) => {
+      return (
+        file.school_year.toLowerCase().includes(searchValue.toLowerCase()) ||
+        file.school_semester
+          .toLowerCase()
+          .includes(searchValue.toLowerCase()) ||
+        file.csv_question.toLowerCase().includes(searchValue.toLowerCase())
+      );
     });
     setFilteredListOfFiles(filteredList);
   };
@@ -80,9 +85,6 @@ export default function ManagementFiles() {
           current_page: response.data.current_page,
           has_next: response.data.has_next,
           has_prev: response.data.has_prev,
-          items_per_page: response.data.items_per_page,
-          next_page: response.data.next_page,
-          prev_page: response.data.prev_page,
           total_items: response.data.total_items,
           total_pages: response.data.total_pages,
         });
@@ -91,8 +93,8 @@ export default function ManagementFiles() {
   };
 
   useEffect(() => {
-    loadFiles(page);
-  }, [page]);
+    loadFiles(page_number);
+  }, [page_number]);
 
   /**
    * @description Handles the delete of a file from the backend
@@ -102,7 +104,7 @@ export default function ManagementFiles() {
     httpClient
       .delete(`/data/delete-csv-file/${file}`)
       .then((response) => {
-        loadFiles(page);
+        loadFiles(page_number);
         toast.success(response.data.message);
       })
       .catch((error) => {
@@ -134,7 +136,7 @@ export default function ManagementFiles() {
   };
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl mt-8">
       <Header
         body={
           "View and Delete files CSV files that have been analyzed by the system."
@@ -145,14 +147,15 @@ export default function ManagementFiles() {
         LoadingPage()
       ) : (
         <>
-          <SearchBar customStyle="mt-8"
-                     name="searchValue"
-                     onChange={(event) => handleSearchForFile(event)}
-                     placeholder="Search"
-                     type="text"
+          <SearchBar
+            customStyle="mt-8"
+            name="searchValue"
+            onChange={(event) => handleSearchForFile(event)}
+            placeholder="Search"
+            type="text"
           />
           <div className="flex flex-col w-full p-4">
-            <h1 className="text-start font-medium text-gray-700">
+            <h1 className="text-start font-medium text-blue-500">
               Page {current_page} of {total_pages}
             </h1>
           </div>
@@ -160,7 +163,7 @@ export default function ManagementFiles() {
             <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
               {filteredListOfFiles.map((file) => (
                 <div
-                  className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                   key={file.id}
                 >
                   <div className="col-span-1 w-full">
@@ -168,7 +171,7 @@ export default function ManagementFiles() {
                       <h1 className="text-md font-bold leading-none text-blue-600">
                         File ID
                       </h1>
-                      <h1 className="text-md leading-none text-gray-600 ml-2">
+                      <h1 className="text-md leading-none text-gray-500 ml-2">
                         {file.id}
                       </h1>
                     </div>
@@ -176,12 +179,12 @@ export default function ManagementFiles() {
                   <hr className="w-full border-gray-300" />
                   <div className="col-span-4 text-start p-4">
                     <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-600">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
                         Details
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-600">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         School Year:
                       </h1>
                       <h1 className="ml-2 text-base leading-none text-gray-600">
@@ -189,25 +192,25 @@ export default function ManagementFiles() {
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-600">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         School Semester:
                       </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
                         {file.school_semester}
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-600">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
                         Topic:
                       </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
                         {file.csv_question}
                       </h1>
                     </div>
                   </div>
                   <div className="col-span-1 w-full">
                     <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-600">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
                         Actions
                       </h1>
                     </div>
@@ -235,12 +238,15 @@ export default function ManagementFiles() {
                         />
                         Download
                       </button>
-                      <ConfirmModal
+                      <DangerConfirmModal
+                        body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
                         description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
                         id={file.id}
+                        is_Mass={false}
+                        is_danger
                         onConfirm={handleDelete}
                         title="Delete File Confirmation"
-                        to_delete={file.csv_question}
+                        type_of_modal="delete"
                       />
                     </div>
                   </div>
@@ -254,8 +260,8 @@ export default function ManagementFiles() {
             <div className="flex flex-row items-center justify-center w-full lg:w-1/2">
               {/*    Page details*/}
               <div className="flex flex-row items-center justify-center w-full">
-                <h1 className="text-base font-medium leading-none t text-gray-700">
-                  Showing {files.length} of {total_items} files in total (
+                <h1 className="text-base font-medium leading-none t text-blue-500">
+                  Showing {files_list.length} of {total_items} files in total (
                   {total_pages} pages)
                 </h1>
               </div>
@@ -264,7 +270,9 @@ export default function ManagementFiles() {
               className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
               disabled={!has_prev}
-              onClick={() => setFileData({ ...fileData, page: page - 1 })}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number - 1 })
+              }
               type="button"
             >
               <FontAwesomeIcon
@@ -277,7 +285,9 @@ export default function ManagementFiles() {
               className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
               disabled={!has_next}
-              onClick={() => setFileData({ ...fileData, page: page + 1 })}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number + 1 })
+              }
               type="button"
             >
               <FontAwesomeIcon
