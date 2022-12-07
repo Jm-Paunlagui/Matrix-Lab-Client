@@ -112,19 +112,18 @@ export default function AdminPrediction() {
       }
       return `${seconds} seconds and ${milliseconds} milliseconds`;
     }
-      const milliseconds = Math.round(time * 1000);
-      const microseconds = Math.round((time - milliseconds) * 1000);
+    const milliseconds = Math.round(time * 1000);
+    const microseconds = Math.round((time - milliseconds) * 1000);
 
-      // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
-      if (milliseconds === 1 && microseconds === 1) {
-        return `${milliseconds} millisecond and ${microseconds} microsecond`;
-      } else if (milliseconds === 1) {
-        return `${milliseconds} millisecond and ${microseconds} microseconds`;
-      } else if (microseconds === 1) {
-        return `${milliseconds} milliseconds and ${microseconds} microsecond`;
-      }
-      return `${milliseconds} milliseconds and ${microseconds} microseconds`;
-
+    // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
+    if (milliseconds === 1 && microseconds === 1) {
+      return `${milliseconds} millisecond and ${microseconds} microsecond`;
+    } else if (milliseconds === 1) {
+      return `${milliseconds} millisecond and ${microseconds} microseconds`;
+    } else if (microseconds === 1) {
+      return `${milliseconds} milliseconds and ${microseconds} microsecond`;
+    }
+    return `${milliseconds} milliseconds and ${microseconds} microseconds`;
   }
 
   const onDrop = useCallback((acceptedFiles) => {
