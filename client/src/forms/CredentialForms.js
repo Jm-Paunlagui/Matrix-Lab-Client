@@ -771,37 +771,6 @@ export function SendToEmail({
 }
 
 /**
- * @description User account type description.
- * @param role
- * @constructor
- */
-export function AccountType({ role }) {
-  AccountType.propTypes = {
-    role: PropTypes.string,
-  };
-  return (
-    <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow mb-8">
-      <h1 className="mb-4 text-xl font-bold text-blue-500">Account Type</h1>
-      <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
-        {role === "admin" ? (
-          <div className="flex flex-col w-full space-y-2">
-            This account is an {role} account. This account has the highest
-            privileges in the system. This account can create, edit, and delete
-            other accounts.
-          </div>
-        ) : (
-          <div className="flex flex-col w-full space-y-2">
-            This account is a {role} account. This account has the lowest
-            privileges in the system. This account can only view and edit their
-            own account.
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/**
  * @description Personal information form.
  * @param email
  * @param errorEffectforPersonalInfo
@@ -814,6 +783,7 @@ export function AccountType({ role }) {
  * @param setProfile
  * @param showButtonforPersonalInfo
  * @param textChangeforPersonalInfo
+ * @param is_editable
  * @constructor
  */
 export function PersonalInformation({
@@ -827,7 +797,7 @@ export function PersonalInformation({
   profile,
   setProfile,
   showButtonforPersonalInfo,
-  textChangeforPersonalInfo,
+  textChangeforPersonalInfo, is_editable
 }) {
   PersonalInformation.propTypes = {
     email: PropTypes.string,
@@ -849,6 +819,7 @@ export function PersonalInformation({
     setProfile: PropTypes.func,
     showButtonforPersonalInfo: PropTypes.bool,
     textChangeforPersonalInfo: PropTypes.string,
+    is_editable: PropTypes.bool,
   };
   return (
     <div
@@ -904,6 +875,7 @@ export function PersonalInformation({
                   name="full_name"
                   onChange={handleChangeForPersonalInfo("full_name")}
                   placeholder="Full Name"
+                  readOnly={!is_editable}
                   type="text"
                   value={full_name}
                 />

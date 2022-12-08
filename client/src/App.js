@@ -35,7 +35,7 @@ import {
   Unauthorized,
 } from "./views/response/ClientErrorResponses.js";
 import IndexUser from "./views/user/IndexUser";
-import UserDashboard from "./views/user/UserDashboard";
+
 import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
 import EvalCourses from "./views/user/eval/EvalCourses";
@@ -50,6 +50,8 @@ import IndexFiles from "./views/admin/management/management_files/IndexFiles";
 import IndexUsers from "./views/admin/management/management_users/IndexUsers";
 import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
 import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
+import IndexUserDashboard from "./views/user/dashboard/IndexUserDashboard";
+import UserDashboard from "./views/user/dashboard/UserDashboard";
 
 /**
  * @description Main component for the application
@@ -251,10 +253,16 @@ export default function App() {
                 </Route>
               </Route>
               <Route
-                element={<UserDashboard />}
+                element={<IndexUserDashboard />}
                 exact="true"
-                path="analytics"
-              />
+                path="dashboard"
+              >
+                <Route
+                    element={<UserDashboard />}
+                    exact="true"
+                    path="analytics"
+                />
+              </Route>
               <Route
                 element={<UserProfile />}
                 exact="true"

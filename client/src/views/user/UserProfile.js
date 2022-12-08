@@ -10,11 +10,12 @@ import { toast } from "react-toastify";
 import { importSPKI, jwtVerify } from "jose";
 import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import {
-  AccountType,
   PersonalInformation,
   SecurityInformation,
   SignInInformation,
 } from "../../forms/CredentialForms";
+import {Header} from "../../components/headers/Header";
+import {LoadingAnimation} from "../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin profile
@@ -23,8 +24,7 @@ export default function UserProfile() {
   // noinspection DuplicatedCode
   const [profile, setProfile] = useState({
     email: "",
-    first_name: "",
-    last_name: "",
+    full_name: "",
     okforPersonalInfo: false,
     errorEffectforPersonalInfo: false,
     errorMessageforPersonalInfo: "",
@@ -59,8 +59,7 @@ export default function UserProfile() {
    */
   const {
     email,
-    first_name,
-    last_name,
+    full_name,
     okforPersonalInfo,
     errorEffectforPersonalInfo,
     errorMessageforPersonalInfo,
@@ -106,8 +105,7 @@ export default function UserProfile() {
         setProfile({
           ...profile,
           email: response.data.user.email,
-          first_name: response.data.user.first_name,
-          last_name: response.data.user.last_name,
+          full_name: response.data.user.full_name,
           secondary_email: response.data.user.secondary_email,
           recovery_email: response.data.user.recovery_email,
           username: response.data.user.username,
@@ -222,8 +220,7 @@ export default function UserProfile() {
     await httpClient
       .put("/user/update-personal-info", {
         email,
-        first_name,
-        last_name,
+        full_name,
       })
       .then(async (response) => {
         await verifyJWT(response.data.token)
@@ -391,74 +388,107 @@ export default function UserProfile() {
       });
   };
   return (
-    <div className="px-6 mx-auto max-w-7xl">
-      <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
-        <div className="flex flex-col items-center justify-center w-full h-32 p-4 bg-white rounded md:h-48 outline outline-2 outline-gray-200">
-          <h1 className="py-4 mb-4 text-2xl font-extrabold leading-none tracking-tight text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-            Account Management
-          </h1>
-          <h1 className="text-sm font-medium text-gray-500">@{username}</h1>
-        </div>
-        <div className="col-span-2">
-          {new AccountType(role)}
-          {
-            new PersonalInformation(
-              email,
-              errorEffectforPersonalInfo,
-              errorMessageforPersonalInfo,
-              first_name,
-              handleChangeForPersonalInfo,
-              handleUpdatePersonalInfo,
-              last_name,
-              okforPersonalInfo,
-              profile,
-              setProfile,
-              showButtonforPersonalInfo,
-              textChangeforPersonalInfo,
-            )
-          }
-          {
-            new SecurityInformation(
-              errorEffectforSecurityInfo,
-              errorMessageforSecurityInfo,
-              handleChangeForSecurityInfo,
-              handleUpdateSecurityInfo,
-              okforSecurityInfo,
-              profile,
-              recovery_email,
-              secondary_email,
-              setProfile,
-              showButtonforSecurityInfo,
-              textChangeforSecurityInfo,
-            )
-          }
-          {
-            new SignInInformation(
-              confirm_password,
-              errorEffectforPassword,
-              errorEffectforUsername,
-              errorMessageforPassword,
-              errorMessageforUsername,
-              handleChangeForPassword,
-              handleChangeForUsername,
-              handleUpdatePassword,
-              handleUpdateUsername,
-              new_password,
-              okforPassword,
-              okforUsername,
-              old_password,
-              profile,
-              setProfile,
-              showButtonforPassword,
-              showButtonforUsername,
-              template,
-              textChangeforPassword,
-              textChangeforUsername,
-              username,
-            )
-          }
+      <div className="px-6 mx-auto max-w-7xl pt-8">
+        <Header
+            body={
+              "Update your personal information, security information, username, and password."
+            }
+            title={username ? username : <LoadingAnimation />}
+        />
+        <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-8">
+          <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
+            <h1 className="mb-4 text-xl font-bold text-blue-500">
+              Account Management
+            </h1>
+            <p className="mb-4 text-sm text-gray-500 font-medium">
+              This account is an {role} account. This account has the lowest
+              privileges in the system. This account can only view and edit the data
+              that is related to it.
+            </p>
+            <p className="mb-4 text-sm text-gray-500 font-medium">
+              We disable the ability to change your <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              full name
+            </b>{" "} because it has files associated with it.
+            </p>
+            <p className="mb-4 text-sm text-gray-500 font-medium">
+              Your <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+                username
+                </b>{" "} is used to identify you on the platform.
+            </p>
+            <h1 className="mb-4 text-xl font-bold text-blue-500">
+              Password Requirements
+            </h1>
+            <p className="mb-4 text-sm text-gray-500 font-medium">
+              Your password must be <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+            </b>{" "} We recommend using a password manager to generate a strong password.
+            </p>
+            <h1 className="mb-4 text-xl font-bold text-blue-500">
+              Two-Factor Authentication (2FA) Security
+            </h1>
+            <p className="mb-4 text-sm text-gray-500 font-medium">
+              By default, we enable two-factor authentication (2FA) for all users to ensure that your account is secure and protected.
+            </p>
+          </div>
+          <div className="col-span-2">
+            {
+              <PersonalInformation
+                  email={email}
+                  errorEffectforPersonalInfo={errorEffectforPersonalInfo}
+                  errorMessageforPersonalInfo={errorMessageforPersonalInfo}
+                  full_name={full_name}
+                  handleChangeForPersonalInfo={handleChangeForPersonalInfo}
+                  handleUpdatePersonalInfo={handleUpdatePersonalInfo}
+                  is_editable={false}
+                  okforPersonalInfo={okforPersonalInfo}
+                  profile={profile}
+                  setProfile={setProfile}
+                  showButtonforPersonalInfo={showButtonforPersonalInfo}
+                  textChangeforPersonalInfo={textChangeforPersonalInfo}
+              />
+            }
+            {
+              <SecurityInformation
+                  errorEffectforSecurityInfo={errorEffectforSecurityInfo}
+                  errorMessageforSecurityInfo={errorMessageforSecurityInfo}
+                  handleChangeForSecurityInfo={handleChangeForSecurityInfo}
+                  handleUpdateSecurityInfo={handleUpdateSecurityInfo}
+                  okforSecurityInfo={okforSecurityInfo}
+                  profile={profile}
+                  recovery_email={recovery_email}
+                  secondary_email={secondary_email}
+                  setProfile={setProfile}
+                  showButtonforSecurityInfo={showButtonforSecurityInfo}
+                  textChangeforSecurityInfo={textChangeforSecurityInfo}
+              />
+            }
+            {
+              <SignInInformation
+                  confirm_password={confirm_password}
+                  errorEffectforPassword={errorEffectforPassword}
+                  errorEffectforUsername={errorEffectforUsername}
+                  errorMessageforPassword={errorMessageforPassword}
+                  errorMessageforUsername={errorMessageforUsername}
+                  handleChangeForPassword={handleChangeForPassword}
+                  handleChangeForUsername={handleChangeForUsername}
+                  handleUpdatePassword={handleUpdatePassword}
+                  handleUpdateUsername={handleUpdateUsername}
+                  new_password={new_password}
+                  okforPassword={okforPassword}
+                  okforUsername={okforUsername}
+                  old_password={old_password}
+                  profile={profile}
+                  setProfile={setProfile}
+                  showButtonforPassword={showButtonforPassword}
+                  showButtonforUsername={showButtonforUsername}
+                  template={template}
+                  textChangeforPassword={textChangeforPassword}
+                  textChangeforUsername={textChangeforUsername}
+                  username={username}
+              />
+            }
+          </div>
         </div>
       </div>
-    </div>
   );
 }
