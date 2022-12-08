@@ -27,9 +27,12 @@ export default function EvalCourseSentimentTable(){
     const [listOfTaughtCourses, setListOfTaughtCourses] = useState({
         loading: true,
         file_list: [],
+        topic: "",
+        school_year: "",
+        school_semester: "",
     });
 
-    const { loading, file_list } = listOfTaughtCourses;
+    const { loading, file_list, topic, school_year, school_semester } = listOfTaughtCourses;
 
     const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] =
         useState(file_list);
@@ -47,6 +50,9 @@ export default function EvalCourseSentimentTable(){
                     ...listOfTaughtCourses,
                     loading: false,
                     file_list: response.data.file_list,
+                    topic: response.data.topic,
+                    school_year: response.data.school_year,
+                    school_semester: response.data.school_semester,
                 });
                 setFilteredListOfTaughtCourses(response.data.file_list);
             });
@@ -80,9 +86,11 @@ export default function EvalCourseSentimentTable(){
                 <>
                     <Header
                         body={
-                            "View the responses of the file below. You can also download the responses as a CSV file."
+                            `Sentiment Analysis Evaluation Results for the School Year ${school_year} and School Semester ${school_semester}`
                         }
-                        title={`${toReadableName(folderName)}`}
+                        title={`${
+                            topic
+                        }`}
                     />
                     <SearchBar
                         customStyle="mt-8"
