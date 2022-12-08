@@ -75,9 +75,9 @@ export default function UserNavigationBar() {
    */
   const navigation = [
     {
-      name: "Programs",
-      href: "/user/programs/courses",
-      current: isActive("programs"),
+      name: "Evaluation Results",
+      href: "/user/evaluation-results/files",
+      current: isActive("evaluation-results"),
     },
   ];
 
@@ -374,26 +374,7 @@ export default function UserNavigationBar() {
                 <h5
                     className={`block px-3 py-2 text-base font-bold text-blue-500`}
                 >
-                  Deep Learning Model
-                </h5>
-                {navigation.map((item) => (
-                    <NavLink key={item.name} to={item.href}>
-                      <h5
-                          className={`${
-                              item.current
-                                  ? "bg-blue-400 text-white"
-                                  : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                          } px-3 py-2 rounded-md text-sm font-medium`}
-                      >
-                        {item.name}
-                      </h5>
-                    </NavLink>
-                ))}
-
-                <h5
-                    className={`block px-3 py-2 text-base font-bold text-blue-500`}
-                >
-                  Data Management
+                  Evaluation Results
                 </h5>
 
                 {navigation.map((item) => (

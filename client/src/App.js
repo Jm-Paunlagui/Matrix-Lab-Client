@@ -38,7 +38,7 @@ import IndexUser from "./views/user/IndexUser";
 
 import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
-import EvalCourses from "./views/user/eval/EvalCourses";
+import EvalFiles from "./views/user/eval/EvalFiles";
 import IndexEval from "./views/user/eval/IndexEval";
 import IndexManagementFiles from "./views/admin/management/IndexManagementFiles";
 import ManagementFilesCSV from "./views/admin/management/management_files/ManagementFilesCSV";
@@ -52,6 +52,7 @@ import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
 import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
 import IndexUserDashboard from "./views/user/dashboard/IndexUserDashboard";
 import UserDashboard from "./views/user/dashboard/UserDashboard";
+import EvalReadCourseSentiment from "./views/user/eval/EvalReadCourseSentiment";
 
 /**
  * @description Main component for the application
@@ -244,13 +245,10 @@ export default function App() {
              * user routes.
              */}
             <Route element={<IndexUser />} exact="true" path="user">
-              <Route element={<IndexEval />} exact="true" path="programs">
-                <Route element={<EvalCourses />} exact="true" path="courses">
-                  <Route
-                    element={<EvalCourseSentimentTable />}
-                    path=":courseId"
-                  />
-                </Route>
+              <Route element={<IndexEval />} exact="true" path="evaluation-results">
+                <Route element={<EvalFiles />} exact="true" path="files" />
+                <Route element={<EvalCourseSentimentTable />} path="files/:fileId/:folderName" />
+                <Route element={<EvalReadCourseSentiment />} path="files/:fileId/:folderName/:fileName" />
               </Route>
               <Route
                 element={<IndexUserDashboard />}

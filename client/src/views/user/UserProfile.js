@@ -395,7 +395,7 @@ export default function UserProfile() {
             }
             title={username ? username : <LoadingAnimation />}
         />
-        <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-8">
+        <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
           <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
             <h1 className="mb-4 text-xl font-bold text-blue-500">
               Account Management

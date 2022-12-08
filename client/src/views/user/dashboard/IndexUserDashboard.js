@@ -7,7 +7,7 @@ import { isAuth } from "../../../helpers/Auth";
  */
 export default function IndexUserDashboard(){
     return isAuth().role === "user" ? (
-        <div className="mt-16 font-Montserrat">
+        <div className="font-Montserrat">
             <Outlet />
         </div>
     ) : (

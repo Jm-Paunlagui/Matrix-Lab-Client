@@ -91,7 +91,7 @@ export default function ManagementFilesListofDataResponse() {
             <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
               {filteredListOfTaughtCourses.map((file) => (
                 <div
-                  className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                   key={file.id}
                 >
                   <div className="col-span-1 w-full">
