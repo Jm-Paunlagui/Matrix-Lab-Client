@@ -66,6 +66,20 @@ export default function ManagementFilesCSV() {
     });
   };
 
+  const [loadingAnimation, setLoadingAnimation] = useState({
+    massRestore: false,
+    textChangeRestore: "Restore all",
+    massDelete: false,
+    textChangeDelete: "Delete all",
+  });
+
+  const {
+    massRestore,
+    textChangeRestore,
+    massDelete,
+    textChangeDelete,
+  } = loadingAnimation;
+
   /**
    * @description Filters the list of files based on the search value
    * @param event
@@ -87,14 +101,15 @@ export default function ManagementFilesCSV() {
   /**
    * @description Loads the files from the backend
    * @param page
+   * @param per_page_limit
    */
-  const loadFiles = (page) => {
+  const loadFiles = (page, per_page_limit) => {
     setFileData({
       ...fileData,
       loading: true,
     });
     httpClient
-      .get(`/data/list-of-csv-files-to-view/${page}`)
+      .get(`/data/list-of-csv-files-to-view/${page}/${per_page_limit}`)
       .then((response) => {
         setFileData({
           ...fileData,
@@ -111,8 +126,8 @@ export default function ManagementFilesCSV() {
   };
 
   useEffect(() => {
-    loadFiles(page_number);
-  }, [page_number]);
+    loadFiles(page_number, per_page_limit);
+  }, [page_number, per_page_limit]);
 
   /**
    * @description Handles the delete of a file from the backend
@@ -122,7 +137,7 @@ export default function ManagementFilesCSV() {
     httpClient
       .delete(`/data/delete-csv-file/${file}`)
       .then((response) => {
-        loadFiles(page_number);
+        loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
       })
       .catch((error) => {
@@ -194,49 +209,15 @@ export default function ManagementFilesCSV() {
                     Mass Danger Actions
                   </h1>
                 </div>
-                <DangerConfirmModal
-                  body={`Are you sure you want to deactivate all users?`}
-                  description="This action cannot be undone. The users you are trying to Deactivate will not be able to login to the system to view their sentiment scores."
-                  is_Mass
-                  is_danger
-                  // is_loading={massDeactivation}
-                  // onConfirm={() => handleDeactivateAllUsers()}
-                  // textChange={textChangeDeactivation}
-                  title="Deactivate all users"
-                  type_of_modal="deactivate"
-                />
-                <DangerConfirmModal
-                  body={`Are you sure you want to restore all users authorization to the system?`}
-                  description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
-                  is_Mass
-                  is_danger
-                  // is_loading={massUnlocked}
-                  // onConfirm={() => handleUnlockAllUsers()}
-                  // textChange={textChangeUnlocked}
-                  title="Restore Authorization"
-                  type_of_modal="unlock"
-                />
-
-                <DangerConfirmModal
-                  body={`Are you sure you want to remove all users authorization to the system?`}
-                  description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
-                  is_Mass
-                  is_danger
-                  // is_loading={massLocked}
-                  // onConfirm={() => handleLockAllUsers()}
-                  // textChange={textChangeLocked}
-                  title="Remove Authorization"
-                  type_of_modal="lock"
-                />
 
                 <DangerConfirmModal
                   body={`Are you sure you want to restore all users account to the system?`}
                   description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
                   is_Mass
                   is_danger
-                  // is_loading={massRestore}
+                  is_loading={massRestore}
                   // onConfirm={() => handleRestoreAllUsers()}
-                  // textChange={textChangeRestore}
+                  textChange={textChangeRestore}
                   title="Restore Account"
                   type_of_modal="restore"
                 />
@@ -246,9 +227,9 @@ export default function ManagementFilesCSV() {
                   description="This action cannot be undone. This will temporarily delete the users account from the system."
                   is_Mass
                   is_danger
-                  // is_loading={massDelete}
+                  is_loading={massDelete}
                   // onConfirm={() => handleDeleteAllUsers()}
-                  // textChange={textChangeDelete}
+                  textChange={textChangeDelete}
                   title="Delete User Confirmation"
                   type_of_modal="delete"
                 />

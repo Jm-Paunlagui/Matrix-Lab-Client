@@ -15,11 +15,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { toast } from "react-toastify";
+import Paginator from "../../../../components/paginator/Paginator";
 
 /**
  * @description Handles the admin tables
  */
 export default function ManagementFilesUsers() {
+  const per_page = [
+    { value: 25, label: "25", id: 1 },
+    { value: 50, label: "50", id: 2 },
+    { value: 100, label: "100", id: 3 },
+    { value: 250, label: "250", id: 4 },
+    { value: 500, label: "500", id: 5 },
+  ];
+
   const [userDatas, setUserDatas] = useState({
     loading: true,
     users: [],
@@ -29,6 +38,7 @@ export default function ManagementFilesUsers() {
     page_number: 1,
     total_items: "",
     total_pages: "",
+    per_page_limit: per_page[0].value,
   });
 
   const {
@@ -40,6 +50,7 @@ export default function ManagementFilesUsers() {
     page_number,
     total_items,
     total_pages,
+    per_page_limit,
   } = userDatas;
 
   const [filteredListOfUsers, setFilteredListOfUsers] = useState(users);
@@ -74,6 +85,13 @@ export default function ManagementFilesUsers() {
     textChangeDelete,
   } = loadingAnimation;
 
+  const handleSelect = (name) => (value) => {
+    setUserDatas({
+      ...userDatas,
+      [name]: value,
+    });
+  };
+
   const handleSearchForUsers = (event) => {
     const searchValue = event.target.value;
     const filteredList = users.filter((user) => {
@@ -86,12 +104,12 @@ export default function ManagementFilesUsers() {
     setFilteredListOfUsers(filteredList);
   };
 
-  const loadListOfUsers = (page) => {
+  const loadListOfUsers = (page, per_page_limit) => {
     setUserDatas({
       ...userDatas,
       loading: true,
     });
-    httpClient.get(`/data/list-of-users-to-view/${page}`).then((response) => {
+    httpClient.get(`/data/list-of-users-to-view/${page}/${per_page_limit}`).then((response) => {
       setUserDatas({
         ...userDatas,
         loading: false,
@@ -341,8 +359,8 @@ export default function ManagementFilesUsers() {
   };
 
   useEffect(() => {
-    loadListOfUsers(page_number);
-  }, [page_number]);
+    loadListOfUsers(page_number, per_page_limit);
+  }, [page_number, per_page_limit]);
 
   return (
     <div className="px-6 mx-auto max-w-7xl mt-8">
@@ -381,6 +399,18 @@ export default function ManagementFilesUsers() {
                   title="Activate All Users"
                   type_of_modal="activate"
                 />
+                <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                  <div className="flex flex-row w-full">
+                    <h1 className="text-base font-bold leading-none text-blue-500">
+                      Number of records per page
+                    </h1>
+                  </div>
+                  <Paginator
+                      handleSelect={handleSelect}
+                      per_page={per_page}
+                      per_page_limit={per_page_limit}
+                  />
+                </div>
               </div>
             </div>
             <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">

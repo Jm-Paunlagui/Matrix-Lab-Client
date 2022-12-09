@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { TEXT_FIELD } from "../../assets/styles/styled-components";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -11,11 +11,11 @@ export default function Paginator({ per_page, per_page_limit, handleSelect }) {
     per_page_limit: PropTypes.number.isRequired,
   };
   return (
-    <Listbox name={"per_page_limit"} onChange={handleSelect("per_page_limit")}>
+    <Listbox name={"per_page_limit"} onChange={handleSelect("per_page_limit")} value={per_page_limit}>
       <div className="relative w-full">
         <Listbox.Button className={`${TEXT_FIELD} bg-white`}>
           <span className="block truncate text-start text-gray-500">
-            {per_page_limit ? per_page_limit : per_page[0].value}
+            {per_page_limit}
           </span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <ChevronUpDownIcon
