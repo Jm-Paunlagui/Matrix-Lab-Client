@@ -222,11 +222,11 @@ export default function AuthRemoveEmailFromAccount() {
                           value="no"
                         />
                         <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                                errorEffect
-                                    ? `outline-red-500 placeholder-red-500 text-red-500`
-                                    : DANGER_RADIO
-                            }`}
+                          className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                            errorEffect
+                              ? `outline-red-500 placeholder-red-500 text-red-500`
+                              : DANGER_RADIO
+                          }`}
                           htmlFor="id1"
                         >
                           <FontAwesomeIcon
@@ -250,11 +250,11 @@ export default function AuthRemoveEmailFromAccount() {
                           value="yes"
                         />
                         <label
-                            className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                                errorEffect
-                                    ? `outline-red-500 placeholder-red-500 text-red-500`
-                                    : PRIMARY_RADIO
-                            }`}
+                          className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                            errorEffect
+                              ? `outline-red-500 placeholder-red-500 text-red-500`
+                              : PRIMARY_RADIO
+                          }`}
                           htmlFor="id2"
                         >
                           <FontAwesomeIcon
