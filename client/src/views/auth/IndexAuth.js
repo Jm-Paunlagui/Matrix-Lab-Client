@@ -3,7 +3,7 @@ import React from "react";
 import bg from "../../assets/img/register_bg_2.png";
 
 /**
- * @description Handles auth page and reset password page for the application
+ * @description Handles auth paginator and reset password paginator for the application
  */
 export default function IndexAuth() {
   return (

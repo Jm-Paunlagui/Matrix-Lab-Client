@@ -121,7 +121,7 @@ export default function AdminProfile() {
   };
 
   /**
-   * @description UseEffect hook to load the profile form on page load.
+   * @description UseEffect hook to load the profile form on paginator load.
    */
   useEffect(() => {
     loadProfile();

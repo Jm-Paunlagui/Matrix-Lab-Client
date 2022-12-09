@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
- * @description Handles the forgot password request page
+ * @description Handles the forgot password request paginator
  */
 export default function AuthResetPassword() {
   /**
@@ -98,7 +98,7 @@ export default function AuthResetPassword() {
   };
 
   /**
-   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login page.
+   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login paginator.
    */
   function decodeToken() {
     httpClient

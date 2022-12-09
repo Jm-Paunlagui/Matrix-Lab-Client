@@ -61,7 +61,7 @@ import EvalReadCourseSentiment from "./views/user/eval/EvalReadCourseSentiment";
 export default function App() {
   /**
    * @type {Function}
-   * @description Function to scroll to top of the page when route changes in the application.
+   * @description Function to scroll to top of the paginator when route changes in the application.
    */
   const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -281,11 +281,11 @@ export default function App() {
 
             <Route element={<Unauthorized />} path="unauthorized-access" />
             {/**
-             * @description Handles page not found route for the application
+             * @description Handles paginator not found route for the application
              */}
             <Route element={<PageNotFound />} path="*" />
             {/**
-             * End of page not found route
+             * End of paginator not found route
              */}
             <Route element={<InvalidToken />} path="invalid-token" />
           </Routes>

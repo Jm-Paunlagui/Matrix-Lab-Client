@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 /**
- * @description Header for the page
+ * @description Header for the paginator
  * @param title
  * @param body
  * @constructor

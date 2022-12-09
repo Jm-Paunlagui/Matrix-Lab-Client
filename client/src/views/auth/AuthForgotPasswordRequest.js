@@ -23,7 +23,7 @@ import httpClient from "../../http/httpClient";
 import { jwtVerify, importSPKI } from "jose";
 
 /**
- * @description Handles the forgot password request page
+ * @description Handles the forgot password request paginator
  */
 
 export default function AuthForgotPasswordRequest() {

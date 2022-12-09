@@ -19,11 +19,20 @@ import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal"
 import { Link } from "react-router-dom";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
+import Paginator from "../../../../components/paginator/Paginator";
 
 /**
  * @description Handles the files to view and delete
  */
 export default function ManagementFilesCSV() {
+  const per_page = [
+    { value: 25, label: "25", id: 1 },
+    { value: 50, label: "50", id: 2 },
+    { value: 100, label: "100", id: 3 },
+    { value: 250, label: "250", id: 4 },
+    { value: 500, label: "500", id: 5 },
+  ];
+
   const [fileData, setFileData] = useState({
     loading: true,
     files_list: [],
@@ -33,6 +42,7 @@ export default function ManagementFilesCSV() {
     page_number: 1,
     total_items: "",
     total_pages: "",
+    per_page_limit: per_page[0].value,
   });
 
   const {
@@ -44,9 +54,17 @@ export default function ManagementFilesCSV() {
     page_number,
     total_items,
     total_pages,
+    per_page_limit,
   } = fileData;
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
+
+  const handleSelect = (name) => (value) => {
+    setFileData({
+      ...fileData,
+      [name]: value,
+    });
+  };
 
   /**
    * @description Filters the list of files based on the search value
@@ -154,6 +172,85 @@ export default function ManagementFilesCSV() {
             placeholder="Search"
             type="text"
           />
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+              <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                <div className="flex flex-row w-full">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Number of records per page
+                  </h1>
+                </div>
+                <Paginator handleSelect={handleSelect} per_page={per_page} per_page_limit={per_page_limit} />
+              </div>
+            </div>
+            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+              <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                <div className="flex flex-row w-full">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Mass Danger Actions
+                  </h1>
+                </div>
+                <DangerConfirmModal
+                    body={`Are you sure you want to deactivate all users?`}
+                    description="This action cannot be undone. The users you are trying to Deactivate will not be able to login to the system to view their sentiment scores."
+                    is_Mass
+                    is_danger
+                    // is_loading={massDeactivation}
+                    // onConfirm={() => handleDeactivateAllUsers()}
+                    // textChange={textChangeDeactivation}
+                    title="Deactivate all users"
+                    type_of_modal="deactivate"
+                />
+                <DangerConfirmModal
+                    body={`Are you sure you want to restore all users authorization to the system?`}
+                    description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                    is_Mass
+                    is_danger
+                    // is_loading={massUnlocked}
+                    // onConfirm={() => handleUnlockAllUsers()}
+                    // textChange={textChangeUnlocked}
+                    title="Restore Authorization"
+                    type_of_modal="unlock"
+                />
+
+                <DangerConfirmModal
+                    body={`Are you sure you want to remove all users authorization to the system?`}
+                    description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
+                    is_Mass
+                    is_danger
+                    // is_loading={massLocked}
+                    // onConfirm={() => handleLockAllUsers()}
+                    // textChange={textChangeLocked}
+                    title="Remove Authorization"
+                    type_of_modal="lock"
+                />
+
+                <DangerConfirmModal
+                    body={`Are you sure you want to restore all users account to the system?`}
+                    description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                    is_Mass
+                    is_danger
+                    // is_loading={massRestore}
+                    // onConfirm={() => handleRestoreAllUsers()}
+                    // textChange={textChangeRestore}
+                    title="Restore Account"
+                    type_of_modal="restore"
+                />
+
+                <DangerConfirmModal
+                    body={`Are you sure you want to temporarily delete all users account to the system?`}
+                    description="This action cannot be undone. This will temporarily delete the users account from the system."
+                    is_Mass
+                    is_danger
+                    // is_loading={massDelete}
+                    // onConfirm={() => handleDeleteAllUsers()}
+                    // textChange={textChangeDelete}
+                    title="Delete User Confirmation"
+                    type_of_modal="delete"
+                />
+              </div>
+            </div>
+          </div>
           <div className="flex flex-col w-full p-4">
             <h1 className="text-start font-medium text-blue-500">
               Page {current_page} of {total_pages}

@@ -77,7 +77,7 @@ export default function InsightsPerSemesterEmployees() {
   };
 
   /**
-   * @description Gets the data from the backend and displays it on the page.
+   * @description Gets the data from the backend and displays it on the paginator.
    * @param event
    * @returns {Promise<void>}
    */
