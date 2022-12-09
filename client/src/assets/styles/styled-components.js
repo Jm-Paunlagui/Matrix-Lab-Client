@@ -40,7 +40,7 @@ export const INFO_BUTTON = `hover:translate-y-0.5 shadow-[0_4px_0_rgb(0,0,0)] ho
 
 export const PRIMARY_RADIO = `bg-white text-gray-500 outline-blue-100 cursor-pointer focus:outline-none hover:bg-blue-50 peer-checked:ring-blue-400 peer-checked:text-blue-400 peer-checked:ring-2 peer-checked:outline-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 export const SECONDARY_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-indigo-500 peer-checked:text-blue-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
-export const DANGER_RADIO = `bg-white text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-red-500 peer-checked:text-red-500 peer-checked:ring-2 peer-checked:border-transparent ${DEFAULT_BUTTON_TRANSITION}`;
+export const DANGER_RADIO = `bg-white text-gray-500 outline-red-100 rounded-lg cursor-pointer focus:outline-none hover:bg-red-50 peer-checked:ring-red-500 peer-checked:text-red-500 peer-checked:ring-2 peer-checked:outline-transparent ${DEFAULT_BUTTON_TRANSITION}`;
 
 /**
  * @description Recovery email not set

@@ -173,10 +173,11 @@ export default function AuthResetPassword() {
                   >
                     <div className="space-y-6">
                       <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffect &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
+                          className={`${TEXT_FIELD} outline outline-2 ${
+                              errorEffect
+                                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                                  : `text-gray-500 bg-white outline-blue-100`
+                          }`}
                         name="password"
                         onChange={handlePasswordChange}
                         placeholder="New password"
@@ -184,10 +185,11 @@ export default function AuthResetPassword() {
                         value={password}
                       />
                       <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffect &&
-                          `border-red-500 placeholder-red-500 text-red-500`
-                        }`}
+                          className={`${TEXT_FIELD} outline outline-2 ${
+                              errorEffect
+                                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                                  : `text-gray-500 bg-white outline-blue-100`
+                          }`}
                         name="confirmPassword"
                         onChange={handlePasswordChange}
                         placeholder="Confirm new password"
@@ -224,7 +226,7 @@ export default function AuthResetPassword() {
                       />
                       <div className="flex flex-col justify-center">
                         <button
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${ACCENT_BUTTON} ${
                             buttonDisabled &&
                             `opacity-50 cursor-not-allowed pointer-events-none`
                           }`}
@@ -232,7 +234,7 @@ export default function AuthResetPassword() {
                           type="submit"
                         >
                           {oki ? (
-                            <LoadingAnimation moreClasses="text-teal-600" />
+                            <LoadingAnimation />
                           ) : null}
                           {textChange}
                         </button>
