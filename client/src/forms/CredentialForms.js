@@ -797,7 +797,8 @@ export function PersonalInformation({
   profile,
   setProfile,
   showButtonforPersonalInfo,
-  textChangeforPersonalInfo, is_editable
+  textChangeforPersonalInfo,
+  is_editable,
 }) {
   PersonalInformation.propTypes = {
     email: PropTypes.string,

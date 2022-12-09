@@ -6,7 +6,7 @@ import React, { Fragment } from "react";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import { isAuth, signout } from "../../helpers/Auth";
 import httpClient from "../../http/httpClient";
-import {BsAwardFill} from "react-icons/bs";
+import { BsAwardFill } from "react-icons/bs";
 
 export default function UserNavigationBar() {
   /**
@@ -145,274 +145,274 @@ export default function UserNavigationBar() {
       className="fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
     >
       {({ open }) => (
-          <>
-            <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <div className="relative flex items-center justify-between h-16">
-                <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
-                  {/* Mobile menu button*/}
-                  <Menu.Button className="inline-flex items-center justify-center p-2 text-blue-100 rounded-md ">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                        <XMarkIcon aria-hidden="true" className="block w-6 h-6" />
-                    ) : (
-                        <Bars3Icon aria-hidden="true" className="block w-6 h-6" />
-                    )}
-                  </Menu.Button>
-                </div>
-                <div className="flex items-center justify-center flex-1 sm:items-stretch lg:justify-start">
-                  <div className="flex items-center flex-shrink-0">
-                    <img
-                        alt="Your Company"
-                        className="block w-auto h-10 md:hidden"
-                        src={logo}
-                    />
-                    <img
-                        alt="Your Company"
-                        className="hidden w-auto h-10 md:block"
-                        src={logo}
-                    />
-                  </div>
-
-                  <div className="hidden sm:ml-6 lg:block">
-                    <div className="flex space-x-4">
-                      <div className="text-base font-medium">
-                        <Menu as="div" className="relative">
-                          <div>
-                            <Menu.Button
-                                className={`flex text-sm rounded ${
-                                    isActive("dashboard")
-                                        ? "bg-blue-400 text-white"
-                                        : "text-blue-100 hover:bg-blue-400 hover:text-white"
-                                } px-3 py-2 rounded-md text-sm font-medium`}
-                            >
-                              <div className="text-base font-medium text-blue-100 hover:text-white">
-                                Dashboard
-                              </div>
-                            </Menu.Button>
-                          </div>
-                          <Transition
-                              as={Fragment}
-                              enter="transition ease-out duration-100"
-                              enterFrom="transform opacity-0 scale-95"
-                              enterTo="transform opacity-100 scale-100"
-                              leave="transition ease-in duration-75"
-                              leaveFrom="transform opacity-100 scale-100"
-                              leaveTo="transform opacity-0 scale-95"
-                          >
-                            <Menu.Items className="absolute left-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              {navigation_for_dashboard.map((item) => (
-                                  <Menu.Item key={item.name}>
-                                    <NavLink to={item.href}>
-                                      <h5
-                                          className={`${
-                                              item.current
-                                                  ? "bg-blue-400 text-white"
-                                                  : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                                          } px-3 py-2 rounded-md text-sm font-medium`}
-                                      >
-                                        {item.name}
-                                      </h5>
-                                    </NavLink>
-                                  </Menu.Item>
-                              ))}
-                            </Menu.Items>
-                          </Transition>
-                        </Menu>
-                      </div>
-                      {navigation.map((item) => (
-                          <NavLink key={item.name} to={item.href}>
-                            <h5
-                                className={`${
-                                    item.current
-                                        ? "bg-blue-400 text-white"
-                                        : "text-blue-100 hover:bg-blue-400 hover:text-white"
-                                } px-3 py-2 rounded-md text-base font-medium`}
-                            >
-                              {item.name}
-                            </h5>
-                          </NavLink>
-                      ))}
-
-                      <div className="text-base font-medium">
-                        <Menu as="div" className="relative">
-                          <div>
-                            <Menu.Button
-                                className={`flex text-sm rounded ${
-                                    isActive("insights")
-                                        ? "bg-blue-400 text-white"
-                                        : "text-blue-100 hover:bg-blue-400 hover:text-white"
-                                } px-3 py-2 rounded-md text-sm font-medium`}
-                            >
-                              <h1 className="text-base font-medium text-blue-100 hover:text-white">
-                                Insights
-                              </h1>
-                            </Menu.Button>
-                          </div>
-                          <Transition
-                              as={Fragment}
-                              enter="transition ease-out duration-100"
-                              enterFrom="transform opacity-0 scale-95"
-                              enterTo="transform opacity-100 scale-100"
-                              leave="transition ease-in duration-75"
-                              leaveFrom="transform opacity-100 scale-100"
-                              leaveTo="transform opacity-0 scale-95"
-                          >
-                            <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              {navigation_for_insights.map((item) => (
-                                  <Menu.Item key={item.name}>
-                                    <NavLink to={item.href}>
-                                      <h5
-                                          className={`${
-                                              item.current
-                                                  ? "bg-blue-400 text-white"
-                                                  : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                                          } px-3 py-2 rounded-md text-sm font-medium`}
-                                      >
-                                        {item.name}
-                                      </h5>
-                                    </NavLink>
-                                  </Menu.Item>
-                              ))}
-                            </Menu.Items>
-                          </Transition>
-                        </Menu>
-                      </div>
-                    </div>
-                  </div>
+        <>
+          <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="relative flex items-center justify-between h-16">
+              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
+                {/* Mobile menu button*/}
+                <Menu.Button className="inline-flex items-center justify-center p-2 text-blue-100 rounded-md ">
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon aria-hidden="true" className="block w-6 h-6" />
+                  ) : (
+                    <Bars3Icon aria-hidden="true" className="block w-6 h-6" />
+                  )}
+                </Menu.Button>
+              </div>
+              <div className="flex items-center justify-center flex-1 sm:items-stretch lg:justify-start">
+                <div className="flex items-center flex-shrink-0">
+                  <img
+                    alt="Your Company"
+                    className="block w-auto h-10 md:hidden"
+                    src={logo}
+                  />
+                  <img
+                    alt="Your Company"
+                    className="hidden w-auto h-10 md:block"
+                    src={logo}
+                  />
                 </div>
 
-                <div className="absolute inset-y-0 inset-auto right-0 flex items-center ml-6">
-                  {/* Profile dropdown */}
-                  <Menu as="div" className="relative ml-3">
-                    <div>
-                      <Menu.Button
-                          className={`flex text-sm rounded ${
-                              isActive("profile")
-                                  ? "bg-blue-400 text-white"
-                                  : "text-blue-100 hover:bg-blue-400 hover:text-white"
-                          } px-3 py-2 rounded-md text-sm font-medium`}
-                      >
-                        <span className="sr-only">Open user menu</span>
-                        <h1 className="text-base font-medium">{user.username}</h1>
-                      </Menu.Button>
-                    </div>
-                    <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                    >
-                      <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
-                          <NavLink to={user_controllers[0].href}>
-                            <h5
-                                className={`${
-                                    user_controllers[0].current
+                <div className="hidden sm:ml-6 lg:block">
+                  <div className="flex space-x-4">
+                    <div className="text-base font-medium">
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button
+                            className={`flex text-sm rounded ${
+                              isActive("dashboard")
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                            } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            <div className="text-base font-medium text-blue-100 hover:text-white">
+                              Dashboard
+                            </div>
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute left-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {navigation_for_dashboard.map((item) => (
+                              <Menu.Item key={item.name}>
+                                <NavLink to={item.href}>
+                                  <h5
+                                    className={`${
+                                      item.current
                                         ? "bg-blue-400 text-white"
                                         : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                                } px-3 py-2 rounded-md text-sm font-medium`}
-                            >
-                              {user_controllers[0].name}
-                            </h5>
-                          </NavLink>
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                              <NavLink
-                                  onClick={logoutUser}
-                                  to={user_controllers[1].href}
-                              >
-                                <h5
-                                    className={`${
-                                        active
-                                            ? "bg-blue-400 text-white"
-                                            : "text-blue-500 hover:bg-gray-700 hover:text-white"
                                     } px-3 py-2 rounded-md text-sm font-medium`}
-                                >
-                                  {user_controllers[1].name}
-                                </h5>
-                              </NavLink>
-                          )}
-                        </Menu.Item>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
+                                  >
+                                    {item.name}
+                                  </h5>
+                                </NavLink>
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
+                    {navigation.map((item) => (
+                      <NavLink key={item.name} to={item.href}>
+                        <h5
+                          className={`${
+                            item.current
+                              ? "bg-blue-400 text-white"
+                              : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                          } px-3 py-2 rounded-md text-base font-medium`}
+                        >
+                          {item.name}
+                        </h5>
+                      </NavLink>
+                    ))}
+
+                    <div className="text-base font-medium">
+                      <Menu as="div" className="relative">
+                        <div>
+                          <Menu.Button
+                            className={`flex text-sm rounded ${
+                              isActive("insights")
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                            } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            <h1 className="text-base font-medium text-blue-100 hover:text-white">
+                              Insights
+                            </h1>
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {navigation_for_insights.map((item) => (
+                              <Menu.Item key={item.name}>
+                                <NavLink to={item.href}>
+                                  <h5
+                                    className={`${
+                                      item.current
+                                        ? "bg-blue-400 text-white"
+                                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                                    } px-3 py-2 rounded-md text-sm font-medium`}
+                                  >
+                                    {item.name}
+                                  </h5>
+                                </NavLink>
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <Transition
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-                show={open}
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-100">
-                <h5
-                    className={`block px-3 py-2 text-base font-bold text-blue-500`}
-                >
-                  Dashboard
-                </h5>
-                {navigation_for_dashboard.map((item) => (
-                    <NavLink key={item.name} to={item.href}>
-                      <h5
-                          className={`${
-                              item.current
-                                  ? "bg-blue-400 text-white"
-                                  : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                          } px-3 py-2 rounded-md text-sm font-medium`}
-                      >
-                        {item.name}
-                      </h5>
-                    </NavLink>
-                ))}
-                <h5
-                    className={`block px-3 py-2 text-base font-bold text-blue-500`}
-                >
-                  Evaluation Results
-                </h5>
 
-                {navigation.map((item) => (
-                    <NavLink key={item.name} to={item.href}>
-                      <h5
-                          className={`${
-                              item.current
+              <div className="absolute inset-y-0 inset-auto right-0 flex items-center ml-6">
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button
+                      className={`flex text-sm rounded ${
+                        isActive("profile")
+                          ? "bg-blue-400 text-white"
+                          : "text-blue-100 hover:bg-blue-400 hover:text-white"
+                      } px-3 py-2 rounded-md text-sm font-medium`}
+                    >
+                      <span className="sr-only">Open user menu</span>
+                      <h1 className="text-base font-medium">{user.username}</h1>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-blue-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        <NavLink to={user_controllers[0].href}>
+                          <h5
+                            className={`${
+                              user_controllers[0].current
+                                ? "bg-blue-400 text-white"
+                                : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                            } px-3 py-2 rounded-md text-sm font-medium`}
+                          >
+                            {user_controllers[0].name}
+                          </h5>
+                        </NavLink>
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <NavLink
+                            onClick={logoutUser}
+                            to={user_controllers[1].href}
+                          >
+                            <h5
+                              className={`${
+                                active
                                   ? "bg-blue-400 text-white"
-                                  : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                          } px-3 py-2 rounded-md text-sm font-medium`}
-                      >
-                        {item.name}
-                      </h5>
-                    </NavLink>
-                ))}
-
-                <h5
-                    className={`block px-3 py-2 text-base font-bold text-blue-500`}
-                >
-                  Insights
-                </h5>
-
-                {navigation_for_insights.map((item) => (
-                    <NavLink key={item.name} to={item.href}>
-                      <h5
-                          className={`${
-                              item.current
-                                  ? "bg-blue-400 text-white"
-                                  : "text-blue-500 hover:bg-blue-400 hover:text-white"
-                          } px-3 py-2 rounded-md text-sm font-medium`}
-                      >
-                        {item.name}
-                      </h5>
-                    </NavLink>
-                ))}
+                                  : "text-blue-500 hover:bg-gray-700 hover:text-white"
+                              } px-3 py-2 rounded-md text-sm font-medium`}
+                            >
+                              {user_controllers[1].name}
+                            </h5>
+                          </NavLink>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
               </div>
-            </Transition>
-          </>
+            </div>
+          </div>
+          <Transition
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+            show={open}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-100">
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
+              >
+                Dashboard
+              </h5>
+              {navigation_for_dashboard.map((item) => (
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
+              ))}
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
+              >
+                Evaluation Results
+              </h5>
+
+              {navigation.map((item) => (
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
+              ))}
+
+              <h5
+                className={`block px-3 py-2 text-base font-bold text-blue-500`}
+              >
+                Insights
+              </h5>
+
+              {navigation_for_insights.map((item) => (
+                <NavLink key={item.name} to={item.href}>
+                  <h5
+                    className={`${
+                      item.current
+                        ? "bg-blue-400 text-white"
+                        : "text-blue-500 hover:bg-blue-400 hover:text-white"
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {item.name}
+                  </h5>
+                </NavLink>
+              ))}
+            </div>
+          </Transition>
+        </>
       )}
     </Menu>
   );
