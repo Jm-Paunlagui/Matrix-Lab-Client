@@ -245,10 +245,20 @@ export default function App() {
              * user routes.
              */}
             <Route element={<IndexUser />} exact="true" path="user">
-              <Route element={<IndexEval />} exact="true" path="evaluation-results">
+              <Route
+                element={<IndexEval />}
+                exact="true"
+                path="evaluation-results"
+              >
                 <Route element={<EvalFiles />} exact="true" path="files" />
-                <Route element={<EvalCourseSentimentTable />} path="files/:fileId/:folderName" />
-                <Route element={<EvalReadCourseSentiment />} path="files/:fileId/:folderName/:fileName" />
+                <Route
+                  element={<EvalCourseSentimentTable />}
+                  path="files/:fileId/:folderName"
+                />
+                <Route
+                  element={<EvalReadCourseSentiment />}
+                  path="files/:fileId/:folderName/:fileName"
+                />
               </Route>
               <Route
                 element={<IndexUserDashboard />}
@@ -256,9 +266,9 @@ export default function App() {
                 path="dashboard"
               >
                 <Route
-                    element={<UserDashboard />}
-                    exact="true"
-                    path="analytics"
+                  element={<UserDashboard />}
+                  exact="true"
+                  path="analytics"
                 />
               </Route>
               <Route

@@ -12,7 +12,7 @@ export default function IndexUser() {
     <>
       <UserNavigationBar />
       <div className="mt-16 font-Montserrat">
-          <BreadCrumb />
+        <BreadCrumb />
         <Outlet />
       </div>
     </>

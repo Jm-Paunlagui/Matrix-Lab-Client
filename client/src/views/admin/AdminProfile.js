@@ -412,15 +412,20 @@ export default function AdminProfile() {
             Password Requirements
           </h1>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            Your password must be <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
-            at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
-          </b>{" "} We recommend using a password manager to generate a strong password.
+            Your password must be{" "}
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+              at least 8 characters long and contain at least one uppercase
+              letter, one lowercase letter, one number, and one special
+              character.
+            </b>{" "}
+            We recommend using a password manager to generate a strong password.
           </p>
           <h1 className="mb-4 text-xl font-bold text-blue-500">
             Two-Factor Authentication (2FA) Security
           </h1>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            By default, we enable two-factor authentication (2FA) for all users to ensure that your account is secure and protected.
+            By default, we enable two-factor authentication (2FA) for all users
+            to ensure that your account is secure and protected.
           </p>
         </div>
         <div className="col-span-2">

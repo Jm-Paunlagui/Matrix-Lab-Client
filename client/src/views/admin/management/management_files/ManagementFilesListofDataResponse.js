@@ -28,7 +28,8 @@ export default function ManagementFilesListofDataResponse() {
     school_semester: "",
   });
 
-  const { loading, file_list, topic, school_year, school_semester } = listOfTaughtCourses;
+  const { loading, file_list, topic, school_year, school_semester } =
+    listOfTaughtCourses;
 
   const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] =
     useState(file_list);
@@ -81,12 +82,8 @@ export default function ManagementFilesListofDataResponse() {
       ) : (
         <>
           <Header
-              body={
-                `Sentiment Analysis Evaluation Results for the School Year ${school_year} and School Semester ${school_semester}`
-              }
-              title={`${
-                  topic
-              }`}
+            body={`Sentiment Analysis Evaluation Results for the School Year ${school_year} and School Semester ${school_semester}`}
+            title={`${topic}`}
           />
           <SearchBar
             customStyle="mt-8"
