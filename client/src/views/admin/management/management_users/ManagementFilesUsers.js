@@ -109,19 +109,21 @@ export default function ManagementFilesUsers() {
       ...userDatas,
       loading: true,
     });
-    httpClient.get(`/data/list-of-users-to-view/${page}/${per_page_limit}`).then((response) => {
-      setUserDatas({
-        ...userDatas,
-        loading: false,
-        users: response.data.evaluatees_to_create,
-        current_page: response.data.current_page,
-        has_next: response.data.has_next,
-        has_prev: response.data.has_prev,
-        total_items: response.data.total_items,
-        total_pages: response.data.total_pages,
+    httpClient
+      .get(`/data/list-of-users-to-view/${page}/${per_page_limit}`)
+      .then((response) => {
+        setUserDatas({
+          ...userDatas,
+          loading: false,
+          users: response.data.evaluatees_to_create,
+          current_page: response.data.current_page,
+          has_next: response.data.has_next,
+          has_prev: response.data.has_prev,
+          total_items: response.data.total_items,
+          total_pages: response.data.total_pages,
+        });
+        setFilteredListOfUsers(response.data.evaluatees_to_create);
       });
-      setFilteredListOfUsers(response.data.evaluatees_to_create);
-    });
   };
 
   const handleCreateUser = (id) => {
@@ -406,9 +408,9 @@ export default function ManagementFilesUsers() {
                     </h1>
                   </div>
                   <Paginator
-                      handleSelect={handleSelect}
-                      per_page={per_page}
-                      per_page_limit={per_page_limit}
+                    handleSelect={handleSelect}
+                    per_page={per_page}
+                    per_page_limit={per_page_limit}
                   />
                 </div>
               </div>

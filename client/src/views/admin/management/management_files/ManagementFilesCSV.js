@@ -73,12 +73,8 @@ export default function ManagementFilesCSV() {
     textChangeDelete: "Delete all",
   });
 
-  const {
-    massRestore,
-    textChangeRestore,
-    massDelete,
-    textChangeDelete,
-  } = loadingAnimation;
+  const { massRestore, textChangeRestore, massDelete, textChangeDelete } =
+    loadingAnimation;
 
   /**
    * @description Filters the list of files based on the search value

@@ -11,7 +11,11 @@ export default function Paginator({ per_page, per_page_limit, handleSelect }) {
     per_page_limit: PropTypes.number.isRequired,
   };
   return (
-    <Listbox name={"per_page_limit"} onChange={handleSelect("per_page_limit")} value={per_page_limit}>
+    <Listbox
+      name={"per_page_limit"}
+      onChange={handleSelect("per_page_limit")}
+      value={per_page_limit}
+    >
       <div className="relative w-full">
         <Listbox.Button className={`${TEXT_FIELD} bg-white`}>
           <span className="block truncate text-start text-gray-500">
