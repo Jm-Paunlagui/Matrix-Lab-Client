@@ -189,7 +189,7 @@ export default function AdminPrediction() {
     setExtras({
       ...extras,
       csv_question: "",
-    })
+    });
   };
 
   const [extras, setExtras] = useState({
