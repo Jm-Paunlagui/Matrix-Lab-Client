@@ -129,7 +129,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/on-click-create/${id}`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -141,7 +141,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/on-click-deactivate/${id}`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -153,7 +153,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/lock-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -165,7 +165,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/unlock-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -177,7 +177,7 @@ export default function ManagementFilesUsers() {
       .delete(`/user/delete-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -189,7 +189,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/restore-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -206,7 +206,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/mass-create-all`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
         setLoadingAnimation({
           ...loadingAnimation,
           massActivation: false,
@@ -233,7 +233,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/mass-deactivate-all`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
         setLoadingAnimation({
           ...loadingAnimation,
           massDeactivation: false,
@@ -260,7 +260,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/mass-lock-account`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
         setLoadingAnimation({
           ...loadingAnimation,
           massLocked: false,
@@ -287,7 +287,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/mass-unlock-account`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
         setLoadingAnimation({
           ...loadingAnimation,
           massUnlocked: false,
@@ -314,7 +314,7 @@ export default function ManagementFilesUsers() {
       .delete(`/user/mass-delete-account`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
         setLoadingAnimation({
           ...loadingAnimation,
           massDelete: false,
@@ -341,7 +341,7 @@ export default function ManagementFilesUsers() {
       .post(`/user/mass-restore-account`)
       .then((response) => {
         toast.success(response.data.message);
-        loadListOfUsers(page_number);
+        loadListOfUsers(page_number, per_page_limit);
         setLoadingAnimation({
           ...loadingAnimation,
           massRestore: false,
