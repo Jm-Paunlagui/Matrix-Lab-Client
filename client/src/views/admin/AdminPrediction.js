@@ -186,6 +186,10 @@ export default function AdminPrediction() {
       ...handlers,
       errorMessageToAnS: "",
     });
+    setExtras({
+      ...extras,
+      csv_question: "",
+    })
   };
 
   const [extras, setExtras] = useState({
@@ -812,6 +816,7 @@ export default function AdminPrediction() {
                           setHandlers({
                             ...handlers,
                             textChange: "View",
+                            textChangeToAnS: "Analyze and Save",
                             errorMessageToAnS: "",
                           });
                         }}
@@ -1117,6 +1122,12 @@ export default function AdminPrediction() {
                         className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
                         onClick={() => {
                           setCount(2);
+                          setHandlers({
+                            ...handlers,
+                            textChange: "View",
+                            textChangeToAnS: "Analyze and Save",
+                            errorMessageToAnS: "",
+                          });
                         }}
                         type="button"
                       >
