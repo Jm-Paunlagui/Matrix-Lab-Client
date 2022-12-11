@@ -307,19 +307,19 @@ export default function AdminPrediction() {
     });
     setCount(1);
     await httpClient
-        .post("/data/delete-uploaded-csv-file", {
-          file_name: csv_file_name,
-        })
-        .then((response) => {
-          if (type === "done") {
-            toast.success(response.data.message);
-          } else {
-            toast.error("File deleted due to error.");
-          }
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
+      .post("/data/delete-uploaded-csv-file", {
+        file_name: csv_file_name,
+      })
+      .then((response) => {
+        if (type === "done") {
+          toast.success(response.data.message);
+        } else {
+          toast.error("File deleted due to error.");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
     removeAll();
   };
 
@@ -816,8 +816,8 @@ export default function AdminPrediction() {
 
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON} ${
-                            buttonDisabled &&
-                            `opacity-50 cursor-not-allowed pointer-events-none`
+                          buttonDisabled &&
+                          `opacity-50 cursor-not-allowed pointer-events-none`
                         }`}
                         disabled={buttonDisabled}
                         type="submit"
@@ -1130,7 +1130,9 @@ export default function AdminPrediction() {
                       </button>
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        onClick={() => {handleResetWhenDone("done")}}
+                        onClick={() => {
+                          handleResetWhenDone("done");
+                        }}
                         type="button"
                       >
                         <FontAwesomeIcon
