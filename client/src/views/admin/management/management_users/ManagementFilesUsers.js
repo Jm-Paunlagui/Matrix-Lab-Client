@@ -422,7 +422,6 @@ export default function ManagementFilesUsers() {
                   description="This action cannot be undone. All users will able to access the system to view their sentiment scores. This action will also send an email to all users to notify them that their account has been activated."
                   is_manny
                   onConfirm={() => handleCreateAllUsers()}
-                  textChange={textChangeActivation}
                   title="Activate All Users"
                 >
                   {massActivation ? (
@@ -445,7 +444,6 @@ export default function ManagementFilesUsers() {
                   description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
                   is_manny
                   onConfirm={() => handleUnlockAllUsers()}
-                  textChange={textChangeUnlocked}
                   title="Restore Authorization"
                 >
                   {massUnlocked ? (
@@ -468,9 +466,7 @@ export default function ManagementFilesUsers() {
                   description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
                   is_manny
                   onConfirm={() => handleRestoreAllUsers()}
-                  textChange={textChangeRestore}
                   title="Restore Account"
-                  type_of_modal="restore"
                 >
                   {massRestore ? (
                     <>
@@ -499,7 +495,6 @@ export default function ManagementFilesUsers() {
                   is_danger
                   is_manny
                   onConfirm={() => handleDeactivateAllUsers()}
-                  textChange={textChangeDeactivation}
                   title="Deactivate all users"
                 >
                   {massDeactivation ? (
@@ -523,7 +518,6 @@ export default function ManagementFilesUsers() {
                   is_danger
                   is_manny
                   onConfirm={() => handleLockAllUsers()}
-                  textChange={textChangeLocked}
                   title="Remove Authorization"
                 >
                   {massLocked ? (
@@ -547,9 +541,7 @@ export default function ManagementFilesUsers() {
                   is_danger
                   is_manny
                   onConfirm={() => handleDeleteAllUsers()}
-                  textChange={textChangeDelete}
                   title="Delete User Confirmation"
-                  type_of_modal="delete"
                 >
                   {massDelete ? (
                     <>
