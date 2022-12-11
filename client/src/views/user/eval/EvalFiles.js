@@ -7,7 +7,7 @@ import { SearchBar } from "../../../components/searchbar/SearchBar";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  MAIN_BUTTON,
+  MAIN_BUTTON, STATUS_GREEN, STATUS_RED, STATUS_WARNING,
 } from "../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -140,6 +140,33 @@ export default function EvalFiles() {
                   <div className="col-span-4 text-start p-4">
                     <div className="flex flex-row w-full py-2">
                       <h1 className="text-base font-bold leading-none text-blue-500">
+                        Status
+                      </h1>
+                    </div>
+                    <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                      <div
+                          className={`p-2 flex flex-row justify-center ${
+                              file.flag_deleted ? STATUS_RED : STATUS_GREEN
+                          }`}
+                      >
+                        <h1 className="text-sm leading-none uppercase">
+                          {file.flag_deleted
+                              ? "Deleted Temporarily"
+                              : "Available"}
+                        </h1>
+                      </div>
+                      <div
+                          className={`p-2 flex flex-row justify-center ${
+                              file.flag_release ? STATUS_GREEN : STATUS_WARNING
+                          }`}
+                      >
+                        <h1 className="text-sm leading-none uppercase">
+                          {file.flag_release ? "Published" : "Unpublished"}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="flex flex-row w-full py-2">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
                         Details
                       </h1>
                     </div>
@@ -168,27 +195,29 @@ export default function EvalFiles() {
                       </h1>
                     </div>
                   </div>
-                  <div className="col-span-1 w-full">
-                    <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Actions
-                      </h1>
-                    </div>
-                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                      <button
-                        className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        type="button"
-                      >
-                        <Link to={`${file.id}/${folderName}`}>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faFileCsv}
-                          />
-                          View
-                        </Link>
-                      </button>
-                    </div>
-                  </div>
+                  {!file.flag_release ? null : (
+                      <div className="col-span-1 w-full">
+                        <div className="flex flex-row w-full px-4">
+                          <h1 className="text-base font-bold leading-none text-blue-500">
+                            Actions
+                          </h1>
+                        </div>
+                        <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                          <button
+                              className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                              type="button"
+                          >
+                            <Link to={`${file.id}/${folderName}`}>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faFileCsv}
+                              />
+                              View
+                            </Link>
+                          </button>
+                        </div>
+                      </div>
+                  )}
                 </div>
               ))}
             </div>
