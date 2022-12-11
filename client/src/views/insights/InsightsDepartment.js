@@ -4,7 +4,7 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
-import {NoData} from "../../components/warnings/WarningMessages";
+import { NoData } from "../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the Insights for the department
@@ -193,9 +193,7 @@ export default function InsightsDepartment() {
             </div>
           ) : (
             <div className={"pt-8 pb-8"}>
-              <NoData
-                  message="Data Unavailable"
-              />
+              <NoData message="Data Unavailable" />
             </div>
           )}
         </>

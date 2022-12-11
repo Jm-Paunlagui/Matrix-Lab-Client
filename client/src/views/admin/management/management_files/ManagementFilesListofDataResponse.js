@@ -12,7 +12,7 @@ import { toReadableName } from "../../../../helpers/Helper";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
-import {NoData} from "../../../../components/warnings/WarningMessages";
+import { NoData } from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Lists the courses to read each course's data
@@ -159,9 +159,7 @@ export default function ManagementFilesListofDataResponse() {
             </div>
           ) : (
             <div className={"pt-8"}>
-              <NoData
-                  message="Data Unavailable"
-              />
+              <NoData message="Data Unavailable" />
             </div>
           )}
         </>

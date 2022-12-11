@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
-import {NoData} from "../../../../components/warnings/WarningMessages";
+import { NoData } from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -195,9 +195,7 @@ export default function ManagementFilesData() {
               </>
             ) : (
               <div className={"col-span-4"}>
-                <NoData
-                    message="Data Unavailable"
-                />
+                <NoData message="Data Unavailable" />
               </div>
             )}
           </div>
@@ -314,9 +312,7 @@ export default function ManagementFilesData() {
               </>
             ) : (
               <div className={"col-span-4"}>
-                <NoData
-                    message="Data Unavailable"
-                />
+                <NoData message="Data Unavailable" />
               </div>
             )}
           </div>

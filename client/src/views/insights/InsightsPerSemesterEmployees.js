@@ -4,7 +4,7 @@ import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
-import {NoData} from "../../components/warnings/WarningMessages";
+import { NoData } from "../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -316,9 +316,7 @@ export default function InsightsPerSemesterEmployees() {
                   ))}
                 </>
               ) : (
-                  <NoData
-                      message="Choose the following options to view the data"
-                  />
+                <NoData message="Choose the following options to view the data" />
               )}
             </div>
           )}

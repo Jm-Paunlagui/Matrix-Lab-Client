@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  MAIN_BUTTON, STATUS_GREEN, STATUS_RED, STATUS_WARNING,
+  MAIN_BUTTON,
+  STATUS_GREEN,
+  STATUS_RED,
+  STATUS_WARNING,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,7 +22,7 @@ import { Link } from "react-router-dom";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import Paginator from "../../../../components/paginator/Paginator";
-import {NoData} from "../../../../components/warnings/WarningMessages";
+import { NoData } from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the files to view and delete
@@ -263,18 +266,18 @@ export default function ManagementFilesCSV() {
                     </div>
                     <div className="content-end flex flex-wrap justify-start w-full gap-2">
                       <div
-                          className={`p-2 flex flex-row justify-center ${
-                              file.flag_deleted ? STATUS_RED : STATUS_GREEN
-                          }`}
+                        className={`p-2 flex flex-row justify-center ${
+                          file.flag_deleted ? STATUS_RED : STATUS_GREEN
+                        }`}
                       >
                         <h1 className="text-sm leading-none uppercase">
                           {file.flag_deleted ? "Deleted" : "Available"}
                         </h1>
                       </div>
                       <div
-                          className={`p-2 flex flex-row justify-center ${
-                              file.flag_release ? STATUS_GREEN : STATUS_WARNING
-                          }`}
+                        className={`p-2 flex flex-row justify-center ${
+                          file.flag_release ? STATUS_GREEN : STATUS_WARNING
+                        }`}
                       >
                         <h1 className="text-sm leading-none uppercase">
                           {file.flag_release ? "Released" : "Unreleased"}
@@ -358,9 +361,7 @@ export default function ManagementFilesCSV() {
             </div>
           ) : (
             <div className={"pb-8"}>
-              <NoData
-                message="Data Unavailable"
-              />
+              <NoData message="Data Unavailable" />
             </div>
           )}
           <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">

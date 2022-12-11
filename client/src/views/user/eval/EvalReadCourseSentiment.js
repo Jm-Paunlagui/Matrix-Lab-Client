@@ -7,7 +7,7 @@ import { toReadableName } from "../../../helpers/Helper";
 import BackTo from "../../../components/buttons/BackTo";
 import { GridItemResponse } from "../../../components/grid/GridItem";
 import { isAuth } from "../../../helpers/Auth";
-import {NoData} from "../../../components/warnings/WarningMessages";
+import { NoData } from "../../../components/warnings/WarningMessages";
 
 /**
  * @description Displays the sentiment score of the file along with the response
@@ -68,22 +68,23 @@ export default function EvalReadCourseSentiment() {
           />
           <div className=" place-content-center pt-8 space-y-8">
             {sentiments_list.length > 0 ? (
-                <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-                  {sentiments_list.map((sentiment) => (
-                      <div
-                          className={`flex flex-col p-8 rounded-lg shadow ${
-                              sentiment.sentiment >= 50 ? "bg-green-50" : "bg-red-50"
-                          }`}
-                          key={sentiment.id}
-                      >
-                        <GridItemResponse key={sentiment.id} sentiment={sentiment} />
-                      </div>
-                  ))}
-                </div>
+              <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
+                {sentiments_list.map((sentiment) => (
+                  <div
+                    className={`flex flex-col p-8 rounded-lg shadow ${
+                      sentiment.sentiment >= 50 ? "bg-green-50" : "bg-red-50"
+                    }`}
+                    key={sentiment.id}
+                  >
+                    <GridItemResponse
+                      key={sentiment.id}
+                      sentiment={sentiment}
+                    />
+                  </div>
+                ))}
+              </div>
             ) : (
-                <NoData
-                    message="Data Unavailable"
-                />
+              <NoData message="Data Unavailable" />
             )}
           </div>
         </>

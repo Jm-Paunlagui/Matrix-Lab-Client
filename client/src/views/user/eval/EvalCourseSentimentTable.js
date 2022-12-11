@@ -15,7 +15,7 @@ import { toReadableName } from "../../../helpers/Helper";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import BackTo from "../../../components/buttons/BackTo";
 import { isAuth } from "../../../helpers/Auth";
-import {NoData} from "../../../components/warnings/WarningMessages";
+import { NoData } from "../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -167,9 +167,7 @@ export default function EvalCourseSentimentTable() {
             </div>
           ) : (
             <div className={"pt-8"}>
-              <NoData
-                  message="Data Unavailable"
-              />
+              <NoData message="Data Unavailable" />
             </div>
           )}
         </>

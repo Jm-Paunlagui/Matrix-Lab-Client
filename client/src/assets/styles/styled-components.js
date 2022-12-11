@@ -1,8 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faWarning,
-} from "@fortawesome/free-solid-svg-icons";
+import { faWarning } from "@fortawesome/free-solid-svg-icons";
 
 export const TEXT_FIELD = `w-full p-4 text-sm font-medium tracking-wider rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent`;
 
@@ -57,4 +55,3 @@ export function EMAIL_NOT_SET(email_type = "") {
     </div>
   );
 }
-

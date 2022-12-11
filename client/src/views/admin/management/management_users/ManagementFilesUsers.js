@@ -15,7 +15,7 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { toast } from "react-toastify";
 import Paginator from "../../../../components/paginator/Paginator";
-import {NoData} from "../../../../components/warnings/WarningMessages";
+import { NoData } from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the admin tables
@@ -654,9 +654,7 @@ export default function ManagementFilesUsers() {
             </div>
           ) : (
             <div className={"pb-8"}>
-              <NoData
-                  message="Data Unavailable"
-              />
+              <NoData message="Data Unavailable" />
             </div>
           )}
           <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">
