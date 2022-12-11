@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faExclamationCircle,
   faWarning,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -59,31 +58,3 @@ export function EMAIL_NOT_SET(email_type = "") {
   );
 }
 
-/**
- * @description For no data found
- * @param type
- * @constructor
- */
-export function NoData(type = "") {
-  return (
-    <div className="flex flex-col items-center justify-center w-full p-4 rounded-lg bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500">
-      <div className="grid w-full grid-cols-1 rounded">
-        <div className="col-span-1 w-full">
-          <div className="flex flex-row w-full p-4 justify-center items-center">
-            <FontAwesomeIcon
-              className="text-white text-4xl"
-              icon={faExclamationCircle}
-            />
-          </div>
-        </div>
-        <div className="col-span-4">
-          <div className="flex flex-row justify-center w-full p-4">
-            <h1 className="text-4xl font-extrabold text-center text-white md:text-5xl lg:text-5xl">
-              {type}
-            </h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}

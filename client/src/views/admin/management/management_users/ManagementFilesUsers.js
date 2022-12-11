@@ -6,7 +6,6 @@ import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import {
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData,
   STATUS_GREEN,
   STATUS_RED,
   STATUS_WARNING,
@@ -16,6 +15,7 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
 import { toast } from "react-toastify";
 import Paginator from "../../../../components/paginator/Paginator";
+import {NoData} from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the admin tables
@@ -653,7 +653,11 @@ export default function ManagementFilesUsers() {
               ))}
             </div>
           ) : (
-            <div className={"pb-8"}>{new NoData("No User/s Found")}</div>
+            <div className={"pb-8"}>
+              <NoData
+                  message="Data Unavailable"
+              />
+            </div>
           )}
           <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">
             <div className="flex flex-row items-center justify-center w-full lg:w-1/2">

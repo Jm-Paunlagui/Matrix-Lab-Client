@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  NoData,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +12,7 @@ import { toReadableName } from "../../../../helpers/Helper";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
+import {NoData} from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Lists the courses to read each course's data
@@ -158,7 +158,11 @@ export default function ManagementFilesListofDataResponse() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8"}>{new NoData("No data to display")}</div>
+            <div className={"pt-8"}>
+              <NoData
+                  message="Data Unavailable"
+              />
+            </div>
           )}
         </>
       )}

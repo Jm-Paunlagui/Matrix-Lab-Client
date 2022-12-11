@@ -8,7 +8,6 @@ import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
-  NoData,
 } from "../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +16,7 @@ import {
   faFileCsv,
 } from "@fortawesome/free-solid-svg-icons";
 import { isAuth } from "../../../helpers/Auth";
+import {NoData} from "../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles evaluation pages for the application
@@ -193,7 +193,11 @@ export default function EvalFiles() {
               ))}
             </div>
           ) : (
-            <div className={"pb-8"}>{new NoData("No Files Found")}</div>
+            <div className={"pb-8"}>
+              <NoData
+                message="Data Unavailable"
+              />
+            </div>
           )}
           <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">
             <div className="flex flex-row items-center justify-center w-full lg:w-1/2">

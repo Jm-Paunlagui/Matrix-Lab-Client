@@ -8,7 +8,6 @@ import httpClient from "../../../http/httpClient";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  NoData,
 } from "../../../assets/styles/styled-components";
 import { Header } from "../../../components/headers/Header";
 import { SearchBar } from "../../../components/searchbar/SearchBar";
@@ -16,6 +15,7 @@ import { toReadableName } from "../../../helpers/Helper";
 import LoadingPage from "../../../components/loading/LoadingPage";
 import BackTo from "../../../components/buttons/BackTo";
 import { isAuth } from "../../../helpers/Auth";
+import {NoData} from "../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -90,7 +90,7 @@ export default function EvalCourseSentimentTable() {
       ) : (
         <>
           <Header
-            body={`Sentiment Analysis Evaluation Results for the School Year ${school_year} and School Semester ${school_semester}`}
+            body={`Sentiment Analysis Evaluation Results for the ${school_year} and School Semester ${school_semester}`}
             title={`${topic}`}
           />
           <SearchBar
@@ -166,7 +166,11 @@ export default function EvalCourseSentimentTable() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8"}>{new NoData("No data to display")}</div>
+            <div className={"pt-8"}>
+              <NoData
+                  message="Data Unavailable"
+              />
+            </div>
           )}
         </>
       )}
