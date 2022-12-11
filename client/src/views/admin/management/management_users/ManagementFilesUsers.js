@@ -11,11 +11,20 @@ import {
   STATUS_WARNING,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import DangerConfirmModal from "../../../../components/modal/DangerConfirmModal";
+import {
+  faBolt,
+  faCaretLeft,
+  faCaretRight,
+  faCircleXmark,
+  faLock,
+  faRotate, faTrash,
+  faUnlock
+} from "@fortawesome/free-solid-svg-icons";
+import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { toast } from "react-toastify";
 import Paginator from "../../../../components/paginator/Paginator";
-import { NoData } from "../../../../components/warnings/WarningMessages";
+import {NoData} from "../../../../components/warnings/WarningMessages";
+import {LoadingAnimation} from "../../../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin tables
@@ -365,7 +374,7 @@ export default function ManagementFilesUsers() {
   }, [page_number, per_page_limit]);
 
   return (
-    <div className="px-6 mx-auto max-w-7xl mt-8">
+    <div className="px-6 mx-auto mt-8 max-w-7xl">
       <Header
         body={
           "Create a new user for the system to view and analyze their sentiment scores."
@@ -384,24 +393,9 @@ export default function ManagementFilesUsers() {
             type="text"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
-            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
-              <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                <div className="flex flex-row w-full">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Mass Actions
-                  </h1>
-                </div>
-                <DangerConfirmModal
-                  body={`Are you sure you want to Activate all users in the system?`}
-                  description="This action cannot be undone. All users will able to access the system to view their sentiment scores. This action will also send an email to all users to notify them that their account has been activated."
-                  is_Mass
-                  is_loading={massActivation}
-                  onClick={() => handleCreateAllUsers()}
-                  textChange={textChangeActivation}
-                  title="Activate All Users"
-                  type_of_modal="activate"
-                />
-                <div className="content-end flex flex-wrap justify-start w-full gap-2">
+            <div className="w-full p-4 mt-8 rounded-lg shadow-md bg-blue-50">
+              <div className="flex flex-wrap content-end justify-start w-full gap-2">
+                <div className="flex flex-wrap content-end justify-start w-full gap-2">
                   <div className="flex flex-row w-full">
                     <h1 className="text-base font-bold leading-none text-blue-500">
                       Number of records per page
@@ -415,76 +409,179 @@ export default function ManagementFilesUsers() {
                 </div>
               </div>
             </div>
-            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
-              <div className="content-end flex flex-wrap justify-start w-full gap-2">
+            <div className="w-full p-4 mt-8 rounded-lg shadow-md bg-blue-50">
+              <div className="flex flex-wrap content-end justify-start w-full gap-2">
+                <div className="flex flex-row w-full">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Mass Actions
+                  </h1>
+                </div>
+                <ModalConfirm
+                    body={`Are you sure you want to Activate all users in the system?`}
+                    description="This action cannot be undone. All users will able to access the system to view their sentiment scores. This action will also send an email to all users to notify them that their account has been activated."
+                    is_manny
+                    onConfirm={() => handleCreateAllUsers()}
+                    textChange={textChangeActivation}
+                    title="Activate All Users"
+                >
+                  {massActivation ? (
+                      <>
+                        <LoadingAnimation
+                            moreClasses="text-red-600"
+                        />
+                        {textChangeActivation}
+                      </>
+                  ) : (
+                      <>
+                        <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faBolt}
+                        />
+                        {textChangeActivation}
+                      </>
+                  )}
+                </ModalConfirm>
+                <ModalConfirm
+                    body={`Are you sure you want to restore all users authorization to the system?`}
+                    description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
+                    is_manny
+                    onConfirm={() => handleUnlockAllUsers()}
+                    textChange={textChangeUnlocked}
+                    title="Restore Authorization"
+                >
+                  {massUnlocked ? (
+                      <>
+                        <LoadingAnimation
+                            moreClasses="text-teal-600"
+                        />
+                        {textChangeUnlocked}
+                      </>
+                  ) : (
+                      <>
+                        <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faUnlock}
+                        />
+                        {textChangeUnlocked}
+                      </>
+                  )}
+                </ModalConfirm>
+                <ModalConfirm
+                    body={`Are you sure you want to restore all users account to the system?`}
+                    description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                    is_manny
+                    onConfirm={() => handleRestoreAllUsers()}
+                    textChange={textChangeRestore}
+                    title="Restore Account"
+                    type_of_modal="restore"
+                >
+                  {massRestore ? (
+                      <>
+                        <LoadingAnimation
+                            moreClasses="text-teal-600"
+                        />
+                        {textChangeRestore}
+                      </>
+                  ) : (
+                      <>
+                        <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faRotate}
+                        />
+                        {textChangeRestore}
+                      </>
+                  )}
+                </ModalConfirm>
+
                 <div className="flex flex-row w-full">
                   <h1 className="text-base font-bold leading-none text-blue-500">
                     Mass Danger Actions
                   </h1>
                 </div>
-                <DangerConfirmModal
+                <ModalConfirm
                   body={`Are you sure you want to deactivate all users?`}
                   description="This action cannot be undone. The users you are trying to Deactivate will not be able to login to the system to view their sentiment scores."
-                  is_Mass
                   is_danger
-                  is_loading={massDeactivation}
+                  is_manny
                   onConfirm={() => handleDeactivateAllUsers()}
                   textChange={textChangeDeactivation}
                   title="Deactivate all users"
-                  type_of_modal="deactivate"
-                />
-                <DangerConfirmModal
-                  body={`Are you sure you want to restore all users authorization to the system?`}
-                  description="This action cannot be undone. The user you are trying to Reauthorized access will be able to access the system to view their sentiment scores."
-                  is_Mass
-                  is_danger
-                  is_loading={massUnlocked}
-                  onConfirm={() => handleUnlockAllUsers()}
-                  textChange={textChangeUnlocked}
-                  title="Restore Authorization"
-                  type_of_modal="unlock"
-                />
-
-                <DangerConfirmModal
+                >
+                  {massDeactivation ? (
+                      <>
+                        <LoadingAnimation
+                            moreClasses="text-red-600"
+                        />
+                        {textChangeDeactivation}
+                      </>
+                  ) : (
+                      <>
+                        <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faCircleXmark}
+                        />
+                        {textChangeDeactivation}
+                      </>
+                  )}
+                </ModalConfirm>
+                <ModalConfirm
                   body={`Are you sure you want to remove all users authorization to the system?`}
                   description="This action cannot be undone. The user you are trying to restrict access will be unable to access the system to view their sentiment scores."
-                  is_Mass
                   is_danger
-                  is_loading={massLocked}
+                  is_manny
                   onConfirm={() => handleLockAllUsers()}
                   textChange={textChangeLocked}
                   title="Remove Authorization"
-                  type_of_modal="lock"
-                />
-
-                <DangerConfirmModal
-                  body={`Are you sure you want to restore all users account to the system?`}
-                  description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
-                  is_Mass
-                  is_danger
-                  is_loading={massRestore}
-                  onConfirm={() => handleRestoreAllUsers()}
-                  textChange={textChangeRestore}
-                  title="Restore Account"
-                  type_of_modal="restore"
-                />
-
-                <DangerConfirmModal
+                >
+                  {massLocked ? (
+                      <>
+                        <LoadingAnimation
+                            moreClasses="text-red-600"
+                        />
+                        {textChangeLocked}
+                      </>
+                  ) : (
+                      <>
+                        <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faLock}
+                        />
+                        {textChangeLocked}
+                      </>
+                  )}
+                </ModalConfirm>
+                <ModalConfirm
                   body={`Are you sure you want to temporarily delete all users account to the system?`}
                   description="This action cannot be undone. This will temporarily delete the users account from the system."
-                  is_Mass
                   is_danger
-                  is_loading={massDelete}
+                  is_manny
                   onConfirm={() => handleDeleteAllUsers()}
                   textChange={textChangeDelete}
                   title="Delete User Confirmation"
                   type_of_modal="delete"
-                />
+                >
+                    {massDelete ? (
+                        <>
+                            <LoadingAnimation
+                                moreClasses="text-red-600"
+                            />
+                            {textChangeDelete}
+                        </>
+                    ) : (
+                        <>
+                            <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                                icon={faTrash}
+                            />
+                            {textChangeDelete}
+                        </>
+                    )}
+                </ModalConfirm>
               </div>
             </div>
           </div>
           <div className="flex flex-col w-full p-4">
-            <h1 className="text-start font-medium text-blue-500">
+            <h1 className="font-medium text-blue-500 text-start">
               Page {current_page} of {total_pages}
             </h1>
           </div>
@@ -492,24 +589,24 @@ export default function ManagementFilesUsers() {
             <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
               {filteredListOfUsers.map((user) => (
                 <div
-                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
+                  className="flex flex-col w-full mb-4 rounded-lg shadow-md bg-blue-50"
                   key={user.id}
                 >
-                  <div className="col-span-1 w-full">
+                  <div className="w-full col-span-1">
                     <div className="flex flex-row w-full p-4">
-                      <h1 className="text-md font-bold leading-none text-blue-500">
+                      <h1 className="font-bold leading-none text-blue-500 text-md">
                         {user.full_name}
                       </h1>
                     </div>
                   </div>
                   <hr className="w-full border-gray-300" />
-                  <div className="col-span-4 text-start p-4">
+                  <div className="col-span-4 p-4 text-start">
                     <div className="flex flex-row w-full py-2">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Status
                       </h1>
                     </div>
-                    <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                    <div className="flex flex-wrap content-end justify-start w-full gap-2">
                       <div
                         className={`p-2 flex flex-row justify-center ${
                           user.is_active ? STATUS_GREEN : STATUS_WARNING
@@ -568,85 +665,119 @@ export default function ManagementFilesUsers() {
                       </h1>
                     </div>
                   </div>
-                  <div className="col-span-1 w-full">
+                  <div className="w-full col-span-1">
                     <div className="flex flex-row w-full px-4">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         General
                       </h1>
                     </div>
-                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                      <DangerConfirmModal
+                    <div className="flex flex-wrap content-end justify-start w-full gap-2 p-4">
+                      <ModalConfirm
                         body={`Are you sure you want to Activate the user account of ${user.full_name}?`}
                         description="This action cannot be undone. The user you are trying to Activate will be able to access the system to view their sentiment scores."
                         id={user.id}
-                        is_Mass={false}
+                        is_many={false}
                         onConfirm={handleCreateUser}
                         title="Activate User Account"
-                        type_of_modal="activate"
-                      />
+                      >
+                        <>
+                            <FontAwesomeIcon
+                                className={`${ICON_PLACE_SELF_CENTER}`}
+                                icon={faBolt}
+                            />
+                            Activate
+                        </>
+                      </ModalConfirm>
+                      <ModalConfirm
+                          body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
+                          description="This action cannot be undone. The user you are trying to unlock will be able to access the system to view their sentiment scores."
+                          id={user.id}
+                          is_many={false}
+                          onConfirm={handleUnlockUser}
+                          title="Unlock User Account"
+                      >
+                        <>
+                          <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faUnlock}
+                          />
+                          Unlock
+                        </>
+                      </ModalConfirm>
+                      <ModalConfirm
+                          body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
+                          description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                          id={user.id}
+                          is_many={false}
+                          onConfirm={handleRestoreUser}
+                          title="Restore User Account"
+                      >
+                        <>
+                          <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faRotate}
+                          />
+                          Restore
+                        </>
+                      </ModalConfirm>
                     </div>
                     <div className="flex flex-row w-full px-4">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Danger Zone
                       </h1>
                     </div>
-                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                      <DangerConfirmModal
+                    <div className="flex flex-wrap content-end justify-start w-full gap-2 p-4">
+                      <ModalConfirm
                         body={`Are you sure you want to deactivate the user account of ${user.full_name}?`}
                         description="This action cannot be undone. The user you are trying to deactivate will be unable to access the system to view their sentiment scores."
                         id={user.id}
-                        is_Mass={false}
                         is_danger
+                        is_many={false}
                         onConfirm={handleDeactivateUser}
                         title="Deactivate User Account"
-                        type_of_modal="deactivate"
-                      />
-                      {user.is_locked ? (
-                        <DangerConfirmModal
-                          body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
-                          description="This action cannot be undone. The user you are trying to unlock will be able to access the system to view their sentiment scores."
-                          id={user.id}
-                          is_Mass={false}
-                          is_danger
-                          onConfirm={handleUnlockUser}
-                          title="Unlock User Account"
-                          type_of_modal="unlock"
-                        />
-                      ) : (
-                        <DangerConfirmModal
+                      >
+                        <>
+                          <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faCircleXmark}
+                          />
+                            Deactivate
+                        </>
+                      </ModalConfirm>
+                        <ModalConfirm
                           body={`Are you sure you want to lock the user account of ${user.full_name}?`}
                           description="This action cannot be undone. The user you are trying to lock will be unable to access the system to view their sentiment scores."
                           id={user.id}
-                          is_Mass={false}
                           is_danger
+                          is_many={false}
                           onConfirm={handleLockUser}
                           title="Lock User Account"
-                          type_of_modal="lock"
-                        />
-                      )}
-                      {user.is_deleted ? (
-                        <DangerConfirmModal
-                          body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
-                          description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
-                          id={user.id}
-                          is_Mass={false}
-                          is_danger
-                          onConfirm={handleRestoreUser}
-                          title="Restore User Account"
-                          type_of_modal="restore"
-                        />
-                      ) : (
-                        <DangerConfirmModal
+                        >
+                            <>
+                                <FontAwesomeIcon
+                                    className={`${ICON_PLACE_SELF_CENTER}`}
+                                    icon={faLock}
+                                />
+                                Lock
+                            </>
+                        </ModalConfirm>
+                        <ModalConfirm
                           body={`Are you sure you want to delete ${user.full_name} from the system?`}
                           description="This action cannot be undone. This will permanently delete the users account from the system."
                           id={user.id}
-                          is_Mass={false}
                           is_danger
+                          is_many={false}
                           onConfirm={handleDeleteUser}
                           title="Delete User Account"
-                          type_of_modal="delete"
-                        />
-                      )}
+                        >
+                            <>
+                                <FontAwesomeIcon
+                                    className={`${ICON_PLACE_SELF_CENTER}`}
+                                    icon={faTrash}
+                                />
+                                Delete
+                            </>
+                        </ModalConfirm>
                     </div>
                   </div>
                 </div>
@@ -654,14 +785,16 @@ export default function ManagementFilesUsers() {
             </div>
           ) : (
             <div className={"pb-8"}>
-              <NoData message="Data Unavailable" />
+              <NoData
+                  message="Data Unavailable"
+              />
             </div>
           )}
-          <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">
+          <div className="flex flex-col justify-end w-full pb-16 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0">
             <div className="flex flex-row items-center justify-center w-full lg:w-1/2">
               {/*    Page details*/}
               <div className="flex flex-row items-center justify-center w-full">
-                <h1 className="text-base font-medium leading-none t text-blue-500">
+                <h1 className="text-base font-medium leading-none text-blue-500 t">
                   Showing {users.length} of {total_items} Users in total (
                   {total_pages} pages)
                 </h1>
