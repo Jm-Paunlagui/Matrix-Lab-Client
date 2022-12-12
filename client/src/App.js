@@ -226,9 +226,9 @@ export default function App() {
                     path="data/:fileId/:read_responses/:file_name"
                   />
                   <Route
-                      element={<ManagementFileBin />}
-                      exact="true"
-                      path="deleted-files"
+                    element={<ManagementFileBin />}
+                    exact="true"
+                    path="deleted-files"
                   />
                 </Route>
 
