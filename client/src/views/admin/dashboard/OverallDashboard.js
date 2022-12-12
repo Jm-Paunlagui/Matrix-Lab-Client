@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../../components/loading/LoadingPage";
 import httpClient from "../../../http/httpClient";
+import {toast} from "react-toastify";
 
 /**
  * @description Handles the admin profile
@@ -25,6 +26,17 @@ export default function OverallDashboard() {
         total_responses: response.data.total_responses,
         overall_sentiments: response.data.overall_sentiments,
       });
+    }).catch((error) => {
+        switch (error.response.status) {
+            case 401:
+              toast.error("Unauthorized Access");
+                window.location.href = "/unauthorized-access";
+                break;
+            case 440:
+                toast.error("Session Expired");
+                window.location.href = "/login-timeout";
+                break;
+        }
     });
   }, []);
 

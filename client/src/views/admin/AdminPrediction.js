@@ -11,7 +11,7 @@ import { importSPKI, jwtVerify } from "jose";
 import {
   getNameFromString,
   getNumberFromString,
-  MATRIX_RSA_PUBLIC_KEY,
+  MATRIX_RSA_PUBLIC_KEY, timeFormat,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
@@ -85,48 +85,6 @@ export default function AdminPrediction() {
     analysis_department_time,
     analysis_collection_time,
   } = timeAnalyze;
-
-  function timeFormat(time) {
-    // If the time is greater than 1 minute then format it to minutes and seconds else format it to seconds
-    if (time >= 60) {
-      const minutes = Math.floor(time / 60);
-      const seconds = Math.round(time - minutes * 60);
-
-      // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
-      if (minutes === 1 && seconds === 1) {
-        return `${minutes} minute and ${seconds} second`;
-      } else if (minutes === 1) {
-        return `${minutes} minute and ${seconds} seconds`;
-      } else if (seconds === 1) {
-        return `${minutes} minutes and ${seconds} second`;
-      }
-      return `${minutes} minutes and ${seconds} seconds`;
-    } else if (time <= 60 && time > 1) {
-      const seconds = Math.round(time);
-      const milliseconds = Math.round((time - seconds) * 1000);
-      // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
-      if (seconds === 1 && milliseconds === 1) {
-        return `${seconds} second and ${milliseconds} millisecond`;
-      } else if (seconds === 1) {
-        return `${seconds} second and ${milliseconds} milliseconds`;
-      } else if (milliseconds === 1) {
-        return `${seconds} seconds and ${milliseconds} millisecond`;
-      }
-      return `${seconds} seconds and ${milliseconds} milliseconds`;
-    }
-    const milliseconds = Math.round(time * 1000);
-    const microseconds = Math.round((time - milliseconds) * 1000);
-
-    // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
-    if (milliseconds === 1 && microseconds === 1) {
-      return `${milliseconds} millisecond and ${microseconds} microsecond`;
-    } else if (milliseconds === 1) {
-      return `${milliseconds} millisecond and ${microseconds} microseconds`;
-    } else if (microseconds === 1) {
-      return `${milliseconds} milliseconds and ${microseconds} microsecond`;
-    }
-    return `${milliseconds} milliseconds and ${microseconds} microseconds`;
-  }
 
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
