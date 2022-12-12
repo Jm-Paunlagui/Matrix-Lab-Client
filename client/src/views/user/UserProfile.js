@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
   getCookie,
-  removeCookie,
-  setCookie,
-  updateUser,
+  verifyJWT,
 } from "../../helpers/Auth";
 import httpClient from "../../http/httpClient";
 import { toast } from "react-toastify";
-import { importSPKI, jwtVerify } from "jose";
-import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import {
   PersonalInformation,
   SecurityInformation,
@@ -183,26 +179,6 @@ export default function UserProfile() {
       errorMessageforPassword: "",
       template: false,
     });
-  };
-
-  /**
-   * @description Handles the token verification with the public key for security purposes.
-   * @param token
-   * @returns {Promise<void>}
-   */
-  const verifyJWT = async (token) => {
-    jwtVerify(token, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"))
-      .then((result) => {
-        removeCookie("token");
-        setCookie("token", token);
-        updateUser(result.payload, () => {
-          toast("Profile updated successfully", { type: "success" });
-        });
-      })
-      .catch((error) => {
-        toast(`Error: ${error}`, { type: "error" });
-        window.location.href = "/invalid-token";
-      });
   };
 
   /**

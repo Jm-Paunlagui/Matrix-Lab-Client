@@ -1,13 +1,9 @@
-import { importSPKI, jwtVerify } from "jose";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   getCookie,
-  removeCookie,
-  setCookie,
-  updateUser,
+  verifyJWT,
 } from "../../helpers/Auth";
-import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
 import {
   PersonalInformation,
@@ -187,25 +183,7 @@ export default function AdminProfile() {
     });
   };
 
-  /**
-   * @description Handles the token verification with the public key for security purposes.
-   * @param token
-   * @returns {Promise<void>}
-   */
-  const verifyJWT = async (token) => {
-    jwtVerify(token, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"))
-      .then((result) => {
-        removeCookie("token");
-        setCookie("token", token);
-        updateUser(result.payload, () => {
-          toast("Profile updated successfully", { type: "success" });
-        });
-      })
-      .catch((error) => {
-        toast(`Error: ${error}`, { type: "error" });
-        window.location.href = "/invalid-token";
-      });
-  };
+
 
   /**
    * @description Handles the Personal Information form submission
