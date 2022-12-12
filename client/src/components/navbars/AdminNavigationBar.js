@@ -8,6 +8,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import { isAuth, signout } from "../../helpers/Auth";
 import httpClient from "../../http/httpClient";
+import {toast} from "react-toastify";
 
 /**
  * @description Handles the admin navigation bar for the application
@@ -66,11 +67,13 @@ export default function AdminNavigationBar() {
    * @returns {Promise<void>}
    */
   const logoutUser = async () => {
-    await httpClient.post("/user/sign-out");
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 2100);
-    signout();
+    await httpClient.post("/user/sign-out").then((response) => {
+      toast.success(response.data.message);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2100);
+      signout();
+    })
   };
 
   /**

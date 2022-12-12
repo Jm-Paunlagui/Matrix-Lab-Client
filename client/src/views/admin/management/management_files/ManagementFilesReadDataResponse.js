@@ -42,7 +42,7 @@ export default function ManagementFilesReadDataResponse() {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
-        window.location.href = "/unauthorized-access";
+        window.location.href = "/login-timeout";
       });
   };
 

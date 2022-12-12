@@ -32,7 +32,7 @@ import PublicHome from "./views/public/PublicHome.js";
 import {
   PageNotFound,
   InvalidToken,
-  Unauthorized,
+  Unauthorized, LoginTimeOut,
 } from "./views/response/ClientErrorResponses.js";
 import IndexUser from "./views/user/IndexUser";
 
@@ -312,6 +312,7 @@ export default function App() {
              * @description Handles paginator not found route for the application
              */}
             <Route element={<PageNotFound />} path="*" />
+            <Route element={<LoginTimeOut />} path="login-timeout" />
             {/**
              * End of paginator not found route
              */}
