@@ -24,6 +24,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {NoData} from "../../../../components/warnings/WarningMessages";
+import {toast} from "react-toastify";
 
 export default function ManagementFileBin() {
     const per_page = [
@@ -123,6 +124,48 @@ export default function ManagementFileBin() {
         loadFiles(page_number, per_page_limit);
     }, [page_number, per_page_limit]);
 
+    /**
+     * @description Handles the delete of a file from the backend
+     * @param file
+     */
+    const handleDeletePermanently = (file) => {
+        httpClient
+            .delete(`/data/delete-csv-file-permanent/${file}`)
+            .then((response) => {
+                loadFiles(page_number, per_page_limit);
+                toast.success(response.data.message);
+            })
+            .catch((error) => {
+                toast.error(error.response.data.message);
+            });
+    };
+
+    const handleDeleteAllPermanently = () => {
+        setLoadingAnimation({
+            ...loadingAnimation,
+            massDelete: true,
+            textChangeDelete: "Deleting Files Permanently...",
+        });
+        httpClient
+            .delete("/data/deleting-all-csv-file-permanent")
+            .then((response) => {
+                loadFiles(page_number, per_page_limit);
+                setLoadingAnimation({
+                    ...loadingAnimation,
+                    massDelete: false,
+                    textChangeDelete: "Permanently Delete All",
+                });
+                toast.success(response.data.message);
+            })
+            .catch((error) => {
+                setLoadingAnimation({
+                    ...loadingAnimation,
+                    massDelete: false,
+                    textChangeDelete: "Permanently Delete All",
+                });
+                toast.error(error.response.data.message);
+            });
+    };
 
 
   return (
@@ -171,7 +214,8 @@ export default function ManagementFileBin() {
                                   description="This action cannot be undone. This will temporarily delete all files from the system and they will be restored if you restore all files."
                                   is_danger
                                   is_manny
-                                  title="Delete All Files (Temporarily)"
+                                  onClick={() => handleDeleteAllPermanently()}
+                                  title="Delete All Files Permanently"
                               >
                                   {massDelete ? (
                                       <>
@@ -285,7 +329,7 @@ export default function ManagementFileBin() {
                                               id={file.id}
                                               is_danger
                                               is_manny={false}
-
+                                              onConfirm={handleDeletePermanently}
                                               title="Delete File Permanently"
                                           >
                                               <>
