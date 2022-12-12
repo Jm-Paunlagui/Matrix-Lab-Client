@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../../components/loading/LoadingPage";
 import httpClient from "../../../http/httpClient";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Handles the admin profile
@@ -18,26 +18,29 @@ export default function OverallDashboard() {
   const { loading, details, total_responses, overall_sentiments } = data;
 
   useEffect(() => {
-    httpClient.get("/data/get-all-data-from-csv").then((response) => {
-      setData({
-        ...data,
-        loading: false,
-        details: response.data.details,
-        total_responses: response.data.total_responses,
-        overall_sentiments: response.data.overall_sentiments,
-      });
-    }).catch((error) => {
+    httpClient
+      .get("/data/get-all-data-from-csv")
+      .then((response) => {
+        setData({
+          ...data,
+          loading: false,
+          details: response.data.details,
+          total_responses: response.data.total_responses,
+          overall_sentiments: response.data.overall_sentiments,
+        });
+      })
+      .catch((error) => {
         switch (error.response.status) {
-            case 401:
-              toast.error("Unauthorized Access");
-                window.location.href = "/unauthorized-access";
-                break;
-            case 440:
-                toast.error("Session Expired");
-                window.location.href = "/login-timeout";
-                break;
+          case 401:
+            toast.error("Unauthorized Access");
+            window.location.href = "/unauthorized-access";
+            break;
+          case 440:
+            toast.error("Session Expired");
+            window.location.href = "/login-timeout";
+            break;
         }
-    });
+      });
   }, []);
 
   return (
