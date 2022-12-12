@@ -7,6 +7,7 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 import { isAuth, signout } from "../../helpers/Auth";
 import httpClient from "../../http/httpClient";
 import { BsAwardFill } from "react-icons/bs";
+import {toast} from "react-toastify";
 
 export default function UserNavigationBar() {
   /**
@@ -62,11 +63,16 @@ export default function UserNavigationBar() {
    * @returns {Promise<void>}
    */
   const logoutUser = async () => {
-    await httpClient.post("/user/sign-out");
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 2100);
-    signout();
+    await httpClient.post("/user/sign-out").then((response) => {
+      toast.success(response.data.message);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2100);
+      signout();
+    }).catch((error) => {
+      toast.error(error.response.data.message);
+      window.location.href = "/login-timeout";
+    })
   };
 
   /**

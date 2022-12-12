@@ -73,6 +73,9 @@ export default function AdminNavigationBar() {
         window.location.href = "/";
       }, 2100);
       signout();
+    }).catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/login-timeout";
     })
   };
 
