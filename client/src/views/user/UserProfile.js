@@ -13,7 +13,7 @@ import {
   PersonalInformation,
   SecurityInformation,
   SignInInformation,
-} from "../../forms/CredentialForms";
+} from "../../components/forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 

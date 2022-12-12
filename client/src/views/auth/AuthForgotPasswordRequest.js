@@ -16,7 +16,7 @@ import {
   AssociatedEmails,
   SendToEmail,
   Username,
-} from "../../forms/CredentialForms";
+} from "../../components/forms/CredentialForms";
 import { maskEmail, MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
 

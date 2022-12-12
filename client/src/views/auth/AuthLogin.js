@@ -14,7 +14,7 @@ import {
   TFAbyEmail,
   UsernamePassword,
   VerifyTFA,
-} from "../../forms/CredentialForms";
+} from "../../components/forms/CredentialForms";
 import { importSPKI, jwtVerify } from "jose";
 import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import { authenticate, isAuth, setLocalStorage } from "../../helpers/Auth";

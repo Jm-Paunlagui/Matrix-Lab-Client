@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { ViewInsightHistory } from "../../forms/CredentialForms";
+import { ViewInsightHistory } from "../../components/forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { NoData } from "../../components/warnings/WarningMessages";

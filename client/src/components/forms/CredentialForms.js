@@ -22,12 +22,12 @@ import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_RADIO,
   TEXT_FIELD,
-} from "../assets/styles/styled-components";
-import { maskEmail, emailRegex } from "../helpers/Helper";
+} from "../../assets/styles/styled-components";
+import { maskEmail, emailRegex } from "../../helpers/Helper";
 import PasswordChecklist from "react-password-checklist";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { LoadingAnimation } from "../components/loading/LoadingPage";
+import { LoadingAnimation } from "../loading/LoadingPage";
 import PropTypes from "prop-types";
 
 /**
