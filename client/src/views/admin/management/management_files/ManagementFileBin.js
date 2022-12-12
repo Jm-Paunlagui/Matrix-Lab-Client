@@ -116,7 +116,8 @@ export default function ManagementFileBin() {
           total_pages: response.data.total_pages,
         });
         setFilteredListOfFiles(response.data.csv_files);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         toast.error(error.response.data.message);
         window.location.href = "/unauthorized-access";
       });

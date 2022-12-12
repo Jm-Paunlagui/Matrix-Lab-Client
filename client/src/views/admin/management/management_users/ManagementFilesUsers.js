@@ -133,10 +133,11 @@ export default function ManagementFilesUsers() {
           total_pages: response.data.total_pages,
         });
         setFilteredListOfUsers(response.data.evaluatees_to_create);
-      }).catch((error) => {
-      toast.error(error.response.data.message);
-      window.location.href = "/unauthorized-access";
-    });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
+      });
   };
 
   const handleCreateUser = (id) => {

@@ -6,7 +6,7 @@ import LoadingPage from "../../../../components/loading/LoadingPage";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { GridItemResponse } from "../../../../components/grid/GridItem";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Displays the sentiment score of the file along with the response
@@ -39,10 +39,11 @@ export default function ManagementFilesReadDataResponse() {
           loading: false,
           sentiments_list: response.data.sentiments_list,
         });
-      }).catch((error) => {
-      toast.error(error.response.data.message);
-      window.location.href = "/unauthorized-access";
-    });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
+      });
   };
 
   useEffect(() => {

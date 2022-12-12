@@ -13,7 +13,7 @@ import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import { NoData } from "../../../../components/warnings/WarningMessages";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Lists the courses to read each course's data
@@ -53,10 +53,11 @@ export default function ManagementFilesListofDataResponse() {
           school_semester: response.data.school_semester,
         });
         setFilteredListOfTaughtCourses(response.data.file_list);
-      }).catch((error) => {
-      toast.error(error.response.data.message);
-      window.location.href = "/unauthorized-access";
-    });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
+      });
   };
 
   /**

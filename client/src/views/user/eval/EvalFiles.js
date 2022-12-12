@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Handles evaluation pages for the application
@@ -92,10 +92,11 @@ export default function EvalFiles() {
           total_pages: response.data.total_pages,
         });
         setFilteredListOfFiles(response.data.csv_files);
-      }).catch((error) => {
-      toast.error(error.response.data.message);
-      window.location.href = "/unauthorized-access";
-    });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
+      });
   };
 
   useEffect(() => {

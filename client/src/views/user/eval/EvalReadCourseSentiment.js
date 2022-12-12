@@ -8,7 +8,7 @@ import BackTo from "../../../components/buttons/BackTo";
 import { GridItemResponse } from "../../../components/grid/GridItem";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 /**
  * @description Displays the sentiment score of the file along with the response
@@ -46,10 +46,11 @@ export default function EvalReadCourseSentiment() {
           loading: false,
           sentiments_list: response.data.sentiments_list,
         });
-      }).catch((error) => {
-      toast.error(error.response.data.message);
-      window.location.href = "/unauthorized-access";
-    });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
+      });
   };
 
   useEffect(() => {

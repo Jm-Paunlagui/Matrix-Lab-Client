@@ -54,10 +54,11 @@ export default function ManagementFilesData() {
         });
         setFilteredProfessors(response.data.professor_file);
         setFilteredDepartments(response.data.department_file);
-      }).catch((error) => {
-      toast.error(error.response.data.message);
-      window.location.href = "/unauthorized-access";
-    });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
+      });
   };
 
   /**
