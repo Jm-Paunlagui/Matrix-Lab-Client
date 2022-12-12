@@ -214,7 +214,7 @@ export default function ManagementFileBin() {
                                   description="This action cannot be undone. This will temporarily delete all files from the system and they will be restored if you restore all files."
                                   is_danger
                                   is_manny
-                                  onClick={() => handleDeleteAllPermanently()}
+                                  onConfirm={() => handleDeleteAllPermanently()}
                                   title="Delete All Files Permanently"
                               >
                                   {massDelete ? (
