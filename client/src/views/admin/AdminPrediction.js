@@ -11,7 +11,8 @@ import { importSPKI, jwtVerify } from "jose";
 import {
   getNameFromString,
   getNumberFromString,
-  MATRIX_RSA_PUBLIC_KEY, timeFormat,
+  MATRIX_RSA_PUBLIC_KEY,
+  timeFormat,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
