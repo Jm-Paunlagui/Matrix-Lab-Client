@@ -32,7 +32,8 @@ import PublicHome from "./views/public/PublicHome.js";
 import {
   PageNotFound,
   InvalidToken,
-  Unauthorized, LoginTimeOut,
+  Unauthorized,
+  LoginTimeOut,
 } from "./views/response/ClientErrorResponses.js";
 import IndexUser from "./views/user/IndexUser";
 
