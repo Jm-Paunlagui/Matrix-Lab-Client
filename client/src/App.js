@@ -53,6 +53,7 @@ import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
 import IndexUserDashboard from "./views/user/dashboard/IndexUserDashboard";
 import UserDashboard from "./views/user/dashboard/UserDashboard";
 import EvalReadCourseSentiment from "./views/user/eval/EvalReadCourseSentiment";
+import ManagementFileBin from "./views/admin/management/management_files/ManagementFileBin";
 
 /**
  * @description Main component for the application
@@ -223,6 +224,11 @@ export default function App() {
                     element={<ManagementFilesReadDataResponse />}
                     exact="true"
                     path="data/:fileId/:read_responses/:file_name"
+                  />
+                  <Route
+                      element={<ManagementFileBin />}
+                      exact="true"
+                      path="deleted-files"
                   />
                 </Route>
 
