@@ -16,6 +16,7 @@ import LoadingPage from "../../../components/loading/LoadingPage";
 import BackTo from "../../../components/buttons/BackTo";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
+import {toast} from "react-toastify";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -60,7 +61,10 @@ export default function EvalCourseSentimentTable() {
           school_semester: response.data.school_semester,
         });
         setFilteredListOfTaughtCourses(response.data.file_list);
-      });
+      }).catch((error) => {
+      toast.error(error.response.data.message);
+      window.location.href = "/unauthorized-access";
+    });
   };
 
   /**

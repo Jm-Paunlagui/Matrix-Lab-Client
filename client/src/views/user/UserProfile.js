@@ -111,11 +111,10 @@ export default function UserProfile() {
           username: response.data.user.username,
           role: response.data.user.role,
         });
-      })
-      .catch((error) => {
-        window.location.href = "/unauthorized-access";
-        toast(`Error: ${error}`, { type: "error" });
-      });
+      }).catch((error) => {
+      toast.error(error.response.data.message);
+      window.location.href = "/unauthorized-access";
+    });
   };
 
   /**

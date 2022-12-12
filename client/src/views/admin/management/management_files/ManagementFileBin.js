@@ -9,7 +9,6 @@ import Paginator from "../../../../components/paginator/Paginator";
 import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
   MAIN_BUTTON,
   STATUS_GREEN,
@@ -19,14 +18,8 @@ import {
 import {
   faCaretLeft,
   faCaretRight,
-  faDownLong,
-  faFileArrowDown,
-  faFileCsv,
-  faRotate,
   faTrash,
-  faUpLong,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
 
@@ -123,6 +116,9 @@ export default function ManagementFileBin() {
           total_pages: response.data.total_pages,
         });
         setFilteredListOfFiles(response.data.csv_files);
+      }).catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/unauthorized-access";
       });
   };
 

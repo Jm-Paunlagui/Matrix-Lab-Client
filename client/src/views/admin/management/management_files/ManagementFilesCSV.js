@@ -138,6 +138,9 @@ export default function ManagementFilesCSV() {
           total_pages: response.data.total_pages,
         });
         setFilteredListOfFiles(response.data.csv_files);
+      }).catch((error) => {
+          toast.error(error.response.data.message);
+          window.location.href = "/unauthorized-access";
       });
   };
 
