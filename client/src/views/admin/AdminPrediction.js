@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useCallback, useEffect} from "react";
+import React, { Fragment, useState, useCallback, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
   ACCENT_BUTTON,
@@ -26,31 +26,30 @@ import { useDropzone } from "react-dropzone";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 import { Link } from "react-router-dom";
 import DisclosureTogglable from "../../components/disclosure/DisclosureTogglable";
-import {getCookie} from "../../helpers/Auth";
+import { getCookie } from "../../helpers/Auth";
 
 /**
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
-
   const [process_by, setProcessBy] = useState({});
 
   const loadProcessBy = () => {
     const token = getCookie("token");
     httpClient
-        .get("/user/get_user", {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-            setProcessBy(response.data.user.id);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-          window.location.href = "/login-timeout";
-        });
-  }
+      .get("/user/get_user", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        setProcessBy(response.data.user.id);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/login-timeout";
+      });
+  };
 
   useEffect(() => {
     loadProcessBy();
@@ -339,7 +338,7 @@ export default function AdminPrediction() {
             selected_column_for_sentence,
           ),
           selected_semester,
-          process_by
+          process_by,
         })
         .then((response) => {
           toast.success(response.data.message);

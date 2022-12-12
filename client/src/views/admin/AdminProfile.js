@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import {
-  getCookie,
-  verifyJWT,
-} from "../../helpers/Auth";
+import { getCookie, verifyJWT } from "../../helpers/Auth";
 import httpClient from "../../http/httpClient";
 import {
   PersonalInformation,
@@ -182,8 +179,6 @@ export default function AdminProfile() {
       template: false,
     });
   };
-
-
 
   /**
    * @description Handles the Personal Information form submission
