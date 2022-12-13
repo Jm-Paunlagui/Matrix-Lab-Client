@@ -324,15 +324,16 @@ export default function AdminPrediction() {
     });
     const regex = /S\.Y\.\s\d{4}-\d{4}/;
     if (!regex.test(school_year)) {
-        setHandlers({
-            ...handlers,
-            okToAnS: false,
-            errorEffectToAnS: true,
-            errorMessageToAnS: "Invalid school year format.",
-            textChangeToAnS: "Analyze and Save",
-        });
-    }
-    else if (getNameFromString(selected_column_for_sentence) !== csv_question) {
+      setHandlers({
+        ...handlers,
+        okToAnS: false,
+        errorEffectToAnS: true,
+        errorMessageToAnS: "Invalid school year format.",
+        textChangeToAnS: "Analyze and Save",
+      });
+    } else if (
+      getNameFromString(selected_column_for_sentence) !== csv_question
+    ) {
       setHandlers({
         ...handlers,
         okToAnS: false,
