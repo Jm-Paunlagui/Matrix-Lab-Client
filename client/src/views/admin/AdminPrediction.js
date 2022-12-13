@@ -32,7 +32,6 @@ import { getCookie } from "../../helpers/Auth";
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
-
   /**
    * @description decode the jwt token and return the payload
    */
