@@ -45,15 +45,6 @@ export default function UserNavigationBar() {
    * @param link
    * @returns {boolean}
    */
-  function isActiveSubs4(link) {
-    return splitLocation[4] === link;
-  }
-
-  /**
-   * @description Handles the sub link if it is active or not.
-   * @param link
-   * @returns {boolean}
-   */
   function isActiveSubs(link) {
     return splitLocation[3] === link;
   }
