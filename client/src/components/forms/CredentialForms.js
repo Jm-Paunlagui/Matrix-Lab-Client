@@ -170,7 +170,7 @@ export function TFAbyEmail({
     >
       {/*  Choice of identity */}
       <div className="flex flex-col justify-center mt-6 space-y-6">
-        {emailRegex.test(id1) ? (
+
           <li className={`list-none`}>
             <input
               checked={email === id1}
@@ -196,8 +196,7 @@ export function TFAbyEmail({
               Email {id1}
             </label>
           </li>
-        ) : (
-          <>
+
             {emailRegex.test(id2) ? (
               <li className="list-none">
                 <input
@@ -252,8 +251,8 @@ export function TFAbyEmail({
                 </label>
               </li>
             ) : null}
-          </>
-        )}
+
+
       </div>
       {/* Error message */}
       {errorMessage ? (

@@ -164,8 +164,9 @@ export default function AuthLogin() {
       })
       .catch((error) => {
         setErrorEffect(true);
-        setErrorMessage(error.response.data.message);
         setOki(false);
+        toast.error(error.message);
+        setErrorMessage(error.response.data.message);
         setAuthForm({
           ...authForm,
           textChange: "Sign In",
