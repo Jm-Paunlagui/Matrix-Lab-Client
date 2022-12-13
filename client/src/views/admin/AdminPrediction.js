@@ -1128,7 +1128,7 @@ export default function AdminPrediction() {
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
                       <button
                         className={`
-                        }px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                        px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
                         onClick={() => {
                           setCount(2);
                           setHandlers({
@@ -1149,9 +1149,9 @@ export default function AdminPrediction() {
                       </button>
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        onClick={() => {
-                          handleResetWhenDone("done");
-                        }}
+                        onClick={() => (
+                          handleResetWhenDone("done")
+                          )}
                         type="button"
                       >
                         <FontAwesomeIcon
