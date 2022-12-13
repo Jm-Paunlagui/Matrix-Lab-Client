@@ -68,6 +68,9 @@ export default function ManagementFilesCSV() {
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
+  /**
+   * @description Search bar handler for the files
+   */
   const handleSelect = (name) => (value) => {
     setFileData({
       ...fileData,
@@ -145,6 +148,9 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Loads the files from the backend by page number and per page limit.
+   */
   useEffect(() => {
     loadFiles(page_number, per_page_limit);
   }, [page_number, per_page_limit]);
@@ -165,6 +171,10 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the restore of a file from the backend
+   * @param file
+   */
   const handleRestore = (file) => {
     httpClient
       .put(`/data/unflag-delete-csv-file/${file}`)
@@ -177,6 +187,10 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the publish of a file from the backend
+   * @param file
+   */
   const handlePublish = (file) => {
     httpClient
       .put(`/data/publish-selected-csv-file/${file}`)
@@ -189,6 +203,10 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the unpublish of a file from the backend
+   * @param file
+   */
   const handleUnpublished = (file) => {
     httpClient
       .put(`/data/unpublished-selected-csv-file/${file}`)
@@ -201,6 +219,9 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the mass delete of files from the backend
+   */
   const handleDeleteAll = () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -228,6 +249,9 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the mass restore of files from the backend
+   */
   const handleRestoreAll = () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -255,6 +279,9 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the mass publish of files from the backend
+   */
   const handlePublishAll = () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -282,6 +309,9 @@ export default function ManagementFilesCSV() {
       });
   };
 
+  /**
+   * @description Handles the mass unpublish of files from the backend
+   */
   const handleUnpublishedAll = () => {
     setLoadingAnimation({
       ...loadingAnimation,

@@ -23,6 +23,9 @@ import {
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
 
+/**
+ * @description ManagementFileBin component for the application to manage the files in the bin
+ */
 export default function ManagementFileBin() {
   const per_page = [
     { value: 25, label: "25", id: 1 },
@@ -58,7 +61,9 @@ export default function ManagementFileBin() {
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
-
+  /**
+   * @description Search bar handler for the delete files
+   */
   const handleSelect = (name) => (value) => {
     setFileData({
       ...fileData,
@@ -124,6 +129,9 @@ export default function ManagementFileBin() {
       });
   };
 
+  /**
+   * @description Loads the files from the backend by page number and per page limit.
+   */
   useEffect(() => {
     loadFiles(page_number, per_page_limit);
   }, [page_number, per_page_limit]);
@@ -144,6 +152,9 @@ export default function ManagementFileBin() {
       });
   };
 
+  /**
+   * @description Handles the mass delete of files from the backend
+   */
   const handleDeleteAllPermanently = () => {
     setLoadingAnimation({
       ...loadingAnimation,
