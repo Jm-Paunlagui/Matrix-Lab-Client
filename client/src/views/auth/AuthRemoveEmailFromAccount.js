@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
- * @description Handles the forgot password request page
+ * @description Handles the forgot password request paginator
  */
 export default function AuthRemoveEmailFromAccount() {
   /**
@@ -182,7 +182,7 @@ export default function AuthRemoveEmailFromAccount() {
                   </div>
                 </div>
               ) : trigger === "no" ? (
-                <div className="relative mx-auto max-w-screen">
+                <div className="relative mx-auto max-w-screen bg-blue-50 p-8 rounded-lg">
                   <div className="flex flex-col py-1 justify-left">
                     <h6 className="text-xl font-medium text-gray-500">
                       {email} was removed from {maskUsername(username)}&#39;s
@@ -195,9 +195,9 @@ export default function AuthRemoveEmailFromAccount() {
                   </div>
                 </div>
               ) : (
-                <div className="flex-auto mb-24 space-y-6 -mt-14">
+                <div className="flex-auto mb-24 space-y-6 bg-blue-50 p-8 rounded-lg">
                   <div className="mb-3 text-start">
-                    <h6 className="mt-16 text-xl font-medium text-gray-500">
+                    <h6 className="text-xl font-medium text-gray-500">
                       Do you own the Matrix account, {maskUsername(username)}?
                     </h6>
                     <div className="mt-4 text-start">
@@ -222,9 +222,9 @@ export default function AuthRemoveEmailFromAccount() {
                           value="no"
                         />
                         <label
-                          className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                          className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
                             errorEffect
-                              ? `border-red-500 placeholder-red-500 text-red-500`
+                              ? `outline-red-500 placeholder-red-500 text-red-500`
                               : DANGER_RADIO
                           }`}
                           htmlFor="id1"
@@ -250,11 +250,11 @@ export default function AuthRemoveEmailFromAccount() {
                           value="yes"
                         />
                         <label
-                          className={`px-5 py-1 pl-4 flex flex-row justify-start border-2 rounded-lg ${
+                          className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
                             errorEffect
-                              ? `border-red-500 placeholder-red-500 text-red-500`
+                              ? `outline-red-500 placeholder-red-500 text-red-500`
                               : PRIMARY_RADIO
-                          } `}
+                          }`}
                           htmlFor="id2"
                         >
                           <FontAwesomeIcon

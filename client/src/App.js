@@ -33,12 +33,13 @@ import {
   PageNotFound,
   InvalidToken,
   Unauthorized,
+  LoginTimeOut,
 } from "./views/response/ClientErrorResponses.js";
 import IndexUser from "./views/user/IndexUser";
-import UserDashboard from "./views/user/UserDashboard";
+
 import UserProfile from "./views/user/UserProfile";
 import EvalCourseSentimentTable from "./views/user/eval/EvalCourseSentimentTable";
-import EvalCourses from "./views/user/eval/EvalCourses";
+import EvalFiles from "./views/user/eval/EvalFiles";
 import IndexEval from "./views/user/eval/IndexEval";
 import IndexManagementFiles from "./views/admin/management/IndexManagementFiles";
 import ManagementFilesCSV from "./views/admin/management/management_files/ManagementFilesCSV";
@@ -50,6 +51,10 @@ import IndexFiles from "./views/admin/management/management_files/IndexFiles";
 import IndexUsers from "./views/admin/management/management_users/IndexUsers";
 import AuthAdminUnlock from "./views/auth/AuthAdminUnlock";
 import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
+import IndexUserDashboard from "./views/user/dashboard/IndexUserDashboard";
+import UserDashboard from "./views/user/dashboard/UserDashboard";
+import EvalReadCourseSentiment from "./views/user/eval/EvalReadCourseSentiment";
+import ManagementFileBin from "./views/admin/management/management_files/ManagementFileBin";
 
 /**
  * @description Main component for the application
@@ -58,7 +63,7 @@ import IndexDashBoard from "./views/admin/dashboard/IndexDashBoard";
 export default function App() {
   /**
    * @type {Function}
-   * @description Function to scroll to top of the page when route changes in the application.
+   * @description Function to scroll to top of the paginator when route changes in the application.
    */
   const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -221,6 +226,11 @@ export default function App() {
                     exact="true"
                     path="data/:fileId/:read_responses/:file_name"
                   />
+                  <Route
+                    element={<ManagementFileBin />}
+                    exact="true"
+                    path="deleted-files"
+                  />
                 </Route>
 
                 <Route element={<IndexUsers />} exact="true" path="users">
@@ -242,34 +252,70 @@ export default function App() {
              * user routes.
              */}
             <Route element={<IndexUser />} exact="true" path="user">
-              <Route element={<IndexEval />} exact="true" path="programs">
-                <Route element={<EvalCourses />} exact="true" path="courses">
-                  <Route
-                    element={<EvalCourseSentimentTable />}
-                    path=":courseId"
-                  />
-                </Route>
+              <Route
+                element={<IndexEval />}
+                exact="true"
+                path="evaluation-results"
+              >
+                <Route element={<EvalFiles />} exact="true" path="files" />
+                <Route
+                  element={<EvalCourseSentimentTable />}
+                  path="files/:fileId/:folderName"
+                />
+                <Route
+                  element={<EvalReadCourseSentiment />}
+                  path="files/:fileId/:folderName/:fileName"
+                />
               </Route>
               <Route
-                element={<UserDashboard />}
+                element={<IndexUserDashboard />}
                 exact="true"
-                path="analytics"
-              />
+                path="dashboard"
+              >
+                <Route
+                  element={<UserDashboard />}
+                  exact="true"
+                  path="analytics"
+                />
+              </Route>
               <Route
                 element={<UserProfile />}
                 exact="true"
                 path="profile/:username"
               />
+              <Route element={<IndexInsights />} exact="true" path="insights">
+                <Route
+                  element={<InsightsDepartment />}
+                  exact="true"
+                  path="departments"
+                />
+                <Route
+                  element={<InsightsEmployees />}
+                  exact="true"
+                  path="employees"
+                />
+                <Route
+                  element={<InsightsPerSemesterDepartment />}
+                  exact="true"
+                  path="per-semester-department"
+                />
+                <Route
+                  element={<InsightsPerSemesterEmployees />}
+                  exact="true"
+                  path="per-semester-employee"
+                />
+              </Route>
               <Route element={<AuthLogout />} exact="true" path="logout" />
             </Route>
 
             <Route element={<Unauthorized />} path="unauthorized-access" />
             {/**
-             * @description Handles page not found route for the application
+             * @description Handles paginator not found route for the application
              */}
             <Route element={<PageNotFound />} path="*" />
+            <Route element={<LoginTimeOut />} path="login-timeout" />
             {/**
-             * End of page not found route
+             * End of paginator not found route
              */}
             <Route element={<InvalidToken />} path="invalid-token" />
           </Routes>

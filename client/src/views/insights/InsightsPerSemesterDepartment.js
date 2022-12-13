@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { ViewInsightHistory } from "../../forms/CredentialForms";
-import { NoData } from "../../assets/styles/styled-components";
+import { ViewInsightHistory } from "../../components/forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
+import { NoData } from "../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -83,7 +83,7 @@ export default function InsightsPerSemesterDepartment() {
   }, []);
 
   /**
-   * @description Gets the data from the backend and displays it to the page.
+   * @description Gets the data from the backend and displays it to the paginator.
    * @param event
    * @returns {Promise<void>}
    */
@@ -315,7 +315,7 @@ export default function InsightsPerSemesterDepartment() {
                   ))}
                 </>
               ) : (
-                new NoData("Choose the following options to view the data")
+                <NoData message="Choose the following options to view the data" />
               )}
             </div>
           )}

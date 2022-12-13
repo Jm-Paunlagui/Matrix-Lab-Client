@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from "react";
+import React, { Fragment, useState, useCallback, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import {
   ACCENT_BUTTON,
@@ -12,6 +12,7 @@ import {
   getNameFromString,
   getNumberFromString,
   MATRIX_RSA_PUBLIC_KEY,
+  timeFormat,
 } from "../../helpers/Helper";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import {
@@ -25,14 +26,48 @@ import { useDropzone } from "react-dropzone";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 import { Link } from "react-router-dom";
 import DisclosureTogglable from "../../components/disclosure/DisclosureTogglable";
+import { getCookie } from "../../helpers/Auth";
 
 /**
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
+  /**
+   * @description decode the jwt token and return the payload
+   */
+  const loadProcessBy = () => {
+    const token = getCookie("token");
+    httpClient
+      .get("/user/get_user", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        toast.info(
+          `Get ready to analyze the data ${response.data.user.username}!`,
+          {
+            position: "bottom-center",
+          },
+        );
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/login-timeout";
+      });
+  };
+
+  /**
+   * @description Process by state
+   */
+  useEffect(() => {
+    loadProcessBy();
+  }, []);
+
   const [csv_file_to_view, setCSVFileToView] = useState();
 
   const [handlers, setHandlers] = useState({
+    buttonDisabled: false,
     ok: false,
     errorEffect: false,
     errorMessage: "",
@@ -44,6 +79,7 @@ export default function AdminPrediction() {
   });
 
   const {
+    buttonDisabled,
     ok,
     errorEffect,
     errorMessage,
@@ -84,48 +120,10 @@ export default function AdminPrediction() {
     analysis_collection_time,
   } = timeAnalyze;
 
-  function timeFormat(time) {
-    // If the time is greater than 1 minute then format it to minutes and seconds else format it to seconds
-    if (time >= 60) {
-      const minutes = Math.floor(time / 60);
-      const seconds = Math.round(time - minutes * 60);
-
-      // Correct terms like 1 minute 1 seconds to 1 minute and 1 second instead
-      if (minutes === 1 && seconds === 1) {
-        return `${minutes} minute and ${seconds} second`;
-      } else if (minutes === 1) {
-        return `${minutes} minute and ${seconds} seconds`;
-      } else if (seconds === 1) {
-        return `${minutes} minutes and ${seconds} second`;
-      }
-      return `${minutes} minutes and ${seconds} seconds`;
-    } else if (time <= 60 && time > 1) {
-      const seconds = Math.round(time);
-      const milliseconds = Math.round((time - seconds) * 1000);
-      // Correct terms like 1 second 1 milliseconds to 1 second and 1 millisecond instead
-      if (seconds === 1 && milliseconds === 1) {
-        return `${seconds} second and ${milliseconds} millisecond`;
-      } else if (seconds === 1) {
-        return `${seconds} second and ${milliseconds} milliseconds`;
-      } else if (milliseconds === 1) {
-        return `${seconds} seconds and ${milliseconds} millisecond`;
-      }
-      return `${seconds} seconds and ${milliseconds} milliseconds`;
-    }
-    const milliseconds = Math.round(time * 1000);
-    const microseconds = Math.round((time - milliseconds) * 1000);
-
-    // Correct terms like 1 millisecond 1 microseconds to 1 millisecond and 1 microsecond instead
-    if (milliseconds === 1 && microseconds === 1) {
-      return `${milliseconds} millisecond and ${microseconds} microsecond`;
-    } else if (milliseconds === 1) {
-      return `${milliseconds} millisecond and ${microseconds} microseconds`;
-    } else if (microseconds === 1) {
-      return `${milliseconds} milliseconds and ${microseconds} microsecond`;
-    }
-    return `${milliseconds} milliseconds and ${microseconds} microseconds`;
-  }
-
+  /**
+   * @description Handles the file upload
+   * @type {(function(*): void)|*}
+   */
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     setCSVFileToView(acceptedFiles[0]);
@@ -138,6 +136,9 @@ export default function AdminPrediction() {
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
     useDropzone({ onDrop });
 
+  /**
+   * @description Removes the file on call
+   */
   const removeAll = () => {
     setCSVFileToView(null);
     setHandlers({
@@ -171,12 +172,22 @@ export default function AdminPrediction() {
 
   const { selected_column_for_sentence, selected_semester } = selectedColumn;
 
+  const [extras, setExtras] = useState({
+    csv_question: "",
+    school_year: "",
+  });
+  const { csv_question, school_year } = extras;
+
   /**
    * @description For step counter in the forgot password form.
    */
   const [count, setCount] = useState(1);
 
-  // onChange for the select column for sentence listbox headless ui
+  /**
+   * @description Reset and clears the error messages and when selects a column.
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleSelect = (name) => (value) => {
     setSelectedColumn({
       ...selectedColumn,
@@ -186,13 +197,11 @@ export default function AdminPrediction() {
       ...handlers,
       errorMessageToAnS: "",
     });
+    setExtras({
+      ...extras,
+      csv_question: "",
+    });
   };
-
-  const [extras, setExtras] = useState({
-    csv_question: "",
-    school_year: "",
-  });
-  const { csv_question, school_year } = extras;
 
   /**
    * @description Gets the input from the user and sets the state
@@ -260,95 +269,11 @@ export default function AdminPrediction() {
   };
 
   /**
-   * @description Handles the analysis and saving of the csv file
-   * @param event
+   * @description Resets the state back to the first step.
+   * @param type
    * @returns {Promise<void>}
    */
-  const handleSubmitToAnalyzeAndSave = async (event) => {
-    event.preventDefault();
-    setHandlers({
-      ...handlers,
-      okToAnS: true,
-      textChangeToAnS: "Analyzing and Saving...",
-    });
-    if (getNameFromString(selected_column_for_sentence) !== csv_question) {
-      setHandlers({
-        ...handlers,
-        okToAnS: false,
-        errorEffectToAnS: true,
-        errorMessageToAnS:
-          "Question column does not match the selected column for sentence",
-        textChangeToAnS: "Analyze and Save",
-      });
-    } else {
-      await httpClient
-        .post("/data/analyze-save-csv", {
-          file_name: csv_file_name,
-          csv_question,
-          school_year,
-          selected_column_for_sentence: getNumberFromString(
-            selected_column_for_sentence,
-          ),
-          selected_semester,
-        })
-        .then((response) => {
-          toast.success(response.data.message);
-          setHandlers({
-            ...handlers,
-            okToAnS: false,
-            showButtonToAnS: false,
-            textChangeToAnS: "Analyzed and Saved",
-          });
-          setTimeAnalyze({
-            ...timeAnalyze,
-            overall_time: response.data.overall_time,
-            pre_formatter_time: response.data.pre_formatter_time,
-            post_formatter_time: response.data.post_formatter_time,
-            tokenizer_time: response.data.tokenizer_time,
-            padding_time: response.data.padding_time,
-            model_time: response.data.model_time,
-            prediction_time: response.data.prediction_time,
-            sentiment_time: response.data.sentiment_time,
-            adding_predictions_time: response.data.adding_predictions_time,
-            analysis_user_time: response.data.analysis_user_time,
-            analysis_department_time: response.data.analysis_department_time,
-            analysis_collection_time: response.data.analysis_collection_time,
-          });
-          setCount(count + 1);
-        })
-        .catch((error) => {
-          removeAll();
-          // Back to the first step
-          setCount(1);
-          // setExtras({
-          //   ...extras,
-          //   csv_question: "",
-          //   school_year: "",
-          // });
-          // setSelectedColumn({
-          //   ...selectedColumn,
-          //   selected_column_for_sentence: "",
-          //   selected_semester: "",
-          // });
-          // setCSVColumns({
-          //   ...csv_columns,
-          //   show_columns: true,
-          //   csv_file_name: "",
-          //   csv_columns_to_pick: [],
-          // });
-          setHandlers({
-            ...handlers,
-            textChange: "View",
-            okToAnS: false,
-            errorEffectToAnS: true,
-            errorMessageToAnS: error.response.data.message,
-            textChangeToAnS: "Analyze and Save",
-          }) || toast.error(error.message);
-        });
-    }
-  };
-
-  const handleResetWhenDone = async () => {
+  const handleResetWhenDone = async (type) => {
     setExtras({
       ...extras,
       csv_question: "",
@@ -394,12 +319,95 @@ export default function AdminPrediction() {
         file_name: csv_file_name,
       })
       .then((response) => {
-        toast.success(response.data.message);
+        if (type === "done") {
+          toast.success(response.data.message);
+        } else {
+          toast.error("File deleted due to error.");
+        }
       })
       .catch((error) => {
         toast.error(error.message);
       });
     removeAll();
+  };
+
+  /**
+   * @description Handles the analysis and saving of the csv file
+   * @param event
+   * @returns {Promise<void>}
+   */
+  const handleSubmitToAnalyzeAndSave = async (event) => {
+    event.preventDefault();
+    setHandlers({
+      ...handlers,
+      buttonDisabled: true,
+      okToAnS: true,
+      textChangeToAnS: "Analyzing and Saving...",
+    });
+    const regex = /S\.Y\.\s\d{4}-\d{4}/;
+    if (!regex.test(school_year)) {
+      setHandlers({
+        ...handlers,
+        okToAnS: false,
+        errorEffectToAnS: true,
+        errorMessageToAnS: "Invalid school year format.",
+        textChangeToAnS: "Analyze and Save",
+      });
+    } else if (
+      getNameFromString(selected_column_for_sentence) !== csv_question
+    ) {
+      setHandlers({
+        ...handlers,
+        okToAnS: false,
+        errorEffectToAnS: true,
+        errorMessageToAnS:
+          "Question column does not match the selected column for sentence",
+        textChangeToAnS: "Analyze and Save",
+      });
+    } else {
+      await httpClient
+        .post("/data/analyze-save-csv", {
+          file_name: csv_file_name,
+          csv_question,
+          school_year,
+          selected_column_for_sentence: getNumberFromString(
+            selected_column_for_sentence,
+          ),
+          selected_semester,
+        })
+        .then((response) => {
+          toast.success(response.data.message);
+          setHandlers({
+            ...handlers,
+            buttonDisabled: false,
+            okToAnS: false,
+            textChangeToAnS: "Analyzed and Saved",
+          });
+          setTimeAnalyze({
+            ...timeAnalyze,
+            overall_time: response.data.overall_time,
+            pre_formatter_time: response.data.pre_formatter_time,
+            post_formatter_time: response.data.post_formatter_time,
+            tokenizer_time: response.data.tokenizer_time,
+            padding_time: response.data.padding_time,
+            model_time: response.data.model_time,
+            prediction_time: response.data.prediction_time,
+            sentiment_time: response.data.sentiment_time,
+            adding_predictions_time: response.data.adding_predictions_time,
+            analysis_user_time: response.data.analysis_user_time,
+            analysis_department_time: response.data.analysis_department_time,
+            analysis_collection_time: response.data.analysis_collection_time,
+          });
+          setCount(count + 1);
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          removeAll();
+          // Back to the first step
+          setCount(1);
+          handleResetWhenDone("error");
+        });
+    }
   };
 
   return (
@@ -410,24 +418,24 @@ export default function AdminPrediction() {
         }
         title={"Sentiment Analysis"}
       />
-      <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-8">
+      <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
           <h1 className="mb-4 text-xl font-bold text-blue-500">
             Right Format of CSV File to Upload
           </h1>
           <p className="mb-4 text-sm text-gray-500 font-medium">
             Your CSV file should contain the following headers:{" "}
-            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               evaluatee, email, department, course code
             </b>{" "}
             and pick a header for the{" "}
-            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               sentence
             </b>
             .
           </p>
           <p className="mb-4 text-sm text-gray-500 font-medium">
-            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               sentence
             </b>{" "}
             is the header that contains the responses of the students.
@@ -438,7 +446,7 @@ export default function AdminPrediction() {
           <p className="mb-4 text-sm text-gray-500 font-medium">
             On the first run, the system will take a long time to analyze and
             save the data. This is because the system is{" "}
-            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               automatically creates user accounts
             </b>{" "}
             and saves the results to there respective folders based on the
@@ -448,7 +456,7 @@ export default function AdminPrediction() {
             Performance of the system will improve as the system manages to save
             a lot of data. The system will also be able to analyze and save the
             data faster every time it runs{" "}
-            <b className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+            <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               but it still depends on the size of the data to analyze and save.
             </b>
           </p>
@@ -459,7 +467,7 @@ export default function AdminPrediction() {
             Admin will send the credentials to the users if the results are
             ready right through their email. You can manage these accounts in
             the{" "}
-            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-teal-500 to-indigo-500">
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               <Link to={"/admin/management/users/professors"}>
                 User management
               </Link>
@@ -508,7 +516,7 @@ export default function AdminPrediction() {
                           {...getRootProps()}
                         >
                           <label
-                            className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ${
+                            className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 ${
                               errorEffect || errorEffectToAnS
                                 ? `animate-wiggle border-red-500`
                                 : "border-gray-300"
@@ -554,7 +562,7 @@ export default function AdminPrediction() {
                             )}
                             {acceptedFiles.map((file) => (
                               <p
-                                className="text-sm text-gray-500"
+                                className="text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500"
                                 key={file.path}
                               >
                                 {file
@@ -687,13 +695,13 @@ export default function AdminPrediction() {
                       </div>
                       <div className="flex flex-col w-full space-y-2">
                         <h1 className="text-base font-medium text-blue-500">
-                          School Year
+                          School Year (e.g. S.Y. 2020-2021)
                         </h1>
                         <input
                           className={`truncate ${TEXT_FIELD} text-gray-500 bg-white`}
                           name="school_year"
                           onChange={handleExtras("school_year")}
-                          placeholder="e.g. S.Y. 2020-2021"
+                          placeholder="S.Y. 2020-2021"
                           type="text"
                           value={school_year}
                         />
@@ -774,7 +782,7 @@ export default function AdminPrediction() {
                         {selected_column_for_sentence ? (
                           <h1 className="text-base font-medium text-blue-500">
                             Please type {'"'}
-                            <b className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-amber-500 to-teal-500">
+                            <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
                               {getNameFromString(selected_column_for_sentence)}
                             </b>
                             {'"'} to confirm.
@@ -812,6 +820,7 @@ export default function AdminPrediction() {
                           setHandlers({
                             ...handlers,
                             textChange: "View",
+                            textChangeToAnS: "Analyze and Save",
                             errorMessageToAnS: "",
                           });
                         }}
@@ -825,7 +834,11 @@ export default function AdminPrediction() {
                       </button>
 
                       <button
-                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON} ${
+                          buttonDisabled &&
+                          `opacity-50 cursor-not-allowed pointer-events-none`
+                        }`}
+                        disabled={buttonDisabled}
                         type="submit"
                       >
                         {okToAnS ? (
@@ -1114,9 +1127,17 @@ export default function AdminPrediction() {
                     </div>
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
                       <button
-                        className={`px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                        className={`
+                        }px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
                         onClick={() => {
                           setCount(2);
+                          setHandlers({
+                            ...handlers,
+                            buttonDisabled: false,
+                            textChange: "View",
+                            textChangeToAnS: "Analyze and Save",
+                            errorMessageToAnS: "",
+                          });
                         }}
                         type="button"
                       >
@@ -1128,7 +1149,9 @@ export default function AdminPrediction() {
                       </button>
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        onClick={handleResetWhenDone}
+                        onClick={() => {
+                          handleResetWhenDone("done");
+                        }}
                         type="button"
                       >
                         <FontAwesomeIcon

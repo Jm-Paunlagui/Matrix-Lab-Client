@@ -14,7 +14,7 @@ import {
   TFAbyEmail,
   UsernamePassword,
   VerifyTFA,
-} from "../../forms/CredentialForms";
+} from "../../components/forms/CredentialForms";
 import { importSPKI, jwtVerify } from "jose";
 import { MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import { authenticate, isAuth, setLocalStorage } from "../../helpers/Auth";
@@ -164,8 +164,9 @@ export default function AuthLogin() {
       })
       .catch((error) => {
         setErrorEffect(true);
-        setErrorMessage(error.response.data.message);
         setOki(false);
+        toast.error(error.message);
+        setErrorMessage(error.response.data.message);
         setAuthForm({
           ...authForm,
           textChange: "Sign In",
@@ -190,7 +191,7 @@ export default function AuthLogin() {
         email,
       })
       .then((response) => {
-        toast(`${response.data.message}`, { type: "info" });
+        toast(`${response.data.message}`, { type: "success" });
         setCountDown(30);
         if (count >= 3) {
           setCount(count);
@@ -206,8 +207,9 @@ export default function AuthLogin() {
       })
       .catch((error) => {
         setErrorEffect(true);
-        setErrorMessage(error.response.data.message);
         setOki(false);
+        toast.error(error.message);
+        setErrorMessage(error.response.data.message);
         setAuthForm({
           ...authForm,
           textChange: "Verify",

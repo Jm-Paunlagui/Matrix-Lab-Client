@@ -4,20 +4,8 @@ import { ExclamationTriangleIcon, BoltIcon } from "@heroicons/react/24/outline";
 import {
   ACCENT_BUTTON,
   DANGER_BUTTON,
-  ICON_PLACE_SELF_CENTER,
 } from "../../assets/styles/styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faLock,
-  faRotate,
-  faUnlock,
-  faPowerOff,
-  faCircleXmark,
-  faBolt,
-} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
-import { LoadingAnimation } from "../loading/LoadingPage";
 
 /**
  * @description A modal to confirm the deletion of a file
@@ -28,29 +16,25 @@ import { LoadingAnimation } from "../loading/LoadingPage";
  * @param onConfirm
  * @constructor
  */
-export default function DangerConfirmModal({
-  type_of_modal,
+export default function ModalConfirm({
   title,
+  children,
+  is_danger,
   description,
   body,
   id,
   onConfirm,
-  is_loading,
-  textChange,
-  is_Mass,
-  is_danger,
+  is_many,
 }) {
-  DangerConfirmModal.propTypes = {
-    type_of_modal: PropTypes.string,
+  ModalConfirm.propTypes = {
     title: PropTypes.string,
+    children: PropTypes.node,
+    is_danger: PropTypes.bool,
     description: PropTypes.string,
     body: PropTypes.string,
     id: PropTypes.number,
     onConfirm: PropTypes.func,
-    is_loading: PropTypes.bool,
-    textChange: PropTypes.string,
-    is_Mass: PropTypes.bool,
-    is_danger: PropTypes.bool,
+    is_many: PropTypes.bool,
   };
 
   const [open, setOpen] = useState(false);
@@ -66,55 +50,7 @@ export default function DangerConfirmModal({
         onClick={() => setOpen(true)}
         type="button"
       >
-        {is_loading ? (
-          <LoadingAnimation
-            moreClasses={`${is_danger ? "text-red-600" : "text-teal-600"}`}
-          />
-        ) : (
-          <FontAwesomeIcon
-            className={`${ICON_PLACE_SELF_CENTER}`}
-            icon={
-              type_of_modal === "delete"
-                ? faTrash
-                : type_of_modal === "restore"
-                ? faRotate
-                : type_of_modal === "lock"
-                ? faLock
-                : type_of_modal === "unlock"
-                ? faUnlock
-                : type_of_modal === "deactivate"
-                ? faCircleXmark
-                : type_of_modal === "activate"
-                ? faBolt
-                : faPowerOff
-            }
-          />
-        )}
-        {type_of_modal === "delete" && is_Mass === false
-          ? "Delete"
-          : type_of_modal === "delete" && is_Mass === true
-          ? textChange
-          : type_of_modal === "restore" && is_Mass === false
-          ? "Restore"
-          : type_of_modal === "restore" && is_Mass === true
-          ? textChange
-          : type_of_modal === "lock" && is_Mass === false
-          ? "Lock"
-          : type_of_modal === "lock" && is_Mass === true
-          ? textChange
-          : type_of_modal === "unlock" && is_Mass === false
-          ? "Unlock"
-          : type_of_modal === "unlock" && is_Mass === true
-          ? textChange
-          : type_of_modal === "deactivate" && is_Mass === false
-          ? "Deactivate"
-          : type_of_modal === "deactivate" && is_Mass === true
-          ? textChange
-          : type_of_modal === "activate" && is_Mass === false
-          ? "Activate"
-          : type_of_modal === "activate" && is_Mass === true
-          ? textChange
-          : ""}
+        {children}
       </button>
       <Transition.Root as={Fragment} show={open}>
         <Dialog
@@ -189,41 +125,11 @@ export default function DangerConfirmModal({
                       }`}
                       onClick={() => {
                         setOpen(false);
-                        onConfirm(id);
+                        is_many ? onConfirm() : onConfirm(id);
                       }}
                       type="button"
                     >
-                      <FontAwesomeIcon
-                        className={`${ICON_PLACE_SELF_CENTER}`}
-                        icon={
-                          type_of_modal === "delete"
-                            ? faTrash
-                            : type_of_modal === "restore"
-                            ? faRotate
-                            : type_of_modal === "lock"
-                            ? faLock
-                            : type_of_modal === "unlock"
-                            ? faUnlock
-                            : type_of_modal === "deactivate"
-                            ? faCircleXmark
-                            : type_of_modal === "activate"
-                            ? faBolt
-                            : faPowerOff
-                        }
-                      />
-                      {type_of_modal === "delete"
-                        ? "Delete"
-                        : type_of_modal === "restore"
-                        ? "Restore"
-                        : type_of_modal === "lock"
-                        ? "Lock"
-                        : type_of_modal === "unlock"
-                        ? "Unlock"
-                        : type_of_modal === "deactivate"
-                        ? "Deactivate"
-                        : type_of_modal === "activate"
-                        ? "Activate"
-                        : ""}
+                      {children}
                     </button>
                     <button
                       className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"

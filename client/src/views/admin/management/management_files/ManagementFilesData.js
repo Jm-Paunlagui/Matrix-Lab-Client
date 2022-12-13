@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  NoData,
 } from "../../../../assets/styles/styled-components";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +13,7 @@ import { toast } from "react-toastify";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
+import { NoData } from "../../../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -56,7 +56,8 @@ export default function ManagementFilesData() {
         setFilteredDepartments(response.data.department_file);
       })
       .catch((error) => {
-        toast.error(`Error: ${error.message}`);
+        toast.error(error.response.data.message);
+        window.location.href = "/login-timeout";
       });
   };
 
@@ -195,7 +196,7 @@ export default function ManagementFilesData() {
               </>
             ) : (
               <div className={"col-span-4"}>
-                {new NoData("No Department Found")}
+                <NoData message="Data Unavailable" />
               </div>
             )}
           </div>
@@ -312,7 +313,7 @@ export default function ManagementFilesData() {
               </>
             ) : (
               <div className={"col-span-4"}>
-                {new NoData("No Professor Found")}
+                <NoData message="Data Unavailable" />
               </div>
             )}
           </div>

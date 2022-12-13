@@ -16,14 +16,14 @@ import {
   AssociatedEmails,
   SendToEmail,
   Username,
-} from "../../forms/CredentialForms";
+} from "../../components/forms/CredentialForms";
 import { maskEmail, MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
 
 import { jwtVerify, importSPKI } from "jose";
 
 /**
- * @description Handles the forgot password request page
+ * @description Handles the forgot password request paginator
  */
 
 export default function AuthForgotPasswordRequest() {

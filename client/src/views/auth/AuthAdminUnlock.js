@@ -14,7 +14,7 @@ import {
   SendToEmail,
   Username,
   VerifyTFA,
-} from "../../forms/CredentialForms";
+} from "../../components/forms/CredentialForms";
 import SuccessAnimation from "actually-accessible-react-success-animation";
 import httpClient from "../../http/httpClient";
 import { importSPKI, jwtVerify } from "jose";
@@ -229,7 +229,7 @@ export default function AuthAdminUnlock() {
   };
 
   /**
-   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login page.
+   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login paginator.
    */
   function decodeToken() {
     httpClient

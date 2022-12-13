@@ -1,4 +1,7 @@
 import cookie from "js-cookie";
+import { importSPKI, jwtVerify } from "jose";
+import { MATRIX_RSA_PUBLIC_KEY } from "./Helper";
+import { toast } from "react-toastify";
 
 /**
  * @description Sets the cookie for the application
@@ -105,4 +108,24 @@ export const updateUser = (response, next) => {
     localStorage.setItem("user", JSON.stringify(response));
   }
   next();
+};
+
+/**
+ * @description Handles the token verification with the public key for security purposes.
+ * @param token
+ * @returns {Promise<void>}
+ */
+export const verifyJWT = async (token) => {
+  jwtVerify(token, await importSPKI(MATRIX_RSA_PUBLIC_KEY, "RS256"))
+    .then((result) => {
+      removeCookie("token");
+      setCookie("token", token);
+      updateUser(result.payload, () => {
+        toast("Profile updated successfully", { type: "success" });
+      });
+    })
+    .catch((error) => {
+      toast(`Error: ${error}`, { type: "error" });
+      window.location.href = "/invalid-token";
+    });
 };

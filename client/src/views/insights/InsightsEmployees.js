@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import LoadingPage from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { NoData } from "../../assets/styles/styled-components";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
+import { NoData } from "../../components/warnings/WarningMessages";
 
 /**
  * @description Handles the Insights for the department
@@ -193,7 +193,7 @@ export default function InsightsEmployees() {
             </div>
           ) : (
             <div className={"pt-8 pb-8"}>
-              {new NoData("No Professor Found")}
+              <NoData message="Data Unavailable" />
             </div>
           )}
         </>

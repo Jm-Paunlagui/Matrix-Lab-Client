@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  NoData,
 } from "../../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +12,8 @@ import { toReadableName } from "../../../../helpers/Helper";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
+import { NoData } from "../../../../components/warnings/WarningMessages";
+import { toast } from "react-toastify";
 
 /**
  * @description Lists the courses to read each course's data
@@ -23,9 +24,13 @@ export default function ManagementFilesListofDataResponse() {
   const [listOfTaughtCourses, setListOfTaughtCourses] = useState({
     loading: true,
     file_list: [],
+    topic: "",
+    school_year: "",
+    school_semester: "",
   });
 
-  const { loading, file_list } = listOfTaughtCourses;
+  const { loading, file_list, topic, school_year, school_semester } =
+    listOfTaughtCourses;
 
   const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] =
     useState(file_list);
@@ -43,8 +48,15 @@ export default function ManagementFilesListofDataResponse() {
           ...listOfTaughtCourses,
           loading: false,
           file_list: response.data.file_list,
+          topic: response.data.topic,
+          school_year: response.data.school_year,
+          school_semester: response.data.school_semester,
         });
         setFilteredListOfTaughtCourses(response.data.file_list);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        window.location.href = "/login-timeout";
       });
   };
 
@@ -75,10 +87,8 @@ export default function ManagementFilesListofDataResponse() {
       ) : (
         <>
           <Header
-            body={
-              "View the responses of the file below. You can also download the responses as a CSV file."
-            }
-            title={`${toReadableName(read_responses)}`}
+            body={`Sentiment Analysis Evaluation Results for the School Year ${school_year} and School Semester ${school_semester}`}
+            title={`${topic}`}
           />
           <SearchBar
             customStyle="mt-8"
@@ -91,7 +101,7 @@ export default function ManagementFilesListofDataResponse() {
             <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
               {filteredListOfTaughtCourses.map((file) => (
                 <div
-                  className="flex flex-col mb-4 w-full bg-white rounded-lg shadow-md"
+                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                   key={file.id}
                 >
                   <div className="col-span-1 w-full">
@@ -153,7 +163,9 @@ export default function ManagementFilesListofDataResponse() {
               ))}
             </div>
           ) : (
-            <div className={"pt-8"}>{new NoData("No data to display")}</div>
+            <div className={"pt-8"}>
+              <NoData message="Data Unavailable" />
+            </div>
           )}
         </>
       )}

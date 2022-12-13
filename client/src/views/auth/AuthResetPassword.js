@@ -10,7 +10,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
@@ -19,7 +18,7 @@ import { toast } from "react-toastify";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
- * @description Handles the forgot password request page
+ * @description Handles the forgot password request paginator
  */
 export default function AuthResetPassword() {
   /**
@@ -98,7 +97,7 @@ export default function AuthResetPassword() {
   };
 
   /**
-   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login page.
+   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login paginator.
    */
   function decodeToken() {
     httpClient
@@ -173,9 +172,10 @@ export default function AuthResetPassword() {
                   >
                     <div className="space-y-6">
                       <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffect &&
-                          `border-red-500 placeholder-red-500 text-red-500`
+                        className={`${TEXT_FIELD} outline outline-2 ${
+                          errorEffect
+                            ? `outline-red-500 placeholder-red-500 text-red-500`
+                            : `text-gray-500 bg-white outline-blue-100`
                         }`}
                         name="password"
                         onChange={handlePasswordChange}
@@ -184,9 +184,10 @@ export default function AuthResetPassword() {
                         value={password}
                       />
                       <input
-                        className={`${TEXT_FIELD} ${
-                          errorEffect &&
-                          `border-red-500 placeholder-red-500 text-red-500`
+                        className={`${TEXT_FIELD} outline outline-2 ${
+                          errorEffect
+                            ? `outline-red-500 placeholder-red-500 text-red-500`
+                            : `text-gray-500 bg-white outline-blue-100`
                         }`}
                         name="confirmPassword"
                         onChange={handlePasswordChange}
@@ -224,16 +225,14 @@ export default function AuthResetPassword() {
                       />
                       <div className="flex flex-col justify-center">
                         <button
-                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${PRIMARY_BUTTON} ${
+                          className={`px-5 py-1 pl-4 flex flex-row justify-center ${ACCENT_BUTTON} ${
                             buttonDisabled &&
                             `opacity-50 cursor-not-allowed pointer-events-none`
                           }`}
                           disabled={buttonDisabled}
                           type="submit"
                         >
-                          {oki ? (
-                            <LoadingAnimation moreClasses="text-teal-600" />
-                          ) : null}
+                          {oki ? <LoadingAnimation /> : null}
                           {textChange}
                         </button>
                       </div>

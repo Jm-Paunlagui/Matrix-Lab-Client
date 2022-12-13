@@ -15,7 +15,7 @@ import {
  * @param isSmall - boolean to determine if the back navigation is small
  * @param hasText - boolean to determine if the back navigation has text
  * @param backTo - string to determine where the back navigation should go
- * @param pageTitle - string to determine the page title of the back navigation
+ * @param pageTitle - string to determine the paginator title of the back navigation
  */
 export default function BackNavigation({
   isSmall = true,

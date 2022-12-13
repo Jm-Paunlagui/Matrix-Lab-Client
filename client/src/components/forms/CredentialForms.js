@@ -22,12 +22,12 @@ import {
   ICON_PLACE_SELF_CENTER,
   PRIMARY_RADIO,
   TEXT_FIELD,
-} from "../assets/styles/styled-components";
-import { maskEmail, emailRegex } from "../helpers/Helper";
+} from "../../assets/styles/styled-components";
+import { maskEmail, emailRegex } from "../../helpers/Helper";
 import PasswordChecklist from "react-password-checklist";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { LoadingAnimation } from "../components/loading/LoadingPage";
+import { LoadingAnimation } from "../loading/LoadingPage";
 import PropTypes from "prop-types";
 
 /**
@@ -170,16 +170,42 @@ export function TFAbyEmail({
     >
       {/*  Choice of identity */}
       <div className="flex flex-col justify-center mt-6 space-y-6">
-        {emailRegex.test(id1) ? (
-          <li className={`list-none`}>
+        <li className={`list-none`}>
+          <input
+            checked={email === id1}
+            className={`sr-only peer`}
+            id="id1"
+            name="email"
+            onChange={handleAuthFormChange}
+            type="radio"
+            value={id1}
+          />
+          <label
+            className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+              errorEffect
+                ? `outline-red-500 placeholder-red-500 text-red-500`
+                : PRIMARY_RADIO
+            }`}
+            htmlFor="id1"
+          >
+            <FontAwesomeIcon
+              className={`${ICON_PLACE_SELF_CENTER}`}
+              icon={faEnvelope}
+            />
+            Email {id1}
+          </label>
+        </li>
+
+        {emailRegex.test(id2) ? (
+          <li className="list-none">
             <input
-              checked={email === id1}
-              className={`sr-only peer`}
-              id="id1"
+              checked={email === id2}
+              className="sr-only peer "
+              id="id2"
               name="email"
               onChange={handleAuthFormChange}
               type="radio"
-              value={id1}
+              value={id2}
             />
             <label
               className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
@@ -187,73 +213,43 @@ export function TFAbyEmail({
                   ? `outline-red-500 placeholder-red-500 text-red-500`
                   : PRIMARY_RADIO
               }`}
-              htmlFor="id1"
+              htmlFor="id2"
             >
               <FontAwesomeIcon
                 className={`${ICON_PLACE_SELF_CENTER}`}
                 icon={faEnvelope}
               />
-              Email {id1}
+              Email {id2}
             </label>
           </li>
-        ) : (
-          <>
-            {emailRegex.test(id2) ? (
-              <li className="list-none">
-                <input
-                  checked={email === id2}
-                  className="sr-only peer "
-                  id="id2"
-                  name="email"
-                  onChange={handleAuthFormChange}
-                  type="radio"
-                  value={id2}
-                />
-                <label
-                  className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                      ? `outline-red-500 placeholder-red-500 text-red-500`
-                      : PRIMARY_RADIO
-                  }`}
-                  htmlFor="id2"
-                >
-                  <FontAwesomeIcon
-                    className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faEnvelope}
-                  />
-                  Email {id2}
-                </label>
-              </li>
-            ) : null}
-            {emailRegex.test(id3) ? (
-              <li className="list-none">
-                <input
-                  checked={email === id3}
-                  className="sr-only peer "
-                  id="id3"
-                  name="email"
-                  onChange={handleAuthFormChange}
-                  type="radio"
-                  value={id3}
-                />
-                <label
-                  className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                      ? `outline-red-500 placeholder-red-500 text-red-500`
-                      : PRIMARY_RADIO
-                  }`}
-                  htmlFor="id3"
-                >
-                  <FontAwesomeIcon
-                    className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faEnvelope}
-                  />
-                  Email {id3}
-                </label>
-              </li>
-            ) : null}
-          </>
-        )}
+        ) : null}
+        {emailRegex.test(id3) ? (
+          <li className="list-none">
+            <input
+              checked={email === id3}
+              className="sr-only peer "
+              id="id3"
+              name="email"
+              onChange={handleAuthFormChange}
+              type="radio"
+              value={id3}
+            />
+            <label
+              className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                errorEffect
+                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                  : PRIMARY_RADIO
+              }`}
+              htmlFor="id3"
+            >
+              <FontAwesomeIcon
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faEnvelope}
+              />
+              Email {id3}
+            </label>
+          </li>
+        ) : null}
       </div>
       {/* Error message */}
       {errorMessage ? (
@@ -771,37 +767,6 @@ export function SendToEmail({
 }
 
 /**
- * @description User account type description.
- * @param role
- * @constructor
- */
-export function AccountType({ role }) {
-  AccountType.propTypes = {
-    role: PropTypes.string,
-  };
-  return (
-    <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow mb-8">
-      <h1 className="mb-4 text-xl font-bold text-blue-500">Account Type</h1>
-      <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
-        {role === "admin" ? (
-          <div className="flex flex-col w-full space-y-2">
-            This account is an {role} account. This account has the highest
-            privileges in the system. This account can create, edit, and delete
-            other accounts.
-          </div>
-        ) : (
-          <div className="flex flex-col w-full space-y-2">
-            This account is a {role} account. This account has the lowest
-            privileges in the system. This account can only view and edit their
-            own account.
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/**
  * @description Personal information form.
  * @param email
  * @param errorEffectforPersonalInfo
@@ -814,6 +779,7 @@ export function AccountType({ role }) {
  * @param setProfile
  * @param showButtonforPersonalInfo
  * @param textChangeforPersonalInfo
+ * @param is_editable
  * @constructor
  */
 export function PersonalInformation({
@@ -828,6 +794,7 @@ export function PersonalInformation({
   setProfile,
   showButtonforPersonalInfo,
   textChangeforPersonalInfo,
+  is_editable,
 }) {
   PersonalInformation.propTypes = {
     email: PropTypes.string,
@@ -837,18 +804,11 @@ export function PersonalInformation({
     handleChangeForPersonalInfo: PropTypes.func,
     handleUpdatePersonalInfo: PropTypes.func,
     okforPersonalInfo: PropTypes.bool,
-    profile: PropTypes.shape({
-      email: "",
-      full_name: "",
-      okforPersonalInfo: false,
-      errorEffectforPersonalInfo: false,
-      errorMessageforPersonalInfo: "",
-      showButtonforPersonalInfo: true,
-      textChangeforPersonalInfo: "Update",
-    }),
+    profile: PropTypes.shape({}),
     setProfile: PropTypes.func,
     showButtonforPersonalInfo: PropTypes.bool,
     textChangeforPersonalInfo: PropTypes.string,
+    is_editable: PropTypes.bool,
   };
   return (
     <div
@@ -904,6 +864,7 @@ export function PersonalInformation({
                   name="full_name"
                   onChange={handleChangeForPersonalInfo("full_name")}
                   placeholder="Full Name"
+                  readOnly={!is_editable}
                   type="text"
                   value={full_name}
                 />
@@ -975,15 +936,7 @@ export function SecurityInformation({
     handleChangeForSecurityInfo: PropTypes.func,
     handleUpdateSecurityInfo: PropTypes.func,
     okforSecurityInfo: PropTypes.bool,
-    profile: PropTypes.shape({
-      secondary_email: "",
-      recovery_email: "",
-      okforSecurityInfo: false,
-      errorEffectforSecurityInfo: false,
-      errorMessageforSecurityInfo: "",
-      showButtonforSecurityInfo: true,
-      textChangeforSecurityInfo: "Update",
-    }),
+    profile: PropTypes.shape({}),
     recovery_email: PropTypes.string,
     secondary_email: PropTypes.string,
     setProfile: PropTypes.func,
@@ -1146,29 +1099,11 @@ export function SignInInformation({
     okforPassword: PropTypes.bool,
     okforUsername: PropTypes.bool,
     old_password: PropTypes.string,
-    // Prop types for profile, this is the state of the parent component.
-    profile: PropTypes.shape({
-      username: "",
-      okforUsername: false,
-      errorEffectforUsername: false,
-      errorMessageforUsername: "",
-      showButtonforUsername: true,
-      textChangeforUsername: "Update",
-      old_password: "",
-      new_password: "",
-      confirm_password: "",
-      okforPassword: false,
-      errorEffectforPassword: false,
-      errorMessageforPassword: "",
-      showButtonforPassword: true,
-      textChangeforPassword: "Update",
-      template: true,
-      role: "",
-    }),
+    profile: PropTypes.shape({}),
     setProfile: PropTypes.func,
     showButtonforPassword: PropTypes.bool,
     showButtonforUsername: PropTypes.bool,
-    template: PropTypes.shape({}),
+    template: PropTypes.bool,
     textChangeforPassword: PropTypes.string,
     textChangeforUsername: PropTypes.string,
     username: PropTypes.string,
@@ -1406,11 +1341,11 @@ export function ViewInsightHistory({
     handleViewFile: PropTypes.func.isRequired,
     handleSelect: PropTypes.func.isRequired,
     school_year: PropTypes.string.isRequired,
-    school_year_to_choose: PropTypes.string.isRequired,
+    school_year_to_choose: PropTypes.arrayOf.isRequired,
     school_semester: PropTypes.string.isRequired,
-    school_semester_to_choose: PropTypes.string.isRequired,
+    school_semester_to_choose: PropTypes.arrayOf.isRequired,
     csv_question: PropTypes.string.isRequired,
-    csv_question_to_choose: PropTypes.string.isRequired,
+    csv_question_to_choose: PropTypes.arrayOf.isRequired,
     errorMessage: PropTypes.string.isRequired,
     ok: PropTypes.bool.isRequired,
     textChange: PropTypes.string.isRequired,
