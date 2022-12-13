@@ -10,7 +10,6 @@ import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ACCENT_BUTTON,
   ICON_PLACE_SELF_CENTER,
-  PRIMARY_BUTTON,
   TEXT_FIELD,
 } from "../../assets/styles/styled-components";
 import BackNavigation from "../../components/navbars/BackNavigation";
