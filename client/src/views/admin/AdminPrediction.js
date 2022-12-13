@@ -338,7 +338,6 @@ export default function AdminPrediction() {
             selected_column_for_sentence,
           ),
           selected_semester,
-          process_by,
         })
         .then((response) => {
           toast.success(response.data.message);
