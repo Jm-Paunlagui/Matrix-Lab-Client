@@ -96,6 +96,11 @@ export default function ManagementFilesUsers() {
     textChangeDelete,
   } = loadingAnimation;
 
+  /**
+   * @description Pagination handler for the users table
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleSelect = (name) => (value) => {
     setUserDatas({
       ...userDatas,
@@ -103,6 +108,10 @@ export default function ManagementFilesUsers() {
     });
   };
 
+  /**
+   * @description Search bar handler for the users table
+   * @param event
+   */
   const handleSearchForUsers = (event) => {
     const searchValue = event.target.value;
     const filteredList = users.filter((user) => {
@@ -115,6 +124,11 @@ export default function ManagementFilesUsers() {
     setFilteredListOfUsers(filteredList);
   };
 
+  /**
+   * @description Fetches the users data from the backend
+   * @param page
+   * @param per_page_limit
+   */
   const loadListOfUsers = (page, per_page_limit) => {
     setUserDatas({
       ...userDatas,
@@ -141,6 +155,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Creates a single user
+   * @param id
+   */
   const handleCreateUser = (id) => {
     httpClient
       .post(`/user/on-click-create/${id}`)
@@ -153,6 +171,11 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Deactivates a single user
+   * @param id
+   * @returns {Promise<void>}
+   */
   const handleDeactivateUser = async (id) => {
     await httpClient
       .post(`/user/on-click-deactivate/${id}`)
@@ -165,6 +188,11 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Locks a single user
+   * @param id
+   * @returns {Promise<void>}
+   */
   const handleLockUser = async (id) => {
     await httpClient
       .post(`/user/lock-account/${id}`)
@@ -177,6 +205,11 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Unlocks a single user
+   * @param id
+   * @returns {Promise<void>}
+   */
   const handleUnlockUser = async (id) => {
     await httpClient
       .post(`/user/unlock-account/${id}`)
@@ -189,6 +222,11 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Deletes a single user
+   * @param id
+   * @returns {Promise<void>}
+   */
   const handleDeleteUser = async (id) => {
     await httpClient
       .delete(`/user/delete-account/${id}`)
@@ -201,6 +239,11 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Restores a single user
+   * @param id
+   * @returns {Promise<void>}
+   */
   const handleRestoreUser = async (id) => {
     await httpClient
       .post(`/user/restore-account/${id}`)
@@ -213,6 +256,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Creates multiple users
+   * @returns {Promise<void>}
+   */
   const handleCreateAllUsers = async () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -240,6 +287,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Deactivates multiple users
+   * @returns {Promise<void>}
+   */
   const handleDeactivateAllUsers = async () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -267,6 +318,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Locks multiple users
+   * @returns {Promise<void>}
+   */
   const handleLockAllUsers = async () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -294,6 +349,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Unlocks multiple users
+   * @returns {Promise<void>}
+   */
   const handleUnlockAllUsers = async () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -321,6 +380,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Deletes multiple users
+   * @returns {Promise<void>}
+   */
   const handleDeleteAllUsers = async () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -348,6 +411,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Restores multiple users
+   * @returns {Promise<void>}
+   */
   const handleRestoreAllUsers = async () => {
     setLoadingAnimation({
       ...loadingAnimation,
@@ -375,6 +442,9 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  /**
+   * @description Syncs users from the database
+   */
   useEffect(() => {
     loadListOfUsers(page_number, per_page_limit);
   }, [page_number, per_page_limit]);
