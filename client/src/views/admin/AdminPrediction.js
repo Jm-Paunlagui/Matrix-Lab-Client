@@ -159,6 +159,12 @@ export default function AdminPrediction() {
 
   const { selected_column_for_sentence, selected_semester } = selectedColumn;
 
+  const [extras, setExtras] = useState({
+    csv_question: "",
+    school_year: "",
+  });
+  const { csv_question, school_year } = extras;
+
   /**
    * @description For step counter in the forgot password form.
    */
@@ -179,12 +185,6 @@ export default function AdminPrediction() {
       csv_question: "",
     });
   };
-
-  const [extras, setExtras] = useState({
-    csv_question: "",
-    school_year: "",
-  });
-  const { csv_question, school_year } = extras;
 
   /**
    * @description Gets the input from the user and sets the state
@@ -322,7 +322,17 @@ export default function AdminPrediction() {
       okToAnS: true,
       textChangeToAnS: "Analyzing and Saving...",
     });
-    if (getNameFromString(selected_column_for_sentence) !== csv_question) {
+    const regex = /S\.Y\.\s\d{4}-\d{4}/;
+    if (!regex.test(school_year)) {
+        setHandlers({
+            ...handlers,
+            okToAnS: false,
+            errorEffectToAnS: true,
+            errorMessageToAnS: "Invalid school year format.",
+            textChangeToAnS: "Analyze and Save",
+        });
+    }
+    else if (getNameFromString(selected_column_for_sentence) !== csv_question) {
       setHandlers({
         ...handlers,
         okToAnS: false,

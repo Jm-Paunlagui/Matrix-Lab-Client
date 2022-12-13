@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../../../../components/headers/Header";
 import httpClient from "../../../../http/httpClient";
-import LoadingPage from "../../../../components/loading/LoadingPage";
+import LoadingPage, { LoadingAnimation }from "../../../../components/loading/LoadingPage";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import {
   ICON_PLACE_SELF_CENTER,
@@ -25,7 +25,6 @@ import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { toast } from "react-toastify";
 import Paginator from "../../../../components/paginator/Paginator";
 import { NoData } from "../../../../components/warnings/WarningMessages";
-import { LoadingAnimation } from "../../../../components/loading/LoadingPage";
 
 /**
  * @description Handles the admin tables
