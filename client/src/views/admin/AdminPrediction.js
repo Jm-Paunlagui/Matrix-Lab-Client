@@ -32,7 +32,6 @@ import { getCookie } from "../../helpers/Auth";
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
-
   const loadProcessBy = () => {
     const token = getCookie("token");
     httpClient
@@ -42,9 +41,12 @@ export default function AdminPrediction() {
         },
       })
       .then((response) => {
-        toast.info(`Get ready to analyze the data ${response.data.user.username}!`, {
+        toast.info(
+          `Get ready to analyze the data ${response.data.user.username}!`,
+          {
             position: "bottom-center",
-        });
+          },
+        );
       })
       .catch((error) => {
         toast.error(error.response.data.message);
