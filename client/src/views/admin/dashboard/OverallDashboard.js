@@ -39,6 +39,9 @@ export default function OverallDashboard() {
             toast.error("Session Expired");
             window.location.href = "/login-timeout";
             break;
+          default:
+            toast.error("Something went wrong");
+            window.location.href = "/page-not-found";
         }
       });
   }, []);
