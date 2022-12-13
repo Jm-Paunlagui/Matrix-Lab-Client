@@ -170,16 +170,42 @@ export function TFAbyEmail({
     >
       {/*  Choice of identity */}
       <div className="flex flex-col justify-center mt-6 space-y-6">
+        <li className={`list-none`}>
+          <input
+            checked={email === id1}
+            className={`sr-only peer`}
+            id="id1"
+            name="email"
+            onChange={handleAuthFormChange}
+            type="radio"
+            value={id1}
+          />
+          <label
+            className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+              errorEffect
+                ? `outline-red-500 placeholder-red-500 text-red-500`
+                : PRIMARY_RADIO
+            }`}
+            htmlFor="id1"
+          >
+            <FontAwesomeIcon
+              className={`${ICON_PLACE_SELF_CENTER}`}
+              icon={faEnvelope}
+            />
+            Email {id1}
+          </label>
+        </li>
 
-          <li className={`list-none`}>
+        {emailRegex.test(id2) ? (
+          <li className="list-none">
             <input
-              checked={email === id1}
-              className={`sr-only peer`}
-              id="id1"
+              checked={email === id2}
+              className="sr-only peer "
+              id="id2"
               name="email"
               onChange={handleAuthFormChange}
               type="radio"
-              value={id1}
+              value={id2}
             />
             <label
               className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
@@ -187,72 +213,43 @@ export function TFAbyEmail({
                   ? `outline-red-500 placeholder-red-500 text-red-500`
                   : PRIMARY_RADIO
               }`}
-              htmlFor="id1"
+              htmlFor="id2"
             >
               <FontAwesomeIcon
                 className={`${ICON_PLACE_SELF_CENTER}`}
                 icon={faEnvelope}
               />
-              Email {id1}
+              Email {id2}
             </label>
           </li>
-
-            {emailRegex.test(id2) ? (
-              <li className="list-none">
-                <input
-                  checked={email === id2}
-                  className="sr-only peer "
-                  id="id2"
-                  name="email"
-                  onChange={handleAuthFormChange}
-                  type="radio"
-                  value={id2}
-                />
-                <label
-                  className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                      ? `outline-red-500 placeholder-red-500 text-red-500`
-                      : PRIMARY_RADIO
-                  }`}
-                  htmlFor="id2"
-                >
-                  <FontAwesomeIcon
-                    className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faEnvelope}
-                  />
-                  Email {id2}
-                </label>
-              </li>
-            ) : null}
-            {emailRegex.test(id3) ? (
-              <li className="list-none">
-                <input
-                  checked={email === id3}
-                  className="sr-only peer "
-                  id="id3"
-                  name="email"
-                  onChange={handleAuthFormChange}
-                  type="radio"
-                  value={id3}
-                />
-                <label
-                  className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                    errorEffect
-                      ? `outline-red-500 placeholder-red-500 text-red-500`
-                      : PRIMARY_RADIO
-                  }`}
-                  htmlFor="id3"
-                >
-                  <FontAwesomeIcon
-                    className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faEnvelope}
-                  />
-                  Email {id3}
-                </label>
-              </li>
-            ) : null}
-
-
+        ) : null}
+        {emailRegex.test(id3) ? (
+          <li className="list-none">
+            <input
+              checked={email === id3}
+              className="sr-only peer "
+              id="id3"
+              name="email"
+              onChange={handleAuthFormChange}
+              type="radio"
+              value={id3}
+            />
+            <label
+              className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
+                errorEffect
+                  ? `outline-red-500 placeholder-red-500 text-red-500`
+                  : PRIMARY_RADIO
+              }`}
+              htmlFor="id3"
+            >
+              <FontAwesomeIcon
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faEnvelope}
+              />
+              Email {id3}
+            </label>
+          </li>
+        ) : null}
       </div>
       {/* Error message */}
       {errorMessage ? (
