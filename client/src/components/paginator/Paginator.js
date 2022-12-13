@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 export default function Paginator({ per_page, per_page_limit, handleSelect }) {
   Paginator.propTypes = {
     handleSelect: PropTypes.func.isRequired,
-    per_page: PropTypes.array.isRequired,
+    per_page: PropTypes.arrayOf.isRequired,
     per_page_limit: PropTypes.number.isRequired,
   };
   return (
