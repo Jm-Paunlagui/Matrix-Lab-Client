@@ -55,6 +55,10 @@ export default function EvalFiles() {
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
+  /**
+   * @description Search bar handler for the users table
+   * @param event
+   */
   const handleSearchForFile = (event) => {
     const searchValue = event.target.value;
     const filteredList = files_list.filter((file) => {
@@ -99,6 +103,9 @@ export default function EvalFiles() {
       });
   };
 
+  /**
+   * @description Loads the files from the backend
+   */
   useEffect(() => {
     loadFiles(page_number);
   }, [page_number]);

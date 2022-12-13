@@ -64,6 +64,9 @@ export function PageNotFound() {
   );
 }
 
+/**
+ * @description SessionExpired component for the application
+ */
 export function LoginTimeOut() {
   return (
     <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">

@@ -58,6 +58,7 @@ export default function ManagementFileBin() {
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
+
   const handleSelect = (name) => (value) => {
     setFileData({
       ...fileData,

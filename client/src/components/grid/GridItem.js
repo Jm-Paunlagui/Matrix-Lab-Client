@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * @description GridItem component for the application
+ */
 export function GridItemResponse({ sentiment }) {
   GridItemResponse.propTypes = {
     sentiment: PropTypes.string.isRequired,

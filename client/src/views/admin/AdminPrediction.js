@@ -32,6 +32,10 @@ import { getCookie } from "../../helpers/Auth";
  * @description Handles the admin prediction
  */
 export default function AdminPrediction() {
+
+  /**
+   * @description decode the jwt token and return the payload
+   */
   const loadProcessBy = () => {
     const token = getCookie("token");
     httpClient
@@ -54,6 +58,9 @@ export default function AdminPrediction() {
       });
   };
 
+  /**
+   * @description Process by state
+   */
   useEffect(() => {
     loadProcessBy();
   }, []);
@@ -114,6 +121,10 @@ export default function AdminPrediction() {
     analysis_collection_time,
   } = timeAnalyze;
 
+  /**
+   * @description Handles the file upload
+   * @type {(function(*): void)|*}
+   */
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     setCSVFileToView(acceptedFiles[0]);
@@ -126,6 +137,9 @@ export default function AdminPrediction() {
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
     useDropzone({ onDrop });
 
+  /**
+   * @description Removes the file on call
+   */
   const removeAll = () => {
     setCSVFileToView(null);
     setHandlers({
@@ -170,7 +184,11 @@ export default function AdminPrediction() {
    */
   const [count, setCount] = useState(1);
 
-  // onChange for the select column for sentence listbox headless ui
+  /**
+   * @description Reset and clears the error messages and when selects a column.
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleSelect = (name) => (value) => {
     setSelectedColumn({
       ...selectedColumn,
@@ -251,6 +269,11 @@ export default function AdminPrediction() {
       });
   };
 
+  /**
+   * @description Resets the state back to the first step.
+   * @param type
+   * @returns {Promise<void>}
+   */
   const handleResetWhenDone = async (type) => {
     setExtras({
       ...extras,

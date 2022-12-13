@@ -4,6 +4,12 @@ import { TEXT_FIELD } from "../../assets/styles/styled-components";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import PropTypes from "prop-types";
 
+/**
+ * @description Paginator component for the application
+ * @param per_page
+ * @param per_page_limit
+ * @param handleSelect
+ */
 export default function Paginator({ per_page, per_page_limit, handleSelect }) {
   Paginator.propTypes = {
     handleSelect: PropTypes.func.isRequired,
