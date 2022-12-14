@@ -1322,6 +1322,7 @@ export function SignInInformation({
  * @param errorMessage
  * @param ok
  * @param textChange
+ * @param children
  * @constructor
  */
 export function ViewInsightHistory({
@@ -1336,29 +1337,25 @@ export function ViewInsightHistory({
   errorMessage,
   ok,
   textChange,
+    children
 }) {
   ViewInsightHistory.propTypes = {
     handleViewFile: PropTypes.func.isRequired,
     handleSelect: PropTypes.func.isRequired,
     school_year: PropTypes.string.isRequired,
-    school_year_to_choose: PropTypes.arrayOf.isRequired,
+    school_year_to_choose: PropTypes.array.isRequired,
     school_semester: PropTypes.string.isRequired,
-    school_semester_to_choose: PropTypes.arrayOf.isRequired,
+    school_semester_to_choose: PropTypes.array.isRequired,
     csv_question: PropTypes.string.isRequired,
-    csv_question_to_choose: PropTypes.arrayOf.isRequired,
+    csv_question_to_choose: PropTypes.array.isRequired,
     errorMessage: PropTypes.string.isRequired,
     ok: PropTypes.bool.isRequired,
     textChange: PropTypes.string.isRequired,
+    children: PropTypes.node,
   };
   return (
     <form onSubmit={handleViewFile}>
-      <h1 className="mb-4 text-xl font-bold text-blue-500">
-        View Previous Insight
-      </h1>
-      <p className="mb-4 text-sm text-gray-500">
-        You can view your previous insight here by selecting a specific school
-        year, semester and the topic you want to view.
-      </p>
+      {children}
       <div className="flex flex-col w-full space-y-2">
         <Listbox name={"school_year"} onChange={handleSelect("school_year")}>
           <Listbox.Label className="block text-base font-bold text-blue-500">

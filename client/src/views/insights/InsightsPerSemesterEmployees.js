@@ -176,7 +176,15 @@ export default function InsightsPerSemesterEmployees() {
                   school_year={school_year}
                   school_year_to_choose={school_year_to_choose}
                   textChange={textChange}
-                />
+                >
+                  <h1 className="mb-4 text-xl font-bold text-blue-500">
+                    View Previous Insight
+                  </h1>
+                  <p className="mb-4 text-sm text-gray-500">
+                    You can view your previous insight here by selecting a specific school
+                    year, semester and the topic you want to view.
+                  </p>
+                </ViewInsightHistory>
               }
             </div>
           </div>
