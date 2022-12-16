@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import AboutUs from "../../assets/img/aboutus.svg";
 
 /**
- * @description Json array of the about us paginator
+ * @description Json array of the about us listbox
  */
 const AboutUsDetails = [
   {
@@ -105,7 +105,7 @@ const Technologies = [
     logo: "logos:react-router",
     link: "https://reacttraining.com/react-router/web/guides/quick-start",
     description:
-      "React Router is a routing library for React. It is used to make single-paginator applications with the minimal effort required.",
+      "React Router is a routing library for React. It is used to make single-listbox applications with the minimal effort required.",
   },
   {
     name: "React-Icons",
@@ -114,7 +114,7 @@ const Technologies = [
     logo: "logos:react",
     link: "https://react-icons.netlify.com/",
     description:
-      "React Icons is a collection of icons for React. It is used to make single-paginator applications with the minimal effort required.",
+      "React Icons is a collection of icons for React. It is used to make single-listbox applications with the minimal effort required.",
   },
   {
     name: "TailwindCSS",
@@ -362,7 +362,7 @@ const Technologies = [
 ];
 
 /**
- * @description The about paginator component
+ * @description The about listbox component
  */
 export default function PublicAbout() {
   return (

@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
-import Paginator from "../../../../components/paginator/Paginator";
+import {Paginator} from "../../../../components/listbox/ListBox";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import ModalConfirm from "../../../../components/modal/ModalConfirm";
 

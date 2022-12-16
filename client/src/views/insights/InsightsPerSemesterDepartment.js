@@ -83,7 +83,7 @@ export default function InsightsPerSemesterDepartment() {
   }, []);
 
   /**
-   * @description Gets the data from the backend and displays it to the paginator.
+   * @description Gets the data from the backend and displays it to the listbox.
    * @param event
    * @returns {Promise<void>}
    */

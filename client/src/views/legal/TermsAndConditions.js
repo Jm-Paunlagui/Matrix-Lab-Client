@@ -4,7 +4,7 @@ import Terms from "../../assets/img/terms.svg";
 import BackNavigation from "../../components/navbars/BackNavigation";
 
 /**
- * @description Terms and conditions paginator for the application
+ * @description Terms and conditions listbox for the application
  */
 export default function TermsAndConditions() {
   return (

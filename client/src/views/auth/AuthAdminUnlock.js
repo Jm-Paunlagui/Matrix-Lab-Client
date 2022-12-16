@@ -229,7 +229,7 @@ export default function AuthAdminUnlock() {
   };
 
   /**
-   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login paginator.
+   * @description Decodes the token and checks if the token is valid. If the token is not valid, it redirects the user to the login listbox.
    */
   function decodeToken() {
     httpClient

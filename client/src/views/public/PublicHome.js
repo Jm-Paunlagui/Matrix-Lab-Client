@@ -5,7 +5,7 @@ import Eval from "../../assets/img/hero.svg";
 import { ACCENT_BUTTON } from "../../assets/styles/styled-components";
 
 /**
- * @description PublicHome paginator component for the application
+ * @description PublicHome listbox component for the application
  */
 export default function PublicHome() {
   return (

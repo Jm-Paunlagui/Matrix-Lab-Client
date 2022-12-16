@@ -63,7 +63,7 @@ import ManagementFileBin from "./views/admin/management/management_files/Managem
 export default function App() {
   /**
    * @type {Function}
-   * @description Function to scroll to top of the paginator when route changes in the application.
+   * @description Function to scroll to top of the listbox when route changes in the application.
    */
   const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -310,12 +310,12 @@ export default function App() {
 
             <Route element={<Unauthorized />} path="unauthorized-access" />
             {/**
-             * @description Handles paginator not found route for the application
+             * @description Handles listbox not found route for the application
              */}
             <Route element={<PageNotFound />} path="*" />
             <Route element={<LoginTimeOut />} path="login-timeout" />
             {/**
-             * End of paginator not found route
+             * End of listbox not found route
              */}
             <Route element={<InvalidToken />} path="invalid-token" />
           </Routes>

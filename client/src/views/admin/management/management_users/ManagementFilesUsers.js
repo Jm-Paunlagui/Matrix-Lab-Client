@@ -25,7 +25,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { toast } from "react-toastify";
-import Paginator from "../../../../components/paginator/Paginator";
+import {Paginator} from "../../../../components/listbox/ListBox";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 
 /**

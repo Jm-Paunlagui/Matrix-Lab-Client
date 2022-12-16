@@ -5,7 +5,7 @@ import LoadingPage, {
 } from "../../../../components/loading/LoadingPage";
 import httpClient from "../../../../http/httpClient";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
-import Paginator from "../../../../components/paginator/Paginator";
+import {Paginator} from "../../../../components/listbox/ListBox";
 import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
