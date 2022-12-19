@@ -1,19 +1,10 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
-import LoadingPage, {LoadingAnimation} from "../../../components/loading/LoadingPage";
+import LoadingPage from "../../../components/loading/LoadingPage";
 import httpClient from "../../../http/httpClient";
 import { toast } from "react-toastify";
-import {ViewInsightHistory} from "../../../components/forms/CredentialForms";
-import Boxplot, { computeBoxplotStats } from 'react-boxplot'
 import {Header} from "../../../components/headers/Header";
-import {CsvQuestion, ListBox, SchoolYearList, SemesterList} from "../../../components/listbox/ListBox";
-import ModalConfirm from "../../../components/modal/ModalConfirm";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {ICON_PLACE_SELF_CENTER, TEXT_FIELD} from "../../../assets/styles/styled-components";
-import {faBolt, faCircleXmark, faLock, faRotate, faTrash, faUnlock} from "@fortawesome/free-solid-svg-icons";
-import {Listbox, Transition} from "@headlessui/react";
-import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/20/solid";
-
+import {CsvQuestion, SchoolYearList, SemesterList} from "../../../components/listbox/ListBox";
 /**
  * @description Handles the admin profile
  */
@@ -55,8 +46,13 @@ export default function OverallDashboard() {
   const [analysis, setAnalysis] = useState({
     loading_analysis: true,
     overall_sentiments: [],
+    image_path_polarity_v_sentiment: "",
+    image_path_review_length_v_sentiment: "",
+    image_path_wordcloud: "",
+    image_path_wordcloud_positive: "",
+    image_path_wordcloud_negative: "",
   });
-  const { loading_analysis, overall_sentiments} = analysis;
+  const { loading_analysis, overall_sentiments, image_path_polarity_v_sentiment, image_path_review_length_v_sentiment, image_path_wordcloud, image_path_wordcloud_positive, image_path_wordcloud_negative} = analysis;
 
   const [options, setOptions] = useState({
     school_year_to_choose: [],
@@ -92,6 +88,11 @@ export default function OverallDashboard() {
         ...analysis,
         loading_analysis: false,
         overall_sentiments: response.data.overall_sentiments,
+        image_path_polarity_v_sentiment: response.data.image_path_polarity_v_sentiment,
+        image_path_review_length_v_sentiment: response.data.image_path_review_length_v_sentiment,
+        image_path_wordcloud: response.data.image_path_wordcloud,
+        image_path_wordcloud_positive: response.data.image_path_wordcloud_positive,
+        image_path_wordcloud_negative: response.data.image_path_wordcloud_negative,
       })
     });
   }
@@ -125,6 +126,10 @@ export default function OverallDashboard() {
   useEffect(() => {
     optionsForPVS();
   }, []);
+
+  useEffect(() => {
+    loadPolarityVsentiment(school_year, school_semester, csv_question);
+  }, [school_year, school_semester, csv_question]);
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8">
@@ -198,7 +203,7 @@ export default function OverallDashboard() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 pb-8">
               <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
                 <div className="w-full lg:w-3/5">
                   <h1 className="text-md font-bold text-blue-500">
@@ -227,11 +232,54 @@ export default function OverallDashboard() {
                       </div>
                 ))}
               </div>
-              <div className="flex flex-col md:flex-row items-center justify-between w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
+              <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
                 <div className="w-full lg:w-3/5">
-                  <h1 className="text-base font-bold text-blue-500">
-                    Overall Sentiments
+                  <h1 className="text-md font-bold text-blue-500">
+                    Sentiment vs Polarity
                   </h1>
+                </div>
+                <div className="flex flex-col items-start justify-start w-full p-4 rounded-lg">
+                  <img alt="sentiment_v_pol" className="" src={`data:image/jpeg;base64,${image_path_polarity_v_sentiment}`} />
+                </div>
+              </div>
+              <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
+                <div className="w-full lg:w-3/5">
+                  <h1 className="text-md font-bold text-blue-500">
+                    Sentiment vs Response Length
+                  </h1>
+                </div>
+                <div className="flex flex-col items-start justify-start w-full p-4 rounded-lg">
+                  <img alt="review_len_v_sentiment" className="" src={`data:image/jpeg;base64,${image_path_review_length_v_sentiment}`} />
+                </div>
+              </div>
+              <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
+                <div className="w-full lg:w-3/5">
+                  <h1 className="text-md font-bold text-blue-500">
+                    Word Cloud (Overall)
+                  </h1>
+                </div>
+                <div className="flex flex-col items-start justify-start w-full p-4 rounded-lg">
+                  <img alt="wordcloud" className="" src={`data:image/jpeg;base64,${image_path_wordcloud}`} />
+                </div>
+              </div>
+              <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
+                <div className="w-full lg:w-3/5">
+                  <h1 className="text-md font-bold text-blue-500">
+                    Word Cloud (Overall - Positive)
+                  </h1>
+                </div>
+                <div className="flex flex-col items-start justify-start w-full p-4 rounded-lg">
+                  <img alt="wordcloud" className="" src={`data:image/jpeg;base64,${image_path_wordcloud_positive}`} />
+                </div>
+              </div>
+              <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
+                <div className="w-full lg:w-3/5">
+                  <h1 className="text-md font-bold text-blue-500">
+                    Word Cloud (Overall - Negative)
+                  </h1>
+                </div>
+                <div className="flex flex-col items-start justify-start w-full p-4 rounded-lg">
+                  <img alt="wordcloud" className="" src={`data:image/jpeg;base64,${image_path_wordcloud_negative}`} />
                 </div>
               </div>
             </div>

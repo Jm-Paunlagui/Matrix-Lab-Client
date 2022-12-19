@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment} from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { TEXT_FIELD } from "../../assets/styles/styled-components";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -230,7 +230,7 @@ export function CsvQuestion({ csv_question, handleSelect, csv_question_to_choose
     return(
         <Listbox name={"csv_question"} onChange={handleSelect("csv_question")} value={csv_question}>
             <Listbox.Label className="block text-base font-bold text-blue-500">
-                Question
+                Topic
             </Listbox.Label>
             <div className="relative mt-1">
                 <Listbox.Button className={`${TEXT_FIELD} bg-white`}>
