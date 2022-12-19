@@ -181,8 +181,9 @@ export default function InsightsPerSemesterEmployees() {
                     View Previous Insight
                   </h1>
                   <p className="mb-4 text-sm text-gray-500">
-                    You can view your previous insight here by selecting a specific school
-                    year, semester and the topic you want to view.
+                    You can view your previous insight here by selecting a
+                    specific school year, semester and the topic you want to
+                    view.
                   </p>
                 </ViewInsightHistory>
               }

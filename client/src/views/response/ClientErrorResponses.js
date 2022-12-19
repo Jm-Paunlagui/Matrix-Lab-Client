@@ -44,9 +44,7 @@ export function PageNotFound() {
     <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-6xl font-extrabold xl:text-9xl">404</h1>
-        <p className="mb-16 text-3xl font-extrabold">
-          oh no! page not found
-        </p>
+        <p className="mb-16 text-3xl font-extrabold">oh no! page not found</p>
 
         <NavLink to="/">
           <div
@@ -100,9 +98,7 @@ export function InvalidToken() {
     <div className="flex justify-center min-h-screen overflow-hidden text-white font-Montserrat bg-gradient-to-br from-pink-600 via-red-600 to-orange-600">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-6xl font-extrabold xl:text-9xl">498</h1>
-        <p className="mb-16 text-3xl font-extrabold">
-          oh no! Invalid Token
-        </p>
+        <p className="mb-16 text-3xl font-extrabold">oh no! Invalid Token</p>
 
         <NavLink to="/">
           <div

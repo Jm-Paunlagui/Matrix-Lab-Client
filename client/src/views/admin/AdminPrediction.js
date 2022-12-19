@@ -1149,9 +1149,7 @@ export default function AdminPrediction() {
                       </button>
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        onClick={() => (
-                          handleResetWhenDone("done")
-                          )}
+                        onClick={() => handleResetWhenDone("done")}
                         type="button"
                       >
                         <FontAwesomeIcon

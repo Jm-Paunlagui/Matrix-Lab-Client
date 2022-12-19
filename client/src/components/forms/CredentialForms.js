@@ -1337,7 +1337,7 @@ export function ViewInsightHistory({
   errorMessage,
   ok,
   textChange,
-    children
+  children,
 }) {
   ViewInsightHistory.propTypes = {
     handleViewFile: PropTypes.func.isRequired,
