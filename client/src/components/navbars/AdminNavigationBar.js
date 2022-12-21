@@ -183,7 +183,7 @@ export default function AdminNavigationBar() {
   return (
     <Menu
       as="nav"
-      className="fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
+      className="sticky top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
     >
       {({ open }) => (
         <>

@@ -1025,6 +1025,9 @@ export default function AdminPrediction() {
                           done to make sure that the predictions are saved for
                           future use.
                         </p>
+                        <p className="text-gray-500">
+                          Additionally, we are also writing the converted sentiment, removal of stop words, response length, word count, and polarity to the CSV file.
+                        </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">

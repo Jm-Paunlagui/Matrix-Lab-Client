@@ -8,7 +8,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import OverallDashboard from "./views/admin/dashboard/OverallDashboard.js";
+import Dashboard from "./views/admin/dashboard/Dashboard.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
@@ -195,7 +195,7 @@ export default function App() {
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route element={<IndexDashBoard />} exact="true" path="dashboard">
                 <Route
-                  element={<OverallDashboard />}
+                  element={<Dashboard />}
                   exact="true"
                   path="analytics"
                 />
