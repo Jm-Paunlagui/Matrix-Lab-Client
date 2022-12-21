@@ -130,10 +130,10 @@ export default function ManagementFilesUsers() {
    * @param per_page_limit
    */
   const loadListOfUsers = (page, per_page_limit) => {
-    setUserDatas({
-      ...userDatas,
-      loading: true,
-    });
+    // setUserDatas({
+    //   ...userDatas,
+    //   loading: true,
+    // });
     httpClient
       .get(`/data/list-of-users-to-view/${page}/${per_page_limit}`)
       .then((response) => {

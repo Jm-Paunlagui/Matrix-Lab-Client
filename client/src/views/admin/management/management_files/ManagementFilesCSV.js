@@ -123,10 +123,10 @@ export default function ManagementFilesCSV() {
    * @param per_page_limit
    */
   const loadFiles = (page, per_page_limit) => {
-    setFileData({
-      ...fileData,
-      loading: true,
-    });
+    // setFileData({
+    //   ...fileData,
+    //   loading: true,
+    // });
     httpClient
       .get(`/data/list-of-csv-files-to-view/${page}/${per_page_limit}`)
       .then((response) => {
