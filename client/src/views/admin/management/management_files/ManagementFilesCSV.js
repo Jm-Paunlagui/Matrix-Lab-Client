@@ -535,32 +535,32 @@ export default function ManagementFilesCSV() {
               </h1>
             </div>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_prev}
-                onClick={() =>
-                    setFileData({ ...fileData, page_number: page_number - 1 })
-                }
-                type="button"
+              disabled={!has_prev}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number - 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretLeft}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretLeft}
               />
               Newer
             </button>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_next}
-                onClick={() =>
-                    setFileData({ ...fileData, page_number: page_number + 1 })
-                }
-                type="button"
+              disabled={!has_next}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number + 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretRight}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretRight}
               />
               Older
             </button>
@@ -803,32 +803,32 @@ export default function ManagementFilesCSV() {
               </h1>
             </div>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_prev}
-                onClick={() =>
-                    setFileData({ ...fileData, page_number: page_number - 1 })
-                }
-                type="button"
+              disabled={!has_prev}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number - 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretLeft}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretLeft}
               />
               Newer
             </button>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_next}
-                onClick={() =>
-                    setFileData({ ...fileData, page_number: page_number + 1 })
-                }
-                type="button"
+              disabled={!has_next}
+              onClick={() =>
+                setFileData({ ...fileData, page_number: page_number + 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretRight}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretRight}
               />
               Older
             </button>
