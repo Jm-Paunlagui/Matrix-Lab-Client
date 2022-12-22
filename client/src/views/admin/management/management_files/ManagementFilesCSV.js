@@ -68,6 +68,13 @@ export default function ManagementFilesCSV() {
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
+  const [loadingIdDownload, setLoadingIdDownload] = useState({});
+  const [loadingIdRestore, setLoadingIdRestore] = useState({});
+  const [loadingIdPublish, setLoadingIdPublish] = useState({});
+  const [loadingIdDelete, setLoadingIdDelete] = useState({});
+  const [loadingIdUnpublish, setLoadingIdUnpublish] = useState({});
+
+
   /**
    * @description Search bar handler for the files
    */
@@ -160,14 +167,17 @@ export default function ManagementFilesCSV() {
    * @param file
    */
   const handleDelete = (file) => {
+    setLoadingIdDelete((files) => ({ ...files, [file]: true }));
     httpClient
       .put(`/data/delete-csv-file/${file}`)
       .then((response) => {
         loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
+        setLoadingIdDelete((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIdDelete({})
       });
   };
 
@@ -176,14 +186,17 @@ export default function ManagementFilesCSV() {
    * @param file
    */
   const handleRestore = (file) => {
+    setLoadingIdRestore((files) => ({ ...files, [file]: true }));
     httpClient
       .put(`/data/unflag-delete-csv-file/${file}`)
       .then((response) => {
         loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
+        setLoadingIdRestore((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIdRestore({})
       });
   };
 
@@ -192,14 +205,17 @@ export default function ManagementFilesCSV() {
    * @param file
    */
   const handlePublish = (file) => {
+    setLoadingIdPublish((files) => ({ ...files, [file]: true }));
     httpClient
       .put(`/data/publish-selected-csv-file/${file}`)
       .then((response) => {
         loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
+        setLoadingIdPublish((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIdPublish({});
       });
   };
 
@@ -208,14 +224,17 @@ export default function ManagementFilesCSV() {
    * @param file
    */
   const handleUnpublished = (file) => {
+    setLoadingIdUnpublish((files) => ({ ...files, [file]: true }));
     httpClient
       .put(`/data/unpublished-selected-csv-file/${file}`)
       .then((response) => {
         loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
+        setLoadingIdUnpublish((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIdUnpublish({});
       });
   };
 
@@ -344,6 +363,7 @@ export default function ManagementFilesCSV() {
    * @param file
    */
   const handleDownload = (file) => {
+    setLoadingIdDownload((files) => ({ ...files, [file]: true }));
     httpClient
       .get(`/data/download-csv-file/${file}`, { responseType: "blob" })
       .then((response) => {
@@ -356,9 +376,11 @@ export default function ManagementFilesCSV() {
         document.body.appendChild(link);
         link.click();
         toast.success(response.data.message);
+        setLoadingIdDownload((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.message);
+        setLoadingIdDownload({});
       });
   };
 
@@ -607,11 +629,20 @@ export default function ManagementFilesCSV() {
                         onClick={() => handleDownload(file.id)}
                         type="button"
                       >
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faFileArrowDown}
-                        />
-                        Download
+                        {loadingIdDownload[file.id] ? (
+                            <>
+                              <LoadingAnimation moreClasses="text-teal-600" />
+                              Downloading...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faFileArrowDown}
+                              />
+                              Download
+                            </>
+                        )}
                       </button>
                       <ModalConfirm
                         body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
@@ -621,13 +652,20 @@ export default function ManagementFilesCSV() {
                         onConfirm={handleRestore}
                         title="Restore File Confirmation"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faRotate}
-                          />
-                          Restore
-                        </>
+                        {loadingIdRestore[file.id] ? (
+                          <>
+                            <LoadingAnimation moreClasses="text-teal-600" />
+                            Restoring...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faRotate}
+                              />
+                              Restore
+                            </>
+                        )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to publish ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
@@ -637,13 +675,20 @@ export default function ManagementFilesCSV() {
                         onConfirm={handlePublish}
                         title="Publish File"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faUpLong}
-                          />
-                          Publish File
-                        </>
+                        {loadingIdPublish[file.id] ? (
+                            <>
+                              <LoadingAnimation moreClasses="text-teal-600" />
+                              Publishing File...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faUpLong}
+                              />
+                              Publish File
+                            </>
+                        )}
                       </ModalConfirm>
                     </div>
                     <div className="flex flex-row w-full px-4">
@@ -661,13 +706,20 @@ export default function ManagementFilesCSV() {
                         onConfirm={handleDelete}
                         title="Delete File Confirmation"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faTrash}
-                          />
-                          Delete
-                        </>
+                        {loadingIdDelete[file.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-red-600" />
+                                Deleting...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faTrash}
+                              />
+                              Delete
+                            </>
+                        )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to unpublished ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
@@ -678,13 +730,20 @@ export default function ManagementFilesCSV() {
                         onConfirm={handleUnpublished}
                         title="Unpublish File"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faDownLong}
-                          />
-                          Unpublish File
-                        </>
+                        {loadingIdUnpublish[file.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-red-600" />
+                                Unpublishing File...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faDownLong}
+                              />
+                              Unpublish File
+                            </>
+                        )}
                       </ModalConfirm>
                     </div>
                   </div>
