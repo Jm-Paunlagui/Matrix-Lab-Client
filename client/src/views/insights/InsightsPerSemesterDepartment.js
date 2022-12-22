@@ -136,7 +136,7 @@ export default function InsightsPerSemesterDepartment() {
   };
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl pt-8 pb-8">
       <Header
         body={"Insights for the department per semester"}
         title="Top Department Per Semester"
@@ -152,7 +152,7 @@ export default function InsightsPerSemesterDepartment() {
           />
           <div className="place-content-center">
             <div
-              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded outline outline-2  ${
+              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded-lg outline outline-2 shadow mb-8 ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {
@@ -198,7 +198,7 @@ export default function InsightsPerSemesterDepartment() {
                 <>
                   {filteredTopDepartmentPerSem.map((department) => (
                     <div
-                      className={`flex flex-col w-full bg-white rounded shadow
+                      className={`flex flex-col w-full bg-white rounded-lg shadow
                                       ${
                                         department.id === 0
                                           ? "border-solid border-4 border-yellow-100"
@@ -210,7 +210,7 @@ export default function InsightsPerSemesterDepartment() {
                                       }`}
                       key={department.id}
                     >
-                      <div className="grid w-full h-full grid-cols-1 rounded">
+                      <div className="grid w-full h-full grid-cols-1 rounded-lg">
                         <div
                           className={`col-span-1 py-5 items-center justify-center w-full
                                                  ${

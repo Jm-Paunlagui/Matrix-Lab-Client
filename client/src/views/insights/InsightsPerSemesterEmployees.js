@@ -137,7 +137,7 @@ export default function InsightsPerSemesterEmployees() {
   }, []);
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl pt-8 pb-8">
       <Header
         body={"Insights for Professor per semester"}
         title={"Top Professor Per Semester"}
@@ -151,9 +151,8 @@ export default function InsightsPerSemesterEmployees() {
             placeholder="Search"
             type="text"
           />
-          <div className="place-content-center">
-            <div
-              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded outline outline-2  ${
+          <div className="place-content-center shadow">
+            <div className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded-lg outline outline-2 shadow mb-8 ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {
@@ -199,7 +198,7 @@ export default function InsightsPerSemesterEmployees() {
                 <>
                   {filteredTopEmployeePerSem.map((professor) => (
                     <div
-                      className={`flex flex-col w-full bg-white rounded shadow
+                      className={`flex flex-col w-full bg-white rounded-lg shadow
                                       ${
                                         professor.id === 0
                                           ? "border-solid border-4 border-yellow-100"
@@ -211,7 +210,7 @@ export default function InsightsPerSemesterEmployees() {
                                       }`}
                       key={professor.id}
                     >
-                      <div className="grid w-full h-full grid-cols-1 rounded">
+                      <div className="grid w-full h-full grid-cols-1 rounded-lg">
                         <div
                           className={`col-span-1 py-5 items-center justify-center w-full
                                                  ${

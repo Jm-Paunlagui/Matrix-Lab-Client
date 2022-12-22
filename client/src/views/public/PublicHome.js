@@ -9,7 +9,7 @@ import { ACCENT_BUTTON } from "../../assets/styles/styled-components";
  */
 export default function PublicHome() {
   return (
-    <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-4 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12">
+    <div className="flex flex-col items-center max-w-screen-xl min-h-screen px-6 py-8 mx-auto lg:grid lg:gap-8 xl:gap-0 lg:grid-cols-12">
       <div className="place-self-center lg:col-span-6">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-blue-500 md:text-5xl xl:text-6xl">
           Sentiment Analysis

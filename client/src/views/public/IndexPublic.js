@@ -20,7 +20,7 @@ export default function IndexPublic() {
 
   // If the path is the home listbox, then display the home listbox background color bg-blue-50
   useEffect(() => {
-    if (splitLocation[1] === "") {
+    if (splitLocation[1] === "" || splitLocation[1] === "aboutus") {
       setColor("bg-blue-50");
     } else {
       setColor("bg-blue-200");

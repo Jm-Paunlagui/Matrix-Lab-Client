@@ -24,11 +24,11 @@ const UsefulLinks = [
   },
   {
     name: "Terms & Conditions",
-    link: "terms-and-conditions",
+    link: "legal/terms-and-conditions",
   },
   {
     name: "Privacy Policy",
-    link: "privacy-policy",
+    link: "legal/privacy-policy",
   },
 ];
 
@@ -37,9 +37,9 @@ const UsefulLinks = [
  */
 export default function Footer() {
   return (
-    <footer className="px-6 pt-8 pb-6 mt-auto text-blue-500 font-Montserrat">
+    <footer className="px-6 pt-8 pb-6 mt-auto text-blue-500 font-Montserrat bg-blue-50">
       <div className="container mx-auto max-w-7xl">
-        <hr className="my-6 border-gray-300" />
+        <hr className="my-6 border-blue-200" />
         <div className="flex flex-wrap py-4 text-center">
           <div className="items-center w-full lg:flex lg:space-x-6 place-content-center">
             <h4 className="text-2xl font-semibold">
@@ -89,7 +89,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <hr className="my-6 border-gray-300" />
+        <hr className="my-6 border-blue-200" />
         <div className="flex flex-wrap md:justify-between">
           <div className="w-full px-4 mx-auto text-center md:w-4/12">
             <div className="py-1 text-sm font-semibold text-blue-500">

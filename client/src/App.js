@@ -55,6 +55,7 @@ import IndexUserDashboard from "./views/user/dashboard/IndexUserDashboard";
 import UserDashboard from "./views/user/dashboard/UserDashboard";
 import EvalReadCourseSentiment from "./views/user/eval/EvalReadCourseSentiment";
 import ManagementFileBin from "./views/admin/management/management_files/ManagementFileBin";
+import IndexLegal from "./views/legal/IndexLegal";
 
 /**
  * @description Main component for the application
@@ -113,16 +114,18 @@ export default function App() {
              * End of public routes
              */}
 
-            <Route
-              element={<PrivacyPolicy />}
-              exact="true"
-              path="privacy-policy"
-            />
-            <Route
-              element={<TermsAndConditions />}
-              exact="true"
-              path="terms-and-conditions"
-            />
+            <Route element={<IndexLegal />} exact={"true"} path="legal">
+              <Route
+                  element={<PrivacyPolicy />}
+                  exact="true"
+                  path="privacy-policy"
+              />
+              <Route
+                  element={<TermsAndConditions />}
+                  exact="true"
+                  path="terms-and-conditions"
+              />
+            </Route>
 
             {/**
              * @description Handles auth routes for the application, and the IndexAuth component has the outlet for the

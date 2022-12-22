@@ -46,7 +46,7 @@ export default function InsightsEmployees() {
   }, []);
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl pt-8 pb-8">
       {loading ? (
         LoadingPage()
       ) : (
