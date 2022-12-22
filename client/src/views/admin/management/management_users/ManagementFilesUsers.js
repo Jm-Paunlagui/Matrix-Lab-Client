@@ -73,7 +73,6 @@ export default function ManagementFilesUsers() {
   const [loadingIDDelete, setLoadingIDDelete] = useState({});
   const [loadingIDRestore, setLoadingIDRestore] = useState({});
 
-
   const [loadingAnimation, setLoadingAnimation] = useState({
     massActivation: false,
     textChangeActivation: "Activate all",
@@ -768,14 +767,14 @@ export default function ManagementFilesUsers() {
                             Activating...
                           </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faBolt}
-                              />
-                              Activate
-                            </>
-                            )}
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faBolt}
+                            />
+                            Activate
+                          </>
+                        )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
@@ -786,19 +785,19 @@ export default function ManagementFilesUsers() {
                         title="Unlock User Account"
                       >
                         {loadingIDUnlock[user.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-green-600" />
-                                Unlocking...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-green-600" />
+                            Unlocking...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faUnlock}
-                              />
-                              Unlock
-                            </>
-                            )}
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faUnlock}
+                            />
+                            Unlock
+                          </>
+                        )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
@@ -809,19 +808,19 @@ export default function ManagementFilesUsers() {
                         title="Restore User Account"
                       >
                         {loadingIDRestore[user.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-green-600" />
-                                Restoring...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-green-600" />
+                            Restoring...
+                          </>
                         ) : (
-                              <>
-                                <FontAwesomeIcon
-                                    className={`${ICON_PLACE_SELF_CENTER}`}
-                                    icon={faRotate}
-                                />
-                                Restore
-                              </>
-                                )}
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faRotate}
+                            />
+                            Restore
+                          </>
+                        )}
                       </ModalConfirm>
                     </div>
                     <div className="flex flex-row w-full px-4">
@@ -840,18 +839,18 @@ export default function ManagementFilesUsers() {
                         title="Deactivate User Account"
                       >
                         {loadingIDDeactivate[user.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-red-600" />
-                                Deactivating...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-red-600" />
+                            Deactivating...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faCircleXmark}
-                              />
-                              Deactivate
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faCircleXmark}
+                            />
+                            Deactivate
+                          </>
                         )}
                       </ModalConfirm>
                       <ModalConfirm
@@ -864,18 +863,18 @@ export default function ManagementFilesUsers() {
                         title="Lock User Account"
                       >
                         {loadingIDLock[user.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-red-600" />
-                                Locking...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-red-600" />
+                            Locking...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faLock}
-                              />
-                              Lock
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faLock}
+                            />
+                            Lock
+                          </>
                         )}
                       </ModalConfirm>
                       <ModalConfirm
@@ -888,18 +887,18 @@ export default function ManagementFilesUsers() {
                         title="Delete User Account"
                       >
                         {loadingIDDelete[user.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-red-600" />
-                                Deleting...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-red-600" />
+                            Deleting...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faTrash}
-                              />
-                              Delete
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faTrash}
+                            />
+                            Delete
+                          </>
                         )}
                       </ModalConfirm>
                     </div>
