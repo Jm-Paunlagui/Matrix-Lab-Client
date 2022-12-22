@@ -74,7 +74,6 @@ export default function ManagementFilesCSV() {
   const [loadingIdDelete, setLoadingIdDelete] = useState({});
   const [loadingIdUnpublish, setLoadingIdUnpublish] = useState({});
 
-
   /**
    * @description Search bar handler for the files
    */
@@ -177,7 +176,7 @@ export default function ManagementFilesCSV() {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
-        setLoadingIdDelete({})
+        setLoadingIdDelete({});
       });
   };
 
@@ -196,7 +195,7 @@ export default function ManagementFilesCSV() {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
-        setLoadingIdRestore({})
+        setLoadingIdRestore({});
       });
   };
 
@@ -630,18 +629,18 @@ export default function ManagementFilesCSV() {
                         type="button"
                       >
                         {loadingIdDownload[file.id] ? (
-                            <>
-                              <LoadingAnimation moreClasses="text-teal-600" />
-                              Downloading...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-teal-600" />
+                            Downloading...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faFileArrowDown}
-                              />
-                              Download
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faFileArrowDown}
+                            />
+                            Download
+                          </>
                         )}
                       </button>
                       <ModalConfirm
@@ -656,15 +655,15 @@ export default function ManagementFilesCSV() {
                           <>
                             <LoadingAnimation moreClasses="text-teal-600" />
                             Restoring...
-                            </>
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faRotate}
-                              />
-                              Restore
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faRotate}
+                            />
+                            Restore
+                          </>
                         )}
                       </ModalConfirm>
                       <ModalConfirm
@@ -676,18 +675,18 @@ export default function ManagementFilesCSV() {
                         title="Publish File"
                       >
                         {loadingIdPublish[file.id] ? (
-                            <>
-                              <LoadingAnimation moreClasses="text-teal-600" />
-                              Publishing File...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-teal-600" />
+                            Publishing File...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faUpLong}
-                              />
-                              Publish File
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faUpLong}
+                            />
+                            Publish File
+                          </>
                         )}
                       </ModalConfirm>
                     </div>
@@ -707,18 +706,18 @@ export default function ManagementFilesCSV() {
                         title="Delete File Confirmation"
                       >
                         {loadingIdDelete[file.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-red-600" />
-                                Deleting...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-red-600" />
+                            Deleting...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faTrash}
-                              />
-                              Delete
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faTrash}
+                            />
+                            Delete
+                          </>
                         )}
                       </ModalConfirm>
                       <ModalConfirm
@@ -731,18 +730,18 @@ export default function ManagementFilesCSV() {
                         title="Unpublish File"
                       >
                         {loadingIdUnpublish[file.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-red-600" />
-                                Unpublishing File...
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-red-600" />
+                            Unpublishing File...
+                          </>
                         ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faDownLong}
-                              />
-                              Unpublish File
-                            </>
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faDownLong}
+                            />
+                            Unpublish File
+                          </>
                         )}
                       </ModalConfirm>
                     </div>
