@@ -66,21 +66,12 @@ export default function InsightsEmployees() {
             <div className=" place-content-center pt-8 space-y-8">
               {filteredTopProfessors.map((professor) => (
                 <div
-                  className={`flex flex-col w-full bg-white rounded shadow
-            ${
-              professor.id === 0
-                ? "border-solid border-4 border-yellow-100"
-                : professor.id === 1
-                ? "border-solid border-4 border-gray-100"
-                : professor.id === 2
-                ? "border-solid border-4 border-orange-100"
-                : "border-solid border-4 border-blue-100"
-            }`}
+                  className={`flex flex-col w-full bg-white rounded-lg shadow`}
                   key={professor.id}
                 >
-                  <div className={`grid w-full h-full grid-cols-1 rounded `}>
+                  <div className={`grid w-full h-full grid-cols-1`}>
                     <div
-                      className={`col-span-1 py-5 items-center justify-center w-full
+                      className={`col-span-1 py-5 items-center justify-center w-full rounded-t-lg
                 ${
                   professor.id === 0
                     ? "bg-yellow-50"
@@ -88,7 +79,7 @@ export default function InsightsEmployees() {
                     ? "bg-gray-50"
                     : professor.id === 2
                     ? "bg-orange-50"
-                    : "bg-blue-50"
+                    : "bg-cyan-50"
                 }`}
                     >
                       <div className="flex flex-col items-center justify-center w-full p-4">
@@ -108,7 +99,7 @@ export default function InsightsEmployees() {
                                 ? "bg-gray-500"
                                 : professor.id === 2
                                 ? "bg-orange-500"
-                                : "bg-blue-500"
+                                : "bg-cyan-500"
                             }`}
                           >
                             <i

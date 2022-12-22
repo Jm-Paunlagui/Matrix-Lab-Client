@@ -198,21 +198,12 @@ export default function InsightsPerSemesterDepartment() {
                 <>
                   {filteredTopDepartmentPerSem.map((department) => (
                     <div
-                      className={`flex flex-col w-full bg-white rounded-lg shadow
-                                      ${
-                                        department.id === 0
-                                          ? "border-solid border-4 border-yellow-100"
-                                          : department.id === 1
-                                          ? "border-solid border-4 border-gray-100"
-                                          : department.id === 2
-                                          ? "border-solid border-4 border-orange-100"
-                                          : "border-solid border-4 border-blue-100"
-                                      }`}
+                      className={`flex flex-col w-full bg-white rounded-lg shadow`}
                       key={department.id}
                     >
-                      <div className="grid w-full h-full grid-cols-1 rounded-lg">
+                      <div className="grid w-full h-full grid-cols-1">
                         <div
-                          className={`col-span-1 py-5 items-center justify-center w-full
+                          className={`col-span-1 py-5 items-center justify-center w-full rounded-t-lg
                                                  ${
                                                    department.id === 0
                                                      ? "bg-yellow-50"
@@ -220,11 +211,11 @@ export default function InsightsPerSemesterDepartment() {
                                                      ? "bg-gray-50"
                                                      : department.id === 2
                                                      ? "bg-orange-50"
-                                                     : "bg-blue-50"
+                                                     : "bg-cyan-50"
                                                  }`}
                         >
                           <div className="flex flex-col items-center justify-center w-full p-4">
-                            <h1 className="text-5xl font-black leading-none tracking-tight text-blue-500">
+                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
                               {department.department}
                             </h1>
                           </div>

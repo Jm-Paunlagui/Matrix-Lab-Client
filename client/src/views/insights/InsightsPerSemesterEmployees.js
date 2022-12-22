@@ -199,21 +199,12 @@ export default function InsightsPerSemesterEmployees() {
                 <>
                   {filteredTopEmployeePerSem.map((professor) => (
                     <div
-                      className={`flex flex-col w-full bg-white rounded-lg shadow
-                                      ${
-                                        professor.id === 0
-                                          ? "border-solid border-4 border-yellow-100"
-                                          : professor.id === 1
-                                          ? "border-solid border-4 border-gray-100"
-                                          : professor.id === 2
-                                          ? "border-solid border-4 border-orange-100"
-                                          : "border-solid border-4 border-blue-100"
-                                      }`}
+                      className={`flex flex-col w-full bg-white rounded-lg shadow`}
                       key={professor.id}
                     >
-                      <div className="grid w-full h-full grid-cols-1 rounded-lg">
+                      <div className="grid w-full h-full grid-cols-1">
                         <div
-                          className={`col-span-1 py-5 items-center justify-center w-full
+                          className={`col-span-1 py-5 items-center justify-center w-full rounded-t-lg
                                                  ${
                                                    professor.id === 0
                                                      ? "bg-yellow-50"
@@ -221,11 +212,11 @@ export default function InsightsPerSemesterEmployees() {
                                                      ? "bg-gray-50"
                                                      : professor.id === 2
                                                      ? "bg-orange-50"
-                                                     : "bg-blue-50"
+                                                     : "bg-cyan-50"
                                                  }`}
                         >
                           <div className="flex flex-col items-center justify-center w-full p-4">
-                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
+                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
                               {professor.professor}
                             </h1>
                           </div>
