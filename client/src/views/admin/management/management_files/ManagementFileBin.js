@@ -61,6 +61,8 @@ export default function ManagementFileBin() {
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
+  const [loadingIdPermanentDelete, setLoadingIdPermanentDelete] = useState({});
+
   /**
    * @description Search bar handler for the delete files
    */
@@ -141,14 +143,17 @@ export default function ManagementFileBin() {
    * @param file
    */
   const handleDeletePermanently = (file) => {
+    setLoadingIdPermanentDelete((files) => ({ ...files, [file]: true }));
     httpClient
       .delete(`/data/delete-csv-file-permanent/${file}`)
       .then((response) => {
         loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
+        setLoadingIdPermanentDelete((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIdPermanentDelete({})
       });
   };
 
@@ -346,13 +351,20 @@ export default function ManagementFileBin() {
                         onConfirm={handleDeletePermanently}
                         title="Delete File Permanently"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faTrash}
-                          />
-                          Delete Permanently
-                        </>
+                        {loadingIdPermanentDelete[file.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-red-600" />
+                                Permanently Deleting...
+                            </>
+                            ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faTrash}
+                              />
+                              Delete Permanently
+                            </>
+                        )}
                       </ModalConfirm>
                     </div>
                   </div>
