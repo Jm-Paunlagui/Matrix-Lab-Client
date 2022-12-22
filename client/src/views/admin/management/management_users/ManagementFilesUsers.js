@@ -661,10 +661,47 @@ export default function ManagementFilesUsers() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full p-4">
-            <h1 className="font-medium text-blue-500 text-start">
-              Page {current_page} of {total_pages}
-            </h1>
+          <div className="flex flex-col justify-end w-full mt-8 mb-8 p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
+            <div className="flex flex-col md:flex-row items-center w-full justify-between ">
+              {/*    Page details*/}
+              <h1 className="font-medium text-blue-500 text-start">
+                Page {current_page} of {total_pages}
+              </h1>
+                <h1 className="text-base font-medium leading-none text-blue-500 t">
+                  Showing {users.length} of {total_items} Users in total (
+                  {total_pages} pages)
+                </h1>
+            </div>
+            <button
+                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+                  ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
+                disabled={!has_prev}
+                onClick={() =>
+                    setUserDatas({ ...userDatas, page_number: page_number - 1 })
+                }
+                type="button"
+            >
+              <FontAwesomeIcon
+                  className={`${ICON_PLACE_SELF_CENTER}`}
+                  icon={faCaretLeft}
+              />
+              Previous
+            </button>
+            <button
+                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+                  ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
+                disabled={!has_next}
+                onClick={() =>
+                    setUserDatas({ ...userDatas, page_number: page_number + 1 })
+                }
+                type="button"
+            >
+              <FontAwesomeIcon
+                  className={`${ICON_PLACE_SELF_CENTER}`}
+                  icon={faCaretRight}
+              />
+              Next
+            </button>
           </div>
           {filteredListOfUsers.length > 0 ? (
             <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
@@ -719,6 +756,14 @@ export default function ManagementFilesUsers() {
                     <div className="flex flex-row w-full py-2">
                       <h1 className="text-base font-bold leading-none text-blue-500">
                         Details
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Email:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                        {user.email}
                       </h1>
                     </div>
                     <div className="flex flex-row items-start w-full py-2">
@@ -911,43 +956,44 @@ export default function ManagementFilesUsers() {
               <NoData message="Data Unavailable" />
             </div>
           )}
-          <div className="flex flex-col justify-end w-full pb-16 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0">
-            <div className="flex flex-row items-center justify-center w-full lg:w-1/2">
+          <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
+            <div className="flex flex-col md:flex-row items-center w-full justify-between ">
               {/*    Page details*/}
-              <div className="flex flex-row items-center justify-center w-full">
-                <h1 className="text-base font-medium leading-none text-blue-500 t">
-                  Showing {users.length} of {total_items} Users in total (
-                  {total_pages} pages)
-                </h1>
-              </div>
+              <h1 className="font-medium text-blue-500 text-start">
+                Page {current_page} of {total_pages}
+              </h1>
+              <h1 className="text-base font-medium leading-none text-blue-500 t">
+                Showing {users.length} of {total_items} Users in total (
+                {total_pages} pages)
+              </h1>
             </div>
             <button
-              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-              disabled={!has_prev}
-              onClick={() =>
-                setUserDatas({ ...userDatas, page_number: page_number - 1 })
-              }
-              type="button"
+                disabled={!has_prev}
+                onClick={() =>
+                    setUserDatas({ ...userDatas, page_number: page_number - 1 })
+                }
+                type="button"
             >
               <FontAwesomeIcon
-                className={`${ICON_PLACE_SELF_CENTER}`}
-                icon={faCaretLeft}
+                  className={`${ICON_PLACE_SELF_CENTER}`}
+                  icon={faCaretLeft}
               />
               Previous
             </button>
             <button
-              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-              disabled={!has_next}
-              onClick={() =>
-                setUserDatas({ ...userDatas, page_number: page_number + 1 })
-              }
-              type="button"
+                disabled={!has_next}
+                onClick={() =>
+                    setUserDatas({ ...userDatas, page_number: page_number + 1 })
+                }
+                type="button"
             >
               <FontAwesomeIcon
-                className={`${ICON_PLACE_SELF_CENTER}`}
-                icon={faCaretRight}
+                  className={`${ICON_PLACE_SELF_CENTER}`}
+                  icon={faCaretRight}
               />
               Next
             </button>
