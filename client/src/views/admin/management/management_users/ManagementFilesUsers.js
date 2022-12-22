@@ -667,38 +667,38 @@ export default function ManagementFilesUsers() {
               <h1 className="font-medium text-blue-500 text-start">
                 Page {current_page} of {total_pages}
               </h1>
-                <h1 className="text-base font-medium leading-none text-blue-500 t">
-                  Showing {users.length} of {total_items} Users in total (
-                  {total_pages} pages)
-                </h1>
+              <h1 className="text-base font-medium leading-none text-blue-500 t">
+                Showing {users.length} of {total_items} Users in total (
+                {total_pages} pages)
+              </h1>
             </div>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_prev}
-                onClick={() =>
-                    setUserDatas({ ...userDatas, page_number: page_number - 1 })
-                }
-                type="button"
+              disabled={!has_prev}
+              onClick={() =>
+                setUserDatas({ ...userDatas, page_number: page_number - 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretLeft}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretLeft}
               />
               Previous
             </button>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_next}
-                onClick={() =>
-                    setUserDatas({ ...userDatas, page_number: page_number + 1 })
-                }
-                type="button"
+              disabled={!has_next}
+              onClick={() =>
+                setUserDatas({ ...userDatas, page_number: page_number + 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretRight}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretRight}
               />
               Next
             </button>
@@ -968,32 +968,32 @@ export default function ManagementFilesUsers() {
               </h1>
             </div>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_prev}
-                onClick={() =>
-                    setUserDatas({ ...userDatas, page_number: page_number - 1 })
-                }
-                type="button"
+              disabled={!has_prev}
+              onClick={() =>
+                setUserDatas({ ...userDatas, page_number: page_number - 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretLeft}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretLeft}
               />
               Previous
             </button>
             <button
-                className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-                disabled={!has_next}
-                onClick={() =>
-                    setUserDatas({ ...userDatas, page_number: page_number + 1 })
-                }
-                type="button"
+              disabled={!has_next}
+              onClick={() =>
+                setUserDatas({ ...userDatas, page_number: page_number + 1 })
+              }
+              type="button"
             >
               <FontAwesomeIcon
-                  className={`${ICON_PLACE_SELF_CENTER}`}
-                  icon={faCaretRight}
+                className={`${ICON_PLACE_SELF_CENTER}`}
+                icon={faCaretRight}
               />
               Next
             </button>
