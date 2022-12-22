@@ -2,7 +2,7 @@ import React from "react";
 
 import Privacy from "../../assets/img/privacy.svg";
 import BackNavigation from "../../components/navbars/BackNavigation";
-import {ACCENT_BUTTON} from "../../assets/styles/styled-components";
+import { ACCENT_BUTTON } from "../../assets/styles/styled-components";
 
 /**
  * @description Privacy policy component for the application
@@ -32,7 +32,9 @@ export default function PrivacyPolicy() {
             personal data to run a spam campaign. We will not use your personal
             data to send you unsolicited emails.
           </p>
-          <p className={`flex items-center justify-center w-3/4 px-5 py-3 font-medium ${ACCENT_BUTTON}`}>
+          <p
+            className={`flex items-center justify-center w-3/4 px-5 py-3 font-medium ${ACCENT_BUTTON}`}
+          >
             Effective date: 2022-07-08
           </p>
         </div>
@@ -78,8 +80,8 @@ export default function PrivacyPolicy() {
               Group.
             </p>
             <p className="mt-4">
-              <b>PERSONAL DATA</b> means data about a living individual who can be
-              identified from those data (or from those and other information
+              <b>PERSONAL DATA</b> means data about a living individual who can
+              be identified from those data (or from those and other information
               either in our possession or likely to come into our possession).
             </p>
             <p className="mt-4">
@@ -94,15 +96,15 @@ export default function PrivacyPolicy() {
             <p className="mt-4">
               <b>DATA CONTROLLER</b> means a natural or legal person who (either
               alone or jointly or in common with other persons) determines the
-              purposes for which and the manner in which any personal data are, or
-              are to be, processed. For the purpose of this Privacy Policy, we are
-              a Data Controller of your data.
+              purposes for which and the manner in which any personal data are,
+              or are to be, processed. For the purpose of this Privacy Policy,
+              we are a Data Controller of your data.
             </p>
             <p className="mt-4">
               <b>DATA PROCESSORS (OR SERVICE PROVIDERS)</b> means any natural or
               legal person who processes the data on behalf of the Data
-              Controller. We may use the services of various Service Providers in
-              order to process your data more effectively.
+              Controller. We may use the services of various Service Providers
+              in order to process your data more effectively.
             </p>{" "}
             <p>
               <b>DATA SUBJECT</b> is any living individual who is the subject of
@@ -117,8 +119,8 @@ export default function PrivacyPolicy() {
           <div className="mt-4 text-gray-500">
             <span className="inline">3.</span>{" "}
             <span className="inline font-medium">
-            Information Collection and Use
-          </span>
+              Information Collection and Use
+            </span>
             <p className="mt-4">
               We collect several different types of information for various
               purposes to provide and improve our Service to you.
@@ -126,9 +128,7 @@ export default function PrivacyPolicy() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">4.</span>{" "}
-            <span className="inline font-medium">
-            Types of Data Collected
-          </span>
+            <span className="inline font-medium">Types of Data Collected</span>
             <p className="mt-4">
               <b>Personal Data</b>
             </p>
@@ -150,15 +150,15 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">
               Cookies are files with a small amount of data which may include an
-              anonymous unique identifier. Cookies are sent to your browser from a
-              website and stored on your device. Other tracking technologies are
-              also used such as beacons, tags and scripts to collect and track
-              information and to improve and analyze our Service.
+              anonymous unique identifier. Cookies are sent to your browser from
+              a website and stored on your device. Other tracking technologies
+              are also used such as beacons, tags and scripts to collect and
+              track information and to improve and analyze our Service.
             </p>
             <p className="mt-4">
               You can instruct your browser to refuse all cookies or to indicate
-              when a cookie is being sent. However, if you do not accept cookies,
-              you may not be able to use some portions of our Service.
+              when a cookie is being sent. However, if you do not accept
+              cookies, you may not be able to use some portions of our Service.
             </p>
             <p className="mt-4">Examples of Cookies we use:</p>
             <p className="mt-4">
@@ -192,8 +192,9 @@ export default function PrivacyPolicy() {
               0.4. for internal record keeping and administrative purposes
             </p>
             <p className="mt-4">
-              0.5. for security and fraud prevention, and to ensure that our sites
-              and apps are safe, secure, and used in line with our terms of use
+              0.5. for security and fraud prevention, and to ensure that our
+              sites and apps are safe, secure, and used in line with our terms
+              of use
             </p>
             <p className="mt-4 font-bold">
               Legitimate Reasons for Processing Your Personal Information
@@ -207,59 +208,53 @@ export default function PrivacyPolicy() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">6.</span>{" "}
-            <span className="inline font-medium">
-            Retention of Data
-          </span>
+            <span className="inline font-medium">Retention of Data</span>
             <p className="mt-4">
               We will retain your Personal Data only for as long as is necessary
-              for the purposes set out in this Privacy Policy. We will retain and
-              use your Personal Data to the extent necessary to comply with our
-              legal obligations (for example, if we are required to retain your
-              data to comply with applicable laws), resolve disputes, and enforce
-              our legal agreements and policies.
+              for the purposes set out in this Privacy Policy. We will retain
+              and use your Personal Data to the extent necessary to comply with
+              our legal obligations (for example, if we are required to retain
+              your data to comply with applicable laws), resolve disputes, and
+              enforce our legal agreements and policies.
             </p>
             <p className="mt-4">
-              We will also retain Usage Data for internal analysis purposes. Usage
-              Data is generally retained for a shorter period, except when this
-              data is used to strengthen the security or to improve the
-              functionality of our Service, or we are legally obligated to retain
-              this data for longer time periods.
+              We will also retain Usage Data for internal analysis purposes.
+              Usage Data is generally retained for a shorter period, except when
+              this data is used to strengthen the security or to improve the
+              functionality of our Service, or we are legally obligated to
+              retain this data for longer time periods.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">7.</span>{" "}
-            <span className="inline font-medium">
-            Transfer of Data
-          </span>
+            <span className="inline font-medium">Transfer of Data</span>
             <p className="mt-4">
               Your information, including Personal Data, may be transferred to –
               and maintained on – computers located outside of your state,
-              province, country or other governmental jurisdiction where the data
-              protection laws may differ from those of your jurisdiction.
+              province, country or other governmental jurisdiction where the
+              data protection laws may differ from those of your jurisdiction.
             </p>
             <p className="mt-4">
               If you are located outside Philippines and choose to provide
-              information to us, please note that we transfer the data, including
-              Personal Data, to Philippines and process it there.
+              information to us, please note that we transfer the data,
+              including Personal Data, to Philippines and process it there.
             </p>
             <p className="mt-4">
               Your consent to this Privacy Policy followed by your submission of
               such information represents your agreement to that transfer.
             </p>
             <p className="mt-4">
-              Morning Group will take all the steps reasonably necessary to ensure
-              that your data is treated securely and in accordance with this
-              Privacy Policy and no transfer of your Personal Data will take place
-              to an organisation or a country unless there are adequate controls
-              in place including the security of your data and other personal
-              information.
+              Morning Group will take all the steps reasonably necessary to
+              ensure that your data is treated securely and in accordance with
+              this Privacy Policy and no transfer of your Personal Data will
+              take place to an organisation or a country unless there are
+              adequate controls in place including the security of your data and
+              other personal information.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">8.</span>{" "}
-            <span className="inline font-medium">
-            Disclosure of Data
-          </span>
+            <span className="inline font-medium">Disclosure of Data</span>
             <p className="mt-4">
               We may disclose personal information that we collect, or you
               provide:
@@ -284,8 +279,8 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">0.3.1. to our subsidiaries and affiliates;</p>
             <p className="mt-4">
-              0.3.2. to contractors, service providers, and other third parties we
-              use to support our business;
+              0.3.2. to contractors, service providers, and other third parties
+              we use to support our business;
             </p>
             <p className="mt-4">
               0.3.3. to fulfill the purpose for which you provide it;
@@ -307,23 +302,21 @@ export default function PrivacyPolicy() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">9.</span>{" "}
-            <span className="inline font-medium">
-            Security of Data
-          </span>
+            <span className="inline font-medium">Security of Data</span>
             <p className="mt-4">
               The security of your data is important to us but remember that no
               method of transmission over the Internet or method of electronic
               storage is 100% secure. While we strive to use commercially
-              acceptable means to protect your Personal Data, we cannot guarantee
-              its absolute security.
+              acceptable means to protect your Personal Data, we cannot
+              guarantee its absolute security.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">10.</span>{" "}
             <span className="inline font-medium">
-            Your Data Protection Rights Under General Data Protection Regulation
-            (GDPR)
-          </span>
+              Your Data Protection Rights Under General Data Protection
+              Regulation (GDPR)
+            </span>
             <p className="mt-4">
               If you are a resident of the European Union (EU) and European
               Economic Area (EEA), you have certain data protection rights,
@@ -335,9 +328,9 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">
               {" "}
-              If you wish to be informed what Personal Data we hold about you and
-              if you want it to be removed from our systems, please email us at{" "}
-              <b>paunlagui.jm.cs@gmail.com</b>.
+              If you wish to be informed what Personal Data we hold about you
+              and if you want it to be removed from our systems, please email us
+              at <b>paunlagui.jm.cs@gmail.com</b>.
             </p>
             <p className="mt-4">
               In certain circumstances, you have the following data protection
@@ -357,8 +350,8 @@ export default function PrivacyPolicy() {
               processing of your Personal Data;
             </p>
             <p className="mt-4">
-              0.4. the right of restriction. You have the right to request that we
-              restrict the processing of your personal information;
+              0.4. the right of restriction. You have the right to request that
+              we restrict the processing of your personal information;
             </p>
             <p className="mt-4">
               0.5. the right to data portability. You have the right to be
@@ -372,22 +365,22 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">
               Please note that we may ask you to verify your identity before
-              responding to such requests. Please note, we may not able to provide
-              Service without some necessary data.
+              responding to such requests. Please note, we may not able to
+              provide Service without some necessary data.
             </p>
             <p className="mt-4">
-              You have the right to complain to a Data Protection Authority about
-              our collection and use of your Personal Data. For more information,
-              please contact your local data protection authority in the European
-              Economic Area (EEA).
+              You have the right to complain to a Data Protection Authority
+              about our collection and use of your Personal Data. For more
+              information, please contact your local data protection authority
+              in the European Economic Area (EEA).
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">11.</span>{" "}
             <span className="inline font-medium">
-            Your Data Protection Rights under the California Privacy Protection
-            Act (CalOPPA)
-          </span>
+              Your Data Protection Rights under the California Privacy
+              Protection Act (CalOPPA)
+            </span>
             <p className="mt-4">
               CalOPPA is the first state law in the nation to require commercial
               websites and online services to post a privacy policy. The law’s
@@ -412,8 +405,8 @@ export default function PrivacyPolicy() {
               Privacy Policy Page;
             </p>
             <p className="mt-4">
-              0.4. users are able to change their personal information by emailing
-              us at <b>paunlagui.jm.cs@gmail.com</b>.
+              0.4. users are able to change their personal information by
+              emailing us at <b>paunlagui.jm.cs@gmail.com</b>.
             </p>
             <p className="mt-4">Our Policy on “Do Not Track” Signals:</p>
             <p className="mt-4">
@@ -430,9 +423,9 @@ export default function PrivacyPolicy() {
           <div className="mt-4 text-gray-500">
             <span className="inline">12.</span>{" "}
             <span className="inline font-medium">
-            Your Data Protection Rights under the California Consumer Privacy
-            Act (CCPA)
-          </span>
+              Your Data Protection Rights under the California Consumer Privacy
+              Act (CCPA)
+            </span>
             <p className="mt-4">
               If you are a California resident, you are entitled to learn what
               data we collect about you, ask to delete your data and not to sell
@@ -441,8 +434,8 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">
               <b>
-                0.1. What personal information we have about you. If you make this
-                request, we will return to you:
+                0.1. What personal information we have about you. If you make
+                this request, we will return to you:
               </b>
             </p>
             <p className="mt-4">
@@ -450,26 +443,26 @@ export default function PrivacyPolicy() {
               about you.
             </p>
             <p className="mt-4">
-              0.0.2. The categories of sources from which we collect your personal
-              information.
+              0.0.2. The categories of sources from which we collect your
+              personal information.
             </p>
             <p className="mt-4">
-              0.0.3. The business or commercial purpose for collecting or selling
-              your personal information.
+              0.0.3. The business or commercial purpose for collecting or
+              selling your personal information.
             </p>
             <p className="mt-4">
               0.0.4. The categories of third parties with whom we share personal
               information.
             </p>
             <p className="mt-4">
-              0.0.5. The specific pieces of personal information we have collected
-              about you.
+              0.0.5. The specific pieces of personal information we have
+              collected about you.
             </p>
             <p className="mt-4">
               0.0.6. A list of categories of personal information that we have
-              sold, along with the category of any other company we sold it to. If
-              we have not sold your personal information, we will inform you of
-              that fact.
+              sold, along with the category of any other company we sold it to.
+              If we have not sold your personal information, we will inform you
+              of that fact.
             </p>
             <p className="mt-4">
               0.0.7. A list of categories of personal information that we have
@@ -486,13 +479,13 @@ export default function PrivacyPolicy() {
             <p className="mt-4">
               <b>
                 0.2. To delete your personal information. If you make this
-                request, we will delete the personal information we hold about you
-                as of the date of your request from our records and direct any
-                service providers to do the same. In some cases, deletion may be
-                accomplished through de-identification of the information. If you
-                choose to delete your personal information, you may not be able to
-                use certain functions that require your personal information to
-                operate.
+                request, we will delete the personal information we hold about
+                you as of the date of your request from our records and direct
+                any service providers to do the same. In some cases, deletion
+                may be accomplished through de-identification of the
+                information. If you choose to delete your personal information,
+                you may not be able to use certain functions that require your
+                personal information to operate.
               </b>
             </p>
             <p className="mt-4">
@@ -504,7 +497,8 @@ export default function PrivacyPolicy() {
                 personal information to a third party, or within our family of
                 companies, without monetary consideration may be considered a
                 “sale” under California law. You are the only owner of your
-                Personal Data and can request disclosure or deletion at any time.
+                Personal Data and can request disclosure or deletion at any
+                time.
               </b>
             </p>
             <p className="mt-4">
@@ -514,28 +508,26 @@ export default function PrivacyPolicy() {
             <p className="mt-4">
               Please note, if you ask us to delete or stop selling your data, it
               may impact your experience with us, and you may not be able to
-              participate in certain programs or membership services which require
-              the usage of your personal information to function. But in no
-              circumstances, we will discriminate against you for exercising your
-              rights.
+              participate in certain programs or membership services which
+              require the usage of your personal information to function. But in
+              no circumstances, we will discriminate against you for exercising
+              your rights.
             </p>
             <p className="mt-4">
-              To exercise your California data protection rights described above,
-              please send your request(s) by email:{" "}
+              To exercise your California data protection rights described
+              above, please send your request(s) by email:{" "}
               <b>paunlagui.jm.cs@gmail.com</b>.
             </p>
             <p className="mt-4">
               Your data protection rights, described above, are covered by the
               CCPA, short for the California Consumer Privacy Act. To find out
-              more, visit the official California Legislative Information website.
-              The CCPA took effect on 01/01/2020.
+              more, visit the official California Legislative Information
+              website. The CCPA took effect on 01/01/2020.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">13.</span>{" "}
-            <span className="inline font-medium">
-            Service Providers
-          </span>
+            <span className="inline font-medium">Service Providers</span>
             <p className="mt-4">
               We may employ third party companies and individuals to facilitate
               our Service (<b>“Service Providers”</b>), provide Service on our
@@ -544,33 +536,31 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">
               These third parties have access to your Personal Data only to
-              perform these tasks on our behalf and are obligated not to disclose
-              or use it for any other purpose.
+              perform these tasks on our behalf and are obligated not to
+              disclose or use it for any other purpose.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">14.</span>{" "}
-            <span className="inline font-medium">
-            Children’s Privacy
-          </span>
+            <span className="inline font-medium">Children’s Privacy</span>
             <p className="mt-4">
               Our Services are not intended for use by children under the age of
               18 (<b>“Child”</b> or <b>“Children”</b>).
             </p>
             <p className="mt-4">
-              We do not knowingly collect personally identifiable information from
-              Children under 18. If you become aware that a Child has provided us
-              with Personal Data, please contact us. If we become aware that we
-              have collected Personal Data from Children without verification of
-              parental consent, we take steps to remove that information from our
-              servers.
+              We do not knowingly collect personally identifiable information
+              from Children under 18. If you become aware that a Child has
+              provided us with Personal Data, please contact us. If we become
+              aware that we have collected Personal Data from Children without
+              verification of parental consent, we take steps to remove that
+              information from our servers.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">15.</span>{" "}
             <span className="inline font-medium">
-            Changes to This Privacy Policy
-          </span>
+              Changes to This Privacy Policy
+            </span>
             <p className="mt-4">
               We may update our Privacy Policy from time to time. We will notify
               you of any changes by posting the new Privacy Policy on this page.
@@ -582,19 +572,20 @@ export default function PrivacyPolicy() {
             </p>
             <p className="mt-4">
               You are advised to review this Privacy Policy periodically for any
-              changes. Changes to this Privacy Policy are effective when they are
-              posted on this page.
+              changes. Changes to this Privacy Policy are effective when they
+              are posted on this page.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">16.</span>{" "}
             <span className="inline font-medium">Contact Us</span>
             <p className="mt-4">
-              If you have any questions about this Privacy Policy, please contact
-              us by email: <b>paunlagui.jm.cs@gmail.com</b>.
+              If you have any questions about this Privacy Policy, please
+              contact us by email: <b>paunlagui.jm.cs@gmail.com</b>.
             </p>
             <p className="mt-4">
-              This <a href="client/src/views/pub/PrivacyPolicy">Privacy Policy</a>{" "}
+              This{" "}
+              <a href="client/src/views/pub/PrivacyPolicy">Privacy Policy</a>{" "}
               was created for <b>Sentry.ai</b> by{" "}
               <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-07-08.
             </p>

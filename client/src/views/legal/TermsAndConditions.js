@@ -2,7 +2,7 @@ import React from "react";
 
 import Terms from "../../assets/img/terms.svg";
 import BackNavigation from "../../components/navbars/BackNavigation";
-import {ACCENT_BUTTON} from "../../assets/styles/styled-components";
+import { ACCENT_BUTTON } from "../../assets/styles/styled-components";
 
 /**
  * @description Terms and conditions listbox for the application
@@ -28,7 +28,9 @@ export default function TermsAndConditions() {
             terms and conditions. If you do not agree to the terms and
             conditions, please do not use this website.
           </p>
-          <p className={`flex items-center justify-center w-3/4 px-5 py-3 font-medium ${ACCENT_BUTTON}`}>
+          <p
+            className={`flex items-center justify-center w-3/4 px-5 py-3 font-medium ${ACCENT_BUTTON}`}
+          >
             Effective date: 2022-07-08
           </p>
         </div>
@@ -45,14 +47,14 @@ export default function TermsAndConditions() {
               Welcome to <b>Morning Group</b> (“Company”, “we”, “our”, “us”)!
             </p>
             <p className="mt-4">
-              These Terms of Service (“Terms”, “Terms of Service”) govern your use
-              of our website located at <b>Sentry.ai</b> (together or individually
-              “Service”) operated by <b>Morning Group</b>.
+              These Terms of Service (“Terms”, “Terms of Service”) govern your
+              use of our website located at <b>Sentry.ai</b> (together or
+              individually “Service”) operated by <b>Morning Group</b>.
             </p>
             <p className="mt-4">
-              Our Privacy Policy also governs your use of our Service and explains
-              how we collect, safeguard and disclose information that results from
-              your use of our web pages.
+              Our Privacy Policy also governs your use of our Service and
+              explains how we collect, safeguard and disclose information that
+              results from your use of our web pages.
             </p>
             <p className="mt-4">
               Your agreement with us includes these Terms and our Privacy Policy
@@ -71,21 +73,20 @@ export default function TermsAndConditions() {
             <span className="inline">2.</span>{" "}
             <span className="inline font-medium">Content</span>
             <p className="mt-4">
-              Content found on or through this Service are the property of Morning
-              Group or used with permission. You may not distribute, modify,
-              transmit, reuse, download, repost, copy, or use said Content,
-              whether in whole or in part, for commercial purposes or for personal
-              gain, without express advance written permission from us.
+              Content found on or through this Service are the property of
+              Morning Group or used with permission. You may not distribute,
+              modify, transmit, reuse, download, repost, copy, or use said
+              Content, whether in whole or in part, for commercial purposes or
+              for personal gain, without express advance written permission from
+              us.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">3.</span>{" "}
-            <span className="inline font-medium">
-            Prohibited Uses
-          </span>
+            <span className="inline font-medium">Prohibited Uses</span>
             <p className="mt-4">
-              You may use Service only for lawful purposes and in accordance with
-              Terms. You agree not to use Service:
+              You may use Service only for lawful purposes and in accordance
+              with Terms. You agree not to use Service:
             </p>
             <p className="mt-4">
               0.1. In any way that violates any applicable national or
@@ -93,8 +94,8 @@ export default function TermsAndConditions() {
             </p>
             <p className="mt-4">
               0.2. For the purpose of exploiting, harming, or attempting to
-              exploit or harm minors in any way by exposing them to inappropriate
-              content or otherwise.
+              exploit or harm minors in any way by exposing them to
+              inappropriate content or otherwise.
             </p>
             <p className="mt-4">
               0.3. To transmit, or procure the sending of, any advertising or
@@ -106,23 +107,23 @@ export default function TermsAndConditions() {
               employee, another user, or any other person or entity.
             </p>
             <p className="mt-4">
-              0.5. In any way that infringes upon the rights of others, or in any
-              way is illegal, threatening, fraudulent, or harmful, or in
+              0.5. In any way that infringes upon the rights of others, or in
+              any way is illegal, threatening, fraudulent, or harmful, or in
               connection with any unlawful, illegal, fraudulent, or harmful
               purpose or activity.
             </p>
             <p className="mt-4">
               0.6. To engage in any other conduct that restricts or inhibits
-              anyone’s use or enjoyment of Service, or which, as determined by us,
-              may harm or offend Company or users of Service or expose them to
-              liability.
+              anyone’s use or enjoyment of Service, or which, as determined by
+              us, may harm or offend Company or users of Service or expose them
+              to liability.
             </p>
             <p className="mt-4">Additionally, you agree not to:</p>
             <p className="mt-4">
               0.1. Use Service in any manner that could disable, overburden,
-              damage, or impair Service or interfere with any other party’s use of
-              Service, including their ability to engage in real time activities
-              through Service.
+              damage, or impair Service or interfere with any other party’s use
+              of Service, including their ability to engage in real time
+              activities through Service.
             </p>
             <p className="mt-4">
               0.2. Use any robot, spider, or other automatic device, process, or
@@ -143,13 +144,14 @@ export default function TermsAndConditions() {
               other material which is malicious or technologically harmful.
             </p>
             <p className="mt-4">
-              0.6. Attempt to gain unauthorized access to, interfere with, damage,
-              or disrupt any parts of Service, the server on which Service is
-              stored, or any server, computer, or database connected to Service.
+              0.6. Attempt to gain unauthorized access to, interfere with,
+              damage, or disrupt any parts of Service, the server on which
+              Service is stored, or any server, computer, or database connected
+              to Service.
             </p>
             <p className="mt-4">
-              0.7. Attack Service via a denial-of-service attack or a distributed
-              denial-of-service attack.
+              0.7. Attack Service via a denial-of-service attack or a
+              distributed denial-of-service attack.
             </p>
             <p className="mt-4">
               0.8. Take any action that may damage or falsify Company rating.
@@ -161,38 +163,33 @@ export default function TermsAndConditions() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">4.</span>{" "}
-            <span className="inline font-medium">
-            No Use By Minors
-          </span>
+            <span className="inline font-medium">No Use By Minors</span>
             <p className="mt-4">
-              Service is intended only for access and use by individuals at least
-              eighteen (18) years old. By accessing or using Service, you warrant
-              and represent that you are at least eighteen (18) years of age and
-              with the full authority, right, and capacity to enter into this
-              agreement and abide by all of the terms and conditions of Terms. If
-              you are not at least eighteen (18) years old, you are prohibited
-              from both the access and usage of Service.
+              Service is intended only for access and use by individuals at
+              least eighteen (18) years old. By accessing or using Service, you
+              warrant and represent that you are at least eighteen (18) years of
+              age and with the full authority, right, and capacity to enter into
+              this agreement and abide by all of the terms and conditions of
+              Terms. If you are not at least eighteen (18) years old, you are
+              prohibited from both the access and usage of Service.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">5.</span>{" "}
-            <span className="inline font-medium">
-            Intellectual Property
-          </span>
+            <span className="inline font-medium">Intellectual Property</span>
             <p className="mt-4">
               Service and its original content (excluding Content provided by
-              users), features and functionality are and will remain the exclusive
-              property of Morning Group and its licensors. Service is protected by
-              copyright, trademark, and other laws of and foreign countries. Our
-              trademarks may not be used in connection with any product or service
-              without the prior written consent of Morning Group.
+              users), features and functionality are and will remain the
+              exclusive property of Morning Group and its licensors. Service is
+              protected by copyright, trademark, and other laws of and foreign
+              countries. Our trademarks may not be used in connection with any
+              product or service without the prior written consent of Morning
+              Group.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">6.</span>{" "}
-            <span className="inline font-medium">
-            Copyright Policy
-          </span>
+            <span className="inline font-medium">Copyright Policy</span>
             <p className="mt-4">
               We respect the intellectual property rights of others. It is our
               policy to respond to any claim that Content posted on Service
@@ -201,9 +198,9 @@ export default function TermsAndConditions() {
             </p>
             <p className="mt-4">
               If you are a copyright owner, or authorized on behalf of one, and
-              you believe that the copyrighted work has been copied in a way that
-              constitutes copyright infringement, please submit your claim via
-              email to paunlagui.cs.jm@gmail.com, with the subject line:
+              you believe that the copyrighted work has been copied in a way
+              that constitutes copyright infringement, please submit your claim
+              via email to paunlagui.cs.jm@gmail.com, with the subject line:
               “Copyright Infringement” and include in your claim a detailed
               description of the alleged Infringement as detailed below, under
               “DMCA Notice and Procedure for Copyright Infringement Claims”
@@ -211,24 +208,24 @@ export default function TermsAndConditions() {
             <p className="mt-4">
               You may be held accountable for damages (including costs and
               attorneys’ fees) for misrepresentation or bad-faith claims on the
-              infringement of any Content found on and/or through Service on your
-              copyright.
+              infringement of any Content found on and/or through Service on
+              your copyright.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">7.</span>{" "}
             <span className="inline font-medium">
-            DMCA Notice and Procedure for Copyright Infringement Claims
-          </span>
+              DMCA Notice and Procedure for Copyright Infringement Claims
+            </span>
             <p>
               You may submit a notification pursuant to the Digital Millennium
               Copyright Act (DMCA) by providing our Copyright Agent with the
-              following information in writing (see 17 U.S.C 512(c)(3) for further
-              detail):
+              following information in writing (see 17 U.S.C 512(c)(3) for
+              further detail):
             </p>
             <p className="mt-4">
-              0.1. an electronic or physical signature of the person authorized to
-              act on behalf of the owner of the copyright’s interest;
+              0.1. an electronic or physical signature of the person authorized
+              to act on behalf of the owner of the copyright’s interest;
             </p>
             <p className="mt-4">
               0.2. a description of the copyrighted work that you claim has been
@@ -237,16 +234,17 @@ export default function TermsAndConditions() {
               copyrighted work;
             </p>
             <p className="mt-4">
-              0.3. identification of the URL or other specific location on Service
-              where the material that you claim is infringing is located;
+              0.3. identification of the URL or other specific location on
+              Service where the material that you claim is infringing is
+              located;
             </p>
             <p className="mt-4">
               0.4. your address, telephone number, and email address;
             </p>
             <p className="mt-4">
               0.5. a statement by you that you have a good faith belief that the
-              disputed use is not authorized by the copyright owner, its agent, or
-              the law;
+              disputed use is not authorized by the copyright owner, its agent,
+              or the law;
             </p>
             <p className="mt-4">
               0.6. a statement by you, made under penalty of perjury, that the
@@ -262,19 +260,19 @@ export default function TermsAndConditions() {
           <div className="mt-4 text-gray-500">
             <span className="inline">8.</span>{" "}
             <span className="inline font-medium">
-            Error Reporting and Feedback
-          </span>
+              Error Reporting and Feedback
+            </span>
             <p className="mt-4">
               You may provide us either directly at paunlagui.cs.jm@gmail.com or
               via third party sites and tools with information and feedback
               concerning errors, suggestions for improvements, ideas, problems,
               complaints, and other matters related to our Service (“Feedback”).
-              You acknowledge and agree that: (i) you shall not retain, acquire or
-              assert any intellectual property right or other right, title or
+              You acknowledge and agree that: (i) you shall not retain, acquire
+              or assert any intellectual property right or other right, title or
               interest in or to the Feedback; (ii) Company may have development
               ideas similar to the Feedback; (iii) Feedback does not contain
-              confidential information or proprietary information from you or any
-              third party; and (iv) Company is not under any obligation of
+              confidential information or proprietary information from you or
+              any third party; and (iv) Company is not under any obligation of
               confidentiality with respect to the Feedback. In the event the
               transfer of the ownership to the Feedback is not possible due to
               applicable mandatory laws, you grant Company and its affiliates an
@@ -286,35 +284,35 @@ export default function TermsAndConditions() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">9.</span>{" "}
-            <span className="inline font-medium">
-            Disclaimer Of Warranty
-          </span>
+            <span className="inline font-medium">Disclaimer Of Warranty</span>
             <p className="mt-4">
               THESE SERVICES ARE PROVIDED BY COMPANY ON AN “AS IS” AND “AS
-              AVAILABLE” BASIS. COMPANY MAKES NO REPRESENTATIONS OR WARRANTIES OF
-              ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THEIR SERVICES,
-              OR THE INFORMATION, CONTENT OR MATERIALS INCLUDED THEREIN. YOU
-              EXPRESSLY AGREE THAT YOUR USE OF THESE SERVICES, THEIR CONTENT, AND
-              ANY SERVICES OR ITEMS OBTAINED FROM US IS AT YOUR SOLE RISK.
+              AVAILABLE” BASIS. COMPANY MAKES NO REPRESENTATIONS OR WARRANTIES
+              OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THEIR
+              SERVICES, OR THE INFORMATION, CONTENT OR MATERIALS INCLUDED
+              THEREIN. YOU EXPRESSLY AGREE THAT YOUR USE OF THESE SERVICES,
+              THEIR CONTENT, AND ANY SERVICES OR ITEMS OBTAINED FROM US IS AT
+              YOUR SOLE RISK.
             </p>
             <p className="mt-4">
               NEITHER COMPANY NOR ANY PERSON ASSOCIATED WITH COMPANY MAKES ANY
               WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS,
               SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE
-              SERVICES. WITHOUT LIMITING THE FOREGOING, NEITHER COMPANY NOR ANYONE
-              ASSOCIATED WITH COMPANY REPRESENTS OR WARRANTS THAT THE SERVICES,
-              THEIR CONTENT, OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE
-              SERVICES WILL BE ACCURATE, RELIABLE, ERROR-FREE, OR UNINTERRUPTED,
-              THAT DEFECTS WILL BE CORRECTED, THAT THE SERVICES OR THE SERVER THAT
-              MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS
-              OR THAT THE SERVICES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE
-              SERVICES WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.
+              SERVICES. WITHOUT LIMITING THE FOREGOING, NEITHER COMPANY NOR
+              ANYONE ASSOCIATED WITH COMPANY REPRESENTS OR WARRANTS THAT THE
+              SERVICES, THEIR CONTENT, OR ANY SERVICES OR ITEMS OBTAINED THROUGH
+              THE SERVICES WILL BE ACCURATE, RELIABLE, ERROR-FREE, OR
+              UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT THE SERVICES
+              OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER
+              HARMFUL COMPONENTS OR THAT THE SERVICES OR ANY SERVICES OR ITEMS
+              OBTAINED THROUGH THE SERVICES WILL OTHERWISE MEET YOUR NEEDS OR
+              EXPECTATIONS.
             </p>
             <p className="mt-4">
-              COMPANY HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS
-              OR IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO
-              ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR
-              PARTICULAR PURPOSE.
+              COMPANY HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER
+              EXPRESS OR IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT
+              LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT,
+              AND FITNESS FOR PARTICULAR PURPOSE.
             </p>
             <p className="mt-4">
               THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE
@@ -323,28 +321,27 @@ export default function TermsAndConditions() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">10.</span>{" "}
-            <span className="inline font-medium">
-            Limitation Of Liability
-          </span>
+            <span className="inline font-medium">Limitation Of Liability</span>
             <p className="mt-4">
               EXCEPT AS PROHIBITED BY LAW, YOU WILL HOLD US AND OUR OFFICERS,
               DIRECTORS, EMPLOYEES, AND AGENTS HARMLESS FOR ANY INDIRECT,
               PUNITIVE, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGE, HOWEVER IT
-              ARISES (INCLUDING ATTORNEYS’ FEES AND ALL RELATED COSTS AND EXPENSES
-              OF LITIGATION AND ARBITRATION, OR AT TRIAL OR ON APPEAL, IF ANY,
-              WHETHER OR NOT LITIGATION OR ARBITRATION IS INSTITUTED), WHETHER IN
-              AN ACTION OF CONTRACT, NEGLIGENCE, OR OTHER TORTIOUS ACTION, OR
-              ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT, INCLUDING
-              WITHOUT LIMITATION ANY CLAIM FOR PERSONAL INJURY OR PROPERTY DAMAGE,
-              ARISING FROM THIS AGREEMENT AND ANY VIOLATION BY YOU OF ANY FEDERAL,
-              STATE, OR LOCAL LAWS, STATUTES, RULES, OR REGULATIONS, EVEN IF
-              COMPANY HAS BEEN PREVIOUSLY ADVISED OF THE POSSIBILITY OF SUCH
-              DAMAGE. EXCEPT AS PROHIBITED BY LAW, IF THERE IS LIABILITY FOUND ON
-              THE PART OF COMPANY, IT WILL BE LIMITED TO THE AMOUNT PAID FOR THE
-              PRODUCTS AND/OR SERVICES, AND UNDER NO CIRCUMSTANCES WILL THERE BE
-              CONSEQUENTIAL OR PUNITIVE DAMAGES. SOME STATES DO NOT ALLOW THE
-              EXCLUSION OR LIMITATION OF PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
-              DAMAGES, SO THE PRIOR LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
+              ARISES (INCLUDING ATTORNEYS’ FEES AND ALL RELATED COSTS AND
+              EXPENSES OF LITIGATION AND ARBITRATION, OR AT TRIAL OR ON APPEAL,
+              IF ANY, WHETHER OR NOT LITIGATION OR ARBITRATION IS INSTITUTED),
+              WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE, OR OTHER TORTIOUS
+              ACTION, OR ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT,
+              INCLUDING WITHOUT LIMITATION ANY CLAIM FOR PERSONAL INJURY OR
+              PROPERTY DAMAGE, ARISING FROM THIS AGREEMENT AND ANY VIOLATION BY
+              YOU OF ANY FEDERAL, STATE, OR LOCAL LAWS, STATUTES, RULES, OR
+              REGULATIONS, EVEN IF COMPANY HAS BEEN PREVIOUSLY ADVISED OF THE
+              POSSIBILITY OF SUCH DAMAGE. EXCEPT AS PROHIBITED BY LAW, IF THERE
+              IS LIABILITY FOUND ON THE PART OF COMPANY, IT WILL BE LIMITED TO
+              THE AMOUNT PAID FOR THE PRODUCTS AND/OR SERVICES, AND UNDER NO
+              CIRCUMSTANCES WILL THERE BE CONSEQUENTIAL OR PUNITIVE DAMAGES.
+              SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF PUNITIVE,
+              INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE PRIOR LIMITATION OR
+              EXCLUSION MAY NOT APPLY TO YOU.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
@@ -369,9 +366,7 @@ export default function TermsAndConditions() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">12.</span>{" "}
-            <span className="inline font-medium">
-            Governing Law
-          </span>
+            <span className="inline font-medium">Governing Law</span>
             <p className="mt-4">
               These Terms shall be governed and construed in accordance with the
               laws of Philippines, which governing law applies to agreement
@@ -383,15 +378,13 @@ export default function TermsAndConditions() {
               these Terms is held to be invalid or unenforceable by a court, the
               remaining provisions of these Terms will remain in effect. These
               Terms constitute the entire agreement between us regarding our
-              Service and supersede and replace any prior agreements we might have
-              had between us regarding Service.
+              Service and supersede and replace any prior agreements we might
+              have had between us regarding Service.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">13.</span>{" "}
-            <span className="inline font-medium">
-            Changes To Service
-          </span>
+            <span className="inline font-medium">Changes To Service</span>
             <p className="mt-4">
               We reserve the right to withdraw or amend our Service, and any
               service or material we provide via Service, in our sole discretion
@@ -403,37 +396,34 @@ export default function TermsAndConditions() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">14.</span>{" "}
-            <span className="inline font-medium">
-            Amendments To Terms
-          </span>
+            <span className="inline font-medium">Amendments To Terms</span>
             <p className="mt-4">
-              We may amend Terms at any time by posting the amended terms on this
-              site. It is your responsibility to review these Terms periodically.
+              We may amend Terms at any time by posting the amended terms on
+              this site. It is your responsibility to review these Terms
+              periodically.
             </p>
             <p className="mt-4">
-              Your continued use of the Platform following the posting of revised
-              Terms means that you accept and agree to the changes. You are
-              expected to check this page frequently so you are aware of any
+              Your continued use of the Platform following the posting of
+              revised Terms means that you accept and agree to the changes. You
+              are expected to check this page frequently so you are aware of any
               changes, as they are binding on you.
             </p>
             <p className="mt-4">
               By continuing to access or use our Service after any revisions
-              become effective, you agree to be bound by the revised terms. If you
-              do not agree to the new terms, you are no longer authorized to use
-              Service.
+              become effective, you agree to be bound by the revised terms. If
+              you do not agree to the new terms, you are no longer authorized to
+              use Service.
             </p>
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">15.</span>{" "}
-            <span className="inline font-medium">
-            Waiver And Severability
-          </span>
+            <span className="inline font-medium">Waiver And Severability</span>
             <p className="mt-4">
               No waiver by Company of any term or condition set forth in Terms
               shall be deemed a further or continuing waiver of such term or
               condition or a waiver of any other term or condition, and any
-              failure of Company to assert a right or provision under Terms shall
-              not constitute a waiver of such right or provision.
+              failure of Company to assert a right or provision under Terms
+              shall not constitute a waiver of such right or provision.
             </p>
             <p className="mt-4">
               If any provision of Terms is held by a court or other tribunal of
@@ -445,9 +435,7 @@ export default function TermsAndConditions() {
           </div>
           <div className="mt-4 text-gray-500">
             <span className="inline">16.</span>{" "}
-            <span className="inline font-medium">
-            Acknowledgement
-          </span>
+            <span className="inline font-medium">Acknowledgement</span>
             <p className="mt-4">
               BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE
               THAT YOU HAVE READ THESE TERMS OF SERVICE AND AGREE TO BE BOUND BY
@@ -458,8 +446,8 @@ export default function TermsAndConditions() {
             <span className="inline">16.</span>{" "}
             <span className="inline font-medium">Contact Us</span>
             <p className="mt-4">
-              Please send your feedback, comments, requests for technical support
-              by email: <b>paunlagui.cs.jm@gmail.com</b>.
+              Please send your feedback, comments, requests for technical
+              support by email: <b>paunlagui.cs.jm@gmail.com</b>.
             </p>
             <p className="mt-4">
               These{" "}

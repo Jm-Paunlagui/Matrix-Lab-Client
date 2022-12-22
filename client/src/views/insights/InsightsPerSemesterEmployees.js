@@ -152,7 +152,8 @@ export default function InsightsPerSemesterEmployees() {
             type="text"
           />
           <div className="place-content-center shadow">
-            <div className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded-lg outline outline-2 shadow mb-8 ${
+            <div
+              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded-lg outline outline-2 shadow mb-8 ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {

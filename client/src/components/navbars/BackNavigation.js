@@ -23,14 +23,15 @@ export default function BackNavigation({
   isSmall = true,
   hasText = true,
   backTo,
-  pageTitle, contrast = false
+  pageTitle,
+  contrast = false,
 }) {
   BackNavigation.propTypes = {
     isSmall: PropTypes.bool,
     hasText: PropTypes.bool,
     backTo: PropTypes.string,
     pageTitle: PropTypes.string,
-    contrast: PropTypes.bool
+    contrast: PropTypes.bool,
   };
   return (
     <div
@@ -42,7 +43,10 @@ export default function BackNavigation({
     >
       <div className="container flex flex-wrap items-center justify-between mx-auto h-14 max-w-7xl">
         <div className="flex items-center transition duration-300 ease-in-out delay-150 rounded-md hover:text-blue-900">
-          <button className={`text-left ${contrast ? DEFAULT_BUTTON : CONTRAST }`} type={"button"}>
+          <button
+            className={`text-left ${contrast ? DEFAULT_BUTTON : CONTRAST}`}
+            type={"button"}
+          >
             <Link to={backTo}>
               <h1 className={`${isSmall ? "px-5 py-3" : "px-3 py-3"}`}>
                 <FontAwesomeIcon

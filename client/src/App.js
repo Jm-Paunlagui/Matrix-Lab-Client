@@ -116,14 +116,14 @@ export default function App() {
 
             <Route element={<IndexLegal />} exact={"true"} path="legal">
               <Route
-                  element={<PrivacyPolicy />}
-                  exact="true"
-                  path="privacy-policy"
+                element={<PrivacyPolicy />}
+                exact="true"
+                path="privacy-policy"
               />
               <Route
-                  element={<TermsAndConditions />}
-                  exact="true"
-                  path="terms-and-conditions"
+                element={<TermsAndConditions />}
+                exact="true"
+                path="terms-and-conditions"
               />
             </Route>
 
