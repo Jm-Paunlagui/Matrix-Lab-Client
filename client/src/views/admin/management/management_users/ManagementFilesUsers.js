@@ -66,6 +66,14 @@ export default function ManagementFilesUsers() {
 
   const [filteredListOfUsers, setFilteredListOfUsers] = useState(users);
 
+  const [loadingIDActivate, setLoadingIDActivate] = useState({});
+  const [loadingIDDeactivate, setLoadingIDDeactivate] = useState({});
+  const [loadingIDLock, setLoadingIDLock] = useState({});
+  const [loadingIDUnlock, setLoadingIDUnlock] = useState({});
+  const [loadingIDDelete, setLoadingIDDelete] = useState({});
+  const [loadingIDRestore, setLoadingIDRestore] = useState({});
+
+
   const [loadingAnimation, setLoadingAnimation] = useState({
     massActivation: false,
     textChangeActivation: "Activate all",
@@ -160,14 +168,17 @@ export default function ManagementFilesUsers() {
    * @param id
    */
   const handleCreateUser = (id) => {
+    setLoadingIDActivate((ids) => ({ ...ids, [id]: true }));
     httpClient
       .post(`/user/on-click-create/${id}`)
       .then((response) => {
         toast.success(response.data.message);
         loadListOfUsers(page_number, per_page_limit);
+        setLoadingIDActivate((ids) => ({ ...ids, [id]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIDActivate({});
       });
   };
 
@@ -177,14 +188,17 @@ export default function ManagementFilesUsers() {
    * @returns {Promise<void>}
    */
   const handleDeactivateUser = async (id) => {
+    setLoadingIDDeactivate((ids) => ({ ...ids, [id]: true }));
     await httpClient
       .post(`/user/on-click-deactivate/${id}`)
       .then((response) => {
         toast.success(response.data.message);
         loadListOfUsers(page_number, per_page_limit);
+        setLoadingIDDeactivate((ids) => ({ ...ids, [id]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIDDeactivate({});
       });
   };
 
@@ -194,14 +208,17 @@ export default function ManagementFilesUsers() {
    * @returns {Promise<void>}
    */
   const handleLockUser = async (id) => {
+    setLoadingIDLock((ids) => ({ ...ids, [id]: true }));
     await httpClient
       .post(`/user/lock-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
         loadListOfUsers(page_number, per_page_limit);
+        setLoadingIDLock((ids) => ({ ...ids, [id]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIDLock({});
       });
   };
 
@@ -211,14 +228,17 @@ export default function ManagementFilesUsers() {
    * @returns {Promise<void>}
    */
   const handleUnlockUser = async (id) => {
+    setLoadingIDUnlock((ids) => ({ ...ids, [id]: true }));
     await httpClient
       .post(`/user/unlock-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
         loadListOfUsers(page_number, per_page_limit);
+        setLoadingIDUnlock((ids) => ({ ...ids, [id]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIDUnlock({});
       });
   };
 
@@ -228,14 +248,17 @@ export default function ManagementFilesUsers() {
    * @returns {Promise<void>}
    */
   const handleDeleteUser = async (id) => {
+    setLoadingIDDelete((ids) => ({ ...ids, [id]: true }));
     await httpClient
       .delete(`/user/delete-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
         loadListOfUsers(page_number, per_page_limit);
+        setLoadingIDDelete((ids) => ({ ...ids, [id]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIDDelete({});
       });
   };
 
@@ -245,14 +268,17 @@ export default function ManagementFilesUsers() {
    * @returns {Promise<void>}
    */
   const handleRestoreUser = async (id) => {
+    setLoadingIDRestore((ids) => ({ ...ids, [id]: true }));
     await httpClient
       .post(`/user/restore-account/${id}`)
       .then((response) => {
         toast.success(response.data.message);
         loadListOfUsers(page_number, per_page_limit);
+        setLoadingIDRestore((ids) => ({ ...ids, [id]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIDRestore({});
       });
   };
 
@@ -736,13 +762,20 @@ export default function ManagementFilesUsers() {
                         onConfirm={handleCreateUser}
                         title="Activate User Account"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faBolt}
-                          />
-                          Activate
-                        </>
+                        {loadingIDActivate[user.id] ? (
+                          <>
+                            <LoadingAnimation moreClasses="text-green-600" />
+                            Activating...
+                          </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faBolt}
+                              />
+                              Activate
+                            </>
+                            )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
@@ -752,13 +785,20 @@ export default function ManagementFilesUsers() {
                         onConfirm={handleUnlockUser}
                         title="Unlock User Account"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faUnlock}
-                          />
-                          Unlock
-                        </>
+                        {loadingIDUnlock[user.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-green-600" />
+                                Unlocking...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faUnlock}
+                              />
+                              Unlock
+                            </>
+                            )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
@@ -768,13 +808,20 @@ export default function ManagementFilesUsers() {
                         onConfirm={handleRestoreUser}
                         title="Restore User Account"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faRotate}
-                          />
-                          Restore
-                        </>
+                        {loadingIDRestore[user.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-green-600" />
+                                Restoring...
+                            </>
+                        ) : (
+                              <>
+                                <FontAwesomeIcon
+                                    className={`${ICON_PLACE_SELF_CENTER}`}
+                                    icon={faRotate}
+                                />
+                                Restore
+                              </>
+                                )}
                       </ModalConfirm>
                     </div>
                     <div className="flex flex-row w-full px-4">
@@ -792,13 +839,20 @@ export default function ManagementFilesUsers() {
                         onConfirm={handleDeactivateUser}
                         title="Deactivate User Account"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faCircleXmark}
-                          />
-                          Deactivate
-                        </>
+                        {loadingIDDeactivate[user.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-red-600" />
+                                Deactivating...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faCircleXmark}
+                              />
+                              Deactivate
+                            </>
+                        )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to lock the user account of ${user.full_name}?`}
@@ -809,13 +863,20 @@ export default function ManagementFilesUsers() {
                         onConfirm={handleLockUser}
                         title="Lock User Account"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faLock}
-                          />
-                          Lock
-                        </>
+                        {loadingIDLock[user.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-red-600" />
+                                Locking...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faLock}
+                              />
+                              Lock
+                            </>
+                        )}
                       </ModalConfirm>
                       <ModalConfirm
                         body={`Are you sure you want to delete ${user.full_name} from the system?`}
@@ -826,13 +887,20 @@ export default function ManagementFilesUsers() {
                         onConfirm={handleDeleteUser}
                         title="Delete User Account"
                       >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faTrash}
-                          />
-                          Delete
-                        </>
+                        {loadingIDDelete[user.id] ? (
+                            <>
+                                <LoadingAnimation moreClasses="text-red-600" />
+                                Deleting...
+                            </>
+                        ) : (
+                            <>
+                              <FontAwesomeIcon
+                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                  icon={faTrash}
+                              />
+                              Delete
+                            </>
+                        )}
                       </ModalConfirm>
                     </div>
                   </div>
