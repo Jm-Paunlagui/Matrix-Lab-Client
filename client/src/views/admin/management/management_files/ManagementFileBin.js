@@ -153,7 +153,7 @@ export default function ManagementFileBin() {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
-        setLoadingIdPermanentDelete({})
+        setLoadingIdPermanentDelete({});
       });
   };
 
@@ -352,18 +352,18 @@ export default function ManagementFileBin() {
                         title="Delete File Permanently"
                       >
                         {loadingIdPermanentDelete[file.id] ? (
-                            <>
-                                <LoadingAnimation moreClasses="text-red-600" />
-                                Permanently Deleting...
-                            </>
-                            ) : (
-                            <>
-                              <FontAwesomeIcon
-                                  className={`${ICON_PLACE_SELF_CENTER}`}
-                                  icon={faTrash}
-                              />
-                              Delete Permanently
-                            </>
+                          <>
+                            <LoadingAnimation moreClasses="text-red-600" />
+                            Permanently Deleting...
+                          </>
+                        ) : (
+                          <>
+                            <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faTrash}
+                            />
+                            Delete Permanently
+                          </>
                         )}
                       </ModalConfirm>
                     </div>
