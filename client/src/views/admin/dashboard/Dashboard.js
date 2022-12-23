@@ -107,7 +107,6 @@ export default function Dashboard() {
         `/analysis/sentiment_vs_polarity/${school_year}/${school_semester}/${csv_question}`,
       )
       .then((response) => {
-        console.log(response.data);
         setAnalysis({
           ...analysis,
           loading_analysis: false,
