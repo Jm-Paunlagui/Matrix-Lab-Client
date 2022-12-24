@@ -100,9 +100,9 @@ export default function UserNavigationBar() {
 
   const navigation_for_dashboard = [
     {
-      name: "Analytics",
-      href: "/user/dashboard/analytics",
-      current: isActiveSubs("analytics"),
+      name: "Sentiment Analysis",
+      href: "/user/dashboard/sentiment-analysis",
+      current: isActiveSubs("sentiment-analysis"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },

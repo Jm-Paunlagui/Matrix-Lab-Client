@@ -416,7 +416,7 @@ export default function AdminPrediction() {
         body={
           "Upload a CSV file to analyze and choose the column that contains the responses to analyze. The system will automatically create users but you have to manually send the credentials to them if the results are ready."
         }
-        title={"Sentiment Analysis"}
+        title={"Sentiment Analyzer"}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">

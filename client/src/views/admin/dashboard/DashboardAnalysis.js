@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import LoadingPage, {
+import {
   LoadingPageSkeletonImage,
   LoadingPageSkeletonText,
 } from "../../../components/loading/LoadingPage";
@@ -16,7 +16,7 @@ import DisclosureTogglable from "../../../components/disclosure/DisclosureToggla
 /**
  * @description Handles the admin profile
  */
-export default function Dashboard() {
+export default function DashboardAnalysis() {
   const [data, setData] = useState({
     loading: true,
     details: [],
@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   const get_file_details = () => {
     httpClient
-      .get("/data/get-all-data-from-csv")
+      .get("/data/dashboard-data-csv")
       .then((response) => {
         setData({
           ...data,
@@ -168,16 +168,20 @@ export default function Dashboard() {
 
   return (
     <div className="px-6 mx-auto max-w-7xl pt-8 pb-8">
-      {loading ? (
-        LoadingPage()
-      ) : (
-        <>
           <Header
             body="A data visualization dashboard for the sentiment analysis of the students' feedbacks."
-            title="Dashboard"
+            title="Sentiment Analysis"
           />
           <div className="grid grid-cols-2 py-8 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {details.map((detail) => (
+            {loading ? (
+                    <>
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                    </>
+                    ) : (
+            details.map((detail) => (
               <div
                 className="flex items-start p-4 bg-blue-50 rounded-lg shadow"
                 key={detail.id}
@@ -206,7 +210,8 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+            )}
           </div>
           <div className="grid w-full grid-cols-1 mb-8">
             <div className="flex flex-col items-center justify-between w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
@@ -588,8 +593,6 @@ export default function Dashboard() {
               )}
             </div>
           </div>
-        </>
-      )}
     </div>
   );
 }

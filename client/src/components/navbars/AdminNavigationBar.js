@@ -88,9 +88,9 @@ export default function AdminNavigationBar() {
    */
   const navigation = [
     {
-      name: "Sentiment Analysis",
-      href: "/admin/sentiment-analysis",
-      current: isActive("sentiment-analysis"),
+      name: "Sentiment Analyzer",
+      href: "/admin/sentiment-analyzer",
+      current: isActive("sentiment-analyzer"),
     },
   ];
 
@@ -172,9 +172,9 @@ export default function AdminNavigationBar() {
 
   const navigation_for_dashboard = [
     {
-      name: "Analytics",
-      href: "/admin/dashboard/analytics",
-      current: isActiveSubs("analytics"),
+      name: "Sentiment Analysis",
+      href: "/admin/dashboard/sentiment-analysis",
+      current: isActiveSubs("sentiment-analysis"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },

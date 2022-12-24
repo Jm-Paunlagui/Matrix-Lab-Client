@@ -8,7 +8,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Dashboard from "./views/admin/dashboard/Dashboard.js";
+import DashboardAnalysis from "./views/admin/dashboard/DashboardAnalysis.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
@@ -188,7 +188,7 @@ export default function App() {
               <Route
                 element={<AdminPrediction />}
                 exact="true"
-                path="sentiment-analysis"
+                path="sentiment-analyzer"
               />
               <Route
                 element={<AdminProfile />}
@@ -197,7 +197,7 @@ export default function App() {
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route element={<IndexDashBoard />} exact="true" path="dashboard">
-                <Route element={<Dashboard />} exact="true" path="analytics" />
+                <Route element={<DashboardAnalysis />} exact="true" path="sentiment-analysis" />
               </Route>
               <Route
                 element={<IndexManagementFiles />}

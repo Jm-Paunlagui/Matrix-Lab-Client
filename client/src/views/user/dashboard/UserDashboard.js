@@ -132,7 +132,7 @@ export default function UserDashboard() {
     <div className="px-6 mx-auto max-w-7xl pt-8 pb-8">
       <Header
         body="A data visualization dashboard for the sentiment analysis of the students' feedbacks."
-        title="Dashboard"
+        title="Sentiment Analysis"
       />
       <div className="grid w-full grid-cols-1 mb-8 mt-8">
         <div className="flex flex-col items-center justify-between w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">

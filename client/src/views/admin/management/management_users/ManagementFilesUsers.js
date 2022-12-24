@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../../../../components/headers/Header";
 import httpClient from "../../../../http/httpClient";
-import LoadingPage, {
-  LoadingAnimation,
+import {
+  LoadingAnimation, LoadingPageSkeletonText,
 } from "../../../../components/loading/LoadingPage";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import {
@@ -32,6 +32,39 @@ import { NoData } from "../../../../components/warnings/WarningMessages";
  * @description Handles the admin tables
  */
 export default function ManagementFilesUsers() {
+  const [data, setData] = useState({
+    loading_: true,
+    details: [],
+  });
+
+  const { loading_, details } = data;
+
+  const get_file_details = () => {
+    httpClient
+        .get("/data/dashboard-data-user")
+        .then((response) => {
+          setData({
+            ...data,
+            loading_: false,
+            details: response.data.details,
+          });
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 401:
+              toast.error("Unauthorized Access");
+              window.location.href = "/unauthorized-access";
+              break;
+            case 440:
+              toast.error("Session Expired");
+              window.location.href = "/login-timeout";
+              break;
+            default:
+              toast.error("Something went wrong");
+              window.location.href = "/page-not-found";
+          }
+        });
+  };
   const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
@@ -467,6 +500,10 @@ export default function ManagementFilesUsers() {
       });
   };
 
+  useEffect(() => {
+    get_file_details();
+  }, []);
+
   /**
    * @description Syncs users from the database
    */
@@ -482,12 +519,47 @@ export default function ManagementFilesUsers() {
         }
         title={"User Management"}
       />
-      {loading ? (
-        LoadingPage()
-      ) : (
+      <div className="grid grid-cols-2 py-8 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {loading ? (
+            <>
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+            </>
+        ) : (
+            details.map((detail) => (
+                <div
+                    className="flex items-start p-4 bg-blue-50 rounded-lg shadow"
+                    key={detail.id}
+                >
+                  <div className="flex items-center justify-center">
+                    <div
+                        className={`flex items-center justify-center w-10 h-10 text-white rounded ${
+                            detail.color
+                        }`}
+                    >
+                      <i className={detail.icon} />
+                    </div>
+                    <div className="flex flex-col items-start justify-center ml-4">
+                      <h1 className="py-1 pl-2 text-2xl font-extrabold leading-none tracking-tight text-left text-gray-500">
+                        {detail.value}
+                      </h1>
+                      <h1 className="text-sm font-medium text-gray-500">
+                        {detail.title}
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+            ))
+        )}
+      </div>
         <>
           <SearchBar
-            customStyle="mt-8"
             name="searchValue"
             onChange={(event) => handleSearchForUsers(event)}
             placeholder="Search"
@@ -703,259 +775,266 @@ export default function ManagementFilesUsers() {
               Next
             </button>
           </div>
-          {filteredListOfUsers.length > 0 ? (
-            <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-              {filteredListOfUsers.map((user) => (
-                <div
-                  className="flex flex-col w-full mb-4 rounded-lg shadow-md bg-blue-50"
-                  key={user.id}
-                >
-                  <div className="w-full col-span-1">
-                    <div className="flex flex-row w-full p-4">
-                      <h1 className="font-bold leading-none text-blue-500 text-md">
-                        {user.full_name}
-                      </h1>
-                    </div>
-                  </div>
-                  <hr className="w-full border-gray-300" />
-                  <div className="col-span-4 p-4 text-start">
-                    <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Status
-                      </h1>
-                    </div>
-                    <div className="flex flex-wrap content-end justify-start w-full gap-2">
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          user.is_active ? STATUS_GREEN : STATUS_WARNING
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {user.is_active ? "Activated" : "Deactivated"}
-                        </h1>
-                      </div>
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          user.is_locked ? STATUS_RED : STATUS_GREEN
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {user.is_locked ? "Locked" : "Unlocked"}
-                        </h1>
-                      </div>
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          user.is_deleted ? STATUS_RED : STATUS_GREEN
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {user.is_deleted ? "Deleted" : "Not Deleted"}
-                        </h1>
-                      </div>
-                    </div>
-                    <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Details
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Email:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
-                        {user.email}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Username:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
-                        {user.username}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Role:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-500">
-                        {user.role}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Department:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-500">
-                        {user.department_name}
-                      </h1>
-                    </div>
-                  </div>
-                  <div className="w-full col-span-1">
-                    <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        General
-                      </h1>
-                    </div>
-                    <div className="flex flex-wrap content-end justify-start w-full gap-2 p-4">
-                      <ModalConfirm
-                        body={`Are you sure you want to Activate the user account of ${user.full_name}?`}
-                        description="This action cannot be undone. The user you are trying to Activate will be able to access the system to view their sentiment scores."
-                        id={user.id}
-                        is_many={false}
-                        onConfirm={handleCreateUser}
-                        title="Activate User Account"
-                      >
-                        {loadingIDActivate[user.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-green-600" />
-                            Activating...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faBolt}
-                            />
-                            Activate
-                          </>
-                        )}
-                      </ModalConfirm>
-                      <ModalConfirm
-                        body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
-                        description="This action cannot be undone. The user you are trying to unlock will be able to access the system to view their sentiment scores."
-                        id={user.id}
-                        is_many={false}
-                        onConfirm={handleUnlockUser}
-                        title="Unlock User Account"
-                      >
-                        {loadingIDUnlock[user.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-green-600" />
-                            Unlocking...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faUnlock}
-                            />
-                            Unlock
-                          </>
-                        )}
-                      </ModalConfirm>
-                      <ModalConfirm
-                        body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
-                        description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
-                        id={user.id}
-                        is_many={false}
-                        onConfirm={handleRestoreUser}
-                        title="Restore User Account"
-                      >
-                        {loadingIDRestore[user.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-green-600" />
-                            Restoring...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faRotate}
-                            />
-                            Restore
-                          </>
-                        )}
-                      </ModalConfirm>
-                    </div>
-                    <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Danger Zone
-                      </h1>
-                    </div>
-                    <div className="flex flex-wrap content-end justify-start w-full gap-2 p-4">
-                      <ModalConfirm
-                        body={`Are you sure you want to deactivate the user account of ${user.full_name}?`}
-                        description="This action cannot be undone. The user you are trying to deactivate will be unable to access the system to view their sentiment scores."
-                        id={user.id}
-                        is_danger
-                        is_many={false}
-                        onConfirm={handleDeactivateUser}
-                        title="Deactivate User Account"
-                      >
-                        {loadingIDDeactivate[user.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-red-600" />
-                            Deactivating...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faCircleXmark}
-                            />
-                            Deactivate
-                          </>
-                        )}
-                      </ModalConfirm>
-                      <ModalConfirm
-                        body={`Are you sure you want to lock the user account of ${user.full_name}?`}
-                        description="This action cannot be undone. The user you are trying to lock will be unable to access the system to view their sentiment scores."
-                        id={user.id}
-                        is_danger
-                        is_many={false}
-                        onConfirm={handleLockUser}
-                        title="Lock User Account"
-                      >
-                        {loadingIDLock[user.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-red-600" />
-                            Locking...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faLock}
-                            />
-                            Lock
-                          </>
-                        )}
-                      </ModalConfirm>
-                      <ModalConfirm
-                        body={`Are you sure you want to delete ${user.full_name} from the system?`}
-                        description="This action cannot be undone. This will permanently delete the users account from the system."
-                        id={user.id}
-                        is_danger
-                        is_many={false}
-                        onConfirm={handleDeleteUser}
-                        title="Delete User Account"
-                      >
-                        {loadingIDDelete[user.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-red-600" />
-                            Deleting...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faTrash}
-                            />
-                            Delete
-                          </>
-                        )}
-                      </ModalConfirm>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className={"pb-8"}>
-              <NoData message="Data Unavailable" />
-            </div>
-          )}
+            <>
+              <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
+                {loading_ ? (
+                    <>
+                      <LoadingPageSkeletonText /><LoadingPageSkeletonText /><LoadingPageSkeletonText />
+                    </>
+                ) : (
+                    filteredListOfUsers.length > 0 ? (
+                            filteredListOfUsers.map((user) => (
+                                <div
+                                    className="flex flex-col w-full mb-4 rounded-lg shadow-md bg-blue-50"
+                                    key={user.id}
+                                >
+                                  <div className="w-full col-span-1">
+                                    <div className="flex flex-row w-full p-4">
+                                      <h1 className="font-bold leading-none text-blue-500 text-md">
+                                        {user.full_name}
+                                      </h1>
+                                    </div>
+                                  </div>
+                                  <hr className="w-full border-gray-300" />
+                                  <div className="col-span-4 p-4 text-start">
+                                    <div className="flex flex-row w-full py-2">
+                                      <h1 className="text-base font-bold leading-none text-blue-500">
+                                        Status
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-wrap content-end justify-start w-full gap-2">
+                                      <div
+                                          className={`p-2 flex flex-row justify-center ${
+                                              user.is_active ? STATUS_GREEN : STATUS_WARNING
+                                          }`}
+                                      >
+                                        <h1 className="text-sm leading-none uppercase">
+                                          {user.is_active ? "Activated" : "Deactivated"}
+                                        </h1>
+                                      </div>
+                                      <div
+                                          className={`p-2 flex flex-row justify-center ${
+                                              user.is_locked ? STATUS_RED : STATUS_GREEN
+                                          }`}
+                                      >
+                                        <h1 className="text-sm leading-none uppercase">
+                                          {user.is_locked ? "Locked" : "Unlocked"}
+                                        </h1>
+                                      </div>
+                                      <div
+                                          className={`p-2 flex flex-row justify-center ${
+                                              user.is_deleted ? STATUS_RED : STATUS_GREEN
+                                          }`}
+                                      >
+                                        <h1 className="text-sm leading-none uppercase">
+                                          {user.is_deleted ? "Deleted" : "Not Deleted"}
+                                        </h1>
+                                      </div>
+                                    </div>
+                                    <div className="flex flex-row w-full py-2">
+                                      <h1 className="text-base font-bold leading-none text-blue-500">
+                                        Details
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-row items-start w-full py-2">
+                                      <h1 className="text-base font-medium leading-none text-gray-500">
+                                        Email:
+                                      </h1>
+                                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                                        {user.email}
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-row items-start w-full py-2">
+                                      <h1 className="text-base font-medium leading-none text-gray-500">
+                                        Username:
+                                      </h1>
+                                      <h1 className="ml-2 text-base leading-none text-gray-600">
+                                        {user.username}
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-row items-start w-full py-2">
+                                      <h1 className="text-base font-medium leading-none text-gray-500">
+                                        Role:
+                                      </h1>
+                                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                                        {user.role}
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-row items-start w-full py-2">
+                                      <h1 className="text-base font-medium leading-none text-gray-500">
+                                        Department:
+                                      </h1>
+                                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                                        {user.department_name}
+                                      </h1>
+                                    </div>
+                                  </div>
+                                  <div className="w-full col-span-1">
+                                    <div className="flex flex-row w-full px-4">
+                                      <h1 className="text-base font-bold leading-none text-blue-500">
+                                        General
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-wrap content-end justify-start w-full gap-2 p-4">
+                                      <ModalConfirm
+                                          body={`Are you sure you want to Activate the user account of ${user.full_name}?`}
+                                          description="This action cannot be undone. The user you are trying to Activate will be able to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          is_many={false}
+                                          onConfirm={handleCreateUser}
+                                          title="Activate User Account"
+                                      >
+                                        {loadingIDActivate[user.id] ? (
+                                            <>
+                                              <LoadingAnimation moreClasses="text-green-600" />
+                                              Activating...
+                                            </>
+                                        ) : (
+                                            <>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faBolt}
+                                              />
+                                              Activate
+                                            </>
+                                        )}
+                                      </ModalConfirm>
+                                      <ModalConfirm
+                                          body={`Are you sure you want to unlock the user account of ${user.full_name}?`}
+                                          description="This action cannot be undone. The user you are trying to unlock will be able to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          is_many={false}
+                                          onConfirm={handleUnlockUser}
+                                          title="Unlock User Account"
+                                      >
+                                        {loadingIDUnlock[user.id] ? (
+                                            <>
+                                              <LoadingAnimation moreClasses="text-green-600" />
+                                              Unlocking...
+                                            </>
+                                        ) : (
+                                            <>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faUnlock}
+                                              />
+                                              Unlock
+                                            </>
+                                        )}
+                                      </ModalConfirm>
+                                      <ModalConfirm
+                                          body={`Are you sure you want to restore the account of ${user.full_name} to the system?`}
+                                          description="This action cannot be undone. The user you are trying to restore will be able to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          is_many={false}
+                                          onConfirm={handleRestoreUser}
+                                          title="Restore User Account"
+                                      >
+                                        {loadingIDRestore[user.id] ? (
+                                            <>
+                                              <LoadingAnimation moreClasses="text-green-600" />
+                                              Restoring...
+                                            </>
+                                        ) : (
+                                            <>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faRotate}
+                                              />
+                                              Restore
+                                            </>
+                                        )}
+                                      </ModalConfirm>
+                                    </div>
+                                    <div className="flex flex-row w-full px-4">
+                                      <h1 className="text-base font-bold leading-none text-blue-500">
+                                        Danger Zone
+                                      </h1>
+                                    </div>
+                                    <div className="flex flex-wrap content-end justify-start w-full gap-2 p-4">
+                                      <ModalConfirm
+                                          body={`Are you sure you want to deactivate the user account of ${user.full_name}?`}
+                                          description="This action cannot be undone. The user you are trying to deactivate will be unable to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          is_danger
+                                          is_many={false}
+                                          onConfirm={handleDeactivateUser}
+                                          title="Deactivate User Account"
+                                      >
+                                        {loadingIDDeactivate[user.id] ? (
+                                            <>
+                                              <LoadingAnimation moreClasses="text-red-600" />
+                                              Deactivating...
+                                            </>
+                                        ) : (
+                                            <>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faCircleXmark}
+                                              />
+                                              Deactivate
+                                            </>
+                                        )}
+                                      </ModalConfirm>
+                                      <ModalConfirm
+                                          body={`Are you sure you want to lock the user account of ${user.full_name}?`}
+                                          description="This action cannot be undone. The user you are trying to lock will be unable to access the system to view their sentiment scores."
+                                          id={user.id}
+                                          is_danger
+                                          is_many={false}
+                                          onConfirm={handleLockUser}
+                                          title="Lock User Account"
+                                      >
+                                        {loadingIDLock[user.id] ? (
+                                            <>
+                                              <LoadingAnimation moreClasses="text-red-600" />
+                                              Locking...
+                                            </>
+                                        ) : (
+                                            <>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faLock}
+                                              />
+                                              Lock
+                                            </>
+                                        )}
+                                      </ModalConfirm>
+                                      <ModalConfirm
+                                          body={`Are you sure you want to delete ${user.full_name} from the system?`}
+                                          description="This action cannot be undone. This will permanently delete the users account from the system."
+                                          id={user.id}
+                                          is_danger
+                                          is_many={false}
+                                          onConfirm={handleDeleteUser}
+                                          title="Delete User Account"
+                                      >
+                                        {loadingIDDelete[user.id] ? (
+                                            <>
+                                              <LoadingAnimation moreClasses="text-red-600" />
+                                              Deleting...
+                                            </>
+                                        ) : (
+                                            <>
+                                              <FontAwesomeIcon
+                                                  className={`${ICON_PLACE_SELF_CENTER}`}
+                                                  icon={faTrash}
+                                              />
+                                              Delete
+                                            </>
+                                        )}
+                                      </ModalConfirm>
+                                    </div>
+                                  </div>
+                                </div>
+                            ))
+                      ) : (
+                          <div className={"col-span-full"}>
+                            <NoData message="Data Unavailable" />
+                          </div>
+                      ))}
+              </div>
+            </>
           <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
             <div className="flex flex-col md:flex-row items-center w-full justify-between ">
               {/*    Page details*/}
@@ -999,7 +1078,6 @@ export default function ManagementFilesUsers() {
             </button>
           </div>
         </>
-      )}
     </div>
   );
 }

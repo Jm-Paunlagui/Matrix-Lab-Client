@@ -19,8 +19,8 @@ import {
   faDownLong,
 } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../../http/httpClient";
-import LoadingPage, {
-  LoadingAnimation,
+import {
+  LoadingAnimation, LoadingPageSkeletonText,
 } from "../../../../components/loading/LoadingPage";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -391,10 +391,7 @@ export default function ManagementFilesCSV() {
         }
         title={"File Management"}
       />
-      {loading ? (
-        LoadingPage()
-      ) : (
-        <>
+
           <SearchBar
             customStyle="mt-8"
             name="searchValue"
@@ -565,9 +562,14 @@ export default function ManagementFilesCSV() {
               Older
             </button>
           </div>
-          {filteredListOfFiles.length > 0 ? (
             <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-              {filteredListOfFiles.map((file) => (
+              {loading ? (
+                  <>
+                    <LoadingPageSkeletonText /><LoadingPageSkeletonText /><LoadingPageSkeletonText />
+                  </>
+              ) : (
+                  filteredListOfFiles.length > 0 ? (
+              filteredListOfFiles.map((file) => (
                 <div
                   className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                   key={file.id}
@@ -784,13 +786,13 @@ export default function ManagementFilesCSV() {
                     </div>
                   </div>
                 </div>
-              ))}
+              )))
+               : (
+                <div className={"col-span-full"}>
+                <NoData message="Data Unavailable"  />
+                </div>
+                ))}
             </div>
-          ) : (
-            <div className={"pb-8"}>
-              <NoData message="Data Unavailable" />
-            </div>
-          )}
           <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
             <div className="flex flex-col md:flex-row items-center w-full justify-between ">
               {/*    Page details*/}
@@ -833,8 +835,6 @@ export default function ManagementFilesCSV() {
               Older
             </button>
           </div>
-        </>
-      )}
     </div>
   );
 }
