@@ -12,7 +12,7 @@ import {
 import { Header } from "../../../components/headers/Header";
 import { SearchBar } from "../../../components/searchbar/SearchBar";
 import { toReadableName } from "../../../helpers/Helper";
-import LoadingPage from "../../../components/loading/LoadingPage";
+import {LoadingPageSkeletonText} from "../../../components/loading/LoadingPage";
 import BackTo from "../../../components/buttons/BackTo";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
@@ -90,10 +90,6 @@ export default function EvalCourseSentimentTable() {
   return folderNameV === folderName ? (
     <div className="px-6 mx-auto max-w-7xl">
       <BackTo text="Back" to={`/user/evaluation-results/files`} />
-      {loading ? (
-        LoadingPage()
-      ) : (
-        <>
           <Header
             body={`Sentiment Analysis Evaluation Results for the ${school_year} and School Semester ${school_semester}`}
             title={`${topic}`}
@@ -105,9 +101,16 @@ export default function EvalCourseSentimentTable() {
             placeholder="Search"
             type="text"
           />
-          {filteredListOfTaughtCourses.length > 0 ? (
             <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
-              {filteredListOfTaughtCourses.map((file) => (
+              {loading ? (
+                      <>
+                        <LoadingPageSkeletonText />
+                        <LoadingPageSkeletonText />
+                        <LoadingPageSkeletonText />
+                        <LoadingPageSkeletonText />
+                      </>
+                    ) : filteredListOfTaughtCourses.length > 0 ? (
+              filteredListOfTaughtCourses.map((file) => (
                 <div
                   className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                   key={file.id}
@@ -168,15 +171,13 @@ export default function EvalCourseSentimentTable() {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+                  <div className={"col-span-full"}>
+                    <NoData message="Data Unavailable" />
+                  </div>
+              )}
             </div>
-          ) : (
-            <div className={"pt-8"}>
-              <NoData message="Data Unavailable" />
-            </div>
-          )}
-        </>
-      )}
     </div>
   ) : (
     <Navigate to="/unauthorized-access" />

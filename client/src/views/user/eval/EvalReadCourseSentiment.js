@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import httpClient from "../../../http/httpClient";
-import LoadingPage from "../../../components/loading/LoadingPage";
+import {LoadingPageSkeletonText} from "../../../components/loading/LoadingPage";
 import { Header } from "../../../components/headers/Header";
 import { toReadableName } from "../../../helpers/Helper";
 import BackTo from "../../../components/buttons/BackTo";
@@ -63,18 +63,20 @@ export default function EvalReadCourseSentiment() {
         text="Back"
         to={`/user/evaluation-results/files/${fileId}/${folderName}`}
       />
-      {loading ? (
-        LoadingPage()
-      ) : (
-        <>
           <Header
             body={`Here is the data response for ${toReadableName(fileName)}`}
             title={`${toReadableName(fileName)}`}
           />
           <div className=" place-content-center pt-8 space-y-8">
-            {sentiments_list.length > 0 ? (
               <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-                {sentiments_list.map((sentiment) => (
+                {loading ? (
+                        <>
+                          <LoadingPageSkeletonText />
+                          <LoadingPageSkeletonText />
+                          <LoadingPageSkeletonText />
+                        </>
+                        ) : sentiments_list.length > 0 ? (
+                sentiments_list.map((sentiment) => (
                   <div
                     className={`flex flex-col p-8 rounded-lg shadow ${
                       sentiment.sentiment >= 50 ? "bg-green-50" : "bg-red-50"
@@ -86,14 +88,14 @@ export default function EvalReadCourseSentiment() {
                       sentiment={sentiment}
                     />
                   </div>
-                ))}
+                ))
+                ) : (
+                    <div className={"col-span-full"}>
+                      <NoData message="Data Unavailable" />
+                    </div>
+                )}
               </div>
-            ) : (
-              <NoData message="Data Unavailable" />
-            )}
           </div>
-        </>
-      )}
     </div>
   ) : (
     <Navigate to="/unauthorized-access" />

@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../../http/httpClient";
-import LoadingPage from "../../../../components/loading/LoadingPage";
+import {LoadingPageSkeletonText} from "../../../../components/loading/LoadingPage";
 import { removeBrackets, removeComma } from "../../../../helpers/Helper";
 import { toast } from "react-toastify";
 import BackTo from "../../../../components/buttons/BackTo";
@@ -92,10 +92,6 @@ export default function ManagementFilesData() {
   return (
     <div className="px-6 mx-auto max-w-7xl">
       <BackTo text="Back" to="/admin/management/files/data" />
-      {loading ? (
-        LoadingPage()
-      ) : (
-        <>
           <Header
             body={"List of departments that detected in the uploaded file."}
             title={"Department Data"}
@@ -108,9 +104,15 @@ export default function ManagementFilesData() {
             type="text"
           />
           <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
-            {filteredDepartments.length > 0 ? (
-              <>
-                {filteredDepartments.map((department) => (
+              {loading ? (
+                  <>
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                  </>
+              ) : filteredDepartments.length > 0 ? (
+                filteredDepartments.map((department) => (
                   <div
                     className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                     key={department.department_list}
@@ -192,8 +194,7 @@ export default function ManagementFilesData() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </>
+                ))
             ) : (
               <div className={"col-span-4"}>
                 <NoData message="Data Unavailable" />
@@ -212,9 +213,15 @@ export default function ManagementFilesData() {
             type="text"
           />
           <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
-            {filteredProfessors.length > 0 ? (
-              <>
-                {filteredProfessors.map((professor) => (
+            {loading ? (
+                    <>
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                      <LoadingPageSkeletonText />
+                    </>
+            ) : filteredProfessors.length > 0 ? (
+                filteredProfessors.map((professor) => (
                   <div
                     className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
                     key={professor.evaluatee_list}
@@ -309,16 +316,13 @@ export default function ManagementFilesData() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </>
+                ))
             ) : (
-              <div className={"col-span-4"}>
-                <NoData message="Data Unavailable" />
-              </div>
+                <div className={"col-span-full"}>
+                  <NoData message="Data Unavailable" />
+                </div>
             )}
           </div>
-        </>
-      )}
     </div>
   );
 }
