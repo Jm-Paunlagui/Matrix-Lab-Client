@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { Header } from "../../../components/headers/Header";
 import httpClient from "../../../http/httpClient";
-import {LoadingPageSkeletonText} from "../../../components/loading/LoadingPage";
+import { LoadingPageSkeletonText } from "../../../components/loading/LoadingPage";
 import { SearchBar } from "../../../components/searchbar/SearchBar";
 import {
   ACCENT_BUTTON,
@@ -118,13 +118,13 @@ export default function EvalFiles() {
         }
         title="File Results"
       />
-          <SearchBar
-            customStyle="mt-8"
-            name="searchValue"
-            onChange={(event) => handleSearchForFile(event)}
-            placeholder="Search"
-            type="text"
-          />
+      <SearchBar
+        customStyle="mt-8"
+        name="searchValue"
+        onChange={(event) => handleSearchForFile(event)}
+        placeholder="Search"
+        type="text"
+      />
       <div className="flex flex-col justify-end w-full mt-8 mb-8 p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
         <div className="flex flex-col md:flex-row items-center w-full justify-between ">
           {/*    Page details*/}
@@ -137,149 +137,147 @@ export default function EvalFiles() {
           </h1>
         </div>
         <button
-            className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-            disabled={!has_prev}
-            onClick={() =>
-                setFileData({ ...fileData, page_number: page_number - 1 })
-            }
-            type="button"
+          disabled={!has_prev}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number - 1 })
+          }
+          type="button"
         >
           <FontAwesomeIcon
-              className={`${ICON_PLACE_SELF_CENTER}`}
-              icon={faCaretLeft}
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretLeft}
           />
           Newer
         </button>
         <button
-            className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-            disabled={!has_next}
-            onClick={() =>
-                setFileData({ ...fileData, page_number: page_number + 1 })
-            }
-            type="button"
+          disabled={!has_next}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number + 1 })
+          }
+          type="button"
         >
           <FontAwesomeIcon
-              className={`${ICON_PLACE_SELF_CENTER}`}
-              icon={faCaretRight}
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretRight}
           />
           Older
         </button>
       </div>
-            <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-              {loading ? (
-                  <>
-                    <LoadingPageSkeletonText />
-                    <LoadingPageSkeletonText />
-                    <LoadingPageSkeletonText />
-                  </>
-              ) : filteredListOfFiles.length > 0 ? (
-                filteredListOfFiles.map((file) => (
-                <div
-                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
-                  key={file.id}
-                >
-                  <div className="col-span-1 w-full">
-                    <div className="flex flex-row w-full p-4">
-                      <h1 className="text-md font-bold leading-none text-blue-600">
-                        File ID
-                      </h1>
-                      <h1 className="text-md leading-none text-gray-500 ml-2">
-                        {file.id}
-                      </h1>
-                    </div>
-                  </div>
-                  <hr className="w-full border-gray-300" />
-                  <div className="col-span-4 text-start p-4">
-                    <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Status
-                      </h1>
-                    </div>
-                    <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          file.flag_deleted ? STATUS_RED : STATUS_GREEN
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {file.flag_deleted
-                            ? "Deleted Temporarily"
-                            : "Available"}
-                        </h1>
-                      </div>
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          file.flag_release ? STATUS_GREEN : STATUS_WARNING
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {file.flag_release ? "Published" : "Unpublished"}
-                        </h1>
-                      </div>
-                    </div>
-                    <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Details
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        School Year:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
-                        {file.school_year}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        School Semester:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-500">
-                        {file.school_semester}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Topic:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-500">
-                        {file.csv_question}
-                      </h1>
-                    </div>
-                  </div>
-                  {!file.flag_release ? null : (
-                    <div className="col-span-1 w-full">
-                      <div className="flex flex-row w-full px-4">
-                        <h1 className="text-base font-bold leading-none text-blue-500">
-                          Actions
-                        </h1>
-                      </div>
-                      <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                        <button
-                          className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                          type="button"
-                        >
-                          <Link to={`${file.id}/${folderName}`}>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faFileCsv}
-                            />
-                            View
-                          </Link>
-                        </button>
-                      </div>
-                    </div>
-                  )}
+      <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
+        {loading ? (
+          <>
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+          </>
+        ) : filteredListOfFiles.length > 0 ? (
+          filteredListOfFiles.map((file) => (
+            <div
+              className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
+              key={file.id}
+            >
+              <div className="col-span-1 w-full">
+                <div className="flex flex-row w-full p-4">
+                  <h1 className="text-md font-bold leading-none text-blue-600">
+                    File ID
+                  </h1>
+                  <h1 className="text-md leading-none text-gray-500 ml-2">
+                    {file.id}
+                  </h1>
                 </div>
-              ))
-              ) : (
-                  <div className={"col-span-full"}>
-                    <NoData message="Data Unavailable" />
+              </div>
+              <hr className="w-full border-gray-300" />
+              <div className="col-span-4 text-start p-4">
+                <div className="flex flex-row w-full py-2">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Status
+                  </h1>
+                </div>
+                <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                  <div
+                    className={`p-2 flex flex-row justify-center ${
+                      file.flag_deleted ? STATUS_RED : STATUS_GREEN
+                    }`}
+                  >
+                    <h1 className="text-sm leading-none uppercase">
+                      {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                    </h1>
                   </div>
+                  <div
+                    className={`p-2 flex flex-row justify-center ${
+                      file.flag_release ? STATUS_GREEN : STATUS_WARNING
+                    }`}
+                  >
+                    <h1 className="text-sm leading-none uppercase">
+                      {file.flag_release ? "Published" : "Unpublished"}
+                    </h1>
+                  </div>
+                </div>
+                <div className="flex flex-row w-full py-2">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Details
+                  </h1>
+                </div>
+                <div className="flex flex-row items-start w-full py-2">
+                  <h1 className="text-base font-medium leading-none text-gray-500">
+                    School Year:
+                  </h1>
+                  <h1 className="ml-2 text-base leading-none text-gray-600">
+                    {file.school_year}
+                  </h1>
+                </div>
+                <div className="flex flex-row items-start w-full py-2">
+                  <h1 className="text-base font-medium leading-none text-gray-500">
+                    School Semester:
+                  </h1>
+                  <h1 className="ml-2 text-base leading-none text-gray-500">
+                    {file.school_semester}
+                  </h1>
+                </div>
+                <div className="flex flex-row items-start w-full py-2">
+                  <h1 className="text-base font-medium leading-none text-gray-500">
+                    Topic:
+                  </h1>
+                  <h1 className="ml-2 text-base leading-none text-gray-500">
+                    {file.csv_question}
+                  </h1>
+                </div>
+              </div>
+              {!file.flag_release ? null : (
+                <div className="col-span-1 w-full">
+                  <div className="flex flex-row w-full px-4">
+                    <h1 className="text-base font-bold leading-none text-blue-500">
+                      Actions
+                    </h1>
+                  </div>
+                  <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                    <button
+                      className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                      type="button"
+                    >
+                      <Link to={`${file.id}/${folderName}`}>
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faFileCsv}
+                        />
+                        View
+                      </Link>
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
+          ))
+        ) : (
+          <div className={"col-span-full"}>
+            <NoData message="Data Unavailable" />
+          </div>
+        )}
+      </div>
       <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
         <div className="flex flex-col md:flex-row items-center w-full justify-between ">
           {/*    Page details*/}
@@ -292,32 +290,32 @@ export default function EvalFiles() {
           </h1>
         </div>
         <button
-            className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-            disabled={!has_prev}
-            onClick={() =>
-                setFileData({ ...fileData, page_number: page_number - 1 })
-            }
-            type="button"
+          disabled={!has_prev}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number - 1 })
+          }
+          type="button"
         >
           <FontAwesomeIcon
-              className={`${ICON_PLACE_SELF_CENTER}`}
-              icon={faCaretLeft}
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretLeft}
           />
           Newer
         </button>
         <button
-            className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-            disabled={!has_next}
-            onClick={() =>
-                setFileData({ ...fileData, page_number: page_number + 1 })
-            }
-            type="button"
+          disabled={!has_next}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number + 1 })
+          }
+          type="button"
         >
           <FontAwesomeIcon
-              className={`${ICON_PLACE_SELF_CENTER}`}
-              icon={faCaretRight}
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretRight}
           />
           Older
         </button>
