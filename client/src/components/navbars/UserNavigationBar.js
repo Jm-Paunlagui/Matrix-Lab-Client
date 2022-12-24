@@ -142,7 +142,7 @@ export default function UserNavigationBar() {
   return (
     <Menu
       as="nav"
-      className="fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
+      className="sticky fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
     >
       {({ open }) => (
         <>

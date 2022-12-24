@@ -278,7 +278,7 @@ export default function App() {
                 <Route
                   element={<UserDashboard />}
                   exact="true"
-                  path="analytics"
+                  path="sentiment-analysis"
                 />
               </Route>
               <Route
