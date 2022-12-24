@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {LoadingPageSkeletonText} from "../../components/loading/LoadingPage";
+import { LoadingPageSkeletonText } from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
 import { ViewInsightHistory } from "../../components/forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
@@ -192,12 +192,12 @@ export default function InsightsPerSemesterEmployees() {
         </div>
         <div className="col-span-2">
           {loading ? (
-              <div className="space-y-8">
-                <LoadingPageSkeletonText />
-                <LoadingPageSkeletonText />
-                <LoadingPageSkeletonText />
-                <LoadingPageSkeletonText />
-              </div>
+            <div className="space-y-8">
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+            </div>
           ) : (
             <div className=" place-content-center space-y-8">
               {filteredTopEmployeePerSem.length > 0 ? (
