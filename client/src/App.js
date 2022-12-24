@@ -197,7 +197,11 @@ export default function App() {
               />
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route element={<IndexDashBoard />} exact="true" path="dashboard">
-                <Route element={<DashboardAnalysis />} exact="true" path="sentiment-analysis" />
+                <Route
+                  element={<DashboardAnalysis />}
+                  exact="true"
+                  path="sentiment-analysis"
+                />
               </Route>
               <Route
                 element={<IndexManagementFiles />}
