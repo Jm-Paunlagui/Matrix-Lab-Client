@@ -84,19 +84,22 @@ export function Paginator({ per_page, per_page_limit, handleSelect }) {
  * @param school_year
  * @param handleSelect
  * @param school_year_to_choose
+ * @param disabled
  */
 export function SchoolYearList({
   school_year,
   handleSelect,
   school_year_to_choose,
+    disabled
 }) {
   SchoolYearList.propTypes = {
+    disabled: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    school_year: shape({}).isRequired,
+    school_year: PropTypes.any.isRequired,
     school_year_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
-    <Listbox
+    <Listbox disabled={disabled}
       name={"school_year"}
       onChange={handleSelect("school_year")}
       value={school_year}
@@ -166,21 +169,22 @@ export function SchoolYearList({
  * @param school_semester
  * @param handleSelect
  * @param school_semester_to_choose
- * @returns {JSX.Element}
- * @constructor
+ * @param disabled
  */
 export function SemesterList({
   school_semester,
   handleSelect,
   school_semester_to_choose,
+    disabled
 }) {
   SemesterList.propTypes = {
+    disabled: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    school_semester: shape({}).isRequired,
+    school_semester: PropTypes.any.isRequired,
     school_semester_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
-    <Listbox
+    <Listbox disabled={disabled}
       name={"school_semester"}
       onChange={handleSelect("school_semester")}
       value={school_semester}
@@ -252,14 +256,16 @@ export function CsvQuestion({
   csv_question,
   handleSelect,
   csv_question_to_choose,
+    disabled,
 }) {
   CsvQuestion.propTypes = {
+    disabled: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    csv_question: shape({}).isRequired,
+    csv_question: PropTypes.any.isRequired,
     csv_question_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
-    <Listbox
+    <Listbox disabled={disabled}
       name={"csv_question"}
       onChange={handleSelect("csv_question")}
       value={csv_question}

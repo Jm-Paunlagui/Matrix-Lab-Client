@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { LoadingPageSkeletonText } from "../../components/loading/LoadingPage";
+import {LoadingAnimation, LoadingPageSkeletonText} from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { ViewInsightHistory } from "../../components/forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { NoData } from "../../components/warnings/WarningMessages";
+import {CsvQuestion, SchoolYearList, SemesterList} from "../../components/listbox/ListBox";
+import {ACCENT_BUTTON, ICON_PLACE_SELF_CENTER} from "../../assets/styles/styled-components";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMagnifyingGlassChart} from "@fortawesome/free-solid-svg-icons";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -162,19 +165,9 @@ export default function InsightsPerSemesterDepartment() {
                 });
               }}
             >
-              {
-                <ViewInsightHistory
-                  csv_question={csv_question}
-                  csv_question_to_choose={csv_question_to_choose}
-                  errorMessage={errorMessage}
-                  handleSelect={handleSelect}
-                  handleViewFile={handleViewFile}
-                  ok={ok}
-                  school_semester={school_semester}
-                  school_semester_to_choose={school_semester_to_choose}
-                  school_year={school_year}
-                  school_year_to_choose={school_year_to_choose}
-                  textChange={textChange}
+                <form className={`${
+                  loading ? "animate-pulse" : ""
+                }`} onSubmit={handleViewFile}
                 >
                   <h1 className="mb-4 text-xl font-bold text-blue-500">
                     View Previous Insight
@@ -184,8 +177,49 @@ export default function InsightsPerSemesterDepartment() {
                     specific school year, semester and the topic you want to
                     view.
                   </p>
-                </ViewInsightHistory>
-              }
+                  <div className="flex flex-col w-full space-y-2">
+                    <SchoolYearList
+                        disabled={loading}
+                        handleSelect={handleSelect}
+                        school_year={school_year}
+                        school_year_to_choose={school_year_to_choose}
+                    />
+                    <SemesterList
+                        disabled={loading}
+                        handleSelect={handleSelect}
+                        school_semester={school_semester}
+                        school_semester_to_choose={school_semester_to_choose}
+                    />
+                    <CsvQuestion
+                        csv_question={csv_question}
+                        csv_question_to_choose={csv_question_to_choose}
+                        disabled={loading}
+                        handleSelect={handleSelect}
+                    />
+                  </div>
+                  {/* Error message */}
+                  {errorMessage ? (
+                      <div className="mt-2 text-sm font-semibold text-red-500">
+                        {errorMessage}
+                      </div>
+                  ) : null}
+                  <div className="flex flex-col justify-end w-full mt-8 lg:space-x-2">
+                    <button
+                        className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        type="submit"
+                    >
+                      {ok ? (
+                          <LoadingAnimation />
+                      ) : (
+                          <FontAwesomeIcon
+                              className={`${ICON_PLACE_SELF_CENTER}`}
+                              icon={faMagnifyingGlassChart}
+                          />
+                      )}
+                      {textChange}
+                    </button>
+                  </div>
+                </form>
             </div>
           </div>
         </div>
