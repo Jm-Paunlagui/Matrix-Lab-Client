@@ -235,20 +235,23 @@ export default function DashboardAnalysis() {
           <div className="w-full">
             <h1 className="text-base font-bold text-blue-500">Show By</h1>
           </div>
-          <div className={`w-full flex flex-col lg:flex-row place-content-end ${
-            loading_analysis ? "animate-pulse" : ""
+          <div
+            className={`w-full flex flex-col lg:flex-row place-content-end ${
+              loading_analysis ? "animate-pulse" : ""
             }`}
           >
             <div className="w-full flex">
               <div className="w-1/2 px-2">
-                <SchoolYearList disabled={loading_analysis}
+                <SchoolYearList
+                  disabled={loading_analysis}
                   handleSelect={handleSelect}
                   school_year={school_year}
                   school_year_to_choose={school_year_to_choose}
                 />
               </div>
               <div className="w-1/2 px-2">
-                <SemesterList disabled={loading_analysis}
+                <SemesterList
+                  disabled={loading_analysis}
                   handleSelect={handleSelect}
                   school_semester={school_semester}
                   school_semester_to_choose={school_semester_to_choose}
@@ -257,8 +260,8 @@ export default function DashboardAnalysis() {
             </div>
             <div className="w-full px-2">
               <CsvQuestion
-                  csv_question={csv_question}
-                  csv_question_to_choose={csv_question_to_choose}
+                csv_question={csv_question}
+                csv_question_to_choose={csv_question_to_choose}
                 disabled={loading_analysis}
                 handleSelect={handleSelect}
               />
