@@ -557,7 +557,6 @@ export default function ManagementFilesUsers() {
           ))
         )}
       </div>
-      <>
         <SearchBar
           name="searchValue"
           onChange={(event) => handleSearchForUsers(event)}
@@ -1077,7 +1076,6 @@ export default function ManagementFilesUsers() {
             Next
           </button>
         </div>
-      </>
     </div>
   );
 }
