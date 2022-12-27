@@ -95,7 +95,7 @@ export function SchoolYearList({
   SchoolYearList.propTypes = {
     disabled: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    school_year: PropTypes.any.isRequired,
+    school_year: PropTypes.string.isRequired,
     school_year_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
@@ -180,7 +180,7 @@ export function SemesterList({
   SemesterList.propTypes = {
     disabled: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    school_semester: PropTypes.any.isRequired,
+    school_semester: PropTypes.string.isRequired,
     school_semester_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
@@ -261,7 +261,7 @@ export function CsvQuestion({
   CsvQuestion.propTypes = {
     disabled: PropTypes.bool.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    csv_question: PropTypes.any.isRequired,
+    csv_question: PropTypes.string.isRequired,
     csv_question_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
