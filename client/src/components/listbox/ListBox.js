@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { TEXT_FIELD } from "../../assets/styles/styled-components";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import PropTypes from "prop-types";
+import PropTypes, {arrayOf, shape} from "prop-types";
 
 /**
  * @description ListBox component for the application
@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 export function Paginator({ per_page, per_page_limit, handleSelect }) {
   Paginator.propTypes = {
     handleSelect: PropTypes.func.isRequired,
-    per_page: PropTypes.object.isRequired,
+    per_page: arrayOf(shape({})).isRequired,
     per_page_limit: PropTypes.number.isRequired,
   };
   return (
@@ -84,8 +84,6 @@ export function Paginator({ per_page, per_page_limit, handleSelect }) {
  * @param school_year
  * @param handleSelect
  * @param school_year_to_choose
- * @returns {JSX.Element}
- * @constructor
  */
 export function SchoolYearList({
   school_year,
@@ -94,8 +92,8 @@ export function SchoolYearList({
 }) {
   SchoolYearList.propTypes = {
     handleSelect: PropTypes.func.isRequired,
-    school_year: PropTypes.object.isRequired,
-    school_year_to_choose: PropTypes.array.isRequired,
+    school_year: shape({}).isRequired,
+    school_year_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
     <Listbox
@@ -178,8 +176,8 @@ export function SemesterList({
 }) {
   SemesterList.propTypes = {
     handleSelect: PropTypes.func.isRequired,
-    school_semester: PropTypes.object.isRequired,
-    school_semester_to_choose: PropTypes.array.isRequired,
+    school_semester: shape({}).isRequired,
+    school_semester_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
     <Listbox
@@ -257,8 +255,8 @@ export function CsvQuestion({
 }) {
   CsvQuestion.propTypes = {
     handleSelect: PropTypes.func.isRequired,
-    csv_question: PropTypes.object.isRequired,
-    csv_question_to_choose: PropTypes.array.isRequired,
+    csv_question: shape({}).isRequired,
+    csv_question_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
     <Listbox
