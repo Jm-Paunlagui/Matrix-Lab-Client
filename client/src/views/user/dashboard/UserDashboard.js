@@ -72,7 +72,6 @@ export default function UserDashboard() {
         `/analysis/for_analysis_options_user/${school_year}/${school_semester}/${csv_question}`,
       )
       .then((response) => {
-        
         setAnalysis({
           ...analysis,
           loading_analysis: false,
