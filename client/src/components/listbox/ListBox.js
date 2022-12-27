@@ -79,6 +79,14 @@ export function Paginator({ per_page, per_page_limit, handleSelect }) {
   );
 }
 
+/**
+ * @description ListBox component for the school year
+ * @param school_year
+ * @param handleSelect
+ * @param school_year_to_choose
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function SchoolYearList({
   school_year,
   handleSelect,
@@ -155,6 +163,14 @@ export function SchoolYearList({
   );
 }
 
+/**
+ * @description ListBox component for the school semester
+ * @param school_semester
+ * @param handleSelect
+ * @param school_semester_to_choose
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export function SemesterList({
   school_semester,
   handleSelect,
@@ -231,6 +247,9 @@ export function SemesterList({
   );
 }
 
+/**
+ * @description This is the component for the list of the CSV Files
+ */
 export function CsvQuestion({
   csv_question,
   handleSelect,

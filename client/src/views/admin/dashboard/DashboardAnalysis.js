@@ -24,6 +24,9 @@ export default function DashboardAnalysis() {
 
   const { loading, details } = data;
 
+  /**
+   * @description Fetches the data from the server
+   */
   const get_file_details = () => {
     httpClient
       .get("/data/dashboard-data-csv")
@@ -91,6 +94,12 @@ export default function DashboardAnalysis() {
 
   const { school_year, school_semester, csv_question } = selected;
 
+  /**
+   * @description Fetches the data from the server
+   * @param school_year
+   * @param school_semester
+   * @param csv_question
+   */
   const loadPolarityVsentiment = (
     school_year,
     school_semester,
@@ -123,6 +132,9 @@ export default function DashboardAnalysis() {
       });
   };
 
+  /**
+   * @description Options for the listbox
+   */
   const optionsForPVS = () => {
     httpClient
       .get(`/analysis/options-for-file-data-dashboard`)
@@ -143,6 +155,11 @@ export default function DashboardAnalysis() {
       });
   };
 
+  /**
+   * @description Sets the selected option
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleSelect = (name) => (value) => {
     setSelected({
       ...selected,

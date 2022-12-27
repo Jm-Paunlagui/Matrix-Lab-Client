@@ -44,6 +44,9 @@ export default function LoadingPage() {
   );
 }
 
+/**
+ * @description Skeleton loading animation
+ */
 export function LoadingPageSkeletonText() {
   return (
     <div className="bg-blue-50 shadow rounded-md p-4  w-full">
@@ -64,6 +67,9 @@ export function LoadingPageSkeletonText() {
   );
 }
 
+/**
+ * @description Skeleton loading animation for images
+ */
 export function LoadingPageSkeletonImage() {
   return (
     <div className="bg-blue-50 shadow rounded-md p-4 w-full">

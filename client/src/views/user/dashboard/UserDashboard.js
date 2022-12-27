@@ -56,6 +56,12 @@ export default function UserDashboard() {
 
   const { school_year, school_semester, csv_question } = selected;
 
+  /**
+   * @description Fetches the analysis data
+   * @param school_year
+   * @param school_semester
+   * @param csv_question
+   */
   const loadPolarityVsentiment = (
     school_year,
     school_semester,
@@ -88,6 +94,9 @@ export default function UserDashboard() {
       });
   };
 
+  /**
+   * @description Loads the analysis options
+   */
   const optionsForPVS = () => {
     httpClient
       .get(`/analysis/options-for-file-data-dashboard`)
@@ -108,6 +117,11 @@ export default function UserDashboard() {
       });
   };
 
+  /**
+   * @description Sets the analysis options
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
   const handleSelect = (name) => (value) => {
     setSelected({
       ...selected,

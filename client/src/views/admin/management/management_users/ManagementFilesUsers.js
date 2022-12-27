@@ -40,6 +40,9 @@ export default function ManagementFilesUsers() {
 
   const { loading_, details } = data;
 
+  /**
+   * @description Fetches the data from the server
+   */
   const get_file_details = () => {
     httpClient
       .get("/data/dashboard-data-user")
