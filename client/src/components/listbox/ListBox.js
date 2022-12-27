@@ -90,7 +90,7 @@ export function SchoolYearList({
   school_year,
   handleSelect,
   school_year_to_choose,
-    disabled
+  disabled,
 }) {
   SchoolYearList.propTypes = {
     disabled: PropTypes.bool.isRequired,
@@ -99,7 +99,8 @@ export function SchoolYearList({
     school_year_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
-    <Listbox disabled={disabled}
+    <Listbox
+      disabled={disabled}
       name={"school_year"}
       onChange={handleSelect("school_year")}
       value={school_year}
@@ -175,7 +176,7 @@ export function SemesterList({
   school_semester,
   handleSelect,
   school_semester_to_choose,
-    disabled
+  disabled,
 }) {
   SemesterList.propTypes = {
     disabled: PropTypes.bool.isRequired,
@@ -184,7 +185,8 @@ export function SemesterList({
     school_semester_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
-    <Listbox disabled={disabled}
+    <Listbox
+      disabled={disabled}
       name={"school_semester"}
       onChange={handleSelect("school_semester")}
       value={school_semester}
@@ -256,7 +258,7 @@ export function CsvQuestion({
   csv_question,
   handleSelect,
   csv_question_to_choose,
-    disabled,
+  disabled,
 }) {
   CsvQuestion.propTypes = {
     disabled: PropTypes.bool.isRequired,
@@ -265,7 +267,8 @@ export function CsvQuestion({
     csv_question_to_choose: arrayOf(shape({})).isRequired,
   };
   return (
-    <Listbox disabled={disabled}
+    <Listbox
+      disabled={disabled}
       name={"csv_question"}
       onChange={handleSelect("csv_question")}
       value={csv_question}
