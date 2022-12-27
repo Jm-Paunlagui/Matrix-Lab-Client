@@ -5,6 +5,7 @@ import {
   LoadingPageSkeletonText,
 } from "../../../components/loading/LoadingPage";
 import httpClient from "../../../http/httpClient";
+import { toast } from "react-toastify";
 import { Header } from "../../../components/headers/Header";
 import {
   CsvQuestion,
@@ -15,7 +16,44 @@ import DisclosureTogglable from "../../../components/disclosure/DisclosureToggla
 /**
  * @description Handles the admin profile
  */
-export default function UserDashboard() {
+export default function DashboardAnalysis() {
+  const [data, setData] = useState({
+    loading: true,
+    details: [],
+  });
+
+  const { loading, details } = data;
+
+  /**
+   * @description Fetches the data from the server
+   */
+  const get_file_details = () => {
+    httpClient
+      .get("/data/dashboard-data-csv")
+      .then((response) => {
+        setData({
+          ...data,
+          loading: false,
+          details: response.data.details,
+        });
+      })
+      .catch((error) => {
+        switch (error.response.status) {
+          case 401:
+            toast.error("Unauthorized Access");
+            window.location.href = "/unauthorized-access";
+            break;
+          case 440:
+            toast.error("Session Expired");
+            window.location.href = "/login-timeout";
+            break;
+          default:
+            toast.error("Something went wrong");
+            window.location.href = "/page-not-found";
+        }
+      });
+  };
+
   const [analysis, setAnalysis] = useState({
     loading_analysis: true,
     overall_sentiments: [],
@@ -57,7 +95,7 @@ export default function UserDashboard() {
   const { school_year, school_semester, csv_question } = selected;
 
   /**
-   * @description Fetches the analysis data
+   * @description Fetches the data from the server
    * @param school_year
    * @param school_semester
    * @param csv_question
@@ -75,7 +113,7 @@ export default function UserDashboard() {
     });
     httpClient
       .get(
-        `/analysis/for_analysis_options_user/${school_year}/${school_semester}/${csv_question}`,
+        `/analysis/sentiment_vs_polarity/${school_year}/${school_semester}/${csv_question}`,
       )
       .then((response) => {
         setAnalysis({
@@ -95,7 +133,7 @@ export default function UserDashboard() {
   };
 
   /**
-   * @description Loads the analysis options
+   * @description Options for the listbox
    */
   const optionsForPVS = () => {
     httpClient
@@ -118,7 +156,7 @@ export default function UserDashboard() {
   };
 
   /**
-   * @description Sets the analysis options
+   * @description Sets the selected option
    * @param name
    * @returns {(function(*): void)|*}
    */
@@ -128,6 +166,10 @@ export default function UserDashboard() {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    get_file_details();
+  }, []);
 
   useEffect(() => {
     optionsForPVS();
@@ -147,7 +189,48 @@ export default function UserDashboard() {
         body="A data visualization dashboard for the sentiment analysis of the students' feedbacks."
         title="Sentiment Analysis"
       />
-      <div className="grid w-full grid-cols-1 mb-8 mt-8">
+      <div className="grid grid-cols-2 py-8 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {loading ? (
+          <>
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+          </>
+        ) : (
+          details.map((detail) => (
+            <div
+              className="flex items-start p-4 bg-blue-50 rounded-lg shadow"
+              key={detail.id}
+            >
+              <div className="flex items-center justify-center">
+                <div
+                  className={`flex items-center justify-center w-10 h-10 text-white rounded ${
+                    detail.id === 1
+                      ? "bg-red-500"
+                      : detail.id === 2
+                      ? "bg-teal-500"
+                      : detail.id === 3
+                      ? "bg-blue-500"
+                      : "bg-black"
+                  }`}
+                >
+                  <i className={detail.icon} />
+                </div>
+                <div className="flex flex-col items-start justify-center ml-4">
+                  <h1 className="py-1 pl-2 text-2xl font-extrabold leading-none tracking-tight text-left text-gray-500">
+                    {detail.value}
+                  </h1>
+                  <h1 className="text-sm font-medium text-gray-500">
+                    {detail.title}
+                  </h1>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+      <div className="grid w-full grid-cols-1 mb-8">
         <div className="flex flex-col items-center justify-between w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
           <div className="w-full">
             <h1 className="text-base font-bold text-blue-500">Show By</h1>
@@ -186,7 +269,7 @@ export default function UserDashboard() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 pb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-8 ">
         <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
           <div className="w-full">
             <h1 className="text-md font-bold text-blue-500 mb-4">
@@ -332,6 +415,7 @@ export default function UserDashboard() {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
         <div className="w-full">
           <h1 className="text-md font-bold text-blue-500 mb-4">

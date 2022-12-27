@@ -8,7 +8,7 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import OverallDashboard from "./views/admin/dashboard/OverallDashboard.js";
+import DashboardAnalysis from "./views/admin/dashboard/DashboardAnalysis.js";
 import AdminPrediction from "./views/admin/AdminPrediction.js";
 import AdminProfile from "./views/admin/AdminProfile.js";
 import AdminSettings from "./views/admin/AdminSettings.js";
@@ -55,6 +55,7 @@ import IndexUserDashboard from "./views/user/dashboard/IndexUserDashboard";
 import UserDashboard from "./views/user/dashboard/UserDashboard";
 import EvalReadCourseSentiment from "./views/user/eval/EvalReadCourseSentiment";
 import ManagementFileBin from "./views/admin/management/management_files/ManagementFileBin";
+import IndexLegal from "./views/legal/IndexLegal";
 
 /**
  * @description Main component for the application
@@ -63,7 +64,7 @@ import ManagementFileBin from "./views/admin/management/management_files/Managem
 export default function App() {
   /**
    * @type {Function}
-   * @description Function to scroll to top of the paginator when route changes in the application.
+   * @description Function to scroll to top of the listbox when route changes in the application.
    */
   const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -113,16 +114,18 @@ export default function App() {
              * End of public routes
              */}
 
-            <Route
-              element={<PrivacyPolicy />}
-              exact="true"
-              path="privacy-policy"
-            />
-            <Route
-              element={<TermsAndConditions />}
-              exact="true"
-              path="terms-and-conditions"
-            />
+            <Route element={<IndexLegal />} exact={"true"} path="legal">
+              <Route
+                element={<PrivacyPolicy />}
+                exact="true"
+                path="privacy-policy"
+              />
+              <Route
+                element={<TermsAndConditions />}
+                exact="true"
+                path="terms-and-conditions"
+              />
+            </Route>
 
             {/**
              * @description Handles auth routes for the application, and the IndexAuth component has the outlet for the
@@ -185,7 +188,7 @@ export default function App() {
               <Route
                 element={<AdminPrediction />}
                 exact="true"
-                path="sentiment-analysis"
+                path="sentiment-analyzer"
               />
               <Route
                 element={<AdminProfile />}
@@ -195,9 +198,9 @@ export default function App() {
               <Route element={<AdminSettings />} exact="true" path="settings" />
               <Route element={<IndexDashBoard />} exact="true" path="dashboard">
                 <Route
-                  element={<OverallDashboard />}
+                  element={<DashboardAnalysis />}
                   exact="true"
-                  path="analytics"
+                  path="sentiment-analysis"
                 />
               </Route>
               <Route
@@ -275,7 +278,7 @@ export default function App() {
                 <Route
                   element={<UserDashboard />}
                   exact="true"
-                  path="analytics"
+                  path="sentiment-analysis"
                 />
               </Route>
               <Route
@@ -310,12 +313,12 @@ export default function App() {
 
             <Route element={<Unauthorized />} path="unauthorized-access" />
             {/**
-             * @description Handles paginator not found route for the application
+             * @description Handles listbox not found route for the application
              */}
             <Route element={<PageNotFound />} path="*" />
             <Route element={<LoginTimeOut />} path="login-timeout" />
             {/**
-             * End of paginator not found route
+             * End of listbox not found route
              */}
             <Route element={<InvalidToken />} path="invalid-token" />
           </Routes>

@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 import { LoadingAnimation } from "../../components/loading/LoadingPage";
 
 /**
- * @description Handles the forgot password request paginator
+ * @description Handles the forgot password request listbox
  */
 export default function AuthRemoveEmailFromAccount() {
   /**

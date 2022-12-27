@@ -416,7 +416,7 @@ export default function AdminPrediction() {
         body={
           "Upload a CSV file to analyze and choose the column that contains the responses to analyze. The system will automatically create users but you have to manually send the credentials to them if the results are ready."
         }
-        title={"Sentiment Analysis"}
+        title={"Sentiment Analyzer"}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
         <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
@@ -652,7 +652,7 @@ export default function AdminPrediction() {
                               leaveFrom="transform scale-100 opacity-100"
                               leaveTo="transform scale-95 opacity-0"
                             >
-                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {csv_columns_to_pick.map((column) => (
                                   <Listbox.Option
                                     className={({ active }) =>
@@ -737,7 +737,7 @@ export default function AdminPrediction() {
                               leaveFrom="transform scale-100 opacity-100"
                               leaveTo="transform scale-95 opacity-0"
                             >
-                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              <Listbox.Options className="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {semester.map((sem) => (
                                   <Listbox.Option
                                     className={({ active }) =>
@@ -1025,6 +1025,11 @@ export default function AdminPrediction() {
                           done to make sure that the predictions are saved for
                           future use.
                         </p>
+                        <p className="text-gray-500">
+                          Additionally, we are also writing the converted
+                          sentiment, removal of stop words, response length,
+                          word count, and polarity to the CSV file.
+                        </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
                             <h1 className="text-base font-medium text-blue-500">
@@ -1128,7 +1133,7 @@ export default function AdminPrediction() {
                     <div className="flex flex-col justify-end w-full mt-8 lg:flex-row lg:space-x-2 gap-2">
                       <button
                         className={`
-                        }px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
+                        px-5 py-1 pl-4 ${ACCENT_BUTTON}`}
                         onClick={() => {
                           setCount(2);
                           setHandlers({
@@ -1149,9 +1154,7 @@ export default function AdminPrediction() {
                       </button>
                       <button
                         className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                        onClick={() => {
-                          handleResetWhenDone("done");
-                        }}
+                        onClick={() => handleResetWhenDone("done")}
                         type="button"
                       >
                         <FontAwesomeIcon

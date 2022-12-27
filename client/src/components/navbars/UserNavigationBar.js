@@ -100,9 +100,9 @@ export default function UserNavigationBar() {
 
   const navigation_for_dashboard = [
     {
-      name: "Analytics",
-      href: "/user/dashboard/analytics",
-      current: isActiveSubs("analytics"),
+      name: "Sentiment Analysis",
+      href: "/user/dashboard/sentiment-analysis",
+      current: isActiveSubs("sentiment-analysis"),
       icon: <BsAwardFill size={16} />,
       icon_: <BsAwardFill size={24} />,
     },
@@ -142,7 +142,7 @@ export default function UserNavigationBar() {
   return (
     <Menu
       as="nav"
-      className="fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
+      className="sticky fixed top-0 z-50 w-full bg-blue-500 shadow font-Montserrat"
     >
       {({ open }) => (
         <>

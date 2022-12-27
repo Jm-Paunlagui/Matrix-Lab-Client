@@ -3,14 +3,15 @@ import React from "react";
 import { Icon } from "@iconify/react";
 
 import AboutUs from "../../assets/img/aboutus.svg";
+import Profile from "../../assets/img/profile.svg";
 
 /**
- * @description Json array of the about us paginator
+ * @description Json array of the about us listbox
  */
 const AboutUsDetails = [
   {
     name: "John Moises Paunlagui",
-    title: "Deep Learning Engineer, Web Developer",
+    title: "UI/UX Designer and Developer",
     description:
       "John is a deep learning engineer and data scientist who is passionate about building and deploying intelligent systems. He is currently working at Google as a Data Scientist and Web Developer.",
     image:
@@ -25,10 +26,10 @@ const AboutUsDetails = [
   },
   {
     name: "Rysel Pelipada",
-    title: "Chief Financial Expert",
+    title: "Researcher Documentation and Writer",
     description:
       "Rysel is the chief money laundere of the group and also contributes as a chef that cooks bespoke instant noodle recipes for the group. He is also a finance expert and a financial advisor to the group.",
-    image: "",
+    image: Profile,
     social: {
       github: "",
       linkedin: "",
@@ -39,7 +40,7 @@ const AboutUsDetails = [
   },
   {
     name: "Dwight Torres",
-    title: "Graphic Designer",
+    title: "Researcher Documentation and Paper Arranger",
     description: "",
     image:
       "https://s.gravatar.com/avatar/053efa0537974c8f9572913e8f3e1c7c?s=600",
@@ -53,9 +54,9 @@ const AboutUsDetails = [
   },
   {
     name: "Nathanael Bueno",
-    title: "",
+    title: "Grammar Checker and Researcher Documentation",
     description: "",
-    image: "",
+    image: Profile,
     social: {
       github: "",
       linkedin: "",
@@ -105,7 +106,7 @@ const Technologies = [
     logo: "logos:react-router",
     link: "https://reacttraining.com/react-router/web/guides/quick-start",
     description:
-      "React Router is a routing library for React. It is used to make single-paginator applications with the minimal effort required.",
+      "React Router is a routing library for React. It is used to make single-listbox applications with the minimal effort required.",
   },
   {
     name: "React-Icons",
@@ -114,7 +115,7 @@ const Technologies = [
     logo: "logos:react",
     link: "https://react-icons.netlify.com/",
     description:
-      "React Icons is a collection of icons for React. It is used to make single-paginator applications with the minimal effort required.",
+      "React Icons is a collection of icons for React. It is used to make single-listbox applications with the minimal effort required.",
   },
   {
     name: "TailwindCSS",
@@ -362,7 +363,7 @@ const Technologies = [
 ];
 
 /**
- * @description The about paginator component
+ * @description The about listbox component
  */
 export default function PublicAbout() {
   return (

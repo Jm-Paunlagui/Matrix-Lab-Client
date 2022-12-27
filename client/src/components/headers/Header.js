@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 /**
- * @description Header for the paginator
+ * @description Header for the listbox
  * @param title
  * @param body
  * @constructor

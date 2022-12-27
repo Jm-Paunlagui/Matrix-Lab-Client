@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../../../../components/headers/Header";
-import LoadingPage, {
+import {
   LoadingAnimation,
+  LoadingPageSkeletonText,
 } from "../../../../components/loading/LoadingPage";
 import httpClient from "../../../../http/httpClient";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
-import Paginator from "../../../../components/paginator/Paginator";
+import { Paginator } from "../../../../components/listbox/ListBox";
 import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -60,6 +61,8 @@ export default function ManagementFileBin() {
   } = fileData;
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
+
+  const [loadingIdPermanentDelete, setLoadingIdPermanentDelete] = useState({});
 
   /**
    * @description Search bar handler for the delete files
@@ -141,14 +144,17 @@ export default function ManagementFileBin() {
    * @param file
    */
   const handleDeletePermanently = (file) => {
+    setLoadingIdPermanentDelete((files) => ({ ...files, [file]: true }));
     httpClient
       .delete(`/data/delete-csv-file-permanent/${file}`)
       .then((response) => {
         loadFiles(page_number, per_page_limit);
         toast.success(response.data.message);
+        setLoadingIdPermanentDelete((files) => ({ ...files, [file]: false }));
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setLoadingIdPermanentDelete({});
       });
   };
 
@@ -190,223 +196,266 @@ export default function ManagementFileBin() {
         }
         title={"Deleted Files"}
       />
-      {loading ? (
-        LoadingPage()
-      ) : (
-        <>
-          <SearchBar
-            customStyle="mt-8"
-            name="searchValue"
-            onChange={(event) => handleSearchForFile(event)}
-            placeholder="Search"
-            type="text"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
-            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
-              <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                <div className="flex flex-row w-full">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Number of records per page
-                  </h1>
-                </div>
-                <Paginator
-                  handleSelect={handleSelect}
-                  per_page={per_page}
-                  per_page_limit={per_page_limit}
-                />
-              </div>
+      <SearchBar
+        customStyle="mt-8"
+        name="searchValue"
+        onChange={(event) => handleSearchForFile(event)}
+        placeholder="Search"
+        type="text"
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+        <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+            <div className="flex flex-row w-full">
+              <h1 className="text-base font-bold leading-none text-blue-500">
+                Number of records per page
+              </h1>
             </div>
-            <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
-              <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                <div className="flex flex-row w-full">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Mass Danger Actions
-                  </h1>
-                </div>
-                <ModalConfirm
-                  body={`Are you sure you want to temporarily delete all files from the system?`}
-                  description="This action cannot be undone. This will temporarily delete all files from the system and they will be restored if you restore all files."
-                  is_danger
-                  is_manny
-                  onConfirm={() => handleDeleteAllPermanently()}
-                  title="Delete All Files Permanently"
-                >
-                  {massDelete ? (
-                    <>
-                      <LoadingAnimation moreClasses="text-red-600" />
-                      {textChangeDelete}
-                    </>
-                  ) : (
-                    <>
-                      <FontAwesomeIcon
-                        className={`${ICON_PLACE_SELF_CENTER}`}
-                        icon={faTrash}
-                      />
-                      {textChangeDelete}
-                    </>
-                  )}
-                </ModalConfirm>
-              </div>
-            </div>
+            <Paginator
+              handleSelect={handleSelect}
+              per_page={per_page}
+              per_page_limit={per_page_limit}
+            />
           </div>
-          <div className="flex flex-col w-full p-4">
-            <h1 className="text-start font-medium text-blue-500">
-              Page {current_page} of {total_pages}
-            </h1>
+        </div>
+        <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+          <div className="content-end flex flex-wrap justify-start w-full gap-2">
+            <div className="flex flex-row w-full">
+              <h1 className="text-base font-bold leading-none text-blue-500">
+                Mass Danger Actions
+              </h1>
+            </div>
+            <ModalConfirm
+              body={`Are you sure you want to temporarily delete all files from the system?`}
+              description="This action cannot be undone. This will temporarily delete all files from the system and they will be restored if you restore all files."
+              is_danger
+              is_manny
+              onConfirm={() => handleDeleteAllPermanently()}
+              title="Delete All Files Permanently"
+            >
+              {massDelete ? (
+                <>
+                  <LoadingAnimation moreClasses="text-red-600" />
+                  {textChangeDelete}
+                </>
+              ) : (
+                <>
+                  <FontAwesomeIcon
+                    className={`${ICON_PLACE_SELF_CENTER}`}
+                    icon={faTrash}
+                  />
+                  {textChangeDelete}
+                </>
+              )}
+            </ModalConfirm>
           </div>
-          {filteredListOfFiles.length > 0 ? (
-            <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
-              {filteredListOfFiles.map((file) => (
-                <div
-                  className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
-                  key={file.id}
-                >
-                  <div className="col-span-1 w-full">
-                    <div className="flex flex-row w-full p-4">
-                      <h1 className="text-md font-bold leading-none text-blue-600">
-                        File ID
-                      </h1>
-                      <h1 className="text-md leading-none text-gray-500 ml-2">
-                        {file.id}
-                      </h1>
-                    </div>
-                  </div>
-                  <hr className="w-full border-gray-300" />
-                  <div className="col-span-4 text-start p-4">
-                    <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Status
-                      </h1>
-                    </div>
-                    <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          file.flag_deleted ? STATUS_RED : STATUS_GREEN
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {file.flag_deleted
-                            ? "Deleted Temporarily"
-                            : "Available"}
-                        </h1>
-                      </div>
-                      <div
-                        className={`p-2 flex flex-row justify-center ${
-                          file.flag_release ? STATUS_GREEN : STATUS_WARNING
-                        }`}
-                      >
-                        <h1 className="text-sm leading-none uppercase">
-                          {file.flag_release ? "Published" : "Unpublished"}
-                        </h1>
-                      </div>
-                    </div>
-                    <div className="flex flex-row w-full py-2">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Details
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        School Year:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-600">
-                        {file.school_year}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        School Semester:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-500">
-                        {file.school_semester}
-                      </h1>
-                    </div>
-                    <div className="flex flex-row items-start w-full py-2">
-                      <h1 className="text-base font-medium leading-none text-gray-500">
-                        Topic:
-                      </h1>
-                      <h1 className="ml-2 text-base leading-none text-gray-500">
-                        {file.csv_question}
-                      </h1>
-                    </div>
-                  </div>
-                  <div className="col-span-1 w-full">
-                    <div className="flex flex-row w-full px-4">
-                      <h1 className="text-base font-bold leading-none text-blue-500">
-                        Danger Zone
-                      </h1>
-                    </div>
-                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                      <ModalConfirm
-                        body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
-                        description="This action cannot be undone. This will permanently delete the file from the system and it will not be restored."
-                        id={file.id}
-                        is_danger
-                        is_manny={false}
-                        onConfirm={handleDeletePermanently}
-                        title="Delete File Permanently"
-                      >
-                        <>
-                          <FontAwesomeIcon
-                            className={`${ICON_PLACE_SELF_CENTER}`}
-                            icon={faTrash}
-                          />
-                          Delete Permanently
-                        </>
-                      </ModalConfirm>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className={"pb-8"}>
-              <NoData message="Data Unavailable" />
-            </div>
-          )}
-          <div className="pb-16 flex flex-col space-y-2 justify-end w-full lg:flex-row lg:space-x-2 lg:space-y-0">
-            <div className="flex flex-row items-center justify-center w-full lg:w-1/2">
-              {/*    Page details*/}
-              <div className="flex flex-row items-center justify-center w-full">
-                <h1 className="text-base font-medium leading-none t text-blue-500">
-                  Showing {files_list.length} of {total_items} files in total (
-                  {total_pages} pages)
-                </h1>
-              </div>
-            </div>
-            <button
-              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+        </div>
+      </div>
+      <div className="flex flex-col justify-end w-full mt-8 mb-8 p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
+        <div className="flex flex-col md:flex-row items-center w-full justify-between ">
+          {/*    Page details*/}
+          <h1 className="font-medium text-blue-500 text-start">
+            Page {current_page} of {total_pages}
+          </h1>
+          <h1 className="text-base font-medium leading-none text-blue-500 t">
+            Showing {files_list.length} of {total_items} Users in total (
+            {total_pages} pages)
+          </h1>
+        </div>
+        <button
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-              disabled={!has_prev}
-              onClick={() =>
-                setFileData({ ...fileData, page_number: page_number - 1 })
-              }
-              type="button"
-            >
-              <FontAwesomeIcon
-                className={`${ICON_PLACE_SELF_CENTER}`}
-                icon={faCaretLeft}
-              />
-              Newer
-            </button>
-            <button
-              className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+          disabled={!has_prev}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number - 1 })
+          }
+          type="button"
+        >
+          <FontAwesomeIcon
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretLeft}
+          />
+          Newer
+        </button>
+        <button
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
                   ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-              disabled={!has_next}
-              onClick={() =>
-                setFileData({ ...fileData, page_number: page_number + 1 })
-              }
-              type="button"
+          disabled={!has_next}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number + 1 })
+          }
+          type="button"
+        >
+          <FontAwesomeIcon
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretRight}
+          />
+          Older
+        </button>
+      </div>
+      <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
+        {loading ? (
+          <>
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+            <LoadingPageSkeletonText />
+          </>
+        ) : filteredListOfFiles.length > 0 ? (
+          filteredListOfFiles.map((file) => (
+            <div
+              className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
+              key={file.id}
             >
-              <FontAwesomeIcon
-                className={`${ICON_PLACE_SELF_CENTER}`}
-                icon={faCaretRight}
-              />
-              Older
-            </button>
+              <div className="col-span-1 w-full">
+                <div className="flex flex-row w-full p-4">
+                  <h1 className="text-md font-bold leading-none text-blue-600">
+                    File ID
+                  </h1>
+                  <h1 className="text-md leading-none text-gray-500 ml-2">
+                    {file.id}
+                  </h1>
+                </div>
+              </div>
+              <hr className="w-full border-gray-300" />
+              <div className="col-span-4 text-start p-4">
+                <div className="flex flex-row w-full py-2">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Status
+                  </h1>
+                </div>
+                <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                  <div
+                    className={`p-2 flex flex-row justify-center ${
+                      file.flag_deleted ? STATUS_RED : STATUS_GREEN
+                    }`}
+                  >
+                    <h1 className="text-sm leading-none uppercase">
+                      {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                    </h1>
+                  </div>
+                  <div
+                    className={`p-2 flex flex-row justify-center ${
+                      file.flag_release ? STATUS_GREEN : STATUS_WARNING
+                    }`}
+                  >
+                    <h1 className="text-sm leading-none uppercase">
+                      {file.flag_release ? "Published" : "Unpublished"}
+                    </h1>
+                  </div>
+                </div>
+                <div className="flex flex-row w-full py-2">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Details
+                  </h1>
+                </div>
+                <div className="flex flex-row items-start w-full py-2">
+                  <h1 className="text-base font-medium leading-none text-gray-500">
+                    School Year:
+                  </h1>
+                  <h1 className="ml-2 text-base leading-none text-gray-600">
+                    {file.school_year}
+                  </h1>
+                </div>
+                <div className="flex flex-row items-start w-full py-2">
+                  <h1 className="text-base font-medium leading-none text-gray-500">
+                    School Semester:
+                  </h1>
+                  <h1 className="ml-2 text-base leading-none text-gray-500">
+                    {file.school_semester}
+                  </h1>
+                </div>
+                <div className="flex flex-row items-start w-full py-2">
+                  <h1 className="text-base font-medium leading-none text-gray-500">
+                    Topic:
+                  </h1>
+                  <h1 className="ml-2 text-base leading-none text-gray-500">
+                    {file.csv_question}
+                  </h1>
+                </div>
+              </div>
+              <div className="col-span-1 w-full">
+                <div className="flex flex-row w-full px-4">
+                  <h1 className="text-base font-bold leading-none text-blue-500">
+                    Danger Zone
+                  </h1>
+                </div>
+                <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                  <ModalConfirm
+                    body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
+                    description="This action cannot be undone. This will permanently delete the file from the system and it will not be restored."
+                    id={file.id}
+                    is_danger
+                    is_manny={false}
+                    onConfirm={handleDeletePermanently}
+                    title="Delete File Permanently"
+                  >
+                    {loadingIdPermanentDelete[file.id] ? (
+                      <>
+                        <LoadingAnimation moreClasses="text-red-600" />
+                        Permanently Deleting...
+                      </>
+                    ) : (
+                      <>
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faTrash}
+                        />
+                        Delete Permanently
+                      </>
+                    )}
+                  </ModalConfirm>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className={"col-span-full"}>
+            <NoData message="Data Unavailable" />
           </div>
-        </>
-      )}
+        )}
+      </div>
+      <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
+        <div className="flex flex-col md:flex-row items-center w-full justify-between ">
+          {/*    Page details*/}
+          <h1 className="font-medium text-blue-500 text-start">
+            Page {current_page} of {total_pages}
+          </h1>
+          <h1 className="text-base font-medium leading-none text-blue-500 t">
+            Showing {files_list.length} of {total_items} Users in total (
+            {total_pages} pages)
+          </h1>
+        </div>
+        <button
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+                  ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
+          disabled={!has_prev}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number - 1 })
+          }
+          type="button"
+        >
+          <FontAwesomeIcon
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretLeft}
+          />
+          Newer
+        </button>
+        <button
+          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
+                  ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
+          disabled={!has_next}
+          onClick={() =>
+            setFileData({ ...fileData, page_number: page_number + 1 })
+          }
+          type="button"
+        >
+          <FontAwesomeIcon
+            className={`${ICON_PLACE_SELF_CENTER}`}
+            icon={faCaretRight}
+          />
+          Older
+        </button>
+      </div>
     </div>
   );
 }

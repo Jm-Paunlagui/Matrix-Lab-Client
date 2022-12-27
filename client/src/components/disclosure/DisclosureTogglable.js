@@ -28,7 +28,7 @@ export default function DisclosureTogglable({ title, children }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className="px-4 pt-4 pb-2 text-base text-gray-500 space-y-2">
+            <Disclosure.Panel className="absolute backdrop-blur-xl bg-white/50 px-4 pt-4 pb-2 text-base text-gray-500 space-y-2 shadow rounded-lg">
               {children}
             </Disclosure.Panel>
           </Transition>

@@ -4,7 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 /**
- * @description Handles about, home, insights, privacy, and terms paginator for the application
+ * @description Handles about, home, insights, privacy, and terms listbox for the application
  */
 export default function IndexPublic() {
   // Actively monitor the path of the user and display the right color for the background
@@ -18,9 +18,9 @@ export default function IndexPublic() {
 
   const [color, setColor] = useState("bg-white");
 
-  // If the path is the home paginator, then display the home paginator background color bg-blue-50
+  // If the path is the home listbox, then display the home listbox background color bg-blue-50
   useEffect(() => {
-    if (splitLocation[1] === "") {
+    if (splitLocation[1] === "" || splitLocation[1] === "aboutus") {
       setColor("bg-blue-50");
     } else {
       setColor("bg-blue-200");

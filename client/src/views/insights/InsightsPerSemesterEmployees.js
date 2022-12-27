@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
-import LoadingPage from "../../components/loading/LoadingPage";
+import {
+  LoadingAnimation,
+  LoadingPageSkeletonText,
+} from "../../components/loading/LoadingPage";
 import httpClient from "../../http/httpClient";
-import { ViewInsightHistory } from "../../components/forms/CredentialForms";
 import { Header } from "../../components/headers/Header";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { NoData } from "../../components/warnings/WarningMessages";
+import {
+  CsvQuestion,
+  SchoolYearList,
+  SemesterList,
+} from "../../components/listbox/ListBox";
+import {
+  ACCENT_BUTTON,
+  ICON_PLACE_SELF_CENTER,
+} from "../../assets/styles/styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * @description Handles the Insights for the department per semester
@@ -77,7 +90,7 @@ export default function InsightsPerSemesterEmployees() {
   };
 
   /**
-   * @description Gets the data from the backend and displays it on the paginator.
+   * @description Gets the data from the backend and displays it on the listbox.
    * @param event
    * @returns {Promise<void>}
    */
@@ -137,7 +150,7 @@ export default function InsightsPerSemesterEmployees() {
   }, []);
 
   return (
-    <div className="px-6 mx-auto max-w-7xl pt-8">
+    <div className="px-6 mx-auto max-w-7xl pt-8 pb-8">
       <Header
         body={"Insights for Professor per semester"}
         title={"Top Professor Per Semester"}
@@ -151,9 +164,9 @@ export default function InsightsPerSemesterEmployees() {
             placeholder="Search"
             type="text"
           />
-          <div className="place-content-center">
+          <div className="place-content-center shadow">
             <div
-              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded outline outline-2  ${
+              className={`grid w-full h-full grid-cols-1 p-4 bg-blue-50 rounded-lg outline outline-2 shadow mb-8 ${
                 error ? `animate-wiggle` : "outline-gray-100"
               }`}
               onAnimationEnd={() => {
@@ -164,47 +177,85 @@ export default function InsightsPerSemesterEmployees() {
               }}
             >
               {
-                <ViewInsightHistory
-                  csv_question={csv_question}
-                  csv_question_to_choose={csv_question_to_choose}
-                  errorMessage={errorMessage}
-                  handleSelect={handleSelect}
-                  handleViewFile={handleViewFile}
-                  ok={ok}
-                  school_semester={school_semester}
-                  school_semester_to_choose={school_semester_to_choose}
-                  school_year={school_year}
-                  school_year_to_choose={school_year_to_choose}
-                  textChange={textChange}
-                />
+                <form
+                  className={`${loading ? "animate-pulse" : ""}`}
+                  onSubmit={handleViewFile}
+                >
+                  <h1 className="mb-4 text-xl font-bold text-blue-500">
+                    View Previous Insight
+                  </h1>
+                  <p className="mb-4 text-sm text-gray-500">
+                    You can view your previous insight here by selecting a
+                    specific school year, semester and the topic you want to
+                    view.
+                  </p>
+                  <div className="flex flex-col w-full space-y-2">
+                    <SchoolYearList
+                      disabled={loading}
+                      handleSelect={handleSelect}
+                      school_year={school_year}
+                      school_year_to_choose={school_year_to_choose}
+                    />
+                    <SemesterList
+                      disabled={loading}
+                      handleSelect={handleSelect}
+                      school_semester={school_semester}
+                      school_semester_to_choose={school_semester_to_choose}
+                    />
+                    <CsvQuestion
+                      csv_question={csv_question}
+                      csv_question_to_choose={csv_question_to_choose}
+                      disabled={loading}
+                      handleSelect={handleSelect}
+                    />
+                  </div>
+                  {/* Error message */}
+                  {errorMessage ? (
+                    <div className="mt-2 text-sm font-semibold text-red-500">
+                      {errorMessage}
+                    </div>
+                  ) : null}
+                  <div className="flex flex-col justify-end w-full mt-8 lg:space-x-2">
+                    <button
+                      className={`px-8 py-1 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                      type="submit"
+                    >
+                      {ok ? (
+                        <LoadingAnimation />
+                      ) : (
+                        <FontAwesomeIcon
+                          className={`${ICON_PLACE_SELF_CENTER}`}
+                          icon={faMagnifyingGlassChart}
+                        />
+                      )}
+                      {textChange}
+                    </button>
+                  </div>
+                </form>
               }
             </div>
           </div>
         </div>
         <div className="col-span-2">
           {loading ? (
-            LoadingPage()
+            <div className="space-y-8">
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+              <LoadingPageSkeletonText />
+            </div>
           ) : (
             <div className=" place-content-center space-y-8">
               {filteredTopEmployeePerSem.length > 0 ? (
                 <>
                   {filteredTopEmployeePerSem.map((professor) => (
                     <div
-                      className={`flex flex-col w-full bg-white rounded shadow
-                                      ${
-                                        professor.id === 0
-                                          ? "border-solid border-4 border-yellow-100"
-                                          : professor.id === 1
-                                          ? "border-solid border-4 border-gray-100"
-                                          : professor.id === 2
-                                          ? "border-solid border-4 border-orange-100"
-                                          : "border-solid border-4 border-blue-100"
-                                      }`}
+                      className={`flex flex-col w-full bg-white rounded-lg shadow`}
                       key={professor.id}
                     >
-                      <div className="grid w-full h-full grid-cols-1 rounded">
+                      <div className="grid w-full h-full grid-cols-1">
                         <div
-                          className={`col-span-1 py-5 items-center justify-center w-full
+                          className={`col-span-1 py-5 items-center justify-center w-full rounded-t-lg
                                                  ${
                                                    professor.id === 0
                                                      ? "bg-yellow-50"
@@ -212,11 +263,11 @@ export default function InsightsPerSemesterEmployees() {
                                                      ? "bg-gray-50"
                                                      : professor.id === 2
                                                      ? "bg-orange-50"
-                                                     : "bg-blue-50"
+                                                     : "bg-cyan-50"
                                                  }`}
                         >
                           <div className="flex flex-col items-center justify-center w-full p-4">
-                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-700">
+                            <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
                               {professor.professor}
                             </h1>
                           </div>

@@ -276,7 +276,7 @@ export default function AuthLogin() {
       <div className="flex items-center content-center justify-center h-full">
         <div className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-5/12">
           <div
-            className={`relative flex flex-col w-full min-w-0 break-words bg-blue-50 border rounded-lg shadow-lg 
+            className={`relative flex flex-col w-full min-w-0 break-words bg-blue-50 border rounded-lg shadow 
                 ${errorEffect && `animate-wiggle`}`}
             onAnimationEnd={() => setErrorEffect(false)}
           >
