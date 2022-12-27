@@ -776,7 +776,6 @@ export default function ManagementFilesUsers() {
           Next
         </button>
       </div>
-      <>
         <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
           {loading_ ? (
             <>
@@ -1036,7 +1035,6 @@ export default function ManagementFilesUsers() {
             </div>
           )}
         </div>
-      </>
       <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
         <div className="flex flex-col md:flex-row items-center w-full justify-between ">
           {/*    Page details*/}
