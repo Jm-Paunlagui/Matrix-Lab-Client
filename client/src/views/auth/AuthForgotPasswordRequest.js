@@ -67,8 +67,7 @@ export default function AuthForgotPasswordRequest() {
    * @description Destructs the state variables
    */
 
-  const { confirm_email, email, id1, id3, textChange, username } =
-    resetForm; // Hide email address with mask
+  const { confirm_email, email, id1, id3, textChange, username } = resetForm; // Hide email address with mask
 
   /**
    * @description Handles the form submission and makes a POST request to the backend to check user email.
