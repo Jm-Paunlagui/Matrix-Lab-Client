@@ -522,7 +522,6 @@ export function AssociatedEmails({
   handleFormChange,
   handleVerifyEmailSubmit,
   id1,
-  id2,
   id3,
   oki,
   textChange,
@@ -534,7 +533,6 @@ export function AssociatedEmails({
     handleFormChange: PropTypes.func,
     handleVerifyEmailSubmit: PropTypes.func,
     id1: PropTypes.string,
-    id2: PropTypes.string,
     id3: PropTypes.string,
     oki: PropTypes.bool,
     textChange: PropTypes.string,
@@ -574,35 +572,6 @@ export function AssociatedEmails({
           </li>
         ) : (
           EMAIL_NOT_SET("Primary")
-        )}
-        {emailRegex.test(id2) ? (
-          <li className="list-none">
-            <input
-              checked={confirm_email === id2}
-              className="sr-only peer "
-              id="id2"
-              name="confirm_email"
-              onChange={handleFormChange}
-              type="radio"
-              value={id2}
-            />
-            <label
-              className={`px-5 py-1 pl-4 flex flex-row justify-start outline outline-2 rounded-lg ${
-                errorEffect
-                  ? `outline-red-500 placeholder-red-500 text-red-500`
-                  : PRIMARY_RADIO
-              }`}
-              htmlFor="id2"
-            >
-              <FontAwesomeIcon
-                className={`${ICON_PLACE_SELF_CENTER}`}
-                icon={faEnvelope}
-              />
-              Email {maskEmail(id2)}
-            </label>
-          </li>
-        ) : (
-          EMAIL_NOT_SET("Secondary")
         )}
         {emailRegex.test(id3) ? (
           <li className="list-none">

@@ -34,7 +34,6 @@ export default function AuthForgotPasswordRequest() {
     confirm_email: "",
     email: "",
     id1: "",
-    id2: "",
     id3: "",
     textChange: "Next",
     username: "",
@@ -68,7 +67,7 @@ export default function AuthForgotPasswordRequest() {
    * @description Destructs the state variables
    */
 
-  const { confirm_email, email, id1, id2, id3, textChange, username } =
+  const { confirm_email, email, id1, id3, textChange, username } =
     resetForm; // Hide email address with mask
 
   /**
@@ -95,7 +94,6 @@ export default function AuthForgotPasswordRequest() {
             setResetForm({
               ...resetForm,
               id1: result.payload.sub,
-              id2: result.payload.secondary_email,
               id3: result.payload.recovery_email,
               textChange: "Continue",
             });
@@ -255,7 +253,6 @@ export default function AuthForgotPasswordRequest() {
                       handleFormChange={handleFormChange}
                       handleVerifyEmailSubmit={handleVerifyEmailSubmit}
                       id1={id1}
-                      id2={id2}
                       id3={id3}
                       oki={oki}
                       textChange={textChange}
