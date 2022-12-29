@@ -29,7 +29,7 @@ export default function DashboardAnalysis() {
    */
   const get_file_details = () => {
     httpClient
-      .get("/data/dashboard-data-csv")
+      .get("/analysis/dashboard-data-csv")
       .then((response) => {
         setData({
           ...data,
