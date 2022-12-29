@@ -45,7 +45,7 @@ export default function ManagementFilesUsers() {
    */
   const get_file_details = () => {
     httpClient
-      .get("/data/dashboard-data-user")
+      .get("/analysis/dashboard-data-user")
       .then((response) => {
         setData({
           ...data,
