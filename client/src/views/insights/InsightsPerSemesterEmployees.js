@@ -103,7 +103,7 @@ export default function InsightsPerSemesterEmployees() {
       loading: true,
     });
     await httpClient
-      .post("/data/get-top-professors-by-file", {
+      .post("/data/get-top-professor-by-file", {
         school_year,
         school_semester,
         csv_question,
