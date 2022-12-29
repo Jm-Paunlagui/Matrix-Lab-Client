@@ -25,7 +25,6 @@ export default function AdminProfile() {
     errorMessageforPersonalInfo: "",
     showButtonforPersonalInfo: true,
     textChangeforPersonalInfo: "Update",
-    secondary_email: "",
     recovery_email: "",
     okforSecurityInfo: false,
     errorEffectforSecurityInfo: false,
@@ -60,7 +59,6 @@ export default function AdminProfile() {
     errorMessageforPersonalInfo,
     showButtonforPersonalInfo,
     textChangeforPersonalInfo,
-    secondary_email,
     recovery_email,
     okforSecurityInfo,
     errorEffectforSecurityInfo,
@@ -101,7 +99,6 @@ export default function AdminProfile() {
           ...profile,
           email: response.data.user.email,
           full_name: response.data.user.full_name,
-          secondary_email: response.data.user.secondary_email,
           recovery_email: response.data.user.recovery_email,
           username: response.data.user.username,
           role: response.data.user.role,
@@ -242,7 +239,6 @@ export default function AdminProfile() {
     });
     await httpClient
       .put("/user/update-security-info", {
-        secondary_email,
         recovery_email,
       })
       .then(async (response) => {
@@ -427,7 +423,6 @@ export default function AdminProfile() {
               okforSecurityInfo={okforSecurityInfo}
               profile={profile}
               recovery_email={recovery_email}
-              secondary_email={secondary_email}
               setProfile={setProfile}
               showButtonforSecurityInfo={showButtonforSecurityInfo}
               textChangeforSecurityInfo={textChangeforSecurityInfo}

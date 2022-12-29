@@ -922,7 +922,6 @@ export function SecurityInformation({
   okforSecurityInfo,
   profile,
   recovery_email,
-  secondary_email,
   setProfile,
   showButtonforSecurityInfo,
   textChangeforSecurityInfo,
@@ -935,7 +934,6 @@ export function SecurityInformation({
     okforSecurityInfo: PropTypes.bool,
     profile: PropTypes.shape({}),
     recovery_email: PropTypes.string,
-    secondary_email: PropTypes.string,
     setProfile: PropTypes.func,
     showButtonforSecurityInfo: PropTypes.bool,
     textChangeforSecurityInfo: PropTypes.string,
@@ -966,23 +964,6 @@ export function SecurityInformation({
           <div className="flex flex-col w-full h-full col-span-3 space-y-4 text-gray-500">
             <form onSubmit={handleUpdateSecurityInfo}>
               <div className="flex flex-col space-y-4">
-                <div className="flex flex-col w-full space-y-2">
-                  <h1 className="text-base font-medium text-gray-500">
-                    Secondary Email
-                  </h1>
-                  <input
-                    className={`${TEXT_FIELD} outline outline-2 ${
-                      errorEffectforSecurityInfo
-                        ? `outline-red-500 placeholder-red-500 text-red-500`
-                        : `text-gray-500 bg-white outline-blue-100`
-                    }`}
-                    name="secondary_email"
-                    onChange={handleChangeForSecurityInfo("secondary_email")}
-                    placeholder="Secondary Email"
-                    type="email"
-                    value={secondary_email === null ? "" : secondary_email}
-                  />
-                </div>
                 <div className="flex flex-col w-full space-y-2">
                   <h1 className="text-base font-medium text-gray-500">
                     Recovery Email
