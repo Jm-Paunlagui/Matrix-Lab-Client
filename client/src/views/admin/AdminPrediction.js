@@ -100,9 +100,8 @@ export default function AdminPrediction() {
     prediction_time: "",
     sentiment_time: "",
     adding_predictions_time: "",
+    adding_to_db_time: "",
     analysis_user_time: "",
-    analysis_department_time: "",
-    analysis_collection_time: "",
   });
 
   const {
@@ -115,9 +114,8 @@ export default function AdminPrediction() {
     prediction_time,
     sentiment_time,
     adding_predictions_time,
+    adding_to_db_time,
     analysis_user_time,
-    analysis_department_time,
-    analysis_collection_time,
   } = timeAnalyze;
 
   /**
@@ -394,9 +392,8 @@ export default function AdminPrediction() {
             prediction_time: response.data.prediction_time,
             sentiment_time: response.data.sentiment_time,
             adding_predictions_time: response.data.adding_predictions_time,
+            adding_to_db_time: response.data.adding_to_db_time,
             analysis_user_time: response.data.analysis_user_time,
-            analysis_department_time: response.data.analysis_department_time,
-            analysis_collection_time: response.data.analysis_collection_time,
           });
           setCount(count + 1);
         })
@@ -1021,14 +1018,12 @@ export default function AdminPrediction() {
                         title={"Writing the Predictions to a CSV File"}
                       >
                         <p className="text-gray-500">
-                          We are writing the predictions to a CSV file. This is
-                          done to make sure that the predictions are saved for
-                          future use.
+                          We are writing the predictions to a CSV file to easily add the predictions to the database.
                         </p>
                         <p className="text-gray-500">
-                          Additionally, we are also writing the converted
+                          Additionally, we are also computing the converted
                           sentiment, removal of stop words, response length,
-                          word count, and polarity to the CSV file.
+                          word count, and polarity to save them in the database.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
@@ -1037,6 +1032,25 @@ export default function AdminPrediction() {
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(adding_predictions_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                          title={"Adding the Predictions to the Database"}
+                      >
+                        <p className="text-gray-500">
+                          We are adding the predictions to the database. This is done to make sure that the predictions are saved for future use. Additionally, we are also adding the converted sentiment, removal of stop words, response length, word count, and polarity to the database.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(adding_to_db_time)}
                             </p>
                           </div>
                         </div>
@@ -1067,64 +1081,6 @@ export default function AdminPrediction() {
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(analysis_user_time)}
-                            </p>
-                          </div>
-                        </div>
-                      </DisclosureTogglable>
-                    </div>
-                    <div className="flex flex-col w-full">
-                      <DisclosureTogglable
-                        title={"Department Analysis Computations"}
-                      >
-                        <p className="text-gray-500">
-                          While we are processing your data, we are also
-                          computing the department analysis. This is done to
-                          make sure that you can access the department analysis
-                          in the future. You can access the department analysis
-                          in the{" "}
-                          <span className="text-blue-500 font-medium">
-                            <Link to={"/admin/management/files/data"}>
-                              File Management
-                            </Link>
-                          </span>{" "}
-                          page and choose file to view.
-                        </p>
-                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <div className="bg-white p-2 rounded-lg">
-                            <h1 className="text-base font-medium text-blue-500">
-                              Time taken
-                            </h1>
-                            <p className="text-gray-500">
-                              {timeFormat(analysis_department_time)}
-                            </p>
-                          </div>
-                        </div>
-                      </DisclosureTogglable>
-                    </div>
-                    <div className="flex flex-col w-full">
-                      <DisclosureTogglable
-                        title={"Collection Provider Analysis Computations"}
-                      >
-                        <p className="text-gray-500">
-                          This process also takes time because it compiles each
-                          professor&#39;s courses and responses into there own
-                          respective folders. This is done to make sure that the
-                          professor can access their predictions in the future.
-                          You can access the collection provider analysis in the{" "}
-                          <span className="text-blue-500 font-medium">
-                            <Link to={"/admin/management/files/data"}>
-                              File Management
-                            </Link>
-                          </span>{" "}
-                          page and choose file and Professor to view.
-                        </p>
-                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <div className="bg-white p-2 rounded-lg">
-                            <h1 className="text-base font-medium text-blue-500">
-                              Time taken
-                            </h1>
-                            <p className="text-gray-500">
-                              {timeFormat(analysis_collection_time)}
                             </p>
                           </div>
                         </div>
