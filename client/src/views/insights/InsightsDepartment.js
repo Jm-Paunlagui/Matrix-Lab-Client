@@ -125,17 +125,6 @@ export default function InsightsDepartment() {
                       </h1>
                     </div>
                     <div className="flex flex-col items-center justify-center w-full">
-                      <div className="flex items-center justify-center w-10 h-10 text-white rounded bg-gradient-to-br from-red-500 to-teal-500">
-                        <i className="fas fa-masks-theater" />
-                      </div>
-                      <h1 className="text-2xl font-bold text-gray-500">
-                        {department.overall_sentiment}
-                      </h1>
-                      <h1 className="text-sm font-medium text-gray-500">
-                        Overall
-                      </h1>
-                    </div>
-                    <div className="flex flex-col items-center justify-center w-full">
                       <div className="flex items-center justify-center w-10 h-10 text-white bg-green-500 rounded">
                         <i className="fas fa-face-smile-beam" />
                       </div>
