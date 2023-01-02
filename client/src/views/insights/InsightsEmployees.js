@@ -28,7 +28,10 @@ export default function InsightsEmployees() {
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
     const result = top_professors.filter((data) => {
-      return data.professor.toLowerCase().search(value) !== -1 || data.evaluatee_department.toLowerCase().search(value) !== -1;
+      return (
+        data.professor.toLowerCase().search(value) !== -1 ||
+        data.evaluatee_department.toLowerCase().search(value) !== -1
+      );
     });
     setFilteredTopProfessors(result);
   };

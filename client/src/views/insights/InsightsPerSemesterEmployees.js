@@ -137,7 +137,10 @@ export default function InsightsPerSemesterEmployees() {
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
     const result = top_professor_per_sem.filter((data) => {
-      return data.professor.toLowerCase().search(value) !== -1 || data.evaluatee_department.toLowerCase().search(value) !== -1;
+      return (
+        data.professor.toLowerCase().search(value) !== -1 ||
+        data.evaluatee_department.toLowerCase().search(value) !== -1
+      );
     });
     setFilteredTopEmployeePerSem(result);
   };
