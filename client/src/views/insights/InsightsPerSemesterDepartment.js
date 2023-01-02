@@ -269,7 +269,7 @@ export default function InsightsPerSemesterDepartment() {
                           </div>
                         </div>
                         <div className="col-span-4 place-self-center">
-                          <div className="grid grid-cols-3 gap-8 py-4 md:grid-cols-4 md:gap-20">
+                          <div className="grid grid-cols-2 gap-8 py-4 lg:grid-cols-3 md:gap-20">
                             <div className="flex flex-col items-center justify-center w-full">
                               <div
                                 className={`flex items-center justify-center w-10 h-10 text-white rounded ${
@@ -302,14 +302,14 @@ export default function InsightsPerSemesterDepartment() {
                               </h1>
                             </div>
                             <div className="flex flex-col items-center justify-center w-full">
-                              <div className="flex items-center justify-center w-10 h-10 text-white rounded bg-gradient-to-br from-red-500 to-teal-500">
-                                <i className="fas fa-masks-theater" />
+                              <div className="flex items-center justify-center w-10 h-10 text-white rounded bg-blue-500">
+                                <i className="fas fa-user-tie" />
                               </div>
                               <h1 className="text-2xl font-bold text-gray-500">
-                                {department.overall_sentiment}
+                                {department.evaluatee}
                               </h1>
                               <h1 className="text-sm font-medium text-gray-500">
-                                Overall
+                                Professors
                               </h1>
                             </div>
                             <div className="flex flex-col items-center justify-center w-full">

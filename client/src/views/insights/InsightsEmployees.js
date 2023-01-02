@@ -28,13 +28,13 @@ export default function InsightsEmployees() {
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
     const result = top_professors.filter((data) => {
-      return data.professor.toLowerCase().search(value) !== -1;
+      return data.professor.toLowerCase().search(value) !== -1 || data.evaluatee_department.toLowerCase().search(value) !== -1;
     });
     setFilteredTopProfessors(result);
   };
 
   useEffect(() => {
-    httpClient.get("/data/get-top-professors-overall").then((response) => {
+    httpClient.get("/data/get-top-professor-overall").then((response) => {
       setTopProfessors({
         ...topProfessors,
         loading: false,
@@ -92,7 +92,7 @@ export default function InsightsEmployees() {
                   </div>
                 </div>
                 <div className="col-span-4 place-self-center">
-                  <div className="grid grid-cols-3 gap-8 py-4 md:grid-cols-6 md:gap-20 ">
+                  <div className="grid grid-cols-2 gap-8 py-4 md:grid-cols-3 lg:grid-cols-4 md:gap-20">
                     <div className="flex flex-col items-center justify-center w-full">
                       <div
                         className={`flex items-center justify-center w-10 h-10 text-white rounded ${
@@ -125,14 +125,14 @@ export default function InsightsEmployees() {
                       </h1>
                     </div>
                     <div className="flex flex-col items-center justify-center w-full">
-                      <div className="flex items-center justify-center w-10 h-10 text-white rounded bg-gradient-to-br from-red-500 to-teal-500">
-                        <i className="fas fa-masks-theater" />
+                      <div className="flex items-center justify-center w-10 h-10 text-white rounded bg-blue-500">
+                        <i className="fas fa-building" />
                       </div>
                       <h1 className="text-2xl font-bold text-gray-500">
-                        {professor.overall_sentiment}
+                        {professor.evaluatee_department}
                       </h1>
                       <h1 className="text-sm font-medium text-gray-500">
-                        Overall
+                        Department
                       </h1>
                     </div>
                     <div className="flex flex-col items-center justify-center w-full">
