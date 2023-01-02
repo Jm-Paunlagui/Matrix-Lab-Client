@@ -1018,7 +1018,8 @@ export default function AdminPrediction() {
                         title={"Writing the Predictions to a CSV File"}
                       >
                         <p className="text-gray-500">
-                          We are writing the predictions to a CSV file to easily add the predictions to the database.
+                          We are writing the predictions to a CSV file to easily
+                          add the predictions to the database.
                         </p>
                         <p className="text-gray-500">
                           Additionally, we are also computing the converted
@@ -1039,10 +1040,14 @@ export default function AdminPrediction() {
                     </div>
                     <div className="flex flex-col w-full">
                       <DisclosureTogglable
-                          title={"Adding the Predictions to the Database"}
+                        title={"Adding the Predictions to the Database"}
                       >
                         <p className="text-gray-500">
-                          We are adding the predictions to the database. This is done to make sure that the predictions are saved for future use. Additionally, we are also adding the converted sentiment, removal of stop words, response length, word count, and polarity to the database.
+                          We are adding the predictions to the database. This is
+                          done to make sure that the predictions are saved for
+                          future use. Additionally, we are also adding the
+                          converted sentiment, removal of stop words, response
+                          length, word count, and polarity to the database.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
