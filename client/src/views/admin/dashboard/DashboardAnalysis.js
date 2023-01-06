@@ -200,10 +200,10 @@ export default function DashboardAnalysis() {
         ) : (
           details.map((detail) => (
             <div
-              className="flex items-start p-4 bg-blue-50 rounded-lg shadow"
+              className="flex items-start hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={detail.id}
             >
-              <div className="flex items-center justify-center">
+              <div className="flex items-center p-4 bg-blue-50 rounded-lg shadow w-full">
                 <div
                   className={`flex items-center justify-center w-10 h-10 text-white rounded ${
                     detail.id === 1
@@ -271,7 +271,7 @@ export default function DashboardAnalysis() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-8 ">
         <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
-          <div className="w-full">
+          <div className="w-full z-30">
             <h1 className="text-md font-bold text-blue-500 mb-4">
               Number of Positive and Negative Sentiments
             </h1>
@@ -312,7 +312,7 @@ export default function DashboardAnalysis() {
           )}
         </div>
         <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
-          <div className="w-full">
+          <div className="w-full z-30">
             <h1 className="text-md font-bold text-blue-500 mb-4">
               Sentiment vs Polarity
             </h1>
@@ -345,7 +345,7 @@ export default function DashboardAnalysis() {
           </div>
         </div>
         <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
-          <div className="w-full">
+          <div className="w-full z-30">
             <h1 className="text-md font-bold text-blue-500 mb-4">
               Sentiment vs Response Length
             </h1>
@@ -383,7 +383,7 @@ export default function DashboardAnalysis() {
           </div>
         </div>
         <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
-          <div className="w-full">
+          <div className="w-full z-30">
             <h1 className="text-md font-bold text-blue-500 mb-4">Word Cloud</h1>
             <DisclosureTogglable title="What is a Word Cloud?">
               <p className="text-base font-medium text-gray-500 mb-4">
@@ -417,7 +417,7 @@ export default function DashboardAnalysis() {
       </div>
 
       <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2">
-        <div className="w-full">
+        <div className="w-full z-30">
           <h1 className="text-md font-bold text-blue-500 mb-4">
             Most Common Words in Trigrams (3 words)
           </h1>
@@ -480,7 +480,7 @@ export default function DashboardAnalysis() {
         </div>
       </div>
       <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2 mt-8">
-        <div className="w-full">
+        <div className="w-full z-30">
           <h1 className="text-md font-bold text-blue-500 mb-4">
             Most Common Words in Bigrams (2 words)
           </h1>
@@ -544,7 +544,7 @@ export default function DashboardAnalysis() {
         </div>
       </div>
       <div className="flex flex-col items-start w-full p-4 bg-blue-50 rounded-lg shadow space-y-2 mt-8">
-        <div className="w-full">
+        <div className="w-full z-30">
           <h1 className="text-md font-bold text-blue-500 mb-4">
             Most Common Words in Unigrams (1 word)
           </h1>

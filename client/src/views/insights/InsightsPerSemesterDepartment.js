@@ -117,13 +117,13 @@ export default function InsightsPerSemesterDepartment() {
       .then((response) => {
         setTopDepartmentPerSem({
           ...topDepartmentPerSem,
-          top_department_per_sem: response.data.top_departments,
+          top_department_per_sem: response.data.top_department,
           title: response.data.title,
           s_y: response.data.s_y,
           ok: false,
           textChange: "View Insights",
         });
-        setFilteredTopDepartmentPerSem(response.data.top_departments);
+        setFilteredTopDepartmentPerSem(response.data.top_department);
       })
       .catch((error) => {
         setTopDepartmentPerSem({
@@ -242,7 +242,7 @@ export default function InsightsPerSemesterDepartment() {
             </div>
           ) : (
             <div className=" place-content-center space-y-8">
-              {filteredTopDepartmentPerSem.length > 0 ? (
+              {filteredTopDepartmentPerSem.length > 0 || false ? (
                 <>
                   {filteredTopDepartmentPerSem.map((department) => (
                     <div

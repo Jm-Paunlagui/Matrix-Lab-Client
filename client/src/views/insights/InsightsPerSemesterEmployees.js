@@ -249,7 +249,7 @@ export default function InsightsPerSemesterEmployees() {
             </div>
           ) : (
             <div className=" place-content-center space-y-8">
-              {filteredTopEmployeePerSem.length > 0 ? (
+              {filteredTopEmployeePerSem.length > 0 || false ? (
                 <>
                   {filteredTopEmployeePerSem.map((professor) => (
                     <div

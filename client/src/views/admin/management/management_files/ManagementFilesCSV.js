@@ -14,7 +14,6 @@ import {
   faFileCsv,
   faFileArrowDown,
   faTrash,
-  faRotate,
   faUpLong,
   faDownLong,
 } from "@fortawesome/free-solid-svg-icons";
@@ -70,7 +69,6 @@ export default function ManagementFilesCSV() {
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
 
   const [loadingIdDownload, setLoadingIdDownload] = useState({});
-  const [loadingIdRestore, setLoadingIdRestore] = useState({});
   const [loadingIdPublish, setLoadingIdPublish] = useState({});
   const [loadingIdDelete, setLoadingIdDelete] = useState({});
   const [loadingIdUnpublish, setLoadingIdUnpublish] = useState({});
@@ -86,8 +84,6 @@ export default function ManagementFilesCSV() {
   };
 
   const [loadingAnimation, setLoadingAnimation] = useState({
-    massRestore: false,
-    textChangeRestore: "Restore all",
     massDelete: false,
     textChangeDelete: "Delete all temporarily",
     massPublish: false,
@@ -97,8 +93,6 @@ export default function ManagementFilesCSV() {
   });
 
   const {
-    massRestore,
-    textChangeRestore,
     massDelete,
     textChangeDelete,
     massPublish,
@@ -182,25 +176,6 @@ export default function ManagementFilesCSV() {
   };
 
   /**
-   * @description Handles the restore of a file from the backend
-   * @param file
-   */
-  const handleRestore = (file) => {
-    setLoadingIdRestore((files) => ({ ...files, [file]: true }));
-    httpClient
-      .put(`/data/unflag-delete-csv-file/${file}`)
-      .then((response) => {
-        loadFiles(page_number, per_page_limit);
-        toast.success(response.data.message);
-        setLoadingIdRestore((files) => ({ ...files, [file]: false }));
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-        setLoadingIdRestore({});
-      });
-  };
-
-  /**
    * @description Handles the publish of a file from the backend
    * @param file
    */
@@ -263,36 +238,6 @@ export default function ManagementFilesCSV() {
           ...loadingAnimation,
           massDelete: false,
           textChangeDelete: "Delete all temporarily",
-        });
-        toast.error(error.response.data.message);
-      });
-  };
-
-  /**
-   * @description Handles the mass restore of files from the backend
-   */
-  const handleRestoreAll = () => {
-    setLoadingAnimation({
-      ...loadingAnimation,
-      massRestore: true,
-      textChangeRestore: "Restoring files...",
-    });
-    httpClient
-      .put("/data/unflag-all-delete-csv-file")
-      .then((response) => {
-        loadFiles(page_number, per_page_limit);
-        setLoadingAnimation({
-          ...loadingAnimation,
-          massRestore: false,
-          textChangeRestore: "Restore all",
-        });
-        toast.success(response.data.message);
-      })
-      .catch((error) => {
-        setLoadingAnimation({
-          ...loadingAnimation,
-          massRestore: false,
-          textChangeRestore: "Restore all",
         });
         toast.error(error.response.data.message);
       });
@@ -417,33 +362,6 @@ export default function ManagementFilesCSV() {
         </div>
         <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
           <div className="content-end flex flex-wrap justify-start w-full gap-2">
-            <div className="flex flex-row w-full">
-              <h1 className="text-base font-bold leading-none text-blue-500">
-                Mass Actions
-              </h1>
-            </div>
-            <ModalConfirm
-              body={`Are you sure you want to restore all files?`}
-              description="This action cannot be undone. This will restore all files that have been deleted."
-              is_manny
-              onConfirm={() => handleRestoreAll()}
-              title="Restore All Files"
-            >
-              {massRestore ? (
-                <>
-                  <LoadingAnimation moreClasses="text-teal-600" />
-                  {textChangeRestore}
-                </>
-              ) : (
-                <>
-                  <FontAwesomeIcon
-                    className={`${ICON_PLACE_SELF_CENTER}`}
-                    icon={faRotate}
-                  />
-                  {textChangeRestore}
-                </>
-              )}
-            </ModalConfirm>
             <ModalConfirm
               body={`Are you sure you want to publish all files?`}
               description="This action cannot be undone. This will publish all files that have been unpublished and can now be accessed by the professors."
@@ -573,10 +491,11 @@ export default function ManagementFilesCSV() {
         ) : filteredListOfFiles.length > 0 ? (
           filteredListOfFiles.map((file) => (
             <div
-              className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
+              className="hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={file.id}
             >
-              <div className="col-span-1 w-full">
+              <div className="flex flex-col w-full bg-blue-50 rounded-lg shadow">
+                <div className="col-span-1 w-full">
                 <div className="flex flex-row w-full p-4">
                   <h1 className="text-md font-bold leading-none text-blue-600">
                     Evaluated File ID
@@ -586,203 +505,181 @@ export default function ManagementFilesCSV() {
                   </h1>
                 </div>
               </div>
-              <hr className="w-full border-gray-300" />
-              <div className="col-span-4 text-start p-4">
-                <div className="flex flex-row w-full py-2">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Status
-                  </h1>
-                </div>
-                <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                  <div
-                    className={`p-2 flex flex-row justify-center ${
-                      file.flag_deleted ? STATUS_RED : STATUS_GREEN
-                    }`}
-                  >
-                    <h1 className="text-sm leading-none uppercase">
-                      {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                <hr className="w-full border-gray-300" />
+                <div className="col-span-4 text-start p-4">
+                  <div className="flex flex-row w-full py-2">
+                    <h1 className="text-base font-bold leading-none text-blue-500">
+                      Status
                     </h1>
                   </div>
-                  <div
-                    className={`p-2 flex flex-row justify-center ${
-                      file.flag_release ? STATUS_GREEN : STATUS_WARNING
-                    }`}
-                  >
-                    <h1 className="text-sm leading-none uppercase">
-                      {file.flag_release ? "Published" : "Unpublished"}
+                  <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                    <div
+                      className={`p-2 flex flex-row justify-center ${
+                        file.flag_deleted ? STATUS_RED : STATUS_GREEN
+                      }`}
+                    >
+                      <h1 className="text-sm leading-none uppercase">
+                        {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                      </h1>
+                    </div>
+                    <div
+                      className={`p-2 flex flex-row justify-center ${
+                        file.flag_release ? STATUS_GREEN : STATUS_WARNING
+                      }`}
+                    >
+                      <h1 className="text-sm leading-none uppercase">
+                        {file.flag_release ? "Published" : "Unpublished"}
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="flex flex-row w-full py-2">
+                    <h1 className="text-base font-bold leading-none text-blue-500">
+                      Details
+                    </h1>
+                  </div>
+                  <div className="flex flex-row items-start w-full py-2">
+                    <h1 className="text-base font-medium leading-none text-gray-500">
+                      School Year:
+                    </h1>
+                    <h1 className="ml-2 text-base leading-none text-gray-600">
+                      {file.school_year}
+                    </h1>
+                  </div>
+                  <div className="flex flex-row items-start w-full py-2">
+                    <h1 className="text-base font-medium leading-none text-gray-500">
+                      School Semester:
+                    </h1>
+                    <h1 className="ml-2 text-base leading-none text-gray-500">
+                      {file.school_semester}
+                    </h1>
+                  </div>
+                  <div className="flex flex-row items-start w-full py-2">
+                    <h1 className="text-base font-medium leading-none text-gray-500">
+                      Topic:
+                    </h1>
+                    <h1 className="ml-2 text-base leading-none text-gray-500">
+                      {file.csv_question}
                     </h1>
                   </div>
                 </div>
-                <div className="flex flex-row w-full py-2">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Details
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    School Year:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-600">
-                    {file.school_year}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    School Semester:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {file.school_semester}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Topic:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {file.csv_question}
-                  </h1>
-                </div>
-              </div>
-              <div className="col-span-1 w-full">
-                <div className="flex flex-row w-full px-4">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Actions
-                  </h1>
-                </div>
-                <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                  <button
-                    className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                    type="button"
-                  >
-                    <Link to={`${file.id}`}>
-                      <FontAwesomeIcon
-                        className={`${ICON_PLACE_SELF_CENTER}`}
-                        icon={faFileCsv}
-                      />
-                      View
-                    </Link>
-                  </button>
-                  <button
-                    className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                    onClick={() => handleDownload(file.id)}
-                    type="button"
-                  >
-                    {loadingIdDownload[file.id] ? (
-                      <>
-                        <LoadingAnimation moreClasses="text-teal-600" />
-                        Downloading...
-                      </>
-                    ) : (
-                      <>
+                <div className="col-span-1 w-full">
+                  <div className="flex flex-row w-full px-4">
+                    <h1 className="text-base font-bold leading-none text-blue-500">
+                      Actions
+                    </h1>
+                  </div>
+                  <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                    <button
+                      className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                      type="button"
+                    >
+                      <Link to={`${file.id}`}>
                         <FontAwesomeIcon
                           className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faFileArrowDown}
+                          icon={faFileCsv}
                         />
-                        Download
-                      </>
-                    )}
-                  </button>
-                  <ModalConfirm
-                    body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
-                    description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
-                    id={file.id}
-                    is_manny={false}
-                    onConfirm={handleRestore}
-                    title="Restore File Confirmation"
-                  >
-                    {loadingIdRestore[file.id] ? (
-                      <>
-                        <LoadingAnimation moreClasses="text-teal-600" />
-                        Restoring...
-                      </>
-                    ) : (
-                      <>
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faRotate}
-                        />
-                        Restore
-                      </>
-                    )}
-                  </ModalConfirm>
-                  <ModalConfirm
-                    body={`Are you sure you want to publish ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
-                    description="This action cannot be undone. This will publish the file and its associated data to the system and can now view by the professors."
-                    id={file.id}
-                    is_manny={false}
-                    onConfirm={handlePublish}
-                    title="Publish File"
-                  >
-                    {loadingIdPublish[file.id] ? (
-                      <>
-                        <LoadingAnimation moreClasses="text-teal-600" />
-                        Publishing File...
-                      </>
-                    ) : (
-                      <>
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faUpLong}
-                        />
-                        Publish File
-                      </>
-                    )}
-                  </ModalConfirm>
-                </div>
-                <div className="flex flex-row w-full px-4">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Danger Zone
-                  </h1>
-                </div>
-                <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                  <ModalConfirm
-                    body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
-                    description="This action cannot be undone. This will unpublished the file and its associated data from the system and can no longer view by the professors."
-                    id={file.id}
-                    is_danger
-                    is_manny={false}
-                    onConfirm={handleDelete}
-                    title="Delete File Confirmation"
-                  >
-                    {loadingIdDelete[file.id] ? (
-                      <>
-                        <LoadingAnimation moreClasses="text-red-600" />
-                        Deleting...
-                      </>
-                    ) : (
-                      <>
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faTrash}
-                        />
-                        Delete
-                      </>
-                    )}
-                  </ModalConfirm>
-                  <ModalConfirm
-                    body={`Are you sure you want to unpublished ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
-                    description="This action cannot be undone. This will unpublished all files that have been published and cannot be accessed by the professors."
-                    id={file.id}
-                    is_danger
-                    is_manny={false}
-                    onConfirm={handleUnpublished}
-                    title="Unpublish File"
-                  >
-                    {loadingIdUnpublish[file.id] ? (
-                      <>
-                        <LoadingAnimation moreClasses="text-red-600" />
-                        Unpublishing File...
-                      </>
-                    ) : (
-                      <>
-                        <FontAwesomeIcon
-                          className={`${ICON_PLACE_SELF_CENTER}`}
-                          icon={faDownLong}
-                        />
-                        Unpublish File
-                      </>
-                    )}
-                  </ModalConfirm>
+                        View
+                      </Link>
+                    </button>
+                    <button
+                      className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                      onClick={() => handleDownload(file.id)}
+                      type="button"
+                    >
+                      {loadingIdDownload[file.id] ? (
+                        <>
+                          <LoadingAnimation moreClasses="text-teal-600" />
+                          Downloading...
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faFileArrowDown}
+                          />
+                          Download CSV
+                        </>
+                      )}
+                    </button>
+                    <ModalConfirm
+                      body={`Are you sure you want to publish ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
+                      description="This action cannot be undone. This will publish the file and its associated data to the system and can now view by the professors."
+                      id={file.id}
+                      is_manny={false}
+                      onConfirm={handlePublish}
+                      title="Publish File"
+                    >
+                      {loadingIdPublish[file.id] ? (
+                        <>
+                          <LoadingAnimation moreClasses="text-teal-600" />
+                          Publishing File...
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faUpLong}
+                          />
+                          Publish File
+                        </>
+                      )}
+                    </ModalConfirm>
+                  </div>
+                  <div className="flex flex-row w-full px-4">
+                    <h1 className="text-base font-bold leading-none text-blue-500">
+                      Danger Zone
+                    </h1>
+                  </div>
+                  <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                    <ModalConfirm
+                      body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
+                      description="This action cannot be undone. This will unpublished the file and its associated data from the system and can no longer view by the professors."
+                      id={file.id}
+                      is_danger
+                      is_manny={false}
+                      onConfirm={handleDelete}
+                      title="Delete File Confirmation"
+                    >
+                      {loadingIdDelete[file.id] ? (
+                        <>
+                          <LoadingAnimation moreClasses="text-red-600" />
+                          Deleting...
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faTrash}
+                          />
+                          Delete
+                        </>
+                      )}
+                    </ModalConfirm>
+                    <ModalConfirm
+                      body={`Are you sure you want to unpublished ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
+                      description="This action cannot be undone. This will unpublished all files that have been published and cannot be accessed by the professors."
+                      id={file.id}
+                      is_danger
+                      is_manny={false}
+                      onConfirm={handleUnpublished}
+                      title="Unpublish File"
+                    >
+                      {loadingIdUnpublish[file.id] ? (
+                        <>
+                          <LoadingAnimation moreClasses="text-red-600" />
+                          Unpublishing File...
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faDownLong}
+                          />
+                          Unpublish File
+                        </>
+                      )}
+                    </ModalConfirm>
+                  </div>
                 </div>
               </div>
             </div>
