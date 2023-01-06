@@ -18,7 +18,8 @@ import {
 } from "../../../../assets/styles/styled-components";
 import {
   faCaretLeft,
-  faCaretRight, faRotate,
+  faCaretRight,
+  faRotate,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { NoData } from "../../../../components/warnings/WarningMessages";
@@ -81,7 +82,8 @@ export default function ManagementFileBin() {
     textChangeRestore: "Restore all",
   });
 
-  const { massDelete, textChangeDelete, massRestore, textChangeRestore } = loadingAnimation;
+  const { massDelete, textChangeDelete, massRestore, textChangeRestore } =
+    loadingAnimation;
 
   const [loadingIdRestore, setLoadingIdRestore] = useState({});
 
@@ -192,7 +194,7 @@ export default function ManagementFileBin() {
       });
   };
 
-    /**
+  /**
    * @description Handles the restore of a file from the backend
    * @param file
    */
@@ -211,7 +213,7 @@ export default function ManagementFileBin() {
       });
   };
 
-   /**
+  /**
    * @description Handles the mass restore of files from the backend
    */
   const handleRestoreAll = () => {
@@ -411,7 +413,9 @@ export default function ManagementFileBin() {
                       }`}
                     >
                       <h1 className="text-sm leading-none uppercase">
-                        {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                        {file.flag_deleted
+                          ? "Deleted Temporarily"
+                          : "Available"}
                       </h1>
                     </div>
                     <div
@@ -462,28 +466,28 @@ export default function ManagementFileBin() {
                   </div>
                   <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
                     <ModalConfirm
-                        body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
-                        description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
-                        id={file.id}
-                        is_manny={false}
-                        onConfirm={handleRestore}
-                        title="Restore File Confirmation"
+                      body={`Are you sure you want to delete ${file.csv_question} with a school year of ${file.school_year} and a school semester of ${file.school_semester}?`}
+                      description="This action cannot be undone. This will permanently delete the file and its associated data from the system."
+                      id={file.id}
+                      is_manny={false}
+                      onConfirm={handleRestore}
+                      title="Restore File Confirmation"
                     >
-                        {loadingIdRestore[file.id] ? (
-                          <>
-                            <LoadingAnimation moreClasses="text-teal-600" />
-                            Restoring...
-                          </>
-                        ) : (
-                          <>
-                            <FontAwesomeIcon
-                              className={`${ICON_PLACE_SELF_CENTER}`}
-                              icon={faRotate}
-                            />
-                            Restore
-                          </>
-                        )}
-                      </ModalConfirm>
+                      {loadingIdRestore[file.id] ? (
+                        <>
+                          <LoadingAnimation moreClasses="text-teal-600" />
+                          Restoring...
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faRotate}
+                          />
+                          Restore
+                        </>
+                      )}
+                    </ModalConfirm>
                   </div>
                   <div className="flex flex-row w-full px-4">
                     <h1 className="text-base font-bold leading-none text-blue-500">

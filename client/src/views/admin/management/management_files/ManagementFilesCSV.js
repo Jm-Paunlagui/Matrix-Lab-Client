@@ -496,15 +496,15 @@ export default function ManagementFilesCSV() {
             >
               <div className="flex flex-col w-full bg-blue-50 rounded-lg shadow">
                 <div className="col-span-1 w-full">
-                <div className="flex flex-row w-full p-4">
-                  <h1 className="text-md font-bold leading-none text-blue-600">
-                    Evaluated File ID
-                  </h1>
-                  <h1 className="text-md font-bold leading-none text-gray-500 ml-2">
-                    {file.id}
-                  </h1>
+                  <div className="flex flex-row w-full p-4">
+                    <h1 className="text-md font-bold leading-none text-blue-600">
+                      Evaluated File ID
+                    </h1>
+                    <h1 className="text-md font-bold leading-none text-gray-500 ml-2">
+                      {file.id}
+                    </h1>
+                  </div>
                 </div>
-              </div>
                 <hr className="w-full border-gray-300" />
                 <div className="col-span-4 text-start p-4">
                   <div className="flex flex-row w-full py-2">
@@ -519,7 +519,9 @@ export default function ManagementFilesCSV() {
                       }`}
                     >
                       <h1 className="text-sm leading-none uppercase">
-                        {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                        {file.flag_deleted
+                          ? "Deleted Temporarily"
+                          : "Available"}
                       </h1>
                     </div>
                     <div
