@@ -501,7 +501,7 @@ export default function ManagementFilesCSV() {
                       Evaluated File ID
                     </h1>
                     <h1 className="text-md font-bold leading-none text-gray-500 ml-2">
-                      {file.id}
+                      {file.id}-{file.school_year}
                     </h1>
                   </div>
                 </div>
