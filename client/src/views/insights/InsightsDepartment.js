@@ -87,7 +87,7 @@ export default function InsightsDepartment() {
                 >
                   <div className="flex flex-col items-center justify-center w-full p-4">
                     <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
-                      {department.department}
+                      {department.name}
                     </h1>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function InsightsDepartment() {
                         <i className="fas fa-user-tie" />
                       </div>
                       <h1 className="text-2xl font-bold text-gray-500">
-                        {department.evaluatee}
+                        {department.department}
                       </h1>
                       <h1 className="text-sm font-medium text-gray-500">
                         Professors

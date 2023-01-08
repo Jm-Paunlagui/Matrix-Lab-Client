@@ -29,8 +29,8 @@ export default function InsightsEmployees() {
     const value = event.target.value.toLowerCase();
     const result = top_professors.filter((data) => {
       return (
-        data.professor.toLowerCase().search(value) !== -1 ||
-        data.evaluatee_department.toLowerCase().search(value) !== -1
+        data.name.toLowerCase().search(value) !== -1 ||
+        data.department.toLowerCase().search(value) !== -1
       );
     });
     setFilteredTopProfessors(result);
@@ -90,7 +90,7 @@ export default function InsightsEmployees() {
                 >
                   <div className="flex flex-col items-center justify-center w-full p-4">
                     <h1 className="text-5xl font-black leading-none tracking-tight text-gray-500">
-                      {professor.professor}
+                      {professor.name}
                     </h1>
                   </div>
                 </div>
@@ -132,7 +132,7 @@ export default function InsightsEmployees() {
                         <i className="fas fa-building" />
                       </div>
                       <h1 className="text-2xl font-bold text-gray-500">
-                        {professor.evaluatee_department}
+                        {professor.department}
                       </h1>
                       <h1 className="text-sm font-medium text-gray-500">
                         Department
