@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../../http/httpClient";
 import { LoadingPageSkeletonText } from "../../../../components/loading/LoadingPage";
-import { removeBrackets, removeComma } from "../../../../helpers/Helper";
+import { removeComma } from "../../../../helpers/Helper";
 import { toast } from "react-toastify";
 import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
@@ -115,7 +115,7 @@ export default function ManagementFilesData() {
           filteredDepartments.map((department) => (
             <div
               className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
-              key={department.department_list}
+              key={department.id}
             >
               <div className="col-span-1 w-full">
                 <div className="flex flex-row w-full p-4">
@@ -123,7 +123,7 @@ export default function ManagementFilesData() {
                     Department:
                   </h1>
                   <h1 className="text-md leading-none text-gray-500 ml-2">
-                    {department.department_list}
+                    {department.name}
                   </h1>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default function ManagementFilesData() {
                     No. of Professors:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_evaluatee}
+                    {department.department}
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -155,15 +155,7 @@ export default function ManagementFilesData() {
                     No. of Responses:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_number_of_sentiments}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Overall Rating:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_overall_sentiment}%
+                    {department.number_of_sentiments}
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -171,7 +163,7 @@ export default function ManagementFilesData() {
                     Negative Score:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_negative_sentiments_percentage}%
+                    {department.negative_sentiments_percentage}%
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -179,7 +171,7 @@ export default function ManagementFilesData() {
                     Positive Score:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_positive_sentiments_percentage}%
+                    {department.positive_sentiments_percentage}%
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -187,7 +179,7 @@ export default function ManagementFilesData() {
                     Share of Voice:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_share}%
+                    {department.share}%
                   </h1>
                 </div>
               </div>
@@ -222,7 +214,7 @@ export default function ManagementFilesData() {
           filteredProfessors.map((professor) => (
             <div
               className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
-              key={professor.evaluatee_list}
+              key={professor.id}
             >
               <div className="col-span-1 w-full">
                 <div className="flex flex-row w-full p-4">
@@ -230,7 +222,7 @@ export default function ManagementFilesData() {
                     Professor:
                   </h1>
                   <h1 className="text-md leading-none text-gray-500 ml-2">
-                    {professor.evaluatee_list}
+                    {professor.name}
                   </h1>
                 </div>
               </div>
@@ -246,15 +238,7 @@ export default function ManagementFilesData() {
                     No. of Responses:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.evaluatee_number_of_sentiments}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Overall Rating:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.evaluatee_overall_sentiment}%
+                    {professor.number_of_sentiments}
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -262,7 +246,7 @@ export default function ManagementFilesData() {
                     Negative Score:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.evaluatee_negative_sentiments_percentage}%
+                    {professor.negative_sentiments_percentage}%
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -270,7 +254,7 @@ export default function ManagementFilesData() {
                     Positive Score:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.evaluatee_positive_sentiments_percentage}%
+                    {professor.positive_sentiments_percentage}%
                   </h1>
                 </div>
                 <div className="flex flex-row items-start w-full py-2">
@@ -278,17 +262,7 @@ export default function ManagementFilesData() {
                     Share of Voice:
                   </h1>
                   <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.evaluatee_share}%
-                  </h1>
-                </div>
-                <div className="flex flex-row w-full py-2">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Subjects Taught
-                  </h1>
-                </div>
-                <div className="flex flex-row w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    {removeBrackets(professor.evaluatee_course_code)}
+                    {professor.share}%
                   </h1>
                 </div>
               </div>
@@ -303,7 +277,7 @@ export default function ManagementFilesData() {
                     className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
                     type="button"
                   >
-                    <Link to={`${removeComma(professor.evaluatee_list)}`}>
+                    <Link to={`${removeComma(professor.name)}`}>
                       <FontAwesomeIcon
                         className={`${ICON_PLACE_SELF_CENTER}`}
                         icon={faFileCsv}
