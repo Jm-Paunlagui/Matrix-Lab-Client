@@ -26,7 +26,7 @@ import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import { Paginator } from "../../../../components/listbox/ListBox";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import ModalConfirm from "../../../../components/modal/ModalConfirm";
-import {ItemsPerPage} from "../../../../components/items/Items";
+import { ItemsPerPage } from "../../../../components/items/Items";
 
 /**
  * @description Handles the files to view and delete
@@ -373,7 +373,6 @@ export default function ManagementFilesCSV() {
                 </>
               )}
             </ModalConfirm>
-
           </div>
         </div>
         <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
@@ -433,22 +432,22 @@ export default function ManagementFilesCSV() {
         </div>
       </div>
       <ItemsPerPage
-          Datas={fileData}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={files_list}
-          moreClasses={"mt-8 mb-8"}
-          page_number={page_number}
-          setDatas={setFileData}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={fileData}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={files_list}
+        moreClasses={"mt-8 mb-8"}
+        page_number={page_number}
+        setDatas={setFileData}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
       <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
         {loading ? (
@@ -662,21 +661,21 @@ export default function ManagementFilesCSV() {
         )}
       </div>
       <ItemsPerPage
-          Datas={fileData}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={files_list}
-          page_number={page_number}
-          setDatas={setFileData}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={fileData}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={files_list}
+        page_number={page_number}
+        setDatas={setFileData}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
     </div>
   );

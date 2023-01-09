@@ -25,7 +25,7 @@ import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { toast } from "react-toastify";
 import { Paginator } from "../../../../components/listbox/ListBox";
 import { NoData } from "../../../../components/warnings/WarningMessages";
-import {ItemsPerPage} from "../../../../components/items/Items";
+import { ItemsPerPage } from "../../../../components/items/Items";
 
 /**
  * @description Handles the admin tables
@@ -643,7 +643,6 @@ export default function ManagementFilesUsers() {
         </div>
         <div className="w-full p-4 mt-8 rounded-lg shadow-md bg-blue-50">
           <div className="flex flex-wrap content-end justify-start w-full gap-2">
-
             <div className="flex flex-row w-full">
               <h1 className="text-base font-bold leading-none text-blue-500">
                 Mass Danger Actions
@@ -722,22 +721,22 @@ export default function ManagementFilesUsers() {
         </div>
       </div>
       <ItemsPerPage
-          Datas={userDatas}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={users}
-          moreClasses={"mt-8 mb-8"}
-          page_number={page_number}
-          setDatas={setUserDatas}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={userDatas}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={users}
+        moreClasses={"mt-8 mb-8"}
+        page_number={page_number}
+        setDatas={setUserDatas}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
       <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
         {loading_ ? (
@@ -1001,21 +1000,21 @@ export default function ManagementFilesUsers() {
         )}
       </div>
       <ItemsPerPage
-          Datas={userDatas}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={users}
-          page_number={page_number}
-          setDatas={setUserDatas}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={userDatas}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={users}
+        page_number={page_number}
+        setDatas={setUserDatas}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
     </div>
   );

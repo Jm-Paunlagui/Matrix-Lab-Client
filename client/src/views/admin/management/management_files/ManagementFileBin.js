@@ -15,13 +15,10 @@ import {
   STATUS_RED,
   STATUS_WARNING,
 } from "../../../../assets/styles/styled-components";
-import {
-  faRotate,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faRotate, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
-import {ItemsPerPage} from "../../../../components/items/Items";
+import { ItemsPerPage } from "../../../../components/items/Items";
 
 /**
  * @description ManagementFileBin component for the application to manage the files in the bin
@@ -259,7 +256,7 @@ export default function ManagementFileBin() {
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
         <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
           <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                        <div className="flex flex-row w-full">
+            <div className="flex flex-row w-full">
               <h1 className="text-base font-bold leading-none text-blue-500">
                 Mass Actions
               </h1>
@@ -322,22 +319,22 @@ export default function ManagementFileBin() {
         </div>
       </div>
       <ItemsPerPage
-          Datas={fileData}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={files_list}
-          moreClasses={"mt-8 mb-8"}
-          page_number={page_number}
-          setDatas={setFileData}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={fileData}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={files_list}
+        moreClasses={"mt-8 mb-8"}
+        page_number={page_number}
+        setDatas={setFileData}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
       <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
         {loading ? (
@@ -495,21 +492,21 @@ export default function ManagementFileBin() {
         )}
       </div>
       <ItemsPerPage
-          Datas={fileData}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={files_list}
-          page_number={page_number}
-          setDatas={setFileData}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={fileData}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={files_list}
+        page_number={page_number}
+        setDatas={setFileData}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
     </div>
   );

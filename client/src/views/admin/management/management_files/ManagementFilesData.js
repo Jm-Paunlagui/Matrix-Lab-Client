@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
-  ICON_PLACE_SELF_CENTER
+  ICON_PLACE_SELF_CENTER,
 } from "../../../../assets/styles/styled-components";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faFileCsv} from "@fortawesome/free-solid-svg-icons";
+import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../../http/httpClient";
 import { LoadingPageSkeletonText } from "../../../../components/loading/LoadingPage";
 import { removeComma } from "../../../../helpers/Helper";
@@ -14,8 +14,8 @@ import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import { NoData } from "../../../../components/warnings/WarningMessages";
-import {Paginator} from "../../../../components/listbox/ListBox";
-import {ItemsPerPage} from "../../../../components/items/Items";
+import { Paginator } from "../../../../components/listbox/ListBox";
+import { ItemsPerPage } from "../../../../components/items/Items";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -27,7 +27,7 @@ export default function ManagementFilesData() {
    */
   const fileId = useParams().fileId;
 
-    const per_page = [
+  const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
     { value: 100, label: "100", id: 3 },
@@ -48,12 +48,23 @@ export default function ManagementFilesData() {
     per_page_limit: per_page[0].value,
   });
 
-  const { loading, data_departments, data_professors, current_page, has_next, has_prev, page_number, total_items, total_pages, per_page_limit } = fileInfo;
+  const {
+    loading,
+    data_departments,
+    data_professors,
+    current_page,
+    has_next,
+    has_prev,
+    page_number,
+    total_items,
+    total_pages,
+    per_page_limit,
+  } = fileInfo;
 
   const [filteredProfessors, setFilteredProfessors] = useState(data_professors);
   const [filteredDepartments, setFilteredDepartments] =
     useState(data_departments);
-    /**
+  /**
    * @description Pagination handler for the users table
    * @param name
    * @returns {(function(*): void)|*}
@@ -235,22 +246,22 @@ export default function ManagementFilesData() {
       />
 
       <ItemsPerPage
-          Datas={fileInfo}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={data_professors}
-          moreClasses={"mt-8 mb-8"}
-          page_number={page_number}
-          setDatas={setFileInfo}
-          total_items={total_items}
-          total_pages={total_pages}
+        Datas={fileInfo}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={data_professors}
+        moreClasses={"mt-8 mb-8"}
+        page_number={page_number}
+        setDatas={setFileInfo}
+        total_items={total_items}
+        total_pages={total_pages}
       >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
       <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
         {loading ? (
@@ -345,22 +356,22 @@ export default function ManagementFilesData() {
           </div>
         )}
       </div>
-     <ItemsPerPage
-          Datas={fileInfo}
-          current_page={current_page}
-          has_next={has_next}
-          has_prev={has_prev}
-          items={data_professors}
-          page_number={page_number}
-          setDatas={setFileInfo}
-          total_items={total_items}
-          total_pages={total_pages}
-     >
-          <Paginator
-                handleSelect={handleSelect}
-                per_page={per_page}
-                per_page_limit={per_page_limit}
-          />
+      <ItemsPerPage
+        Datas={fileInfo}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={data_professors}
+        page_number={page_number}
+        setDatas={setFileInfo}
+        total_items={total_items}
+        total_pages={total_pages}
+      >
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
       </ItemsPerPage>
     </div>
   );
