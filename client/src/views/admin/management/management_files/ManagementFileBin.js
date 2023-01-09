@@ -11,19 +11,17 @@ import ModalConfirm from "../../../../components/modal/ModalConfirm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ICON_PLACE_SELF_CENTER,
-  MAIN_BUTTON,
   STATUS_GREEN,
   STATUS_RED,
   STATUS_WARNING,
 } from "../../../../assets/styles/styled-components";
 import {
-  faCaretLeft,
-  faCaretRight,
   faRotate,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
+import {ItemsPerPage} from "../../../../components/items/Items";
 
 /**
  * @description ManagementFileBin component for the application to manage the files in the bin
@@ -261,21 +259,7 @@ export default function ManagementFileBin() {
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6">
         <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
           <div className="content-end flex flex-wrap justify-start w-full gap-2">
-            <div className="flex flex-row w-full">
-              <h1 className="text-base font-bold leading-none text-blue-500">
-                Number of records per page
-              </h1>
-            </div>
-            <Paginator
-              handleSelect={handleSelect}
-              per_page={per_page}
-              per_page_limit={per_page_limit}
-            />
-          </div>
-        </div>
-        <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
-          <div className="content-end flex flex-wrap justify-start w-full gap-2">
-            <div className="flex flex-row w-full">
+                        <div className="flex flex-row w-full">
               <h1 className="text-base font-bold leading-none text-blue-500">
                 Mass Actions
               </h1>
@@ -302,6 +286,10 @@ export default function ManagementFileBin() {
                 </>
               )}
             </ModalConfirm>
+          </div>
+        </div>
+        <div className="w-full bg-blue-50 rounded-lg shadow-md p-4 mt-8">
+          <div className="content-end flex flex-wrap justify-start w-full gap-2">
             <div className="flex flex-row w-full">
               <h1 className="text-base font-bold leading-none text-blue-500">
                 Mass Danger Actions
@@ -333,48 +321,24 @@ export default function ManagementFileBin() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-end w-full mt-8 mb-8 p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
-        <div className="flex flex-col md:flex-row items-center w-full justify-between ">
-          {/*    Page details*/}
-          <h1 className="font-medium text-blue-500 text-start">
-            Page {current_page} of {total_pages}
-          </h1>
-          <h1 className="text-base font-medium leading-none text-blue-500 t">
-            Showing {files_list.length} of {total_items} Users in total (
-            {total_pages} pages)
-          </h1>
-        </div>
-        <button
-          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
-                  ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-          disabled={!has_prev}
-          onClick={() =>
-            setFileData({ ...fileData, page_number: page_number - 1 })
-          }
-          type="button"
-        >
-          <FontAwesomeIcon
-            className={`${ICON_PLACE_SELF_CENTER}`}
-            icon={faCaretLeft}
+      <ItemsPerPage
+          Datas={fileData}
+          current_page={current_page}
+          has_next={has_next}
+          has_prev={has_prev}
+          items={files_list}
+          moreClasses={"mt-8 mb-8"}
+          page_number={page_number}
+          setDatas={setFileData}
+          total_items={total_items}
+          total_pages={total_pages}
+      >
+          <Paginator
+                handleSelect={handleSelect}
+                per_page={per_page}
+                per_page_limit={per_page_limit}
           />
-          Newer
-        </button>
-        <button
-          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
-                  ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-          disabled={!has_next}
-          onClick={() =>
-            setFileData({ ...fileData, page_number: page_number + 1 })
-          }
-          type="button"
-        >
-          <FontAwesomeIcon
-            className={`${ICON_PLACE_SELF_CENTER}`}
-            icon={faCaretRight}
-          />
-          Older
-        </button>
-      </div>
+      </ItemsPerPage>
       <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-3 gap-y-6 md:gap-6">
         {loading ? (
           <>
@@ -530,48 +494,23 @@ export default function ManagementFileBin() {
           </div>
         )}
       </div>
-      <div className="flex flex-col justify-end w-full p-4 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 bg-blue-50 rounded-lg shadow">
-        <div className="flex flex-col md:flex-row items-center w-full justify-between ">
-          {/*    Page details*/}
-          <h1 className="font-medium text-blue-500 text-start">
-            Page {current_page} of {total_pages}
-          </h1>
-          <h1 className="text-base font-medium leading-none text-blue-500 t">
-            Showing {files_list.length} of {total_items} Users in total (
-            {total_pages} pages)
-          </h1>
-        </div>
-        <button
-          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
-                  ${has_prev ? "" : "cursor-not-allowed opacity-50"}`}
-          disabled={!has_prev}
-          onClick={() =>
-            setFileData({ ...fileData, page_number: page_number - 1 })
-          }
-          type="button"
-        >
-          <FontAwesomeIcon
-            className={`${ICON_PLACE_SELF_CENTER}`}
-            icon={faCaretLeft}
+      <ItemsPerPage
+          Datas={fileData}
+          current_page={current_page}
+          has_next={has_next}
+          has_prev={has_prev}
+          items={files_list}
+          page_number={page_number}
+          setDatas={setFileData}
+          total_items={total_items}
+          total_pages={total_pages}
+      >
+          <Paginator
+                handleSelect={handleSelect}
+                per_page={per_page}
+                per_page_limit={per_page_limit}
           />
-          Newer
-        </button>
-        <button
-          className={`px-8 py-1 flex flex-row justify-center ${MAIN_BUTTON}
-                  ${has_next ? "" : "cursor-not-allowed opacity-50"}`}
-          disabled={!has_next}
-          onClick={() =>
-            setFileData({ ...fileData, page_number: page_number + 1 })
-          }
-          type="button"
-        >
-          <FontAwesomeIcon
-            className={`${ICON_PLACE_SELF_CENTER}`}
-            icon={faCaretRight}
-          />
-          Older
-        </button>
-      </div>
+      </ItemsPerPage>
     </div>
   );
 }

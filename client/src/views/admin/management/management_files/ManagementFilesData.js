@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   ACCENT_BUTTON,
-  ICON_PLACE_SELF_CENTER,
+  ICON_PLACE_SELF_CENTER
 } from "../../../../assets/styles/styled-components";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
+import {faFileCsv} from "@fortawesome/free-solid-svg-icons";
 import httpClient from "../../../../http/httpClient";
 import { LoadingPageSkeletonText } from "../../../../components/loading/LoadingPage";
 import { removeComma } from "../../../../helpers/Helper";
@@ -14,6 +14,8 @@ import BackTo from "../../../../components/buttons/BackTo";
 import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import { NoData } from "../../../../components/warnings/WarningMessages";
+import {Paginator} from "../../../../components/listbox/ListBox";
+import {ItemsPerPage} from "../../../../components/items/Items";
 
 /**
  * @description Handles the lists data of the file department and professor
@@ -25,32 +27,60 @@ export default function ManagementFilesData() {
    */
   const fileId = useParams().fileId;
 
+    const per_page = [
+    { value: 25, label: "25", id: 1 },
+    { value: 50, label: "50", id: 2 },
+    { value: 100, label: "100", id: 3 },
+    { value: 250, label: "250", id: 4 },
+    { value: 500, label: "500", id: 5 },
+  ];
+
   const [fileInfo, setFileInfo] = useState({
     loading: true,
     data_departments: [],
     data_professors: [],
+    current_page: "",
+    has_next: false,
+    has_prev: true,
+    page_number: 1,
+    total_items: "",
+    total_pages: "",
+    per_page_limit: per_page[0].value,
   });
 
-  const { loading, data_departments, data_professors } = fileInfo;
+  const { loading, data_departments, data_professors, current_page, has_next, has_prev, page_number, total_items, total_pages, per_page_limit } = fileInfo;
 
   const [filteredProfessors, setFilteredProfessors] = useState(data_professors);
   const [filteredDepartments, setFilteredDepartments] =
     useState(data_departments);
-
+    /**
+   * @description Pagination handler for the users table
+   * @param name
+   * @returns {(function(*): void)|*}
+   */
+  const handleSelect = (name) => (value) => {
+    setFileInfo({ ...fileInfo, [name]: value, page_number: 1 });
+  };
   /**
    * @description Loads the data from the backend
    * @param fileId
+   * @param page
+   * @param per_page_limit
    */
-  const loadAll = (fileId) => {
-    setFileInfo({ ...fileInfo, loading: true });
-
+  const loadAll = (fileId, page, per_page_limit) => {
     httpClient
-      .get(`/data/view-csv-file/${fileId}`)
+      .get(`/data/view-csv-file/${fileId}/${page}/${per_page_limit}`)
       .then((response) => {
         setFileInfo({
+          ...fileInfo,
           loading: false,
           data_departments: response.data.department_file,
           data_professors: response.data.professor_file,
+          current_page: response.data.current_page,
+          has_next: response.data.has_next,
+          has_prev: response.data.has_prev,
+          total_items: response.data.total_items,
+          total_pages: response.data.total_pages,
         });
         setFilteredProfessors(response.data.professor_file);
         setFilteredDepartments(response.data.department_file);
@@ -86,8 +116,9 @@ export default function ManagementFilesData() {
   };
 
   useEffect(() => {
-    loadAll(fileId);
-  }, [fileId]);
+    setFileInfo({ ...fileInfo, loading: true });
+    loadAll(fileId, page_number, per_page_limit);
+  }, [fileId, page_number, per_page_limit]);
 
   return (
     <div className="px-6 mx-auto max-w-7xl">
@@ -202,7 +233,26 @@ export default function ManagementFilesData() {
         placeholder="Search"
         type="text"
       />
-      <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+
+      <ItemsPerPage
+          Datas={fileInfo}
+          current_page={current_page}
+          has_next={has_next}
+          has_prev={has_prev}
+          items={data_professors}
+          moreClasses={"mt-8 mb-8"}
+          page_number={page_number}
+          setDatas={setFileInfo}
+          total_items={total_items}
+          total_pages={total_pages}
+      >
+          <Paginator
+                handleSelect={handleSelect}
+                per_page={per_page}
+                per_page_limit={per_page_limit}
+          />
+      </ItemsPerPage>
+      <div className="grid grid-cols-1 pb-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
         {loading ? (
           <>
             <LoadingPageSkeletonText />
@@ -295,6 +345,23 @@ export default function ManagementFilesData() {
           </div>
         )}
       </div>
+     <ItemsPerPage
+          Datas={fileInfo}
+          current_page={current_page}
+          has_next={has_next}
+          has_prev={has_prev}
+          items={data_professors}
+          page_number={page_number}
+          setDatas={setFileInfo}
+          total_items={total_items}
+          total_pages={total_pages}
+     >
+          <Paginator
+                handleSelect={handleSelect}
+                per_page={per_page}
+                per_page_limit={per_page_limit}
+          />
+      </ItemsPerPage>
     </div>
   );
 }
