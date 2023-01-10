@@ -17,11 +17,20 @@ import BackTo from "../../../components/buttons/BackTo";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
+import {ItemsPerPage} from "../../../components/items/Items";
+import {Paginator} from "../../../components/listbox/ListBox";
 
 /**
  * @description Handles the lists data of the file department and professor
  */
 export default function EvalCourseSentimentTable() {
+      const per_page = [
+    { value: 25, label: "25", id: 1 },
+    { value: 50, label: "50", id: 2 },
+    { value: 100, label: "100", id: 3 },
+    { value: 250, label: "250", id: 4 },
+    { value: 500, label: "500", id: 5 },
+  ];
   const { fileId, folderName } = useParams();
 
   const fullname = isAuth().full_name;
@@ -35,22 +44,42 @@ export default function EvalCourseSentimentTable() {
     topic: "",
     school_year: "",
     school_semester: "",
+    current_page: "",
+    has_next: false,
+    has_prev: true,
+    page_number: 1,
+    total_items: "",
+    total_pages: "",
+    per_page_limit: per_page[0].value,
   });
 
-  const { loading, file_list, topic, school_year, school_semester } =
+  const { loading, file_list, topic, school_year, school_semester, current_page, has_next, has_prev, page_number, per_page_limit, total_pages, total_items } =
     listOfTaughtCourses;
 
   const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] =
     useState(file_list);
 
+      /**
+   * @description Search bar handler for the files
+   */
+  const handleSelect = (name) => (value) => {
+    setFilteredListOfTaughtCourses({
+      ...listOfTaughtCourses,
+      [name]: value,
+    });
+  };
+
+
   /**
    * @description Loads the list of taught courses
    * @param fileId
    * @param read_responses
+   * @param page
+   * @param per_page
    */
-  const loadListOfTaughtCourses = (fileId, read_responses) => {
+  const loadListOfTaughtCourses = (fileId, read_responses, page, per_page) => {
     httpClient
-      .get(`/data/get-list-of-taught-courses/${fileId}/${read_responses}`)
+      .get(`/data/get-list-of-taught-courses/${fileId}/${read_responses}/${page}/${per_page}`)
       .then((response) => {
         setListOfTaughtCourses({
           ...listOfTaughtCourses,
@@ -59,6 +88,11 @@ export default function EvalCourseSentimentTable() {
           topic: response.data.topic,
           school_year: response.data.school_year,
           school_semester: response.data.school_semester,
+          current_page: response.data.current_page,
+          has_next: response.data.has_next,
+          has_prev: response.data.has_prev,
+          total_items: response.data.total_items,
+          total_pages: response.data.total_pages,
         });
         setFilteredListOfTaughtCourses(response.data.file_list);
       })
@@ -84,8 +118,8 @@ export default function EvalCourseSentimentTable() {
   };
 
   useEffect(() => {
-    loadListOfTaughtCourses(fileId, folderName);
-  }, [fileId, folderName]);
+    loadListOfTaughtCourses(fileId, folderName, page_number, per_page_limit);
+  }, [fileId, folderName, page_number, per_page_limit]);
 
   return folderNameV === folderName ? (
     <div className="px-6 mx-auto max-w-7xl">
@@ -101,7 +135,25 @@ export default function EvalCourseSentimentTable() {
         placeholder="Search"
         type="text"
       />
-      <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+      <ItemsPerPage
+        Datas={listOfTaughtCourses}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={file_list}
+        moreClasses={"mt-8 mb-8"}
+        page_number={page_number}
+        setDatas={setListOfTaughtCourses}
+        total_items={total_items}
+        total_pages={total_pages}
+      >
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
+      </ItemsPerPage>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
         {loading ? (
           <>
             <LoadingPageSkeletonText />
@@ -178,6 +230,23 @@ export default function EvalCourseSentimentTable() {
           </div>
         )}
       </div>
+      <ItemsPerPage
+        Datas={listOfTaughtCourses}
+        current_page={current_page}
+        has_next={has_next}
+        has_prev={has_prev}
+        items={file_list}
+        page_number={page_number}
+        setDatas={setListOfTaughtCourses}
+        total_items={total_items}
+        total_pages={total_pages}
+      >
+        <Paginator
+          handleSelect={handleSelect}
+          per_page={per_page}
+          per_page_limit={per_page_limit}
+        />
+      </ItemsPerPage>
     </div>
   ) : (
     <Navigate to="/unauthorized-access" />
