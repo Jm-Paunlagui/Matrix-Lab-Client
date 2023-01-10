@@ -57,10 +57,42 @@ export default function AdminPrediction() {
       });
   };
 
+  const [previousData, setPreviousData] = useState({
+    p_csv_question: "",
+    p_flag_deleted: "",
+    p_flag_release: "",
+    p_id: "",
+    p_school_semester: "",
+    p_school_year: "",
+  });
+
+  const {
+    p_csv_question,
+    p_flag_deleted,
+    p_flag_release,
+    p_id,
+    p_school_semester,
+    p_school_year,
+  } = previousData;
+  const get_previous_evaluated_file = () => {
+    httpClient.get("/data/get-previous-evaluated-file").then((response) => {
+      setPreviousData({
+        ...previousData,
+        p_csv_question: response.data.p_csv_question,
+        p_flag_deleted: response.data.p_flag_deleted,
+        p_flag_release: response.data.p_flag_release,
+        p_id: response.data.p_id,
+        p_school_semester: response.data.p_school_semester,
+        p_school_year: response.data.p_school_year,
+      });
+    });
+  };
+
   /**
    * @description Process by state
    */
   useEffect(() => {
+    get_previous_evaluated_file();
     loadProcessBy();
   }, []);
 
@@ -100,9 +132,8 @@ export default function AdminPrediction() {
     prediction_time: "",
     sentiment_time: "",
     adding_predictions_time: "",
+    adding_to_db_time: "",
     analysis_user_time: "",
-    analysis_department_time: "",
-    analysis_collection_time: "",
   });
 
   const {
@@ -115,9 +146,8 @@ export default function AdminPrediction() {
     prediction_time,
     sentiment_time,
     adding_predictions_time,
+    adding_to_db_time,
     analysis_user_time,
-    analysis_department_time,
-    analysis_collection_time,
   } = timeAnalyze;
 
   /**
@@ -321,6 +351,7 @@ export default function AdminPrediction() {
       .then((response) => {
         if (type === "done") {
           toast.success(response.data.message);
+          get_previous_evaluated_file();
         } else {
           toast.error("File deleted due to error.");
         }
@@ -377,6 +408,7 @@ export default function AdminPrediction() {
         })
         .then((response) => {
           toast.success(response.data.message);
+          get_previous_evaluated_file();
           setHandlers({
             ...handlers,
             buttonDisabled: false,
@@ -394,9 +426,8 @@ export default function AdminPrediction() {
             prediction_time: response.data.prediction_time,
             sentiment_time: response.data.sentiment_time,
             adding_predictions_time: response.data.adding_predictions_time,
+            adding_to_db_time: response.data.adding_to_db_time,
             analysis_user_time: response.data.analysis_user_time,
-            analysis_department_time: response.data.analysis_department_time,
-            analysis_collection_time: response.data.analysis_collection_time,
           });
           setCount(count + 1);
         })
@@ -419,7 +450,7 @@ export default function AdminPrediction() {
         title={"Sentiment Analyzer"}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
-        <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
+        <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow col-start-2 md:col-start-auto">
           <h1 className="mb-4 text-xl font-bold text-blue-500">
             Right Format of CSV File to Upload
           </h1>
@@ -449,13 +480,8 @@ export default function AdminPrediction() {
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               automatically creates user accounts
             </b>{" "}
-            and saves the results to there respective folders based on the
-            user&#39;s full name.
-          </p>
-          <p className="mb-4 text-sm text-gray-500 font-medium">
-            Performance of the system will improve as the system manages to save
-            a lot of data. The system will also be able to analyze and save the
-            data faster every time it runs{" "}
+            and saves the results to there respective database based on the
+            user&#39;s full name.{" "}
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               but it still depends on the size of the data to analyze and save.
             </b>
@@ -475,7 +501,7 @@ export default function AdminPrediction() {
             page.
           </p>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 row-start-1 md:row-start-auto">
           <div
             className={`flex flex-col w-full bg-blue-50 rounded-lg shadow ${
               errorEffect || errorEffectToAnS
@@ -490,8 +516,40 @@ export default function AdminPrediction() {
               })
             }
           >
-            <div className="grid w-full h-full grid-cols-1  md:grid-cols-5">
+            <div className="grid w-full h-full grid-cols-1 md:grid-cols-5">
               <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
+                {p_id === "" ? (
+                  ""
+                ) : (
+                  <>
+                    <h1 className="text-xl font-bold text-blue-500">
+                      Quick view
+                    </h1>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Previously Evaluated Columns"}
+                      >
+                        <div className="space-y-2">
+                          <h1 className="text-gray-500 font-medium">
+                            ID - {p_id}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            Evaluated Column - {p_csv_question}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            School Year - {p_school_year} @ {p_school_semester}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            Published - {p_flag_release}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            Deleted (Temporary) - {p_flag_deleted}
+                          </h1>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                  </>
+                )}
                 <h1 className="text-xl font-bold text-blue-500">
                   {count === 1
                     ? "Upload CSV File"
@@ -555,14 +613,14 @@ export default function AdminPrediction() {
                                 Drop the files here ...
                               </p>
                             ) : (
-                              <p className="text-sm text-gray-500">
+                              <p className="text-sm text-gray-500 px-4">
                                 Drag &#39;n&#39; drop some files here, or click
                                 to select files
                               </p>
                             )}
                             {acceptedFiles.map((file) => (
                               <p
-                                className="text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500"
+                                className="px-4 text-base font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500"
                                 key={file.path}
                               >
                                 {file
@@ -1021,14 +1079,13 @@ export default function AdminPrediction() {
                         title={"Writing the Predictions to a CSV File"}
                       >
                         <p className="text-gray-500">
-                          We are writing the predictions to a CSV file. This is
-                          done to make sure that the predictions are saved for
-                          future use.
+                          We are writing the predictions to a CSV file to easily
+                          add the predictions to the database.
                         </p>
                         <p className="text-gray-500">
-                          Additionally, we are also writing the converted
+                          Additionally, we are also computing the converted
                           sentiment, removal of stop words, response length,
-                          word count, and polarity to the CSV file.
+                          word count, and polarity to save them in the database.
                         </p>
                         <div className="content-end flex flex-wrap justify-start w-full gap-2">
                           <div className="bg-white p-2 rounded-lg">
@@ -1037,6 +1094,29 @@ export default function AdminPrediction() {
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(adding_predictions_time)}
+                            </p>
+                          </div>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Adding the Predictions to the Database"}
+                      >
+                        <p className="text-gray-500">
+                          We are adding the predictions to the database. This is
+                          done to make sure that the predictions are saved for
+                          future use. Additionally, we are also adding the
+                          converted sentiment, removal of stop words, response
+                          length, word count, and polarity to the database.
+                        </p>
+                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
+                          <div className="bg-white p-2 rounded-lg">
+                            <h1 className="text-base font-medium text-blue-500">
+                              Time taken
+                            </h1>
+                            <p className="text-gray-500">
+                              {timeFormat(adding_to_db_time)}
                             </p>
                           </div>
                         </div>
@@ -1067,64 +1147,6 @@ export default function AdminPrediction() {
                             </h1>
                             <p className="text-gray-500">
                               {timeFormat(analysis_user_time)}
-                            </p>
-                          </div>
-                        </div>
-                      </DisclosureTogglable>
-                    </div>
-                    <div className="flex flex-col w-full">
-                      <DisclosureTogglable
-                        title={"Department Analysis Computations"}
-                      >
-                        <p className="text-gray-500">
-                          While we are processing your data, we are also
-                          computing the department analysis. This is done to
-                          make sure that you can access the department analysis
-                          in the future. You can access the department analysis
-                          in the{" "}
-                          <span className="text-blue-500 font-medium">
-                            <Link to={"/admin/management/files/data"}>
-                              File Management
-                            </Link>
-                          </span>{" "}
-                          page and choose file to view.
-                        </p>
-                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <div className="bg-white p-2 rounded-lg">
-                            <h1 className="text-base font-medium text-blue-500">
-                              Time taken
-                            </h1>
-                            <p className="text-gray-500">
-                              {timeFormat(analysis_department_time)}
-                            </p>
-                          </div>
-                        </div>
-                      </DisclosureTogglable>
-                    </div>
-                    <div className="flex flex-col w-full">
-                      <DisclosureTogglable
-                        title={"Collection Provider Analysis Computations"}
-                      >
-                        <p className="text-gray-500">
-                          This process also takes time because it compiles each
-                          professor&#39;s courses and responses into there own
-                          respective folders. This is done to make sure that the
-                          professor can access their predictions in the future.
-                          You can access the collection provider analysis in the{" "}
-                          <span className="text-blue-500 font-medium">
-                            <Link to={"/admin/management/files/data"}>
-                              File Management
-                            </Link>
-                          </span>{" "}
-                          page and choose file and Professor to view.
-                        </p>
-                        <div className="content-end flex flex-wrap justify-start w-full gap-2">
-                          <div className="bg-white p-2 rounded-lg">
-                            <h1 className="text-base font-medium text-blue-500">
-                              Time taken
-                            </h1>
-                            <p className="text-gray-500">
-                              {timeFormat(analysis_collection_time)}
                             </p>
                           </div>
                         </div>
