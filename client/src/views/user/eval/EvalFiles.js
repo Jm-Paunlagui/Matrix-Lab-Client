@@ -199,7 +199,9 @@ export default function EvalFiles() {
                       }`}
                     >
                       <h1 className="text-sm leading-none uppercase">
-                        {file.flag_deleted ? "Deleted Temporarily" : "Available"}
+                        {file.flag_deleted
+                          ? "Deleted Temporarily"
+                          : "Available"}
                       </h1>
                     </div>
                     <div
