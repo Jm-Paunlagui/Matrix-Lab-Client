@@ -416,7 +416,7 @@ export default function AdminPrediction() {
         title={"Sentiment Analyzer"}
       />
       <div className="grid grid-cols-1 py-8 md:grid-cols-3 gap-y-6 md:gap-6">
-        <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow">
+        <div className="col-span-1 p-8 rounded-lg bg-blue-50 shadow col-start-2 md:col-start-auto">
           <h1 className="mb-4 text-xl font-bold text-blue-500">
             Right Format of CSV File to Upload
           </h1>
@@ -446,13 +446,8 @@ export default function AdminPrediction() {
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               automatically creates user accounts
             </b>{" "}
-            and saves the results to there respective folders based on the
-            user&#39;s full name.
-          </p>
-          <p className="mb-4 text-sm text-gray-500 font-medium">
-            Performance of the system will improve as the system manages to save
-            a lot of data. The system will also be able to analyze and save the
-            data faster every time it runs{" "}
+            and saves the results to there respective database based on the
+            user&#39;s full name.{" "}
             <b className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500">
               but it still depends on the size of the data to analyze and save.
             </b>
@@ -472,7 +467,7 @@ export default function AdminPrediction() {
             page.
           </p>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 row-start-1 md:row-start-auto">
           <div
             className={`flex flex-col w-full bg-blue-50 rounded-lg shadow ${
               errorEffect || errorEffectToAnS
@@ -487,7 +482,7 @@ export default function AdminPrediction() {
               })
             }
           >
-            <div className="grid w-full h-full grid-cols-1  md:grid-cols-5">
+            <div className="grid w-full h-full grid-cols-1 md:grid-cols-5">
               <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
                 <h1 className="text-xl font-bold text-blue-500">
                   {count === 1
@@ -552,7 +547,7 @@ export default function AdminPrediction() {
                                 Drop the files here ...
                               </p>
                             ) : (
-                              <p className="text-sm text-gray-500">
+                              <p className="text-sm text-gray-500 flex-auto px-4">
                                 Drag &#39;n&#39; drop some files here, or click
                                 to select files
                               </p>
