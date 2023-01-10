@@ -12,20 +12,18 @@ import {
   STATUS_WARNING,
 } from "../../../assets/styles/styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFileCsv,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
-import {ItemsPerPage} from "../../../components/items/Items";
-import {Paginator} from "../../../components/listbox/ListBox";
+import { ItemsPerPage } from "../../../components/items/Items";
+import { Paginator } from "../../../components/listbox/ListBox";
 
 /**
  * @description Handles evaluation pages for the application
  */
 export default function EvalFiles() {
-    const per_page = [
+  const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
     { value: 100, label: "100", id: 3 },
@@ -59,7 +57,7 @@ export default function EvalFiles() {
     page_number,
     total_items,
     total_pages,
-      per_page_limit,
+    per_page_limit,
   } = fileData;
 
   const [filteredListOfFiles, setFilteredListOfFiles] = useState(files_list);
@@ -82,7 +80,7 @@ export default function EvalFiles() {
     setFilteredListOfFiles(filteredList);
   };
 
-    /**
+  /**
    * @description Search bar handler for the files
    */
   const handleSelect = (name) => (value) => {

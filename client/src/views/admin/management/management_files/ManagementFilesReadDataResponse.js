@@ -8,14 +8,14 @@ import { Header } from "../../../../components/headers/Header";
 import { GridItemResponse } from "../../../../components/grid/GridItem";
 import { toast } from "react-toastify";
 import { NoData } from "../../../../components/warnings/WarningMessages";
-import {Paginator} from "../../../../components/listbox/ListBox";
-import {ItemsPerPage} from "../../../../components/items/Items";
+import { Paginator } from "../../../../components/listbox/ListBox";
+import { ItemsPerPage } from "../../../../components/items/Items";
 
 /**
  * @description Displays the sentiment score of the file along with the response
  */
 export default function ManagementFilesReadDataResponse() {
- const per_page = [
+  const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
     { value: 100, label: "100", id: 3 },
@@ -30,7 +30,7 @@ export default function ManagementFilesReadDataResponse() {
   const [readDataResponse, setReadDataResponse] = useState({
     loading: true,
     sentiments_list: [],
-      current_page: "",
+    current_page: "",
     has_next: false,
     has_prev: true,
     page_number: 1,
@@ -39,8 +39,18 @@ export default function ManagementFilesReadDataResponse() {
     per_page_limit: per_page[0].value,
   });
 
-  const { loading, sentiments_list, current_page, has_next, has_prev, page_number, total_items, total_pages, per_page_limit } = readDataResponse;
-        /**
+  const {
+    loading,
+    sentiments_list,
+    current_page,
+    has_next,
+    has_prev,
+    page_number,
+    total_items,
+    total_pages,
+    per_page_limit,
+  } = readDataResponse;
+  /**
    * @description Search bar handler for the files
    */
   const handleSelect = (name) => (value) => {
@@ -57,15 +67,23 @@ export default function ManagementFilesReadDataResponse() {
    * @param page
    * @param per_page
    */
-  const loadReadDataResponse = (fileId, read_responses, file_name, page, per_page) => {
+  const loadReadDataResponse = (
+    fileId,
+    read_responses,
+    file_name,
+    page,
+    per_page,
+  ) => {
     httpClient
-      .get(`/data/read-data-response/${fileId}/${read_responses}/${file_name}//${page}/${per_page}`)
+      .get(
+        `/data/read-data-response/${fileId}/${read_responses}/${file_name}//${page}/${per_page}`,
+      )
       .then((response) => {
         setReadDataResponse({
           ...readDataResponse,
           loading: false,
           sentiments_list: response.data.sentiments_list,
-            current_page: response.data.current_page,
+          current_page: response.data.current_page,
           has_next: response.data.has_next,
           has_prev: response.data.has_prev,
           total_items: response.data.total_items,
@@ -79,7 +97,13 @@ export default function ManagementFilesReadDataResponse() {
   };
 
   useEffect(() => {
-    loadReadDataResponse(fileId, read_responses, file_name, page_number, per_page_limit);
+    loadReadDataResponse(
+      fileId,
+      read_responses,
+      file_name,
+      page_number,
+      per_page_limit,
+    );
   }, [fileId, read_responses, file_name, page_number, per_page_limit]);
 
   return (
@@ -92,8 +116,8 @@ export default function ManagementFilesReadDataResponse() {
         body={`Here is the data response for ${toReadableName(file_name)}`}
         title={`${toReadableName(file_name)}`}
       />
-       <ItemsPerPage
-        Datas={readDataResponse }
+      <ItemsPerPage
+        Datas={readDataResponse}
         current_page={current_page}
         has_next={has_next}
         has_prev={has_prev}
@@ -136,8 +160,8 @@ export default function ManagementFilesReadDataResponse() {
           )}
         </div>
       </div>
-       <ItemsPerPage
-        Datas={readDataResponse }
+      <ItemsPerPage
+        Datas={readDataResponse}
         current_page={current_page}
         has_next={has_next}
         has_prev={has_prev}

@@ -14,14 +14,14 @@ import { Header } from "../../../../components/headers/Header";
 import { SearchBar } from "../../../../components/searchbar/SearchBar";
 import { NoData } from "../../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
-import {ItemsPerPage} from "../../../../components/items/Items";
-import {Paginator} from "../../../../components/listbox/ListBox";
+import { ItemsPerPage } from "../../../../components/items/Items";
+import { Paginator } from "../../../../components/listbox/ListBox";
 
 /**
  * @description Lists the courses to read each course's data
  */
 export default function ManagementFilesListofDataResponse() {
-      const per_page = [
+  const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
     { value: 100, label: "100", id: 3 },
@@ -36,7 +36,7 @@ export default function ManagementFilesListofDataResponse() {
     topic: "",
     school_year: "",
     school_semester: "",
-        current_page: "",
+    current_page: "",
     has_next: false,
     has_prev: true,
     page_number: 1,
@@ -45,14 +45,25 @@ export default function ManagementFilesListofDataResponse() {
     per_page_limit: per_page[0].value,
   });
 
-  const { loading, file_list, topic, school_year, school_semester, current_page, has_next, has_prev, page_number, per_page_limit, total_pages, total_items } =
-    listOfTaughtCourses;
+  const {
+    loading,
+    file_list,
+    topic,
+    school_year,
+    school_semester,
+    current_page,
+    has_next,
+    has_prev,
+    page_number,
+    per_page_limit,
+    total_pages,
+    total_items,
+  } = listOfTaughtCourses;
 
   const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] =
     useState(file_list);
 
-
-    /**
+  /**
    * @description Search bar handler for the files
    */
   const handleSelect = (name) => (value) => {
@@ -72,7 +83,9 @@ export default function ManagementFilesListofDataResponse() {
    */
   const loadListOfTaughtCourses = (fileId, read_responses, page, per_page) => {
     httpClient
-      .get(`/data/get-list-of-taught-courses/${fileId}/${read_responses}/${page}/${per_page}`)
+      .get(
+        `/data/get-list-of-taught-courses/${fileId}/${read_responses}/${page}/${per_page}`,
+      )
       .then((response) => {
         setListOfTaughtCourses({
           ...listOfTaughtCourses,
@@ -111,7 +124,12 @@ export default function ManagementFilesListofDataResponse() {
   };
 
   useEffect(() => {
-    loadListOfTaughtCourses(fileId, read_responses, page_number, per_page_limit);
+    loadListOfTaughtCourses(
+      fileId,
+      read_responses,
+      page_number,
+      per_page_limit,
+    );
   }, [fileId, read_responses, page_number, per_page_limit]);
 
   return (
@@ -128,7 +146,7 @@ export default function ManagementFilesListofDataResponse() {
         placeholder="Search"
         type="text"
       />
-              <ItemsPerPage
+      <ItemsPerPage
         Datas={listOfTaughtCourses}
         current_page={current_page}
         has_next={has_next}

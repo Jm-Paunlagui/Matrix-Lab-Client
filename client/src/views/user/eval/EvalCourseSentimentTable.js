@@ -17,14 +17,14 @@ import BackTo from "../../../components/buttons/BackTo";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
-import {ItemsPerPage} from "../../../components/items/Items";
-import {Paginator} from "../../../components/listbox/ListBox";
+import { ItemsPerPage } from "../../../components/items/Items";
+import { Paginator } from "../../../components/listbox/ListBox";
 
 /**
  * @description Handles the lists data of the file department and professor
  */
 export default function EvalCourseSentimentTable() {
-      const per_page = [
+  const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
     { value: 100, label: "100", id: 3 },
@@ -53,13 +53,25 @@ export default function EvalCourseSentimentTable() {
     per_page_limit: per_page[0].value,
   });
 
-  const { loading, file_list, topic, school_year, school_semester, current_page, has_next, has_prev, page_number, per_page_limit, total_pages, total_items } =
-    listOfTaughtCourses;
+  const {
+    loading,
+    file_list,
+    topic,
+    school_year,
+    school_semester,
+    current_page,
+    has_next,
+    has_prev,
+    page_number,
+    per_page_limit,
+    total_pages,
+    total_items,
+  } = listOfTaughtCourses;
 
   const [filteredListOfTaughtCourses, setFilteredListOfTaughtCourses] =
     useState(file_list);
 
-      /**
+  /**
    * @description Search bar handler for the files
    */
   const handleSelect = (name) => (value) => {
@@ -68,7 +80,6 @@ export default function EvalCourseSentimentTable() {
       [name]: value,
     });
   };
-
 
   /**
    * @description Loads the list of taught courses
@@ -79,7 +90,9 @@ export default function EvalCourseSentimentTable() {
    */
   const loadListOfTaughtCourses = (fileId, read_responses, page, per_page) => {
     httpClient
-      .get(`/data/get-list-of-taught-courses/${fileId}/${read_responses}/${page}/${per_page}`)
+      .get(
+        `/data/get-list-of-taught-courses/${fileId}/${read_responses}/${page}/${per_page}`,
+      )
       .then((response) => {
         setListOfTaughtCourses({
           ...listOfTaughtCourses,

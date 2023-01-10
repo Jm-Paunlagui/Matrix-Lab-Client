@@ -9,14 +9,14 @@ import { GridItemResponse } from "../../../components/grid/GridItem";
 import { isAuth } from "../../../helpers/Auth";
 import { NoData } from "../../../components/warnings/WarningMessages";
 import { toast } from "react-toastify";
-import {ItemsPerPage} from "../../../components/items/Items";
-import {Paginator} from "../../../components/listbox/ListBox";
+import { ItemsPerPage } from "../../../components/items/Items";
+import { Paginator } from "../../../components/listbox/ListBox";
 
 /**
  * @description Displays the sentiment score of the file along with the response
  */
 export default function EvalReadCourseSentiment() {
-    const per_page = [
+  const per_page = [
     { value: 25, label: "25", id: 1 },
     { value: 50, label: "50", id: 2 },
     { value: 100, label: "100", id: 3 },
@@ -36,7 +36,7 @@ export default function EvalReadCourseSentiment() {
   const [readDataResponse, setReadDataResponse] = useState({
     loading: true,
     sentiments_list: [],
-      current_page: "",
+    current_page: "",
     has_next: false,
     has_prev: true,
     page_number: 1,
@@ -45,11 +45,20 @@ export default function EvalReadCourseSentiment() {
     per_page_limit: per_page[0].value,
   });
 
-  const { loading, sentiments_list, current_page, has_next, has_prev, page_number, total_items,
-        total_pages, per_page_limit } = readDataResponse;
-    /**
-     * @description Search bar handler for the files
-     */
+  const {
+    loading,
+    sentiments_list,
+    current_page,
+    has_next,
+    has_prev,
+    page_number,
+    total_items,
+    total_pages,
+    per_page_limit,
+  } = readDataResponse;
+  /**
+   * @description Search bar handler for the files
+   */
   const handleSelect = (name) => (value) => {
     setReadDataResponse({
       ...readDataResponse,
@@ -64,15 +73,23 @@ export default function EvalReadCourseSentiment() {
    * @param page
    * @param per_page
    */
-  const loadReadDataResponse = (fileId, read_responses, file_name, page, per_page) => {
+  const loadReadDataResponse = (
+    fileId,
+    read_responses,
+    file_name,
+    page,
+    per_page,
+  ) => {
     httpClient
-      .get(`/data/read-data-response/${fileId}/${read_responses}/${file_name}/${page}/${per_page}`)
+      .get(
+        `/data/read-data-response/${fileId}/${read_responses}/${file_name}/${page}/${per_page}`,
+      )
       .then((response) => {
         setReadDataResponse({
           ...readDataResponse,
           loading: false,
           sentiments_list: response.data.sentiments_list,
-            current_page: response.data.current_page,
+          current_page: response.data.current_page,
           has_next: response.data.has_next,
           has_prev: response.data.has_prev,
           total_items: response.data.total_items,
@@ -86,7 +103,13 @@ export default function EvalReadCourseSentiment() {
   };
 
   useEffect(() => {
-    loadReadDataResponse(fileId, folderName, fileName, page_number, per_page_limit);
+    loadReadDataResponse(
+      fileId,
+      folderName,
+      fileName,
+      page_number,
+      per_page_limit,
+    );
   }, [fileId, folderName, fileName, page_number, per_page_limit]);
 
   return folderNameV === folderName ? (
@@ -143,7 +166,7 @@ export default function EvalReadCourseSentiment() {
           )}
         </div>
       </div>
-        <ItemsPerPage
+      <ItemsPerPage
         Datas={readDataResponse}
         current_page={current_page}
         has_next={has_next}
