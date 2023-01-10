@@ -164,7 +164,7 @@ export default function ManagementFilesListofDataResponse() {
           per_page_limit={per_page_limit}
         />
       </ItemsPerPage>
-      <div className="grid grid-cols-1 py-8 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-6">
         {loading ? (
           <>
             <LoadingPageSkeletonText />
