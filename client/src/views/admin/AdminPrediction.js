@@ -66,20 +66,27 @@ export default function AdminPrediction() {
     p_school_year: "",
   });
 
-  const { p_csv_question, p_flag_deleted, p_flag_release, p_id, p_school_semester, p_school_year } = previousData;
+  const {
+    p_csv_question,
+    p_flag_deleted,
+    p_flag_release,
+    p_id,
+    p_school_semester,
+    p_school_year,
+  } = previousData;
   const get_previous_evaluated_file = () => {
     httpClient.get("/data/get-previous-evaluated-file").then((response) => {
-        setPreviousData({
-          ...previousData,
-            p_csv_question: response.data.p_csv_question,
-            p_flag_deleted: response.data.p_flag_deleted,
-            p_flag_release: response.data.p_flag_release,
-            p_id: response.data.p_id,
-            p_school_semester: response.data.p_school_semester,
-            p_school_year: response.data.p_school_year,
-        });
+      setPreviousData({
+        ...previousData,
+        p_csv_question: response.data.p_csv_question,
+        p_flag_deleted: response.data.p_flag_deleted,
+        p_flag_release: response.data.p_flag_release,
+        p_id: response.data.p_id,
+        p_school_semester: response.data.p_school_semester,
+        p_school_year: response.data.p_school_year,
+      });
     });
-  }
+  };
 
   /**
    * @description Process by state
@@ -344,7 +351,7 @@ export default function AdminPrediction() {
       .then((response) => {
         if (type === "done") {
           toast.success(response.data.message);
-          get_previous_evaluated_file()
+          get_previous_evaluated_file();
         } else {
           toast.error("File deleted due to error.");
         }
@@ -511,25 +518,37 @@ export default function AdminPrediction() {
           >
             <div className="grid w-full h-full grid-cols-1 md:grid-cols-5">
               <div className="flex flex-col w-full h-full col-span-5 p-8 pb-8 space-y-4">
-                {p_id === "" ? "" : (
-                    <>
-                      <h1 className="text-xl font-bold text-blue-500">
-                        Quick view
-                      </h1>
-                      <div className="flex flex-col w-full">
-                        <DisclosureTogglable
-                          title={"Previously Evaluated Columns"}
-                        >
-                          <div className="space-y-2">
-                            <h1 className="text-gray-500 font-medium">ID - {p_id}</h1>
-                            <h1 className="text-gray-500 font-medium">Evaluated Column - {p_csv_question}</h1>
-                            <h1 className="text-gray-500 font-medium">School Year - {p_school_year} @ {p_school_semester}</h1>
-                            <h1 className="text-gray-500 font-medium">Published - {p_flag_release}</h1>
-                            <h1 className="text-gray-500 font-medium">Deleted (Temporary) - {p_flag_deleted}</h1>
-                          </div>
-                        </DisclosureTogglable>
-                      </div>
-                    </>
+                {p_id === "" ? (
+                  ""
+                ) : (
+                  <>
+                    <h1 className="text-xl font-bold text-blue-500">
+                      Quick view
+                    </h1>
+                    <div className="flex flex-col w-full">
+                      <DisclosureTogglable
+                        title={"Previously Evaluated Columns"}
+                      >
+                        <div className="space-y-2">
+                          <h1 className="text-gray-500 font-medium">
+                            ID - {p_id}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            Evaluated Column - {p_csv_question}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            School Year - {p_school_year} @ {p_school_semester}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            Published - {p_flag_release}
+                          </h1>
+                          <h1 className="text-gray-500 font-medium">
+                            Deleted (Temporary) - {p_flag_deleted}
+                          </h1>
+                        </div>
+                      </DisclosureTogglable>
+                    </div>
+                  </>
                 )}
                 <h1 className="text-xl font-bold text-blue-500">
                   {count === 1
