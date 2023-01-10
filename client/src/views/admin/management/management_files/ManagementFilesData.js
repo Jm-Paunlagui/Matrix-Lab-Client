@@ -156,74 +156,76 @@ export default function ManagementFilesData() {
         ) : filteredDepartments.length > 0 ? (
           filteredDepartments.map((department) => (
             <div
-              className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
+              className="hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={department.id}
             >
-              <div className="col-span-1 w-full">
-                <div className="flex flex-row w-full p-4">
-                  <h1 className="text-md font-bold leading-none text-blue-500">
-                    Department:
-                  </h1>
-                  <h1 className="text-md leading-none text-gray-500 ml-2">
-                    {department.name}
-                  </h1>
-                </div>
-              </div>
-              <hr className="w-full border-gray-300" />
-              <div className="col-span-4 text-start p-4">
-                <div className="flex flex-row w-full py-2">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Details
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    No. of Professors:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    No. of Courses:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.department_evaluatee_course_code}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    No. of Responses:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.number_of_sentiments}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Negative Score:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.negative_sentiments_percentage}%
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Positive Score:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.positive_sentiments_percentage}%
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Share of Voice:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {department.share}%
-                  </h1>
-                </div>
+              <div className="flex flex-col w-full bg-blue-50 rounded-lg shadow">
+                  <div className="col-span-1 w-full">
+                    <div className="flex flex-row w-full p-4">
+                      <h1 className="text-md font-bold leading-none text-blue-500">
+                        Department:
+                      </h1>
+                      <h1 className="text-md font-bold leading-none text-gray-500 ml-2">
+                        {department.name}
+                      </h1>
+                    </div>
+                  </div>
+                  <hr className="w-full border-gray-300" />
+                  <div className="col-span-4 text-start p-4">
+                    <div className="flex flex-row w-full py-2">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
+                        Details
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        No. of Professors:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {department.department}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        No. of Courses:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {department.department_evaluatee_course_code}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        No. of Responses:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {department.number_of_sentiments}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Negative Score:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {department.negative_sentiments_percentage}%
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Positive Score:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {department.positive_sentiments_percentage}%
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Share of Voice:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {department.share}%
+                      </h1>
+                    </div>
+                  </div>
               </div>
             </div>
           ))
@@ -274,80 +276,90 @@ export default function ManagementFilesData() {
         ) : filteredProfessors.length > 0 ? (
           filteredProfessors.map((professor) => (
             <div
-              className="flex flex-col mb-4 w-full bg-blue-50 rounded-lg shadow-md"
+              className="flex flex-col hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={professor.id}
             >
-              <div className="col-span-1 w-full">
-                <div className="flex flex-row w-full p-4">
-                  <h1 className="text-md font-bold leading-none text-blue-500">
-                    Professor:
-                  </h1>
-                  <h1 className="text-md leading-none text-gray-500 ml-2">
-                    {professor.name}
-                  </h1>
+                <div className="flex-1 w-full bg-blue-50 rounded-lg shadow">
+                  <div className="col-span-1 w-full">
+                    <div className="flex flex-row w-full p-4">
+                      <h1 className="text-md font-bold leading-none text-blue-500">
+                        Professor:
+                      </h1>
+                      <h1 className="text-md font-bold leading-none text-gray-500 ml-2">
+                        {professor.name}
+                      </h1>
+                    </div>
+                  </div>
+                  <hr className="w-full border-gray-300" />
+                  <div className="col-span-4 text-start p-4">
+                    <div className="flex flex-row w-full py-2">
+                      <h1 className="text-base font-bold leading-none text-blue-500">
+                        Details
+                      </h1>
+                    </div>
+                      <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        From:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {professor.department}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        No. of Responses:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {professor.number_of_sentiments}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Negative Score:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {professor.negative_sentiments_percentage}%
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Positive Score:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {professor.positive_sentiments_percentage}%
+                      </h1>
+                    </div>
+                    <div className="flex flex-row items-start w-full py-2">
+                      <h1 className="text-base font-medium leading-none text-gray-500">
+                        Share of Voice:
+                      </h1>
+                      <h1 className="ml-2 text-base leading-none text-gray-500">
+                        {professor.share}%
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="col-span-1 w-full">
+                    <div className="flex flex-row w-full px-4">
+                      <h1 className="text-base font-bold leading-none text-blue-600">
+                        Actions
+                      </h1>
+                    </div>
+                    <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
+                      <button
+                        className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
+                        type="button"
+                      >
+                        <Link to={`${removeComma(professor.name)}`}>
+                          <FontAwesomeIcon
+                            className={`${ICON_PLACE_SELF_CENTER}`}
+                            icon={faFileCsv}
+                          />
+                          Read each response
+                        </Link>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <hr className="w-full border-gray-300" />
-              <div className="col-span-4 text-start p-4">
-                <div className="flex flex-row w-full py-2">
-                  <h1 className="text-base font-bold leading-none text-blue-500">
-                    Details
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    No. of Responses:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.number_of_sentiments}
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Negative Score:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.negative_sentiments_percentage}%
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Positive Score:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.positive_sentiments_percentage}%
-                  </h1>
-                </div>
-                <div className="flex flex-row items-start w-full py-2">
-                  <h1 className="text-base font-medium leading-none text-gray-500">
-                    Share of Voice:
-                  </h1>
-                  <h1 className="ml-2 text-base leading-none text-gray-500">
-                    {professor.share}%
-                  </h1>
-                </div>
-              </div>
-              <div className="col-span-1 w-full">
-                <div className="flex flex-row w-full px-4">
-                  <h1 className="text-base font-bold leading-none text-blue-600">
-                    Actions
-                  </h1>
-                </div>
-                <div className="p-4 content-end flex flex-wrap justify-start w-full gap-2">
-                  <button
-                    className={`py-1 px-2 flex flex-row justify-center ${ACCENT_BUTTON}`}
-                    type="button"
-                  >
-                    <Link to={`${removeComma(professor.name)}`}>
-                      <FontAwesomeIcon
-                        className={`${ICON_PLACE_SELF_CENTER}`}
-                        icon={faFileCsv}
-                      />
-                      Read each response
-                    </Link>
-                  </button>
-                </div>
-              </div>
             </div>
           ))
         ) : (

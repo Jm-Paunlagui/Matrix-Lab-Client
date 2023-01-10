@@ -537,10 +537,10 @@ export default function ManagementFilesUsers() {
         ) : (
           details.map((detail) => (
             <div
-              className="hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
+              className="flex flex-col hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={detail.id}
             >
-              <div className="flex items-center p-4 bg-blue-50 rounded-lg shadow">
+              <div className="flex-1 w-full bg-blue-50 rounded-lg shadow">
                 <div
                   className={`flex items-center justify-center w-10 h-10 text-white rounded ${detail.color}`}
                 >
@@ -748,10 +748,10 @@ export default function ManagementFilesUsers() {
         ) : filteredListOfUsers.length > 0 ? (
           filteredListOfUsers.map((user) => (
             <div
-              className="hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
+              className="flex flex-col hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={user.id}
             >
-              <div className="flex flex-col w-full bg-blue-50 rounded-lg shadow">
+              <div className="flex-1 w-full bg-blue-50 rounded-lg shadow">
                 <div className="w-full col-span-1">
                   <div className="flex flex-row w-full p-4">
                     <h1 className="font-bold leading-none text-blue-500 text-md">

@@ -346,10 +346,10 @@ export default function ManagementFileBin() {
         ) : filteredListOfFiles.length > 0 ? (
           filteredListOfFiles.map((file) => (
             <div
-              className="hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
+              className="flex flex-col hover:bg-teal-500 p-0.5 rounded-lg transition delay-150 duration-500 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               key={file.id}
             >
-              <div className="flex flex-col w-full bg-blue-50 rounded-lg shadow">
+              <div className="flex-1 w-full bg-blue-50 rounded-lg shadow">
                 <div className="col-span-1 w-full">
                   <div className="flex flex-row w-full p-4">
                     <h1 className="text-md font-bold leading-none text-blue-600">
